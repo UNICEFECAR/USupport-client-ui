@@ -1,12 +1,14 @@
+@import "usupport-components-library/styles";
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: $spacing_1_6;
   text-align: center;
 }
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  padding: $spacing_1_6;
   will-change: filter;
 }
