@@ -5,7 +5,7 @@ module.exports = {
   ],
   refs: {
     'design-system': {
-      title: 'Components Library',
+      title: 'Design System',
       url: 'https://main--6330c25ad58d101679aa001f.chromatic.com',
     },
   },
