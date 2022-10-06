@@ -13,7 +13,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "usupport-components-library": "^0.1.4"
+    "usupport-components-library": "^0.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
