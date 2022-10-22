@@ -1,0 +1,63 @@
+@import "@USupport-components-library/styles";
+
+.soscenter {
+  padding-top: $spacing_3_2;
+  padding-bottom: $spacing_6_4;
+
+  @media screen and (min-width: $screen-md) {
+    padding-bottom: $spacing_8_0;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: $spacing_5_6;
+    padding-bottom: $spacing_16_0;
+  }
+
+  &__heading-item {
+    text-align: center;
+  }
+
+  &__text-item {
+    padding-top: $spacing_2_5;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_4_8;
+    }
+  }
+
+  &__box {
+    padding: $spacing_2_4;
+    text-align: left;
+
+    @media screen and (min-width: $screen-md) {
+      padding: $spacing_5_6 $spacing_9_6;
+    }
+
+    .icon-with-text {
+      cursor: pointer;
+
+      &:not(:last-child) {
+        padding-bottom: $spacing_2_0;
+      }
+    }
+
+    &-heading {
+      padding-bottom: $spacing_2_4;
+
+      @media screen and (min-width: $screen-md) {
+        padding-bottom: $spacing_3_2;
+      }
+    }
+
+    &-paragraph {
+      padding-bottom: $spacing_5_0;
+    }
+  }
+
+  &__secondary-grid {
+    row-gap: 2rem;
+    &__item {
+      justify-self: center;
+    }
+  }
+}

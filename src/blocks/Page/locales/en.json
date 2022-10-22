@@ -1,0 +1,30 @@
+{
+  "page_1": "Home",
+  "page_2": "How it works?",
+  "page_3": "About Us",
+  "page_4": "Contact Us",
+
+  "country_1": "",
+  "country_2": "",
+  "country_3": "",
+
+  "language_1": "",
+  "language_2": "",
+  "language_3": "",
+  "language_4": "",
+  "language_5": "",
+  "language_6": "",
+
+  "footer_1": "About Us",
+  "footer_2": "Information portal",
+  "footer_3": "How it works?",
+  "footer_4": "Terms of Service",
+  "footer_5": "Privacy Policy",
+  "footer_6": "Cookie Settings",
+
+  "emergency_button": "SOS Center",
+
+  "button_text": "Go to app",
+  "dropdown_text": "Country & Language",
+  "contact_us": "Contact Us"
+}
