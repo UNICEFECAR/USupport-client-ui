@@ -1,0 +1,3 @@
+[submodule "USupport-components-library"]
+	path = USupport-components-library
+	url = git@github.com:UNICEFECAR/USupport-components-library.git
