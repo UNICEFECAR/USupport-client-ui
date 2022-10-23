@@ -75,7 +75,8 @@ export const Page = ({ additionalPadding = true, classes, children }) => {
         pages={pages}
         countries={countries}
         dropdownText={t("dropdown_text")}
-        buttonText={t("button_text")}
+        showProfile
+        yourProfileText={t("your_profile_text")}
       />
       <div
         className={[
