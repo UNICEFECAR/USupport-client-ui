@@ -1,0 +1,39 @@
+@import "@USupport-components-library/styles";
+
+.contact-us {
+  background-image: url(./assets/background.png);
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: 32.5rem 18rem;
+  padding-bottom: $spacing_23_0;
+
+  @media screen and (min-width: $screen_md) {
+    padding-bottom: $spacing_10_0;
+  }
+
+  &__grid {
+    place-items: center;
+    text-align: left;
+    padding-top: $spacing_3_2;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_5_0;
+    }
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_8_0;
+    }
+
+    &__textarea-item {
+      padding-top: $spacing_3_0;
+    }
+
+    &__button {
+      @media screen and (min-width: $screen-md) {
+        margin-top: $spacing_5_0;
+      }
+      @media screen and (min-width: $screen-lg) {
+        margin-top: $spacing_8_0;
+      }
+    }
+  }
+}
