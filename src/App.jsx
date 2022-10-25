@@ -8,6 +8,7 @@ import "./App.scss";
 // AOS imports
 import "aos/dist/aos.css";
 import AOS from "aos";
+import { Welcome } from "./pages/Welcome/Welcome";
 
 function App() {
   // TODO: add the country specific information about the SOS center
@@ -47,6 +48,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
