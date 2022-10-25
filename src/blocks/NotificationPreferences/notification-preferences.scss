@@ -1,0 +1,32 @@
+@import "@USupport-components-library/styles";
+
+.notification-preferences {
+  &__grid {
+    place-items: start;
+    padding-top: $spacing_3_2;
+    padding-bottom: $spacing_10_0;
+
+    @media screen and (min-width: $screen_md) {
+      place-items: center;
+      padding-top: $spacing_5_0;
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-bottom: $spacing_2_4;
+      width: 20rem;
+
+      @media screen and (min-width: $screen_md) {
+        width: 35rem;
+      }
+
+      & > p {
+        color: $color_blue_3d527b;
+        padding-bottom: $spacing_1_6;
+      }
+    }
+  }
+}
