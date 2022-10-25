@@ -1,0 +1,40 @@
+@import "@USupport-components-library/styles";
+
+.welcome {
+  &__grid {
+    height: 100vh;
+    place-items: center;
+
+    &__logo-item {
+      margin-top: $spacing_12_0;
+
+      &__heading {
+        color: $color_gray_66768d;
+      }
+
+      &__logo {
+        margin-top: $spacing_1_6;
+        width: 22rem;
+      }
+    }
+
+    &__content-item {
+      align-self: end;
+      text-align: left;
+
+      &__countries-dropdwon {
+        z-index: 2;
+      }
+
+      &__languages-dropdown {
+        margin-top: $spacing_2_5;
+        z-index: -1;
+      }
+
+      & > button {
+        margin-top: $spacing_3_2;
+        margin-bottom: $spacing_8_0;
+      }
+    }
+  }
+}
