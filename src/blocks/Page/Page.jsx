@@ -101,18 +101,20 @@ export const Page = ({
           `${classNames(classes)}`,
         ].join(" ")}
       >
-        <div className="page__header">
-          {showGoBackArrow && (
-            <Icon
-              classes="page__header-icon"
-              name="arrow-chevron-back"
-              size="md"
-              color="#20809E"
-            />
-          )}
-          <h3 className="page__header-heading">{heading}</h3>
-          {headingButton && headingButton}
-        </div>
+        {(heading || showGoBackArrow || headingButton) && (
+          <div className="page__header">
+            {showGoBackArrow && (
+              <Icon
+                classes="page__header-icon"
+                name="arrow-chevron-back"
+                size="md"
+                color="#20809E"
+              />
+            )}
+            {heading && <h3 className="page__header-heading">{heading}</h3>}
+            {headingButton && headingButton}
+          </div>
+        )}
         <p className="page__subheading-text text">{subheading}</p>
         {children}
       </div>
