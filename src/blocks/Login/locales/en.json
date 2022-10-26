@@ -1,0 +1,8 @@
+{
+    "email_label": "Email",
+    "password_label": "Password",
+    "forgot_password_label": "I forgot my password",
+    "login_label": "Login",
+    "paragraph": "Or login with:",
+    "register_button_label": "I don’t have an account"
+}

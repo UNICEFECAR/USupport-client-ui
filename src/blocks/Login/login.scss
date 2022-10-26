@@ -1,0 +1,40 @@
+@import "@USupport-components-library/styles";
+
+.login {
+  height: 100%;
+
+  & .container {
+    height: 100%;
+  }
+
+  &__grid {
+    min-height: 90vh;
+    place-items: center;
+    text-align: left;
+
+    &__inputs-item {
+      &__input--password {
+        margin-top: $spacing_2_4;
+      }
+
+      & .login-button {
+        margin-top: $spacing_4_8;
+      }
+    }
+
+    &__content-item {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 100%;
+      justify-content: space-between;
+
+      &__buttons-container {
+        display: flex;
+        flex-direction: row;
+        margin-top: $spacing_1_6;
+      }
+    }
+  }
+}
