@@ -9,6 +9,7 @@
 
   @media screen and (min-width: $screen_md) {
     padding-bottom: $spacing_10_0;
+    background-image: none;
   }
 
   &__grid {
@@ -28,6 +29,7 @@
     }
 
     &__button {
+      margin-top: $spacing_3_2;
       @media screen and (min-width: $screen-md) {
         margin-top: $spacing_5_0;
       }
