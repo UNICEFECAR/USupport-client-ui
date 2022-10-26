@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 export const NotFound = () => {
   const { t } = useTranslation("not-found-page");
   return (
-    <Page>
+    <Page showGoBackArrow={false}>
       <NotFoundBlock
         headingText={t("heading")}
         subheadingText={t("subheading")}

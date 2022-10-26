@@ -21,9 +21,6 @@ export const SOSCenter = ({ contacts }) => {
   return (
     <Block classes="soscenter" animation="fade-right">
       <Grid classes="soscenter__grid">
-        <GridItem xs={4} md={8} lg={12} classes="soscenter__heading-item">
-          <h2>{t("heading")}</h2>
-        </GridItem>
         <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">
           <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
             {contacts.map((contact, index) => {

@@ -2,8 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 import { Page, SosCenter, ContactUs } from "./blocks/locales.js";
-
-import { ContactUs as ContactUsPage, NotFoundPage } from "./pages/locales.js";
+import { ContactUs as ContactUsPage, NotFoundPage, SOSCenterPage } from "./pages/locales.js";
 
 const resources = {
   en: {
@@ -15,6 +14,7 @@ const resources = {
     // Pages
     "not-found-page": NotFoundPage.en,
     "contact-us-page": ContactUsPage.en,
+    "sos-center-page": SOSCenterPage.en,
   },
 };
 
