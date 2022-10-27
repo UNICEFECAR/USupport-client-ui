@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Page } from "./Page";
 
 export default {
-  title: "Website UI/blocks/Page",
+  title: "Client UI/blocks/Page",
   component: Page,
   argTypes: {},
 };

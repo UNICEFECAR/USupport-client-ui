@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { Login } from './Login';
+import { Login } from "./Login";
 
 export default {
-  title: 'Website UI/blocks/Login',
+  title: "Client UI/blocks/Login",
   component: Login,
   argTypes: {},
 };

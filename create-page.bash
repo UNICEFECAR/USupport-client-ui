@@ -106,7 +106,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { $page_name } from './$page_name';
 
 export default {
-    title: 'Website UI/pages/$page_name',
+    title: 'Client UI/pages/$page_name',
     component: $page_name,
     argTypes: {},
 };

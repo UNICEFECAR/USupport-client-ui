@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { ContactUs } from './ContactUs';
+import { ContactUs } from "./ContactUs";
 
 export default {
-  title: 'Website UI/blocks/ContactUs',
+  title: "Client UI/blocks/ContactUs",
   component: ContactUs,
   argTypes: {},
 };

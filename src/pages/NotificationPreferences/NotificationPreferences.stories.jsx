@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { NotificationPreferencesPage } from "./NotificationPreferences";
 
 export default {
-  title: "Website UI/pages/NotificationPreferences",
+  title: "Client UI/pages/NotificationPreferences",
   component: NotificationPreferencesPage,
   argTypes: {},
 };
