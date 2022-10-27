@@ -1,9 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { RadialCircle } from "@USupport-components-library/src";
-import { useWindowDimensions } from "@USupport-components-library/src/utils";
-import { Page } from "../../blocks/Page";
-import { ContactUs as ContactUsBlock } from "../../blocks/ContactUs";
+import { useWindowDimensions } from "@USupport-components-library/utils";
+import { Page, ContactUs as ContactUsBlock } from "#blocks";
+
 import "./contact-us.scss";
 
 /**

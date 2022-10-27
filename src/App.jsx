@@ -1,18 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { NotFound } from "./pages/NotFound";
-import { SOSCenter } from "./pages/SOSCenter";
-import { RegisterAboutYou } from "./pages/RegisterAboutYou/RegisterAboutYou";
-import { ContactUs } from "./pages/ContactUs";
-import { NotificationPreferencesPage } from "./pages/NotificationPreferences";
-import { Login } from "./pages/Login/Login";
+import {
+  NotFound,
+  SOSCenter,
+  RegisterAboutYou,
+  ContactUs,
+  NotificationPreferencesPage,
+  Login,
+  Welcome,
+} from "./pages";
 
 import "./App.scss";
 
 // AOS imports
 import "aos/dist/aos.css";
 import AOS from "aos";
-import { Welcome } from "./pages/Welcome/Welcome";
 
 function App() {
   // TODO: add the country specific information about the SOS center

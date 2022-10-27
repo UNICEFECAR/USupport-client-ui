@@ -81,7 +81,7 @@ fi
 
 # Add the page to the main page file
 echo "import React from 'react';
-import { Page } from '../../blocks/Page/Page';
+import { Page } from '#blocks';
 
 import './$page_name_kebab.scss';
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Page } from "../../blocks/Page/Page";
+import { Page } from "#blocks";
 import { NotFound as NotFoundBlock } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 

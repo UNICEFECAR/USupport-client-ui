@@ -1,6 +1,6 @@
 import React from "react";
-import { Block } from "@USupport-components-library/src";
 import {
+  Block,
   Grid,
   GridItem,
   DropdownWithLabel,
@@ -9,7 +9,7 @@ import {
 
 import "./welcome.scss";
 
-import { logoVerticalSvg } from "../../../USupport-components-library/src/assets";
+import { logoVerticalSvg } from "@USupport-components-library/assets";
 import { useTranslation } from "react-i18next";
 
 /**

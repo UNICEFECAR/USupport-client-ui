@@ -1,8 +1,8 @@
 import React from "react";
-import { Page } from "../../blocks/Page/Page";
-import { NotificationPreferences } from "../../blocks/NotificationPreferences";
-import "./notification-preferences.scss";
+import { Page, NotificationPreferences } from "#blocks";
 import { useTranslation } from "react-i18next";
+
+import "./notification-preferences.scss";
 
 /**
  * NotificationPreferences

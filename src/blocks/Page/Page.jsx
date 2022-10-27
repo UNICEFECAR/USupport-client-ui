@@ -6,7 +6,6 @@ import {
   CircleIconButton,
   Footer,
   Icon,
-  Button,
 } from "@USupport-components-library/src";
 import classNames from "classnames";
 import { useTranslation } from "react-i18next";

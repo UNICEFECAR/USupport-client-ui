@@ -1,7 +1,6 @@
 import React from "react";
-import { Page } from "../../blocks/Page/Page";
-import { RegisterAboutYou as RegisterAboutYouBlock } from "../../blocks/RegisterAboutYou/RegisterAboutYou";
-import { useWindowDimensions } from "@USupport-components-library/src/utils";
+import { Page, RegisterAboutYou as RegisterAboutYouBlock } from "#blocks";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 import { RadialCircle } from "@USupport-components-library/src";
 

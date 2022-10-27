@@ -7,12 +7,8 @@ import {
   GridItem,
   Button,
   Modal,
-  RadialCircle,
 } from "@USupport-components-library/src";
-import {
-  validate,
-  useWindowDimensions,
-} from "@USupport-components-library/src/utils";
+import { validate } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 import Joi from "joi";
 
@@ -40,7 +36,6 @@ const initialData = {
  */
 export const ContactUs = () => {
   const { t } = useTranslation("contact-us-block");
-  const { width } = useWindowDimensions();
   const [data, setData] = useState({ ...initialData });
   const [issues, setIssues] = useState([...initialIssues]);
   const [errors, setErrors] = useState({});

@@ -1,8 +1,23 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import { Page, SosCenter, Welcome, Login, NotificationPreferences, ContactUs, RegisterAboutYou } from "./blocks/locales.js";
-import { NotFoundPage, SOSCenterPage, Login as LoginPage, NotificationPreferences as NotificationPreferencesPage, ContactUs as ContactUsPage, RegisterAboutYou as RegisterAboutYouPage} from "./pages/locales.js";
+import {
+  Page,
+  SosCenter,
+  Welcome,
+  Login,
+  NotificationPreferences,
+  ContactUs,
+  RegisterAboutYou,
+} from "./blocks/locales.js";
+import {
+  NotFoundPage,
+  SOSCenterPage,
+  Login as LoginPage,
+  NotificationPreferences as NotificationPreferencesPage,
+  ContactUs as ContactUsPage,
+  RegisterAboutYou as RegisterAboutYouPage,
+} from "./pages/locales.js";
 
 const resources = {
   en: {

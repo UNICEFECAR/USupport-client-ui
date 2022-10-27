@@ -12,6 +12,7 @@ export default defineConfig(() => {
           __dirname,
           "./USupport-components-library"
         ),
+        "#blocks": path.resolve(__dirname, "./src/blocks"),
       },
     },
   };
