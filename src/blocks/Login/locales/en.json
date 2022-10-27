@@ -1,0 +1,10 @@
+{
+  "email_label": "Email",
+  "email_placeholder": "user@mail.com",
+  "password_label": "Password",
+  "password_placeholder": "Enter your password",
+  "forgot_password_label": "I forgot my password",
+  "login_label": "Login",
+  "paragraph": "Or login with:",
+  "register_button_label": "I don’t have an account"
+}

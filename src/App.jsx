@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { SOSCenter } from "./pages/SOSCenter";
 import { ContactUs } from "./pages/ContactUs";
+import { NotificationPreferencesPage } from "./pages/NotificationPreferences";
+import { Login } from "./pages/Login/Login";
 
 import "./App.scss";
 
 // AOS imports
 import "aos/dist/aos.css";
 import AOS from "aos";
+import { Welcome } from "./pages/Welcome/Welcome";
 
 function App() {
   // TODO: add the country specific information about the SOS center
@@ -49,6 +52,12 @@ function App() {
       <Routes>
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route
+          path="/settings/notifications"
+          element={<NotificationPreferencesPage />}
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
