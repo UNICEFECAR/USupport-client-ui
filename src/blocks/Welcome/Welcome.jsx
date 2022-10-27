@@ -28,6 +28,11 @@ export const Welcome = () => {
   ];
 
   const [selectedCountry, setSelectedCountry] = React.useState(null);
+  const [selectedLanguage, setSelectedLanguage] = React.useState(null);
+
+  const handleContinue = () => {
+    console.log("continue");
+  };
 
   return (
     <Block classes="welcome">
@@ -45,17 +50,24 @@ export const Welcome = () => {
             options={countries}
             classes="welcome__grid__content-item__countries-dropdown"
             selected={selectedCountry}
-            setSelectedCountry={setSelectedCountry}
+            setSelected={setSelectedCountry}
             label={t("country")}
             placeholder={t("placeholder")}
           />
           <DropdownWithLabel
             options={countries}
+            selected={selectedLanguage}
+            setSelected={setSelectedLanguage}
             classes="welcome__grid__content-item__languages-dropdown"
             label={t("language")}
             placeholder={t("placeholder")}
           />
-          <Button label={t("button")} size="lg" />
+          <Button
+            label={t("button")}
+            size="lg"
+            disabled={!selectedCountry && !selectedLanguage}
+            onClick={handleContinue}
+          />
         </GridItem>
       </Grid>
     </Block>

@@ -34,6 +34,9 @@
       & > button {
         margin-top: $spacing_3_2;
         margin-bottom: $spacing_8_0;
+        @media screen and (min-width: $screen_md) {
+          margin-bottom: $spacing_16_0;
+        }
       }
     }
   }
