@@ -60,6 +60,7 @@ export const Login = () => {
             onChange={(value) =>
               handleChange("email", value.currentTarget.value)
             }
+            placeholder={t("email_placeholder")}
           />
           <InputPassword
             classes="login__grid__inputs-item__input--password"
@@ -67,10 +68,12 @@ export const Login = () => {
             onChange={(value) =>
               handleChange("password", value.currentTarget.value)
             }
+            placeholder={t("password_placeholder")}
           />
           <Button
             type="ghost"
             color="purple"
+            classes="login__grid__forgot-password"
             label={t("forgot_password_label")}
             onClick={() => handleForgotPassowrd()}
           />
@@ -79,6 +82,7 @@ export const Login = () => {
             size="lg"
             classes="login-button"
             onClick={() => handleOnLogin()}
+            disabled={!data.email || !data.password}
           />
         </GridItem>
         <GridItem md={8} lg={12} classes="login__grid__content-item">
