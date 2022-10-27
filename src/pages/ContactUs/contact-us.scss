@@ -1,0 +1,10 @@
+/* ContactUs styles */
+@import "@USupport-components-library/styles";
+
+.page__contact-us {
+  &__radial-circle.purple {
+    top: 3.5rem;
+    left: -15rem;
+    height: 50rem;
+  }
+}
