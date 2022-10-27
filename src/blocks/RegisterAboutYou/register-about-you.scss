@@ -1,0 +1,45 @@
+@import "@USupport-components-library/styles";
+
+.register-about-you {
+  height: 100%;
+
+  & .container {
+    height: 100%;
+  }
+
+  &__grid {
+    min-height: 90vh;
+    text-align: left;
+
+    &__content-item {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      @media screen and (min-width: $screen_md) {
+        justify-content: center;
+      }
+
+      &__inputs-container {
+        & > *:not(:first-child) {
+          margin-top: $spacing_2_4;
+        }
+
+        &__gender-dropdown {
+          z-index: 3;
+        }
+
+        &__year-dropdown {
+          z-index: 2;
+        }
+      }
+
+      & > button {
+        margin-top: $spacing_5_0;
+        margin-bottom: $spacing_2_4;
+      }
+    }
+  }
+}
