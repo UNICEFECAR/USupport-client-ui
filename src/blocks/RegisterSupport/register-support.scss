@@ -1,0 +1,26 @@
+@import "@USupport-components-library/styles";
+
+.register-support {
+  padding-top: $spacing_3_2;
+  height: 100%;
+
+  & .container {
+    height: 100%;
+  }
+
+  &__grid {
+    min-height: 85vh;
+
+    &__content-item {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      @media screen and (min-width: $screen_md) {
+        padding-bottom: $spacing_5_0;
+      }
+    }
+  }
+}
