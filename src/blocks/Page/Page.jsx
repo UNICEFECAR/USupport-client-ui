@@ -42,21 +42,6 @@ export const Page = ({
     { name: t("page_4"), url: "/contact-us" },
   ];
 
-  // TODO: add the real countries & languages
-  const countries = [
-    {
-      name: "Kazakhstan",
-      flagName: "kazakhstan",
-      languages: ["Kazakh", "Russian", "English"],
-    },
-    { name: "Germany", flagName: "germany", languages: ["German", "English"] },
-    {
-      name: "Switzerland",
-      flagName: "swiss",
-      languages: ["German", "French", "Italian", "Romansh"],
-    },
-  ];
-
   const footerLists = {
     list1: [
       { name: t("footer_1"), url: "/about-us" },
@@ -87,8 +72,6 @@ export const Page = ({
       {showNavbar && (
         <Navbar
           pages={pages}
-          countries={countries}
-          dropdownText={t("dropdown_text")}
           showProfile
           yourProfileText={t("your_profile_text")}
         />
