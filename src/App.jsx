@@ -8,7 +8,7 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
-} from "./pages";
+} from "#pages";
 
 import "./App.scss";
 

@@ -13,6 +13,7 @@ export default defineConfig(() => {
           "./USupport-components-library"
         ),
         "#blocks": path.resolve(__dirname, "./src/blocks"),
+        "#pages": path.resolve(__dirname, "./src/pages"),
       },
     },
   };

@@ -9,7 +9,8 @@ import {
   NotificationPreferences,
   ContactUs,
   RegisterAboutYou,
-} from "./blocks/locales.js";
+} from "#blocks/locales.js";
+
 import {
   NotFoundPage,
   SOSCenterPage,
@@ -17,7 +18,7 @@ import {
   NotificationPreferences as NotificationPreferencesPage,
   ContactUs as ContactUsPage,
   RegisterAboutYou as RegisterAboutYouPage,
-} from "./pages/locales.js";
+} from "#pages/locales.js";
 
 const resources = {
   en: {
