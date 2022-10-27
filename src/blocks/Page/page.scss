@@ -3,12 +3,22 @@
 .page {
   padding-top: $spacing_6_6;
 
+  &--no-additional-top-padding {
+    padding-top: 0;
+  }
+
   @media screen and (min-width: 1050px) {
     padding-top: $spacing_7_0;
+    &--no-additional-top-padding {
+      padding-top: 0;
+    }
   }
 
   @media screen and (min-width: 1050px) {
     padding-top: $spacing_8_0;
+    &--no-additional-top-padding {
+      padding-top: 0;
+    }
   }
 
   &__header {
