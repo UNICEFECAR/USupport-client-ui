@@ -13,6 +13,7 @@ import "./App.scss";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { Welcome } from "./pages/Welcome/Welcome";
+import { RegisterSupport } from "./pages/RegisterSupport/RegisterSupport";
 
 function App() {
   // TODO: add the country specific information about the SOS center
@@ -53,6 +54,7 @@ function App() {
       <Routes>
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="/register" element={<RegisterAboutYou />} />
+        <Route path="/register-support" element={<RegisterSupport />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route
           path="/settings/notifications"
