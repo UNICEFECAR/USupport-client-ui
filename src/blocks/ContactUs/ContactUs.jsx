@@ -19,11 +19,11 @@ import Joi from "joi";
 import "./contact-us.scss";
 
 const initialIssues = [
-  { label: "Reason 1", selected: false },
-  { label: "Reason 2", selected: false },
-  { label: "Reason 3", selected: false },
-  { label: "Reason 4", selected: false },
-  { label: "Reason 5", selected: false },
+  { label: "Reason 1", value: "reason-1", selected: false },
+  { label: "Reason 2", value: "reason-2", selected: false },
+  { label: "Reason 3", value: "reason-3", selected: false },
+  { label: "Reason 4", value: "reason-4", selected: false },
+  { label: "Reason 5", value: "reason-5", selected: false },
 ];
 
 const initialData = {
