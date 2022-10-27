@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { SOSCenter } from "./pages/SOSCenter";
+import { RegisterAboutYou } from "./pages/RegisterAboutYou/RegisterAboutYou";
 import { ContactUs } from "./pages/ContactUs";
 import { NotificationPreferencesPage } from "./pages/NotificationPreferences";
 import { Login } from "./pages/Login/Login";
@@ -51,6 +52,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
+        <Route path="/register" element={<RegisterAboutYou />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route
           path="/settings/notifications"

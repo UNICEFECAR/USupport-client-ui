@@ -1,0 +1,12 @@
+{
+    "input_nickname_label": "Name/Nickname",
+    "input_nickname_placeholder": "Enter your name or nickname",
+    "dropdown_gender_label": "Gender",
+    "dropdown_year_label": "Year of birth",
+    "radio_button_selector_group_label": "Place of living",
+    "button_label": "Continue",
+    "gender_male": "Male",
+    "gender_female": "Female",
+    "place_of_living_urban": "Urban",
+    "place_of_living_rural": "Rural"
+}
