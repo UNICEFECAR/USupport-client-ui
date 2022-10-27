@@ -60,6 +60,9 @@ export const RegisterAboutYou = () => {
     console.log("Continue");
   };
 
+  const canContinue =
+    data.name && data.gender && data.yearOfBirth && data.placeOfLiving;
+
   return (
     <Block classes="register-about-you">
       <Grid md={8} lg={12} classes="register-about-you__grid">
@@ -97,7 +100,12 @@ export const RegisterAboutYou = () => {
               setSelected={(option) => handleSelect("placeOfLiving", option)}
             />
           </div>
-          <Button size="lg" label="Continue" onClick={() => handleContinue()} />
+          <Button
+            disabled={!canContinue}
+            size="lg"
+            label="Continue"
+            onClick={() => handleContinue()}
+          />
         </GridItem>
       </Grid>
     </Block>
