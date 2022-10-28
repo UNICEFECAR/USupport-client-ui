@@ -8,6 +8,7 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
+  RegisterAnonymous,
 } from "#pages";
 
 import "./App.scss";
@@ -60,6 +61,7 @@ function App() {
           path="/settings/notifications"
           element={<NotificationPreferencesPage />}
         />
+        <Route path="/register-anonymous" element={<RegisterAnonymous />} />
         <Route path="/login" element={<Login />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="*" element={<NotFound />} />
