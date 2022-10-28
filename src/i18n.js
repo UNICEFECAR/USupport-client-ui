@@ -9,6 +9,7 @@ import {
   NotificationPreferences,
   ContactUs,
   RegisterAboutYou,
+  RegisterAnonymous,
 } from "#blocks/locales.js";
 
 import {
@@ -18,6 +19,7 @@ import {
   NotificationPreferences as NotificationPreferencesPage,
   ContactUs as ContactUsPage,
   RegisterAboutYou as RegisterAboutYouPage,
+  RegisterAnonymous as RegisterAnonymousPage,
 } from "#pages/locales.js";
 
 const resources = {
@@ -26,6 +28,7 @@ const resources = {
     page: Page.en,
     "sos-center": SosCenter.en,
     "register-about-you": RegisterAboutYou.en,
+    "register-anonymous": RegisterAnonymous.en,
     "contact-us-block": ContactUs.en,
     "notification-preferences": NotificationPreferences.en,
     login: Login.en,
@@ -36,6 +39,7 @@ const resources = {
     "contact-us-page": ContactUsPage.en,
     "sos-center-page": SOSCenterPage.en,
     "register-about-you-page": RegisterAboutYouPage.en,
+    "register-anonymous-page": RegisterAnonymousPage.en,
     "notification-preferences-page": NotificationPreferencesPage.en,
     "login-page": LoginPage.en,
   },
