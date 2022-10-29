@@ -1,0 +1,15 @@
+@import "@USupport-components-library/styles";
+
+.share-platform {
+  &__grid {
+    justify-items: center;
+    padding-top: $spacing_6_0;
+    padding-bottom: $spacing_2_4;
+
+    &__item {
+      & > *:not(:first-of-type) {
+        margin-top: $spacing_2_4;
+      }
+    }
+  }
+}
