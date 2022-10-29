@@ -4,6 +4,7 @@ import {
   NotFound,
   SOSCenter,
   RegisterAboutYou,
+  ForgotPassword,
   ContactUs,
   NotificationPreferencesPage,
   Login,
@@ -55,6 +56,7 @@ function App() {
       <Routes>
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="/register" element={<RegisterAboutYou />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route
           path="/settings/notifications"
