@@ -8,6 +8,7 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
+  SharePlatform,
 } from "#pages";
 
 import "./App.scss";
@@ -53,6 +54,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/share-platform" element={<SharePlatform />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="/register" element={<RegisterAboutYou />} />
         <Route path="/contact-us" element={<ContactUs />} />
