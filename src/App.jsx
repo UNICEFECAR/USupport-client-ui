@@ -8,6 +8,7 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
+  PlatformRating,
 } from "#pages";
 
 import "./App.scss";
@@ -55,6 +56,7 @@ function App() {
       <Routes>
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="/register" element={<RegisterAboutYou />} />
+        <Route path="/platform-rating" element={<PlatformRating />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route
           path="/settings/notifications"

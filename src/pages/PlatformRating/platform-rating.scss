@@ -1,0 +1,17 @@
+/* PlatformRating styles */
+@import "@USupport-components-library/styles";
+
+.page__platform-rating {
+  min-height: 80vh;
+
+  @media screen and (max-width: $screen-md) {
+    & > .radial-background {
+      top: 15%;
+      left: -15%;
+    }
+
+    background-image: url(../assets/background-spiral.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+}
