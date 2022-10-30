@@ -1,0 +1,23 @@
+@import "@USupport-components-library/styles";
+
+.platform-rating {
+  &__grid {
+    place-items: center;
+    text-align: left;
+    padding-top: $spacing_2_5;
+
+    &__item {
+      &__textarea {
+        margin-top: $spacing_2_4;
+
+        @media screen and (min-width: $screen-md) {
+          margin-top: $spacing_3_0;
+        }
+      }
+
+      & > button {
+        margin-top: $spacing_3_2;
+      }
+    }
+  }
+}
