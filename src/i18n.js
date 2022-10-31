@@ -10,6 +10,11 @@ import {
   ContactUs,
   RegisterAboutYou,
   SelectProvider,
+  PlatformRating,
+  SharePlatform,
+  ForgotPassword,
+  RegisterAnonymous,
+  RegisterSupport,
 } from "#blocks/locales.js";
 
 import {
@@ -20,6 +25,11 @@ import {
   ContactUs as ContactUsPage,
   RegisterAboutYou as RegisterAboutYouPage,
   SelectProvider as SelectProviderPage,
+  PlatformRating as PlatformRatingPage,
+  SharePlatform as SharePlatformPage,
+  ForgotPassword as ForgotPasswordPage,
+  RegisterAnonymous as RegisterAnonymousPage,
+  RegisterSupport as RegisterSupportPage,
 } from "#pages/locales.js";
 
 const resources = {
@@ -28,9 +38,14 @@ const resources = {
     page: Page.en,
     "sos-center": SosCenter.en,
     "register-about-you": RegisterAboutYou.en,
+    "register-anonymous": RegisterAnonymous.en,
+    "register-support": RegisterSupport.en,
     "contact-us-block": ContactUs.en,
     "select-provider": SelectProvider.en,
     "notification-preferences": NotificationPreferences.en,
+    "platform-rating": PlatformRating.en,
+    "share-platform": SharePlatform.en,
+    "forgot-password": ForgotPassword.en,
     login: Login.en,
     welcome: Welcome.en,
 
@@ -40,7 +55,12 @@ const resources = {
     "sos-center-page": SOSCenterPage.en,
     "select-provider-page": SelectProviderPage.en,
     "register-about-you-page": RegisterAboutYouPage.en,
+    "platform-rating-page": PlatformRatingPage.en,
+    "share-platform-page": SharePlatformPage.en,
+    "register-anonymous-page": RegisterAnonymousPage.en,
+    "register-support-page": RegisterSupportPage.en,
     "notification-preferences-page": NotificationPreferencesPage.en,
+    "forgot-password-page": ForgotPasswordPage.en,
     "login-page": LoginPage.en,
   },
 };
