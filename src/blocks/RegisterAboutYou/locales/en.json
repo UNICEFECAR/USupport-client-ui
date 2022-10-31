@@ -4,7 +4,7 @@
     "dropdown_gender_label": "Gender",
     "dropdown_year_label": "Year of birth",
     "radio_button_selector_group_label": "Place of living",
-    "button_label": "Continue",
+    "button_continue_label": "Continue",
     "gender_male": "Male",
     "gender_female": "Female",
     "place_of_living_urban": "Urban",
