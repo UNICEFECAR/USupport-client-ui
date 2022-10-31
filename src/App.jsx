@@ -8,6 +8,7 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
+  UserProfile,
 } from "#pages";
 
 import "./App.scss";
@@ -53,6 +54,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="/register" element={<RegisterAboutYou />} />
         <Route path="/contact-us" element={<ContactUs />} />
