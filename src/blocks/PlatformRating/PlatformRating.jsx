@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Block,
   Grid,
@@ -7,7 +8,6 @@ import {
   Textarea,
   Button,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
 
 import "./platform-rating.scss";
 

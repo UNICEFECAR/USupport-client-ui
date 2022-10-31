@@ -1,6 +1,6 @@
 import React from "react";
-import { Page, PlatformRating as PlatformRatingBlock } from "#blocks";
 import { useTranslation } from "react-i18next";
+import { Page, PlatformRating as PlatformRatingBlock } from "#blocks";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle } from "@USupport-components-library/src";
 
