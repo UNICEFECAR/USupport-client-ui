@@ -51,6 +51,7 @@
     }
 
     &-icon {
+      cursor: pointer;
       margin-right: $spacing_2_4;
       @media screen and (min-width: $screen-md) {
         margin-right: $spacing_3_2;

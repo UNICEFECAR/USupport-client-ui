@@ -2,7 +2,7 @@ import React from "react";
 import { SOSCenter } from "./SOSCenter";
 
 export default {
-  title: "Website UI/blocks/SOSCenter",
+  title: "Client UI/blocks/SOSCenter",
   component: SOSCenter,
   argTypes: {},
 };

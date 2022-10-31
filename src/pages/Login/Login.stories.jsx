@@ -1,14 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Login } from './Login';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Login } from "./Login";
 
 export default {
-    title: 'Website UI/pages/Login',
-    component: Login,
-    argTypes: {},
+  title: "Client UI/pages/Login",
+  component: Login,
+  argTypes: {},
 };
 
-const Template = (props) => <Router><Login {...props} /></Router>;
+const Template = (props) => (
+  <Router>
+    <Login {...props} />
+  </Router>
+);
 
 export const Default = Template.bind({});
-Default.args = {}; 
+Default.args = {};

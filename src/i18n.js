@@ -10,7 +10,8 @@ import {
   ContactUs,
   RegisterAboutYou,
   RegisterSupport,
-} from "./blocks/locales.js";
+} from "#blocks/locales.js";
+
 import {
   NotFoundPage,
   SOSCenterPage,
@@ -19,7 +20,7 @@ import {
   ContactUs as ContactUsPage,
   RegisterAboutYou as RegisterAboutYouPage,
   RegisterSupport as RegisterSupportPage,
-} from "./pages/locales.js";
+} from "#pages/locales.js";
 
 const resources = {
   en: {

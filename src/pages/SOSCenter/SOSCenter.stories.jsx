@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { SOSCenter } from "./SOSCenter";
 
 export default {
-  title: "Website UI/pages/SOSCenter",
+  title: "Client UI/pages/SOSCenter",
   component: SOSCenter,
   argTypes: {},
 };

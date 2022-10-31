@@ -5,9 +5,9 @@ import {
   GridItem,
   Toggle,
 } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./notification-preferences.scss";
-import { useTranslation } from "react-i18next";
 
 /**
  * NotificationPreferences

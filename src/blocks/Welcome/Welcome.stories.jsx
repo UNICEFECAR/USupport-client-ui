@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { Welcome } from './Welcome';
+import { Welcome } from "./Welcome";
 
 export default {
-  title: 'Website UI/blocks/Welcome',
+  title: "Client UI/blocks/Welcome",
   component: Welcome,
   argTypes: {},
 };

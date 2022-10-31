@@ -81,7 +81,7 @@ fi
 
 # Add the page to the main page file
 echo "import React from 'react';
-import { Page } from '../../blocks/Page/Page';
+import { Page } from '#blocks';
 
 import './$page_name_kebab.scss';
 
@@ -106,7 +106,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { $page_name } from './$page_name';
 
 export default {
-    title: 'Website UI/pages/$page_name',
+    title: 'Client UI/pages/$page_name',
     component: $page_name,
     argTypes: {},
 };

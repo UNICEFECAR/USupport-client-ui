@@ -5,9 +5,9 @@ import {
   GridItem,
   EmergencyCenter,
 } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./sos-center.scss";
-import { useTranslation } from "react-i18next";
 
 /**
  * SOSCenter

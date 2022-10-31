@@ -1,6 +1,5 @@
 import React from "react";
-import { SOSCenter as SOSCenterBlock } from "../../blocks/SOSCenter/SOSCenter";
-import { Page } from "../../blocks/Page/Page";
+import { Page, SOSCenter as SOSCenterBlock } from "#blocks";
 import { useTranslation } from "react-i18next";
 
 /**

@@ -1,7 +1,6 @@
 import React from "react";
-import { Page } from "../../blocks/Page/Page";
-import { Login as LoginBlock } from "../../blocks/Login/Login";
-import { useWindowDimensions } from "@USupport-components-library/src/utils";
+import { Page, Login as LoginBlock } from "#blocks";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 

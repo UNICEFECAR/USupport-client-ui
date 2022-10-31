@@ -1,6 +1,5 @@
 import React from "react";
-import { Page } from "../../blocks/Page/Page";
-import { Welcome as WelcomeBlock } from "../../blocks/Welcome/Welcome";
+import { Page, Welcome as WelcomeBlock } from "#blocks";
 import { RadialCircle } from "@USupport-components-library/src";
 
 import "./welcome.scss";

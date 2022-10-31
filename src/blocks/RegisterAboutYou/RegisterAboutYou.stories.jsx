@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { RegisterAboutYou } from './RegisterAboutYou';
+import { RegisterAboutYou } from "./RegisterAboutYou";
 
 export default {
-  title: 'Website UI/blocks/RegisterAboutYou',
+  title: "Client UI/blocks/RegisterAboutYou",
   component: RegisterAboutYou,
   argTypes: {},
 };
