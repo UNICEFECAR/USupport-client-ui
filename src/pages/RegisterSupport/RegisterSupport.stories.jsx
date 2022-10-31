@@ -1,14 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { RegisterSupport } from './RegisterSupport';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { RegisterSupport } from "./RegisterSupport";
 
 export default {
-    title: 'Website UI/pages/RegisterSupport',
-    component: RegisterSupport,
-    argTypes: {},
+  title: "Client UI/pages/RegisterSupport",
+  component: RegisterSupport,
+  argTypes: {},
 };
 
-const Template = (props) => <Router><RegisterSupport {...props} /></Router>;
+const Template = (props) => (
+  <Router>
+    <RegisterSupport {...props} />
+  </Router>
+);
 
 export const Default = Template.bind({});
-Default.args = {}; 
+Default.args = {};

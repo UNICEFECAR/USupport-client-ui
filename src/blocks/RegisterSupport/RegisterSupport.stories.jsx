@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { RegisterSupport } from './RegisterSupport';
+import { RegisterSupport } from "./RegisterSupport";
 
 export default {
-  title: 'Website UI/blocks/RegisterSupport',
+  title: "Client UI/blocks/RegisterSupport",
   component: RegisterSupport,
   argTypes: {},
 };
