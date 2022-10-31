@@ -1,0 +1,31 @@
+@import "@USupport-components-library/styles";
+
+.register-support {
+  padding-top: $spacing_3_2;
+  height: calc(100vh - $spacing_8_0 - $spacing_3_2);
+
+  @media screen and (min-width: $screen_md) {
+    padding-top: $spacing_8_0;
+    height: calc(100vh - $spacing_10_0 - $spacing_8_0);
+  }
+
+  & .container {
+    height: 100%;
+  }
+
+  &__grid {
+    height: 100%;
+
+    &__content-item {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      @media screen and (min-width: $screen_md) {
+        padding-bottom: $spacing_5_0;
+      }
+    }
+  }
+}

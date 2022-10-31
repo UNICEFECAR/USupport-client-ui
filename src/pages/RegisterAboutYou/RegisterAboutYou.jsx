@@ -1,7 +1,7 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Page, RegisterAboutYou as RegisterAboutYouBlock } from "#blocks";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { useTranslation } from "react-i18next";
 import { RadialCircle } from "@USupport-components-library/src";
 
 import "./register-about-you.scss";

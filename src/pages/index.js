@@ -5,4 +5,5 @@ export * from "./ContactUs";
 export * from "./NotificationPreferences";
 export * from "./Login";
 export * from "./Welcome";
-export * from './RegisterAnonymous';
+export * from "./RegisterAnonymous";
+export * from "./RegisterSupport";
