@@ -1,8 +1,8 @@
 import React from "react";
-import { Page } from "../../blocks/Page/Page";
-import { RegisterSupport as RegisterSupportBlock } from "../../blocks/RegisterSupport/RegisterSupport";
-import { useWindowDimensions } from "@USupport-components-library/src/utils";
 import { useTranslation } from "react-i18next";
+import { Page } from "#blocks/Page/Page";
+import { RegisterSupport as RegisterSupportBlock } from "#blocks/RegisterSupport/RegisterSupport";
+import { useWindowDimensions } from "@USupport-components-library/src/utils";
 import { RadialCircle } from "@USupport-components-library/src";
 
 import "./register-support.scss";

@@ -2,14 +2,19 @@
 
 .register-support {
   padding-top: $spacing_3_2;
-  height: 100%;
+  height: calc(100vh - $spacing_8_0 - $spacing_3_2);
+
+  @media screen and (min-width: $screen_md) {
+    padding-top: $spacing_8_0;
+    height: calc(100vh - $spacing_10_0 - $spacing_8_0);
+  }
 
   & .container {
     height: 100%;
   }
 
   &__grid {
-    min-height: 85vh;
+    height: 100%;
 
     &__content-item {
       display: flex;

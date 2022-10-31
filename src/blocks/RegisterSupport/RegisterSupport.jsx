@@ -20,7 +20,7 @@ import "./register-support.scss";
 export const RegisterSupport = () => {
   const { t } = useTranslation("register-support");
 
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState("");
 
   const options = [
     { label: t("answer_yes_label"), value: true },
