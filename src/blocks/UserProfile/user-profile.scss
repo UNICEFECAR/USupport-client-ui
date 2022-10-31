@@ -1,0 +1,25 @@
+@import "@USupport-components-library/styles";
+
+.user-profile {
+  &__grid {
+    text-align: left;
+    place-items: center;
+    padding: $spacing_3_2 0 $spacing_10_0 0;
+
+    &__item {
+      margin-top: $spacing_0_8;
+
+      &__label {
+        color: $color_blue_3d527b;
+      }
+
+      &__button:first-of-type {
+        margin-top: $spacing_0_4;
+      }
+
+      &__button:not(:first-of-type) {
+        margin-top: $spacing_1_6;
+      }
+    }
+  }
+}
