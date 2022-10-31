@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Block,
   Grid,
@@ -8,7 +9,6 @@ import {
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
 import Joi from "joi";
-import { useTranslation } from "react-i18next";
 
 import "./forgot-password.scss";
 
@@ -23,7 +23,6 @@ export const ForgotPassword = () => {
   const { t } = useTranslation("forgot-password");
 
   const [data, setData] = useState({ email: "" });
-
   const [errors, setErrors] = useState({});
 
   const schema = Joi.object({
