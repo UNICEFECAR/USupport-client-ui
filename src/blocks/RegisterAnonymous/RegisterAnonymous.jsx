@@ -5,7 +5,7 @@ import {
   GridItem,
   InputPassword,
   Button,
-  ButtonOnlyIcon,
+  Icon,
   CheckBox,
 } from "@USupport-components-library/src";
 import Joi from "joi";
@@ -24,7 +24,7 @@ import "./register-anonymous.scss";
 export const RegisterAnonymous = () => {
   const { t } = useTranslation("register-anonymous");
 
-  const [code, setCode] = useState("#11524888");
+  const [code] = useState("#11524888");
 
   const [data, setData] = useState({
     password: "",
@@ -33,7 +33,7 @@ export const RegisterAnonymous = () => {
 
   //TODO: Refactor validation
   const schema = Joi.object({
-    password: Joi.string().min(5).max(30).required().label("Password error"),
+    password: Joi.string().min(5).max(30).required().label(t("password_error")),
     isPrivacyAndTermsSelected: Joi.boolean().invalid(false),
   });
 
@@ -51,14 +51,19 @@ export const RegisterAnonymous = () => {
     let newData = { ...data };
     newData[field] = value;
     setData(newData);
+    validateProperty("password", data.password, schema, setErrors);
   };
 
   const handleBlur = () => {
     validateProperty("password", data.password, schema, setErrors);
   };
 
-  const canContinue =
-    data.registerCode && data.password && data.isPrivacyAndTermsSelected;
+  // TODO: Show confirmation for copying ?
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(code);
+  };
+
+  const canContinue = data.password && data.isPrivacyAndTermsSelected;
 
   return (
     <Block classes="register-anonymous">
@@ -69,15 +74,16 @@ export const RegisterAnonymous = () => {
           classes="register-anonymous__grid__content-item"
         >
           <div className="register-anonymous__grid__content-item__main-component">
-            <p>{t("paragraph_1")}</p>
+            <p className="register-anonymous__grid__content-item__main-component__code-text  paragraph">
+              {t("paragraph_1")}
+            </p>
             <div className="register-anonymous__grid__content-item__main-component__anonymous-code-container">
               <h4>{code}</h4>
-              <ButtonOnlyIcon
-                iconName="copy"
-                iconColor="#9749FA"
-                onClick={() => {
-                  navigator.clipboard.writeText(code);
-                }}
+              <Icon
+                name="copy"
+                color="#9749FA"
+                classes="register-anonymous__grid__content-item__main-component__copy-icon"
+                onClick={handleCopyToClipboard}
               />
             </div>
             <InputPassword
@@ -118,6 +124,7 @@ export const RegisterAnonymous = () => {
             type="ghost"
             label={t("redirect_login_button_label")}
             onClick={() => handleLoginRedirect()}
+            classes="register-anonymous__redirect-button"
           />
         </GridItem>
       </Grid>

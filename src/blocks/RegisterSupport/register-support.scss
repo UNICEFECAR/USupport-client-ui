@@ -2,6 +2,7 @@
 
 .register-support {
   padding-top: $spacing_3_2;
+  // 100vh - height of header - the padding-top
   height: calc(100vh - $spacing_8_0 - $spacing_3_2);
 
   @media screen and (min-width: $screen_md) {

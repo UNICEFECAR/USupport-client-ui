@@ -1,10 +1,11 @@
 {
-    "paragraph_1": "Your anonymous access code is",
-    "password_label": "Password",
-    "paragraph_2": "I agree with the",
-    "paragraph_3": "and",
-    "privacy_policy": "Privacy Policy",
-    "terms_of_use": "Terms of Conditions",
-    "register_button_label": "Register",
-    "redirect_login_button_label": "I already have an account"
+  "paragraph_1": "Your anonymous access code is",
+  "password_label": "Password",
+  "paragraph_2": "I agree with the",
+  "paragraph_3": "and",
+  "password_error": "Password error",
+  "privacy_policy": "Privacy Policy",
+  "terms_of_use": "Terms of Conditions",
+  "register_button_label": "Register",
+  "redirect_login_button_label": "I already have an account"
 }
