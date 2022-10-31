@@ -57,3 +57,14 @@ chmod +x create-page.bash
 ```
 
 Then, you will be prompted to provide page name, page description, and whether the page requires locale files.
+
+## Adding a new backdrop to the USupport Client UI
+
+To create a new backdrop, please use the provided bash script `create-backdrop.bash`. By executing the following command from the root directory of the project:
+
+```
+chmod +x create-backdrop.bash
+./create-backdrop.bash
+```
+
+Then, you will be prompted to provide backdrop name and whether the backdrop requires locale files.
