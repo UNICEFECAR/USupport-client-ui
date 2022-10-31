@@ -1,6 +1,6 @@
 import React from "react";
-import { Page, SharePlatform as SharePlatformBlock } from "#blocks";
 import { useTranslation } from "react-i18next";
+import { Page, SharePlatform as SharePlatformBlock } from "#blocks";
 
 import "./share-platform.scss";
 
