@@ -5,5 +5,6 @@ export * as ContactUs from "./ContactUs/locales.js";
 export * as NotificationPreferences from "./NotificationPreferences/locales.js";
 export * as Login from "./Login/locales.js";
 export * as Welcome from "./Welcome/locales.js";
+export * as ForgotPassword from "./ForgotPassword/locales.js";
 export * as RegisterAnonymous from "./RegisterAnonymous/locales.js";
 export * as RegisterSupport from "./RegisterSupport/locales.js";

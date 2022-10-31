@@ -9,6 +9,7 @@ import {
   NotificationPreferences,
   ContactUs,
   RegisterAboutYou,
+  ForgotPassword,
   RegisterAnonymous,
   RegisterSupport,
 } from "#blocks/locales.js";
@@ -20,6 +21,7 @@ import {
   NotificationPreferences as NotificationPreferencesPage,
   ContactUs as ContactUsPage,
   RegisterAboutYou as RegisterAboutYouPage,
+  ForgotPassword as ForgotPasswordPage,
   RegisterAnonymous as RegisterAnonymousPage,
   RegisterSupport as RegisterSupportPage,
 } from "#pages/locales.js";
@@ -34,6 +36,7 @@ const resources = {
     "register-support": RegisterSupport.en,
     "contact-us-block": ContactUs.en,
     "notification-preferences": NotificationPreferences.en,
+    "forgot-password": ForgotPassword.en,
     login: Login.en,
     welcome: Welcome.en,
 
@@ -45,6 +48,7 @@ const resources = {
     "register-anonymous-page": RegisterAnonymousPage.en,
     "register-support-page": RegisterSupportPage.en,
     "notification-preferences-page": NotificationPreferencesPage.en,
+    "forgot-password-page": ForgotPasswordPage.en,
     "login-page": LoginPage.en,
   },
 };
