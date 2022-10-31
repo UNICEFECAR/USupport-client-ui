@@ -8,6 +8,7 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
+  RegisterAnonymous,
   RegisterSupport,
 } from "#pages";
 
@@ -56,6 +57,7 @@ function App() {
       <Routes>
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="/register" element={<RegisterAboutYou />} />
+        <Route path="/register-anonymous" element={<RegisterAnonymous />} />
         <Route path="/register-support" element={<RegisterSupport />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route
