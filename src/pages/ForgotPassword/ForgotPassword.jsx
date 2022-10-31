@@ -1,8 +1,8 @@
 import React from "react";
-import { Page, ForgotPassword as ForgotPasswordBlock } from "#blocks";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { RadialCircle } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
+import { Page, ForgotPassword as ForgotPasswordBlock } from "#blocks";
+import { RadialCircle } from "@USupport-components-library/src";
 
 import "./forgot-password.scss";
 
