@@ -6,5 +6,6 @@ export * from "./Login";
 export * from "./Welcome";
 export * from "./RegisterSupport";
 export * from "./Page";
+export * from "./SharePlatform";
 export * from "./ForgotPassword";
 export * from "./RegisterAnonymous";
