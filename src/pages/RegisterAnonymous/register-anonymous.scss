@@ -1,0 +1,17 @@
+/* RegisterAnonymous styles */
+@import "@USupport-components-library/styles";
+
+.page__register-anonymous {
+  min-height: 100vh;
+
+  & > .radial-background {
+    top: 5%;
+    left: -25%;
+  }
+
+  @media screen and (max-width: $screen-md) {
+    background-image: url(../assets/background-spiral.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+}

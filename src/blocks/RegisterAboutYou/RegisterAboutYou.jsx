@@ -103,7 +103,7 @@ export const RegisterAboutYou = () => {
           <Button
             disabled={!canContinue}
             size="lg"
-            label="Continue"
+            label={t("button_continue_label")}
             onClick={() => handleContinue()}
           />
         </GridItem>

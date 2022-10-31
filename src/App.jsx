@@ -4,11 +4,14 @@ import {
   NotFound,
   SOSCenter,
   RegisterAboutYou,
+  ForgotPassword,
   ContactUs,
   NotificationPreferencesPage,
   Login,
   Welcome,
   SharePlatform,
+  RegisterAnonymous,
+  RegisterSupport,
 } from "#pages";
 
 import "./App.scss";
@@ -57,6 +60,9 @@ function App() {
         <Route path="/share-platform" element={<SharePlatform />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="/register" element={<RegisterAboutYou />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/register-anonymous" element={<RegisterAnonymous />} />
+        <Route path="/register-support" element={<RegisterSupport />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route
           path="/settings/notifications"
