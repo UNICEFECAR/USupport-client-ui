@@ -5,6 +5,7 @@ export * from "./ContactUs";
 export * from "./NotificationPreferences";
 export * from "./Login";
 export * from "./Welcome";
+export * from "./SelectProvider";
 export * from "./PlatformRating";
 export * from "./SharePlatform";
 export * from "./ForgotPassword";

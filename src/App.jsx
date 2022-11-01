@@ -9,6 +9,7 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
+  SelectProvider,
   PlatformRating,
   SharePlatform,
   RegisterAnonymous,
@@ -66,6 +67,7 @@ function App() {
         <Route path="/register-anonymous" element={<RegisterAnonymous />} />
         <Route path="/register-support" element={<RegisterSupport />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/select-provider" element={<SelectProvider />} />
         <Route
           path="/settings/notifications"
           element={<NotificationPreferencesPage />}
