@@ -9,6 +9,8 @@ import {
   NotificationPreferences,
   ContactUs,
   RegisterAboutYou,
+  Articles,
+  GiveSuggestion,
 } from "#blocks/locales.js";
 
 import {
@@ -18,6 +20,9 @@ import {
   NotificationPreferences as NotificationPreferencesPage,
   ContactUs as ContactUsPage,
   RegisterAboutYou as RegisterAboutYouPage,
+  ArticleInformation as ArticleInformationPage,
+  Articles as ArticlesPage,
+  InformationPortal as InformationPortalPage,
 } from "#pages/locales.js";
 
 const resources = {
@@ -30,6 +35,8 @@ const resources = {
     "notification-preferences": NotificationPreferences.en,
     login: Login.en,
     welcome: Welcome.en,
+    articles: Articles.en,
+    "give-suggestion": GiveSuggestion.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
@@ -38,6 +45,9 @@ const resources = {
     "register-about-you-page": RegisterAboutYouPage.en,
     "notification-preferences-page": NotificationPreferencesPage.en,
     "login-page": LoginPage.en,
+    "articles-page": ArticlesPage.en,
+    "article-information": ArticleInformationPage.en,
+    "information-portal": InformationPortalPage.en,
   },
 };
 
