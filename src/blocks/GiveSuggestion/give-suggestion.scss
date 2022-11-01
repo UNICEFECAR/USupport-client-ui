@@ -1,0 +1,17 @@
+@import "@USupport-components-library/styles";
+
+.give-suggestion {
+  padding: $spacing_4_0 0 $spacing_4_0 0;
+  @media screen and (min-width: $screen_md) {
+    padding: $spacing_5_6 0 $spacing_5_6 0;
+  }
+  &__grid {
+    justify-items: center;
+
+    &__textarea-item {
+      @media screen and (min-width: $screen_md) {
+        padding-top: $spacing_2_4;
+      }
+    }
+  }
+}
