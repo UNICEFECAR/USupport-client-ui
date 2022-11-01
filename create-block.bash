@@ -106,7 +106,7 @@ echo "import React from 'react';
 import { $block_name } from './$block_name';
 
 export default {
-  title: 'Website UI/blocks/$block_name',
+  title: 'Client UI/blocks/$block_name',
   component: $block_name,
   argTypes: {},
 };

@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { NotFound } from "./NotFound";
 
 export default {
-  title: "Website UI/pages/NotFound",
+  title: "Client UI/pages/NotFound",
   component: NotFound,
   argTypes: {},
 };

@@ -1,7 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { NotFound } from "./pages/NotFound";
-import { SOSCenter } from "./pages/SOSCenter";
+import {
+  NotFound,
+  SOSCenter,
+  RegisterAboutYou,
+  ForgotPassword,
+  ContactUs,
+  NotificationPreferencesPage,
+  Login,
+  Welcome,
+  PlatformRating,
+  SharePlatform,
+  RegisterAnonymous,
+  RegisterSupport,
+} from "#pages";
 
 import "./App.scss";
 
@@ -46,7 +58,20 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/share-platform" element={<SharePlatform />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
+        <Route path="/register" element={<RegisterAboutYou />} />
+        <Route path="/platform-rating" element={<PlatformRating />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/register-anonymous" element={<RegisterAnonymous />} />
+        <Route path="/register-support" element={<RegisterSupport />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route
+          path="/settings/notifications"
+          element={<NotificationPreferencesPage />}
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

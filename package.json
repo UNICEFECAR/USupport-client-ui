@@ -1,5 +1,5 @@
 {
-  "name": "usupport-website-ui",
+  "name": "usupport-client-ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^11.18.6",
     "react-router-dom": "^6.4.1",
+    "react-share": "^4.4.1",
     "usupport-components-library": "file:USupport-components-library"
   },
   "devDependencies": {

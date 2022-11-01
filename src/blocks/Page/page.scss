@@ -3,12 +3,90 @@
 .page {
   padding-top: $spacing_6_6;
 
+  &--no-additional-top-padding {
+    padding-top: 0;
+  }
+
   @media screen and (min-width: 1050px) {
     padding-top: $spacing_7_0;
+    &--no-additional-top-padding {
+      padding-top: 0;
+    }
   }
 
   @media screen and (min-width: 1050px) {
     padding-top: $spacing_8_0;
+    &--no-additional-top-padding {
+      padding-top: 0;
+    }
+  }
+
+  &__header {
+    align-items: flex-start;
+    display: flex;
+    flex: 1;
+    padding: $spacing_3_2 $spacing_1_6 $spacing_1_6 $spacing_2_4;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_5_0;
+      padding-left: $spacing_5_0;
+    }
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_5_0;
+      padding-left: $spacing_23_0;
+    }
+
+    &-heading {
+      max-width: 75rem;
+      width: 75%;
+      word-break: break-word;
+      text-align: left;
+
+      @media screen and (min-width: $screen_md) {
+        padding-left: $spacing_6_0;
+      }
+      @media screen and (min-width: $screen_lg) {
+        padding-left: $spacing_16_0;
+      }
+    }
+
+    &-icon {
+      cursor: pointer;
+      margin-right: $spacing_2_4;
+      @media screen and (min-width: $screen-md) {
+        margin-right: $spacing_3_2;
+      }
+    }
+
+    &-button {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+
+      @media screen and (min-width: $screen-md) {
+        padding-right: $spacing_3_2;
+      }
+
+      @media screen and (min-width: $screen-lg) {
+        padding-right: $spacing_5_0;
+      }
+    }
+  }
+
+  &__subheading-text {
+    text-align: left;
+    padding-left: $spacing_1_6;
+    @media screen and (min-width: $screen-md) {
+      padding-left: calc(
+        $spacing_5_0 + $spacing_3_2 + $spacing_2_4 + $spacing_6_0
+      );
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      padding-left: calc(
+        $spacing_23_0 + $spacing_3_2 + $spacing_2_4 + $spacing_16_0
+      );
+    }
   }
 
   &__emergency-button {

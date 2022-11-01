@@ -1,0 +1,15 @@
+/* Welcome styles */
+@import "@USupport-components-library/styles";
+
+.page__welcome {
+  background-image: url(./assets/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media screen and (min-width: $screen_md) {
+    background-image: url(../assets/background-v-shape.png);
+    background-blend-mode: lighten;
+    background-position: center;
+    position: relative;
+  }
+}

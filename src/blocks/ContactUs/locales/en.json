@@ -1,0 +1,11 @@
+{
+  "issue": "Issue",
+  "issue_placeholder": "Select an issue",
+  "message": "Message",
+  "message_placeholder": "Your message to us",
+  "button": "Send Message",
+
+  "modal_title": "Your message was successfully sent",
+  "modal_text": "We will get back to you as soon as possible",
+  "modal_cta_label": "Go back to Home"
+}
