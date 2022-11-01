@@ -39,7 +39,7 @@
     &-heading {
       max-width: 75rem;
       width: 75%;
-      word-break: break-all;
+      word-break: break-word;
       text-align: left;
 
       @media screen and (min-width: $screen_md) {

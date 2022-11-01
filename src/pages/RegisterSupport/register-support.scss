@@ -1,0 +1,12 @@
+/* RegisterSupport styles */
+@import "@USupport-components-library/styles";
+
+.page__register-support {
+  min-height: 100vh;
+
+  @media screen and (max-width: $screen-md) {
+    background-image: url(../assets/background-spiral.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+}

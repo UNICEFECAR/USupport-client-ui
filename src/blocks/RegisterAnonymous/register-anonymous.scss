@@ -1,0 +1,81 @@
+@import "@USupport-components-library/styles";
+
+.register-anonymous {
+  // 100vh - height of header - the padding-top
+  height: calc(100vh - $spacing_12_0);
+
+  @media screen and (min-width: $screen_md) {
+    height: calc(100vh - $spacing_12_8);
+  }
+
+  & .container {
+    height: 100%;
+  }
+
+  &__grid {
+    height: 100%;
+    justify-items: center;
+    text-align: left;
+
+    &__content-item {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &__main-component {
+        margin-top: $spacing_4_0;
+
+        &__code-text {
+          color: $color_blue_3d527b;
+        }
+
+        &__anonymous-code-container {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+          margin-top: $spacing_1_3;
+          margin-bottom: $spacing_3_6;
+        }
+
+        &__copy-icon {
+          margin-left: $spacing_1_2;
+          cursor: pointer;
+        }
+
+        &__privacy_policy_container {
+          margin-top: $spacing_2_0;
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+
+          & > .checkbox-wrapper {
+            margin-top: $spacing_0_2;
+          }
+
+          & > .text {
+            margin-left: $spacing_0_8;
+            font-weight: $font_medium;
+
+            & .privacy-policy-link {
+              color: $color_secondary_9749fa;
+            }
+          }
+        }
+
+        & > button {
+          margin-top: $spacing_3_2;
+          @media screen and (min-width: $screen_md) {
+            margin-bottom: $spacing_3_2;
+          }
+        }
+      }
+    }
+  }
+
+  &__redirect-button {
+    margin-bottom: $spacing_2_4;
+  }
+}
