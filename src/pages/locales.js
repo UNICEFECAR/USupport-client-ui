@@ -1,7 +1,10 @@
-export * as NotFoundPage from "./NotFound/locales.js";
+export * as ArticleInformation from "./ArticleInformation/locales.js";
+export * as Articles from "./Articles/locales.js";
 export * as ContactUs from "./ContactUs/locales.js";
-export * as Welcome from "./Welcome/locales.js";
-export * as SOSCenterPage from "./SOSCenter/locales.js";
-export * as RegisterAboutYou from "./RegisterAboutYou/locales.js";
-export * as NotificationPreferences from "./NotificationPreferences/locales.js";
+export * as InformationPortal from "./InformationPortal/locales.js";
 export * as Login from "./Login/locales.js";
+export * as NotFoundPage from "./NotFound/locales.js";
+export * as NotificationPreferences from "./NotificationPreferences/locales.js";
+export * as RegisterAboutYou from "./RegisterAboutYou/locales.js";
+export * as SOSCenterPage from "./SOSCenter/locales.js";
+export * as Welcome from "./Welcome/locales.js";
