@@ -33,8 +33,9 @@ export const SelectProvider = () => {
           label={t("button_label")}
           iconName="filter"
           iconColor="#ffffff"
+          iconSize="sm"
           color="purple"
-          circleSize="sm"
+          size="xs"
           onClick={() => handleFilterClick()}
         />
       }
