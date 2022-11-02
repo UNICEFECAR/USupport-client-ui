@@ -45,32 +45,37 @@ export const InformationPortal = () => {
     return newestArticlesData;
   };
 
-  const { data: newestArticles } = useQuery(
-    ["newestArticles"],
-    getNewestArticles,
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+  const {
+    data: newestArticles,
+    isLoading: newestArticlesLoading,
+    isFetched: isNewestArticlesFetched,
+  } = useQuery(["newestArticles"], getNewestArticles, {
+    refetchOnWindowFocus: false,
+    retry: false,
+  });
 
   //--------------------- Most Read Articles ----------------------//
   const getMostReadArticles = async () => {
     const res = await cmsSvc.getMostReadArticles(2, i18n.language);
+    if (!res.data) return null;
+
     let mostReadArticles = [];
     for (let i = 0; i < res.data.length; i++) {
       const article = res.data[i];
       mostReadArticles.push(destructureArticleData(CMS_HOST, article));
     }
+    console.log(mostReadArticles, "mostread");
     return mostReadArticles;
   };
 
-  const { data: mostReadArticles } = useQuery(
-    ["mostReadArticles"],
-    getMostReadArticles,
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+  const {
+    data: mostReadArticles,
+    isLoading: mostReadArticlesLoading,
+    isFetched: isMostReadArticlesFetched,
+  } = useQuery(["mostReadArticles"], getMostReadArticles, {
+    refetchOnWindowFocus: false,
+    // retry: false,
+  });
 
   return (
     <Page classes="page__information-portal" showGoBackArrow={false}>
@@ -97,7 +102,15 @@ export const InformationPortal = () => {
       <Block classes="page__information-portal__block">
         <Grid classes="page__information-portal__block__grid">
           <GridItem md={8} lg={12} classes="articles__articles-item">
-            {newestArticles ? (
+            {isNewestArticlesFetched &&
+            isMostReadArticlesFetched &&
+            newestArticles.length === 0 &&
+            mostReadArticles.length === 0 ? (
+              <h4>{t("heading_no_language_results")}</h4>
+            ) : null}
+
+            {newestArticlesLoading ? <Loading /> : null}
+            {!newestArticlesLoading && newestArticles.length > 0 ? (
               <Grid>
                 <GridItem
                   xs={2}
@@ -136,22 +149,21 @@ export const InformationPortal = () => {
                         creator={article.creator}
                         readingTime={article.readingTime}
                         onClick={() => {
-                          navigate(`/article/1`);
+                          navigate(`/article/${article.id}`);
                         }}
                       />
                     </GridItem>
                   );
                 })}
               </Grid>
-            ) : (
-              <Loading size="lg" />
-            )}
+            ) : null}
           </GridItem>
         </Grid>
 
         <Grid classes="page__information-portal__block__grid">
           <GridItem md={8} lg={12} classes="articles__articles-item">
-            {mostReadArticles ? (
+            {mostReadArticlesLoading ? <Loading /> : null}
+            {!mostReadArticlesLoading && mostReadArticles.length > 0 ? (
               <Grid>
                 <GridItem
                   xs={2}
@@ -190,21 +202,21 @@ export const InformationPortal = () => {
                         creator={article.creator}
                         readingTime={article.readingTime}
                         onClick={() => {
-                          navigate(`/article/1`);
+                          navigate(`/article/${article.id}`);
                         }}
                       />
                     </GridItem>
                   );
                 })}
               </Grid>
-            ) : (
-              <Loading size="lg" />
-            )}
+            ) : null}
+          </GridItem>
+          <GridItem md={8} lg={12} classes="articles__articles-item">
+            <GiveSuggestion />
           </GridItem>
         </Grid>
       </Block>
       {/* <Articles showSearch={false} showCategories={false} /> */}
-      <GiveSuggestion />
     </Page>
   );
 };
