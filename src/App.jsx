@@ -27,7 +27,9 @@ import AOS from "aos";
 import "./App.scss";
 
 // Create a react-query client
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+});
 
 function App() {
   // TODO: add the country specific information about the SOS center
