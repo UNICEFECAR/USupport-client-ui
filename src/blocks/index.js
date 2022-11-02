@@ -11,3 +11,4 @@ export * from "./PlatformRating";
 export * from "./SharePlatform";
 export * from "./ForgotPassword";
 export * from "./RegisterAnonymous";
+export * from './Consultations';
