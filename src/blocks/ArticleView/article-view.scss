@@ -1,0 +1,51 @@
+@import "@USupport-components-library/styles";
+
+.article-view {
+  text-align: left;
+
+  @media screen and (min-width: $screen-lg) {
+    padding: 0 $spacing_30_7;
+  }
+
+  &__main-grid {
+    grid-gap: 0;
+  }
+
+  &__labels-item {
+    display: flex;
+    flex-direction: row;
+
+    padding-top: $spacing_2_0;
+    flex-wrap: wrap;
+
+    .article-view__label {
+      margin-top: $spacing_0_5;
+      &:not(:last-child) {
+        margin-right: $spacing_0_8;
+      }
+    }
+  }
+
+  &__title-item {
+    padding-top: $spacing_1_7;
+  }
+
+  &__details-item {
+    display: flex;
+    flex-direction: row;
+    padding-top: $spacing_1_6;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_0_8;
+    }
+
+    .icon {
+      margin-right: $spacing_0_5;
+      margin-left: $spacing_1_6;
+    }
+  }
+
+  &__body-item {
+    padding-top: $spacing_2_5;
+  }
+}

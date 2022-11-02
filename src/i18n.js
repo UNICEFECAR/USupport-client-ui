@@ -9,6 +9,8 @@ import {
   NotificationPreferences,
   ContactUs,
   RegisterAboutYou,
+  Articles,
+  GiveSuggestion,
   SelectProvider,
   PlatformRating,
   SharePlatform,
@@ -24,6 +26,9 @@ import {
   NotificationPreferences as NotificationPreferencesPage,
   ContactUs as ContactUsPage,
   RegisterAboutYou as RegisterAboutYouPage,
+  ArticleInformation as ArticleInformationPage,
+  Articles as ArticlesPage,
+  InformationPortal as InformationPortalPage,
   SelectProvider as SelectProviderPage,
   PlatformRating as PlatformRatingPage,
   SharePlatform as SharePlatformPage,
@@ -48,6 +53,8 @@ const resources = {
     "forgot-password": ForgotPassword.en,
     login: Login.en,
     welcome: Welcome.en,
+    articles: Articles.en,
+    "give-suggestion": GiveSuggestion.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
@@ -62,6 +69,9 @@ const resources = {
     "notification-preferences-page": NotificationPreferencesPage.en,
     "forgot-password-page": ForgotPasswordPage.en,
     "login-page": LoginPage.en,
+    "articles-page": ArticlesPage.en,
+    "article-information": ArticleInformationPage.en,
+    "information-portal": InformationPortalPage.en,
   },
 };
 
