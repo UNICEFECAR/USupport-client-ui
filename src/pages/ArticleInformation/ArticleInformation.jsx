@@ -62,7 +62,7 @@ export const ArticleInformation = () => {
   };
 
   return (
-    <Page classes="page__article-information">
+    <Page classes="page__article-information" showGoBackArrow={false}>
       {articleData ? (
         <>
           <img
