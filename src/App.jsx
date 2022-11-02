@@ -14,6 +14,7 @@ import {
   SharePlatform,
   RegisterAnonymous,
   RegisterSupport,
+  Consultations,
 } from "#pages";
 
 import "./App.scss";
@@ -72,6 +73,7 @@ function App() {
           path="/settings/notifications"
           element={<NotificationPreferencesPage />}
         />
+        <Route path="/consultations" element={<Consultations />} />
         <Route path="/login" element={<Login />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="*" element={<NotFound />} />
