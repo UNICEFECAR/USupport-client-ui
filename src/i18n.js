@@ -15,6 +15,7 @@ import {
   ForgotPassword,
   RegisterAnonymous,
   RegisterSupport,
+  ProviderOverview,
 } from "#blocks/locales.js";
 
 import {
@@ -30,12 +31,14 @@ import {
   ForgotPassword as ForgotPasswordPage,
   RegisterAnonymous as RegisterAnonymousPage,
   RegisterSupport as RegisterSupportPage,
+  ProviderOverview as ProviderOverviewPage,
 } from "#pages/locales.js";
 
 const resources = {
   en: {
     // Blocks
     page: Page.en,
+    "provider-overview": ProviderOverview.en,
     "sos-center": SosCenter.en,
     "register-about-you": RegisterAboutYou.en,
     "register-anonymous": RegisterAnonymous.en,
@@ -50,6 +53,7 @@ const resources = {
     welcome: Welcome.en,
 
     // Pages
+    "provider-overview-page": ProviderOverviewPage.en,
     "not-found-page": NotFoundPage.en,
     "contact-us-page": ContactUsPage.en,
     "sos-center-page": SOSCenterPage.en,

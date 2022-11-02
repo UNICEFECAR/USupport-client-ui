@@ -11,3 +11,4 @@ export * as SharePlatform from "./SharePlatform/locales.js";
 export * as ForgotPassword from "./ForgotPassword/locales.js";
 export * as RegisterAnonymous from "./RegisterAnonymous/locales.js";
 export * as RegisterSupport from "./RegisterSupport/locales.js";
+export * as ProviderOverview from './ProviderOverview/locales.js';
