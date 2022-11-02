@@ -1,0 +1,18 @@
+/* ProviderOverview styles */
+@import "@USupport-components-library/styles";
+
+.page__provider-overview {
+  &__button-container {
+    padding: $spacing_2_0 0;
+    // 5vh -> emergency button bottom padding, 4.8rem -> emergency button height
+    padding-bottom: calc(5vh + 4.8rem + 1rem);
+    position: fixed;
+    bottom: 0;
+    background: $gradient_transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: $z_index_emergency_button;
+  }
+}

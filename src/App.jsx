@@ -14,6 +14,7 @@ import {
   SharePlatform,
   RegisterAnonymous,
   RegisterSupport,
+  ProviderOverview,
 } from "#pages";
 
 import "./App.scss";
@@ -60,6 +61,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/share-platform" element={<SharePlatform />} />
+        <Route path="/provider-overview" element={<ProviderOverview />} />
         <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
         <Route path="/register" element={<RegisterAboutYou />} />
         <Route path="/platform-rating" element={<PlatformRating />} />
