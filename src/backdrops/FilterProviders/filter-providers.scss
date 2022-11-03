@@ -1,0 +1,19 @@
+@import "@USupport-components-library/styles";
+
+.filter-providers {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__inputs-container {
+      & > * {
+        margin-top: $spacing_3_2;
+      }
+    }
+
+    & > button {
+      margin-top: $spacing_2_4;
+    }
+  }
+}

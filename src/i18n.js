@@ -37,6 +37,8 @@ import {
   RegisterSupport as RegisterSupportPage,
 } from "#pages/locales.js";
 
+import { FilterProviders } from "#backdrops/locales.js";
+
 const resources = {
   en: {
     // Blocks
@@ -72,6 +74,9 @@ const resources = {
     "articles-page": ArticlesPage.en,
     "article-information": ArticleInformationPage.en,
     "information-portal": InformationPortalPage.en,
+
+    //Backdrops
+    "filter-providers": FilterProviders.en,
   },
 };
 
