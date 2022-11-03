@@ -17,6 +17,7 @@ import {
   ForgotPassword,
   RegisterAnonymous,
   RegisterSupport,
+  RegisterPreview,
 } from "#blocks/locales.js";
 
 import {
@@ -35,6 +36,7 @@ import {
   ForgotPassword as ForgotPasswordPage,
   RegisterAnonymous as RegisterAnonymousPage,
   RegisterSupport as RegisterSupportPage,
+  RegisterPreview as RegisterPreviewPage,
 } from "#pages/locales.js";
 
 const resources = {
@@ -55,6 +57,7 @@ const resources = {
     welcome: Welcome.en,
     articles: Articles.en,
     "give-suggestion": GiveSuggestion.en,
+    "register-preview": RegisterPreview.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
@@ -72,6 +75,7 @@ const resources = {
     "articles-page": ArticlesPage.en,
     "article-information": ArticleInformationPage.en,
     "information-portal": InformationPortalPage.en,
+    "register-preview-page": RegisterPreviewPage.en,
   },
 };
 
