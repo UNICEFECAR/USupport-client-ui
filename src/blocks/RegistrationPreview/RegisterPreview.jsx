@@ -7,18 +7,18 @@ import {
   Button,
 } from "@USupport-components-library/src";
 
-import "./registration-preview.scss";
+import "./register-preview.scss";
 
 import { mascotHappyBlue } from "@USupport-components-library/assets";
 
 /**
- * RegistrationPreview
+ * RegisterPreview
  *
- * RegistrationPreviewBlock
+ * RegisterPreviewBlock
  *
  * @return {jsx}
  */
-export const RegistrationPreview = () => {
+export const RegisterPreview = () => {
   const carouselItems = [
     {
       heading: "What to expect from us",
@@ -39,10 +39,10 @@ export const RegistrationPreview = () => {
       return (
         <div
           key={index}
-          className="registration-preview__grid__content-item__carousel-item"
+          className="register-preview__grid__content-item__carousel-item"
         >
           <h3>{item.heading}</h3>
-          <p className="registration-preview__grid__content-item__carousel-item__text">
+          <p className="register-preview__grid__content-item__carousel-item__text">
             {item.text}
           </p>
         </div>
@@ -57,21 +57,13 @@ export const RegistrationPreview = () => {
   };
 
   return (
-    <Block classes="registration-preview">
-      <Grid md={8} lg={12} classes="registration-preview__grid">
-        <GridItem
-          md={4}
-          lg={6}
-          classes="registration-preview__grid__mascot-item"
-        >
+    <Block classes="register-preview">
+      <Grid md={8} lg={12} classes="register-preview__grid">
+        <GridItem md={4} lg={6} classes="register-preview__grid__mascot-item">
           <img src={mascotHappyBlue} />
         </GridItem>
-        <GridItem
-          md={4}
-          lg={6}
-          classes="registration-preview__grid__content-item"
-        >
-          <div className="registration-preview__grid__content-item__carousel-container">
+        <GridItem md={4} lg={6} classes="register-preview__grid__content-item">
+          <div className="register-preview__grid__content-item__carousel-container">
             <CustomCarousel>{renderCarouselItems()}</CustomCarousel>
           </div>
           <Button

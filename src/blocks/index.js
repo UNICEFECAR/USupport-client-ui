@@ -14,4 +14,4 @@ export * from "./SelectProvider";
 export * from "./SharePlatform";
 export * from "./SOSCenter";
 export * from "./Welcome";
-export * from './RegistrationPreview';
+export * from "./RegisterPreview";

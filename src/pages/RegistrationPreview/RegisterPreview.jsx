@@ -1,18 +1,18 @@
 import React from "react";
-import { Page, RegistrationPreview as RegistrationPreviewBlock } from "#blocks";
+import { Page, RegisterPreview as RegisterPreviewBlock } from "#blocks";
 import { Button } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
-import "./registration-preview.scss";
+import "./register-preview.scss";
 
 /**
- * RegistrationPreview
+ * RegisterPreview
  *
- * RegistrationPreview page
+ * RegisterPreview page
  *
  * @returns {JSX.Element}
  */
-export const RegistrationPreview = () => {
+export const RegisterPreview = () => {
   const { t } = useTranslation("register-preview-page");
 
   const handleLoginRedirect = () => {
@@ -21,7 +21,7 @@ export const RegistrationPreview = () => {
 
   return (
     <Page
-      classes="page__registration-preview"
+      classes="page__register-preview"
       showEmergencyButton={false}
       showFooter={false}
       showNavbar={false}
@@ -36,7 +36,7 @@ export const RegistrationPreview = () => {
         />
       }
     >
-      <RegistrationPreviewBlock />
+      <RegisterPreviewBlock />
     </Page>
   );
 };

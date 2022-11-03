@@ -13,4 +13,4 @@ export * as SelectProvider from "./SelectProvider/locales.js";
 export * as SharePlatform from "./SharePlatform/locales.js";
 export * as SosCenter from "./SOSCenter/locales.js";
 export * as Welcome from "./Welcome/locales.js";
-export * as RegistrationPreview from './RegistrationPreview/locales.js';
+export * as RegisterPreview from "./RegisterPreview/locales.js";
