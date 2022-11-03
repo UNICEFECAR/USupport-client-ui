@@ -1,0 +1,69 @@
+@import "@USupport-components-library/styles";
+
+.registration-preview {
+  height: 100%;
+
+  .container {
+    height: 100%;
+  }
+
+  &__grid {
+    align-items: center;
+    align-content: center;
+    padding-top: $spacing_4_0;
+    padding-bottom: $spacing_4_0;
+    row-gap: $spacing_4_0;
+    height: 100%;
+
+    @media screen and (min-width: $screen_md) {
+      padding-top: $spacing_9_6;
+    }
+
+    &__mascot-item {
+      @media screen and (max-width: $screen_md) {
+        justify-self: end;
+      }
+
+      @media screen and (min-width: $screen_md) {
+        order: 1;
+      }
+
+      > img {
+        width: 30rem;
+        height: 23.8rem;
+        @media screen and (max-width: $screen_md) {
+          transform: translateX(12.5rem);
+        }
+      }
+    }
+
+    &__content-item {
+      justify-self: center;
+      &__carousel-item {
+        text-align: left;
+        &__text {
+          margin-top: $spacing_1_6;
+
+          @media screen and (min-width: $screen_md) {
+            margin-top: $spacing_2_4;
+          }
+        }
+      }
+
+      &__carousel-container {
+        max-width: 36.8rem;
+      }
+
+      & > button {
+        margin-top: $spacing_1_6;
+        @media screem and (min-width: $screen_md) {
+          margin-top: $spacing_2_0;
+
+          & > button:first-of-type {
+            margin-top: $spacing_9_6;
+          }
+        }
+      }
+    }
+  }
+}
