@@ -18,6 +18,7 @@ import {
   SharePlatform,
   RegisterAnonymous,
   RegisterSupport,
+  RegistrationPreview,
 } from "#pages";
 
 // AOS imports
@@ -69,6 +70,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
+          <Route
+            path="/registration-preview"
+            element={<RegistrationPreview />}
+          />
           <Route path="/share-platform" element={<SharePlatform />} />
           <Route
             path="/sos-center"

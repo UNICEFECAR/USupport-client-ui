@@ -14,3 +14,4 @@ export * from "./SharePlatform";
 export * from "./ForgotPassword";
 export * from "./RegisterAnonymous";
 export * from "./RegisterSupport";
+export * from './RegistrationPreview';
