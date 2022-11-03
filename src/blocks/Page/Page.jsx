@@ -94,7 +94,11 @@ export const Page = ({
               />
             )}
             {heading && <h3 className="page__header-heading">{heading}</h3>}
-            {headingButton && headingButton}
+            {headingButton && (
+              <div className="page__header-button-container">
+                {headingButton}
+              </div>
+            )}
           </div>
         )}
         <p className="page__subheading-text text">{subheading}</p>
