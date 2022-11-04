@@ -43,7 +43,7 @@ export const EditConsultation = ({
       <ConsultationInformation
         startDate={startDate}
         endDate={endDate}
-        providerName={provider.Name}
+        providerName={provider.name}
         classes="edit-consultation__provider-consultation"
       />
       <ButtonSelector
