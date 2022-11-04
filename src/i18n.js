@@ -40,7 +40,7 @@ import {
   PrivacyPolicy as PrivacyPolicyPage,
 } from "#pages/locales.js";
 
-import { FilterProviders } from "#backdrops/locales.js";
+import { FilterProviders, EditConsultation } from "#backdrops/locales.js";
 
 const resources = {
   en: {
@@ -83,6 +83,7 @@ const resources = {
     "filter-providers": FilterProviders.en,
     "register-preview-page": RegisterPreviewPage.en,
     "privacy-policy": PrivacyPolicyPage.en,
+    "edit-consultation": EditConsultation.en,
   },
 };
 
