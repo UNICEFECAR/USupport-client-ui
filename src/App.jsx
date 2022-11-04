@@ -21,7 +21,9 @@ import {
   RegisterSupport,
   RegisterPreview,
   PrivacyPolicy,
+  RegisterEmail,
 } from "#pages";
+// import { ProtectedRoute } from "./routes/ProtectedRoute";
 
 // AOS imports
 import "aos/dist/aos.css";
@@ -70,19 +72,22 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
+      <Router basename="/client">
         <Routes>
+          <Route path="/welcome" element={<Welcome />} />
           <Route path="/register-preview" element={<RegisterPreview />} />
+          <Route path="/register" element={<RegisterEmail />} />
+          <Route path="/register/about-you" element={<RegisterAboutYou />} />
+          <Route path="/register-anonymous" element={<RegisterAnonymous />} />
+          <Route path="/register-support" element={<RegisterSupport />} />
+
           <Route path="/share-platform" element={<SharePlatform />} />
           <Route
             path="/sos-center"
             element={<SOSCenter contacts={contacts} />}
           />
-          <Route path="/register" element={<RegisterAboutYou />} />
           <Route path="/platform-rating" element={<PlatformRating />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/register-anonymous" element={<RegisterAnonymous />} />
-          <Route path="/register-support" element={<RegisterSupport />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/select-provider" element={<SelectProvider />} />
           <Route
@@ -93,7 +98,6 @@ function App() {
           <Route path="/articles" element={<Articles />} />
           <Route path="/article/:id" element={<ArticleInformation />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/welcome" element={<Welcome />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
