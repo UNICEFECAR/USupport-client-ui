@@ -23,7 +23,6 @@ export const RegisterSupport = () => {
     <Page
       classes="page__register-support"
       showFooter={false}
-      showEmergencyButton={false}
       showNavbar={false}
       additionalPadding={false}
       heading={width < 768 ? t("heading_1") : t("heading_2")}
