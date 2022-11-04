@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   NotFound,
   SOSCenter,
@@ -18,6 +19,8 @@ import {
   SharePlatform,
   RegisterAnonymous,
   RegisterSupport,
+  RegisterPreview,
+  PrivacyPolicy,
 } from "#pages";
 
 // AOS imports
@@ -69,6 +72,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
+          <Route path="/register-preview" element={<RegisterPreview />} />
           <Route path="/share-platform" element={<SharePlatform />} />
           <Route
             path="/sos-center"
@@ -90,9 +94,11 @@ function App() {
           <Route path="/article/:id" element={<ArticleInformation />} />
           <Route path="/login" element={<Login />} />
           <Route path="/welcome" element={<Welcome />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
+      <ReactQueryDevtools initialOpen />
     </QueryClientProvider>
   );
 }

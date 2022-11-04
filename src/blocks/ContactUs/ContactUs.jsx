@@ -143,7 +143,7 @@ export const ContactUs = () => {
       <Modal
         isOpen={isSuccessModalOpen}
         closeModal={closeSuccessModal}
-        title={t("modal_title")}
+        heading={t("modal_title")}
         text={t("modal_text")}
         ctaLabel={t("modal_cta_label")}
         ctaHandleClick={handleModalSuccessCtaClick}

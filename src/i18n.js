@@ -17,6 +17,7 @@ import {
   ForgotPassword,
   RegisterAnonymous,
   RegisterSupport,
+  RegisterPreview,
 } from "#blocks/locales.js";
 
 import {
@@ -35,6 +36,8 @@ import {
   ForgotPassword as ForgotPasswordPage,
   RegisterAnonymous as RegisterAnonymousPage,
   RegisterSupport as RegisterSupportPage,
+  RegisterPreview as RegisterPreviewPage,
+  PrivacyPolicy as PrivacyPolicyPage,
 } from "#pages/locales.js";
 
 import { FilterProviders } from "#backdrops/locales.js";
@@ -57,6 +60,7 @@ const resources = {
     welcome: Welcome.en,
     articles: Articles.en,
     "give-suggestion": GiveSuggestion.en,
+    "register-preview": RegisterPreview.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
@@ -77,6 +81,8 @@ const resources = {
 
     //Backdrops
     "filter-providers": FilterProviders.en,
+    "register-preview-page": RegisterPreviewPage.en,
+    "privacy-policy": PrivacyPolicyPage.en,
   },
 };
 

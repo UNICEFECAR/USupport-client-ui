@@ -50,6 +50,12 @@
       }
     }
 
+    &-button-container {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
     &-icon {
       cursor: pointer;
       margin-right: $spacing_2_4;
