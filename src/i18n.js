@@ -37,7 +37,10 @@ import {
   RegisterAnonymous as RegisterAnonymousPage,
   RegisterSupport as RegisterSupportPage,
   RegisterPreview as RegisterPreviewPage,
+  PrivacyPolicy as PrivacyPolicyPage,
 } from "#pages/locales.js";
+
+import { FilterProviders } from "#backdrops/locales.js";
 
 const resources = {
   en: {
@@ -75,7 +78,11 @@ const resources = {
     "articles-page": ArticlesPage.en,
     "article-information": ArticleInformationPage.en,
     "information-portal": InformationPortalPage.en,
+
+    //Backdrops
+    "filter-providers": FilterProviders.en,
     "register-preview-page": RegisterPreviewPage.en,
+    "privacy-policy": PrivacyPolicyPage.en,
   },
 };
 
