@@ -84,6 +84,8 @@ export const FilterProviders = ({ isOpen, onClose }) => {
       text={t("subheading")}
       isOpen={isOpen}
       onClose={onClose}
+      ctaLabel={t("button_label")}
+      ctahandleClick={handleSave}
     >
       <div className="filter-providers__content">
         <div className="filter-providers__content__inputs-container">
@@ -107,7 +109,7 @@ export const FilterProviders = ({ isOpen, onClose }) => {
             label={"Years of experience"}
           />
         </div>
-        <Button label={t("button_label")} size="lg" onClick={handleSave} />
+        {/* <Button label={t("button_label")} size="lg" onClick={handleSave} /> */}
       </div>
     </Backdrop>
   );
