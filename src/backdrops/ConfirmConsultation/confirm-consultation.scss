@@ -1,0 +1,27 @@
+@import "@USupport-components-library/styles";
+
+.confirm-consultation {
+  align-items: center;
+
+  &__content {
+    width: 28rem;
+    padding: $spacing_4_4 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__mascot {
+      width: 20rem;
+      height: 15.9rem;
+    }
+
+    &__heading {
+      margin-top: $spacing_5_4;
+      color: $color_blue_3d527b;
+    }
+
+    &__text {
+      margin-top: $spacing_2_4;
+    }
+  }
+}
