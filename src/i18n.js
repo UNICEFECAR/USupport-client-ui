@@ -37,6 +37,7 @@ import {
   RegisterAnonymous as RegisterAnonymousPage,
   RegisterSupport as RegisterSupportPage,
   RegisterPreview as RegisterPreviewPage,
+  PrivacyPolicy as PrivacyPolicyPage,
 } from "#pages/locales.js";
 
 const resources = {
@@ -76,6 +77,7 @@ const resources = {
     "article-information": ArticleInformationPage.en,
     "information-portal": InformationPortalPage.en,
     "register-preview-page": RegisterPreviewPage.en,
+    "privacy-policy": PrivacyPolicyPage.en,
   },
 };
 
