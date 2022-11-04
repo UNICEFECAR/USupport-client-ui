@@ -3,27 +3,9 @@
 .edit-consultation {
   align-items: center;
 
-  &__provider-container {
-    display: flex;
-    flex-direction: row;
+  &__provider-consultation {
     max-width: calc(36.8rem - 2 * $spacing_1_6);
-    padding: $spacing_1_6;
     margin-top: $spacing_2_4;
-
-    &__content {
-      margin-left: 1.6rem;
-
-      &__date-item {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-top: $spacing_0_4;
-
-        &__text-container {
-          margin-left: $spacing_0_6;
-        }
-      }
-    }
   }
 
   &__button {
