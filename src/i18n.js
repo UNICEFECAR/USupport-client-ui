@@ -18,6 +18,7 @@ import {
   RegisterAnonymous,
   RegisterSupport,
   RegisterPreview,
+  RegisterEmail,
 } from "#blocks/locales.js";
 
 import {
@@ -38,6 +39,7 @@ import {
   RegisterSupport as RegisterSupportPage,
   RegisterPreview as RegisterPreviewPage,
   PrivacyPolicy as PrivacyPolicyPage,
+  RegisterEmail as RegisterEmailPage,
 } from "#pages/locales.js";
 
 import { FilterProviders } from "#backdrops/locales.js";
@@ -61,6 +63,7 @@ const resources = {
     articles: Articles.en,
     "give-suggestion": GiveSuggestion.en,
     "register-preview": RegisterPreview.en,
+    "register-email": RegisterEmail.en,
 
     // Pages
     "not-found-page": NotFoundPage.en,
@@ -83,6 +86,7 @@ const resources = {
     "filter-providers": FilterProviders.en,
     "register-preview-page": RegisterPreviewPage.en,
     "privacy-policy": PrivacyPolicyPage.en,
+    "register-email-page": RegisterEmailPage.en,
   },
 };
 

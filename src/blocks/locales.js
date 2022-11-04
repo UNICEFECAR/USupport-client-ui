@@ -14,3 +14,4 @@ export * as SharePlatform from "./SharePlatform/locales.js";
 export * as SosCenter from "./SOSCenter/locales.js";
 export * as Welcome from "./Welcome/locales.js";
 export * as RegisterPreview from "./RegisterPreview/locales.js";
+export * as RegisterEmail from "./RegisterEmail/locales.js";
