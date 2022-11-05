@@ -1,7 +1,6 @@
 import React from "react";
 import { Page } from "#blocks";
 import { useQuery } from "@tanstack/react-query";
-
 import { useTranslation } from "react-i18next";
 import { Block, Loading, Markdown } from "@USupport-components-library/src";
 
@@ -17,7 +16,7 @@ import "./privacy-policy.scss";
  * @returns {JSX.Element}
  */
 export const PrivacyPolicy = () => {
-  const { i18n, t } = useTranslation("privacy-policy");
+  const { i18n, t } = useTranslation("privacy-policy-page");
 
   const countryAlpha2 = "AD"; // TODO: get country code
 
