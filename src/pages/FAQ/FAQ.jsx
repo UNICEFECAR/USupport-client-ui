@@ -25,18 +25,7 @@ export const FAQ = () => {
   const getFAQs = async () => {
     const { data } = await cmsSvc.getFAQs(i18n.language, true);
 
-    let res = null;
-    if (data.length > 0) {
-      res = [];
-      data.map((faq) => {
-        res.push({
-          question: faq.attributes.question,
-          answer: faq.attributes.answer,
-        });
-      });
-    }
-
-    return res;
+    return data;
   };
 
   const {
