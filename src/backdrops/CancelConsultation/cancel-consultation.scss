@@ -6,16 +6,4 @@
   &__provider-consultation {
     margin-top: $spacing_4_0;
   }
-
-  &__button-container {
-    margin-top: $spacing_3_2;
-    padding-bottom: $spacing_3_6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    & > button:not(:first-of-type) {
-      margin-top: $spacing_2_0;
-    }
-  }
 }
