@@ -22,6 +22,7 @@ import {
   RegisterPreview,
   PrivacyPolicy,
   RegisterEmail,
+  FAQ,
 } from "#pages";
 // import { ProtectedRoute } from "./routes/ProtectedRoute";
 
@@ -99,6 +100,7 @@ function App() {
           <Route path="/article/:id" element={<ArticleInformation />} />
           <Route path="/login" element={<Login />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
