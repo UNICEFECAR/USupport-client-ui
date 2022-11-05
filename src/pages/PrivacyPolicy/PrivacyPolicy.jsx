@@ -24,15 +24,10 @@ export const PrivacyPolicy = () => {
     const { data } = await cmsSvc.getPolicies(
       i18n.language,
       countryAlpha2,
-      "website"
+      "client"
     );
 
-    let res = null;
-    if (data.length > 0) {
-      res = data[0].attributes.client;
-    }
-
-    return res;
+    return data;
   };
 
   const {
