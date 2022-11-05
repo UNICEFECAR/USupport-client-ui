@@ -32,6 +32,10 @@ export const CancelConsultation = ({
       isOpen={isOpen}
       onClose={onClose}
       heading={t("heading")}
+      ctaLabel={t("cancel_button_label")}
+      ctaHandleClick={() => console.log("cancel")}
+      secondaryCtaLabel={t("keep_button_label")}
+      secondaryCtaHandleClick={onClose}
     >
       <ConsultationInformation
         startDate={startDate}
@@ -39,15 +43,6 @@ export const CancelConsultation = ({
         providerName={provider.name}
         classes="cancel-consultation__provider-consultation"
       />
-      <div className="cancel-consultation__button-container">
-        <Button label={t("cancel_button_label")} size="lg" web />
-        <Button
-          label={t("keep_button_label")}
-          type="ghost"
-          size="md"
-          onClick={onClose}
-        />
-      </div>
     </Backdrop>
   );
 };
