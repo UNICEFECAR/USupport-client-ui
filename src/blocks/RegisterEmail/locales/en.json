@@ -1,0 +1,12 @@
+{
+  "email_error": "Please enter a valid email",
+  "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
+  "email_label": "Email",
+  "password_label": "Password",
+  "terms_agreement_text_1": "I agree with the",
+  "terms_agreement_text_2": "Privacy Policy",
+  "terms_agreement_text_3": "and",
+  "terms_agreement_text_4": "Terms of Conditions",
+  "register_button": "Register",
+  "paragraph": "Or register with:"
+}

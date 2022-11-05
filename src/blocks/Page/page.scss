@@ -39,7 +39,7 @@
     &-heading {
       max-width: 75rem;
       width: 75%;
-      word-break: break-all;
+      word-break: break-word;
       text-align: left;
 
       @media screen and (min-width: $screen_md) {
@@ -48,6 +48,12 @@
       @media screen and (min-width: $screen_lg) {
         padding-left: $spacing_16_0;
       }
+    }
+
+    &-button-container {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
     }
 
     &-icon {

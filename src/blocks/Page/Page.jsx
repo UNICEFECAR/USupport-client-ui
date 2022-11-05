@@ -25,6 +25,7 @@ export const Page = ({
   showFooter,
   showGoBackArrow,
   showEmergencyButton,
+  handleGoBack,
   heading,
   subheading,
   headingButton,
@@ -37,9 +38,8 @@ export const Page = ({
     { name: t("page_1"), url: "/", exact: true },
     { name: t("page_2"), url: "/how-it-works" },
     { name: t("page_3"), url: "/about-us" },
-    // TODO: bring it back once the informaiton portal is ready
-    // { name: "Information portal", url: "/information-portal" },
-    { name: t("page_4"), url: "/contact-us" },
+    { name: t("page_4"), url: "/information-portal" },
+    { name: t("page_5"), url: "/contact-us" },
   ];
 
   const footerLists = {
@@ -67,6 +67,14 @@ export const Page = ({
     ],
   };
 
+  const handleGoBackArrowClick = () => {
+    if (handleGoBack) {
+      handleGoBack();
+    } else {
+      navigateTo(-1);
+    }
+  };
+
   return (
     <>
       {showNavbar && (
@@ -91,10 +99,15 @@ export const Page = ({
                 name="arrow-chevron-back"
                 size="md"
                 color="#20809E"
+                onClick={handleGoBackArrowClick}
               />
             )}
             {heading && <h3 className="page__header-heading">{heading}</h3>}
-            {headingButton && headingButton}
+            {headingButton && (
+              <div className="page__header-button-container">
+                {headingButton}
+              </div>
+            )}
           </div>
         )}
         <p className="page__subheading-text text">{subheading}</p>

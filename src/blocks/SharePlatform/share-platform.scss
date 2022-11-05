@@ -1,0 +1,30 @@
+@import "@USupport-components-library/styles";
+
+.share-platform {
+  &__grid {
+    row-gap: 0;
+    justify-items: center;
+    padding-top: $spacing_6_0;
+    padding-bottom: $spacing_2_4;
+    margin: 0;
+
+    &__item {
+      &__button {
+        padding: $spacing_1_3 $spacing_2_4;
+        width: calc(34.3rem - 2 * $spacing_2_4);
+
+        & > p {
+          color: $color_primary_20809e;
+        }
+
+        @media screen and (min-width: $screen_lg) {
+          width: calc(36.8rem - 2 * $spacing_2_4);
+        }
+      }
+
+      &:not(:first-of-type) {
+        margin-top: $spacing_1_6;
+      }
+    }
+  }
+}

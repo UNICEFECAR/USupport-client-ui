@@ -1,0 +1,19 @@
+@import "@USupport-components-library/styles";
+
+.select-provider {
+  &__grid {
+    place-items: center;
+    padding-top: $spacing_3_0;
+    padding-bottom: $spacing_4_0;
+
+    @media screen and (min-width: $screen_md) {
+      &__provider {
+        justify-self: start;
+      }
+
+      &__provider:nth-child(odd) {
+        justify-self: end;
+      }
+    }
+  }
+}

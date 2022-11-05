@@ -1,0 +1,74 @@
+@import "@USupport-components-library/styles";
+
+.register-anonymous {
+  // 100vh - height of header - the padding-top
+  @include full-height-page(calc($spacing_12_0));
+
+  @media screen and (min-width: $screen_md) {
+    @include full-height-page(calc($spacing_12_8));
+  }
+
+  & .container {
+    height: 100%;
+  }
+
+  &__grid {
+    height: 100%;
+    justify-items: center;
+    text-align: left;
+
+    &__content-item {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &__main-component {
+        margin-top: $spacing_4_0;
+
+        &__code-text {
+          color: $color_blue_3d527b;
+          margin-top: $spacing_8_0;
+        }
+
+        &__anonymous-code-container {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+          margin-top: $spacing_1_3;
+          margin-bottom: $spacing_3_6;
+        }
+
+        &__copy-icon {
+          margin-left: $spacing_1_2;
+          cursor: pointer;
+        }
+
+        &__input-password {
+          @media screen and (min-width: $screen_md) {
+            margin-top: $spacing_6_4;
+          }
+        }
+
+        & > button {
+          margin-top: $spacing_3_2;
+          @media screen and (min-width: $screen_md) {
+            margin-top: $spacing_8_0;
+            margin-bottom: $spacing_3_2;
+          }
+        }
+      }
+    }
+  }
+
+  &__redirect-button {
+    margin-bottom: $spacing_2_4;
+  }
+
+  & .error-message {
+    margin-left: 0;
+    margin-top: $spacing_1_6;
+  }
+}
