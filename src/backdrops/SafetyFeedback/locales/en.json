@@ -1,0 +1,9 @@
+{
+    "heading": "Did you felt safe during the meeting",
+    "subheading": "Tell us more about the experience you got throught the last consultation you had. ",
+    "option_yes_label": "Yes",
+    "option_no_label": "No",
+    "cta_button_label": "Send feedback",
+    "textarea_placeholder": "Placeholder",
+    "textarea_label": "Tell us what bothered you (optional)"
+}

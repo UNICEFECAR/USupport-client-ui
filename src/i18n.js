@@ -43,7 +43,7 @@ import {
   FAQ as FAQPage,
 } from "#pages/locales.js";
 
-import { FilterProviders } from "#backdrops/locales.js";
+import { FilterProviders, SafetyFeedback } from "#backdrops/locales.js";
 
 const resources = {
   en: {
@@ -89,6 +89,7 @@ const resources = {
     "privacy-policy-page": PrivacyPolicyPage.en,
     "register-email-page": RegisterEmailPage.en,
     "faq-page": FAQPage.en,
+    "safety-feedback": SafetyFeedback.en,
   },
 };
 

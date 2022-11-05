@@ -1,0 +1,13 @@
+@import "@USupport-components-library/styles";
+
+.safety-feedback {
+  align-items: center;
+
+  &__content {
+    padding: $spacing_0_4 $spacing_1_6;
+
+    &__textarea {
+      margin-top: $spacing_2_2;
+    }
+  }
+}
