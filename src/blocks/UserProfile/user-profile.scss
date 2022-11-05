@@ -9,12 +9,18 @@
     &__item {
       margin-top: $spacing_0_8;
 
+      &:first-of-type {
+        button > .btn-selector__label {
+          font-weight: $font_bold;
+        }
+      }
+
       &__label {
         color: $color_blue_3d527b;
       }
 
       &__button:first-of-type {
-        margin-top: $spacing_0_4;
+        margin-top: $spacing_0_8;
       }
 
       &__button:not(:first-of-type) {

@@ -4,6 +4,7 @@ import {
   Grid,
   GridItem,
   ButtonSelector,
+  Loading,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
@@ -32,7 +33,7 @@ export const UserProfile = () => {
           </p>
           <ButtonSelector
             label="Anna Frank"
-            classes="user-profile__grid__item__button"
+            classes="user-profile__grid__item__button "
             onClick={() => handleRedirect("/profile")}
           />
         </GridItem>

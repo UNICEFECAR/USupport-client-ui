@@ -35,7 +35,12 @@ export const UserProfile = () => {
       }
     >
       <UserProfileBlock />
-      {width < 768 && <RadialCircle color="purple" />}
+      {width < 768 && (
+        <RadialCircle
+          color="purple"
+          classes="page__user-profile__radial-circle"
+        />
+      )}
     </Page>
   );
 };
