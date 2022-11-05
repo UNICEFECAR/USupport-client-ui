@@ -82,13 +82,13 @@ const resources = {
     "articles-page": ArticlesPage.en,
     "article-information": ArticleInformationPage.en,
     "information-portal": InformationPortalPage.en,
+    "register-preview-page": RegisterPreviewPage.en,
+    "register-email-page": RegisterEmailPage.en,
+    "privacy-policy-page": PrivacyPolicyPage.en,
+    "faq-page": FAQPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
-    "register-preview-page": RegisterPreviewPage.en,
-    "privacy-policy-page": PrivacyPolicyPage.en,
-    "register-email-page": RegisterEmailPage.en,
-    "faq-page": FAQPage.en,
   },
 };
 
