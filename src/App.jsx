@@ -11,6 +11,7 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
+  UserProfile,
   InformationPortal,
   Articles,
   ArticleInformation,
@@ -90,6 +91,7 @@ function App() {
           <Route path="/platform-rating" element={<PlatformRating />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/select-provider" element={<SelectProvider />} />
           <Route
             path="/settings/notifications"

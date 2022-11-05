@@ -9,6 +9,7 @@ import {
   NotificationPreferences,
   ContactUs,
   RegisterAboutYou,
+  UserProfile,
   Articles,
   GiveSuggestion,
   SelectProvider,
@@ -28,6 +29,7 @@ import {
   NotificationPreferences as NotificationPreferencesPage,
   ContactUs as ContactUsPage,
   RegisterAboutYou as RegisterAboutYouPage,
+  UserProfile as UserProfilePage,
   ArticleInformation as ArticleInformationPage,
   Articles as ArticlesPage,
   InformationPortal as InformationPortalPage,
@@ -49,6 +51,7 @@ const resources = {
   en: {
     // Blocks
     page: Page.en,
+    "user-profile": UserProfile.en,
     "sos-center": SosCenter.en,
     "register-about-you": RegisterAboutYou.en,
     "register-anonymous": RegisterAnonymous.en,
@@ -67,6 +70,7 @@ const resources = {
     "register-email": RegisterEmail.en,
 
     // Pages
+    "user-profile-page": UserProfilePage.en,
     "not-found-page": NotFoundPage.en,
     "contact-us-page": ContactUsPage.en,
     "sos-center-page": SOSCenterPage.en,

@@ -5,6 +5,7 @@ export * as FAQ from "./FAQ/locales.js";
 export * as ForgotPassword from "./ForgotPassword/locales.js";
 export * as InformationPortal from "./InformationPortal/locales.js";
 export * as Login from "./Login/locales.js";
+export * as UserProfile from "./UserProfile/locales.js";
 export * as NotFoundPage from "./NotFound/locales.js";
 export * as NotificationPreferences from "./NotificationPreferences/locales.js";
 export * as PlatformRating from "./PlatformRating/locales.js";

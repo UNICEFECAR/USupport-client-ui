@@ -6,6 +6,7 @@ export * from "./GiveSuggestion";
 export * from "./Login";
 export * from "./NotificationPreferences";
 export * from "./Page";
+export * from "./UserProfile";
 export * from "./PlatformRating";
 export * from "./RegisterAboutYou";
 export * from "./RegisterAnonymous";
