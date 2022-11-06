@@ -1,4 +1,5 @@
 import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SOSCenter } from "./SOSCenter";
 
 export default {
@@ -7,30 +8,14 @@ export default {
   argTypes: {},
 };
 
-const contacts = [
-  {
-    title: "Emergency center 1",
-    text: "In this emergency center you will receive help and information about what you exactly need.",
-    phone: "+7 888 888 888",
-  },
-  {
-    title: "Emergency center 2",
-    text: "In this emergency center you will receive help and information about what you exactly need.",
-    link: "https://staging.7digit.io",
-  },
-  {
-    title: "Emergency center 3",
-    text: "In this emergency center you will receive help and information about what you exactly need.",
-    link: "https://staging.7digit.io",
-  },
-  {
-    title: "Emergency center 4",
-    text: "In this emergency center you will receive help and information about what you exactly need.",
-    link: "https://staging.7digit.io",
-  },
-];
+// Create a react-query client
+const queryClient = new QueryClient();
 
-const Template = () => <SOSCenter contacts={contacts} />;
+const Template = () => (
+  <QueryClientProvider client={queryClient}>
+    <SOSCenter contacts={contacts} />
+  </QueryClientProvider>
+);
 
 export const Default = Template.bind({});
 Default.args = {};
