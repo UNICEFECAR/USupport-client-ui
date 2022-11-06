@@ -17,3 +17,4 @@ export * from "./SOSCenter";
 export * from "./Welcome";
 export * from "./RegisterPreview";
 export * from "./RegisterEmail";
+export * from './PrivacyPolicy';

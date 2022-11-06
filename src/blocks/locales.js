@@ -16,3 +16,4 @@ export * as Welcome from "./Welcome/locales.js";
 export * as UserProfile from "./UserProfile/locales.js";
 export * as RegisterPreview from "./RegisterPreview/locales.js";
 export * as RegisterEmail from "./RegisterEmail/locales.js";
+export * as PrivacyPolicy from './PrivacyPolicy/locales.js';

@@ -20,6 +20,7 @@ import {
   RegisterSupport,
   RegisterPreview,
   RegisterEmail,
+  PrivacyPolicy,
 } from "#blocks/locales.js";
 
 import {
@@ -68,6 +69,7 @@ const resources = {
     "give-suggestion": GiveSuggestion.en,
     "register-preview": RegisterPreview.en,
     "register-email": RegisterEmail.en,
+    "privacy-policy": PrivacyPolicy.en,
 
     // Pages
     "user-profile-page": UserProfilePage.en,
