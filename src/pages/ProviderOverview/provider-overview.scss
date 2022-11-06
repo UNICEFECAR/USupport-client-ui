@@ -2,6 +2,12 @@
 @import "@USupport-components-library/styles";
 
 .page__provider-overview {
+  &__radial-circle {
+    top: 3.5rem;
+    left: -15rem;
+    height: 50rem;
+  }
+
   &__button-container {
     padding: $spacing_2_0 0;
     // 5vh -> emergency button bottom padding, 4.8rem -> emergency button height

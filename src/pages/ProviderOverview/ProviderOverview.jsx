@@ -1,7 +1,7 @@
 import React from "react";
-import { Page, ProviderOverview as ProviderOverviewBlock } from "#blocks";
 import { useTranslation } from "react-i18next";
-import { Button } from "@USupport-components-library/src";
+import { Button, RadialCircle } from "@USupport-components-library/src";
+import { Page, ProviderOverview as ProviderOverviewBlock } from "#blocks";
 
 import "./provider-overview.scss";
 
@@ -33,6 +33,10 @@ export const ProviderOverview = () => {
           onClick={() => handleSchedule()}
         />
       </div>
+      <RadialCircle
+        color="purple"
+        classes="page__provider-overview__radial-circle"
+      />
     </Page>
   );
 };
