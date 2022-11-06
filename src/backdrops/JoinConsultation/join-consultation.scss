@@ -4,6 +4,7 @@
   align-items: center;
 
   &__button-selector {
+    margin: 0 auto;
     &:first-of-type {
       margin-top: $spacing_3_2;
     }
