@@ -1,0 +1,13 @@
+@import "@USupport-components-library/styles";
+
+.privacy-policy {
+  padding: $spacing_3_4 $spacing_1_5 $spacing_4_0 $spacing_1_5;
+
+  @media screen and (min-width: $screen-lg) {
+    padding: $spacing_3_4 $spacing_40_3 $spacing_4_0 $spacing_40_3;
+  }
+
+  &__no-results {
+    padding: $spacing_10_0;
+  }
+}

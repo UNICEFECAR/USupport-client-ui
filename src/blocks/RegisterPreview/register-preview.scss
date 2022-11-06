@@ -54,12 +54,12 @@
         max-width: 36.8rem;
       }
 
-      & > button {
+      .btn {
         margin-top: $spacing_1_6;
-        @media screem and (min-width: $screen_md) {
+        @media screen and (min-width: $screen_md) {
           margin-top: $spacing_2_0;
 
-          & > button:first-of-type {
+          &:first-of-type {
             margin-top: $spacing_9_6;
           }
         }

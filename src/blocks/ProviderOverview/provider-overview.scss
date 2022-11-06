@@ -1,0 +1,42 @@
+@import "@USupport-components-library/styles";
+
+.provider-overview {
+  padding-bottom: $spacing_4_0;
+  width: 100%;
+  .container {
+    width: 100%;
+  }
+
+  &__grid {
+    place-items: center;
+    text-align: left;
+
+    &__item:first-of-type {
+      margin: $spacing_3_6 0;
+    }
+
+    &__item {
+      margin: $spacing_0_4 0;
+      width: 34.3rem;
+
+      &__content-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        &__details {
+          margin-left: $spacing_1_6;
+
+          & > .text {
+            color: $color_primary_20809e;
+            margin-bottom: $spacing_0_8;
+          }
+        }
+      }
+      &__heading.text {
+        font-weight: $font_semi_bold;
+        color: $color_blue_3d527b;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

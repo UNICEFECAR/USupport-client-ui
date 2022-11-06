@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   Block,
+  Error,
   Input,
   Grid,
   GridItem,
   InputPassword,
   Button,
-  ButtonOnlyIcon,
+  // ButtonOnlyIcon,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
+import { userSvc } from "@USupport-components-library/services";
+import { useError } from "@USupport-components-library/hooks";
 
 import "./login.scss";
 
@@ -21,10 +25,48 @@ import "./login.scss";
  */
 export const Login = () => {
   const { t } = useTranslation("login");
+  const queryClient = useQueryClient();
 
-  const [data, setData] = React.useState({
+  const [data, setData] = useState({
     email: "",
     password: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    // TODO: Check if we have JWT token in local storage
+    // and if so redirect to dashboard
+  }, []);
+
+  const login = async () => {
+    return await userSvc.login({
+      userType: "client",
+      ...data,
+    });
+  };
+
+  const loginMutation = useMutation(login, {
+    onSuccess: (response) => {
+      const { user: userData, token: tokenData } = response.data;
+      const { token, expiresIn, refreshToken } = tokenData;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("token-expires-in", expiresIn);
+      localStorage.setItem("refresh-token", refreshToken);
+
+      queryClient.setQueryData(["user-data"], userData);
+      console.log("Login success");
+      setErrors({});
+      // TODO: Navigate to the dashboard
+    },
+    onError: (error) => {
+      const { message: errorMessage } = useError(error);
+      setErrors({ submit: errorMessage });
+    },
+    onSettled: (data, error) => {
+      setIsSubmitting(false);
+    },
   });
 
   const handleChange = (field, value) => {
@@ -35,16 +77,17 @@ export const Login = () => {
     setData(newData);
   };
 
+  const handleLogin = () => {
+    setIsSubmitting(true);
+    loginMutation.mutate();
+  };
+
   const handleForgotPassowrd = () => {
     console.log("Forgot password");
   };
 
   const handleOAuthLogin = (platform) => {
     console.log("platform");
-  };
-
-  const handleOnLogin = () => {
-    console.log("Login");
   };
 
   const handleRegisterRedirect = () => {
@@ -77,15 +120,16 @@ export const Login = () => {
             label={t("forgot_password_label")}
             onClick={() => handleForgotPassowrd()}
           />
+          {errors.submit ? <Error message={errors.submit} /> : null}
           <Button
             label={t("login_label")}
             size="lg"
             classes="login-button"
-            onClick={() => handleOnLogin()}
-            disabled={!data.email || !data.password}
+            onClick={handleLogin}
+            disabled={!data.email || !data.password || isSubmitting}
           />
         </GridItem>
-        <GridItem md={8} lg={12} classes="login__grid__content-item">
+        {/* <GridItem md={8} lg={12} classes="login__grid__content-item">
           <div>
             <p className="text">{t("paragraph")}</p>
             <div className="login__grid__content-item__buttons-container">
@@ -111,7 +155,7 @@ export const Login = () => {
             label={t("register_button_label")}
             onClick={() => handleRegisterRedirect()}
           />
-        </GridItem>
+        </GridItem> */}
       </Grid>
     </Block>
   );

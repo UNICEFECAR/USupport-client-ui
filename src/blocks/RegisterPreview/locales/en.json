@@ -1,1 +1,5 @@
-{}
+{
+  "register_email": "Register with email",
+  "register_anonymously": "Register anonymously",
+  "continue_as_guest": "Continue without registration"
+}

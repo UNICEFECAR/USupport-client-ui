@@ -17,7 +17,6 @@ export const Welcome = () => {
       classes="page__welcome"
       showNavbar={false}
       showFooter={false}
-      showEmergencyButton={false}
       showGoBackArrow={false}
       additionalPadding={false}
     >

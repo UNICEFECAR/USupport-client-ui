@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Block,
   Grid,
@@ -10,6 +11,7 @@ import {
 import "./register-preview.scss";
 
 import { mascotHappyBlue } from "@USupport-components-library/assets";
+import { useNavigate } from "react-router-dom";
 
 /**
  * RegisterPreview
@@ -19,6 +21,9 @@ import { mascotHappyBlue } from "@USupport-components-library/assets";
  * @return {jsx}
  */
 export const RegisterPreview = () => {
+  const { t } = useTranslation("register-preview");
+  const navigate = useNavigate();
+
   const carouselItems = [
     {
       heading: "What to expect from us",
@@ -51,9 +56,21 @@ export const RegisterPreview = () => {
   };
 
   const handleRedirect = (redirectTo) => {
-    if (redirectTo === "email") console.log("Register email");
-    else if (redirectTo === "anonimously") console.log("Register anonimously");
-    else "Continue as guest";
+    if (redirectTo === "email") {
+      navigate("/register", {
+        state: {
+          flow: "email",
+        },
+      });
+    } else if (redirectTo === "anonymously") {
+      navigate("/register-anonymous", {
+        state: {
+          flow: "anonymous",
+        },
+      });
+    } else {
+      console.log("Navigate to dashboard...");
+    }
   };
 
   return (
@@ -67,21 +84,21 @@ export const RegisterPreview = () => {
             <CustomCarousel>{renderCarouselItems()}</CustomCarousel>
           </div>
           <Button
-            label="Register with email"
+            label={t("register_email")}
             size="lg"
             onClick={() => handleRedirect("email")}
           />
           <Button
-            label="Register with email"
+            label={t("register_anonymously")}
             size="lg"
             type="secondary"
-            onClick={() => handleRedirect("anonimously")}
+            onClick={() => handleRedirect("anonymously")}
           />
           <Button
-            label="Continue without registration"
+            label={t("continue_as_guest")}
             type="ghost"
             size="lg"
-            onClick={() => handleRedirect("no-registration")}
+            onClick={() => handleRedirect("guest")}
           />
         </GridItem>
       </Grid>
