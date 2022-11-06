@@ -11,6 +11,7 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
+  UserProfile,
   InformationPortal,
   Articles,
   ArticleInformation,
@@ -19,6 +20,7 @@ import {
   SharePlatform,
   RegisterAnonymous,
   RegisterSupport,
+  ProviderOverview,
   RegisterPreview,
   PrivacyPolicy,
   RegisterEmail,
@@ -38,30 +40,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  // TODO: add the country specific information about the SOS center
-  const contacts = [
-    {
-      title: "Emergency center 1",
-      text: "In this emergency center you will receive help and information about what you exactly need.",
-      phone: "+7 888 888 888",
-    },
-    {
-      title: "Emergency center 2",
-      text: "In this emergency center you will receive help and information about what you exactly need.",
-      link: "https://staging.7digit.io",
-    },
-    {
-      title: "Emergency center 3",
-      text: "In this emergency center you will receive help and information about what you exactly need.",
-      link: "https://staging.7digit.io",
-    },
-    {
-      title: "Emergency center 4",
-      text: "In this emergency center you will receive help and information about what you exactly need.",
-      link: "https://staging.7digit.io",
-    },
-  ];
-
   AOS.init({
     offset: 10,
     duration: 1000,
@@ -83,18 +61,17 @@ function App() {
           <Route path="/register-support" element={<RegisterSupport />} />
 
           <Route path="/share-platform" element={<SharePlatform />} />
-          <Route
-            path="/sos-center"
-            element={<SOSCenter contacts={contacts} />}
-          />
+          <Route path="/sos-center" element={<SOSCenter />} />
           <Route path="/platform-rating" element={<PlatformRating />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/select-provider" element={<SelectProvider />} />
           <Route
             path="/settings/notifications"
             element={<NotificationPreferencesPage />}
           />
+          <Route path="/provider-overview" element={<ProviderOverview />} />
           <Route path="/information-portal" element={<InformationPortal />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/article/:id" element={<ArticleInformation />} />
