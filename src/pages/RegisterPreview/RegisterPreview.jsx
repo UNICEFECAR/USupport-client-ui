@@ -1,7 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { Page, RegisterPreview as RegisterPreviewBlock } from "#blocks";
 import { Button } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
 
 import "./register-preview.scss";
 
@@ -14,25 +15,25 @@ import "./register-preview.scss";
  */
 export const RegisterPreview = () => {
   const { t } = useTranslation("register-preview-page");
+  const navigate = useNavigate();
 
-  const handleLoginRedirect = () => {
-    console.log("Login redirect");
+  const handleLoginRedirection = () => {
+    navigate("/login");
   };
 
   return (
     <Page
       classes="page__register-preview"
-      showEmergencyButton={false}
       showFooter={false}
       showNavbar={false}
       additionalPadding={false}
       headingButton={
         <Button
           size="md"
-          label="Login to the app"
+          label={t("login")}
           color="purple"
           web
-          onClick={() => handleLoginRedirect()}
+          onClick={handleLoginRedirection}
         />
       }
     >

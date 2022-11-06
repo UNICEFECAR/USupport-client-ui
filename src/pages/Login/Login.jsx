@@ -22,7 +22,6 @@ export const Login = () => {
     <Page
       classes="page__login"
       showFooter={false}
-      showEmergencyButton={false}
       showNavbar={false}
       additionalPadding={false}
       heading={width >= 768 ? t("heading_1") : t("heading_2")}
