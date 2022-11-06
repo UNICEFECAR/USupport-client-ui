@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import {
   Block,
   Grid,
@@ -6,7 +8,6 @@ import {
   TabsUnderlined,
   Consultation,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
 
 import "./consultations.scss";
 
@@ -18,6 +19,7 @@ import "./consultations.scss";
  * @return {jsx}
  */
 export const Consultations = ({}) => {
+  let today = new Date();
   const { t } = useTranslation("consultations");
 
   const [tabsOptions, setTabsOptions] = useState([
@@ -26,6 +28,27 @@ export const Consultations = ({}) => {
   ]);
 
   const [filter, setFilter] = useState("upcoming");
+
+  const fetchConsultations = async () => {};
+
+  const consultationsQuery = useQuery(["consultations"], fetchConsultations, {
+    enabled: false, // TODO: Enable this when the API is ready and remove the placeholder data
+    placeholderData: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((x) => {
+      return {
+        id: x,
+        specialistName: "Dr. Joanna Doe " + x.toString(),
+        startDate:
+          x < 4
+            ? new Date("2022-11-1 15:00")
+            : new Date(today.setDate(today.getDate() + 3)),
+        endDate:
+          x < 4
+            ? new Date("2022-11-1 16:00")
+            : new Date(today.setDate(today.getDate() + 3)),
+        overview: false,
+      };
+    }),
+  });
 
   const handleTabClick = (index) => {
     const optionsCopy = [...tabsOptions];
@@ -42,73 +65,39 @@ export const Consultations = ({}) => {
     setFilter(optionsCopy[index].value);
   };
 
-  const renderAllConsultations = () => {
-    const consultations = [];
+  const filterConsultations = useCallback(() => {
+    const currentDate = new Date();
 
-    for (let i = 0; i < 5; i++) {
-      consultations.push({
-        specialistName: "Dr. Joanna Doe",
-        startDate: new Date("2022-11-1 15:00"),
-        endDate: new Date("2022-11-1 16:00"),
-        overview: false,
-      });
-    }
+    return consultationsQuery.data?.filter((consultation) => {
+      if (filter === "upcoming") {
+        return consultation.startDate > currentDate;
+      } else {
+        return consultation.startDate < currentDate;
+      }
+    });
+  }, [consultationsQuery.data, filter]);
 
-    let today = new Date();
+  const renderAllConsultations = useMemo(() => {
+    const filteredConsultations = filterConsultations();
 
-    for (let i = 0; i < 4; i++) {
-      consultations.push({
-        specialistName: "Dr. Joanna Doe",
-        startDate: new Date(today.setDate(today.getDate() + 1)),
-        endDate: new Date(today.setDate(today.getDate() + 1)),
-        overview: false,
-      });
-    }
-
-    today = new Date();
-
-    if (filter === "upcoming") {
-      return consultations
-        .filter((consultation) => consultation.startDate >= today)
-        .map((consultation, index) => {
-          return (
-            <GridItem
-              key={index}
-              md={4}
-              lg={6}
-              classes="consultations__grid__consultations-item__grid__consultation"
-            >
-              <Consultation
-                specialistName={consultation.specialistName}
-                startDate={consultation.startDate}
-                endDate={consultation.endDate}
-                overview={consultation.overview}
-              />
-            </GridItem>
-          );
-        });
-    } else {
-      return consultations
-        .filter((consultation) => consultation.startDate < today)
-        .map((consultation, index) => {
-          return (
-            <GridItem
-              key={index}
-              md={4}
-              lg={6}
-              classes="consultations__grid__consultations-item__grid__consultation"
-            >
-              <Consultation
-                specialistName={consultation.specialistName}
-                startDate={consultation.startDate}
-                endDate={consultation.endDate}
-                overview={consultation.overview}
-              />
-            </GridItem>
-          );
-        });
-    }
-  };
+    return filteredConsultations.map((consultation, index) => {
+      return (
+        <GridItem
+          key={index}
+          md={4}
+          lg={6}
+          classes="consultations__grid__consultations-item__grid__consultation"
+        >
+          <Consultation
+            specialistName={consultation.specialistName}
+            startDate={consultation.startDate}
+            endDate={consultation.endDate}
+            overview={consultation.overview}
+          />
+        </GridItem>
+      );
+    });
+  }, [consultationsQuery.data, filter]);
 
   return (
     <Block classes="consultations">
@@ -126,7 +115,7 @@ export const Consultations = ({}) => {
             lg={12}
             classe="consultations__grid__consultations-item__grid"
           >
-            {renderAllConsultations()}
+            {renderAllConsultations}
           </Grid>
         </GridItem>
       </Grid>
