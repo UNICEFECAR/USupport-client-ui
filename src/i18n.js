@@ -49,7 +49,7 @@ import {
   FAQ as FAQPage,
 } from "#pages/locales.js";
 
-import { FilterProviders } from "#backdrops/locales.js";
+import { FilterProviders, EditConsultation } from "#backdrops/locales.js";
 
 const resources = {
   en: {
@@ -101,6 +101,9 @@ const resources = {
 
     //Backdrops
     "filter-providers": FilterProviders.en,
+    "register-preview-page": RegisterPreviewPage.en,
+    "privacy-policy": PrivacyPolicyPage.en,
+    "edit-consultation": EditConsultation.en,
   },
 };
 

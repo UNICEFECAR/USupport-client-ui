@@ -1,0 +1,18 @@
+@import "@USupport-components-library/styles";
+
+.edit-consultation {
+  align-items: center;
+
+  &__provider-consultation {
+    max-width: calc(36.8rem - 2 * $spacing_1_6);
+    margin-top: $spacing_2_4;
+  }
+
+  &__button {
+    margin-top: $spacing_1_6;
+  }
+
+  &__button:last-of-type {
+    margin-bottom: $spacing_3_2;
+  }
+}
