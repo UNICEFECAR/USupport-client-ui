@@ -53,6 +53,7 @@ import {
   FilterProviders,
   EditConsultation,
   CancelConsultation,
+  ConfirmConsultation,
 } from "#backdrops/locales.js";
 
 const resources = {
@@ -107,6 +108,7 @@ const resources = {
     "filter-providers": FilterProviders.en,
     "register-preview-page": RegisterPreviewPage.en,
     "privacy-policy": PrivacyPolicyPage.en,
+    "confirm-consultation": ConfirmConsultation.en,
     "cancel-consultation": CancelConsultation.en,
     "edit-consultation": EditConsultation.en,
   },
