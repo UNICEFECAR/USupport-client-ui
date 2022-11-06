@@ -9,6 +9,9 @@ import {
   NotificationPreferences,
   ContactUs,
   RegisterAboutYou,
+  UserProfile,
+  Articles,
+  GiveSuggestion,
   SelectProvider,
   PlatformRating,
   SharePlatform,
@@ -16,6 +19,10 @@ import {
   RegisterAnonymous,
   RegisterSupport,
   ProviderOverview,
+  RegisterPreview,
+  RegisterEmail,
+  PrivacyPolicy,
+  FAQ,
 } from "#blocks/locales.js";
 
 import {
@@ -25,6 +32,10 @@ import {
   NotificationPreferences as NotificationPreferencesPage,
   ContactUs as ContactUsPage,
   RegisterAboutYou as RegisterAboutYouPage,
+  UserProfile as UserProfilePage,
+  ArticleInformation as ArticleInformationPage,
+  Articles as ArticlesPage,
+  InformationPortal as InformationPortalPage,
   SelectProvider as SelectProviderPage,
   PlatformRating as PlatformRatingPage,
   SharePlatform as SharePlatformPage,
@@ -32,13 +43,20 @@ import {
   RegisterAnonymous as RegisterAnonymousPage,
   RegisterSupport as RegisterSupportPage,
   ProviderOverview as ProviderOverviewPage,
+  RegisterPreview as RegisterPreviewPage,
+  PrivacyPolicy as PrivacyPolicyPage,
+  RegisterEmail as RegisterEmailPage,
+  FAQ as FAQPage,
 } from "#pages/locales.js";
+
+import { FilterProviders } from "#backdrops/locales.js";
 
 const resources = {
   en: {
     // Blocks
     page: Page.en,
     "provider-overview": ProviderOverview.en,
+    "user-profile": UserProfile.en,
     "sos-center": SosCenter.en,
     "register-about-you": RegisterAboutYou.en,
     "register-anonymous": RegisterAnonymous.en,
@@ -51,9 +69,16 @@ const resources = {
     "forgot-password": ForgotPassword.en,
     login: Login.en,
     welcome: Welcome.en,
+    articles: Articles.en,
+    "give-suggestion": GiveSuggestion.en,
+    "register-preview": RegisterPreview.en,
+    "register-email": RegisterEmail.en,
+    "privacy-policy": PrivacyPolicy.en,
+    faq: FAQ.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
+    "user-profile-page": UserProfilePage.en,
     "not-found-page": NotFoundPage.en,
     "contact-us-page": ContactUsPage.en,
     "sos-center-page": SOSCenterPage.en,
@@ -66,6 +91,16 @@ const resources = {
     "notification-preferences-page": NotificationPreferencesPage.en,
     "forgot-password-page": ForgotPasswordPage.en,
     "login-page": LoginPage.en,
+    "articles-page": ArticlesPage.en,
+    "article-information": ArticleInformationPage.en,
+    "information-portal": InformationPortalPage.en,
+    "register-preview-page": RegisterPreviewPage.en,
+    "register-email-page": RegisterEmailPage.en,
+    "privacy-policy-page": PrivacyPolicyPage.en,
+    "faq-page": FAQPage.en,
+
+    //Backdrops
+    "filter-providers": FilterProviders.en,
   },
 };
 

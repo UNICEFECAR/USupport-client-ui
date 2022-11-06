@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   NotFound,
   SOSCenter,
@@ -9,45 +11,35 @@ import {
   NotificationPreferencesPage,
   Login,
   Welcome,
+  UserProfile,
+  InformationPortal,
+  Articles,
+  ArticleInformation,
   SelectProvider,
   PlatformRating,
   SharePlatform,
   RegisterAnonymous,
   RegisterSupport,
   ProviderOverview,
+  RegisterPreview,
+  PrivacyPolicy,
+  RegisterEmail,
+  FAQ,
 } from "#pages";
-
-import "./App.scss";
+// import { ProtectedRoute } from "./routes/ProtectedRoute";
 
 // AOS imports
 import "aos/dist/aos.css";
 import AOS from "aos";
 
-function App() {
-  // TODO: add the country specific information about the SOS center
-  const contacts = [
-    {
-      title: "Emergency center 1",
-      text: "In this emergency center you will receive help and information about what you exactly need.",
-      phone: "+7 888 888 888",
-    },
-    {
-      title: "Emergency center 2",
-      text: "In this emergency center you will receive help and information about what you exactly need.",
-      link: "https://staging.7digit.io",
-    },
-    {
-      title: "Emergency center 3",
-      text: "In this emergency center you will receive help and information about what you exactly need.",
-      link: "https://staging.7digit.io",
-    },
-    {
-      title: "Emergency center 4",
-      text: "In this emergency center you will receive help and information about what you exactly need.",
-      link: "https://staging.7digit.io",
-    },
-  ];
+import "./App.scss";
 
+// Create a react-query client
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+});
+
+function App() {
   AOS.init({
     offset: 10,
     duration: 1000,
@@ -58,27 +50,39 @@ function App() {
   });
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/share-platform" element={<SharePlatform />} />
-        <Route path="/provider-overview" element={<ProviderOverview />} />
-        <Route path="/sos-center" element={<SOSCenter contacts={contacts} />} />
-        <Route path="/register" element={<RegisterAboutYou />} />
-        <Route path="/platform-rating" element={<PlatformRating />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/register-anonymous" element={<RegisterAnonymous />} />
-        <Route path="/register-support" element={<RegisterSupport />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/select-provider" element={<SelectProvider />} />
-        <Route
-          path="/settings/notifications"
-          element={<NotificationPreferencesPage />}
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/welcome" element={<Welcome />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router basename="/client">
+        <Routes>
+          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/register-preview" element={<RegisterPreview />} />
+          <Route path="/register" element={<RegisterEmail />} />
+          <Route path="/register/about-you" element={<RegisterAboutYou />} />
+          <Route path="/register-anonymous" element={<RegisterAnonymous />} />
+          <Route path="/register-support" element={<RegisterSupport />} />
+
+          <Route path="/share-platform" element={<SharePlatform />} />
+          <Route path="/sos-center" element={<SOSCenter />} />
+          <Route path="/platform-rating" element={<PlatformRating />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/select-provider" element={<SelectProvider />} />
+          <Route
+            path="/settings/notifications"
+            element={<NotificationPreferencesPage />}
+          />
+          <Route path="/provider-overview" element={<ProviderOverview />} />
+          <Route path="/information-portal" element={<InformationPortal />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/article/:id" element={<ArticleInformation />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+      <ReactQueryDevtools initialOpen />
+    </QueryClientProvider>
   );
 }
 

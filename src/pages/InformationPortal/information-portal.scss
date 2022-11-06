@@ -1,0 +1,53 @@
+/* InformationPortal styles */
+@import "@USupport-components-library/styles";
+
+.page__information-portal {
+  &__banner {
+    height: 22.2rem;
+    text-align: left;
+    background: $gradient_secondary_0_3_opacity;
+    border-radius: 0 0 0 $spacing_10_0;
+
+    @media screen and (min-width: $screen-md) {
+      height: 17.4rem;
+    }
+  }
+
+  &__block {
+    text-align: left;
+  }
+
+  &__mascot-item {
+    margin-top: $spacing_0_4;
+    @media screen and (min-width: $screen-md) {
+      margin-top: $spacing_2_4;
+    }
+  }
+
+  &__headings-item {
+    padding: $spacing_4_0 0 0 $spacing_6_0;
+    .subheading {
+      padding-top: $spacing_1_6;
+    }
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_5_0;
+    }
+  }
+
+  &__block__grid {
+    padding-top: $spacing_4_0;
+    justify-items: center;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_5_6;
+    }
+  }
+
+  &__heading-item {
+    text-align: left;
+  }
+
+  &__view-more-item {
+    justify-self: end;
+  }
+}

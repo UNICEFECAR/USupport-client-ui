@@ -1,0 +1,15 @@
+/* UserProfile styles */
+@import "@USupport-components-library/styles";
+
+.page__user-profile {
+  &__radial-circle.purple {
+    top: 3.5rem;
+    left: -15rem;
+    height: 50rem;
+  }
+  @media screen and (max-width: $screen-md) {
+    background-image: url(../assets/background-spiral.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+}

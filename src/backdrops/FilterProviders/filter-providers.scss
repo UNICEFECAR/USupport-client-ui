@@ -1,0 +1,30 @@
+@import "@USupport-components-library/styles";
+
+.filter-providers {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: $spacing_3_6;
+
+    &:has(.dropdown--expanded) {
+      padding-bottom: $spacing_10_0;
+    }
+
+    &__inputs-container {
+      &:has(.dropdown--expanded) {
+        padding-bottom: $spacing_10_0;
+      }
+      & > * {
+        margin-top: $spacing_3_2;
+      }
+    }
+
+    & > button {
+      margin-top: $spacing_2_4;
+    }
+  }
+  & > .dropdown--expanded {
+    margin-bottom: $spacing_3_2;
+  }
+}

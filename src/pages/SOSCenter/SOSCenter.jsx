@@ -7,11 +7,11 @@ import { useTranslation } from "react-i18next";
  *
  * @returns {JSX.Element}
  */
-export const SOSCenter = ({ contacts }) => {
+export const SOSCenter = () => {
   const { t } = useTranslation("sos-center-page");
   return (
     <Page heading={t("heading")} subheading={t("subheading")}>
-      <SOSCenterBlock contacts={contacts} />
+      <SOSCenterBlock />
     </Page>
   );
 };

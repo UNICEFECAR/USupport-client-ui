@@ -1,0 +1,33 @@
+@import "@USupport-components-library/styles";
+
+.give-suggestion {
+  padding: $spacing_4_0 0 $spacing_4_0 0;
+  @media screen and (min-width: $screen_md) {
+    padding: $spacing_5_6 0 $spacing_5_6 0;
+  }
+  &__grid {
+    justify-items: center;
+  }
+
+  &__heading-item {
+    @media screen and (min-width: $screen_md) {
+      justify-self: left;
+    }
+  }
+
+  &__subheading-item {
+    text-align: center;
+    @media screen and (min-width: $screen_md) {
+      text-align: left;
+    }
+  }
+
+  &__textarea-item {
+    @media screen and (min-width: $screen_md) {
+      padding-top: $spacing_2_4;
+      .textarea--container {
+        width: 56rem;
+      }
+    }
+  }
+}
