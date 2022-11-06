@@ -49,7 +49,11 @@ import {
   FAQ as FAQPage,
 } from "#pages/locales.js";
 
-import { FilterProviders, EditConsultation } from "#backdrops/locales.js";
+import {
+  FilterProviders,
+  EditConsultation,
+  CancelConsultation,
+} from "#backdrops/locales.js";
 
 const resources = {
   en: {
@@ -103,6 +107,7 @@ const resources = {
     "filter-providers": FilterProviders.en,
     "register-preview-page": RegisterPreviewPage.en,
     "privacy-policy": PrivacyPolicyPage.en,
+    "cancel-consultation": CancelConsultation.en,
     "edit-consultation": EditConsultation.en,
   },
 };

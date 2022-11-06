@@ -1,0 +1,9 @@
+@import "@USupport-components-library/styles";
+
+.cancel-consultation {
+  align-items: center;
+
+  &__provider-consultation {
+    margin-top: $spacing_4_0;
+  }
+}
