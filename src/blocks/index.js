@@ -10,6 +10,7 @@ export * from "./UserProfile";
 export * from "./PlatformRating";
 export * from "./RegisterAboutYou";
 export * from "./RegisterAnonymous";
+export * from "./Consultations";
 export * from "./ProviderOverview";
 export * from "./RegisterSupport";
 export * from "./SelectProvider";

@@ -20,6 +20,7 @@ import {
   SharePlatform,
   RegisterAnonymous,
   RegisterSupport,
+  Consultations,
   ProviderOverview,
   RegisterPreview,
   PrivacyPolicy,
@@ -77,6 +78,7 @@ function App() {
           <Route path="/article/:id" element={<ArticleInformation />} />
           <Route path="/login" element={<Login />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/consultations" element={<Consultations />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

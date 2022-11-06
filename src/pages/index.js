@@ -14,6 +14,7 @@ export * from "./RegisterAnonymous";
 export * from "./RegisterEmail";
 export * from "./RegisterPreview";
 export * from "./RegisterSupport";
+export * from "./Consultations";
 export * from "./ProviderOverview";
 export * from "./SelectProvider";
 export * from "./SharePlatform";

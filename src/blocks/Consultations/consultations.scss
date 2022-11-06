@@ -1,0 +1,31 @@
+@import "@USupport-components-library/styles";
+
+.consultations {
+  &__grid {
+    padding-top: $spacing_2_4;
+    padding-bottom: $spacing_6_4;
+    place-items: center;
+
+    &__tabs-item {
+      justify-self: center;
+    }
+
+    &__consultations-item {
+      margin-top: $spacing_2_4;
+
+      &__grid {
+        place-items: center;
+
+        @media screen and (min-width: $screen_md) {
+          &__consultation {
+            justify-self: start;
+          }
+
+          &__consultation:nth-child(odd) {
+            justify-self: end;
+          }
+        }
+      }
+    }
+  }
+}

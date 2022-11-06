@@ -9,6 +9,7 @@ export * as PlatformRating from "./PlatformRating/locales.js";
 export * as RegisterAboutYou from "./RegisterAboutYou/locales.js";
 export * as RegisterAnonymous from "./RegisterAnonymous/locales.js";
 export * as RegisterSupport from "./RegisterSupport/locales.js";
+export * as Consultations from "./Consultations/locales.js";
 export * as ProviderOverview from "./ProviderOverview/locales.js";
 export * as SelectProvider from "./SelectProvider/locales.js";
 export * as SharePlatform from "./SharePlatform/locales.js";
