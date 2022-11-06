@@ -1,10 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Backdrop,
   ButtonSelector,
   ConsultationInformation,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
 
 import "./edit-consultation.scss";
 
