@@ -21,6 +21,7 @@ import {
   RegisterPreview,
   RegisterEmail,
   PrivacyPolicy,
+  FAQ,
 } from "#blocks/locales.js";
 
 import {
@@ -70,6 +71,7 @@ const resources = {
     "register-preview": RegisterPreview.en,
     "register-email": RegisterEmail.en,
     "privacy-policy": PrivacyPolicy.en,
+    faq: FAQ.en,
 
     // Pages
     "user-profile-page": UserProfilePage.en,
