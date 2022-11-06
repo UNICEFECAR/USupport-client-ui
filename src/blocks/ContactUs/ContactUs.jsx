@@ -9,6 +9,8 @@ import {
   Modal,
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
+import { emailSvc } from "@USupport-components-library/services";
+
 import { useTranslation } from "react-i18next";
 import Joi from "joi";
 
@@ -44,14 +46,11 @@ export const ContactUs = () => {
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const schema = Joi.object({
-    issue: Joi.object({ label: Joi.string(), selected: Joi.boolean() }).label(
-      "Please select an issue"
-    ),
-    message: Joi.string().min(5).label("Please enter your message"),
+    issue: Joi.string().label(t("issue_error")),
+    message: Joi.string().min(5).label(t("message_error")),
   });
 
   useEffect(() => {
-    console.log(data);
     if (data.message !== "" && data.issue) {
       setCanSubmit(true);
     } else {
@@ -60,8 +59,10 @@ export const ContactUs = () => {
   }, [data]);
 
   const handleModalSuccessCtaClick = () => {
-    console.log("redirect");
+    // TODO: Redirect to the dashboard
+    console.log("Redirect to Dashboard");
   };
+
   const closeSuccessModal = () => setIsSuccessModalOpen(false);
 
   const handleChange = (field, value) => {
@@ -89,12 +90,31 @@ export const ContactUs = () => {
 
   const handleSubmit = async () => {
     if (!isSubmitting) {
-      if ((await validate(data, schema, setErrors)) === null) {
-        setIsSubmitting(true);
-        setTimeout(() => {
+      setIsSubmitting(true);
+      const dataToValidate = {
+        issue: data.issue.value,
+        message: data.message,
+      };
+
+      if ((await validate(dataToValidate, schema, setErrors)) === null) {
+        try {
+          const payload = {
+            subject: "Technical issue",
+            title: data.issue.value,
+            text: data.message,
+          };
+          const res = await emailSvc.sendAdmin(payload);
+          if (res.status === 200) {
+            setIsSuccessModalOpen(true);
+            setIsSubmitting(false);
+            setData({ ...initialData });
+          } else {
+            console.log("something else happened");
+          }
+        } catch (err) {
           setIsSubmitting(false);
-          setIsSuccessModalOpen(true);
-        }, 500);
+          console.error(err);
+        }
       }
     }
   };
@@ -125,6 +145,7 @@ export const ContactUs = () => {
             onChange={(value) => handleChange("message", value)}
             errorMessage={errors.message}
             classes="contact-us__message-input"
+            value={data.message}
           />
         </GridItem>
 

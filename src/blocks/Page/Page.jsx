@@ -25,6 +25,7 @@ export const Page = ({
   showFooter,
   showGoBackArrow,
   showEmergencyButton,
+  handleGoBack,
   heading,
   subheading,
   headingButton,
@@ -66,6 +67,14 @@ export const Page = ({
     ],
   };
 
+  const handleGoBackArrowClick = () => {
+    if (handleGoBack) {
+      handleGoBack();
+    } else {
+      navigateTo(-1);
+    }
+  };
+
   return (
     <>
       {showNavbar && (
@@ -90,7 +99,7 @@ export const Page = ({
                 name="arrow-chevron-back"
                 size="md"
                 color="#20809E"
-                onClick={() => navigateTo(-1)}
+                onClick={handleGoBackArrowClick}
               />
             )}
             {heading && <h3 className="page__header-heading">{heading}</h3>}

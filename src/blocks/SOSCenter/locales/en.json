@@ -1,3 +1,4 @@
 {
-  "button": "Contact now"
+  "button": "Contact now",
+  "no_results": "An error occured while loading the content."
 }

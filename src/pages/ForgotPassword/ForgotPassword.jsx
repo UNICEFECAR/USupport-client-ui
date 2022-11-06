@@ -22,7 +22,6 @@ export const ForgotPassword = () => {
     <Page
       classes="page__forgot-password"
       showFooter={false}
-      showEmergencyButton={false}
       showNavbar={false}
       additionalPadding={false}
       heading={t("heading")}
