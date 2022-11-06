@@ -18,6 +18,7 @@ import {
   ForgotPassword,
   RegisterAnonymous,
   RegisterSupport,
+  ProviderOverview,
   RegisterPreview,
   RegisterEmail,
   PrivacyPolicy,
@@ -41,6 +42,7 @@ import {
   ForgotPassword as ForgotPasswordPage,
   RegisterAnonymous as RegisterAnonymousPage,
   RegisterSupport as RegisterSupportPage,
+  ProviderOverview as ProviderOverviewPage,
   RegisterPreview as RegisterPreviewPage,
   PrivacyPolicy as PrivacyPolicyPage,
   RegisterEmail as RegisterEmailPage,
@@ -53,6 +55,7 @@ const resources = {
   en: {
     // Blocks
     page: Page.en,
+    "provider-overview": ProviderOverview.en,
     "user-profile": UserProfile.en,
     "sos-center": SosCenter.en,
     "register-about-you": RegisterAboutYou.en,
@@ -74,6 +77,7 @@ const resources = {
     faq: FAQ.en,
 
     // Pages
+    "provider-overview-page": ProviderOverviewPage.en,
     "user-profile-page": UserProfilePage.en,
     "not-found-page": NotFoundPage.en,
     "contact-us-page": ContactUsPage.en,

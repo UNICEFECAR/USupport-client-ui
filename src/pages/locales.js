@@ -15,6 +15,7 @@ export * as RegisterAnonymous from "./RegisterAnonymous/locales.js";
 export * as RegisterEmail from "./RegisterEmail/locales.js";
 export * as RegisterPreview from "./RegisterPreview/locales.js";
 export * as RegisterSupport from "./RegisterSupport/locales.js";
+export * as ProviderOverview from "./ProviderOverview/locales.js";
 export * as SelectProvider from "./SelectProvider/locales.js";
 export * as SharePlatform from "./SharePlatform/locales.js";
 export * as SOSCenterPage from "./SOSCenter/locales.js";

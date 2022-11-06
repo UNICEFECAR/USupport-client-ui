@@ -20,6 +20,7 @@ import {
   SharePlatform,
   RegisterAnonymous,
   RegisterSupport,
+  ProviderOverview,
   RegisterPreview,
   PrivacyPolicy,
   RegisterEmail,
@@ -70,6 +71,7 @@ function App() {
             path="/settings/notifications"
             element={<NotificationPreferencesPage />}
           />
+          <Route path="/provider-overview" element={<ProviderOverview />} />
           <Route path="/information-portal" element={<InformationPortal />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/article/:id" element={<ArticleInformation />} />
