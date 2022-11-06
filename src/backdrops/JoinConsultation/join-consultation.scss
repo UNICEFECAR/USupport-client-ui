@@ -1,4 +1,19 @@
 @import "@USupport-components-library/styles";
 
 .join-consultation {
+  align-items: center;
+
+  &__button-selector {
+    margin: 0 auto;
+    &:first-of-type {
+      margin-top: $spacing_3_2;
+    }
+    &:not(:first-of-type) {
+      margin-top: $spacing_1_6;
+    }
+
+    &:last-of-type {
+      margin-bottom: $spacing_1_6;
+    }
+  }
 }

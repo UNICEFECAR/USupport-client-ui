@@ -1,0 +1,78 @@
+@import "@USupport-components-library/styles";
+
+.articles {
+  padding-bottom: $spacing_3_2;
+  padding-top: $spacing_5_6;
+  text-align: left;
+
+  &__main-grid {
+    justify-items: center;
+  }
+
+  &__most-important-item {
+    padding-top: $spacing_2_2;
+    padding-bottom: $spacing_4_0;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-bottom: $spacing_15_3;
+    }
+  }
+
+  &__age-groups-item {
+    @media screen and (min-width: $screen-lg) {
+      justify-self: flex-start;
+    }
+  }
+
+  &__categories-item {
+    overflow-x: scroll;
+    width: 35rem;
+
+    @media screen and (min-width: $screen-md) {
+      width: auto;
+      margin: auto;
+    }
+  }
+
+  &__search-item {
+    padding-top: $spacing_2_4;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: 0;
+    }
+  }
+
+  &__categories-item {
+    padding-top: $spacing_3_0;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_5_4;
+    }
+  }
+
+  &__articles-item {
+    padding-top: $spacing_2_4;
+    padding-bottom: $spacing_0_8;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_2_4;
+    }
+  }
+
+  &__loading-item {
+    display: flex;
+    justify-content: center;
+    padding-top: $spacing_4_0;
+  }
+
+  &__page-loading {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__no-results-container {
+    padding: $spacing_10_0;
+  }
+}

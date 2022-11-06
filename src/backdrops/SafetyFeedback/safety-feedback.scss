@@ -1,0 +1,18 @@
+@import "@USupport-components-library/styles";
+
+.safety-feedback {
+  .radio-button-selector-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__content {
+    padding: $spacing_0_4 $spacing_1_6;
+
+    &__textarea {
+      margin: $spacing_2_2 auto;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import "@USupport-components-library/styles";
+
+.register-email {
+  @include full-height-page(calc($spacing_9_6 + $spacing_6_4));
+
+  @media screen and (min-width: $screen-md) {
+    padding-top: $spacing_6_4;
+  }
+
+  &__grid {
+    place-items: center;
+
+    &__password-input {
+      padding-top: $spacing_2_4;
+    }
+
+    & .terms-agreement {
+      margin-top: $spacing_2_2;
+    }
+
+    &__register-button {
+      margin-top: $spacing_2_4;
+      margin-bottom: $spacing_6_4;
+    }
+
+    &__register-with {
+      padding-top: $spacing_3_2;
+    }
+
+    &__social-icons {
+      align-items: center;
+      padding-top: $spacing_1_6;
+      padding-bottom: $spacing_6_4;
+      display: flex;
+      justify-content: space-between;
+      width: 17.3rem;
+      margin: 0 auto;
+    }
+  }
+
+  .error-message {
+    margin-left: 0;
+    margin-top: $spacing_1_6;
+  }
+}

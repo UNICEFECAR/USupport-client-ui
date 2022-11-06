@@ -1,8 +1,10 @@
 {
   "issue": "Issue",
   "issue_placeholder": "Select an issue",
+  "issue_error": "Please select an issue",
   "message": "Message",
   "message_placeholder": "Your message to us",
+  "message_error": "Please enter your message",
   "button": "Send Message",
 
   "modal_title": "Your message was successfully sent",
