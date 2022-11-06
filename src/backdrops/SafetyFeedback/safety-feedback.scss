@@ -1,13 +1,18 @@
 @import "@USupport-components-library/styles";
 
 .safety-feedback {
-  align-items: center;
+  .radio-button-selector-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 
   &__content {
     padding: $spacing_0_4 $spacing_1_6;
 
     &__textarea {
-      margin-top: $spacing_2_2;
+      margin: $spacing_2_2 auto;
     }
   }
 }
