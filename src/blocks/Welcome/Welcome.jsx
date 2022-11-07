@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+
 import {
   Block,
+  Button,
   Grid,
   GridItem,
   DropdownWithLabel,
-  Button,
+  Loading,
 } from "@USupport-components-library/src";
-
+import { languageSvc, countrySvc } from "@USupport-components-library/services";
 import "./welcome.scss";
 
 import { logoVerticalSvg } from "@USupport-components-library/assets";
-import { useTranslation } from "react-i18next";
 
 /**
  * Welcome
@@ -20,18 +24,66 @@ import { useTranslation } from "react-i18next";
  * @return {jsx}
  */
 export const Welcome = () => {
-  const { t } = useTranslation("welcome");
-  const countries = [
-    { label: "Romania", languages: ["Romanian", "English"] },
-    { label: "Germany", languages: ["German", "English"] },
-    { label: "France", languages: ["French", "English"] },
-  ];
+  const { t, i18n } = useTranslation("welcome");
+  const navigate = useNavigate();
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
 
-  const [selectedCountry, setSelectedCountry] = React.useState(null);
-  const [selectedLanguage, setSelectedLanguage] = React.useState(null);
+  const localStorageCountry = localStorage.getItem("country");
+  const localStorageLanguage = localStorage.getItem("language");
+
+  const fetchCountries = async () => {
+    const res = await countrySvc.getActiveCountries();
+    const countries = res.data.map((x) => {
+      const countryObject = {
+        value: x.alpha2,
+        label: x.name,
+        id: x["country_id"],
+      };
+
+      if (localStorageCountry === x.alpha2) {
+        setSelectedCountry(countryObject);
+      }
+
+      return countryObject;
+    });
+    return countries;
+  };
+
+  const fetchLanguages = async () => {
+    const res = await languageSvc.getActiveLanguages();
+    const languages = res.data.map((x) => {
+      const languageObject = {
+        value: x.alpha2,
+        label: x.name,
+        id: x["language_id"],
+      };
+      if (localStorageLanguage === x.alpha2) {
+        setSelectedLanguage(languageObject);
+      }
+      return languageObject;
+    });
+    return languages;
+  };
+
+  const countriesQuery = useQuery(["countries"], fetchCountries, {
+    retry: false,
+  });
+  const languagesQuery = useQuery(["languages"], fetchLanguages, {
+    retry: false,
+  });
 
   const handleContinue = () => {
-    console.log("continue");
+    const country = selectedCountry.value;
+    const language = selectedLanguage.value;
+
+    localStorage.setItem("country", country);
+    localStorage.setItem("country_id", selectedCountry.id);
+    localStorage.setItem("language", language);
+
+    i18n.changeLanguage(language);
+
+    navigate("/register-preview");
   };
 
   return (
@@ -46,26 +98,34 @@ export const Welcome = () => {
           />
         </GridItem>
         <GridItem md={8} lg={12} classes="welcome__grid__content-item">
-          <DropdownWithLabel
-            options={countries}
-            classes="welcome__grid__content-item__countries-dropdown"
-            selected={selectedCountry}
-            setSelected={setSelectedCountry}
-            label={t("country")}
-            placeholder={t("placeholder")}
-          />
-          <DropdownWithLabel
-            options={countries}
-            selected={selectedLanguage}
-            setSelected={setSelectedLanguage}
-            classes="welcome__grid__content-item__languages-dropdown"
-            label={t("language")}
-            placeholder={t("placeholder")}
-          />
+          {!(countriesQuery.isLoading || languagesQuery.isLoading) ? (
+            <>
+              <DropdownWithLabel
+                options={countriesQuery.data}
+                classes="welcome__grid__content-item__countries-dropdown"
+                selected={selectedCountry}
+                setSelected={setSelectedCountry}
+                label={t("country")}
+                placeholder={t("placeholder")}
+              />
+              <DropdownWithLabel
+                options={languagesQuery.data}
+                selected={selectedLanguage}
+                setSelected={setSelectedLanguage}
+                classes="welcome__grid__content-item__languages-dropdown"
+                label={t("language")}
+                placeholder={t("placeholder")}
+              />
+            </>
+          ) : (
+            <div className="welcome__grid__loading-container">
+              <Loading size="lg" />
+            </div>
+          )}
           <Button
             label={t("button")}
             size="lg"
-            disabled={!selectedCountry && !selectedLanguage}
+            disabled={!selectedCountry || !selectedLanguage}
             onClick={handleContinue}
           />
         </GridItem>
