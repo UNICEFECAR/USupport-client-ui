@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Navbar,
   CircleIconButton,
   Footer,
   Icon,
 } from "@USupport-components-library/src";
+import { useIsLoggedIn } from "@USupport-components-library/hooks";
 import classNames from "classnames";
-import { useTranslation } from "react-i18next";
 
 import "./page.scss";
 
@@ -21,10 +22,10 @@ import "./page.scss";
  */
 export const Page = ({
   additionalPadding,
-  showNavbar,
-  showFooter,
   showGoBackArrow,
   showEmergencyButton,
+  showNavbar = null,
+  showFooter = null,
   handleGoBack,
   heading,
   subheading,
@@ -33,6 +34,10 @@ export const Page = ({
   children,
 }) => {
   const navigateTo = useNavigate();
+  const isLoggedIn = useIsLoggedIn();
+  const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
+  const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
+
   const { t } = useTranslation("page");
   const pages = [
     { name: t("page_1"), url: "/", exact: true },
@@ -77,7 +82,7 @@ export const Page = ({
 
   return (
     <>
-      {showNavbar && (
+      {isNavbarShown && (
         <Navbar
           pages={pages}
           showProfile
@@ -121,7 +126,7 @@ export const Page = ({
           label={t("emergency_button")}
         />
       )}
-      {showFooter && (
+      {isFooterShown && (
         <Footer lists={footerLists} contactUsText={t("contact_us")} />
       )}
     </>
@@ -180,8 +185,6 @@ Page.propTypes = {
 
 Page.defaultProps = {
   additionalPadding: true,
-  showNavbar: true,
-  showFooter: true,
   showGoBackArrow: true,
   showEmergencyButton: true,
 };
