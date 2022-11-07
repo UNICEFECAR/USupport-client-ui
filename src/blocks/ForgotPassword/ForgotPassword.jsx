@@ -67,6 +67,7 @@ export const ForgotPassword = () => {
             type="ghost"
             label={t("register_redirect_button_label")}
             onClick={() => handleRegisterRedirect()}
+            classes="forgot-password__grid__content-item__register-button"
           />
         </GridItem>
       </Grid>
