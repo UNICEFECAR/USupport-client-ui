@@ -7,5 +7,5 @@
   "terms_agreement_text_4": "Terms of Conditions",
   "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
   "register_button_label": "Register",
-  "redirect_login_button_label": "I already have an account"
+  "login_button_label": "I already have an account"
 }

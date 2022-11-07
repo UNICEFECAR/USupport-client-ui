@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import Joi from "joi";
@@ -30,6 +31,7 @@ import "./register-anonymous.scss";
  * @return {jsx}
  */
 export const RegisterAnonymous = () => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { t } = useTranslation("register-anonymous");
 
@@ -65,9 +67,13 @@ export const RegisterAnonymous = () => {
     });
 
   const register = async () => {
+    const countryID = localStorage.getItem("country_id");
+    if (!countryID) {
+      navigate("/");
+    }
     return await userSvc.signUp({
       userType: "client",
-      countryID: "0667451b-41b8-4131-bbff-f19782b36fd6", // TODO: Add the actual countryId
+      countryID,
       password: data.password,
       clientData: {
         userAccessToken,
@@ -86,7 +92,7 @@ export const RegisterAnonymous = () => {
 
       queryClient.setQueryData(["user-data"], userData);
 
-      // TODO: Navigate to Dashboard
+      navigate("/dashboard");
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);
@@ -102,8 +108,6 @@ export const RegisterAnonymous = () => {
       setIsSubmitting(true);
       if ((await validate(data, schema, setErrors)) === null) {
         registerMutation.mutate(data);
-      } else {
-        console.warn("Failed vaidation");
       }
     }
   };
@@ -121,7 +125,11 @@ export const RegisterAnonymous = () => {
 
   // TODO: Show confirmation for copying ?
   const handleCopyToClipboard = () => {
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(userAccessToken);
+  };
+
+  const handleLoginRedirect = () => {
+    navigate("/login");
   };
 
   const canContinue = data.password && data.isPrivacyAndTermsSelected;
@@ -176,6 +184,13 @@ export const RegisterAnonymous = () => {
               size="lg"
               onClick={() => handleRegister()}
               disabled={!canContinue || isSubmitting}
+            />
+
+            <Button
+              label={t("login_button_label")}
+              type="ghost"
+              onClick={() => handleLoginRedirect()}
+              classes="register-anonymous__grid__login-button"
             />
           </div>
           {errors.submit ? <Error message={errors.submit} /> : null}
