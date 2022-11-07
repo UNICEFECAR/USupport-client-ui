@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import InfiniteScroll from "react-infinite-scroll-component";
 import {
   Grid,
   GridItem,
@@ -15,7 +16,6 @@ import {
 import { destructureArticleData } from "@USupport-components-library/utils";
 import { cmsSvc } from "@USupport-components-library/services";
 import { useDebounce } from "@USupport-components-library/hooks";
-import { useTranslation } from "react-i18next";
 
 import "./articles.scss";
 
