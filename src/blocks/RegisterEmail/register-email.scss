@@ -9,6 +9,7 @@
 
   &__grid {
     place-items: center;
+    min-height: 90vh;
 
     &__password-input {
       padding-top: $spacing_2_4;
@@ -20,7 +21,6 @@
 
     &__register-button {
       margin-top: $spacing_2_4;
-      margin-bottom: $spacing_6_4;
     }
 
     &__register-with {
@@ -35,6 +35,11 @@
       justify-content: space-between;
       width: 17.3rem;
       margin: 0 auto;
+    }
+
+    &__login-button {
+      margin: 0 auto;
+      margin-top: $spacing_1_6;
     }
   }
 

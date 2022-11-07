@@ -8,5 +8,6 @@
   "terms_agreement_text_3": "and",
   "terms_agreement_text_4": "Terms of Conditions",
   "register_button": "Register",
-  "paragraph": "Or register with:"
+  "paragraph": "Or register with:",
+  "login_button_label": "I already have an account"
 }
