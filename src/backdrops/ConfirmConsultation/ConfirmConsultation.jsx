@@ -4,7 +4,7 @@ import { mascotHappyOrange } from "@USupport-components-library/assets";
 import {
   getTimeAsString,
   getMonthName,
-} from "@USupport-components-library/src/utils/date";
+} from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 
 import "./confirm-consultation.scss";
