@@ -14,6 +14,7 @@ import {
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 import { useError } from "@USupport-components-library/hooks";
+import { getCountryFromTimezone } from "@USupport-components-library/utils";
 
 import "./login.scss";
 
@@ -37,11 +38,15 @@ export const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const login = async () => {
+    const usersCountry = getCountryFromTimezone();
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
     const field = data.email.includes("@") ? "email" : "userAccessToken";
     const payload = {
       [field]: data.email,
       password: data.password,
       userType: "client",
+      location: timezone + ", " + usersCountry,
     };
     return await userSvc.login(payload);
   };
