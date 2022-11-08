@@ -60,6 +60,7 @@ export const Welcome = () => {
       };
       if (localStorageLanguage === x.alpha2) {
         setSelectedLanguage(languageObject);
+        i18n.changeLanguage(localStorageLanguage);
       }
       return languageObject;
     });
