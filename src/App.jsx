@@ -27,6 +27,7 @@ import {
   PrivacyPolicy,
   RegisterEmail,
   FAQ,
+  UserDetails,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 
@@ -172,6 +173,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <UserProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user-details"
+            element={
+              <ProtectedRoute>
+                <UserDetails />
               </ProtectedRoute>
             }
           />
