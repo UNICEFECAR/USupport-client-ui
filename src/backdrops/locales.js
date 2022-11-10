@@ -4,3 +4,7 @@ export * as CancelConsultation from "./CancelConsultation/locales.js";
 export * as EditConsultation from "./EditConsultation/locales.js";
 export * as ConfirmConsultation from "./ConfirmConsultation/locales.js";
 export * as SafetyFeedback from "./SafetyFeedback/locales.js";
+export * as ChangePassword from './ChangePassword/locales.js';
+export * as DeleteAccount from './DeleteAccount/locales.js';
+export * as UploadPicture from './UploadPicture/locales.js';
+export * as DeleteProfilePicture from './DeleteProfilePicture/locales.js';

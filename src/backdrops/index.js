@@ -4,3 +4,7 @@ export * from "./CancelConsultation";
 export * from "./EditConsultation";
 export * from "./ConfirmConsultation";
 export * from "./SafetyFeedback";
+export * from './ChangePassword';
+export * from './DeleteAccount';
+export * from './UploadPicture';
+export * from './DeleteProfilePicture';
