@@ -11,7 +11,7 @@
     place-items: center;
     min-height: 90vh;
 
-    &__password-input {
+    & .input-container:not(:first-of-type) {
       padding-top: $spacing_2_4;
     }
 

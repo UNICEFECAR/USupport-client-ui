@@ -11,7 +11,6 @@ import {
   Error,
   Grid,
   GridItem,
-  Icon,
   Input,
   InputPassword,
   TermsAgreement,
@@ -41,11 +40,13 @@ export const RegisterEmail = () => {
     email: Joi.string()
       .email({ tlds: { allow: false } })
       .label(t("email_error")),
+    nickname: Joi.string().label(t("nickname_error")),
     isPrivacyAndTermsSelected: Joi.boolean(),
   });
 
   const [data, setData] = useState({
     email: "",
+    nickname: "",
     password: "",
     isPrivacyAndTermsSelected: false,
   });
@@ -75,6 +76,7 @@ export const RegisterEmail = () => {
       password: data.password,
       clientData: {
         email: data.email,
+        nickname: data.nickname,
       },
     });
   };
@@ -90,7 +92,7 @@ export const RegisterEmail = () => {
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
-      queryClient.setQueryData(["user-data"], userData);
+      queryClient.setQueryData(["client-data"], userData);
 
       navigate("/register/about-you");
     },
@@ -127,6 +129,14 @@ export const RegisterEmail = () => {
             onChange={(e) => handleChange("email", e.currentTarget.value)}
             onBlur={() => handleBlur("email")}
             errorMessage={errors.email}
+          />
+          <Input
+            label={t("nickname_label")}
+            placeholder={t("nickname_placeholder")}
+            value={data.nickname}
+            onChange={(e) => handleChange("nickname", e.currentTarget.value)}
+            onBlur={() => handleBlur("nickname")}
+            errorMessage={errors.nickname}
           />
           <InputPassword
             classes="register-email__grid__password-input"
