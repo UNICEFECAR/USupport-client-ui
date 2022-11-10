@@ -42,7 +42,7 @@ export const Welcome = () => {
       };
 
       if (localStorageCountry === x.alpha2) {
-        setSelectedCountry(countryObject);
+        setSelectedCountry(x.alpha2);
       }
 
       return countryObject;
@@ -59,7 +59,7 @@ export const Welcome = () => {
         id: x["language_id"],
       };
       if (localStorageLanguage === x.alpha2) {
-        setSelectedLanguage(languageObject);
+        setSelectedLanguage(x.alpha2);
         i18n.changeLanguage(localStorageLanguage);
       }
       return languageObject;
@@ -75,11 +75,14 @@ export const Welcome = () => {
   });
 
   const handleContinue = () => {
-    const country = selectedCountry.value;
-    const language = selectedLanguage.value;
+    const country = selectedCountry;
+    const language = selectedLanguage;
 
     localStorage.setItem("country", country);
-    localStorage.setItem("country_id", selectedCountry.id);
+    localStorage.setItem(
+      "country_id",
+      countriesQuery.data.find((x) => x.value === selectedCountry).countryID
+    );
     localStorage.setItem("language", language);
 
     i18n.changeLanguage(language);

@@ -3,7 +3,6 @@ import {
   Backdrop,
   CheckBoxGroup,
   DropdownWithLabel,
-  Button,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
@@ -49,9 +48,9 @@ export const FilterProviders = ({ isOpen, onClose }) => {
   ]);
 
   const yearsOfExperience = [
-    { label: "1-5", value: "1-5" },
-    { label: "5-10", value: "5-10" },
-    { label: "10-15", value: "10-15" },
+    { label: "1-5", value: "one-to-five" },
+    { label: "5-10", value: "five-to-ten" },
+    { label: "10-15", value: "ten-to-fiveteen" },
   ];
 
   const handleSelect = (field, value) => {
@@ -69,9 +68,6 @@ export const FilterProviders = ({ isOpen, onClose }) => {
     dataCopy["providerGenders"] = providerGenders
       .filter((x) => x.isSelected)
       .map((x) => x.value);
-
-    dataCopy["yearsOfExperience"] = dataCopy["yearsOfExperience"].value;
-    console.log(dataCopy);
 
     setData(dataCopy);
     onClose();

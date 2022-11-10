@@ -75,7 +75,7 @@ export const ContactUs = () => {
   const handleIssueChange = (issue) => {
     const issuesCopy = [...issues];
     for (let i = 0; i < issuesCopy.length; i++) {
-      if (issuesCopy[i].label === issue.label) {
+      if (issuesCopy[i].value === issue) {
         issuesCopy[i].selected = true;
       } else {
         issuesCopy[i].selected = false;
