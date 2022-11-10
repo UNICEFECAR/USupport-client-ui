@@ -1,0 +1,15 @@
+@import "@USupport-components-library/styles";
+
+.select-consultation {
+  &__content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: $spacing_12_0;
+    padding-top: $spacing_3_2;
+  }
+
+  &__radio-button-selector-group {
+    margin-top: $spacing_3_2;
+  }
+}

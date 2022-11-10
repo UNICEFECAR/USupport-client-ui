@@ -4,3 +4,4 @@ export * from "./CancelConsultation";
 export * from "./EditConsultation";
 export * from "./ConfirmConsultation";
 export * from "./SafetyFeedback";
+export * from './SelectConsultation';

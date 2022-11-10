@@ -57,6 +57,7 @@ import {
   CancelConsultation,
   ConfirmConsultation,
   SafetyFeedback,
+  SelectConsultation,
 } from "#backdrops/locales.js";
 
 const resources = {
@@ -117,6 +118,7 @@ const resources = {
     "cancel-consultation": CancelConsultation.en,
     "edit-consultation": EditConsultation.en,
     "safety-feedback": SafetyFeedback.en,
+    "select-consultation": SelectConsultation.en,
   },
 };
 
