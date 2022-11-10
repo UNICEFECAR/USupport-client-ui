@@ -21,3 +21,4 @@ export * from "./RegisterPreview";
 export * from "./RegisterEmail";
 export * from "./PrivacyPolicy";
 export * from "./FAQ";
+export * from './UserDetails';
