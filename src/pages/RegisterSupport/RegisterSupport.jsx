@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Page } from "#blocks/Page/Page";
 import { RegisterSupport as RegisterSupportBlock } from "#blocks/RegisterSupport/RegisterSupport";
@@ -15,6 +16,8 @@ import "./register-support.scss";
  * @returns {JSX.Element}
  */
 export const RegisterSupport = () => {
+  const location = useLocation();
+  const showGoBackArrow = location?.state?.hideGoBackArrow ?? true;
   const { t } = useTranslation("register-support-page");
 
   const { width } = useWindowDimensions();
@@ -25,6 +28,7 @@ export const RegisterSupport = () => {
       showFooter={false}
       showNavbar={false}
       additionalPadding={false}
+      showGoBackArrow={showGoBackArrow}
       heading={width < 768 ? t("heading_1") : t("heading_2")}
     >
       <RegisterSupportBlock />

@@ -31,6 +31,7 @@ export const RegisterAboutYou = () => {
       additionalPadding={false}
       heading={width >= 768 ? t("heading_1") : t("heading_2")}
       handleGoBack={handleGoBack}
+      showGoBackArrow={false}
     >
       <RegisterAboutYouBlock />
       {width < 768 && <RadialCircle color="purple" />}
