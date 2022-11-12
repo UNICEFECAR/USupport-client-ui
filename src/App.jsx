@@ -28,6 +28,7 @@ import {
   RegisterEmail,
   FAQ,
   UserDetails,
+  ResetPassword,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 
@@ -105,6 +106,14 @@ function App() {
             }
           />
           <Route
+            path="/reset-password"
+            element={
+              <CountryValidationRoute>
+                <ResetPassword />
+              </CountryValidationRoute>
+            }
+          />
+          <Route
             path="/privacy-policy"
             element={
               <CountryValidationRoute>
@@ -121,7 +130,7 @@ function App() {
             }
           />
           <Route
-            path="/register-support"
+            path="/register/support"
             element={
               <ProtectedRoute>
                 <RegisterSupport />
@@ -169,7 +178,7 @@ function App() {
             }
           />
           <Route
-            path="/user-profile"
+            path="/profile"
             element={
               <ProtectedRoute>
                 <UserProfile />
@@ -177,7 +186,7 @@ function App() {
             }
           />
           <Route
-            path="/user-details"
+            path="/details"
             element={
               <ProtectedRoute>
                 <UserDetails />
@@ -186,7 +195,7 @@ function App() {
           />
 
           <Route
-            path="/settings/notifications"
+            path="/notification-preferences"
             element={
               <ProtectedRoute>
                 <NotificationPreferencesPage />
