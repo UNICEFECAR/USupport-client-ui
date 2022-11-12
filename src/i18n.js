@@ -25,6 +25,7 @@ import {
   PrivacyPolicy,
   FAQ,
   UserDetails,
+  ResetPassword,
 } from "#blocks/locales.js";
 
 import {
@@ -51,6 +52,7 @@ import {
   RegisterEmail as RegisterEmailPage,
   FAQ as FAQPage,
   UserDetails as UserDetailsPage,
+  ResetPassword as ResetPasswordPage,
 } from "#pages/locales.js";
 
 import {
@@ -64,6 +66,8 @@ import {
   UploadPicture,
   DeleteProfilePicture,
 } from "#backdrops/locales.js";
+
+import { RequireRegistration } from "#modals/locales.js";
 
 const resources = {
   en: {
@@ -90,8 +94,8 @@ const resources = {
     "register-email": RegisterEmail.en,
     "privacy-policy": PrivacyPolicy.en,
     faq: FAQ.en,
-
     "user-details": UserDetails.en,
+    "reset-password": ResetPassword.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -117,6 +121,7 @@ const resources = {
     "privacy-policy-page": PrivacyPolicyPage.en,
     "faq-page": FAQPage.en,
     "user-details-page": UserDetailsPage.en,
+    "reset-password-page": ResetPasswordPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
@@ -130,6 +135,9 @@ const resources = {
     "delete-account": DeleteAccount.en,
     "upload-picture": UploadPicture.en,
     "delete-profile-picture": DeleteProfilePicture.en,
+
+    //Modals
+    "require-registration": RequireRegistration.en,
   },
 };
 
