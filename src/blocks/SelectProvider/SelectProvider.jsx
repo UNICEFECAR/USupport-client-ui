@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import {
   Block,
   Grid,
@@ -16,21 +18,18 @@ import "./select-provider.scss";
  * @return {jsx}
  */
 export const SelectProvider = ({ providers }) => {
-  const handleProviderClick = (id) => {
-    console.log(`Open provider with ID: ${id}`);
+  const navigate = useNavigate();
+
+  const handleProviderClick = (provider) => {
+    navigate("/provider-overview", {
+      state: {
+        providerData: provider,
+      },
+    });
   };
 
   const renderProviders = () => {
-    const providers = [];
-    for (let i = 0; i < 10; i++) {
-      providers.push({
-        id: i,
-        name: "Dr. Joanna Doe",
-        specialities: "Psychiatrist, Neuropsychiatrist, Psychotherapist",
-        experience: 16,
-      });
-    }
-    return providers.map((provider) => {
+    return providers?.map((provider) => {
       return (
         <GridItem
           md={4}
@@ -40,9 +39,12 @@ export const SelectProvider = ({ providers }) => {
         >
           <ProviderOverview
             name={provider.name}
-            specialities={provider.specialities}
+            patronym={provider.patronym}
+            surname={provider.surname}
+            types={provider.types}
             experience={provider.experience}
-            onClick={() => handleProviderClick(provider.id)}
+            onClick={() => handleProviderClick(provider)}
+            image={provider.image}
           />
         </GridItem>
       );
