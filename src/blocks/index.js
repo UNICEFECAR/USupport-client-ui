@@ -22,3 +22,4 @@ export * from "./RegisterEmail";
 export * from "./PrivacyPolicy";
 export * from "./FAQ";
 export * from './UserDetails';
+export * from './ResetPassword';
