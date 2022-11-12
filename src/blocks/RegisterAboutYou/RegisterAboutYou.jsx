@@ -1,7 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 
 import {
   Block,
@@ -60,20 +59,32 @@ export const RegisterAboutYou = () => {
     livingPlace: "",
   });
 
+  useEffect(() => {
+    if (clientData) {
+      setData({
+        name: clientData.name,
+        surname: clientData.surname,
+        sex: clientData.sex,
+        yearOfBirth: clientData.yearOfBirth,
+        livingPlace: clientData.livingPlace,
+      });
+    }
+  }, [clientData]);
+
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const getYearsOptions = () => {
     const currentYear = new Date().getFullYear();
     const years = [];
-    for (let year = 1900; year < currentYear; year++) {
+    for (let year = 1900; year < currentYear - 13; year++) {
       years.push({ label: year.toString(), value: year });
     }
     return years.reverse();
   };
 
   const onMutateSuccess = () => {
-    navigate("/register-support");
+    navigate("/register/support");
   };
 
   const onMutateError = (error) => {

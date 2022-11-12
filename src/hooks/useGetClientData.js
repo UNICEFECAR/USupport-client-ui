@@ -7,7 +7,7 @@ import { clientSvc } from "@USupport-components-library/services";
  */
 export default function useGetClientData() {
   const queryClient = useQueryClient();
-  const [clientData] = useState();
+  const [clientData, setClientData] = useState();
   const fetchClientData = async () => {
     const res = await clientSvc.getClientData();
 
