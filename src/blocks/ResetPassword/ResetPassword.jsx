@@ -59,7 +59,7 @@ export const ResetPassword = () => {
   return (
     <Block classes="reset-password">
       <Grid md={8} lg={12} classes="reset-password__grid">
-        <GridItem classes="reset-password__grid__item">
+        <GridItem md={8} lg={12} classes="reset-password__grid__item">
           <InputPassword
             value={password}
             onChange={(e) => setPassword(e.currentTarget.value)}
