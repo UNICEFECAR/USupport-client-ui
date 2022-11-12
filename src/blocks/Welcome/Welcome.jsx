@@ -31,6 +31,7 @@ export const Welcome = () => {
 
   const localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
+  const localStorageCountryID = localStorage.getItem("country_id");
 
   const fetchCountries = async () => {
     const res = await countrySvc.getActiveCountries();
@@ -42,6 +43,9 @@ export const Welcome = () => {
       };
 
       if (localStorageCountry === x.alpha2) {
+        if (!localStorageCountryID) {
+          localStorage.setItem("country_id", x["country_id"]);
+        }
         setSelectedCountry(x.alpha2);
       }
 
@@ -81,7 +85,7 @@ export const Welcome = () => {
     localStorage.setItem("country", country);
     localStorage.setItem(
       "country_id",
-      countriesQuery.data.find((x) => x.value === selectedCountry).countryID
+      countriesQuery.data.find((x) => x.value === selectedCountry).id
     );
     localStorage.setItem("language", language);
 
