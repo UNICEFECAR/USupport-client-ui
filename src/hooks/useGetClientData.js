@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { clientSvc } from "@USupport-components-library/services";
 
@@ -6,7 +6,8 @@ import { clientSvc } from "@USupport-components-library/services";
  * Reuseable hook to get and transform the client data in a desired format
  */
 export default function useGetClientData() {
-  const [clientData, setClientData] = useState();
+  const queryClient = useQueryClient();
+  const [clientData] = useState();
   const fetchClientData = async () => {
     const res = await clientSvc.getClientData();
 
@@ -23,6 +24,7 @@ export default function useGetClientData() {
       livingPlace: res.data.living_place || "",
       dataProcessing: res.data.data_processing,
     };
+    queryClient.setQueryData(["client-image"], data.image);
     return data;
   };
 
@@ -32,9 +34,26 @@ export default function useGetClientData() {
       setClientData({ ...dataCopy });
     },
     notifyOnChangeProps: ["data"],
+    initialData: {
+      clientID: "",
+      accessToken: "",
+      email: "",
+      name: "",
+      surname: "",
+      nickname: "",
+      sex: "",
+      yearOfBirth: "",
+      image: "",
+      livingPlace: "",
+      dataProcessing: "",
+    },
   });
 
-  return [clientDataQuery, clientData, setClientData];
+  const update = (data) => {
+    queryClient.setQueryData(["client-data"], data);
+  };
+
+  return [clientDataQuery, clientData, update];
 }
 
 export { useGetClientData };
