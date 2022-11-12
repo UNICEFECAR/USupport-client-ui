@@ -34,14 +34,12 @@ export const NotificationPreferences = () => {
   }));
 
   const [error, setError] = useState();
-  const [notificationPreferencesQuery, setNotificationPreferences] =
-    useGetNotificationPreferences();
+  const [notificationPreferencesQuery] = useGetNotificationPreferences();
   const data = notificationPreferencesQuery.data;
 
   const onUpdateError = (error) => {
     const { message: errorMessage } = useError(error);
     setError(errorMessage);
-    setNotificationPreferences();
   };
   const notificationsPreferencesMutation = useUpdateNotificationPreferences(
     () => {},
@@ -51,7 +49,6 @@ export const NotificationPreferences = () => {
   const handleChange = (field, value) => {
     const dataCopy = { ...data };
     dataCopy[field] = value;
-    setNotificationPreferences(dataCopy);
     notificationsPreferencesMutation.mutate(dataCopy);
   };
 
@@ -83,19 +80,17 @@ export const NotificationPreferences = () => {
             <p className="paragraph">{t("appointment")}</p>
             <Toggle
               isToggled={
-                data?.consultation_reminder
-                  ? data?.consultation_reminder
-                  : false
+                data?.consultationReminder ? data?.consultationReminder : false
               }
               setParentState={(value) =>
-                handleChange("consultation_reminder", value)
+                handleChange("consultationReminder", value)
               }
             />
-            {data?.consultation_reminder && (
+            {data?.consultationReminder && (
               <RadioButtonSelectorGroup
-                selected={data.consultation_reminder_min}
+                selected={data.consultationReminderMin}
                 setSelected={(value) =>
-                  handleChange("consultation_reminder_min", value)
+                  handleChange("consultationReminderMin", value)
                 }
                 options={consultationReminderOptions}
               />
