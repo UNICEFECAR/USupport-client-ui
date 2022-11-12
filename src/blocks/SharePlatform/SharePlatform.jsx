@@ -1,13 +1,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Block, Box, Grid, GridItem } from "@USupport-components-library/src";
 import {
   FacebookShareButton,
   TelegramShareButton,
   VKShareButton,
 } from "react-share";
+import { Block, Box, Grid, GridItem } from "@USupport-components-library/src";
 
 import "./share-platform.scss";
+
+const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
 
 /**
  * SharePlatform
@@ -16,7 +18,7 @@ import "./share-platform.scss";
  *
  * @return {jsx}
  */
-export const SharePlatform = ({ shareUrl = "https://www.usupport.com" }) => {
+export const SharePlatform = ({ shareUrl = WEBSITE_URL }) => {
   const { t } = useTranslation("share-platform");
 
   return (
