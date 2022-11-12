@@ -85,14 +85,18 @@ export const RegisterAnonymous = () => {
 
   const registerMutation = useMutation(register, {
     onSuccess: (response) => {
-      const { user: userData, token: tokenData } = response.data;
+      const { token: tokenData } = response.data;
       const { token, expiresIn, refreshToken } = tokenData;
 
       localStorage.setItem("token", token);
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
-      navigate("/dashboard");
+      navigate("/register/support", {
+        state: {
+          hideGoBackArrow: false,
+        },
+      });
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);
