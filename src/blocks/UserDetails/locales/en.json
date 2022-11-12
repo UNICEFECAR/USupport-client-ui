@@ -21,6 +21,7 @@
   "consent": "Consent for personal data processing",
   "change_password": "Change password",
   "delete_account": "Delete account",
+  "logout": "Logout",
 
   "dropdown_sex_label": "Gender",
   "dropdown_year_label": "Year of birth",

@@ -17,6 +17,7 @@ import {
   Toggle,
 } from "@USupport-components-library/src";
 import { validateProperty, validate } from "@USupport-components-library/utils";
+import { userSvc, clientSvc } from "@USupport-components-library/services";
 import { useGetClientData, useUpdateClientData } from "#hooks";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
@@ -39,7 +40,7 @@ export const UserDetails = ({
 }) => {
   const { t } = useTranslation("user-details");
 
-  const [clientDataQuery, clientData, setClientData] = useGetClientData();
+  const [clientDataQuery, oldData, setClientData] = useGetClientData();
   const [canSaveChanges, setCanSaveChanges] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -56,6 +57,8 @@ export const UserDetails = ({
   };
   const [schema, setSchema] = useState(Joi.object(defaultSchema));
   const [schemaObject, setSchemaObject] = useState(defaultSchema);
+
+  const clientData = clientDataQuery.data;
 
   useEffect(() => {
     if (!clientDataQuery.isLoading && clientDataQuery.isSuccess) {
@@ -84,8 +87,8 @@ export const UserDetails = ({
       }
 
       const userDataString = JSON.stringify(clientData);
-      const queryDataString = JSON.stringify(clientDataQuery.data);
-      setCanSaveChanges(userDataString !== queryDataString);
+      const oldDataString = JSON.stringify(oldData);
+      setCanSaveChanges(userDataString !== oldDataString);
 
       // If the email field is empty and the user doesn't have access token
       // then the email field is required and we need to show an error
@@ -135,7 +138,7 @@ export const UserDetails = ({
   const getYearsOptions = () => {
     const currentYear = new Date().getFullYear();
     const years = [];
-    for (let year = 1900; year < currentYear; year++) {
+    for (let year = 1900; year < currentYear - 13; year++) {
       years.push({ label: year.toString(), value: year });
     }
     return years.reverse();
@@ -143,10 +146,13 @@ export const UserDetails = ({
 
   const userDataMutation = useUpdateClientData(
     clientData,
-    (data) => {
+    () => {
       setIsProcessing(false);
     },
-    (error) => setErrors({ submit: error })
+    (error) => {
+      setErrors({ submit: error });
+      setIsProcessing(false);
+    }
   );
 
   const openDataProcessingModal = () => setDataProcessingModalOpen(true);
@@ -171,10 +177,9 @@ export const UserDetails = ({
   };
 
   const handleChange = (field, value) => {
-    setClientData({
-      ...clientData,
-      [field]: value,
-    });
+    const dataCopy = { ...clientData };
+    dataCopy[field] = value;
+    setClientData(dataCopy);
   };
 
   const handleSave = async () => {
@@ -189,7 +194,7 @@ export const UserDetails = ({
   };
 
   const handleDiscard = () => {
-    setClientData(clientDataQuery.data);
+    setClientData(oldData);
   };
 
   const updateDataProcessing = async (value) => {
@@ -198,8 +203,8 @@ export const UserDetails = ({
 
     // TODO: Send data processing value to the server
     // The server should return the new value of the "data_processing" field
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    return value;
+    const res = await clientSvc.changeDataProcessingAgreement(value);
+    return res.data.data_processing;
   };
 
   const updateDataProcessingMutation = useMutation(updateDataProcessing, {
@@ -221,6 +226,10 @@ export const UserDetails = ({
       // Change the dataProcessing value to true
       updateDataProcessingMutation.mutate(true);
     }
+  };
+
+  const handleLogout = () => {
+    userSvc.logout();
   };
 
   // Disable the save button IF:
@@ -348,6 +357,17 @@ export const UserDetails = ({
                 label={t("change_password")}
                 classes="user-details__grid__change-password-button"
                 onClick={openDataProcessingBackdrop}
+              />
+              <ButtonWithIcon
+                iconName={"circle-close"}
+                iconSize={"md"}
+                size="lg"
+                iconColor={"#20809e"}
+                color={"green"}
+                label={t("logout")}
+                type={"ghost"}
+                classes="user-details__grid__delete-account-button"
+                onClick={handleLogout}
               />
               <ButtonWithIcon
                 iconName={"circle-close"}
