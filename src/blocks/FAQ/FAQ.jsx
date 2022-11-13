@@ -6,8 +6,9 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
+import { getFilteredData } from "@USupport-components-library/utils";
 
-import { cmsSvc } from "@USupport-components-library/services";
+import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
 import "./faq.scss";
 
@@ -22,22 +23,39 @@ export const FAQ = () => {
   const { i18n, t } = useTranslation("faq");
 
   const getFAQs = async () => {
-    const { data } = await cmsSvc.getFAQs(i18n.language, true);
+    // Request faq ids from the master DB based for website platform
+    const faqIds = await adminSvc.getFAQs("client");
 
-    return data;
+    const faqs = [];
+
+    if (faqIds?.length > 0) {
+      let { data } = await cmsSvc.getFAQs("all", true, faqIds);
+
+      data = getFilteredData(data, i18n.language);
+
+      console.log(data);
+
+      data.forEach((faq) => {
+        faqs.push({
+          question: faq.attributes.question,
+          answer: faq.attributes.answer,
+        });
+      });
+    }
+    return faqs;
   };
 
   const {
     data: FAQsData,
     isLoading: FAQsLoading,
     isFetched: isFAQsFetched,
-  } = useQuery(["FAQs"], getFAQs);
+  } = useQuery(["FAQs", i18n.language], getFAQs);
 
   return (
     <Block classes="faq">
       {FAQsData && <CollapsibleFAQ data={FAQsData} />}
       {!FAQsData && FAQsLoading && <Loading />}
-      {!FAQsData && !FAQsLoading && isFAQsFetched && (
+      {!FAQsData?.length && !FAQsLoading && isFAQsFetched && (
         <h3 className="page__faq__no-results">{t("no_results")}</h3>
       )}
     </Block>
