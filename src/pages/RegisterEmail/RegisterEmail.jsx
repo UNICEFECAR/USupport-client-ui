@@ -1,7 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Page, RegisterEmail as RegisterEmailBlock } from "#blocks";
+import { Loading } from "@USupport-components-library/src";
+import { useIsLoggedIn } from "@USupport-components-library/hooks";
 
 import "./register-email.scss";
 
@@ -15,15 +17,17 @@ import "./register-email.scss";
 export const RegisterEmail = () => {
   const { t } = useTranslation("register-email-page");
   const navigate = useNavigate();
+  const isLoggedIn = useIsLoggedIn();
 
   const handleGoBack = () => {
     navigate("/register-preview");
   };
 
+  if (isLoggedIn === "loading") return <Loading />;
+  if (isLoggedIn === true) return <Navigate to="/dashboard" />;
+
   return (
     <Page
-      showNavbar={false}
-      showFooter={false}
       classes="page__register-email"
       heading={t("heading")}
       handleGoBack={handleGoBack}

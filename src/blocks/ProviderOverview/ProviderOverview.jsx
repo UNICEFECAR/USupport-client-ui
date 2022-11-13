@@ -74,12 +74,12 @@ export const ProviderOverview = () => {
   };
 
   return (
-    <Block classes="provider-overview">
-      <Grid md={8} lg={12} classes="provider-overview__grid">
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <div className="provider-overview__grid__item__content-container">
+    <Block classes="provider-overview-block">
+      <Grid md={8} lg={12} classes="provider-overview-block__grid">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <div className="provider-overview-block__grid__item__content-container">
             <Avatar size="lg" />
-            <div className="provider-overview__grid__item__content-container__details">
+            <div className="provider-overview-block__grid__item__content-container__details">
               <p className="text">{providerData.name}</p>
               <p className="small-text">{providerData.specialities}</p>
               <p className="small-text">
@@ -88,14 +88,14 @@ export const ProviderOverview = () => {
             </div>
           </div>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("earliest_free_spot")}
           </p>
           <p className="text">{providerData.earliestAvailable}</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("website")}
           </p>
           <p className="text">
@@ -104,62 +104,62 @@ export const ProviderOverview = () => {
             </a>
           </p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("price_per_consultation")}
           </p>
           <p className="text">{providerData.price}$</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("language_of_operation")}
           </p>
           <p className="text">{renderAllOptions("languages")}</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("qualifications")}
           </p>
           <p className="text">{renderAllOptions("qualifications")}</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("specialist_from")}
           </p>
           <p className="text">{providerData.startDate}</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("education")}
           </p>
           <p className="text">{renderAllOptions("education")}</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("approach")}
           </p>
           <p className="text">{providerData.psychotherapeuticApproach}</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("work_with")}
           </p>
           <p className="text">{renderAllOptions("workWith")}</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("overall_consultations")}
           </p>
           <p className="text">{providerData.consultationNum} consultations</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("description")}
           </p>
           <p className="text">{providerData.description}</p>
         </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
+        <GridItem md={8} lg={12} classes="provider-overview-block__grid__item">
+          <p className="text provider-overview-block__grid__item__heading">
             {t("useful_for")}
           </p>
           <p className="text">{renderAllOptionsAsList("usefulFor")}</p>

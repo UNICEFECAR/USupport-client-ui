@@ -28,5 +28,15 @@
         padding-bottom: $spacing_5_0;
       }
     }
+
+    .error-message {
+      width: 32rem;
+      margin-top: $spacing_0_8;
+      margin-left: $spacing_0_8;
+
+      @media screen and (min-width: $screen_lg) {
+        width: 36rem;
+      }
+    }
   }
 }

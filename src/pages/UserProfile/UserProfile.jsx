@@ -1,10 +1,12 @@
-import React from "react";
-import { Page, UserProfile as UserProfileBlock } from "#blocks";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ButtonWithIcon } from "@USupport-components-library/src";
+import { Page, UserProfile as UserProfileBlock } from "#blocks";
+import { ButtonWithIcon, RadialCircle } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { RadialCircle } from "@USupport-components-library/src";
+import { userSvc } from "@USupport-components-library/services";
 
+import { RequireRegistration } from "#modals";
 import "./user-profile.scss";
 
 /**
@@ -15,9 +17,28 @@ import "./user-profile.scss";
  * @returns {JSX.Element}
  */
 export const UserProfile = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation("user-profile-page");
-
   const { width } = useWindowDimensions();
+
+  const isTmpUser = userSvc.getUserID() === "tmp-user";
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleRegisterRedirection = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("refresh-token");
+    localStorage.removeItem("expires-in");
+    navigate("/register-preview");
+  };
+
+  const handleLogout = () => {
+    userSvc.logout();
+    navigate("/");
+  };
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <Page
@@ -31,16 +52,22 @@ export const UserProfile = () => {
           iconColor="#ffffff"
           size="sm"
           circleSize="sm"
+          onClick={handleLogout}
         />
       }
     >
-      <UserProfileBlock />
+      <UserProfileBlock {...{ openModal, closeModal, isTmpUser }} />
       {width < 768 && (
         <RadialCircle
           color="purple"
           classes="page__user-profile__radial-circle"
         />
       )}
+      <RequireRegistration
+        handleContinue={handleRegisterRedirection}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </Page>
   );
 };

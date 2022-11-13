@@ -1,8 +1,10 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import { Page, Login as LoginBlock } from "#blocks";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { RadialCircle } from "@USupport-components-library/src";
+import { RadialCircle, Loading } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
+import { useIsLoggedIn } from "@USupport-components-library/hooks";
 
 import "./login.scss";
 
@@ -15,14 +17,16 @@ import "./login.scss";
  */
 export const Login = () => {
   const { t } = useTranslation("login-page");
-
   const { width } = useWindowDimensions();
+
+  const isLoggedIn = useIsLoggedIn();
+
+  if (isLoggedIn === "loading") return <Loading />;
+  if (isLoggedIn === true) return <Navigate to="/dashboard" />;
 
   return (
     <Page
       classes="page__login"
-      showFooter={false}
-      showNavbar={false}
       additionalPadding={false}
       heading={width >= 768 ? t("heading_1") : t("heading_2")}
     >

@@ -18,11 +18,14 @@ import {
   ForgotPassword,
   RegisterAnonymous,
   RegisterSupport,
+  Consultations,
   ProviderOverview,
   RegisterPreview,
   RegisterEmail,
   PrivacyPolicy,
   FAQ,
+  UserDetails,
+  ResetPassword,
 } from "#blocks/locales.js";
 
 import {
@@ -42,14 +45,29 @@ import {
   ForgotPassword as ForgotPasswordPage,
   RegisterAnonymous as RegisterAnonymousPage,
   RegisterSupport as RegisterSupportPage,
+  Consultations as ConsultationsPage,
   ProviderOverview as ProviderOverviewPage,
   RegisterPreview as RegisterPreviewPage,
   PrivacyPolicy as PrivacyPolicyPage,
   RegisterEmail as RegisterEmailPage,
   FAQ as FAQPage,
+  UserDetails as UserDetailsPage,
+  ResetPassword as ResetPasswordPage,
 } from "#pages/locales.js";
 
-import { FilterProviders, EditConsultation } from "#backdrops/locales.js";
+import {
+  FilterProviders,
+  EditConsultation,
+  CancelConsultation,
+  ConfirmConsultation,
+  SafetyFeedback,
+  ChangePassword as ChangePasswordBackdrop,
+  DeleteAccount,
+  UploadPicture,
+  DeleteProfilePicture,
+} from "#backdrops/locales.js";
+
+import { RequireRegistration } from "#modals/locales.js";
 
 const resources = {
   en: {
@@ -67,6 +85,7 @@ const resources = {
     "platform-rating": PlatformRating.en,
     "share-platform": SharePlatform.en,
     "forgot-password": ForgotPassword.en,
+    consultations: Consultations.en,
     login: Login.en,
     welcome: Welcome.en,
     articles: Articles.en,
@@ -75,6 +94,8 @@ const resources = {
     "register-email": RegisterEmail.en,
     "privacy-policy": PrivacyPolicy.en,
     faq: FAQ.en,
+    "user-details": UserDetails.en,
+    "reset-password": ResetPassword.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -90,6 +111,7 @@ const resources = {
     "register-support-page": RegisterSupportPage.en,
     "notification-preferences-page": NotificationPreferencesPage.en,
     "forgot-password-page": ForgotPasswordPage.en,
+    "consultations-page": ConsultationsPage.en,
     "login-page": LoginPage.en,
     "articles-page": ArticlesPage.en,
     "article-information": ArticleInformationPage.en,
@@ -98,12 +120,24 @@ const resources = {
     "register-email-page": RegisterEmailPage.en,
     "privacy-policy-page": PrivacyPolicyPage.en,
     "faq-page": FAQPage.en,
+    "user-details-page": UserDetailsPage.en,
+    "reset-password-page": ResetPasswordPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
     "register-preview-page": RegisterPreviewPage.en,
     "privacy-policy": PrivacyPolicyPage.en,
+    "confirm-consultation": ConfirmConsultation.en,
+    "cancel-consultation": CancelConsultation.en,
     "edit-consultation": EditConsultation.en,
+    "safety-feedback": SafetyFeedback.en,
+    "change-password-backdrop": ChangePasswordBackdrop.en,
+    "delete-account": DeleteAccount.en,
+    "upload-picture": UploadPicture.en,
+    "delete-profile-picture": DeleteProfilePicture.en,
+
+    //Modals
+    "require-registration": RequireRegistration.en,
   },
 };
 

@@ -1,5 +1,6 @@
 {
-    "button_continue_label": "Continue",
-    "answer_yes_label": "Yes, I want a consultation",
-    "answer_no_label": "No"
+  "button_continue_label": "Continue",
+  "answer_yes_label": "Yes, I want a consultation",
+  "answer_no_label": "No",
+  "error": "* You have to give us permission to process your personal data in order to have access to the consultations"
 }

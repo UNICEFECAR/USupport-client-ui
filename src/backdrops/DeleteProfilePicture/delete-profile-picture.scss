@@ -1,0 +1,11 @@
+@import "@USupport-components-library/styles";
+
+.delete-profile-picture {
+  .backdrop__header-text {
+    text-align: left;
+  }
+
+  &__text {
+    padding-top: $spacing_2_4;
+  }
+}

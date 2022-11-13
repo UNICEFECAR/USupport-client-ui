@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Block,
   Error,
@@ -13,6 +14,7 @@ import {
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 import { useError } from "@USupport-components-library/hooks";
+import { getCountryFromTimezone } from "@USupport-components-library/utils";
 
 import "./login.scss";
 
@@ -26,6 +28,7 @@ import "./login.scss";
 export const Login = () => {
   const { t } = useTranslation("login");
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     email: "",
@@ -34,16 +37,18 @@ export const Login = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    // TODO: Check if we have JWT token in local storage
-    // and if so redirect to dashboard
-  }, []);
-
   const login = async () => {
-    return await userSvc.login({
+    const usersCountry = getCountryFromTimezone();
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    const field = data.email.includes("@") ? "email" : "userAccessToken";
+    const payload = {
+      [field]: data.email,
+      password: data.password,
       userType: "client",
-      ...data,
-    });
+      location: timezone + ", " + usersCountry,
+    };
+    return await userSvc.login(payload);
   };
 
   const loginMutation = useMutation(login, {
@@ -55,16 +60,17 @@ export const Login = () => {
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
-      queryClient.setQueryData(["user-data"], userData);
-      console.log("Login success");
+      // TODO: Maybe instead of using setQueryData, we should use prefetch the query
+      queryClient.setQueryData(["client-data"], userData);
+
       setErrors({});
-      // TODO: Navigate to the dashboard
+      navigate("/dashboard");
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);
       setErrors({ submit: errorMessage });
     },
-    onSettled: (data, error) => {
+    onSettled: () => {
       setIsSubmitting(false);
     },
   });
@@ -83,15 +89,11 @@ export const Login = () => {
   };
 
   const handleForgotPassowrd = () => {
-    console.log("Forgot password");
-  };
-
-  const handleOAuthLogin = (platform) => {
-    console.log("platform");
+    navigate("/forgot-password");
   };
 
   const handleRegisterRedirect = () => {
-    console.log("Register");
+    navigate("/register-preview");
   };
 
   return (
@@ -104,6 +106,7 @@ export const Login = () => {
               handleChange("email", value.currentTarget.value)
             }
             placeholder={t("email_placeholder")}
+            value={data.email}
           />
           <InputPassword
             classes="login__grid__inputs-item__input--password"
@@ -112,6 +115,7 @@ export const Login = () => {
               handleChange("password", value.currentTarget.value)
             }
             placeholder={t("password_placeholder")}
+            value={data.password}
           />
           <Button
             type="ghost"
@@ -127,6 +131,12 @@ export const Login = () => {
             classes="login-button"
             onClick={handleLogin}
             disabled={!data.email || !data.password || isSubmitting}
+          />
+          <Button
+            type="ghost"
+            label={t("register_button_label")}
+            onClick={() => handleRegisterRedirect()}
+            classes="login__grid__register-button"
           />
         </GridItem>
         {/* <GridItem md={8} lg={12} classes="login__grid__content-item">
@@ -150,11 +160,6 @@ export const Login = () => {
               />
             </div>
           </div>
-          <Button
-            type="ghost"
-            label={t("register_button_label")}
-            onClick={() => handleRegisterRedirect()}
-          />
         </GridItem> */}
       </Grid>
     </Block>

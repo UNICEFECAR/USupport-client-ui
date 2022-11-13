@@ -68,3 +68,14 @@ chmod +x create-backdrop.bash
 ```
 
 Then, you will be prompted to provide backdrop name and whether the backdrop requires locale files.
+
+## Adding a new modal to the USupport Client UI
+
+To create a new modal, please use the provided bash script `create-modal.bash`. By executing the following command from the root directory of the project:
+
+```
+chmod +x create-modal.bash
+./create-modal.bash
+```
+
+Then, you will be prompted to provide modal name and whether the modal requires locale files.

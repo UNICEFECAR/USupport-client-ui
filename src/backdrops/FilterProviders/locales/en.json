@@ -1,14 +1,15 @@
 {
-    "heading": "Filter Provider",
-    "subheading": "Select the provider that you want to talk to in a audio/video consultation",
-    "provider_psychologist": "Psychologist",
-    "provider_psychotherapist": "Psychotherapist",
-    "provider_coach": "Coach",
-    "gender_m": "Male",
-    "gender_f": "Female",
-    "provider_type_checkbox_group_label": "Provider type",
-    "provider_gender_checkbox_group_label": "Gender of the provider",
-    "dropdown_placeholder": "Select",
-    "dropdown_label": "Years of experience",
-    "button_label": "Save"
+  "heading": "Filter Provider",
+  "subheading": "Select the provider that you want to talk to in a audio/video consultation",
+  "provider_psychologist": "Psychologist",
+  "provider_psychotherapist": "Psychotherapist",
+  "provider_coach": "Coach",
+  "male": "Male",
+  "female": "Female",
+  "unspecified": "Unspecified",
+  "provider_type_checkbox_group_label": "Provider type",
+  "provider_sex_checkbox_group_label": "Sex of the provider",
+  "max_price": "Maximum price",
+  "max_price_placeholder": "Select a maximum price",
+  "button_label": "Save"
 }

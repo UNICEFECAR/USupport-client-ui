@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { Page, RegisterPreview as RegisterPreviewBlock } from "#blocks";
-import { Button } from "@USupport-components-library/src";
+import { Button, Loading } from "@USupport-components-library/src";
+import { useIsLoggedIn } from "@USupport-components-library/hooks";
 
 import "./register-preview.scss";
 
@@ -16,16 +17,18 @@ import "./register-preview.scss";
 export const RegisterPreview = () => {
   const { t } = useTranslation("register-preview-page");
   const navigate = useNavigate();
+  const isLoggedIn = useIsLoggedIn();
 
   const handleLoginRedirection = () => {
     navigate("/login");
   };
 
+  if (isLoggedIn === "loading") return <Loading />;
+  if (isLoggedIn === true) return <Navigate to="/dashboard" />;
+
   return (
     <Page
       classes="page__register-preview"
-      showFooter={false}
-      showNavbar={false}
       additionalPadding={false}
       headingButton={
         <Button

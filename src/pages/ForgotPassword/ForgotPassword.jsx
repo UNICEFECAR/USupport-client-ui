@@ -1,8 +1,10 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 import { Page, ForgotPassword as ForgotPasswordBlock } from "#blocks";
-import { RadialCircle } from "@USupport-components-library/src";
+import { RadialCircle, Loading } from "@USupport-components-library/src";
+import { useIsLoggedIn } from "@USupport-components-library/hooks";
 
 import "./forgot-password.scss";
 
@@ -15,14 +17,16 @@ import "./forgot-password.scss";
  */
 export const ForgotPassword = () => {
   const { t } = useTranslation("forgot-password-page");
-
   const { width } = useWindowDimensions();
+
+  const isLoggedIn = useIsLoggedIn();
+
+  if (isLoggedIn === "loading") return <Loading />;
+  if (isLoggedIn === true) return <Navigate to="/dashboard" />;
 
   return (
     <Page
       classes="page__forgot-password"
-      showFooter={false}
-      showNavbar={false}
       additionalPadding={false}
       heading={t("heading")}
     >
