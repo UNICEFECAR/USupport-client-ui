@@ -33,8 +33,6 @@ export const FAQ = () => {
 
       data = getFilteredData(data, i18n.language);
 
-      console.log(data);
-
       data.forEach((faq) => {
         faqs.push({
           question: faq.attributes.question,
