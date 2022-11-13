@@ -24,9 +24,26 @@ export const SOSCenter = () => {
   const { i18n, t } = useTranslation("sos-center");
 
   const getSOSCenters = async () => {
-    const { data } = await cmsSvc.getSOSCenters(i18n.language, true);
+    // Request SOS Centers ids from the master DB based for website platform
+    const sosCentersIds = await adminSvc.getSOSCenters("client");
+    const sosCenters = [];
 
-    return data;
+    if (sosCentersIds.length > 0) {
+      let { data } = await cmsSvc.getSOSCenters("all", true, sosCentersIds);
+
+      data = getFilteredData(data, i18n.language);
+
+      data.forEach((sosCenter) => {
+        sosCenters.push({
+          title: sosCenter.attributes.title,
+          text: sosCenter.attributes.text,
+          phone: sosCenter.attributes.phone,
+          email: sosCenter.attributes.email,
+        });
+      });
+    }
+
+    return sosCenters;
   };
 
   const {
