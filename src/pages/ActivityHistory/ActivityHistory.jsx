@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Page, ActivityHistory as ActivityHistoryBlock } from "#blocks";
-import { Button } from "@USupport-components-library/src";
+import { Button, RadialCircle } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./activity-history.scss";
@@ -38,6 +38,9 @@ export const ActivityHistory = () => {
       <div className="page__activity-history__button-container">
         <Button label={t("button_label")} size="lg" onClick={handleSchedule} />
       </div>
+      {width < 768 && (
+        <RadialCircle classes="page__activity-history__radial-circle" />
+      )}
     </Page>
   );
 };

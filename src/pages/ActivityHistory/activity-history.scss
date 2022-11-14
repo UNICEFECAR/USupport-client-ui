@@ -14,4 +14,15 @@
     width: 100%;
     z-index: $z_index_emergency_button;
   }
+
+  &__radial-circle {
+    top: 3.5rem;
+    left: -15rem;
+  }
+
+  @media screen and (max-width: $screen-md) {
+    background-image: url(../assets/background-spiral.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
 }
