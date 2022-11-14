@@ -53,6 +53,7 @@ import {
   FAQ as FAQPage,
   UserDetails as UserDetailsPage,
   ResetPassword as ResetPasswordPage,
+  ActivityHistory as ActivityHistoryPage,
 } from "#pages/locales.js";
 
 import {
@@ -122,6 +123,7 @@ const resources = {
     "faq-page": FAQPage.en,
     "user-details-page": UserDetailsPage.en,
     "reset-password-page": ResetPasswordPage.en,
+    "activity-history-page": ActivityHistoryPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,

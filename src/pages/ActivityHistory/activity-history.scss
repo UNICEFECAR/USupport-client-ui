@@ -1,0 +1,17 @@
+/* ActivityHistory styles */
+@import "@USupport-components-library/styles";
+
+.page__activity-history {
+  &__button-container {
+    padding: $spacing_2_0 0;
+    padding-bottom: calc(5vh);
+    position: fixed;
+    bottom: 0;
+    background: $gradient_transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: $z_index_emergency_button;
+  }
+}

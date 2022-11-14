@@ -23,3 +23,4 @@ export * from "./Welcome";
 export * from "./UserProfile";
 export * from './UserDetails';
 export * from './ResetPassword';
+export * from './ActivityHistory';

@@ -1,0 +1,61 @@
+@import "@USupport-components-library/styles";
+
+.activity-history {
+  padding-bottom: $spacing_10_0;
+
+  @include full-height-page(calc($spacing_4_2 + 0rem));
+
+  @media screen and (min-width: $screen_md) {
+    @include full-height-page(calc($spacing_10_0 + 0rem));
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__provider-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & .avatar {
+      width: 4.2rem;
+      height: 4.2rem;
+      margin-right: $spacing_1_6;
+    }
+  }
+
+  &__messages-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+
+    @media screen and (min-width: $screen_md) {
+      max-width: 75rem;
+    }
+
+    .system-message {
+      align-self: center;
+    }
+
+    .message-sent {
+      align-self: flex-end;
+    }
+
+    & .message,
+    & .system-message {
+      margin-top: $spacing_1_6;
+    }
+
+    @media screen and (min-width: $screen_md) {
+      & .message,
+      & .system-message {
+        margin-top: $spacing_2_4;
+      }
+    }
+  }
+}

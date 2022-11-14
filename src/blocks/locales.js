@@ -22,3 +22,4 @@ export * as PrivacyPolicy from "./PrivacyPolicy/locales.js";
 export * as FAQ from "./FAQ/locales.js";
 export * as UserDetails from './UserDetails/locales.js';
 export * as ResetPassword from './ResetPassword/locales.js';
+export * as ActivityHistory from './ActivityHistory/locales.js';

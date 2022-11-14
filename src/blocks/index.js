@@ -23,3 +23,4 @@ export * from "./PrivacyPolicy";
 export * from "./FAQ";
 export * from './UserDetails';
 export * from './ResetPassword';
+export * from './ActivityHistory';

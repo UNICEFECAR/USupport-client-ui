@@ -23,3 +23,4 @@ export * as SOSCenterPage from "./SOSCenter/locales.js";
 export * as Welcome from "./Welcome/locales.js";
 export * as UserDetails from './UserDetails/locales.js';
 export * as ResetPassword from './ResetPassword/locales.js';
+export * as ActivityHistory from './ActivityHistory/locales.js';
