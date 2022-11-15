@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@USupport-components-library/src";
 
 import "./consultations.scss";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Consultations
@@ -13,10 +14,11 @@ import "./consultations.scss";
  * @returns {JSX.Element}
  */
 export const Consultations = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation("consultations-page");
 
   const handleScheduleConsultationClick = () => {
-    console.log("Schedule consultation button clicked");
+    navigate("/select-provider");
   };
 
   return (
