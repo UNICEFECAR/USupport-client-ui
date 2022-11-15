@@ -23,10 +23,20 @@
         width: 35rem;
       }
 
-      & > p {
+      & > .paragraph {
         color: $color_blue_3d527b;
         padding-bottom: $spacing_1_6;
       }
+    }
+
+    & .radio-button-selector-group {
+      padding-top: $spacing_2_4;
+    }
+
+    & .error-message {
+      margin: 0 auto;
+      text-align: center;
+      margin-top: $spacing_1_2;
     }
   }
 }

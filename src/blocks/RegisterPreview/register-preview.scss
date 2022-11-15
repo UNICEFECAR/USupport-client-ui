@@ -65,5 +65,10 @@
         }
       }
     }
+
+    & .error-message {
+      margin-right: $spacing_2_4;
+      text-align: center;
+    }
   }
 }

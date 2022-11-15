@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import Joi from "joi";
 import {
+  AccessToken,
   Block,
+  Button,
   Error,
   Grid,
   GridItem,
+  Input,
   InputPassword,
-  Button,
-  Icon,
   TermsAgreement,
-  Loading,
 } from "@USupport-components-library/src";
-import { userSvc } from "@USupport-components-library/services";
 import {
-  validateProperty,
   validate,
+  validateProperty,
 } from "@USupport-components-library/src/utils";
 import { useError } from "@USupport-components-library/hooks";
+import { userSvc } from "@USupport-components-library/services";
 
 import "./register-anonymous.scss";
 
@@ -32,18 +32,19 @@ import "./register-anonymous.scss";
  */
 export const RegisterAnonymous = () => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const { t } = useTranslation("register-anonymous");
 
   const schema = Joi.object({
     password: Joi.string()
       .pattern(new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}"))
       .label(t("password_error")),
+    nickname: Joi.string().label(t("nickname_error")),
     isPrivacyAndTermsSelected: Joi.boolean().invalid(false),
   });
 
   const [data, setData] = useState({
     password: "",
+    nickname: "",
     isPrivacyAndTermsSelected: false,
   });
   const [errors, setErrors] = useState({});
@@ -77,26 +78,30 @@ export const RegisterAnonymous = () => {
       password: data.password,
       clientData: {
         userAccessToken,
+        nickname: data.nickname,
       },
     });
   };
 
   const registerMutation = useMutation(register, {
     onSuccess: (response) => {
-      const { user: userData, token: tokenData } = response.data;
+      const { token: tokenData } = response.data;
       const { token, expiresIn, refreshToken } = tokenData;
 
       localStorage.setItem("token", token);
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
-      queryClient.setQueryData(["user-data"], userData);
-
-      navigate("/dashboard");
+      navigate("/register/support", {
+        state: {
+          hideGoBackArrow: false,
+        },
+      });
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);
       setErrors({ submit: errorMessage });
+      setIsSubmitting(false);
     },
     onSettled: () => {
       setIsSubmitting(false);
@@ -116,23 +121,19 @@ export const RegisterAnonymous = () => {
     let newData = { ...data };
     newData[field] = value;
     setData(newData);
-    validateProperty("password", data.password, schema, setErrors);
+    // validateProperty("password", data.password, schema, setErrors);
   };
 
-  const handleBlur = () => {
-    validateProperty("password", data.password, schema, setErrors);
-  };
-
-  // TODO: Show confirmation for copying ?
-  const handleCopyToClipboard = () => {
-    navigator.clipboard.writeText(userAccessToken);
+  const handleBlur = (field, value) => {
+    validateProperty(field, value, schema, setErrors);
   };
 
   const handleLoginRedirect = () => {
     navigate("/login");
   };
 
-  const canContinue = data.password && data.isPrivacyAndTermsSelected;
+  const canContinue =
+    data.password && data.isPrivacyAndTermsSelected && data.nickname;
 
   return (
     <Block classes="register-anonymous">
@@ -143,22 +144,20 @@ export const RegisterAnonymous = () => {
           classes="register-anonymous__grid__content-item"
         >
           <div className="register-anonymous__grid__content-item__main-component">
-            <p className="register-anonymous__grid__content-item__main-component__code-text  paragraph">
-              {t("paragraph_1")}
-            </p>
-            <div className="register-anonymous__grid__content-item__main-component__anonymous-code-container">
-              {userAccessTokenIsLoading ? (
-                <Loading size="sm" />
-              ) : (
-                <h4>{userAccessToken}</h4>
-              )}
-              <Icon
-                name="copy"
-                color="#9749FA"
-                classes="register-anonymous__grid__content-item__main-component__copy-icon"
-                onClick={handleCopyToClipboard}
-              />
-            </div>
+            <AccessToken
+              accessToken={userAccessToken}
+              isLoading={userAccessTokenIsLoading}
+              accessTokenLabel={t("paragraph_1")}
+            />
+            <Input
+              label={t("nickname_label")}
+              placeholder={t("nickname_placeholder")}
+              value={data.nickname}
+              onChange={(e) => handleChange("nickname", e.target.value)}
+              onBlur={(e) => handleBlur("nickname", e.target.value)}
+              errorMessage={errors.nickname}
+              classes="register-anonymous__grid__content-item__main-component__input"
+            />
             <InputPassword
               label={t("password_label")}
               classes="register-anonymous__grid__content-item__main-component__input-password"
@@ -166,7 +165,7 @@ export const RegisterAnonymous = () => {
               onChange={(e) => handleChange("password", e.currentTarget.value)}
               errorMessage={errors.password}
               onBlur={() => {
-                handleBlur();
+                handleBlur("password", data.password);
               }}
             />
             <TermsAgreement

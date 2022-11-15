@@ -1,14 +1,20 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-
+import { useNavigate } from "react-router-dom";
 import {
+  Avatar,
   Block,
+  Box,
+  Button,
+  ButtonWithIcon,
   Grid,
   GridItem,
-  Avatar,
+  Icon,
+  Loading,
 } from "@USupport-components-library/src";
+import { useGetProviderData } from "@USupport-components-library/hooks";
+
+const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
 import "./provider-overview.scss";
 
@@ -20,151 +26,140 @@ import "./provider-overview.scss";
  * @return {jsx}
  */
 export const ProviderOverview = () => {
-  const location = useLocation();
   const { t } = useTranslation("provider-overview");
+  const navigate = useNavigate();
 
-  const providerID = location.state?.providerID;
-
-  const fetchProviderData = async (id) => {
-    // TODO: Replace this with a real API call
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users/`);
-    console.log("fetch");
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    const data = await response.json();
-    return data;
+  const [providerDataQuery] = useGetProviderData("test-id");
+  const provider = providerDataQuery.data;
+  const image = AMAZON_S3_BUCKET + "/" + (provider?.image || "default");
+  const allOptionsToString = (option) => {
+    return provider[option].join(", ");
   };
 
-  const providerQuery = useQuery(
-    ["provider-data", providerID],
-    () => fetchProviderData(providerID),
-    {
-      enabled: !!providerID,
-      placeholderData: {
-        name: "Dr. Joanna Doe",
-        specialities: "Psychiatrist, Neuropsychiatrist, Psychotherapist",
-        experience: 16,
-        earliestAvailable: "from 10:30 to 11:30 on 09.09.22",
-        webSite: "www.drdoe.com",
-        price: 50,
-        languages: ["English", "German"],
-        qualifications: ["Qualification 1", "Qualification 2"],
-        startDate: "01.01.2005",
-        education: ["Bechelor degree", "Masters degree"],
-        psychotherapeuticApproach:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        workWith: ["Adults", "Children", "Teens"],
-        consultationNum: 74,
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius euismod.",
-        usefulFor: ["Depression", "Anxiety", "Stress"],
-      },
+  const renderSpecializations = useCallback(() => {
+    if (provider) {
+      return provider.specializations.map((x) => t(x)).join(", ");
     }
-  );
+  });
 
-  const providerData = providerQuery.data || {};
+  const renderWorkWith = useCallback(() => {
+    if (provider) {
+      return provider.workWith
+        .map((x) => t(x.topic.replaceAll("-", "_")))
+        .join(", ");
+    }
+  }, [provider]);
 
-  const renderAllOptions = (option) => {
-    return providerData[option].join(", ");
-  };
-
-  const renderAllOptionsAsList = (option) => {
-    return providerData[option].map((item, index) => (
-      <li key={index}>{item}</li>
-    ));
-  };
+  const renderLanguages = useCallback(() => {
+    if (provider) {
+      return provider.languages.map((x) => x.name).join(" ");
+    }
+  }, [provider]);
 
   return (
-    <Block classes="provider-overview">
-      <Grid md={8} lg={12} classes="provider-overview__grid">
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <div className="provider-overview__grid__item__content-container">
-            <Avatar size="lg" />
-            <div className="provider-overview__grid__item__content-container__details">
-              <p className="text">{providerData.name}</p>
-              <p className="small-text">{providerData.specialities}</p>
+    <Block classes="provider-profile">
+      {providerDataQuery.isLoading || !provider ? (
+        <Loading size="lg" />
+      ) : (
+        <Grid md={8} lg={12} classes="provider-profile__grid">
+          <GridItem md={8} lg={12}>
+            <div className="provider-profile__header">
+              <div className="provider-profile__header__provider-container">
+                <Avatar
+                  image={image}
+                  classes="provider-profile__header__provider-container__avatar"
+                />
+                <div className="provider-profile__header__provider-container__text-container">
+                  <h4>
+                    {provider.name} {provider.patronym ? provider.patronym : ""}{" "}
+                    {provider.surname}
+                  </h4>
+                  <p className="small-text">{renderSpecializations()}</p>
+                </div>
+              </div>
+            </div>
+          </GridItem>
+          <GridItem md={8} lg={12} classes="provider-profile__grid__item">
+            <div className="provider-profile__information-container-with-icon">
+              <Icon
+                name="call"
+                size="md"
+                color="#66768D"
+                classes="provider-profile__information-container-with-icon__icon"
+              />
+              <p className="small-text">{`${provider.phonePrefix} ${provider.phone}`}</p>
+            </div>
+            <div className="provider-profile__information-container-with-icon">
+              <Icon
+                name="mail-admin"
+                size="md"
+                color="#66768D"
+                classes="provider-profile__information-container-with-icon__icon"
+              />
+              <p className="small-text">{provider.email}</p>
+            </div>
+            <div className="provider-profile__information-container-with-icon">
+              <Icon
+                name="dollar"
+                size="md"
+                color="#66768D"
+                classes="provider-profile__information-container-with-icon__icon"
+              />
               <p className="small-text">
-                {providerData.experience} {t("years_of_experience")}
+                {provider.price}$ for 1 hour consultation
               </p>
             </div>
-          </div>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("earliest_free_spot")}
-          </p>
-          <p className="text">{providerData.earliestAvailable}</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("website")}
-          </p>
-          <p className="text">
-            <a href={`http://${providerData.webSite}`}>
-              {providerData.webSite}
-            </a>
-          </p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("price_per_consultation")}
-          </p>
-          <p className="text">{providerData.price}$</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("language_of_operation")}
-          </p>
-          <p className="text">{renderAllOptions("languages")}</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("qualifications")}
-          </p>
-          <p className="text">{renderAllOptions("qualifications")}</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("specialist_from")}
-          </p>
-          <p className="text">{providerData.startDate}</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("education")}
-          </p>
-          <p className="text">{renderAllOptions("education")}</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("approach")}
-          </p>
-          <p className="text">{providerData.psychotherapeuticApproach}</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("work_with")}
-          </p>
-          <p className="text">{renderAllOptions("workWith")}</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("overall_consultations")}
-          </p>
-          <p className="text">{providerData.consultationNum} consultations</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("description")}
-          </p>
-          <p className="text">{providerData.description}</p>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="provider-overview__grid__item">
-          <p className="text provider-overview__grid__item__heading">
-            {t("useful_for")}
-          </p>
-          <p className="text">{renderAllOptionsAsList("usefulFor")}</p>
-        </GridItem>
-      </Grid>
+            <div className="provider-profile__information-container">
+              <p className="small-text provider-profile__information-container__heading">
+                {t("earliest_spot_label")}
+              </p>
+              <p className="small-text provider-profile__information-container__text">
+                {provider.earliestAvailable}
+              </p>
+            </div>
+            <div className="provider-profile__information-container">
+              <p className="small-text provider-profile__information-container__heading">
+                {t("languages_label")}
+              </p>
+              <p className="small-text provider-profile__information-container__text">
+                {renderLanguages()}
+              </p>
+            </div>
+            <div className="provider-profile__information-container">
+              <p className="small-text provider-profile__information-container__heading">
+                {t("education_label")}
+              </p>
+              <p className="small-text provider-profile__information-container__text">
+                {allOptionsToString("education")}
+              </p>
+            </div>
+            <div className="provider-profile__information-container">
+              <p className="small-text provider-profile__information-container__heading">
+                {t("work_with_label")}
+              </p>
+              <p className="small-text provider-profile__information-container__text">
+                {renderWorkWith()}
+              </p>
+            </div>
+            <div className="provider-profile__information-container">
+              <p className="small-text provider-profile__information-container__heading">
+                {t("done_consultations_label")}
+              </p>
+              <p className="small-text provider-profile__information-container__text">
+                {provider.consultations} consultations
+              </p>
+            </div>
+            <div className="provider-profile__information-container">
+              <p className="small-text provider-profile__information-container__heading">
+                {t("description_label")}
+              </p>
+              <p className="small-text provider-profile__information-container__text">
+                {provider.description}
+              </p>
+            </div>
+          </GridItem>
+        </Grid>
+      )}
     </Block>
   );
 };

@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 import {
   Block,
+  Button,
+  CustomCarousel,
+  Error as ErrorComponent,
   Grid,
   GridItem,
-  CustomCarousel,
-  Button,
 } from "@USupport-components-library/src";
+import { userSvc } from "@USupport-components-library/services";
+import { useError } from "@USupport-components-library/hooks";
 
 import "./register-preview.scss";
 
 import { mascotHappyBlue } from "@USupport-components-library/assets";
-import { useNavigate } from "react-router-dom";
 
 /**
  * RegisterPreview
@@ -23,6 +27,7 @@ import { useNavigate } from "react-router-dom";
 export const RegisterPreview = () => {
   const { t } = useTranslation("register-preview");
   const navigate = useNavigate();
+  const [error, setErrror] = useState();
 
   const carouselItems = [
     {
@@ -55,6 +60,26 @@ export const RegisterPreview = () => {
     });
   };
 
+  const tmpLogin = async () => {
+    const res = await userSvc.tmpLogin();
+    return res.data;
+  };
+
+  const tmpLoginMutation = useMutation(tmpLogin, {
+    onSuccess: (data) => {
+      const { token, expiresIn, refreshToken } = data.token;
+      localStorage.setItem("token", token);
+      localStorage.setItem("expires-in", expiresIn);
+      localStorage.setItem("refresh-token", refreshToken);
+
+      navigate("/dashboard");
+    },
+    onError: (error) => {
+      const { message: errorMessage } = useError(error);
+      setErrror(errorMessage);
+    },
+  });
+
   const handleRedirect = (redirectTo) => {
     if (redirectTo === "email") {
       navigate("/register", {
@@ -69,7 +94,7 @@ export const RegisterPreview = () => {
         },
       });
     } else {
-      console.log("Navigate to dashboard...");
+      tmpLoginMutation.mutate();
     }
   };
 
@@ -100,6 +125,7 @@ export const RegisterPreview = () => {
             size="lg"
             onClick={() => handleRedirect("guest")}
           />
+          {error ? <ErrorComponent message={error} /> : null}
         </GridItem>
       </Grid>
     </Block>

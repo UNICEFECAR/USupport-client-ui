@@ -1,27 +1,15 @@
 {
   "page_1": "Home",
-  "page_2": "How it works?",
-  "page_3": "About Us",
-  "page_4": "Information Portal",
-  "page_5": "Contact Us",
+  "page_2": "Consultations",
+  "page_3": "Information Portal",
 
-  "country_1": "",
-  "country_2": "",
-  "country_3": "",
-
-  "language_1": "",
-  "language_2": "",
-  "language_3": "",
-  "language_4": "",
-  "language_5": "",
-  "language_6": "",
-
-  "footer_1": "About Us",
-  "footer_2": "Information portal",
-  "footer_3": "How it works?",
-  "footer_4": "Terms of Service",
-  "footer_5": "Privacy Policy",
-  "footer_6": "Cookie Settings",
+  "footer_1": "Home",
+  "footer_2": "Consultations",
+  "footer_3": "Information Portal",
+  "footer_4": "Your profile",
+  "footer_5": "Terms and Conditions",
+  "footer_6": "Privacy Policy",
+  "footer_7": "Cookie Settings",
 
   "emergency_button": "SOS Center",
 

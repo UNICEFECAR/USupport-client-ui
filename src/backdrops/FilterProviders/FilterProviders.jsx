@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import {
   Backdrop,
   CheckBoxGroup,
-  DropdownWithLabel,
-  Button,
+  Input,
 } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
@@ -21,8 +20,8 @@ export const FilterProviders = ({ isOpen, onClose }) => {
 
   const [data, setData] = useState({
     providerTypes: [],
-    providerGenders: [],
-    yearsOfExperience: null,
+    providerSex: [],
+    maxPrice: "",
   });
 
   const [providerTypes, setProviderTypes] = useState([
@@ -39,20 +38,15 @@ export const FilterProviders = ({ isOpen, onClose }) => {
     { label: t("provider_coach"), value: "coach", isSelected: false },
   ]);
 
-  const [providerGenders, setProviderGenders] = useState([
+  const [providerSex, setProviderSex] = useState([
     {
-      label: t("gender_m"),
+      label: t("male"),
       value: "male",
       isSelected: false,
     },
-    { label: t("gender_f"), value: "female", isSelected: false },
+    { label: t("female"), value: "female", isSelected: false },
+    { label: t("unspecified"), value: "unspecified", isSelected: false },
   ]);
-
-  const yearsOfExperience = [
-    { label: "1-5", value: "1-5" },
-    { label: "5-10", value: "5-10" },
-    { label: "10-15", value: "10-15" },
-  ];
 
   const handleSelect = (field, value) => {
     const dataCopy = { ...data };
@@ -66,15 +60,12 @@ export const FilterProviders = ({ isOpen, onClose }) => {
       .filter((x) => x.isSelected)
       .map((x) => x.value);
 
-    dataCopy["providerGenders"] = providerGenders
+    dataCopy["providerSex"] = providerSex
       .filter((x) => x.isSelected)
       .map((x) => x.value);
 
-    dataCopy["yearsOfExperience"] = dataCopy["yearsOfExperience"].value;
-    console.log(dataCopy);
-
     setData(dataCopy);
-    onClose();
+    onClose(dataCopy);
   };
 
   return (
@@ -85,7 +76,7 @@ export const FilterProviders = ({ isOpen, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
       ctaLabel={t("button_label")}
-      ctahandleClick={handleSave}
+      ctaHandleClick={handleSave}
     >
       <div className="filter-providers__content">
         <div className="filter-providers__content__inputs-container">
@@ -96,17 +87,17 @@ export const FilterProviders = ({ isOpen, onClose }) => {
             setOptions={setProviderTypes}
           />
           <CheckBoxGroup
-            name="gender"
-            label={t("provider_gender_checkbox_group_label")}
-            options={providerGenders}
-            setOptions={setProviderGenders}
+            name="sex"
+            label={t("provider_sex_checkbox_group_label")}
+            options={providerSex}
+            setOptions={setProviderSex}
           />
-          <DropdownWithLabel
-            options={yearsOfExperience}
-            selected={data.yearsOfExperience}
-            placeholder={t("dropdown_placeholder")}
-            setSelected={(option) => handleSelect("yearsOfExperience", option)}
-            label={"Years of experience"}
+          <Input
+            value={data.maxPrice}
+            onChange={(e) => handleSelect("maxPrice", e.target.value)}
+            label={t("max_price")}
+            placeholder={t("max_price_placeholder")}
+            type="number"
           />
         </div>
         {/* <Button label={t("button_label")} size="lg" onClick={handleSave} /> */}

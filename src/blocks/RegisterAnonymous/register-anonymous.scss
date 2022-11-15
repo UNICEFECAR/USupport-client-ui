@@ -29,24 +29,12 @@
           color: $color_blue_3d527b;
         }
 
-        &__anonymous-code-container {
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          align-items: center;
-          justify-content: center;
-          margin-top: $spacing_1_3;
-          margin-bottom: $spacing_3_6;
-        }
-
-        &__copy-icon {
-          margin-left: $spacing_1_2;
-          cursor: pointer;
-        }
-
-        &__input-password {
+        &__input {
           @media screen and (min-width: $screen_md) {
             margin-top: $spacing_6_4;
+          }
+          &-password {
+            margin-top: $spacing_1_2;
           }
         }
 
