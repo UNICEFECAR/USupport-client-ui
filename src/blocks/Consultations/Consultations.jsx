@@ -40,10 +40,14 @@ export const Consultations = ({}) => {
         startDate:
           x < 4
             ? new Date("2022-11-1 15:00")
+            : x === 4
+            ? new Date(today.setHours(today.getHours() - 1))
             : new Date(today.setDate(today.getDate() + 3)),
         endDate:
           x < 4
             ? new Date("2022-11-1 16:00")
+            : x === 4
+            ? new Date(today.setHours(today.getHours() + 4))
             : new Date(today.setDate(today.getDate() + 3)),
         overview: false,
       };
@@ -70,9 +74,13 @@ export const Consultations = ({}) => {
 
     return consultationsQuery.data?.filter((consultation) => {
       if (filter === "upcoming") {
-        return consultation.startDate > currentDate;
+        return (
+          consultation.startDate >= currentDate ||
+          (currentDate >= consultation.startDate &&
+            currentDate <= consultation.endDate)
+        );
       } else {
-        return consultation.startDate < currentDate;
+        return consultation.endDate < currentDate;
       }
     });
   }, [consultationsQuery.data, filter]);
