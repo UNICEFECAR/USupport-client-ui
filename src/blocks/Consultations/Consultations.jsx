@@ -89,10 +89,11 @@ export const Consultations = ({}) => {
           classes="consultations__grid__consultations-item__grid__consultation"
         >
           <Consultation
-            specialistName={consultation.specialistName}
+            name={consultation.specialistName}
             startDate={consultation.startDate}
             endDate={consultation.endDate}
             overview={consultation.overview}
+            renderIn="client"
           />
         </GridItem>
       );
