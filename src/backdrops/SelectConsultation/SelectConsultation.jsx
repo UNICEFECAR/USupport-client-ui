@@ -16,7 +16,12 @@ import "./select-consultation.scss";
  *
  * @return {jsx}
  */
-export const SelectConsultation = ({ isOpen, onClose, edit = false }) => {
+export const SelectConsultation = ({
+  isOpen,
+  onClose,
+  edit = false,
+  handleConfirmConsultation,
+}) => {
   const { t } = useTranslation("select-consultation");
 
   const [freeSlots, setFreeSlots] = useState([
@@ -47,7 +52,7 @@ export const SelectConsultation = ({ isOpen, onClose, edit = false }) => {
   };
 
   const handleSave = () => {
-    console.log("Save" + selectedSlot);
+    handleConfirmConsultation();
     onClose();
   };
 
