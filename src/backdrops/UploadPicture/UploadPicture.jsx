@@ -30,7 +30,9 @@ export const UploadPicture = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (!image && clientData) {
-      setImage(AMAZON_S3_BUCKET + "/" + clientData.image);
+      if (clientData.image) {
+        setImage(AMAZON_S3_BUCKET + "/" + clientData.image);
+      }
     }
   }, [clientData]);
 
@@ -72,7 +74,7 @@ export const UploadPicture = ({ isOpen, onClose }) => {
     uploadFileMutation.mutate(content);
   });
 
-  const { getRootProps, getInputProps, inputRef } = useDropzone({
+  const { getRootProps, getInputProps, open } = useDropzone({
     onDrop,
   });
 
@@ -85,7 +87,7 @@ export const UploadPicture = ({ isOpen, onClose }) => {
       heading={t("heading")}
       ctaLabel={t("upload")}
       ctaHandleClick={() => {
-        inputRef.current?.click();
+        open();
       }}
       errorMessage={error}
     >
