@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -14,8 +14,11 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { destructureArticleData } from "@USupport-components-library/utils";
-import { cmsSvc } from "@USupport-components-library/services";
-import { useDebounce } from "@USupport-components-library/hooks";
+import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+import {
+  useDebounce,
+  useEventListener,
+} from "@USupport-components-library/hooks";
 
 import "./articles.scss";
 
@@ -57,7 +60,7 @@ export const Articles = ({
     }
   };
 
-  useQuery(["ageGroups"], getAgeGroups, {
+  const ageGroupsQuery = useQuery(["ageGroups", i18n.language], getAgeGroups, {
     refetchOnWindowFocus: false,
     refetchOnMount: true,
     onSuccess: (data) => {
@@ -105,12 +108,16 @@ export const Articles = ({
     }
   };
 
-  useQuery(["articles-categories"], getCategories, {
-    refetchOnWindowFocus: false,
-    onSuccess: (data) => {
-      setCategories([...data]);
-    },
-  });
+  const categoriesQuerry = useQuery(
+    ["articles-categories", i18n.language],
+    getCategories,
+    {
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        setCategories([...data]);
+      },
+    }
+  );
 
   const handleCategoryOnPress = (index) => {
     const categoriesCopy = [...categories];
@@ -134,17 +141,41 @@ export const Articles = ({
     setSearchValue(newValue);
   };
 
+  //--------------------- Country Change Event Listener ----------------------//
+  const [currentCountry, setCurrentCountry] = useState(
+    localStorage.getItem("country")
+  );
+
+  const handler = useCallback(() => {
+    setCurrentCountry(localStorage.getItem("country"));
+  }, []);
+
+  // Add event listener
+  useEventListener("countryChanged", handler);
+
   //--------------------- Articles ----------------------//
+  const getArticlesIds = async () => {
+    const articlesIds = await adminSvc.getArticles();
+
+    return articlesIds;
+  };
+
+  const articleIdsQuerry = useQuery(
+    ["articleIds", currentCountry],
+    getArticlesIds
+  );
+
   const [hasMore, setHasMore] = useState(true);
 
   const getArticlesData = async () => {
-    const ageGroupId = ageGroups.find((x) => x.isSelected).id;
+    const ageGroupId = ageGroupsQuery.data.find((x) => x.isSelected).id;
+
     let categoryId = "";
     if (selectedCategory.value !== "all") {
       categoryId = selectedCategory.id;
     }
 
-    const res = await cmsSvc.getArticles({
+    let { data } = await cmsSvc.getArticles({
       limit: 6,
       contains: debouncedSearchValue,
       ageGroupId,
@@ -153,20 +184,34 @@ export const Articles = ({
       sortOrder: sort ? "desc" : null,
       locale: i18n.language,
       populate: true,
+      ids: articleIdsQuerry.data,
     });
-    const articles = res.data;
-    const numberOfArticles = res.meta.pagination.total;
+
+    const articles = data.data;
+    const numberOfArticles = data.meta.pagination.total;
+
     return { articles, numberOfArticles };
   };
 
   const [articles, setArticles] = useState();
   const [numberOfArticles, setNumberOfArticles] = useState();
   const { isLoading: loading } = useQuery(
-    ["articles", debouncedSearchValue, selectedAgeGroup, selectedCategory],
+    [
+      "articles",
+      debouncedSearchValue,
+      selectedAgeGroup,
+      selectedCategory,
+      articleIdsQuerry.data,
+    ],
     getArticlesData,
     {
-      // Run the query when the getCategories and getAgeGroups queries have finished running
-      enabled: categories?.length > 0 && ageGroups?.length > 0,
+      enabled:
+        !articleIdsQuerry.isLoading &&
+        !ageGroupsQuery.isLoading &&
+        !categoriesQuerry.isLoading &&
+        categories?.length > 0 &&
+        ageGroups?.length > 0 &&
+        articleIdsQuerry.data?.length > 0,
       refetchOnWindowFocus: false,
       onSuccess: (data) => {
         setArticles([...data.articles]);
@@ -194,8 +239,8 @@ export const Articles = ({
       categoryId = selectedCategory.id;
     }
 
-    const res = await cmsSvc.getArticles({
-      startFrom: articles.length,
+    const { data } = await cmsSvc.getArticles({
+      startFrom: articles?.length,
       limit: 6,
       contains: searchValue,
       ageGroupId: ageGroupId,
@@ -204,32 +249,17 @@ export const Articles = ({
       sortBy: sort,
       sortOrder: sort ? "desc" : null,
       populate: true,
+      ids: articleIdsQuerry.data,
     });
 
-    const newArticles = res.data;
+    const newArticles = data.data;
 
     setArticles((prevArticles) => [...prevArticles, ...newArticles]);
   };
 
-  //--------------------- Newest Article ----------------------//
-  const getNewestArticle = async () => {
-    const res = await cmsSvc.getNewestArticles(1, i18n.language);
-    const newestArticleData = destructureArticleData(CMS_HOST, res.data[0]);
-    return newestArticleData;
-  };
-
-  const { data: newestArticle } = useQuery(
-    ["newestArticle"],
-    getNewestArticle,
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
-
   return (
     <Block classes="articles">
-      {newestArticle &&
-      ageGroups &&
+      {ageGroups &&
       ageGroups.length > 0 &&
       categories &&
       categories.length > 0 ? (
