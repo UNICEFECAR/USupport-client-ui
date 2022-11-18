@@ -23,3 +23,4 @@ export * as FAQ from "./FAQ/locales.js";
 export * as UserDetails from "./UserDetails/locales.js";
 export * as ResetPassword from "./ResetPassword/locales.js";
 export * as TermsOfUse from "./TermsOfUse/locales.js";
+export * as CookiePolicy from "./CookiePolicy/locales.js";

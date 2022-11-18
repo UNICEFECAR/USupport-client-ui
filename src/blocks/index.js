@@ -24,3 +24,4 @@ export * from "./FAQ";
 export * from "./UserDetails";
 export * from "./ResetPassword";
 export * from "./TermsOfUse";
+export * from "./CookiePolicy";
