@@ -49,7 +49,10 @@ export const Page = ({
   const image = useQuery(
     ["client-image"],
     async () => {
-      const data = queryClient.getQueryData(["clientData"]);
+      const data = queryClient.getQueryData(["client-data"]);
+      if (!data) {
+        queryClient.invalidateQueries({ queryKey: ["client-data"] });
+      }
       await new Promise((resolve) => resolve());
       return data?.image || "default";
     },

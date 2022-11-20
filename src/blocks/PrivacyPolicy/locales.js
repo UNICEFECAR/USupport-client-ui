@@ -1,1 +1,1 @@
-export * as en from './locales/en.json';
+export * as en from "./locales/en.json";

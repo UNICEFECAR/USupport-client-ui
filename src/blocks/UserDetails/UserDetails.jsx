@@ -15,12 +15,11 @@ import {
   Loading,
   Modal,
   Toggle,
+  ProfilePicturePreview,
 } from "@USupport-components-library/src";
 import { validateProperty, validate } from "@USupport-components-library/utils";
 import { userSvc, clientSvc } from "@USupport-components-library/services";
 import { useGetClientData, useUpdateClientData } from "#hooks";
-
-const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
 import Joi from "joi";
 
@@ -252,20 +251,12 @@ export const UserDetails = ({
       ) : (
         <Grid classes="user-details__grid">
           <GridItem md={8} lg={12} classes="user-details__grid-item">
-            <div className="user-details__grid-item__image-container">
-              <Icon
-                onClick={openDeletePictureBackdrop}
-                name="circle-action-close-purple"
-                size="md"
-              />
-              <img
-                src={AMAZON_S3_BUCKET + "/" + clientData.image}
-                alt="profile-picture"
-              />
-              <p onClick={openUploadPictureModal} className="small-text">
-                {t("change_photo")}
-              </p>
-            </div>
+            <ProfilePicturePreview
+              image={clientData.image}
+              handleDeleteClick={openDeletePictureBackdrop}
+              handleChangeClick={openUploadPictureModal}
+              changePhotoText={t("change_photo")}
+            />
 
             {clientData.accessToken ? (
               <AccessToken
