@@ -26,6 +26,8 @@ import {
   FAQ,
   UserDetails,
   ResetPassword,
+  CookiePolicy,
+  TermsOfUse,
 } from "#blocks/locales.js";
 
 import {
@@ -54,6 +56,8 @@ import {
   UserDetails as UserDetailsPage,
   ResetPassword as ResetPasswordPage,
   ActivityHistory as ActivityHistoryPage,
+  CookiePolicy as CookiePolicyPage,
+  TermsOfUse as TermsOfUsePage,
 } from "#pages/locales.js";
 
 import {
@@ -62,6 +66,7 @@ import {
   CancelConsultation,
   ConfirmConsultation,
   SafetyFeedback,
+  SelectConsultation,
   ChangePassword as ChangePasswordBackdrop,
   DeleteAccount,
   UploadPicture,
@@ -97,6 +102,8 @@ const resources = {
     faq: FAQ.en,
     "user-details": UserDetails.en,
     "reset-password": ResetPassword.en,
+    "cookie-policy": CookiePolicy.en,
+    "terms-of-use": TermsOfUse.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -124,6 +131,8 @@ const resources = {
     "user-details-page": UserDetailsPage.en,
     "reset-password-page": ResetPasswordPage.en,
     "activity-history-page": ActivityHistoryPage.en,
+    "cookie-policy-page": CookiePolicyPage.en,
+    "terms-of-use-page": TermsOfUsePage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
@@ -133,6 +142,7 @@ const resources = {
     "cancel-consultation": CancelConsultation.en,
     "edit-consultation": EditConsultation.en,
     "safety-feedback": SafetyFeedback.en,
+    "select-consultation": SelectConsultation.en,
     "change-password-backdrop": ChangePasswordBackdrop.en,
     "delete-account": DeleteAccount.en,
     "upload-picture": UploadPicture.en,

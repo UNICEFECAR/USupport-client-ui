@@ -39,7 +39,7 @@ export const ForgotPassword = () => {
   const handleResetPassword = async () => {
     if ((await validate(data, schema, setErrors)) == null) {
       try {
-        await userSvc.generateForgotPasswordLink(data.email);
+        await userSvc.generateForgotPasswordLink(data.email, "client");
       } catch (error) {
         const { message: errorMessage } = useError(error);
         setErrors({ submit: errorMessage });

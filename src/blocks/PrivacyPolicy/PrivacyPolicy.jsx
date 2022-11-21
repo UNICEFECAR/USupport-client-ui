@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
   Block,
@@ -7,9 +7,8 @@ import {
   Loading,
   Markdown,
 } from "@USupport-components-library/src";
-
 import { useTranslation } from "react-i18next";
-
+import { useEventListener } from "@USupport-components-library/hooks";
 import { cmsSvc } from "@USupport-components-library/services";
 
 import "./privacy-policy.scss";
@@ -24,12 +23,23 @@ import "./privacy-policy.scss";
 export const PrivacyPolicy = () => {
   const { i18n, t } = useTranslation("privacy-policy");
 
-  const countryAlpha2 = "KZ"; // TODO: get country code
+  //--------------------- Country Change Event Listener ----------------------//
+  const [currentCountry, setCurrentCountry] = useState(
+    localStorage.getItem("country")
+  );
 
+  const handler = useCallback(() => {
+    setCurrentCountry(localStorage.getItem("country"));
+  }, []);
+
+  // Add event listener
+  useEventListener("countryChanged", handler);
+
+  //--------------------- Policies ----------------------//
   const getPolicies = async () => {
     const { data } = await cmsSvc.getPolicies(
       i18n.language,
-      countryAlpha2,
+      currentCountry,
       "client"
     );
 
@@ -40,7 +50,8 @@ export const PrivacyPolicy = () => {
     data: policiesData,
     isLoading: policiesLoading,
     isFetched: isPoliciesFetched,
-  } = useQuery(["policies"], getPolicies);
+  } = useQuery(["policies", currentCountry, i18n.language], getPolicies);
+
   return (
     <Block classes="privacy-policy">
       <Grid>

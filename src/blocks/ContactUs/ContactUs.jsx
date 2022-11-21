@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Block,
   DropdownWithLabel,
@@ -37,6 +38,7 @@ const initialData = {
  * @return {jsx}
  */
 export const ContactUs = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation("contact-us-block");
   const [data, setData] = useState({ ...initialData });
   const [issues, setIssues] = useState([...initialIssues]);
@@ -59,8 +61,7 @@ export const ContactUs = () => {
   }, [data]);
 
   const handleModalSuccessCtaClick = () => {
-    // TODO: Redirect to the dashboard
-    console.log("Redirect to Dashboard");
+    navigate("/dashboard");
   };
 
   const closeSuccessModal = () => setIsSuccessModalOpen(false);

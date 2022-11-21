@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
  * @returns {JSX.Element}
  */
 export const PrivacyPolicy = () => {
-  const { i18n, t } = useTranslation("privacy-policy-page");
+  const { t } = useTranslation("privacy-policy-page");
 
   return (
     <Page classes="page__privacy-policy" heading={t("heading")}>

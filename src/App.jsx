@@ -30,6 +30,8 @@ import {
   UserDetails,
   ResetPassword,
   ActivityHistory,
+  CookiePolicy,
+  TermsOfUse,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 
@@ -120,6 +122,22 @@ function App() {
             element={
               <CountryValidationRoute>
                 <PrivacyPolicy />
+              </CountryValidationRoute>
+            }
+          />
+          <Route
+            path="/cookie-policy"
+            element={
+              <CountryValidationRoute>
+                <CookiePolicy />
+              </CountryValidationRoute>
+            }
+          />
+          <Route
+            path="/terms-of-use"
+            element={
+              <CountryValidationRoute>
+                <TermsOfUse />
               </CountryValidationRoute>
             }
           />

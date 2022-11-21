@@ -8,29 +8,6 @@
       justify-self: center;
       padding-top: $spacing_2_4;
 
-      &__image-container {
-        width: 8rem;
-        position: relative;
-        margin: 0 auto;
-        & img {
-          width: 8rem;
-          height: 8rem;
-          border-radius: 50%;
-        }
-
-        & p {
-          color: $color_secondary_9749fa;
-          cursor: pointer;
-        }
-
-        & .icon {
-          position: absolute;
-          top: 0;
-          right: 0;
-          cursor: pointer;
-        }
-      }
-
       &__access-token {
         padding-top: $spacing_3_2;
 
