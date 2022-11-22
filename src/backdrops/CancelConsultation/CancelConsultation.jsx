@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Backdrop,
   ConsultationInformation,
-  Button,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
+import { useCancelConsultation } from "@USupport-components-library/hooks";
+import { toast } from "react-toastify";
 
 import "./cancel-consultation.scss";
 
@@ -18,12 +19,31 @@ import "./cancel-consultation.scss";
 export const CancelConsultation = ({
   isOpen,
   onClose,
-  consultation,
+  // consultation,
   provider,
 }) => {
   const { t } = useTranslation("cancel-consultation");
+  const [error, setError] = useState();
 
+  // TODO: Get the actual consultation from props, or fetch it from the API
+  const consultation = { startDate: new Date(), endDate: new Date() };
   const { startDate, endDate } = consultation;
+
+  const onCancelSuccess = () => {
+    onClose();
+    toast(t("cancel_success"));
+  };
+  const onCancelError = (error) => {
+    setError(error);
+  };
+  const cancelConsultationMutation = useCancelConsultation(
+    onCancelSuccess,
+    onCancelError
+  );
+
+  const handleCancelClick = () => {
+    cancelConsultationMutation.mutate();
+  };
 
   return (
     <Backdrop
@@ -33,14 +53,15 @@ export const CancelConsultation = ({
       onClose={onClose}
       heading={t("heading")}
       ctaLabel={t("cancel_button_label")}
-      ctaHandleClick={() => console.log("cancel")}
+      ctaHandleClick={handleCancelClick}
       secondaryCtaLabel={t("keep_button_label")}
       secondaryCtaHandleClick={onClose}
+      errorMessage={error}
     >
       <ConsultationInformation
         startDate={startDate}
         endDate={endDate}
-        providerName={provider.name}
+        providerName={provider?.name}
         classes="cancel-consultation__provider-consultation"
       />
     </Backdrop>
