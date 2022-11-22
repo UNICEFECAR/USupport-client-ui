@@ -28,6 +28,7 @@ import {
   ResetPassword,
   CookiePolicy,
   TermsOfUse,
+  ActivityHistory,
 } from "#blocks/locales.js";
 
 import {
@@ -104,6 +105,7 @@ const resources = {
     "reset-password": ResetPassword.en,
     "cookie-policy": CookiePolicy.en,
     "terms-of-use": TermsOfUse.en,
+    "activity-history": ActivityHistory.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,

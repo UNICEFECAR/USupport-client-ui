@@ -1,34 +1,70 @@
 @import "@USupport-components-library/styles";
 
 .activity-history {
-  padding-bottom: $spacing_10_0;
+  @include full-height-page-navbar;
 
-  @include full-height-page(calc($spacing_4_2 + 0rem));
+  &__header-block {
+    background-color: $color_white_ff;
+    left: 0;
+    padding: $spacing_2_0;
+    position: fixed;
+    right: 0;
+    z-index: $z_index_2;
 
-  @media screen and (min-width: $screen_md) {
-    @include full-height-page(calc($spacing_10_0 + 0rem));
+    @media screen and (min-width: $screen-md) {
+      top: $spacing_6_6;
+    }
+
+    @media screen and (min-width: 1100px) {
+      padding-top: $spacing_3_6;
+    }
+
+    &__provider-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      &__icon {
+        position: absolute;
+        left: 0;
+      }
+
+      & .avatar {
+        width: 4.2rem;
+        height: 4.2rem;
+        margin-right: $spacing_1_6;
+      }
+    }
   }
 
-  &__content {
+  &__main {
+    padding-top: $spacing_8_0;
+  }
+
+  &__main__button-container {
+    padding: $spacing_2_0 0;
+    padding-bottom: calc(5vh);
+    // position: fixed;
+    bottom: 0;
+    background: $gradient_transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: $z_index_emergency_button;
+    // padding-bottom: $spacing_12_0;
+  }
+
+  &__main__content {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
   }
 
-  &__provider-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    & .avatar {
-      width: 4.2rem;
-      height: 4.2rem;
-      margin-right: $spacing_1_6;
-    }
-  }
-
-  &__messages-container {
+  &__main__messages-container {
     display: flex;
     flex-direction: column;
     flex: 1;
