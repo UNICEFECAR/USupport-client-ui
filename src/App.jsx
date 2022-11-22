@@ -35,6 +35,9 @@ import {
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // AOS imports
 import "aos/dist/aos.css";
 import AOS from "aos";
@@ -278,6 +281,7 @@ function App() {
         </Routes>
       </Router>
       <ReactQueryDevtools initialOpen />
+      <ToastContainer />
     </QueryClientProvider>
   );
 }
