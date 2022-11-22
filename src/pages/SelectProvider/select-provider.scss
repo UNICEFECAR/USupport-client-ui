@@ -1,6 +1,6 @@
 /* SelectProvider styles */
-@import '@USupport-components-library/styles';
+@import "@USupport-components-library/styles";
 
-.page__select-provider{
+.page__select-provider {
+  @include full-height-page-navbar;
 }
-
