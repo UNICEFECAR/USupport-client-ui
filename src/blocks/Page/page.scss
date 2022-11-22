@@ -21,6 +21,11 @@
     }
   }
 
+  &__mobile-button-container .btn {
+    margin: 0 auto;
+    margin-top: $spacing_2_4;
+  }
+
   &__header {
     align-items: flex-start;
     display: flex;
@@ -38,7 +43,6 @@
 
     &-heading {
       max-width: 75rem;
-      width: 75%;
       word-break: break-word;
       text-align: left;
 
