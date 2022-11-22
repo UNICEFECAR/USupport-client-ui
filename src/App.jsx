@@ -29,6 +29,7 @@ import {
   FAQ,
   UserDetails,
   ResetPassword,
+  ActivityHistory,
   CookiePolicy,
   TermsOfUse,
 } from "#pages";
@@ -83,6 +84,7 @@ function App() {
               </CountryValidationRoute>
             }
           />
+          <Route path="/activity-history" element={<ActivityHistory />} />
           <Route
             path="/register"
             element={

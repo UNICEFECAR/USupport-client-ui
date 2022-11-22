@@ -28,6 +28,7 @@ import {
   ResetPassword,
   CookiePolicy,
   TermsOfUse,
+  ActivityHistory,
 } from "#blocks/locales.js";
 
 import {
@@ -55,6 +56,7 @@ import {
   FAQ as FAQPage,
   UserDetails as UserDetailsPage,
   ResetPassword as ResetPasswordPage,
+  ActivityHistory as ActivityHistoryPage,
   CookiePolicy as CookiePolicyPage,
   TermsOfUse as TermsOfUsePage,
 } from "#pages/locales.js";
@@ -103,6 +105,7 @@ const resources = {
     "reset-password": ResetPassword.en,
     "cookie-policy": CookiePolicy.en,
     "terms-of-use": TermsOfUse.en,
+    "activity-history": ActivityHistory.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -129,6 +132,7 @@ const resources = {
     "faq-page": FAQPage.en,
     "user-details-page": UserDetailsPage.en,
     "reset-password-page": ResetPasswordPage.en,
+    "activity-history-page": ActivityHistoryPage.en,
     "cookie-policy-page": CookiePolicyPage.en,
     "terms-of-use-page": TermsOfUsePage.en,
 
