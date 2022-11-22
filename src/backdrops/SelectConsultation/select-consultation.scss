@@ -1,15 +1,34 @@
 @import "@USupport-components-library/styles";
 
 .select-consultation {
+  & .backdrop__children {
+    flex: 0.9;
+    overflow: hidden;
+  }
+
+  & .backdrop__buttons-container {
+    flex: 0.1;
+  }
+
   &__content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: $spacing_12_0;
     padding-top: $spacing_3_2;
-  }
 
-  &__radio-button-selector-group {
-    margin-top: $spacing_3_2;
+    & .header {
+      padding-bottom: $spacing_1_8;
+    }
+
+    &__slots {
+      overflow: scroll;
+      height: 50rem;
+      padding-top: $spacing_1_2;
+      padding-bottom: $spacing_2_4;
+    }
+
+    & .radio-button-selector-group {
+      padding: 0 $spacing_1_2;
+    }
   }
 }
