@@ -29,6 +29,9 @@ import {
   FAQ,
   UserDetails,
   ResetPassword,
+  ActivityHistory,
+  CookiePolicy,
+  TermsOfUse,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 
@@ -81,6 +84,7 @@ function App() {
               </CountryValidationRoute>
             }
           />
+          <Route path="/activity-history" element={<ActivityHistory />} />
           <Route
             path="/register"
             element={
@@ -118,6 +122,22 @@ function App() {
             element={
               <CountryValidationRoute>
                 <PrivacyPolicy />
+              </CountryValidationRoute>
+            }
+          />
+          <Route
+            path="/cookie-policy"
+            element={
+              <CountryValidationRoute>
+                <CookiePolicy />
+              </CountryValidationRoute>
+            }
+          />
+          <Route
+            path="/terms-of-use"
+            element={
+              <CountryValidationRoute>
+                <TermsOfUse />
               </CountryValidationRoute>
             }
           />

@@ -11,17 +11,17 @@ import { useTranslation } from "react-i18next";
 import { useEventListener } from "@USupport-components-library/hooks";
 import { cmsSvc } from "@USupport-components-library/services";
 
-import "./privacy-policy.scss";
+import "./cookie-policy.scss";
 
 /**
- * PrivacyPolicy
+ * CookiePolicy
  *
- * PrivacyPolicy block
+ * CookiePolicy Block
  *
  * @return {jsx}
  */
-export const PrivacyPolicy = () => {
-  const { i18n, t } = useTranslation("privacy-policy");
+export const CookiePolicy = () => {
+  const { i18n, t } = useTranslation("cookie-policy");
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
@@ -36,8 +36,8 @@ export const PrivacyPolicy = () => {
   useEventListener("countryChanged", handler);
 
   //--------------------- Policies ----------------------//
-  const getPolicies = async () => {
-    const { data } = await cmsSvc.getPolicies(
+  const getCookiePolicy = async () => {
+    const { data } = await cmsSvc.getCookiePolicy(
       i18n.language,
       currentCountry,
       "client"
@@ -47,20 +47,26 @@ export const PrivacyPolicy = () => {
   };
 
   const {
-    data: policiesData,
-    isLoading: policiesLoading,
-    isFetched: isPoliciesFetched,
-  } = useQuery(["policies", currentCountry, i18n.language], getPolicies);
-
+    data: cookiePolicyData,
+    isLoading: cookiePolicyLoading,
+    isFetched: isCookiePolicyFetched,
+  } = useQuery(
+    ["cookie-policy", currentCountry, i18n.language],
+    getCookiePolicy
+  );
   return (
-    <Block classes="privacy-policy">
+    <Block classes="cookie-policy">
       <Grid>
         <GridItem md={8} lg={12}>
-          {policiesData && <Markdown markDownText={policiesData}></Markdown>}
-          {!policiesData && policiesLoading && <Loading />}
-          {!policiesData && !policiesLoading && isPoliciesFetched && (
-            <h3 className="privacy-policy__no-results">{t("no_results")}</h3>
+          {cookiePolicyData && (
+            <Markdown markDownText={cookiePolicyData}></Markdown>
           )}
+          {!cookiePolicyData && cookiePolicyLoading && <Loading />}
+          {!cookiePolicyData &&
+            !cookiePolicyLoading &&
+            isCookiePolicyFetched && (
+              <h3 className="cookie-policy__no-results">{t("no_results")}</h3>
+            )}
         </GridItem>
       </Grid>
     </Block>
