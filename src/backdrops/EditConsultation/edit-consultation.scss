@@ -3,6 +3,12 @@
 .edit-consultation {
   align-items: center;
 
+  & .base-modal__body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
   &__provider-consultation {
     max-width: calc(36.8rem - 2 * $spacing_1_6);
     margin-top: $spacing_2_4;
