@@ -1,5 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Navigate, useLocation } from "react-router-dom";
+
 import {
   Avatar,
   Block,
@@ -7,8 +9,9 @@ import {
   SystemMessage,
   Message,
   Icon,
+  Loading,
 } from "@USupport-components-library/src";
-
+import { useGetConsultationData } from "@USupport-components-library/hooks";
 import "./activity-history.scss";
 
 /**
@@ -18,72 +21,16 @@ import "./activity-history.scss";
  *
  * @return {jsx}
  */
-export const ActivityHistory = ({}) => {
+export const ActivityHistory = ({ openSelectConsultation }) => {
   const { t } = useTranslation("activity-history");
 
+  const consultationDataQuery = useGetConsultationData(consultationId);
+  const data = consultationDataQuery.data;
+
   const id = "1";
-  const messages = [
-    {
-      type: "system-message",
-      message: "Consultation started",
-      date: 1669051768000,
-    },
-    {
-      type: "message",
-      senderId: "1",
-      receiverId: "2",
-      message:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra mattis lectus turpis mauris odio vestibulum urna.",
-      date: 1669051948000,
-    },
-    {
-      type: "message",
-      senderId: "2",
-      receiverId: "1",
-      message:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra mattis lectus turpis mauris odio vestibulum urna.",
-      date: new Date("10.25.2022 14:35"),
-    },
-    {
-      type: "message",
-      senderId: "1",
-      receiverId: "2",
-      message:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra mattis lectus turpis mauris odio vestibulum urna.",
-      date: 1669052128000,
-    },
-    {
-      type: "message",
-      senderId: "2",
-      receiverId: "1",
-      message: "yes.",
-      date: 1669052428000,
-    },
-    {
-      type: "message",
-      senderId: "1",
-      receiverId: "2",
-      message:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra mattis lectus turpis mauris odio vestibulum urna.",
-      date: 1669052668000,
-    },
-    {
-      type: "message",
-      senderId: "2",
-      receiverId: "1",
-      message:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra mattis lectus turpis mauris odio vestibulum urna.",
-      date: 1669052788000,
-    },
-    {
-      type: "system-message",
-      message: "Consultation ended",
-      date: 1669052988000,
-    },
-  ];
 
   const renderAllMessages = () => {
-    return messages.map((message, index) => {
+    return data?.messages.map((message, index) => {
       if (message.type === "system-message") {
         return (
           <SystemMessage
@@ -117,10 +64,12 @@ export const ActivityHistory = ({}) => {
   };
 
   const handleSchedule = () => {
-    console.log("schedule");
+    openSelectConsultation();
   };
 
-  return (
+  return consultationDataQuery.isLoading ? (
+    <Loading size="lg" />
+  ) : (
     <>
       <Block classes="activity-history__header-block">
         <div className="activity-history__header-block__provider-container">
@@ -131,7 +80,7 @@ export const ActivityHistory = ({}) => {
             color="#20809E"
           />
           <Avatar />
-          <h4>Dr. Joanna Doe </h4>
+          <h4>{data.providerName}</h4>
         </div>
       </Block>
 

@@ -1,7 +1,8 @@
 /* ActivityHistory styles */
 @import "@USupport-components-library/styles";
-
 .page__activity-history {
+  @include full-height-page-navbar;
+
   &__button-container {
     padding: $spacing_2_0 0;
     padding-bottom: calc(5vh);
