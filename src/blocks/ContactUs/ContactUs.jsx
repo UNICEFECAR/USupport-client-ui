@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import {
   Block,
@@ -10,9 +11,7 @@ import {
   Modal,
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
-import { emailSvc } from "@USupport-components-library/services";
-
-import { useTranslation } from "react-i18next";
+import { useSendIssueEmail } from "@USupport-components-library/hooks";
 import Joi from "joi";
 
 import "./contact-us.scss";
@@ -89,33 +88,36 @@ export const ContactUs = () => {
     });
   };
 
+  const onSendEmailSuccess = () => {
+    setIsSuccessModalOpen(true);
+    setIsSubmitting(false);
+    setData({ ...initialData });
+  };
+  const onSendEmailError = (error) => {
+    setErrors({ submit: error });
+    setIsSubmitting(false);
+  };
+  const sendIssueEmailMutation = useSendIssueEmail(
+    onSendEmailSuccess,
+    onSendEmailError
+  );
+
   const handleSubmit = async () => {
     if (!isSubmitting) {
       setIsSubmitting(true);
       const dataToValidate = {
-        issue: data.issue.value,
+        issue: data.issue,
         message: data.message,
       };
-
       if ((await validate(dataToValidate, schema, setErrors)) === null) {
-        try {
-          const payload = {
-            subject: "Technical issue",
-            title: data.issue.value,
-            text: data.message,
-          };
-          const res = await emailSvc.sendAdmin(payload);
-          if (res.status === 200) {
-            setIsSuccessModalOpen(true);
-            setIsSubmitting(false);
-            setData({ ...initialData });
-          } else {
-            console.log("something else happened");
-          }
-        } catch (err) {
-          setIsSubmitting(false);
-          console.error(err);
-        }
+        const payload = {
+          subject: "Technical issue",
+          title: issues.find((x) => x.value === data.issue)?.label,
+          text: data.message,
+        };
+        sendIssueEmailMutation.mutate(payload);
+      } else {
+        setIsSubmitting(false);
       }
     }
   };
