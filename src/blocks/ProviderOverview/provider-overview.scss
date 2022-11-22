@@ -1,8 +1,10 @@
 @import "@USupport-components-library/styles";
 
 .provider-profile {
+  position: relative;
   &__grid {
     padding-top: $spacing_2_4;
+    padding-bottom: $spacing_4_8;
     place-items: center;
 
     @media screen and (min-width: $screen_lg) {
@@ -127,5 +129,19 @@
     &__text {
       margin-top: $spacing_0_8;
     }
+  }
+
+  &__button-container {
+    padding: $spacing_2_0 0;
+    // 5vh -> emergency button bottom padding, 4.8rem -> emergency button height
+    // padding-bottom: calc(5vh + 4.8rem + 1rem);
+    position: sticky;
+    bottom: 0;
+    background: $gradient_transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: calc($z_index_emergency_button - 1);
   }
 }
