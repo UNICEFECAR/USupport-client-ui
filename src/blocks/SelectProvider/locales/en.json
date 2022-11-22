@@ -1,1 +1,7 @@
-{}
+{
+  "psychologist": "Psychologist",
+  "psychiatrist": "Psychiatrist",
+  "psychotherapist": "Psychotherapist",
+  "coach": "Coach",
+  "no_match": "No providers matching your criteria"
+}
