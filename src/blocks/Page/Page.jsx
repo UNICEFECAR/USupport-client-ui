@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   Navbar,
@@ -10,7 +10,7 @@ import {
   Footer,
   Icon,
 } from "@USupport-components-library/src";
-import { useIsLoggedIn } from "@USupport-components-library/hooks";
+import { useIsLoggedIn } from "#hooks";
 import { userSvc } from "@USupport-components-library/services";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
@@ -141,6 +141,7 @@ export const Page = ({
           isTmpUser={isTmpUser}
           isTmpUserAction={handleRegistrationModalOpen}
           navigate={navigateTo}
+          NavLink={NavLink}
         />
       )}
       <div
@@ -192,6 +193,7 @@ export const Page = ({
           lists={footerLists}
           contactUsText={t("contact_us")}
           navigate={navigateTo}
+          Link={Link}
         />
       )}
 

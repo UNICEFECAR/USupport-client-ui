@@ -13,7 +13,7 @@ import {
 import { destructureArticleData } from "@USupport-components-library/utils";
 import { Page, Articles, GiveSuggestion } from "#blocks";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useEventListener } from "@USupport-components-library/hooks";
+import { useEventListener } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import "./information-portal.scss";

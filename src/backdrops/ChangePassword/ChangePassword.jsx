@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { Backdrop, InputPassword } from "@USupport-components-library/src";
 import { validate, validateProperty } from "@USupport-components-library/utils";
-import { useError } from "@USupport-components-library/hooks";
+import { useError } from "#hooks";
 import { userSvc } from "@USupport-components-library/services";
 
 import Joi from "joi";

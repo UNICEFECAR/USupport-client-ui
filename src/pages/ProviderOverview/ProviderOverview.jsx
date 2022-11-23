@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, Navigate } from "react-router-dom";
 import { Button, RadialCircle } from "@USupport-components-library/src";
-import {
-  useBlockSlot,
-  useScheduleConsultation,
-} from "@USupport-components-library/hooks";
+import { useBlockSlot, useScheduleConsultation } from "#hooks";
 import { Page, ProviderOverview as ProviderOverviewBlock } from "#blocks";
 import { SelectConsultation, ConfirmConsultation } from "#backdrops";
 

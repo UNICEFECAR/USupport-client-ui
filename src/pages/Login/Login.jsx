@@ -4,7 +4,7 @@ import { Page, Login as LoginBlock } from "#blocks";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle, Loading } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
-import { useIsLoggedIn } from "@USupport-components-library/hooks";
+import { useIsLoggedIn } from "#hooks";
 
 import "./login.scss";
 

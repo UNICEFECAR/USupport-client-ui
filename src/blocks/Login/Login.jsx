@@ -13,7 +13,7 @@ import {
   // ButtonOnlyIcon,
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
-import { useError } from "@USupport-components-library/hooks";
+import { useError } from "#hooks";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
 
 import "./login.scss";

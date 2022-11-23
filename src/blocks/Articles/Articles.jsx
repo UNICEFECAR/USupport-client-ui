@@ -15,10 +15,7 @@ import {
 } from "@USupport-components-library/src";
 import { destructureArticleData } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import {
-  useDebounce,
-  useEventListener,
-} from "@USupport-components-library/hooks";
+import { useDebounce, useEventListener } from "#hooks";
 
 import "./articles.scss";
 

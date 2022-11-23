@@ -13,7 +13,7 @@ import {
   useGetNotificationPreferences,
   useUpdateNotificationPreferences,
   useError,
-} from "@USupport-components-library/hooks";
+} from "#hooks";
 
 import "./notification-preferences.scss";
 

@@ -3,7 +3,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Page, RegisterEmail as RegisterEmailBlock } from "#blocks";
 import { Loading } from "@USupport-components-library/src";
-import { useIsLoggedIn } from "@USupport-components-library/hooks";
+import { useIsLoggedIn } from "#hooks";
 
 import "./register-email.scss";
 

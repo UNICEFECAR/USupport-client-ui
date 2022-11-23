@@ -4,7 +4,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { Page, RegisterAnonymous as RegisterAnonymousBlock } from "#blocks";
 import { RadialCircle, Loading } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { useIsLoggedIn } from "@USupport-components-library/hooks";
+import { useIsLoggedIn } from "#hooks";
 
 import "./register-anonymous.scss";
 

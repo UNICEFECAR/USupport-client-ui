@@ -3,6 +3,8 @@ import { Page } from "#blocks";
 import { NotFound as NotFoundBlock } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
+import "./not-found.scss";
+
 /**
  * NotFound
  *
@@ -13,7 +15,7 @@ import { useTranslation } from "react-i18next";
 export const NotFound = () => {
   const { t } = useTranslation("not-found-page");
   return (
-    <Page showGoBackArrow={false}>
+    <Page classes="page-not-found" showGoBackArrow={false}>
       <NotFoundBlock
         headingText={t("heading")}
         subheadingText={t("subheading")}

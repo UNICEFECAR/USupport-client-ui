@@ -11,7 +11,7 @@ import {
   Modal,
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
-import { useSendIssueEmail } from "@USupport-components-library/hooks";
+import { useSendIssueEmail } from "#hooks";
 import Joi from "joi";
 
 import "./contact-us.scss";

@@ -11,7 +11,7 @@ import {
   Icon,
   Loading,
 } from "@USupport-components-library/src";
-import { useGetConsultationData } from "@USupport-components-library/hooks";
+import { useGetConsultationData } from "#hooks";
 import "./activity-history.scss";
 
 /**
