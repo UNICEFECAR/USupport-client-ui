@@ -29,10 +29,14 @@ import {
   FAQ,
   UserDetails,
   ResetPassword,
+  ActivityHistory,
   CookiePolicy,
   TermsOfUse,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // AOS imports
 import "aos/dist/aos.css";
@@ -83,6 +87,7 @@ function App() {
               </CountryValidationRoute>
             }
           />
+          <Route path="/activity-history" element={<ActivityHistory />} />
           <Route
             path="/register"
             element={
@@ -276,6 +281,7 @@ function App() {
         </Routes>
       </Router>
       <ReactQueryDevtools initialOpen />
+      <ToastContainer />
     </QueryClientProvider>
   );
 }

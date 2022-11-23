@@ -1,0 +1,97 @@
+@import "@USupport-components-library/styles";
+
+.activity-history {
+  @include full-height-page-navbar;
+
+  &__header-block {
+    background-color: $color_white_ff;
+    left: 0;
+    padding: $spacing_2_0;
+    position: fixed;
+    right: 0;
+    z-index: $z_index_2;
+
+    @media screen and (min-width: $screen-md) {
+      top: $spacing_6_6;
+    }
+
+    @media screen and (min-width: 1100px) {
+      padding-top: $spacing_3_6;
+    }
+
+    &__provider-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      &__icon {
+        position: absolute;
+        left: 0;
+      }
+
+      & .avatar {
+        width: 4.2rem;
+        height: 4.2rem;
+        margin-right: $spacing_1_6;
+      }
+    }
+  }
+
+  &__main {
+    padding-top: $spacing_8_0;
+  }
+
+  &__main__button-container {
+    padding: $spacing_2_0 0;
+    padding-bottom: calc(5vh);
+    // position: fixed;
+    bottom: 0;
+    background: $gradient_transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: $z_index_emergency_button;
+    // padding-bottom: $spacing_12_0;
+  }
+
+  &__main__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__main__messages-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+
+    @media screen and (min-width: $screen_md) {
+      max-width: 75rem;
+    }
+
+    .system-message {
+      align-self: center;
+    }
+
+    .message-sent {
+      align-self: flex-end;
+    }
+
+    & .message,
+    & .system-message {
+      margin-top: $spacing_1_6;
+    }
+
+    @media screen and (min-width: $screen_md) {
+      & .message,
+      & .system-message {
+        margin-top: $spacing_2_4;
+      }
+    }
+  }
+}

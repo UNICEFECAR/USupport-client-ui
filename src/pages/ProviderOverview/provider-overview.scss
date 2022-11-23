@@ -19,6 +19,6 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    z-index: $z_index_emergency_button;
+    z-index: calc($z_index_emergency_button - 1);
   }
 }

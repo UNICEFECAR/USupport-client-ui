@@ -25,40 +25,36 @@ import "./provider-overview.scss";
  *
  * @return {jsx}
  */
-export const ProviderOverview = () => {
+export const ProviderOverview = ({ provider, openScheduleBackdrop }) => {
   const { t } = useTranslation("provider-overview");
-  const navigate = useNavigate();
-
-  const [providerDataQuery] = useGetProviderData("test-id");
-  const provider = providerDataQuery.data;
   const image = AMAZON_S3_BUCKET + "/" + (provider?.image || "default");
   const allOptionsToString = (option) => {
-    return provider[option].join(", ");
+    return provider[option]?.join(", ");
   };
 
   const renderSpecializations = useCallback(() => {
     if (provider) {
-      return provider.specializations.map((x) => t(x)).join(", ");
+      return provider.specializations.map((x) => t(x))?.join(", ");
     }
-  });
+  }, [provider]);
 
   const renderWorkWith = useCallback(() => {
     if (provider) {
       return provider.workWith
         .map((x) => t(x.topic.replaceAll("-", "_")))
-        .join(", ");
+        ?.join(", ");
     }
   }, [provider]);
 
   const renderLanguages = useCallback(() => {
     if (provider) {
-      return provider.languages.map((x) => x.name).join(" ");
+      return provider.languages.map((x) => x.name)?.join(" ");
     }
   }, [provider]);
 
   return (
     <Block classes="provider-profile">
-      {providerDataQuery.isLoading || !provider ? (
+      {!provider ? (
         <Loading size="lg" />
       ) : (
         <Grid md={8} lg={12} classes="provider-profile__grid">
@@ -106,7 +102,7 @@ export const ProviderOverview = () => {
                 classes="provider-profile__information-container-with-icon__icon"
               />
               <p className="small-text">
-                {provider.price}$ for 1 hour consultation
+                {provider.consultationPrice}$ for 1 hour consultation
               </p>
             </div>
             <div className="provider-profile__information-container">
@@ -160,6 +156,13 @@ export const ProviderOverview = () => {
           </GridItem>
         </Grid>
       )}
+      <div className="provider-profile__button-container">
+        <Button
+          label={t("button_label")}
+          size="lg"
+          onClick={openScheduleBackdrop}
+        />
+      </div>
     </Block>
   );
 };

@@ -18,15 +18,23 @@ import "./edit-consultation.scss";
 export const EditConsultation = ({
   isOpen,
   onClose,
-  consultation,
+  // consultation,
   provider,
+  openCancelConsultation,
+  openSelectConsultation,
 }) => {
+  const consultation = { startDate: new Date(), endDate: new Date() };
+
   const { t } = useTranslation("edit-consultation");
 
-  const handleClick = () => {
-    console.log("Button clicked");
-
+  const handleCancelClick = () => {
     onClose();
+    openCancelConsultation();
+  };
+
+  const handleEditClick = () => {
+    onClose();
+    openSelectConsultation();
   };
 
   const { startDate, endDate } = consultation;
@@ -43,23 +51,17 @@ export const EditConsultation = ({
       <ConsultationInformation
         startDate={startDate}
         endDate={endDate}
-        providerName={provider.name}
+        providerName={provider?.name}
         classes="edit-consultation__provider-consultation"
       />
       <ButtonSelector
-        onClick={() => handleClick()}
-        iconName="person"
-        label={t("specialist_button_label")}
-        classes="edit-consultation__button"
-      />
-      <ButtonSelector
-        onClick={() => handleClick()}
+        onClick={handleEditClick}
         iconName="calendar"
         label={t("date_button_label")}
         classes="edit-consultation__button"
       />
       <ButtonSelector
-        onClick={() => handleClick()}
+        onClick={handleCancelClick}
         iconName="close-x"
         label={t("cancel_button_label")}
         classes="edit-consultation__button"

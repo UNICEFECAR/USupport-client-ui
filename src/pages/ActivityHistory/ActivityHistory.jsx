@@ -1,47 +1,50 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useLocation, Navigate } from "react-router-dom";
-import { Button, RadialCircle } from "@USupport-components-library/src";
+import { useLocation, useNavigate, Navigate } from "react-router-dom";
+import { Page, ActivityHistory as ActivityHistoryBlock } from "#blocks";
+import { RadialCircle } from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 import {
   useBlockSlot,
   useScheduleConsultation,
 } from "@USupport-components-library/hooks";
-import { Page, ProviderOverview as ProviderOverviewBlock } from "#blocks";
 import { SelectConsultation, ConfirmConsultation } from "#backdrops";
 
-import "./provider-overview.scss";
+import "./activity-history.scss";
 
 /**
- * ProviderOverview
+ * ActivityHistory
  *
- * ProviderOverview page
+ * ActivityHistory page
  *
  * @returns {JSX.Element}
  */
-export const ProviderOverview = () => {
-  const { t } = useTranslation("provider-overview-page");
-  // Should we get the provider ID from the URL or from the location
+export const ActivityHistory = () => {
+  const { width } = useWindowDimensions();
+  const navigate = useNavigate();
+
   const location = useLocation();
-  const providerData = location.state?.providerData;
-  if (!providerData) return <Navigate to="/select-provider" />;
+  const consultationId = location.state?.consultationId;
+  const providerId = location.state?.providerId;
+  if (!consultationId || !providerId) return <Navigate to="/consultations" />;
 
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
-  const [consultationId, setConsultationId] = useState();
+  // const [consultationId, setConsultationId] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
 
   // Modal state variables
-  const [isScheduleBackdropOpen, setIsScheduleBackdropOpen] = useState(false);
+  const [isSelectConsultationOpen, setIsSelectConsultationOpen] =
+    useState(false);
   const [isConfirmBackdropOpen, setIsConfirmBackdropOpen] = useState(false);
 
   // Open modals
-  const openScheduleBackdrop = () => setIsScheduleBackdropOpen(true);
+  const openSelectConsultation = () => setIsSelectConsultationOpen(true);
   const openConfirmConsultationBackdrop = () => setIsConfirmBackdropOpen(true);
 
   // Close modals
   const closeConfirmConsultationBackdrop = () =>
     setIsConfirmBackdropOpen(false);
-  const closeScheduleBackdrop = () => setIsScheduleBackdropOpen(false);
+  const closeSelectConsultation = () => setIsSelectConsultationOpen(false);
 
   const onBlockSlotSuccess = (consultationId) => {
     // setIsBlockSlotSubmitting(false);
@@ -49,7 +52,7 @@ export const ProviderOverview = () => {
 
     scheduleConsultationMutation.mutate(consultationId);
 
-    // closeScheduleBackdrop();
+    // closeSelectConsultation();
     // openConfirmConsultationBackdrop();
   };
   const onBlockSlotError = (error) => {
@@ -60,8 +63,8 @@ export const ProviderOverview = () => {
 
   const onScheduleConsultationSuccess = (data) => {
     setIsBlockSlotSubmitting(false);
-    setConsultationId(consultationId);
-    closeScheduleBackdrop();
+    // setConsultationId(consultationId);
+    closeSelectConsultation();
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);
   };
@@ -79,31 +82,35 @@ export const ProviderOverview = () => {
     setSelectedSlot(slot);
     blockSlotMutation.mutate({
       slot,
-      providerId: providerData.providerDetailId,
+      providerId: providerId,
     });
   };
 
+  const handleGoBack = () => navigate(-1);
+
   return (
     <Page
-      classes="page__provider-overview"
-      heading={t("heading")}
-      subheading={t("subheading")}
+      classes="page__activity-history"
+      showEmergencyButton={false}
+      handleGoBack={handleGoBack}
+      showFooter={width < 768 ? false : true}
+      showNavbar={width < 768 ? false : true}
+      additionalPadding={width < 768 ? false : true}
+      showGoBackArrow={false}
     >
-      {providerData && (
-        <ProviderOverviewBlock
-          provider={providerData}
-          openScheduleBackdrop={openScheduleBackdrop}
-        />
-      )}
-      <RadialCircle
-        color="purple"
-        classes="page__provider-overview__radial-circle"
+      <ActivityHistoryBlock
+        openSelectConsultation={openSelectConsultation}
+        consultationId={consultationId}
       />
+      {width < 768 && (
+        <RadialCircle classes="page__activity-history__radial-circle" />
+      )}
+
       <SelectConsultation
-        isOpen={isScheduleBackdropOpen}
-        onClose={closeScheduleBackdrop}
+        isOpen={isSelectConsultationOpen}
+        onClose={closeSelectConsultation}
         handleBlockSlot={handleBlockSlot}
-        providerId={providerData?.providerDetailId}
+        providerId={providerId}
         isCtaDisabled={isBlockSlotSubmitting}
         errorMessage={blockSlotError}
       />

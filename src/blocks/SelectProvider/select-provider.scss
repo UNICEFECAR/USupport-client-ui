@@ -6,6 +6,10 @@
     padding-top: $spacing_3_0;
     padding-bottom: $spacing_4_0;
 
+    &__item-no-match {
+      padding-top: $spacing_2_4;
+    }
+
     @media screen and (min-width: $screen_md) {
       &__provider {
         justify-self: start;

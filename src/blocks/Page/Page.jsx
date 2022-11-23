@@ -12,6 +12,7 @@ import {
 } from "@USupport-components-library/src";
 import { useIsLoggedIn } from "@USupport-components-library/hooks";
 import { userSvc } from "@USupport-components-library/services";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
 
 import "./page.scss";
@@ -41,6 +42,8 @@ export const Page = ({
   const isLoggedIn = useIsLoggedIn();
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
+
+  const { width } = useWindowDimensions();
 
   const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
 
@@ -137,6 +140,7 @@ export const Page = ({
           image={image?.data || "default"}
           isTmpUser={isTmpUser}
           isTmpUserAction={handleRegistrationModalOpen}
+          navigate={navigateTo}
         />
       )}
       <div
@@ -147,23 +151,30 @@ export const Page = ({
         ].join(" ")}
       >
         {(heading || showGoBackArrow || headingButton) && (
-          <div className="page__header">
-            {showGoBackArrow && (
-              <Icon
-                classes="page__header-icon"
-                name="arrow-chevron-back"
-                size="md"
-                color="#20809E"
-                onClick={handleGoBackArrowClick}
-              />
-            )}
-            {heading && <h3 className="page__header-heading">{heading}</h3>}
+          <>
             {headingButton && (
-              <div className="page__header-button-container">
-                {headingButton}
+              <div className="page__mobile-button-container">
+                {width < 768 && headingButton}
               </div>
             )}
-          </div>
+            <div className="page__header">
+              {showGoBackArrow && (
+                <Icon
+                  classes="page__header-icon"
+                  name="arrow-chevron-back"
+                  size="md"
+                  color="#20809E"
+                  onClick={handleGoBackArrowClick}
+                />
+              )}
+              {heading && <h3 className="page__header-heading">{heading}</h3>}
+              {headingButton && width >= 768 && (
+                <div className="page__header-button-container">
+                  {headingButton}
+                </div>
+              )}
+            </div>
+          </>
         )}
         <p className="page__subheading-text text">{subheading}</p>
         {children}
@@ -177,7 +188,11 @@ export const Page = ({
         />
       )}
       {isFooterShown && (
-        <Footer lists={footerLists} contactUsText={t("contact_us")} />
+        <Footer
+          lists={footerLists}
+          contactUsText={t("contact_us")}
+          navigate={navigateTo}
+        />
       )}
 
       <RequireRegistration

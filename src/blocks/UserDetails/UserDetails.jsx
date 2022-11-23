@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import {
   AccessToken,
   Block,
@@ -143,15 +144,18 @@ export const UserDetails = ({
     return years.reverse();
   };
 
+  const onUpdateSuccess = () => {
+    toast(t("success_message"));
+    setIsProcessing(false);
+  };
+  const onUpdateError = (error) => {
+    setErrors({ submit: error });
+    setIsProcessing(false);
+  };
   const userDataMutation = useUpdateClientData(
     clientData,
-    () => {
-      setIsProcessing(false);
-    },
-    (error) => {
-      setErrors({ submit: error });
-      setIsProcessing(false);
-    }
+    onUpdateSuccess,
+    onUpdateError
   );
 
   const openDataProcessingModal = () => setDataProcessingModalOpen(true);

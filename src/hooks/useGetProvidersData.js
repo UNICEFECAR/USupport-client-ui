@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { clientSvc } from "@USupport-components-library/services";
+import { providerSvc } from "@USupport-components-library/services";
 
 const placeholderData = [];
 for (let i = 0; i < 10; i++) {
@@ -34,8 +34,32 @@ export default function useGetProvidersData() {
   //   const queryClient = useQueryClient();
   const [providersData, setProvidersData] = useState();
   const fetchProvidersData = async () => {
-    await new Promise((resolve) => resolve());
-    return placeholderData;
+    const { data } = await providerSvc.getAllProviders();
+    const formattedData = [];
+    for (let i = 0; i < data.length; i++) {
+      const providerData = data[i];
+      const formattedProvider = {
+        providerDetailId: providerData.provider_detail_id || "",
+        name: providerData.name || "",
+        patronym: providerData.patronym || "",
+        surname: providerData.surname || "",
+        nickname: providerData.nickname || "",
+        email: providerData.email || "",
+        phonePrefix: providerData.phone_prefix || "",
+        phone: providerData.phone || "",
+        image: providerData.image || "default",
+        specializations: providerData.specializations || [],
+        address: providerData.address || "",
+        education: providerData.education || [],
+        sex: providerData.sex || "",
+        consultationPrice: providerData.consultation_price || 0,
+        description: providerData.description || "",
+        languages: providerData.languages || [],
+        workWith: providerData.work_with || [],
+      };
+      formattedData.push(formattedProvider);
+    }
+    return formattedData;
   };
 
   const providersDataQuery = useQuery(["client-data"], fetchProvidersData, {
