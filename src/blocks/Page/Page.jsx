@@ -11,8 +11,15 @@ import {
   Icon,
 } from "@USupport-components-library/src";
 import { useIsLoggedIn } from "#hooks";
-import { userSvc } from "@USupport-components-library/services";
-import { useWindowDimensions } from "@USupport-components-library/utils";
+import {
+  userSvc,
+  countrySvc,
+  languageSvc,
+} from "@USupport-components-library/services";
+import {
+  useWindowDimensions,
+  getCountryFromTimezone,
+} from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
 
 import "./page.scss";
@@ -49,6 +56,72 @@ export const Page = ({
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
+  const localStorageCountry = localStorage.getItem("country");
+  const localStorageLanguage = localStorage.getItem("language");
+  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedCountry, setSelectedCountry] = useState();
+
+  const fetchCountries = async () => {
+    const res = await countrySvc.getActiveCountries();
+    const usersCountry = getCountryFromTimezone();
+    const validCountry = res.data.find((x) => x.alpha2 === usersCountry);
+    let hasSetDefaultCountry = false;
+    const countries = res.data.map((x) => {
+      const countryObject = {
+        value: x.alpha2,
+        label: x.name,
+        countryID: x["country_id"],
+        iconName: x.alpha2,
+      };
+
+      if (localStorageCountry === x.alpha2) {
+        setSelectedCountry(countryObject);
+      } else if (!localStorageCountry) {
+        if (validCountry?.alpha2 === x.alpha2) {
+          hasSetDefaultCountry = true;
+          localStorage.setItem("country", x.alpha2);
+          setSelectedCountry(countryObject);
+        }
+      }
+
+      return countryObject;
+    });
+
+    if (!hasSetDefaultCountry && !localStorageCountry) {
+      localStorage.setItem("country", kazakhstanCountry.value);
+      localStorage.setItem(
+        "country_id",
+        countries.find((x) => x.value === kazakhstanCountry.value).countryID
+      );
+    }
+
+    return countries;
+  };
+
+  const fetchLanguages = async () => {
+    const res = await languageSvc.getActiveLanguages();
+    const languages = res.data.map((x) => {
+      const languageObject = {
+        value: x.alpha2,
+        label: x.name,
+        id: x["language_id"],
+      };
+      if (localStorageLanguage === x.alpha2) {
+        setSelectedLanguage(languageObject);
+        i18n.changeLanguage(localStorageLanguage);
+      } else if (!localStorageLanguage) {
+        localStorage.setItem("language", "en");
+        i18n.changeLanguage("en");
+      }
+      return languageObject;
+    });
+    console.log(languages);
+    return languages;
+  };
+
+  const { data: countries } = useQuery(["countries"], fetchCountries);
+  const { data: languages } = useQuery(["languages"], fetchLanguages);
+
   const image = useQuery(
     ["client-image"],
     async () => {
@@ -63,21 +136,6 @@ export const Page = ({
       initialData: "default",
     }
   );
-
-  // console.log(image?.data, "image data");
-
-  // console.log(queryClient.getQueryData(["client-image"]), "client-image");
-
-  // useEffect(() => {
-  //   if (!isFetching) {
-  //     const cacheData = queryClient.getQueryCache();
-  //     const clientData = cacheData.queriesMap["client-data"]?.state.data;
-  //     if (clientData) {
-  //       console.log(clientData);
-  //       setImage(clientData.image);
-  //     }
-  //   }
-  // }, [isFetching]);
 
   const { t, i18n } = useTranslation("page");
   const pages = [
@@ -133,15 +191,19 @@ export const Page = ({
     <>
       {isNavbarShown === true && (
         <Navbar
-          pages={pages}
-          showProfile
-          yourProfileText={t("your_profile_text")}
           i18n={i18n}
           image={image?.data || "default"}
           isTmpUser={isTmpUser}
           isTmpUserAction={handleRegistrationModalOpen}
           navigate={navigateTo}
           NavLink={NavLink}
+          pages={pages}
+          showProfile
+          yourProfileText={t("your_profile_text")}
+          languages={languages}
+          countries={countries}
+          initialLanguage={selectedLanguage}
+          initialCountry={selectedCountry}
         />
       )}
       <div
