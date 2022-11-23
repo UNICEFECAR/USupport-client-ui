@@ -21,7 +21,7 @@ import "./activity-history.scss";
  *
  * @return {jsx}
  */
-export const ActivityHistory = ({ openSelectConsultation }) => {
+export const ActivityHistory = ({ openSelectConsultation, consultationId }) => {
   const { t } = useTranslation("activity-history");
 
   const consultationDataQuery = useGetConsultationData(consultationId);
