@@ -140,6 +140,7 @@ export const Page = ({
           image={image?.data || "default"}
           isTmpUser={isTmpUser}
           isTmpUserAction={handleRegistrationModalOpen}
+          navigate={navigateTo}
         />
       )}
       <div
@@ -187,7 +188,11 @@ export const Page = ({
         />
       )}
       {isFooterShown && (
-        <Footer lists={footerLists} contactUsText={t("contact_us")} />
+        <Footer
+          lists={footerLists}
+          contactUsText={t("contact_us")}
+          navigate={navigateTo}
+        />
       )}
 
       <RequireRegistration
