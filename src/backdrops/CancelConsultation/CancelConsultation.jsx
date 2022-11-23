@@ -4,7 +4,7 @@ import {
   Backdrop,
   ConsultationInformation,
 } from "@USupport-components-library/src";
-import { useCancelConsultation } from "@USupport-components-library/hooks";
+import { useCancelConsultation } from "#hooks";
 import { toast } from "react-toastify";
 
 import "./cancel-consultation.scss";

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Page, RegisterPreview as RegisterPreviewBlock } from "#blocks";
 import { Button, Loading } from "@USupport-components-library/src";
-import { useIsLoggedIn } from "@USupport-components-library/hooks";
+import { useIsLoggedIn } from "#hooks";
 
 import "./register-preview.scss";
 

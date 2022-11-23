@@ -9,7 +9,7 @@ import {
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 import { validate } from "@USupport-components-library/utils";
-import { useError } from "@USupport-components-library/hooks";
+import { useError } from "#hooks";
 import Joi from "joi";
 
 import "./reset-password.scss";

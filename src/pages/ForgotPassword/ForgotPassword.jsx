@@ -4,7 +4,7 @@ import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 import { Page, ForgotPassword as ForgotPasswordBlock } from "#blocks";
 import { RadialCircle, Loading } from "@USupport-components-library/src";
-import { useIsLoggedIn } from "@USupport-components-library/hooks";
+import { useIsLoggedIn } from "#hooks";
 
 import "./forgot-password.scss";
 

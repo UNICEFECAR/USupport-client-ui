@@ -1,7 +1,7 @@
 import React from "react";
 import jwtDecode from "jwt-decode";
 import { Navigate } from "react-router-dom";
-import { useIsLoggedIn } from "@USupport-components-library/hooks";
+import { useIsLoggedIn } from "#hooks";
 
 export const ProtectedRoute = ({ children }) => {
   const isLoggedIn = useIsLoggedIn();

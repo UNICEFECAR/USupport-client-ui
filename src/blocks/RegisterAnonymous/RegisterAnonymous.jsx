@@ -18,7 +18,7 @@ import {
   validate,
   validateProperty,
 } from "@USupport-components-library/src/utils";
-import { useError } from "@USupport-components-library/hooks";
+import { useError } from "#hooks";
 import { userSvc } from "@USupport-components-library/services";
 
 import "./register-anonymous.scss";

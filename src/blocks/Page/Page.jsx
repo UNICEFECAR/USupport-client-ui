@@ -10,7 +10,7 @@ import {
   Footer,
   Icon,
 } from "@USupport-components-library/src";
-import { useIsLoggedIn } from "@USupport-components-library/hooks";
+import { useIsLoggedIn } from "#hooks";
 import { userSvc } from "@USupport-components-library/services";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";

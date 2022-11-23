@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { Backdrop, Loading } from "@USupport-components-library/src";
 import { userSvc, clientSvc } from "@USupport-components-library/services";
-import { useError } from "@USupport-components-library/hooks";
+import { useError } from "#hooks";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 

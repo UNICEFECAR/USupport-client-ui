@@ -12,7 +12,7 @@ import {
   Icon,
   Loading,
 } from "@USupport-components-library/src";
-import { useGetProviderData } from "@USupport-components-library/hooks";
+import { useGetProviderData } from "#hooks";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 

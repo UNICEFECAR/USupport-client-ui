@@ -10,10 +10,7 @@ import {
   ConfirmConsultation,
   SelectConsultation,
 } from "#backdrops";
-import {
-  useBlockSlot,
-  useScheduleConsultation,
-} from "@USupport-components-library/hooks";
+import { useBlockSlot, useScheduleConsultation } from "#hooks";
 import { Button } from "@USupport-components-library/src";
 
 import "./consultations.scss";

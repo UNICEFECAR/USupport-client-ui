@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useError } from "@USupport-components-library/hooks";
+import { useError } from "#hooks";
 
 import Joi from "joi";
 

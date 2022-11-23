@@ -3,10 +3,7 @@ import { useLocation, useNavigate, Navigate } from "react-router-dom";
 import { Page, ActivityHistory as ActivityHistoryBlock } from "#blocks";
 import { RadialCircle } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import {
-  useBlockSlot,
-  useScheduleConsultation,
-} from "@USupport-components-library/hooks";
+import { useBlockSlot, useScheduleConsultation } from "#hooks";
 import { SelectConsultation, ConfirmConsultation } from "#backdrops";
 
 import "./activity-history.scss";

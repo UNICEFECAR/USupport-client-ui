@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { Page, Welcome as WelcomeBlock } from "#blocks";
 import { RadialCircle, Loading } from "@USupport-components-library/src";
-import { useIsLoggedIn } from "@USupport-components-library/hooks";
+import { useIsLoggedIn } from "#hooks";
 
 import "./welcome.scss";
 
