@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   Navbar,
@@ -141,6 +141,7 @@ export const Page = ({
           isTmpUser={isTmpUser}
           isTmpUserAction={handleRegistrationModalOpen}
           navigate={navigateTo}
+          NavLink={NavLink}
         />
       )}
       <div
@@ -192,6 +193,7 @@ export const Page = ({
           lists={footerLists}
           contactUsText={t("contact_us")}
           navigate={navigateTo}
+          Link={Link}
         />
       )}
 
