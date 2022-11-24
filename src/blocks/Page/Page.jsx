@@ -24,6 +24,12 @@ import { RequireRegistration } from "#modals";
 
 import "./page.scss";
 
+const kazakhstanCountry = {
+  value: "KZ",
+  label: "Kazakhstan",
+  iconName: "KZ",
+};
+
 /**
  * Page
  *
