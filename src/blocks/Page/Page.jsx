@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
@@ -115,7 +115,6 @@ export const Page = ({
       }
       return languageObject;
     });
-    console.log(languages);
     return languages;
   };
 
