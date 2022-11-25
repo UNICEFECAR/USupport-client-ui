@@ -87,7 +87,6 @@ function App() {
               </CountryValidationRoute>
             }
           />
-          <Route path="/activity-history" element={<ActivityHistory />} />
           <Route
             path="/register"
             element={
@@ -213,6 +212,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <UserDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/activity-history"
+            element={
+              <ProtectedRoute>
+                <ActivityHistory />
               </ProtectedRoute>
             }
           />
