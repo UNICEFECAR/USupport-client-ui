@@ -64,7 +64,8 @@ export const SelectConsultation = ({
       const currentDayDate = new Date(currentDay).getDate();
       return slotDate === currentDayDate;
     });
-    if (todaySlots.length === 0) return <p>{t("no_slots_available")}</p>;
+    if (!todaySlots || todaySlots?.length === 0)
+      return <p>{t("no_slots_available")}</p>;
     const options = todaySlots?.map(
       (slot) => {
         const slotLocal = new Date(slot);
