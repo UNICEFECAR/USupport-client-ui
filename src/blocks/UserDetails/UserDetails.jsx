@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useMutation } from "@tanstack/react-query";
+import React, { useState, useEffect, useCallback } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import {
@@ -39,6 +39,10 @@ export const UserDetails = ({
   openDeletePictureBackdrop,
 }) => {
   const { t } = useTranslation("user-details");
+
+  const queryClient = useQueryClient();
+
+  const countriesData = queryClient.getQueryData(["countries"]);
 
   const [clientDataQuery, oldData, setClientData] = useGetClientData();
   const [canSaveChanges, setCanSaveChanges] = useState(false);
@@ -81,13 +85,14 @@ export const UserDetails = ({
   }, [clientDataQuery.isLoading]);
 
   useEffect(() => {
-    if (clientData) {
+    if (clientData && oldData) {
       if (dataProcessing === null) {
         setDataProcessing(clientData.dataProcessing);
       }
 
       const userDataString = JSON.stringify(clientData);
       const oldDataString = JSON.stringify(oldData);
+
       setCanSaveChanges(userDataString !== oldDataString);
 
       // If the email field is empty and the user doesn't have access token
@@ -110,7 +115,7 @@ export const UserDetails = ({
         setErrors({ email: "" });
       }
     }
-  }, [clientData]);
+  }, [clientData, oldData]);
 
   const nicknameSchema = Joi.object({
     nickname: Joi.string().required().label(t("nickname_error")),
@@ -134,15 +139,23 @@ export const UserDetails = ({
     { label: t("place_of_living_rural"), value: "rural" },
   ];
 
+  const country = localStorage.getItem("country");
+  const selectedCountry = countriesData?.find((c) => c.value === country);
+  const minAge = selectedCountry?.minAge;
+  const maxAge = selectedCountry?.maxAge;
   // Create an array of year objects from year 1900 to current year
-  const getYearsOptions = () => {
+  const getYearsOptions = useCallback(() => {
     const currentYear = new Date().getFullYear();
     const years = [];
-    for (let year = 1900; year < currentYear - 13; year++) {
+    for (
+      let year = currentYear - maxAge;
+      year <= currentYear - minAge;
+      year++
+    ) {
       years.push({ label: year.toString(), value: year });
     }
     return years.reverse();
-  };
+  }, [countriesData]);
 
   const onUpdateSuccess = () => {
     toast(t("success_message"));

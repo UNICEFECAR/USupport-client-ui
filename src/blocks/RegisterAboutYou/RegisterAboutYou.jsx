@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -29,6 +30,9 @@ import "./register-about-you.scss";
 export const RegisterAboutYou = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("register-about-you");
+  const queryClient = useQueryClient();
+  const countriesData = queryClient.getQueryData(["countries"]);
+
   const schema = Joi.object({
     name: Joi.string().allow(null, "", " ").label(t("nickname_error")),
     surname: Joi.string().allow(null, "", " ").label(t("nickname_error")),
@@ -74,15 +78,23 @@ export const RegisterAboutYou = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const getYearsOptions = () => {
+  const country = localStorage.getItem("country");
+  const selectedCountry = countriesData?.find((c) => c.value === country);
+  const minAge = selectedCountry?.minAge;
+  const maxAge = selectedCountry?.maxAge;
+  // Create an array of year objects from year 1900 to current year
+  const getYearsOptions = useCallback(() => {
     const currentYear = new Date().getFullYear();
     const years = [];
-    for (let year = 1900; year < currentYear - 13; year++) {
+    for (
+      let year = currentYear - maxAge;
+      year <= currentYear - minAge;
+      year++
+    ) {
       years.push({ label: year.toString(), value: year });
     }
     return years.reverse();
-  };
-
+  }, [countriesData]);
   const onMutateSuccess = () => {
     navigate("/register/support");
   };
