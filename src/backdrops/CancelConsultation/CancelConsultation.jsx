@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import {
   Backdrop,
   ConsultationInformation,
 } from "@USupport-components-library/src";
 import { useCancelConsultation } from "#hooks";
-import { toast } from "react-toastify";
+
+import { ONE_HOUR } from "@USupport-components-library/utils";
+
+const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
 import "./cancel-consultation.scss";
 
@@ -19,17 +24,22 @@ import "./cancel-consultation.scss";
 export const CancelConsultation = ({
   isOpen,
   onClose,
-  // consultation,
+  consultation,
   provider,
 }) => {
+  const queryClient = useQueryClient();
   const { t } = useTranslation("cancel-consultation");
   const [error, setError] = useState();
 
-  // TODO: Get the actual consultation from props, or fetch it from the API
-  const consultation = { startDate: new Date(), endDate: new Date() };
-  const { startDate, endDate } = consultation;
+  const { providerName, providerId, consultationId, timestamp, image } =
+    consultation;
+
+  const imageUrl = AMAZON_S3_BUCKET + "/" + (image || "default");
+  const startDate = new Date(timestamp);
+  const endDate = new Date(timestamp + ONE_HOUR);
 
   const onCancelSuccess = () => {
+    queryClient.invalidateQueries(["all-consultations"]);
     onClose();
     toast(t("cancel_success"));
   };
@@ -42,7 +52,7 @@ export const CancelConsultation = ({
   );
 
   const handleCancelClick = () => {
-    cancelConsultationMutation.mutate();
+    cancelConsultationMutation.mutate(consultation.consultationId);
   };
 
   return (
@@ -61,7 +71,8 @@ export const CancelConsultation = ({
       <ConsultationInformation
         startDate={startDate}
         endDate={endDate}
-        providerName={provider?.name}
+        providerName={providerName}
+        providerImage={imageUrl}
         classes="cancel-consultation__provider-consultation"
       />
     </Backdrop>
