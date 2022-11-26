@@ -8,5 +8,6 @@
   "thursday": "Thu",
   "friday": "Fri",
   "saturday": "Sat",
-  "no_consultations": "You have no upcoming consultations"
+  "no_upcoming_consultations": "You have no upcoming consultations",
+  "no_past_consultations": "You have no past consultations"
 }
