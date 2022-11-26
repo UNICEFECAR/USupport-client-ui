@@ -33,7 +33,6 @@ export default function useGetClientData() {
       const dataCopy = JSON.parse(JSON.stringify(data));
       setClientData({ ...dataCopy });
     },
-    notifyOnChangeProps: ["data"],
     initialData: {
       clientID: "",
       accessToken: "",
@@ -43,7 +42,7 @@ export default function useGetClientData() {
       nickname: "",
       sex: "",
       yearOfBirth: "",
-      image: "",
+      image: "default",
       livingPlace: "",
       dataProcessing: "",
     },

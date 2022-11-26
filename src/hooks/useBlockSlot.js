@@ -14,7 +14,11 @@ export default function useBlockSlot(onSuccess, onError) {
    * @returns {Promise} resolving to the "consultation_id"
    */
   const blockSlot = async (data) => {
-    const response = await providerSvc.blockSlot(data.providerId, data.slot);
+    const response = await providerSvc.blockSlot(
+      null,
+      data.providerId,
+      data.slot
+    );
     return response.data.consultation_id;
   };
 

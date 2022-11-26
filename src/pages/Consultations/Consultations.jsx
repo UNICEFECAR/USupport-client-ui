@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-
+import { useQueryClient } from "@tanstack/react-query";
 import { Page, Consultations as ConsultationsBlock } from "#blocks";
 import {
   CancelConsultation,
@@ -10,7 +10,7 @@ import {
   ConfirmConsultation,
   SelectConsultation,
 } from "#backdrops";
-import { useBlockSlot, useScheduleConsultation } from "#hooks";
+import { useBlockSlot, useRescheduleConsultation } from "#hooks";
 import { Button } from "@USupport-components-library/src";
 
 import "./consultations.scss";
@@ -23,21 +23,20 @@ import "./consultations.scss";
  * @returns {JSX.Element}
  */
 export const Consultations = () => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t } = useTranslation("consultations-page");
 
+  const [selectedConsultation, setSelectedConsultation] = useState();
   const [selectedConsultationProviderId, setSelectedConsultationProviderId] =
     useState();
   const [selectedConsultationId, setSelectedConsultationId] = useState();
 
   const [isEditConsultationOpen, setIsEditConsultationOpen] = useState(false);
-  const openEditConsultation = (providerId, consultationId) => {
-    if (providerId) {
-      setSelectedConsultationProviderId(providerId);
-    }
-    if (consultationId) {
-      setSelectedConsultationId(consultationId);
-    }
+  const openEditConsultation = (consultation) => {
+    setSelectedConsultationId(consultation.consultationId);
+    setSelectedConsultationProviderId(consultation.providerId);
+    setSelectedConsultation(consultation);
     setIsEditConsultationOpen(true);
   };
   const closeEditConsultation = () => setIsEditConsultationOpen(false);
@@ -75,28 +74,32 @@ export const Consultations = () => {
     setIsSelectConsultationBackdropOpen(false);
 
   // Schedule consultation logic
-  const onScheduleConsultationSuccess = (data) => {
+  const onRescheduleConsultationSuccess = (data) => {
     setIsBlockSlotSubmitting(false);
     setConsultationId(consultationId);
     closeSelectConsultationBackdrop();
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);
+
+    queryClient.invalidateQueries(["all-consultations"]);
   };
-  const onScheduleConsultationError = (error) => {
+  const onRescheduleConsultationError = (error) => {
     setBlockSlotError(error);
     setIsBlockSlotSubmitting(false);
   };
-  const scheduleConsultationMutation = useScheduleConsultation(
-    onScheduleConsultationSuccess,
-    onScheduleConsultationError
+  const rescheduleConsultationMutation = useRescheduleConsultation(
+    onRescheduleConsultationSuccess,
+    onRescheduleConsultationError
   );
 
   // Block slot logic
-  const onBlockSlotSuccess = (consultationId) => {
+  const onBlockSlotSuccess = (newConsultationId) => {
     // setIsBlockSlotSubmitting(false);
     // setConsultationId(consultationId);
-
-    scheduleConsultationMutation.mutate(consultationId);
+    rescheduleConsultationMutation.mutate({
+      consultationId: selectedConsultationId,
+      newConsultationId,
+    });
 
     // closeSelectConsultationBackdrop();
     // openConfirmConsultationBackdrop();
@@ -110,6 +113,7 @@ export const Consultations = () => {
   const handleBlockSlot = (slot) => {
     setIsBlockSlotSubmitting(true);
     // TODO: Call the reschedule endpoint with the selectedConsultationId
+    console.log("reschedule", selectedConsultationId);
     setSelectedSlot(slot);
     blockSlotMutation.mutate({
       slot,
@@ -137,16 +141,23 @@ export const Consultations = () => {
         openJoinConsultation={openJoinConsultation}
         openEditConsultation={openEditConsultation}
       />
-      <EditConsultation
-        isOpen={isEditConsultationOpen}
-        onClose={closeEditConsultation}
-        openCancelConsultation={openCancelConsultation}
-        openSelectConsultation={openSelectConsultation}
-      />
-      <CancelConsultation
-        isOpen={isCancelConsultationOpen}
-        onClose={closeCancelConsultation}
-      />
+      {selectedConsultation && (
+        <>
+          <EditConsultation
+            isOpen={isEditConsultationOpen}
+            onClose={closeEditConsultation}
+            openCancelConsultation={openCancelConsultation}
+            openSelectConsultation={openSelectConsultation}
+            consultation={selectedConsultation}
+          />
+          <CancelConsultation
+            isOpen={isCancelConsultationOpen}
+            onClose={closeCancelConsultation}
+            consultation={selectedConsultation}
+          />
+        </>
+      )}
+
       <JoinConsultation
         isOpen={isJoinConsultationOpen}
         onClose={closeJoinConsultation}

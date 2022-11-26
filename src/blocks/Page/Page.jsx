@@ -10,7 +10,6 @@ import {
   Footer,
   Icon,
 } from "@USupport-components-library/src";
-import { useIsLoggedIn } from "#hooks";
 import {
   userSvc,
   countrySvc,
@@ -21,6 +20,7 @@ import {
   getCountryFromTimezone,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
+import { useIsLoggedIn } from "#hooks";
 
 import "./page.scss";
 
@@ -78,6 +78,8 @@ export const Page = ({
         label: x.name,
         countryID: x["country_id"],
         iconName: x.alpha2,
+        minAge: x["min_client_age"],
+        maxAge: x["max_client_age"],
       };
 
       if (localStorageCountry === x.alpha2) {

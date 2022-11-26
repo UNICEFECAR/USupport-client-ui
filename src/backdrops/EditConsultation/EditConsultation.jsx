@@ -6,6 +6,10 @@ import {
   ConsultationInformation,
 } from "@USupport-components-library/src";
 
+import { ONE_HOUR } from "@USupport-components-library/utils";
+
+const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
+
 import "./edit-consultation.scss";
 
 /**
@@ -18,12 +22,18 @@ import "./edit-consultation.scss";
 export const EditConsultation = ({
   isOpen,
   onClose,
-  // consultation,
+  consultation,
   provider,
   openCancelConsultation,
   openSelectConsultation,
 }) => {
-  const consultation = { startDate: new Date(), endDate: new Date() };
+  // const consultation = { startDate: new Date(), endDate: new Date() };
+  const { providerName, providerId, consultationId, timestamp, image } =
+    consultation;
+
+  const imageUrl = AMAZON_S3_BUCKET + "/" + (image || "default");
+  const startDate = new Date(timestamp);
+  const endDate = new Date(timestamp + ONE_HOUR);
 
   const { t } = useTranslation("edit-consultation");
 
@@ -37,8 +47,6 @@ export const EditConsultation = ({
     openSelectConsultation();
   };
 
-  const { startDate, endDate } = consultation;
-
   return (
     <Backdrop
       classes="edit-consultation"
@@ -51,7 +59,8 @@ export const EditConsultation = ({
       <ConsultationInformation
         startDate={startDate}
         endDate={endDate}
-        providerName={provider?.name}
+        providerName={providerName}
+        providerImage={imageUrl}
         classes="edit-consultation__provider-consultation"
       />
       <ButtonSelector

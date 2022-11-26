@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useGetAllConsultations } from "#hooks";
 
 import {
   Block,
@@ -10,6 +10,7 @@ import {
   TabsUnderlined,
   Consultation,
 } from "@USupport-components-library/src";
+import { ONE_HOUR } from "@USupport-components-library/utils";
 
 import "./consultations.scss";
 
@@ -25,7 +26,6 @@ export const Consultations = ({
   openJoinConsultation,
 }) => {
   const navigate = useNavigate();
-  let today = new Date();
   const { t } = useTranslation("consultations");
 
   const [tabsOptions, setTabsOptions] = useState([
@@ -45,43 +45,7 @@ export const Consultations = ({
     sunday: t("sunday"),
   };
 
-  const fetchConsultations = async () => {};
-  const consultationsQuery = useQuery(["consultations"], fetchConsultations, {
-    enabled: false, // TODO: Enable this when the API is ready and remove the placeholder data
-    placeholderData: [
-      {
-        id: 1,
-        specialistName: "Dr. Joanna doe 1",
-        timestamp: 1668699720000,
-        overview: false,
-      },
-      {
-        id: 2,
-        specialistName: "Dr. Joanna doe 2",
-        timestamp: 1668879057000,
-        overview: false,
-      },
-      {
-        id: 3,
-        specialistName: "Dr. Joanna doe 3",
-        timestamp: 1668886182290,
-        overview: false,
-      },
-      {
-        id: 4,
-        specialistName: "Dr. Joanna doe 4",
-        timestamp: 1669141319000,
-        overview: false,
-      },
-      {
-        id: 5,
-        specialistName: "Dr. Joanna doe 5",
-        timestamp: 1669832519000,
-        overview: false,
-      },
-    ],
-  });
-
+  const consultationsQuery = useGetAllConsultations();
   const handleTabClick = (index) => {
     const optionsCopy = [...tabsOptions];
 
@@ -97,8 +61,8 @@ export const Consultations = ({
     setFilter(optionsCopy[index].value);
   };
 
-  const handleOpenEdit = (providerId) => {
-    openEditConsultation(providerId);
+  const handleOpenEdit = (consultation) => {
+    openEditConsultation(consultation);
   };
 
   const handleOpenDetails = (providerId, consultationId) => {
@@ -112,11 +76,10 @@ export const Consultations = ({
   };
 
   const filterConsultations = useCallback(() => {
-    const currentDate = new Date();
-    const currentDateTs = currentDate.getTime();
+    const currentDateTs = new Date().getTime();
 
     return consultationsQuery.data?.filter((consultation) => {
-      const endTime = consultation.timestamp + 3600000;
+      const endTime = consultation.timestamp + ONE_HOUR;
       if (filter === "upcoming") {
         return (
           consultation.timestamp >= currentDateTs ||
@@ -134,10 +97,16 @@ export const Consultations = ({
     if (filteredConsultations?.length === 0)
       return (
         <GridItem md={8} lg={12}>
-          <p>{t("no_consultations")}</p>
+          <p>
+            {t(
+              filter === "upcoming"
+                ? "no_upcoming_consultations"
+                : "no_past_consultations"
+            )}
+          </p>
         </GridItem>
       );
-    return filteredConsultations.map((consultation, index) => {
+    return filteredConsultations?.map((consultation, index) => {
       const hasMoreThanOne = filteredConsultations.length > 1;
       return (
         <GridItem
@@ -147,17 +116,13 @@ export const Consultations = ({
           classes="consultations__grid__consultations-item__grid__consultation"
         >
           <Consultation
-            name={consultation.specialistName}
-            startDate={consultation.startDate}
-            endDate={consultation.endDate}
-            overview={consultation.overview}
             renderIn="client"
             handleOpenEdit={handleOpenEdit}
             handleJoinClick={openJoinConsultation}
             handleOpenDetails={handleOpenDetails}
-            timestamp={consultation.timestamp}
             daysOfWeekTranslations={daysOfWeekTranslations}
-            providerId={consultation.id.toString()}
+            consultation={consultation}
+            overview={consultation.status === "finished" ? true : false}
           />
         </GridItem>
       );

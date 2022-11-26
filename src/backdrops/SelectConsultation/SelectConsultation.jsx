@@ -10,6 +10,7 @@ import {
 } from "@USupport-components-library/src";
 import { providerSvc } from "@USupport-components-library/services";
 import { getTimestampFromUTC } from "@USupport-components-library/utils";
+
 import "./select-consultation.scss";
 
 /**
@@ -64,7 +65,8 @@ export const SelectConsultation = ({
       const currentDayDate = new Date(currentDay).getDate();
       return slotDate === currentDayDate;
     });
-    if (todaySlots.length === 0) return <p>{t("no_slots_available")}</p>;
+    if (!todaySlots || todaySlots?.length === 0)
+      return <p>{t("no_slots_available")}</p>;
     const options = todaySlots?.map(
       (slot) => {
         const slotLocal = new Date(slot);

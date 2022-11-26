@@ -12,9 +12,9 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { languageSvc, countrySvc } from "@USupport-components-library/services";
-import "./welcome.scss";
-
 import { logoVerticalSvg } from "@USupport-components-library/assets";
+
+import "./welcome.scss";
 
 /**
  * Welcome
@@ -40,6 +40,8 @@ export const Welcome = () => {
         value: x.alpha2,
         label: x.name,
         id: x["country_id"],
+        minAge: x["min_client_age"],
+        maxAge: x["max_client_age"],
       };
 
       if (localStorageCountry === x.alpha2) {
