@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useLocation, Navigate } from "react-router-dom";
 import { Button, RadialCircle } from "@USupport-components-library/src";
 import { useBlockSlot, useScheduleConsultation } from "#hooks";
 import { Page, ProviderOverview as ProviderOverviewBlock } from "#blocks";
@@ -17,10 +17,11 @@ import "./provider-overview.scss";
  */
 export const ProviderOverview = () => {
   const { t } = useTranslation("provider-overview-page");
-  // Should we get the provider ID from the URL or from the location
-  const location = useLocation();
-  const providerData = location.state?.providerData;
-  if (!providerData) return <Navigate to="/select-provider" />;
+
+  const providerId = new URLSearchParams(window.location.search).get(
+    "provider-id"
+  );
+  if (!providerId) return <Navigate to="/select-provider" />;
 
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
@@ -76,7 +77,7 @@ export const ProviderOverview = () => {
     setSelectedSlot(slot);
     blockSlotMutation.mutate({
       slot,
-      providerId: providerData.providerDetailId,
+      providerId,
     });
   };
 
@@ -86,9 +87,9 @@ export const ProviderOverview = () => {
       heading={t("heading")}
       subheading={t("subheading")}
     >
-      {providerData && (
+      {providerId && (
         <ProviderOverviewBlock
-          provider={providerData}
+          providerId={providerId}
           openScheduleBackdrop={openScheduleBackdrop}
         />
       )}
@@ -100,7 +101,7 @@ export const ProviderOverview = () => {
         isOpen={isScheduleBackdropOpen}
         onClose={closeScheduleBackdrop}
         handleBlockSlot={handleBlockSlot}
-        providerId={providerData?.providerDetailId}
+        providerId={providerId}
         isCtaDisabled={isBlockSlotSubmitting}
         errorMessage={blockSlotError}
       />
