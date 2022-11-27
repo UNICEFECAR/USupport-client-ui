@@ -1,15 +1,6 @@
 @import "@USupport-components-library/styles";
 
 .page__article-information {
-  &__image {
-    width: 100%;
-    height: 26.4rem;
-
-    @media screen and (min-width: $screen-md) {
-      height: 45.2rem;
-    }
-  }
-
   &__more-articles {
     padding-top: $spacing_4_0;
     padding-bottom: $spacing_5_6;
