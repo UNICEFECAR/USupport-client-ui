@@ -103,18 +103,7 @@ export const ArticleInformation = () => {
   return (
     <Page classes="page__article-information" showGoBackArrow={false}>
       {articleData ? (
-        <>
-          <img
-            className="page__article-information__image"
-            src={
-              articleData.imageMedium
-                ? articleData.imageMedium
-                : "https://picsum.photos/300/400"
-            }
-            alt=""
-          />
-          <ArticleView articleData={articleData} />
-        </>
+        <ArticleView articleData={articleData} />
       ) : (
         <Loading size="lg" />
       )}

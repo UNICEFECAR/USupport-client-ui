@@ -8,7 +8,7 @@ export * from "./useIsLoggedIn.js";
 export * from "./useGetNotificationPreferences.js";
 export * from "./useUpdateNotificationPreferences.js";
 export * from "./useUpdateNotificationPreferences.js";
-export * from "./useGetProviderData.js";
+export * from "./useGetProviderDataById.js";
 export * from "./useGetCountryAndLanguages.js";
 export * from "./useGetWorkWithCategories.js";
 export * from "./useUpdateProviderData.js";

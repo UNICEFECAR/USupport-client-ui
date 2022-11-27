@@ -37,13 +37,21 @@ export const Articles = ({
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("articles");
 
+  const [usersLanguage, setUsersLanguage] = useState(i18n.language);
+
+  useEffect(() => {
+    if (i18n.language !== usersLanguage) {
+      setUsersLanguage(i18n.language);
+    }
+  }, [i18n.language]);
+
   //--------------------- Age Groups ----------------------//
   const [ageGroups, setAgeGroups] = useState();
   const [selectedAgeGroup, setSelectedAgeGroup] = useState();
 
   const getAgeGroups = async () => {
     try {
-      const res = await cmsSvc.getAgeGroups(i18n.language);
+      const res = await cmsSvc.getAgeGroups(usersLanguage);
       const ageGroupsData = res.data.map((age, index) => ({
         label: age.attributes.name,
         id: age.id,
@@ -57,7 +65,7 @@ export const Articles = ({
     }
   };
 
-  const ageGroupsQuery = useQuery(["ageGroups", i18n.language], getAgeGroups, {
+  const ageGroupsQuery = useQuery(["ageGroups", usersLanguage], getAgeGroups, {
     refetchOnWindowFocus: false,
     refetchOnMount: true,
     onSuccess: (data) => {
@@ -86,7 +94,7 @@ export const Articles = ({
 
   const getCategories = async () => {
     try {
-      const res = await cmsSvc.getCategories(i18n.language);
+      const res = await cmsSvc.getCategories(usersLanguage);
       let categoriesData = [{ label: "All", value: "all", isSelected: true }];
       res.data.map((category, index) =>
         categoriesData.push({
@@ -105,8 +113,8 @@ export const Articles = ({
     }
   };
 
-  const categoriesQuerry = useQuery(
-    ["articles-categories", i18n.language],
+  const categoriesQuery = useQuery(
+    ["articles-categories", usersLanguage],
     getCategories,
     {
       refetchOnWindowFocus: false,
@@ -144,7 +152,10 @@ export const Articles = ({
   );
 
   const handler = useCallback(() => {
-    setCurrentCountry(localStorage.getItem("country"));
+    const country = localStorage.getItem("country");
+    if (country !== currentCountry) {
+      setCurrentCountry(country);
+    }
   }, []);
 
   // Add event listener
@@ -157,7 +168,7 @@ export const Articles = ({
     return articlesIds;
   };
 
-  const articleIdsQuerry = useQuery(
+  const articleIdsQuery = useQuery(
     ["articleIds", currentCountry],
     getArticlesIds
   );
@@ -179,9 +190,9 @@ export const Articles = ({
       categoryId,
       sortBy: sort ? sort : null,
       sortOrder: sort ? "desc" : null,
-      locale: i18n.language,
+      locale: usersLanguage,
       populate: true,
-      ids: articleIdsQuerry.data,
+      ids: articleIdsQuery.data,
     });
 
     const articles = data.data;
@@ -192,23 +203,32 @@ export const Articles = ({
 
   const [articles, setArticles] = useState();
   const [numberOfArticles, setNumberOfArticles] = useState();
-  const { isLoading: loading } = useQuery(
+  const {
+    isLoading: isArticlesLoading,
+    isFetching: isArticlesFetching,
+    isFetched: isArticlesFetched,
+    fetchStatus: articlesFetchStatus,
+    data: articlesQueryData,
+  } = useQuery(
     [
       "articles",
       debouncedSearchValue,
       selectedAgeGroup,
       selectedCategory,
-      articleIdsQuerry.data,
+      articleIdsQuery.data,
+      usersLanguage,
     ],
     getArticlesData,
     {
       enabled:
-        !articleIdsQuerry.isLoading &&
+        !articleIdsQuery.isLoading &&
         !ageGroupsQuery.isLoading &&
-        !categoriesQuerry.isLoading &&
-        categories?.length > 0 &&
-        ageGroups?.length > 0 &&
-        articleIdsQuerry.data?.length > 0,
+        !categoriesQuery.isLoading &&
+        categoriesQuery.data?.length > 0 &&
+        ageGroupsQuery.data?.length > 0 &&
+        articleIdsQuery.data?.length > 0 &&
+        selectedCategory !== null &&
+        selectedAgeGroup !== null,
       refetchOnWindowFocus: false,
       onSuccess: (data) => {
         setArticles([...data.articles]);
@@ -242,11 +262,11 @@ export const Articles = ({
       contains: searchValue,
       ageGroupId: ageGroupId,
       categoryId: null,
-      locale: i18n.language,
+      locale: usersLanguage,
       sortBy: sort,
       sortOrder: sort ? "desc" : null,
       populate: true,
-      ids: articleIdsQuerry.data,
+      ids: articleIdsQuery.data,
     });
 
     const newArticles = data.data;
@@ -254,37 +274,39 @@ export const Articles = ({
     setArticles((prevArticles) => [...prevArticles, ...newArticles]);
   };
 
+  let areCategoriesAndAgeGroupsReady =
+    categoriesQuery?.data?.length > 1 && ageGroupsQuery?.data?.length > 0;
+
   return (
     <Block classes="articles">
-      {ageGroups &&
-      ageGroups.length > 0 &&
-      categories &&
-      categories.length > 0 ? (
+      {ageGroups?.length > 0 && categories?.length > 0 && (
         <InfiniteScroll
           dataLength={articles?.length || 0}
           next={getMoreArticles}
           hasMore={hasMore}
-          loader={<Loading size="lg" />}
+          loader={<Loading />}
           // endMessage={} // Add end message here if required
         >
           <Grid classes="articles__main-grid">
-            {showAgeGroups && (
-              <GridItem md={8} lg={8} classes="articles__age-groups-item">
-                {ageGroups && (
-                  <TabsUnderlined
-                    options={ageGroups}
-                    handleSelect={handleAgeGroupOnPress}
-                  />
-                )}
-              </GridItem>
-            )}
-            {showSearch && (
+            {showAgeGroups &&
+              categoriesQuery?.data.length > 1 &&
+              ageGroupsQuery?.data.length > 0 && (
+                <GridItem md={8} lg={8} classes="articles__age-groups-item">
+                  {ageGroups && (
+                    <TabsUnderlined
+                      options={ageGroups}
+                      handleSelect={handleAgeGroupOnPress}
+                    />
+                  )}
+                </GridItem>
+              )}
+            {showSearch && areCategoriesAndAgeGroupsReady && (
               <GridItem md={8} lg={12} classes="articles__search-item">
                 <InputSearch onChange={handleInputChange} value={searchValue} />
               </GridItem>
             )}
 
-            {showCategories && (
+            {showCategories && areCategoriesAndAgeGroupsReady && (
               <GridItem md={8} lg={12} classes="articles__categories-item">
                 {categories && (
                   <Tabs
@@ -296,48 +318,68 @@ export const Articles = ({
             )}
 
             <GridItem md={8} lg={12} classes="articles__articles-item">
-              {numberOfArticles > 0 ? (
-                <Grid>
-                  {articles?.map((article, index) => {
-                    const articleData = destructureArticleData(
-                      CMS_HOST,
-                      article
-                    );
-                    return (
-                      <GridItem lg={6} key={index}>
-                        <CardMedia
-                          type="portrait"
-                          size="lg"
-                          style={{ gridColumn: "span 4" }}
-                          title={articleData.title}
-                          image={articleData.imageThumbnail}
-                          description={articleData.description}
-                          labels={articleData.labels}
-                          creator={articleData.creator}
-                          readingTime={articleData.readingTime}
-                          onClick={() => {
-                            navigate(`/article/${articleData.id}`);
-                          }}
-                        />
-                      </GridItem>
-                    );
-                  })}
-                </Grid>
-              ) : !loading ? (
-                <div className="articles__no-results-container">
-                  <p>{t("no_results")}</p>
-                </div>
-              ) : (
-                <Loading size="lg" />
-              )}
+              {articles?.length > 0 &&
+                areCategoriesAndAgeGroupsReady &&
+                !isArticlesLoading &&
+                !isArticlesFetching && (
+                  <Grid>
+                    {articles?.map((article, index) => {
+                      const articleData = destructureArticleData(
+                        CMS_HOST,
+                        article
+                      );
+                      return (
+                        <GridItem lg={6} key={index}>
+                          <CardMedia
+                            type="portrait"
+                            size="lg"
+                            style={{ gridColumn: "span 4" }}
+                            title={articleData.title}
+                            image={articleData.imageThumbnail}
+                            description={articleData.description}
+                            labels={articleData.labels}
+                            creator={articleData.creator}
+                            readingTime={articleData.readingTime}
+                            onClick={() => {
+                              navigate(`/article/${articleData.id}`);
+                            }}
+                          />
+                        </GridItem>
+                      );
+                    })}
+                  </Grid>
+                )}
+              {!articles?.length &&
+                !isArticlesLoading &&
+                !isArticlesFetching &&
+                categoriesQuery?.data?.length > 1 &&
+                ageGroupsQuery?.data?.length > 0 && (
+                  <div className="articles__no-results-container">
+                    <p>{t("no_results")}</p>
+                  </div>
+                )}
             </GridItem>
           </Grid>
         </InfiniteScroll>
-      ) : (
-        <div className="articles__page-loading">
-          <Loading size="lg" />
-        </div>
       )}
+
+      {isArticlesFetching ||
+      articleIdsQuery.isLoading ||
+      articleIdsQuery.isFetching ? (
+        <Loading />
+      ) : null}
+
+      {(articleIdsQuery.isFetched &&
+        (isArticlesFetched || articlesFetchStatus === "idle")) ||
+      ((isArticlesFetched || articlesFetchStatus === "idle") &&
+        !articleIdsQuery.isFetching &&
+        (!articlesQueryData ||
+          !articlesQueryData.articles ||
+          articlesQueryData.articles.length === 0)) ? (
+        <div className="articles__no-results-container">
+          <h3>{t("could_not_load_content")}</h3>
+        </div>
+      ) : null}
     </Block>
   );
 };
