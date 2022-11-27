@@ -32,8 +32,6 @@ export const Articles = ({
   showAgeGroups,
   sort,
 }) => {
-  const CMS_HOST = `${import.meta.env.VITE_CMS_HOST}`;
-
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("articles");
 
@@ -324,10 +322,7 @@ export const Articles = ({
                 !isArticlesFetching && (
                   <Grid>
                     {articles?.map((article, index) => {
-                      const articleData = destructureArticleData(
-                        CMS_HOST,
-                        article
-                      );
+                      const articleData = destructureArticleData(article);
                       return (
                         <GridItem lg={6} key={index}>
                           <CardMedia
