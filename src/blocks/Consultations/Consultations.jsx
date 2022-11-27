@@ -1,7 +1,12 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useGetAllConsultations } from "#hooks";
+import { toast } from "react-toastify";
+import {
+  useGetAllConsultations,
+  useAcceptConsultation,
+  useRejectConsultation,
+} from "#hooks";
 
 import {
   Block,
@@ -75,6 +80,34 @@ export const Consultations = ({
     });
   };
 
+  const onAcceptConsultationSuccess = () => {
+    toast(t("accept_consultation_success"));
+  };
+  const onAcceptConsultationError = (error) => {
+    toast(error, { type: "error" });
+  };
+  const acceptConsultationMutation = useAcceptConsultation(
+    onAcceptConsultationSuccess,
+    onAcceptConsultationError
+  );
+  const acceptConsultation = (consultationId) => {
+    acceptConsultationMutation.mutate(consultationId);
+  };
+
+  const onRejectConsultationSuccess = () => {
+    toast(t("reject_consultation_success"));
+  };
+  const onRejectConsultationError = (error) => {
+    toast(error, { type: "error" });
+  };
+  const rejectConsultationMutation = useRejectConsultation(
+    onRejectConsultationSuccess,
+    onRejectConsultationError
+  );
+  const rejectConsultation = (consultationId) => {
+    rejectConsultationMutation.mutate(consultationId);
+  };
+
   const filterConsultations = useCallback(() => {
     const currentDateTs = new Date().getTime();
 
@@ -123,6 +156,9 @@ export const Consultations = ({
             daysOfWeekTranslations={daysOfWeekTranslations}
             consultation={consultation}
             overview={consultation.status === "finished" ? true : false}
+            suggested={consultation.status === "suggested" ? true : false}
+            handleAcceptConsultation={acceptConsultation}
+            handleRejectConsultation={rejectConsultation}
           />
         </GridItem>
       );
