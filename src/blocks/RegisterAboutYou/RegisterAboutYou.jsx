@@ -38,7 +38,7 @@ export const RegisterAboutYou = () => {
     surname: Joi.string().allow(null, "", " ").label(t("nickname_error")),
     sex: Joi.string().invalid(null).label(t("sex_error")),
     yearOfBirth: Joi.number().invalid(null).label(t("year_of_birth_error")),
-    livingPlace: Joi.string().invalid(null).label(t("place_of_living_error")),
+    urbanRural: Joi.string().invalid(null).label(t("place_of_living_error")),
   });
 
   const clientData = useGetClientData()[1];
@@ -50,7 +50,7 @@ export const RegisterAboutYou = () => {
     { label: t("sex_none"), value: "none" },
   ];
 
-  const livingPlaceOptions = [
+  const urbanRuralOptions = [
     { label: t("place_of_living_urban"), value: "urban" },
     { label: t("place_of_living_rural"), value: "rural" },
   ];
@@ -60,7 +60,7 @@ export const RegisterAboutYou = () => {
     surname: "",
     sex: "",
     yearOfBirth: "",
-    livingPlace: "",
+    urbanRural: "",
   });
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export const RegisterAboutYou = () => {
         surname: clientData.surname,
         sex: clientData.sex,
         yearOfBirth: clientData.yearOfBirth,
-        livingPlace: clientData.livingPlace,
+        urbanRural: clientData.urbanRural,
       });
     }
   }, [clientData]);
@@ -141,7 +141,7 @@ export const RegisterAboutYou = () => {
     }
   };
 
-  const canContinue = data.sex && data.yearOfBirth && data.livingPlace;
+  const canContinue = data.sex && data.yearOfBirth && data.urbanRural;
 
   return (
     <Block classes="register-about-you">
@@ -186,12 +186,12 @@ export const RegisterAboutYou = () => {
               classes="register-about-you__grid__content-item__inputs-container__year-dropdown"
             />
             <RadioButtonSelectorGroup
-              name="livingPlace"
+              name="urbanRural"
               label={t("living_place_label")}
-              options={livingPlaceOptions}
-              selected={data.livingPlace}
-              errorMessage={errors.livingPlace}
-              setSelected={(option) => handleSelect("livingPlace", option)}
+              options={urbanRuralOptions}
+              selected={data.urbanRural}
+              errorMessage={errors.urbanRural}
+              setSelected={(option) => handleSelect("urbanRural", option)}
             />
           </div>
           {errors.submit ? <Error message={errors.submit} /> : null}

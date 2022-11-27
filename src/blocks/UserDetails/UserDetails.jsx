@@ -134,7 +134,7 @@ export const UserDetails = ({
     { label: t("sex_none"), value: "none" },
   ];
 
-  const livingPlaceOptions = [
+  const urbanRuralOptions = [
     { label: t("place_of_living_urban"), value: "urban" },
     { label: t("place_of_living_rural"), value: "rural" },
   ];
@@ -323,9 +323,9 @@ export const UserDetails = ({
               label={t("year_of_birth")}
             />
             <DropdownWithLabel
-              options={livingPlaceOptions}
-              selected={clientData.livingPlace}
-              setSelected={(option) => handleChange("livingPlace", option)}
+              options={urbanRuralOptions}
+              selected={clientData.urbanRural}
+              setSelected={(option) => handleChange("urbanRural", option)}
               label={t("living_place")}
             />
             {errors.submit ? <ErrorMessage message={errors.submit} /> : null}

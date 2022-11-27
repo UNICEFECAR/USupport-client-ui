@@ -12,7 +12,7 @@ import {
   Icon,
   Loading,
 } from "@USupport-components-library/src";
-import { useGetProviderData } from "#hooks";
+import { useGetProviderDataById } from "#hooks";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
@@ -25,8 +25,11 @@ import "./provider-overview.scss";
  *
  * @return {jsx}
  */
-export const ProviderOverview = ({ provider, openScheduleBackdrop }) => {
+export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
   const { t } = useTranslation("provider-overview");
+
+  const { data: provider } = useGetProviderDataById(providerId);
+
   const image = AMAZON_S3_BUCKET + "/" + (provider?.image || "default");
   const allOptionsToString = (option) => {
     return provider[option]?.join(", ");
@@ -110,7 +113,7 @@ export const ProviderOverview = ({ provider, openScheduleBackdrop }) => {
                 {t("earliest_spot_label")}
               </p>
               <p className="small-text provider-profile__information-container__text">
-                {provider.earliestAvailable}
+                {provider.earliestAvailableSlot}
               </p>
             </div>
             <div className="provider-profile__information-container">
@@ -142,7 +145,7 @@ export const ProviderOverview = ({ provider, openScheduleBackdrop }) => {
                 {t("done_consultations_label")}
               </p>
               <p className="small-text provider-profile__information-container__text">
-                {provider.consultations} consultations
+                {provider.totalConsultations} consultations
               </p>
             </div>
             <div className="provider-profile__information-container">

@@ -22,11 +22,7 @@ export const SelectProvider = ({ providers }) => {
   const navigate = useNavigate();
 
   const handleProviderClick = (provider) => {
-    navigate("/provider-overview", {
-      state: {
-        providerData: provider,
-      },
-    });
+    navigate(`/provider-overview?provider-id=${provider.providerDetailId}`);
   };
 
   const renderProviders = () => {

@@ -49,13 +49,14 @@ export default function useGetProvidersData() {
         phone: providerData.phone || "",
         image: providerData.image || "default",
         specializations: providerData.specializations || [],
-        address: providerData.address || "",
         education: providerData.education || [],
         sex: providerData.sex || "",
         consultationPrice: providerData.consultation_price || 0,
         description: providerData.description || "",
         languages: providerData.languages || [],
         workWith: providerData.work_with || [],
+        totalConsultations: providerData.total_consultations || 0,
+        earliestAvailableSlot: providerData.earliest_available_slot || "",
       };
       formattedData.push(formattedProvider);
     }
