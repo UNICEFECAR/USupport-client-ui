@@ -1,0 +1,29 @@
+@import "@USupport-components-library/styles";
+
+.consultations-dashboard {
+  padding-top: $spacing_4_8;
+
+  &__heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .view-all-button {
+      color: $color_secondary_9749fa;
+    }
+  }
+
+  &__button-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: $spacing_2_0;
+    padding-bottom: $spacing_1_6;
+  }
+
+  &__carousel-container {
+    margin-top: $spacing_2_0;
+  }
+}
