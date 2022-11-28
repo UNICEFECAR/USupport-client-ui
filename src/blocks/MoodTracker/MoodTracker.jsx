@@ -38,7 +38,14 @@ export const MoodTracker = ({ classes }) => {
   const renderEmoticons = () => {
     return emoticons.map((emoticon, index) => {
       return (
-        <div key={index} onClick={() => handleEmoticonClick(index)}>
+        <div
+          className={[
+            "mood-tracker__rating__emoticon-container",
+            !emoticon.isSelected && "not-selected",
+          ].join(" ")}
+          key={index}
+          onClick={() => handleEmoticonClick(index)}
+        >
           <Emoticon
             name={`emoticon-${emoticon.name}`}
             size={emoticon.isSelected ? "lg" : "sm"}

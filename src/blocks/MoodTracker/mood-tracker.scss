@@ -24,6 +24,10 @@
     margin: 0 auto;
     margin-top: $spacing_2_4;
 
+    & .not-selected {
+      opacity: 0.5;
+    }
+
     & .selected {
       color: $color_black_37;
     }
