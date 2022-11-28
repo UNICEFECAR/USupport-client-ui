@@ -18,8 +18,6 @@ import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import "./article-information.scss";
 
 export const ArticleInformation = () => {
-  const CMS_HOST = `${import.meta.env.VITE_CMS_HOST}`;
-
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -42,7 +40,7 @@ export const ArticleInformation = () => {
       i18n.language
     );
 
-    const finalData = destructureArticleData(CMS_HOST, data);
+    const finalData = destructureArticleData(data);
     return finalData;
   };
 
@@ -103,18 +101,7 @@ export const ArticleInformation = () => {
   return (
     <Page classes="page__article-information" showGoBackArrow={false}>
       {articleData ? (
-        <>
-          <img
-            className="page__article-information__image"
-            src={
-              articleData.imageMedium
-                ? articleData.imageMedium
-                : "https://picsum.photos/300/400"
-            }
-            alt=""
-          />
-          <ArticleView articleData={articleData} />
-        </>
+        <ArticleView articleData={articleData} />
       ) : (
         <Loading size="lg" />
       )}
@@ -126,7 +113,7 @@ export const ArticleInformation = () => {
               <h4>{t("heading")}</h4>
             </GridItem>
             {moreArticles.map((article, index) => {
-              const articleData = destructureArticleData(CMS_HOST, article);
+              const articleData = destructureArticleData(article);
 
               return (
                 <GridItem

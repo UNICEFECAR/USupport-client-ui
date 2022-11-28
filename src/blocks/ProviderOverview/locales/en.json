@@ -1,5 +1,5 @@
 {
-  "earliest_spot_label": "Earliest free spot for consultation",
+  "earliest_slot_label": "Earliest free slot for consultation",
   "languages_label": "Language of operation",
   "education_label": "Education",
   "work_with_label": "Working with",
@@ -9,6 +9,7 @@
   "edit_details": "Edit details",
   "change_password": "Change password",
   "delete_account": "Delete account",
+  "no_available_slot": "There is no available slot",
 
   "psychologist": "Psychologist",
   "psychiatrist": "Psychiatrist",

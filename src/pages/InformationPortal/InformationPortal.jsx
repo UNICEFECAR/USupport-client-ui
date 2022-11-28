@@ -28,8 +28,6 @@ import { mascotHappyPurple } from "@USupport-components-library/assets";
  * @returns {JSX.Element}
  */
 export const InformationPortal = () => {
-  const CMS_HOST = `${import.meta.env.VITE_CMS_HOST}`;
-
   const navigate = useNavigate();
 
   const { t, i18n } = useTranslation("information-portal");
@@ -71,7 +69,7 @@ export const InformationPortal = () => {
       ids: articleIdsQuerry.data,
     });
     for (let i = 0; i < data.data.length; i++) {
-      data.data[i] = destructureArticleData(CMS_HOST, data.data[i]);
+      data.data[i] = destructureArticleData(data.data[i]);
     }
 
     return data.data;
@@ -104,7 +102,7 @@ export const InformationPortal = () => {
     });
 
     for (let i = 0; i < data.data.length; i++) {
-      data.data[i] = destructureArticleData(CMS_HOST, data.data[i]);
+      data.data[i] = destructureArticleData(data.data[i]);
     }
     return data.data;
   };

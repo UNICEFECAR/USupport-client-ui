@@ -21,7 +21,7 @@ export default function useGetClientData() {
       sex: res.data.sex || "",
       yearOfBirth: res.data.year_of_birth || "",
       image: res.data.image,
-      livingPlace: res.data.living_place || "",
+      urbanRural: res.data.urban_rural || "",
       dataProcessing: res.data.data_processing,
     };
     queryClient.setQueryData(["client-image"], data.image);
@@ -43,7 +43,7 @@ export default function useGetClientData() {
       sex: "",
       yearOfBirth: "",
       image: "default",
-      livingPlace: "",
+      urbanRural: "",
       dataProcessing: "",
     },
   });

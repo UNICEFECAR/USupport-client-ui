@@ -1,11 +1,11 @@
 import React from "react";
-import RectMarkdown from "react-markdown";
 import {
   Block,
   Grid,
   GridItem,
   Icon,
   Label,
+  Markdown,
 } from "@USupport-components-library/src";
 import propTypes from "prop-types";
 
@@ -22,6 +22,17 @@ export const ArticleView = ({ articleData }) => {
   return (
     <Block classes="article-view">
       <Grid classes="article-view__main-grid">
+        <GridItem md={8} lg={12}>
+          <img
+            className="article-view__image-item"
+            src={
+              articleData.imageMedium
+                ? articleData.imageMedium
+                : "https://picsum.photos/300/400"
+            }
+            alt=""
+          />
+        </GridItem>
         <GridItem md={8} lg={12} classes="article-view__labels-item">
           {articleData.labels.map((label, index) => {
             return (
@@ -46,7 +57,7 @@ export const ArticleView = ({ articleData }) => {
         </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__body-item">
-          <RectMarkdown className={"text"}>{articleData.body}</RectMarkdown>
+          <Markdown markDownText={articleData.body} className={"text"} />
         </GridItem>
       </Grid>
     </Block>
