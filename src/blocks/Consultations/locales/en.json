@@ -9,5 +9,7 @@
   "friday": "Fri",
   "saturday": "Sat",
   "no_upcoming_consultations": "You have no upcoming consultations",
-  "no_past_consultations": "You have no past consultations"
+  "no_past_consultations": "You have no past consultations",
+  "reject_consultation_success": "Consultation rejected successfully",
+  "accept_consultation_success": "Consultation accepted successfully"
 }

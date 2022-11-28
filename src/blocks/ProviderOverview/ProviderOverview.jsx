@@ -1,17 +1,19 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   Block,
   Box,
   Button,
-  ButtonWithIcon,
   Grid,
   GridItem,
   Icon,
   Loading,
 } from "@USupport-components-library/src";
+import {
+  getDateView,
+  getTimeFromDate,
+} from "@USupport-components-library/utils";
 import { useGetProviderDataById } from "#hooks";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
@@ -54,6 +56,13 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
       return provider.languages.map((x) => x.name)?.join(" ");
     }
   }, [provider]);
+
+  let earliestAvailableSlot;
+  if (provider) {
+    earliestAvailableSlot = `${getDateView(
+      provider.earliestAvailableSlot
+    )} - ${getTimeFromDate(new Date(provider.earliestAvailableSlot))}`;
+  }
 
   return (
     <Block classes="provider-profile">
@@ -108,14 +117,18 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
                 {provider.consultationPrice}$ for 1 hour consultation
               </p>
             </div>
+
             <div className="provider-profile__information-container">
               <p className="small-text provider-profile__information-container__heading">
-                {t("earliest_spot_label")}
+                {t("earliest_slot_label")}
               </p>
               <p className="small-text provider-profile__information-container__text">
-                {provider.earliestAvailableSlot}
+                {provider.earliestAvailableSlot
+                  ? earliestAvailableSlot
+                  : t("no_available_slot")}
               </p>
             </div>
+
             <div className="provider-profile__information-container">
               <p className="small-text provider-profile__information-container__heading">
                 {t("languages_label")}

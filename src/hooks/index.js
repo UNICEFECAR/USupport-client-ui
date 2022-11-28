@@ -20,3 +20,5 @@ export * from "./useCancelConsultation.js";
 export * from "./useGetConsultationData.js";
 export * from "./useGetAllConsultations.js";
 export * from "./useRescheduleConsultation.js";
+export * from "./useAcceptConsultation.js";
+export * from "./useRejectConsultation.js";
