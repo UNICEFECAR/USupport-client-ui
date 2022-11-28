@@ -1,0 +1,7 @@
+{
+    "welcome": "Welcome back {{name}}!",
+    "no_registration_heading": "You are using the app without registration",
+    "no_registration_subheading": "To use all the features of the app you need to have an anonymous or regular account.",
+    "create_account_button": "Create an account",
+    "next_consultation": "Next consultation:"
+}
