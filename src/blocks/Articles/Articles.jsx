@@ -365,7 +365,9 @@ export const Articles = ({
       ) : null}
 
       {(articleIdsQuery.isFetched &&
-        (isArticlesFetched || articlesFetchStatus === "idle")) ||
+        (isArticlesFetched || articlesFetchStatus === "idle") &&
+        !articlesQueryData?.articles &&
+        !articlesQueryData) ||
       ((isArticlesFetched || articlesFetchStatus === "idle") &&
         !articleIdsQuery.isFetching &&
         (!articlesQueryData ||
