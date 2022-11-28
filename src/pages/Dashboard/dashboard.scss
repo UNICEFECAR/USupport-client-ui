@@ -1,0 +1,11 @@
+/* Dashboard styles */
+@import "@USupport-components-library/styles";
+
+.page__dashboard {
+  @media screen and (min-width: $screen-md) {
+    background: url(../assets/background-v-shape-full.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
