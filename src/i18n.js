@@ -29,6 +29,10 @@ import {
   CookiePolicy,
   TermsOfUse,
   ActivityHistory,
+  ConsultationsDashboard,
+  MoodTracker,
+  MascotWelcomeHeader,
+  ActivityLogDashboard,
 } from "#blocks/locales.js";
 
 import {
@@ -106,6 +110,10 @@ const resources = {
     "cookie-policy": CookiePolicy.en,
     "terms-of-use": TermsOfUse.en,
     "activity-history": ActivityHistory.en,
+    "consultations-dashboard": ConsultationsDashboard.en,
+    "mood-tracker": MoodTracker.en,
+    "mascot-welcome-header": MascotWelcomeHeader.en,
+    "activity-log-dashboard": ActivityLogDashboard.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,

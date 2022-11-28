@@ -26,3 +26,7 @@ export * from "./ResetPassword";
 export * from "./TermsOfUse";
 export * from "./CookiePolicy";
 export * from "./ActivityHistory";
+export * from "./MascotWelcomeHeader";
+export * from "./MoodTracker";
+export * from './ConsultationsDashboard';
+export * from './ActivityLogDashboard';
