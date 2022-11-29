@@ -29,3 +29,4 @@ export * as MascotWelcomeHeader from "./MascotWelcomeHeader/locales.js";
 export * as MoodTracker from "./MoodTracker/locales.js";
 export * as ConsultationsDashboard from './ConsultationsDashboard/locales.js';
 export * as ActivityLogDashboard from './ActivityLogDashboard/locales.js';
+export * as ArticlesDashboard from './ArticlesDashboard/locales.js';

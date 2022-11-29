@@ -30,3 +30,4 @@ export * from "./MascotWelcomeHeader";
 export * from "./MoodTracker";
 export * from './ConsultationsDashboard';
 export * from './ActivityLogDashboard';
+export * from './ArticlesDashboard';

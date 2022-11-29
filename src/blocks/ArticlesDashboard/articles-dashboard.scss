@@ -1,0 +1,52 @@
+@import "@USupport-components-library/styles";
+
+.articles-dashboard {
+  text-align: left;
+
+  &__headings-item {
+    padding: $spacing_4_0 0 0 $spacing_6_0;
+    .subheading {
+      padding-top: $spacing_1_6;
+    }
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_5_0;
+    }
+  }
+
+  &__no-results {
+    padding: $spacing_10_0;
+  }
+
+  &__categories-item {
+    overflow-x: scroll;
+    width: 35rem;
+    padding-top: $spacing_1_0;
+
+    @media screen and (min-width: $screen-md) {
+      width: auto;
+      margin: auto;
+      padding-top: $spacing_2_0;
+    }
+  }
+
+  &__block__grid {
+    padding-top: $spacing_4_0;
+    justify-items: center;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_5_6;
+    }
+  }
+
+  &__article-item {
+    margin-top: $spacing_1_6;
+  }
+
+  &__heading-item {
+    justify-self: start;
+  }
+
+  &__view-more-item {
+    justify-self: end;
+  }
+}
