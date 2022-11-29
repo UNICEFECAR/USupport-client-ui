@@ -5,6 +5,7 @@ import {
   MoodTracker,
   ConsultationsDashboard,
   ActivityLogDashboard,
+  ArticlesDashboard,
 } from "#blocks";
 
 import "./dashboard.scss";
@@ -27,6 +28,7 @@ export const Dashboard = () => {
     >
       <MascotWelcomeHeader />
       <MoodTracker />
+      <ArticlesDashboard />
       <ConsultationsDashboard />
       <ActivityLogDashboard />
     </Page>
