@@ -33,6 +33,7 @@ import {
   MoodTracker,
   MascotWelcomeHeader,
   ActivityLogDashboard,
+  ArticlesDashboard,
 } from "#blocks/locales.js";
 
 import {
@@ -114,6 +115,7 @@ const resources = {
     "mood-tracker": MoodTracker.en,
     "mascot-welcome-header": MascotWelcomeHeader.en,
     "activity-log-dashboard": ActivityLogDashboard.en,
+    "articles-dashboard": ArticlesDashboard.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
