@@ -10,7 +10,7 @@
       margin-top: $spacing_0_8;
 
       &:first-of-type {
-        button > .btn-selector__label {
+        button:first-of-type > .btn-selector__label {
           font-weight: $font_bold;
         }
       }

@@ -62,6 +62,14 @@ export const UserProfile = ({ openModal, closeModal, isTmpUser }) => {
             onClick={() => handleRedirect("/details")}
             avatar={`${AMAZON_S3_BUCKET}/${clientData?.image || "default"}`}
           />
+          {!isTmpUser && (
+            <ButtonSelector
+              label={t("mood_tracker_button_label")}
+              classes="user-profile__grid__item__button"
+              onClick={() => handleRedirect("/mood-tracker")}
+              iconName="mood"
+            />
+          )}
         </GridItem>
         <GridItem md={8} lg={12} classes="user-profile__grid__item">
           <p className="text user-profile__grid__item__label">

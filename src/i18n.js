@@ -29,6 +29,7 @@ import {
   CookiePolicy,
   TermsOfUse,
   ActivityHistory,
+  MoodTrackerHistory,
 } from "#blocks/locales.js";
 
 import {
@@ -59,6 +60,7 @@ import {
   ActivityHistory as ActivityHistoryPage,
   CookiePolicy as CookiePolicyPage,
   TermsOfUse as TermsOfUsePage,
+  MoodTracker as MoodTrackerPage,
 } from "#pages/locales.js";
 
 import {
@@ -106,6 +108,7 @@ const resources = {
     "cookie-policy": CookiePolicy.en,
     "terms-of-use": TermsOfUse.en,
     "activity-history": ActivityHistory.en,
+    "mood-tracker-history": MoodTrackerHistory.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -135,6 +138,7 @@ const resources = {
     "activity-history-page": ActivityHistoryPage.en,
     "cookie-policy-page": CookiePolicyPage.en,
     "terms-of-use-page": TermsOfUsePage.en,
+    "mood-tracker-page": MoodTrackerPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,

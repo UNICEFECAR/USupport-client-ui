@@ -26,3 +26,4 @@ export * from "./ResetPassword";
 export * from "./TermsOfUse";
 export * from "./CookiePolicy";
 export * from "./ActivityHistory";
+export * from './MoodTracker';

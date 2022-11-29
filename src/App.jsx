@@ -32,6 +32,7 @@ import {
   ActivityHistory,
   CookiePolicy,
   TermsOfUse,
+  MoodTracker,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 
@@ -111,6 +112,7 @@ function App() {
               </CountryValidationRoute>
             }
           />
+          <Route path="/mood-tracker" element={<MoodTracker />} />
           <Route
             path="/reset-password"
             element={
@@ -199,14 +201,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <UserProfile />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/profile" element={<UserProfile />} />
           <Route
             path="/details"
             element={
