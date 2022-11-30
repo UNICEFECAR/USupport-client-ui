@@ -17,7 +17,6 @@ export default function useGetAllConsultations() {
         status: consultation.status,
       });
     }
-    console.log(formattedData);
     return formattedData;
   };
 
