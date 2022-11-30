@@ -1,0 +1,11 @@
+{
+    "heading": "Overall you felt {{feeling}} in the last 30 days", 
+    "perfect": "Perfect",
+    "happy": "Happy",
+    "sad": "Sad",
+    "depressed": "Depressed",
+    "worried": "Worried",
+    "last_thirty_days_text": "For the last 30 days you have reported that you felt:",
+    "time": "time",
+    "times": "times"
+}

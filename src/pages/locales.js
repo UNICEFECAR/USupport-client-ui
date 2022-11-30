@@ -26,4 +26,5 @@ export * as ResetPassword from "./ResetPassword/locales.js";
 export * as TermsOfUse from "./TermsOfUse/locales.js";
 export * as CookiePolicy from "./CookiePolicy/locales.js";
 export * as ActivityHistory from "./ActivityHistory/locales.js";
-export * as Dashboard from './Dashboard/locales.js';
+export * as Dashboard from "./Dashboard/locales.js";
+export * as MoodTracker from "./MoodTracker/locales.js";

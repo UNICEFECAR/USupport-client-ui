@@ -1,0 +1,59 @@
+@import "@USupport-components-library/styles";
+
+.mood-tracker-history {
+  padding-top: $spacing_6_4;
+
+  &__content-container {
+    text-align: left;
+
+    @media screen and (min-width: $screen-lg) {
+      max-width: 36.1rem;
+      margin: 0 auto;
+    }
+
+    &__emoticons-container {
+      display: flex;
+      flex-direction: row;
+      width: 34.3rem;
+      justify-content: space-between;
+      max-width: 35rem;
+      margin: 0 auto;
+      margin-top: $spacing_1_6;
+      text-align: center;
+
+      & .not-selected {
+        opacity: 0.4;
+      }
+
+      & .selected {
+        color: $color_black_37;
+      }
+    }
+  }
+
+  &__heading {
+    color: $color_blue_3d527b;
+    font-weight: $font_medium;
+  }
+
+  &__last-thirty-days-text {
+    margin-top: $spacing_1_6;
+  }
+
+  &__grid {
+    margin-top: $spacing_1_6;
+    gap: $spacing_1_6;
+
+    & .emoticon-counter-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: center;
+      padding: 0 $spacing_1_6;
+
+      & .counter-text {
+        margin-left: $spacing_2_5;
+      }
+    }
+  }
+}

@@ -34,6 +34,7 @@ import {
   MascotWelcomeHeader,
   ActivityLogDashboard,
   ArticlesDashboard,
+  MoodTrackerHistory,
 } from "#blocks/locales.js";
 
 import {
@@ -64,6 +65,7 @@ import {
   ActivityHistory as ActivityHistoryPage,
   CookiePolicy as CookiePolicyPage,
   TermsOfUse as TermsOfUsePage,
+  MoodTracker as MoodTrackerPage,
 } from "#pages/locales.js";
 
 import {
@@ -116,6 +118,7 @@ const resources = {
     "mascot-welcome-header": MascotWelcomeHeader.en,
     "activity-log-dashboard": ActivityLogDashboard.en,
     "articles-dashboard": ArticlesDashboard.en,
+    "mood-tracker-history": MoodTrackerHistory.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -145,6 +148,7 @@ const resources = {
     "activity-history-page": ActivityHistoryPage.en,
     "cookie-policy-page": CookiePolicyPage.en,
     "terms-of-use-page": TermsOfUsePage.en,
+    "mood-tracker-page": MoodTrackerPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,

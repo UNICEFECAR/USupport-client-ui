@@ -33,6 +33,7 @@ import {
   CookiePolicy,
   TermsOfUse,
   Dashboard,
+  MoodTracker,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 
@@ -113,6 +114,7 @@ function App() {
               </CountryValidationRoute>
             }
           />
+          <Route path="/mood-tracker" element={<MoodTracker />} />
           <Route
             path="/reset-password"
             element={
