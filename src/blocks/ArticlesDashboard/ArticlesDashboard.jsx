@@ -223,7 +223,7 @@ export const ArticlesDashboard = () => {
                           size="lg"
                           style={{ gridColumn: "span 4" }}
                           title={article.title}
-                          image={article.imageThumbnail}
+                          image={article.imageMedium}
                           description={article.description}
                           labels={article.labels}
                           creator={article.creator}
