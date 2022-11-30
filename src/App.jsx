@@ -203,14 +203,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <UserProfile />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/profile" element={<UserProfile />} />
           <Route
             path="/details"
             element={
