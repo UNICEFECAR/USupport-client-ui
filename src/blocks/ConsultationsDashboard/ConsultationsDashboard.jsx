@@ -3,11 +3,15 @@ import { useTranslation } from "react-i18next";
 import {
   Block,
   Button,
+  Loading,
   CustomCarousel,
   ConsultationBig,
 } from "@USupport-components-library/src";
+import { ONE_HOUR } from "@USupport-components-library/utils";
+import { useGetAllConsultations } from "#hooks";
 
 import "./consultations-dashboard.scss";
+import { useNavigate } from "react-router-dom";
 
 /**
  * ConsultationsDashboard
@@ -16,35 +20,15 @@ import "./consultations-dashboard.scss";
  *
  * @return {jsx}
  */
-export const ConsultationsDashboard = () => {
-  const { t } = useTranslation("consultations-dashboard");
+export const ConsultationsDashboard = ({
+  openJoinConsultation,
+  openEditConsultation,
+  upcomingConsultations,
+  isLoading,
+}) => {
+  const navigate = useNavigate();
 
-  const consultations = [
-    // {
-    //   consultation: {
-    //     providerName: "Joanna Doe",
-    //     timestamp: 1669496673000,
-    //   },
-    // },
-    // {
-    //   consultation: {
-    //     providerName: "Joanna Doe",
-    //     timestamp: 1714921200000,
-    //   },
-    // },
-    // {
-    //   consultation: {
-    //     providerName: "Joanna Doe",
-    //     timestamp: 1714921200000,
-    //   },
-    // },
-    // {
-    //   consultation: {
-    //     providerName: "Joanna Doe",
-    //     timestamp: 1714921200000,
-    //   },
-    // },
-  ];
+  const { t } = useTranslation("consultations-dashboard");
 
   const breakpointsItem = {
     desktop: {
@@ -66,13 +50,20 @@ export const ConsultationsDashboard = () => {
   };
 
   const renderConsultations = () => {
-    return consultations.map((consultation, index) => {
-      return <ConsultationBig consultation={consultation} />;
+    return upcomingConsultations?.map((consultation) => {
+      return (
+        <ConsultationBig
+          consultation={consultation}
+          handleJoin={openJoinConsultation}
+          handleChange={openEditConsultation}
+          key={consultation.consultationId}
+        />
+      );
     });
   };
 
   const handleViewAll = () => {
-    console.log("View all");
+    navigate("/consultations");
   };
 
   const handleScheduleConsultation = () => {
@@ -87,7 +78,9 @@ export const ConsultationsDashboard = () => {
           {t("view_all")}
         </p>
       </div>
-      {!consultations.length > 0 ? (
+      {isLoading ? (
+        <Loading size="lg" />
+      ) : !upcomingConsultations || upcomingConsultations.length === 0 ? (
         <div className="consultations-dashboard__button-container">
           <Button
             label={t("schedule_consultation_label")}
@@ -98,7 +91,7 @@ export const ConsultationsDashboard = () => {
         </div>
       ) : (
         <div className="consultations-dashboard__carousel-container">
-          <CustomCarousel breakpointItems={breakpointsItem}>
+          <CustomCarousel breakpointItems={breakpointsItem} speed={5000}>
             {renderConsultations()}
           </CustomCarousel>
         </div>

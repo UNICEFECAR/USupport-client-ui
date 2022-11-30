@@ -23,7 +23,12 @@ import {
  *
  * @return {jsx}
  */
-export const MascotWelcomeHeader = ({ classes }) => {
+export const MascotWelcomeHeader = ({
+  classes,
+  nextConsultation,
+  handleJoin,
+  handleEdit,
+}) => {
   const { t } = useTranslation("mascot-welcome-header");
 
   const { width } = useWindowDimensions();
@@ -70,7 +75,12 @@ export const MascotWelcomeHeader = ({ classes }) => {
               <p className="text subheading heading">
                 {t("next_consultation")}
               </p>
-              <ConsultationDashboard classes="mascot-welcome-header__headings-item__consultation-card" />
+              <ConsultationDashboard
+                consultation={nextConsultation}
+                classes="mascot-welcome-header__headings-item__consultation-card"
+                handleJoin={handleJoin}
+                handleEdit={handleEdit}
+              />
             </>
           )}
         </GridItem>
