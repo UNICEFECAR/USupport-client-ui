@@ -32,6 +32,7 @@ import {
   ActivityHistory,
   CookiePolicy,
   TermsOfUse,
+  Dashboard,
   MoodTracker,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
@@ -80,6 +81,7 @@ function App() {
               </CountryValidationRoute>
             }
           />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route
             path="/register-preview"
             element={
@@ -227,14 +229,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/information-portal"
-            element={
-              <ProtectedRoute>
-                <InformationPortal />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/information-portal" element={<InformationPortal />} />
           <Route
             path="/articles"
             element={

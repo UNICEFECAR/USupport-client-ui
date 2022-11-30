@@ -29,6 +29,11 @@ import {
   CookiePolicy,
   TermsOfUse,
   ActivityHistory,
+  ConsultationsDashboard,
+  MoodTracker,
+  MascotWelcomeHeader,
+  ActivityLogDashboard,
+  ArticlesDashboard,
   MoodTrackerHistory,
 } from "#blocks/locales.js";
 
@@ -108,6 +113,11 @@ const resources = {
     "cookie-policy": CookiePolicy.en,
     "terms-of-use": TermsOfUse.en,
     "activity-history": ActivityHistory.en,
+    "consultations-dashboard": ConsultationsDashboard.en,
+    "mood-tracker": MoodTracker.en,
+    "mascot-welcome-header": MascotWelcomeHeader.en,
+    "activity-log-dashboard": ActivityLogDashboard.en,
+    "articles-dashboard": ArticlesDashboard.en,
     "mood-tracker-history": MoodTrackerHistory.en,
 
     // Pages
