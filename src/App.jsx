@@ -166,9 +166,9 @@ function App() {
           <Route
             path="/share-platform"
             element={
-              <ProtectedRoute>
+              <CountryValidationRoute>
                 <SharePlatform />
-              </ProtectedRoute>
+              </CountryValidationRoute>
             }
           />
           <Route
@@ -182,17 +182,17 @@ function App() {
           <Route
             path="/platform-rating"
             element={
-              <ProtectedRoute>
+              <CountryValidationRoute>
                 <PlatformRating />
-              </ProtectedRoute>
+              </CountryValidationRoute>
             }
           />
           <Route
             path="/contact-us"
             element={
-              <ProtectedRoute>
+              <CountryValidationRoute>
                 <ContactUs />
-              </ProtectedRoute>
+              </CountryValidationRoute>
             }
           />
           <Route
@@ -229,30 +229,37 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/information-portal" element={<InformationPortal />} />
+          <Route
+            path="/information-portal"
+            element={
+              <CountryValidationRoute>
+                <InformationPortal />
+              </CountryValidationRoute>
+            }
+          />
           <Route
             path="/articles"
             element={
-              <ProtectedRoute>
+              <CountryValidationRoute>
                 <Articles />
-              </ProtectedRoute>
+              </CountryValidationRoute>
             }
           />
           <Route
             path="/article/:id"
             element={
-              <ProtectedRoute>
+              <CountryValidationRoute>
                 <ArticleInformation />
-              </ProtectedRoute>
+              </CountryValidationRoute>
             }
           />
 
           <Route
             path="/faq"
             element={
-              <ProtectedRoute>
+              <CountryValidationRoute>
                 <FAQ />
-              </ProtectedRoute>
+              </CountryValidationRoute>
             }
           />
 
