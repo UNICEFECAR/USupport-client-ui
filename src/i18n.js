@@ -66,6 +66,7 @@ import {
   CookiePolicy as CookiePolicyPage,
   TermsOfUse as TermsOfUsePage,
   MoodTracker as MoodTrackerPage,
+  Dashboard as DashboardPage,
 } from "#pages/locales.js";
 
 import {
@@ -149,6 +150,7 @@ const resources = {
     "cookie-policy-page": CookiePolicyPage.en,
     "terms-of-use-page": TermsOfUsePage.en,
     "mood-tracker-page": MoodTrackerPage.en,
+    "dashboard-page": DashboardPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,

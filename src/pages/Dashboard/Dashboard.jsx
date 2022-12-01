@@ -1,13 +1,11 @@
 import React, { useState, useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import {
   Page,
   MascotWelcomeHeader,
   MoodTracker,
   ConsultationsDashboard,
-  // ActivityLogDashboard,
   ArticlesDashboard,
 } from "#blocks";
 import {
@@ -18,13 +16,17 @@ import {
   SelectConsultation,
 } from "#backdrops";
 import {
+  useAcceptConsultation,
   useBlockSlot,
   useRescheduleConsultation,
   useGetAllConsultations,
+  useScheduleConsultation,
 } from "#hooks";
-import { ONE_HOUR } from "@USupport-components-library/utils";
 
+import { userSvc } from "@USupport-components-library/services";
+import { ONE_HOUR } from "@USupport-components-library/utils";
 import "./dashboard.scss";
+import { useTranslation } from "react-i18next";
 
 /**
  * Dashboard
@@ -34,11 +36,16 @@ import "./dashboard.scss";
  * @returns {JSX.Element}
  */
 export const Dashboard = () => {
+  const { t } = useTranslation("dashboard-page");
+  const isTmpUser = userSvc.getUserID() === "tmp-user";
+
   const queryClient = useQueryClient();
 
-  const consultationsQuery = useGetAllConsultations();
+  // Get the consultations data only if the user is NOT temporary
+  const consultationsQuery = isTmpUser ? [] : useGetAllConsultations();
 
   const upcomingConsultations = useMemo(() => {
+    console.log("recalculate");
     const currentDateTs = new Date().getTime();
     if (consultationsQuery.data) {
       return consultationsQuery.data
@@ -59,8 +66,8 @@ export const Dashboard = () => {
   const [selectedConsultationProviderId, setSelectedConsultationProviderId] =
     useState();
   const [selectedConsultationId, setSelectedConsultationId] = useState();
-
   const [isEditConsultationOpen, setIsEditConsultationOpen] = useState(false);
+
   const openEditConsultation = (consultation) => {
     setSelectedConsultationId(consultation.consultationId);
     setSelectedConsultationProviderId(consultation.providerId);
@@ -81,6 +88,7 @@ export const Dashboard = () => {
   };
   const closeJoinConsultation = () => setIsJoinConsultationOpen(false);
 
+  const [isEditingConsultation, setIsEditingConsultation] = useState(true);
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
@@ -104,8 +112,25 @@ export const Dashboard = () => {
   const closeSelectConsultationBackdrop = () =>
     setIsSelectConsultationBackdropOpen(false);
 
+  // Accept consultation logic
+
+  const onAcceptConsultationSuccess = () => {
+    toast(t("accept_success"));
+  };
+  const onAcceptConsultationError = (error) => {
+    toast(error, { type: "error" });
+  };
+  const acceptConsultationMutation = useAcceptConsultation(
+    onAcceptConsultationSuccess,
+    onAcceptConsultationError
+  );
+
+  const handleAcceptSuggestion = (consultationId) => {
+    acceptConsultationMutation.mutate(consultationId);
+  };
+
   // Schedule consultation logic
-  const onRescheduleConsultationSuccess = (data) => {
+  const onRescheduleConsultationSuccess = () => {
     setIsBlockSlotSubmitting(false);
     setConsultationId(consultationId);
     closeSelectConsultationBackdrop();
@@ -123,14 +148,26 @@ export const Dashboard = () => {
     onRescheduleConsultationError
   );
 
+  const onScheduleConsultationError = (error) => {
+    toast(error, { type: "error" });
+  };
+  const scheduleConsultationMutation = useScheduleConsultation(
+    onRescheduleConsultationSuccess,
+    onScheduleConsultationError
+  );
+
   // Block slot logic
   const onBlockSlotSuccess = (newConsultationId) => {
     // setIsBlockSlotSubmitting(false);
     // setConsultationId(consultationId);
-    rescheduleConsultationMutation.mutate({
-      consultationId: selectedConsultationId,
-      newConsultationId,
-    });
+    if (isEditingConsultation) {
+      rescheduleConsultationMutation.mutate({
+        consultationId: selectedConsultationId,
+        newConsultationId,
+      });
+    } else {
+      scheduleConsultationMutation.mutate(selectedConsultationId);
+    }
 
     // closeSelectConsultationBackdrop();
     // openConfirmConsultationBackdrop();
@@ -151,6 +188,12 @@ export const Dashboard = () => {
       providerId: selectedConsultationProviderId,
     });
   };
+
+  const handleOpenScheduleConsultation = () => {
+    setIsEditingConsultation(false);
+    openSelectConsultation();
+  };
+
   return (
     <Page
       classes="page__dashboard"
@@ -165,12 +208,15 @@ export const Dashboard = () => {
         }
         handleJoin={openJoinConsultation}
         handleEdit={openEditConsultation}
+        handleSchedule={handleOpenScheduleConsultation}
+        handleAcceptSuggestion={handleAcceptSuggestion}
       />
       <MoodTracker />
-      <ArticlesDashboard />
+      {/* <ArticlesDashboard /> */}
       <ConsultationsDashboard
         openJoinConsultation={openJoinConsultation}
         openEditConsultation={openEditConsultation}
+        handleAcceptSuggestion={handleAcceptSuggestion}
         upcomingConsultations={upcomingConsultations}
         isLoading={consultationsQuery.isLoading}
       />

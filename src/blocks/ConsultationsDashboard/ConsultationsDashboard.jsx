@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { PageContext } from "../Page";
+
 import {
   Block,
   Button,
@@ -7,11 +10,8 @@ import {
   CustomCarousel,
   ConsultationBig,
 } from "@USupport-components-library/src";
-import { ONE_HOUR } from "@USupport-components-library/utils";
-import { useGetAllConsultations } from "#hooks";
 
 import "./consultations-dashboard.scss";
-import { useNavigate } from "react-router-dom";
 
 /**
  * ConsultationsDashboard
@@ -23,10 +23,13 @@ import { useNavigate } from "react-router-dom";
 export const ConsultationsDashboard = ({
   openJoinConsultation,
   openEditConsultation,
+  handleAcceptSuggestion,
+  handleSchedule,
   upcomingConsultations,
   isLoading,
 }) => {
   const navigate = useNavigate();
+  const { isTmpUser, handleRegistrationModalOpen } = useContext(PageContext);
 
   const { t } = useTranslation("consultations-dashboard");
 
@@ -48,7 +51,7 @@ export const ConsultationsDashboard = ({
       items: 1,
     },
   };
-
+  console.log(upcomingConsultations, "upcoming");
   const renderConsultations = () => {
     return upcomingConsultations?.map((consultation) => {
       return (
@@ -56,6 +59,8 @@ export const ConsultationsDashboard = ({
           consultation={consultation}
           handleJoin={openJoinConsultation}
           handleChange={openEditConsultation}
+          handleAcceptSuggestion={handleAcceptSuggestion}
+          t={t}
           key={consultation.consultationId}
         />
       );
@@ -63,11 +68,19 @@ export const ConsultationsDashboard = ({
   };
 
   const handleViewAll = () => {
-    navigate("/consultations");
+    if (isTmpUser) {
+      handleRegistrationModalOpen();
+    } else {
+      navigate("/consultations");
+    }
   };
 
   const handleScheduleConsultation = () => {
-    console.log("Schedule consultation");
+    if (isTmpUser) {
+      handleRegistrationModalOpen();
+    } else {
+      handleSchedule();
+    }
   };
 
   return (
@@ -86,7 +99,7 @@ export const ConsultationsDashboard = ({
             label={t("schedule_consultation_label")}
             type="secondary"
             size="lg"
-            onClick={handleScheduleConsultation()}
+            onClick={handleScheduleConsultation}
           />
         </div>
       ) : (

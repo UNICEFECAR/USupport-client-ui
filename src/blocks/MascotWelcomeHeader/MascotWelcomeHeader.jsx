@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 import {
@@ -8,6 +8,7 @@ import {
   ConsultationDashboard,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
+import { PageContext } from "../Page";
 
 import "./mascot-welcome-header.scss";
 
@@ -21,21 +22,22 @@ import {
  *
  * MascotWelcomeHeader block used in Dashboard page
  *
- * @return {jsx}
+ * @return {JSX.Element}
  */
 export const MascotWelcomeHeader = ({
   classes,
   nextConsultation,
   handleJoin,
   handleEdit,
+  handleSchedule,
+  handleAcceptSuggestion,
 }) => {
+  const { isTmpUser, handleRegistrationModalOpen } = useContext(PageContext);
   const { t } = useTranslation("mascot-welcome-header");
-
   const { width } = useWindowDimensions();
 
   //Refactor to take the name from the API
   let name = "Anna";
-  const isTmpUser = false;
 
   return (
     <div className={["mascot-welcome-header", classNames(classes)].join(" ")}>
@@ -67,6 +69,7 @@ export const MascotWelcomeHeader = ({
                 label={t("create_account_button")}
                 color="purple"
                 size="md"
+                onClick={handleRegistrationModalOpen}
               />
             </>
           ) : (
@@ -80,6 +83,9 @@ export const MascotWelcomeHeader = ({
                 classes="mascot-welcome-header__headings-item__consultation-card"
                 handleJoin={handleJoin}
                 handleEdit={handleEdit}
+                handleSchedule={handleSchedule}
+                handleAcceptSuggestion={handleAcceptSuggestion}
+                t={t}
               />
             </>
           )}
