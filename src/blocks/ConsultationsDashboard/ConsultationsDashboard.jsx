@@ -51,7 +51,7 @@ export const ConsultationsDashboard = ({
       items: 1,
     },
   };
-  console.log(upcomingConsultations, "upcoming");
+
   const renderConsultations = () => {
     return upcomingConsultations?.map((consultation) => {
       return (

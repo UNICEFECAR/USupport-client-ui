@@ -58,7 +58,6 @@ export const SelectProvider = () => {
           : provider.price <= Number(maxPrice)
           ? false
           : true;
-      console.log(provider.price, maxPrice);
       if (hasType && isDesiredSex && isPriceMatching) {
         filteredData.push(provider);
       }

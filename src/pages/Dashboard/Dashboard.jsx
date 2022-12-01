@@ -45,7 +45,6 @@ export const Dashboard = () => {
   const consultationsQuery = isTmpUser ? [] : useGetAllConsultations();
 
   const upcomingConsultations = useMemo(() => {
-    console.log("recalculate");
     const currentDateTs = new Date().getTime();
     if (consultationsQuery.data) {
       return consultationsQuery.data
