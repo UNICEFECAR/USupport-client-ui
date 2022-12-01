@@ -5,7 +5,7 @@ import { clientSvc } from "@USupport-components-library/services";
 /**
  * Reuseable hook to get and transform the client data in a desired format
  */
-export default function useGetClientData() {
+export default function useGetClientData(enabled = true) {
   const queryClient = useQueryClient();
   const [clientData, setClientData] = useState();
   const fetchClientData = async () => {
@@ -29,6 +29,7 @@ export default function useGetClientData() {
   };
 
   const clientDataQuery = useQuery(["client-data"], fetchClientData, {
+    enabled,
     onSuccess: (data) => {
       const dataCopy = JSON.parse(JSON.stringify(data));
       setClientData({ ...dataCopy });
