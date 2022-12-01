@@ -8,6 +8,7 @@ import {
   ButtonSelector,
 } from "@USupport-components-library/src";
 import { useGetClientData } from "#hooks";
+
 import "./user-profile.scss";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
@@ -19,13 +20,14 @@ const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
  *
  * @return {jsx}
  */
-export const UserProfile = ({ openModal, closeModal, isTmpUser }) => {
+export const UserProfile = ({ openModal, isTmpUser }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("user-profile");
 
   const [displayName, setDisplayName] = useState("");
 
-  const clientData = useGetClientData()[1];
+  const clientQueryArray = useGetClientData(isTmpUser ? false : true);
+  const clientData = isTmpUser ? {} : clientQueryArray[1];
 
   useEffect(() => {
     if (clientData) {
