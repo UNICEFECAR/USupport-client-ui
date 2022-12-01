@@ -30,6 +30,8 @@ const kazakhstanCountry = {
   iconName: "KZ",
 };
 
+const PageContext = React.createContext();
+
 /**
  * Page
  *
@@ -247,7 +249,14 @@ export const Page = ({
           </>
         )}
         <p className="page__subheading-text text">{subheading}</p>
-        {children}
+        <PageContext.Provider
+          value={{
+            isTmpUser,
+            handleRegistrationModalOpen,
+          }}
+        >
+          {children}
+        </PageContext.Provider>
       </div>
       {showEmergencyButton && (
         <CircleIconButton
@@ -274,6 +283,8 @@ export const Page = ({
     </>
   );
 };
+
+export { PageContext };
 
 Page.propTypes = {
   /**
