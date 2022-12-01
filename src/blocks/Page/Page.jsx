@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
@@ -52,6 +52,10 @@ export const Page = ({
   classes,
   children,
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const queryClient = useQueryClient();
   const navigateTo = useNavigate();
   const isLoggedIn = useIsLoggedIn();
