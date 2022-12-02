@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
   Page,
@@ -37,6 +38,7 @@ import "./dashboard.scss";
  */
 export const Dashboard = () => {
   const { t } = useTranslation("dashboard-page");
+  const navigate = useNavigate();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
   const queryClient = useQueryClient();
@@ -188,9 +190,8 @@ export const Dashboard = () => {
     });
   };
 
-  const handleOpenScheduleConsultation = () => {
-    setIsEditingConsultation(false);
-    openSelectConsultation();
+  const handleScheduleConsultation = () => {
+    navigate("/select-provider");
   };
 
   return (
@@ -208,7 +209,7 @@ export const Dashboard = () => {
           }
           handleJoin={openJoinConsultation}
           handleEdit={openEditConsultation}
-          handleSchedule={handleOpenScheduleConsultation}
+          handleSchedule={handleScheduleConsultation}
           handleAcceptSuggestion={handleAcceptSuggestion}
         />
         <MoodTracker />
@@ -217,6 +218,7 @@ export const Dashboard = () => {
           openJoinConsultation={openJoinConsultation}
           openEditConsultation={openEditConsultation}
           handleAcceptSuggestion={handleAcceptSuggestion}
+          handleSchedule={handleScheduleConsultation}
           upcomingConsultations={upcomingConsultations}
           isLoading={consultationsQuery.isLoading}
         />
