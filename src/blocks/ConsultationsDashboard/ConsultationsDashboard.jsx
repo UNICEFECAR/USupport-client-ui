@@ -60,6 +60,7 @@ export const ConsultationsDashboard = ({
           handleJoin={openJoinConsultation}
           handleChange={openEditConsultation}
           handleAcceptSuggestion={handleAcceptSuggestion}
+          handleSchedule={handleSchedule}
           t={t}
           key={consultation.consultationId}
         />
