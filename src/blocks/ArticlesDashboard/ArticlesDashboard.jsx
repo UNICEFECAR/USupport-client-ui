@@ -176,12 +176,12 @@ export const ArticlesDashboard = () => {
               lg={6}
               classes="articles-dashboard__view-more-item"
             >
-              <Button
-                type="link"
-                color="purple"
-                label={t("view all")}
+              <p
+                className="small-text view-all-button"
                 onClick={() => navigate("/articles")}
-              ></Button>
+              >
+                {t("view_all")}
+              </p>
             </GridItem>
             <GridItem
               md={8}
