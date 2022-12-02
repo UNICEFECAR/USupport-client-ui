@@ -201,68 +201,70 @@ export const Dashboard = () => {
       showEmergencyButton
       showGoBackArrow={false}
     >
-      <MascotWelcomeHeader
-        nextConsultation={
-          upcomingConsultations ? upcomingConsultations[0] : null
-        }
-        handleJoin={openJoinConsultation}
-        handleEdit={openEditConsultation}
-        handleSchedule={handleOpenScheduleConsultation}
-        handleAcceptSuggestion={handleAcceptSuggestion}
-      />
-      <MoodTracker />
-      <ArticlesDashboard />
-      <ConsultationsDashboard
-        openJoinConsultation={openJoinConsultation}
-        openEditConsultation={openEditConsultation}
-        handleAcceptSuggestion={handleAcceptSuggestion}
-        upcomingConsultations={upcomingConsultations}
-        isLoading={consultationsQuery.isLoading}
-      />
-      {/* <ActivityLogDashboard /> */}
-      {selectedConsultation && (
-        <>
-          <EditConsultation
-            isOpen={isEditConsultationOpen}
-            onClose={closeEditConsultation}
-            openCancelConsultation={openCancelConsultation}
-            openSelectConsultation={openSelectConsultation}
-            consultation={selectedConsultation}
-          />
-          <CancelConsultation
-            isOpen={isCancelConsultationOpen}
-            onClose={closeCancelConsultation}
-            consultation={selectedConsultation}
-          />
-        </>
-      )}
-
-      <JoinConsultation
-        isOpen={isJoinConsultationOpen}
-        onClose={closeJoinConsultation}
-      />
-      <SelectConsultation
-        isOpen={isSelectConsultationBackdropOpen}
-        onClose={closeSelectConsultationBackdrop}
-        handleBlockSlot={handleBlockSlot}
-        providerId={selectedConsultationProviderId}
-        isCtaDisabled={isBlockSlotSubmitting}
-        errorMessage={blockSlotError}
-      />
-      {selectedSlot && (
-        <ConfirmConsultation
-          isOpen={isConfirmBackdropOpen}
-          onClose={closeConfirmConsultationBackdrop}
-          consultation={{
-            startDate: new Date(selectedSlot),
-            endDate: new Date(
-              new Date(selectedSlot).setHours(
-                new Date(selectedSlot).getHours() + 1
-              )
-            ),
-          }}
+      <div className="page__dashboard__content">
+        <MascotWelcomeHeader
+          nextConsultation={
+            upcomingConsultations ? upcomingConsultations[0] : null
+          }
+          handleJoin={openJoinConsultation}
+          handleEdit={openEditConsultation}
+          handleSchedule={handleOpenScheduleConsultation}
+          handleAcceptSuggestion={handleAcceptSuggestion}
         />
-      )}
+        <MoodTracker />
+        <ArticlesDashboard />
+        <ConsultationsDashboard
+          openJoinConsultation={openJoinConsultation}
+          openEditConsultation={openEditConsultation}
+          handleAcceptSuggestion={handleAcceptSuggestion}
+          upcomingConsultations={upcomingConsultations}
+          isLoading={consultationsQuery.isLoading}
+        />
+        {/* <ActivityLogDashboard /> */}
+        {selectedConsultation && (
+          <>
+            <EditConsultation
+              isOpen={isEditConsultationOpen}
+              onClose={closeEditConsultation}
+              openCancelConsultation={openCancelConsultation}
+              openSelectConsultation={openSelectConsultation}
+              consultation={selectedConsultation}
+            />
+            <CancelConsultation
+              isOpen={isCancelConsultationOpen}
+              onClose={closeCancelConsultation}
+              consultation={selectedConsultation}
+            />
+          </>
+        )}
+
+        <JoinConsultation
+          isOpen={isJoinConsultationOpen}
+          onClose={closeJoinConsultation}
+        />
+        <SelectConsultation
+          isOpen={isSelectConsultationBackdropOpen}
+          onClose={closeSelectConsultationBackdrop}
+          handleBlockSlot={handleBlockSlot}
+          providerId={selectedConsultationProviderId}
+          isCtaDisabled={isBlockSlotSubmitting}
+          errorMessage={blockSlotError}
+        />
+        {selectedSlot && (
+          <ConfirmConsultation
+            isOpen={isConfirmBackdropOpen}
+            onClose={closeConfirmConsultationBackdrop}
+            consultation={{
+              startDate: new Date(selectedSlot),
+              endDate: new Date(
+                new Date(selectedSlot).setHours(
+                  new Date(selectedSlot).getHours() + 1
+                )
+              ),
+            }}
+          />
+        )}
+      </div>
     </Page>
   );
 };
