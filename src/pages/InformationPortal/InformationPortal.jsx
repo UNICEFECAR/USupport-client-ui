@@ -175,7 +175,9 @@ export const InformationPortal = () => {
                     color="purple"
                     label={t("view all")}
                     onClick={() =>
-                      navigate("/articles", { state: { sort: "createdAt" } })
+                      navigate("/information-portal/articles", {
+                        state: { sort: "createdAt" },
+                      })
                     }
                   ></Button>
                 </GridItem>
@@ -228,7 +230,9 @@ export const InformationPortal = () => {
                     color="purple"
                     label={t("view all")}
                     onClick={() =>
-                      navigate("/articles", { state: { sort: "read_count" } })
+                      navigate("/information-portal/articles", {
+                        state: { sort: "read_count" },
+                      })
                     }
                   ></Button>
                 </GridItem>
