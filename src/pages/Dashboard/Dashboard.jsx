@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import {
   Page,
   MascotWelcomeHeader,
@@ -26,7 +27,6 @@ import {
 import { userSvc } from "@USupport-components-library/services";
 import { ONE_HOUR } from "@USupport-components-library/utils";
 import "./dashboard.scss";
-import { useTranslation } from "react-i18next";
 
 /**
  * Dashboard
@@ -211,7 +211,7 @@ export const Dashboard = () => {
         handleAcceptSuggestion={handleAcceptSuggestion}
       />
       <MoodTracker />
-      {/* <ArticlesDashboard /> */}
+      <ArticlesDashboard />
       <ConsultationsDashboard
         openJoinConsultation={openJoinConsultation}
         openEditConsultation={openEditConsultation}
