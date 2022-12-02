@@ -229,7 +229,9 @@ export const ArticlesDashboard = () => {
                           creator={article.creator}
                           readingTime={article.readingTime}
                           onClick={() => {
-                            navigate(`/article/${article.id}`);
+                            navigate(
+                              `/information-portal/article/${article.id}`
+                            );
                           }}
                         />
                       </GridItem>

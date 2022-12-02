@@ -246,7 +246,7 @@ function App() {
             }
           />
           <Route
-            path="/article/:id"
+            path="/information-portal/article/:id"
             element={
               <CountryValidationRoute>
                 <ArticleInformation />
