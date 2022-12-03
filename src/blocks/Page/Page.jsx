@@ -70,7 +70,9 @@ export const Page = ({
 
   const localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null
+  );
   const [selectedCountry, setSelectedCountry] = useState();
 
   const fetchCountries = async () => {
