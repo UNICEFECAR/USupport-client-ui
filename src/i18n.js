@@ -169,6 +169,16 @@ const resources = {
     //Modals
     "require-registration": RequireRegistration.en,
   },
+  kk: {
+    // Blocks
+    "articles-dashboard": ArticlesDashboard.kk,
+    articles: Articles.kk,
+  },
+  ru: {
+    // Blocks
+    "articles-dashboard": ArticlesDashboard.ru,
+    articles: Articles.ru,
+  },
 };
 
 i18n.use(initReactI18next).init({
