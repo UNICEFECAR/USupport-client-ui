@@ -81,7 +81,14 @@ function App() {
               </CountryValidationRoute>
             }
           />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/register-preview"
             element={
@@ -114,7 +121,14 @@ function App() {
               </CountryValidationRoute>
             }
           />
-          <Route path="/mood-tracker" element={<MoodTracker />} />
+          <Route
+            path="/mood-tracker"
+            element={
+              <ProtectedRoute>
+                <MoodTracker />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/reset-password"
             element={
@@ -203,7 +217,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/profile" element={<UserProfile />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/details"
             element={
