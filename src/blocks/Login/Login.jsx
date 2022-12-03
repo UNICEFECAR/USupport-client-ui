@@ -83,7 +83,8 @@ export const Login = () => {
     setData(newData);
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     setIsSubmitting(true);
     loginMutation.mutate();
   };
@@ -100,44 +101,47 @@ export const Login = () => {
     <Block classes="login">
       <Grid md={8} lg={12} classes="login__grid">
         <GridItem md={8} lg={12} classes="login__grid__inputs-item">
-          <Input
-            label={t("email_label")}
-            onChange={(value) =>
-              handleChange("email", value.currentTarget.value)
-            }
-            placeholder={t("email_placeholder")}
-            value={data.email}
-          />
-          <InputPassword
-            classes="login__grid__inputs-item__input--password"
-            label={t("password_label")}
-            onChange={(value) =>
-              handleChange("password", value.currentTarget.value)
-            }
-            placeholder={t("password_placeholder")}
-            value={data.password}
-          />
-          <Button
-            type="ghost"
-            color="purple"
-            classes="login__grid__forgot-password"
-            label={t("forgot_password_label")}
-            onClick={() => handleForgotPassowrd()}
-          />
-          {errors.submit ? <Error message={errors.submit} /> : null}
-          <Button
-            label={t("login_label")}
-            size="lg"
-            classes="login-button"
-            onClick={handleLogin}
-            disabled={!data.email || !data.password || isSubmitting}
-          />
-          <Button
-            type="ghost"
-            label={t("register_button_label")}
-            onClick={() => handleRegisterRedirect()}
-            classes="login__grid__register-button"
-          />
+          <form onSubmit={handleLogin}>
+            <Input
+              label={t("email_label")}
+              onChange={(value) =>
+                handleChange("email", value.currentTarget.value)
+              }
+              placeholder={t("email_placeholder")}
+              value={data.email}
+            />
+            <InputPassword
+              classes="login__grid__inputs-item__input--password"
+              label={t("password_label")}
+              onChange={(value) =>
+                handleChange("password", value.currentTarget.value)
+              }
+              placeholder={t("password_placeholder")}
+              value={data.password}
+            />
+            <Button
+              type="ghost"
+              color="purple"
+              classes="login__grid__forgot-password"
+              label={t("forgot_password_label")}
+              onClick={() => handleForgotPassowrd()}
+            />
+            {errors.submit ? <Error message={errors.submit} /> : null}
+            <Button
+              label={t("login_label")}
+              size="lg"
+              classes="login-button"
+              onClick={handleLogin}
+              disabled={!data.email || !data.password || isSubmitting}
+              isSubmit
+            />
+            <Button
+              type="ghost"
+              label={t("register_button_label")}
+              onClick={() => handleRegisterRedirect()}
+              classes="login__grid__register-button"
+            />
+          </form>
         </GridItem>
         {/* <GridItem md={8} lg={12} classes="login__grid__content-item">
           <div>
