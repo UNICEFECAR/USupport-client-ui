@@ -57,7 +57,9 @@ export const ArticlesDashboard = () => {
   const getCategories = async () => {
     try {
       const res = await cmsSvc.getCategories(usersLanguage);
-      let categoriesData = [{ label: "All", value: "all", isSelected: true }];
+      let categoriesData = [
+        { label: t("all"), value: "all", isSelected: true },
+      ];
       res.data.map((category, index) =>
         categoriesData.push({
           label: category.attributes.name,
