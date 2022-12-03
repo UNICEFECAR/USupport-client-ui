@@ -1,6 +1,6 @@
 {
-  "heading": "Filter Provider",
-  "subheading": "Select the provider that you want to talk to in a audio/video consultation",
+  "heading": "Filter providers",
+  "subheading": "Choose the provider you want to talk to in an audio/video consultation",
   "provider_psychologist": "Psychologist",
   "provider_psychotherapist": "Psychotherapist",
   "provider_coach": "Coach",
@@ -8,7 +8,7 @@
   "female": "Female",
   "unspecified": "Unspecified",
   "provider_type_checkbox_group_label": "Provider type",
-  "provider_sex_checkbox_group_label": "Sex of the provider",
+  "provider_sex_checkbox_group_label": "Gender of the provider",
   "max_price": "Maximum price",
   "max_price_placeholder": "Select a maximum price",
   "button_label": "Save"

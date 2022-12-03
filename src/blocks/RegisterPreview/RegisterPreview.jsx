@@ -32,15 +32,15 @@ export const RegisterPreview = () => {
   const carouselItems = [
     {
       heading: "What to expect from us",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim non amet, pellentesque accumsan, arcu. Eget augue eu dictum mi maecenas ut.",
+      text: "The first platform created to make your mental health a priority, providing highly personalized psychological care.",
     },
     {
       heading: "What to expect from us",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim non amet, pellentesque accumsan, arcu. Eget augue eu dictum mi maecenas ut.",
+      text: "The first platform created to make your mental health a priority, providing highly personalized psychological care.",
     },
     {
       heading: "What to expect from us",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim non amet, pellentesque accumsan, arcu. Eget augue eu dictum mi maecenas ut.",
+      text: "The first platform created to make your mental health a priority, providing highly personalized psychological care.",
     },
   ];
 
