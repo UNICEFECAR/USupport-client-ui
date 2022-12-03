@@ -124,14 +124,12 @@ export const RegisterSupport = () => {
       <Modal
         isOpen={isModalOpen}
         closeModal={closeModal}
-        heading={"Do you give us permission to process your personal data?"}
-        text={
-          "To give you access to the consultations we need your permission to process your personal data. You can always change the settings from your profile  "
-        }
-        ctaLabel={"I give permission"}
+        heading={t("modal_heading")}
+        text={t("modal_paragraph")}
+        ctaLabel={t("modal_cta_1")}
         ctaHandleClick={handleGivePermission}
         isCtaDisabled={isSubmitting}
-        secondaryCtaLabel={"Cancel"}
+        secondaryCtaLabel={t("modal_cta_2")}
         secondaryCtaType="secondary"
         secondaryCtaHandleClick={closeModal}
         errorMessage={submitError}
