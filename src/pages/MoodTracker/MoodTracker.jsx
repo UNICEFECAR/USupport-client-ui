@@ -17,7 +17,6 @@ export const MoodTracker = () => {
   return (
     <Page
       classes="page__mood-tracker"
-      additionalPadding={false}
       heading={t("heading")}
       subheading={t("subheading")}
     >
