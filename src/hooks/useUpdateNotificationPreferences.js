@@ -18,7 +18,6 @@ export default function useUpdateNotificationPreferences(onSuccess, onError) {
         // Perform an optimistic update and return the rollback function
         const oldData = queryClient.getQueryData(["notification-preferences"]);
         queryClient.setQueryData(["notification-preferences"], data);
-        console.log(oldData, "oldData");
         return () => {
           queryClient.setQueryData(["notification-preferences"], oldData);
         };

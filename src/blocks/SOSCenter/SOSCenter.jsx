@@ -73,9 +73,6 @@ export const SOSCenter = () => {
     }
   );
 
-  console.log(SOSCentersData);
-  console.log(SOSCentersData, SOSCentersLoading, isSOSCentersFetched);
-  console.log("ids", sosCenterIdsQuerry.length);
   return (
     <Block classes="soscenter" animation="fade-right">
       {SOSCentersData && (

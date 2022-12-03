@@ -62,8 +62,6 @@ export const ArticleInformation = () => {
       ids: articleIdsQuerry.data,
     });
 
-    console.log(data);
-
     if (data.length === 0) {
       let { data: newest } = await cmsSvc.getArticles({
         limit: 3,

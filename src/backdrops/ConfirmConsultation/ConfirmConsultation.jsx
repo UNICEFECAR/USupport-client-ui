@@ -20,7 +20,6 @@ export const ConfirmConsultation = ({ isOpen, onClose, consultation }) => {
   const { t } = useTranslation("confirm-consultation");
 
   const handleContinue = () => {
-    console.log("Continue");
     onClose();
   };
 
