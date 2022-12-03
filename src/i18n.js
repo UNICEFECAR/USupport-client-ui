@@ -80,6 +80,7 @@ import {
   DeleteAccount,
   UploadPicture,
   DeleteProfilePicture,
+  JoinConsultation,
 } from "#backdrops/locales.js";
 
 import { RequireRegistration } from "#modals/locales.js";
@@ -165,6 +166,7 @@ const resources = {
     "delete-account": DeleteAccount.en,
     "upload-picture": UploadPicture.en,
     "delete-profile-picture": DeleteProfilePicture.en,
+    "join-consultation": JoinConsultation.en,
 
     //Modals
     "require-registration": RequireRegistration.en,
