@@ -33,7 +33,7 @@ export const SelectProvider = () => {
   const checkProviderHasType = (provider, types) => {
     return types
       .map((x) => {
-        return provider.types.includes(x);
+        return provider.specializations.includes(x);
       })
       .some((x) => x === true);
   };
