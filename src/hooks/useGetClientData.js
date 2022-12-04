@@ -6,8 +6,10 @@ import { clientSvc } from "@USupport-components-library/services";
  * Reuseable hook to get and transform the client data in a desired format
  */
 export default function useGetClientData(enabled = true) {
+  console.log("call useGetClientData");
   const queryClient = useQueryClient();
-  const [clientData, setClientData] = useState();
+  const oldData = queryClient.getQueryData({ queryKey: ["client-data"] });
+  const [clientData, setClientData] = useState(oldData || null);
   const fetchClientData = async () => {
     const res = await clientSvc.getClientData();
 
@@ -24,7 +26,7 @@ export default function useGetClientData(enabled = true) {
       urbanRural: res.data.urban_rural || "",
       dataProcessing: res.data.data_processing,
     };
-    queryClient.setQueryData(["client-image"], data.image);
+
     return data;
   };
 
@@ -34,19 +36,7 @@ export default function useGetClientData(enabled = true) {
       const dataCopy = JSON.parse(JSON.stringify(data));
       setClientData({ ...dataCopy });
     },
-    initialData: {
-      clientID: "",
-      accessToken: "",
-      email: "",
-      name: "",
-      surname: "",
-      nickname: "",
-      sex: "",
-      yearOfBirth: "",
-      image: "default",
-      urbanRural: "",
-      dataProcessing: "",
-    },
+    staleTime: Infinity,
   });
 
   const update = (data) => {

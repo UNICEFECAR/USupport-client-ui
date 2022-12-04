@@ -27,7 +27,7 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
   const [displayName, setDisplayName] = useState("");
 
   const clientQueryArray = useGetClientData(isTmpUser ? false : true);
-  const clientData = isTmpUser ? {} : clientQueryArray[1];
+  const clientData = isTmpUser ? {} : clientQueryArray[0].data;
 
   useEffect(() => {
     if (clientData) {

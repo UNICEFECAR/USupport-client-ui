@@ -2,11 +2,6 @@ import React, { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-  useGetAllConsultations,
-  useAcceptConsultation,
-  useRejectConsultation,
-} from "#hooks";
 
 import {
   Block,
@@ -16,6 +11,12 @@ import {
   Consultation,
 } from "@USupport-components-library/src";
 import { ONE_HOUR } from "@USupport-components-library/utils";
+
+import {
+  useGetAllConsultations,
+  useAcceptConsultation,
+  useRejectConsultation,
+} from "#hooks";
 
 import "./consultations.scss";
 

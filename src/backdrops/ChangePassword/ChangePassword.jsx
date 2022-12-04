@@ -55,7 +55,6 @@ export const ChangePassword = ({ isOpen, onClose }) => {
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);
-      console.log(errorMessage, "error");
       setErrors({ submit: errorMessage });
     },
   });

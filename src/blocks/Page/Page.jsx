@@ -20,7 +20,7 @@ import {
   getCountryFromTimezone,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
-import { useIsLoggedIn } from "#hooks";
+import { useIsLoggedIn, useGetClientData } from "#hooks";
 
 import "./page.scss";
 
@@ -137,20 +137,10 @@ export const Page = ({
   const { data: countries } = useQuery(["countries"], fetchCountries);
   const { data: languages } = useQuery(["languages"], fetchLanguages);
 
-  const image = useQuery(
-    ["client-image"],
-    async () => {
-      const data = queryClient.getQueryData(["client-data"]);
-      if (!data) {
-        queryClient.invalidateQueries({ queryKey: ["client-data"] });
-      }
-      await new Promise((resolve) => resolve());
-      return data?.image || "default";
-    },
-    {
-      initialData: "default",
-    }
-  );
+  // const token = localStorage.getItem("token");
+  // const clientData = useGetClientData(!!token)[0].data;
+  const clientData = queryClient.getQueryData(["client-data"]);
+  const image = clientData?.image;
 
   const { t, i18n } = useTranslation("page");
   const pages = [
@@ -207,7 +197,7 @@ export const Page = ({
       {isNavbarShown === true && (
         <Navbar
           i18n={i18n}
-          image={image?.data || "default"}
+          image={image || "default"}
           isTmpUser={isTmpUser}
           isTmpUserAction={handleRegistrationModalOpen}
           navigate={navigateTo}

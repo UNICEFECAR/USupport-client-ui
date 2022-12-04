@@ -23,6 +23,7 @@ import {
   useRescheduleConsultation,
   useGetAllConsultations,
   useScheduleConsultation,
+  useGetClientData,
 } from "#hooks";
 
 import { userSvc } from "@USupport-components-library/services";
@@ -40,6 +41,11 @@ export const Dashboard = () => {
   const { t } = useTranslation("dashboard-page");
   const navigate = useNavigate();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
+
+  const clientData = useGetClientData()[1];
+  const clientName = clientData
+    ? clientData?.nickname || `${clientData.name} ${clientData.surname}`
+    : "";
 
   const queryClient = useQueryClient();
 
@@ -211,6 +217,7 @@ export const Dashboard = () => {
           handleEdit={openEditConsultation}
           handleSchedule={handleScheduleConsultation}
           handleAcceptSuggestion={handleAcceptSuggestion}
+          name={clientName}
         />
         <MoodTracker />
         <ArticlesDashboard />

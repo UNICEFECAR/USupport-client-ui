@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+
 import {
   Grid,
   GridItem,
@@ -10,11 +12,10 @@ import {
   Loading,
   Tabs,
 } from "@USupport-components-library/src";
-
 import { destructureArticleData } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+
 import { useEventListener } from "#hooks";
-import { useTranslation } from "react-i18next";
 
 import "./articles-dashboard.scss";
 
@@ -120,7 +121,7 @@ export const ArticlesDashboard = () => {
 
   const getNewestArticle = async () => {
     let categoryId = "";
-    if (selectedCategory.value !== "all") {
+    if (selectedCategory?.value !== "all") {
       categoryId = selectedCategory.id;
     }
 
@@ -148,6 +149,7 @@ export const ArticlesDashboard = () => {
     ["newestArticle", usersLanguage, selectedCategory, articleIdsQuerry.data],
     getNewestArticle,
     {
+      onError: (error) => console.log(error),
       enabled:
         !articleIdsQuerry.isLoading &&
         articleIdsQuerry.data?.length > 0 &&
@@ -180,7 +182,7 @@ export const ArticlesDashboard = () => {
             >
               <p
                 className="small-text view-all-button"
-                onClick={() => navigate("/articles")}
+                onClick={() => navigate("/information-portal/articles")}
               >
                 {t("view_all")}
               </p>

@@ -35,17 +35,21 @@ export default function useGetProvidersData() {
       };
       formattedData.push(formattedProvider);
     }
-    return formattedData;
+    // Return only the providers that have available slot
+    return formattedData.filter((x) => x.earliestAvailableSlot);
   };
 
-  const providersDataQuery = useQuery(["client-data"], fetchProvidersData, {
-    onSuccess: (data) => {
-      const dataCopy = JSON.parse(JSON.stringify(data));
-      setProvidersData([...dataCopy]);
-    },
-    onError: (err) => console.log(err, "err"),
-    notifyOnChangeProps: ["data"],
-  });
+  const providersDataQuery = useQuery(
+    ["all-providers-data"],
+    fetchProvidersData,
+    {
+      onSuccess: (data) => {
+        const dataCopy = JSON.parse(JSON.stringify(data));
+        setProvidersData([...dataCopy]);
+      },
+      notifyOnChangeProps: ["data"],
+    }
+  );
 
   return [providersDataQuery, providersData, setProvidersData];
 }

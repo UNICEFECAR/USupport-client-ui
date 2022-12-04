@@ -31,13 +31,11 @@ export const MascotWelcomeHeader = ({
   handleEdit,
   handleSchedule,
   handleAcceptSuggestion,
+  name,
 }) => {
   const { isTmpUser, handleRegistrationModalOpen } = useContext(PageContext);
   const { t } = useTranslation("mascot-welcome-header");
   const { width } = useWindowDimensions();
-
-  //Refactor to take the name from the API
-  let name = "Anna";
 
   return (
     <div className={["mascot-welcome-header", classNames(classes)].join(" ")}>

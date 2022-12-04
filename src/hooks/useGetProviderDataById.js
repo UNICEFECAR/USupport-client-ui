@@ -35,10 +35,14 @@ export default function useGetProviderDataById(id) {
     return formattedData;
   };
 
-  const providersDataQuery = useQuery(["provider-data"], fetchProvidersData, {
-    onError: (err) => console.log(err, "err"),
-    notifyOnChangeProps: ["data"],
-  });
+  const providersDataQuery = useQuery(
+    ["provider-data", id],
+    fetchProvidersData,
+    {
+      enabled: !!id,
+      notifyOnChangeProps: ["data"],
+    }
+  );
 
   return providersDataQuery;
 }
