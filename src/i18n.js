@@ -29,6 +29,12 @@ import {
   CookiePolicy,
   TermsOfUse,
   ActivityHistory,
+  ConsultationsDashboard,
+  MoodTracker,
+  MascotWelcomeHeader,
+  ActivityLogDashboard,
+  ArticlesDashboard,
+  MoodTrackerHistory,
 } from "#blocks/locales.js";
 
 import {
@@ -59,6 +65,8 @@ import {
   ActivityHistory as ActivityHistoryPage,
   CookiePolicy as CookiePolicyPage,
   TermsOfUse as TermsOfUsePage,
+  MoodTracker as MoodTrackerPage,
+  Dashboard as DashboardPage,
 } from "#pages/locales.js";
 
 import {
@@ -72,6 +80,7 @@ import {
   DeleteAccount,
   UploadPicture,
   DeleteProfilePicture,
+  JoinConsultation,
 } from "#backdrops/locales.js";
 
 import { RequireRegistration } from "#modals/locales.js";
@@ -106,6 +115,12 @@ const resources = {
     "cookie-policy": CookiePolicy.en,
     "terms-of-use": TermsOfUse.en,
     "activity-history": ActivityHistory.en,
+    "consultations-dashboard": ConsultationsDashboard.en,
+    "mood-tracker": MoodTracker.en,
+    "mascot-welcome-header": MascotWelcomeHeader.en,
+    "activity-log-dashboard": ActivityLogDashboard.en,
+    "articles-dashboard": ArticlesDashboard.en,
+    "mood-tracker-history": MoodTrackerHistory.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -135,6 +150,8 @@ const resources = {
     "activity-history-page": ActivityHistoryPage.en,
     "cookie-policy-page": CookiePolicyPage.en,
     "terms-of-use-page": TermsOfUsePage.en,
+    "mood-tracker-page": MoodTrackerPage.en,
+    "dashboard-page": DashboardPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
@@ -149,9 +166,20 @@ const resources = {
     "delete-account": DeleteAccount.en,
     "upload-picture": UploadPicture.en,
     "delete-profile-picture": DeleteProfilePicture.en,
+    "join-consultation": JoinConsultation.en,
 
     //Modals
     "require-registration": RequireRegistration.en,
+  },
+  kk: {
+    // Blocks
+    "articles-dashboard": ArticlesDashboard.kk,
+    articles: Articles.kk,
+  },
+  ru: {
+    // Blocks
+    "articles-dashboard": ArticlesDashboard.ru,
+    articles: Articles.ru,
   },
 };
 

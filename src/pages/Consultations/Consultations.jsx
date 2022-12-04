@@ -169,6 +169,7 @@ export const Consultations = () => {
         providerId={selectedConsultationProviderId}
         isCtaDisabled={isBlockSlotSubmitting}
         errorMessage={blockSlotError}
+        edit
       />
       {selectedSlot && (
         <ConfirmConsultation

@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { userSvc } from "@USupport-components-library/services";
 
 export const useIsLoggedIn = () => {
+  const platform = window.location.pathname.split("/")[1];
+
   const [result, setResult] = useState("loading");
   const [shouldRefreshToken, setShouldRefreshToken] = useState(false);
 
@@ -55,6 +57,10 @@ export const useIsLoggedIn = () => {
 
       if (!country) {
         throw new Error("No country selected");
+      }
+
+      if (decoded.userType !== platform) {
+        throw new Error("User type does not match platform");
       }
 
       let isQueryRunning = false;

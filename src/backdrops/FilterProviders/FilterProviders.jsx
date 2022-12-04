@@ -35,7 +35,11 @@ export const FilterProviders = ({ isOpen, onClose }) => {
       value: "psychotherapist",
       isSelected: false,
     },
-    { label: t("provider_coach"), value: "coach", isSelected: false },
+    {
+      label: t("provider_psychiatrist"),
+      value: "psychiatrist",
+      isSelected: false,
+    },
   ]);
 
   const [providerSex, setProviderSex] = useState([

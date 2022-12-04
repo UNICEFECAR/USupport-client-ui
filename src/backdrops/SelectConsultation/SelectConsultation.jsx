@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+
 import {
   Backdrop,
   Header,
@@ -10,6 +11,8 @@ import {
 } from "@USupport-components-library/src";
 import { providerSvc } from "@USupport-components-library/services";
 import { getTimestampFromUTC } from "@USupport-components-library/utils";
+
+import { useGetProviderDataById } from "#hooks";
 
 import "./select-consultation.scss";
 
@@ -30,9 +33,18 @@ export const SelectConsultation = ({
   errorMessage,
 }) => {
   const { t } = useTranslation("select-consultation");
+  let providerData = useGetProviderDataById(providerId).data;
 
   const [startDate, setStartDate] = useState(null);
   const [currentDay, setCurrentDay] = useState(new Date().getTime());
+
+  useEffect(() => {
+    if (providerData) {
+      const earliestAvailableSlot = providerData?.earliestAvailableSlot;
+      setCurrentDay(new Date(earliestAvailableSlot).getTime());
+    }
+  }, [providerData]);
+
   const [selectedSlot, setSelectedSlot] = useState("");
 
   const getAvailableSlots = async (startDate, currentDay, providerId) => {
@@ -49,7 +61,7 @@ export const SelectConsultation = ({
     { enabled: !!startDate && !!currentDay && !!providerId }
   );
   const availableSlots = availableSlotsQuery.data;
-  //Refactor, to take the free slots from the backend
+
   const handleDayChange = (start, day) => {
     setStartDate(start);
     setCurrentDay(day);
@@ -114,7 +126,11 @@ export const SelectConsultation = ({
       errorMessage={errorMessage}
     >
       <div className="select-consultation__content-container">
-        <Header handleDayChange={handleDayChange} setStartDate={setStartDate} />
+        <Header
+          handleDayChange={handleDayChange}
+          setStartDate={setStartDate}
+          startDate={providerData?.earliestAvailableSlot}
+        />
         <div className="select-consultation__content-container__slots">
           {availableSlotsQuery.isLoading ? (
             <Loading size="md" />

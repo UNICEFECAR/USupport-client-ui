@@ -8,6 +8,7 @@ import {
   ButtonSelector,
 } from "@USupport-components-library/src";
 import { useGetClientData } from "#hooks";
+
 import "./user-profile.scss";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
@@ -19,13 +20,14 @@ const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
  *
  * @return {jsx}
  */
-export const UserProfile = ({ openModal, closeModal, isTmpUser }) => {
+export const UserProfile = ({ openModal, isTmpUser }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("user-profile");
 
   const [displayName, setDisplayName] = useState("");
 
-  const clientData = useGetClientData()[1];
+  const clientQueryArray = useGetClientData(isTmpUser ? false : true);
+  const clientData = isTmpUser ? {} : clientQueryArray[0].data;
 
   useEffect(() => {
     if (clientData) {
@@ -62,6 +64,14 @@ export const UserProfile = ({ openModal, closeModal, isTmpUser }) => {
             onClick={() => handleRedirect("/details")}
             avatar={`${AMAZON_S3_BUCKET}/${clientData?.image || "default"}`}
           />
+          {!isTmpUser && (
+            <ButtonSelector
+              label={t("mood_tracker_button_label")}
+              classes="user-profile__grid__item__button"
+              onClick={() => handleRedirect("/mood-tracker")}
+              iconName="mood"
+            />
+          )}
         </GridItem>
         <GridItem md={8} lg={12} classes="user-profile__grid__item">
           <p className="text user-profile__grid__item__label">

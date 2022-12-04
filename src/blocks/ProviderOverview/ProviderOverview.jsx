@@ -53,7 +53,7 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
 
   const renderLanguages = useCallback(() => {
     if (provider) {
-      return provider.languages.map((x) => x.name)?.join(" ");
+      return provider.languages.map((x) => x.name)?.join(", ");
     }
   }, [provider]);
 
@@ -106,17 +106,19 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
               />
               <p className="small-text">{provider.email}</p>
             </div>
-            <div className="provider-profile__information-container-with-icon">
-              <Icon
-                name="dollar"
-                size="md"
-                color="#66768D"
-                classes="provider-profile__information-container-with-icon__icon"
-              />
-              <p className="small-text">
-                {provider.consultationPrice}$ for 1 hour consultation
-              </p>
-            </div>
+            {provider.consultationPrice > 0 ? (
+              <div className="provider-profile__information-container-with-icon">
+                <Icon
+                  name="dollar"
+                  size="md"
+                  color="#66768D"
+                  classes="provider-profile__information-container-with-icon__icon"
+                />
+                <p className="small-text">
+                  {provider.consultationPrice}$ for 1 hour consultation
+                </p>
+              </div>
+            ) : null}
 
             <div className="provider-profile__information-container">
               <p className="small-text provider-profile__information-container__heading">

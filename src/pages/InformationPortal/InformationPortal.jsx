@@ -175,7 +175,9 @@ export const InformationPortal = () => {
                     color="purple"
                     label={t("view all")}
                     onClick={() =>
-                      navigate("/articles", { state: { sort: "createdAt" } })
+                      navigate("/information-portal/articles", {
+                        state: { sort: "createdAt" },
+                      })
                     }
                   ></Button>
                 </GridItem>
@@ -187,13 +189,13 @@ export const InformationPortal = () => {
                         size="lg"
                         style={{ gridColumn: "span 4" }}
                         title={article.title}
-                        image={article.imageThumbnail}
+                        image={article.imageMedium}
                         description={article.description}
                         labels={article.labels}
                         creator={article.creator}
                         readingTime={article.readingTime}
                         onClick={() => {
-                          navigate(`/article/${article.id}`);
+                          navigate(`/information-portal/article/${article.id}`);
                         }}
                       />
                     </GridItem>
@@ -228,7 +230,9 @@ export const InformationPortal = () => {
                     color="purple"
                     label={t("view all")}
                     onClick={() =>
-                      navigate("/articles", { state: { sort: "read_count" } })
+                      navigate("/information-portal/articles", {
+                        state: { sort: "read_count" },
+                      })
                     }
                   ></Button>
                 </GridItem>
@@ -240,13 +244,13 @@ export const InformationPortal = () => {
                         size="lg"
                         style={{ gridColumn: "span 4" }}
                         title={article.title}
-                        image={article.imageThumbnail}
+                        image={article.imageMedium}
                         description={article.description}
                         labels={article.labels}
                         creator={article.creator}
                         readingTime={article.readingTime}
                         onClick={() => {
-                          navigate(`/article/${article.id}`);
+                          navigate(`/information-portal/article/${article.id}`);
                         }}
                       />
                     </GridItem>

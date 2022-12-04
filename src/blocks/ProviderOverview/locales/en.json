@@ -1,5 +1,5 @@
 {
-  "earliest_slot_label": "Earliest free slot for consultation",
+  "earliest_slot_label": "Earliest available slot for consultation",
   "languages_label": "Language of operation",
   "education_label": "Education",
   "work_with_label": "Working with",
@@ -14,7 +14,6 @@
   "psychologist": "Psychologist",
   "psychiatrist": "Psychiatrist",
   "psychotherapist": "Psychotherapist",
-  "coach": "Coach",
 
   "addiction": "Addiction",
   "stress": "Stress",

@@ -1,6 +1,8 @@
 @import "@USupport-components-library/styles";
 
 .soscenter {
+  @include full-height-page-navbar;
+
   padding-top: $spacing_3_2;
   padding-bottom: $spacing_6_4;
 

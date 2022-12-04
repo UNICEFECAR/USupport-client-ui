@@ -1,5 +1,6 @@
 import React from "react";
 import { Backdrop, ButtonSelector } from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./join-consultation.scss";
 
@@ -11,6 +12,7 @@ import "./join-consultation.scss";
  * @return {jsx}
  */
 export const JoinConsultation = ({ isOpen, onClose }) => {
+  const { t } = useTranslation("join-consultation");
   const handleClick = (redirectTo) => {
     if (redirectTo === "video") {
       console.log("video");
@@ -27,19 +29,17 @@ export const JoinConsultation = ({ isOpen, onClose }) => {
       title="JoinConsultation"
       isOpen={isOpen}
       onClose={onClose}
-      heading={"Choose how you want to communicate"}
-      text={
-        "Select the communication form which fits your needs the best and receive the help you want."
-      }
+      heading={t("heading")}
+      text={"subheading"}
     >
       <ButtonSelector
-        label="Video/audio consulation"
+        label={t("button_label_1")}
         iconName="video"
         classes="join-consultation__button-selector"
         onClick={() => handleClick("video")}
       />
       <ButtonSelector
-        label="Text consultation"
+        label={t("button_label_2")}
         iconName="comment"
         classes="join-consultation__button-selector"
         onClick={() => handleClick("chat")}

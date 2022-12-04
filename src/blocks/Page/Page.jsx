@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
@@ -20,7 +20,7 @@ import {
   getCountryFromTimezone,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
-import { useIsLoggedIn } from "#hooks";
+import { useIsLoggedIn, useGetClientData } from "#hooks";
 
 import "./page.scss";
 
@@ -29,6 +29,8 @@ const kazakhstanCountry = {
   label: "Kazakhstan",
   iconName: "KZ",
 };
+
+const PageContext = React.createContext();
 
 /**
  * Page
@@ -50,6 +52,10 @@ export const Page = ({
   classes,
   children,
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const queryClient = useQueryClient();
   const navigateTo = useNavigate();
   const isLoggedIn = useIsLoggedIn();
@@ -64,7 +70,9 @@ export const Page = ({
 
   const localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null
+  );
   const [selectedCountry, setSelectedCountry] = useState();
 
   const fetchCountries = async () => {
@@ -129,20 +137,10 @@ export const Page = ({
   const { data: countries } = useQuery(["countries"], fetchCountries);
   const { data: languages } = useQuery(["languages"], fetchLanguages);
 
-  const image = useQuery(
-    ["client-image"],
-    async () => {
-      const data = queryClient.getQueryData(["client-data"]);
-      if (!data) {
-        queryClient.invalidateQueries({ queryKey: ["client-data"] });
-      }
-      await new Promise((resolve) => resolve());
-      return data?.image || "default";
-    },
-    {
-      initialData: "default",
-    }
-  );
+  // const token = localStorage.getItem("token");
+  // const clientData = useGetClientData(!!token)[0].data;
+  const clientData = queryClient.getQueryData(["client-data"]);
+  const image = clientData?.image;
 
   const { t, i18n } = useTranslation("page");
   const pages = [
@@ -199,7 +197,7 @@ export const Page = ({
       {isNavbarShown === true && (
         <Navbar
           i18n={i18n}
-          image={image?.data || "default"}
+          image={image || "default"}
           isTmpUser={isTmpUser}
           isTmpUserAction={handleRegistrationModalOpen}
           navigate={navigateTo}
@@ -247,7 +245,14 @@ export const Page = ({
           </>
         )}
         <p className="page__subheading-text text">{subheading}</p>
-        {children}
+        <PageContext.Provider
+          value={{
+            isTmpUser,
+            handleRegistrationModalOpen,
+          }}
+        >
+          {children}
+        </PageContext.Provider>
       </div>
       {showEmergencyButton && (
         <CircleIconButton
@@ -274,6 +279,8 @@ export const Page = ({
     </>
   );
 };
+
+export { PageContext };
 
 Page.propTypes = {
   /**

@@ -33,7 +33,7 @@ export const SelectProvider = () => {
   const checkProviderHasType = (provider, types) => {
     return types
       .map((x) => {
-        return provider.types.includes(x);
+        return provider.specializations.includes(x);
       })
       .some((x) => x === true);
   };
@@ -58,7 +58,6 @@ export const SelectProvider = () => {
           : provider.price <= Number(maxPrice)
           ? false
           : true;
-      console.log(provider.price, maxPrice);
       if (hasType && isDesiredSex && isPriceMatching) {
         filteredData.push(provider);
       }

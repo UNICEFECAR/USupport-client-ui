@@ -73,9 +73,6 @@ export const SOSCenter = () => {
     }
   );
 
-  console.log(SOSCentersData);
-  console.log(SOSCentersData, SOSCentersLoading, isSOSCentersFetched);
-  console.log("ids", sosCenterIdsQuerry.length);
   return (
     <Block classes="soscenter" animation="fade-right">
       {SOSCentersData && (
@@ -93,9 +90,10 @@ export const SOSCenter = () => {
                     <EmergencyCenter
                       title={sosCenter.attributes.title}
                       text={sosCenter.attributes.text}
-                      link={sosCenter.attributes.link}
+                      link={sosCenter.attributes.url}
                       phone={sosCenter.attributes.phone}
-                      btnLabel={t("button")}
+                      btnLabelLink={t("button_link")}
+                      btnLabelCall={t("button_call")}
                     />
                   </GridItem>
                 );
@@ -107,10 +105,9 @@ export const SOSCenter = () => {
       {sosCenterIdsQuerry.data?.length > 0 &&
         !SOSCentersData &&
         SOSCentersLoading && <Loading />}
-      {(!SOSCentersData?.length && !SOSCentersLoading && isSOSCentersFetched) ||
-        (sosCenterIdsQuerry.data?.length === 0 && (
-          <h3 className="soscenter__no-results">{t("no_results")}</h3>
-        ))}
+      {!SOSCentersData?.length && !SOSCentersLoading && isSOSCentersFetched && (
+        <h4 className="soscenter__no-results">{t("no_results")}</h4>
+      )}
     </Block>
   );
 };

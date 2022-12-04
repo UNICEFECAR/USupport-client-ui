@@ -1,0 +1,41 @@
+@import "@USupport-components-library/styles";
+
+.mood-tracker {
+  padding-top: $spacing_4_8;
+
+  &__heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  & .mood-tracker-button {
+    color: $color_secondary_9749fa;
+    cursor: pointer;
+  }
+
+  &__rating {
+    display: flex;
+    flex-direction: row;
+    width: 34.3rem;
+    justify-content: space-between;
+    max-width: 35rem;
+    margin: 0 auto;
+    margin-top: $spacing_2_4;
+
+    &__emoticon-container {
+      width: 6.5rem;
+      height: 9rem;
+    }
+
+    & .not-selected {
+      opacity: 0.5;
+    }
+
+    & .selected {
+      color: $color_black_37;
+    }
+  }
+}

@@ -27,8 +27,6 @@ export const SafetyFeedback = ({ isOpen, onClose }) => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
   const handleSendFeedback = () => {
-    console.log(selectedOption + " " + feedbackMessage);
-
     onClose();
   };
 

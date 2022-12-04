@@ -1,0 +1,6 @@
+/* MoodTracker styles */
+@import "@USupport-components-library/styles";
+
+.page__mood-tracker {
+  @include full-height-page-navbar;
+}
