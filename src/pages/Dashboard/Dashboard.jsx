@@ -41,7 +41,7 @@ export const Dashboard = () => {
   const { t } = useTranslation("dashboard-page");
   const navigate = useNavigate();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
-  const clientData = useGetClientData()[1];
+  const clientData = useGetClientData(!isTmpUser)[1];
   const clientName = clientData
     ? clientData?.nickname || `${clientData.name} ${clientData.surname}`
     : "";

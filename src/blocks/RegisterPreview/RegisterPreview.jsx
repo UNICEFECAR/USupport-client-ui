@@ -61,14 +61,12 @@ export const RegisterPreview = () => {
   };
 
   const tmpLogin = async () => {
-    console.log("here");
     const res = await userSvc.tmpLogin();
     return res.data;
   };
 
   const tmpLoginMutation = useMutation(tmpLogin, {
     onSuccess: (data) => {
-      console.log(data, "daa");
       const { token, expiresIn, refreshToken } = data.token;
       localStorage.setItem("token", token);
       localStorage.setItem("expires-in", expiresIn);
