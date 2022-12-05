@@ -31,10 +31,8 @@ export const CancelConsultation = ({
   const { t } = useTranslation("cancel-consultation");
   const [error, setError] = useState();
 
-  const { providerName, providerId, consultationId, timestamp, image } =
-    consultation;
+  const { providerName, timestamp, image } = consultation;
 
-  const imageUrl = AMAZON_S3_BUCKET + "/" + (image || "default");
   const startDate = new Date(timestamp);
   const endDate = new Date(timestamp + ONE_HOUR);
 
@@ -72,8 +70,9 @@ export const CancelConsultation = ({
         startDate={startDate}
         endDate={endDate}
         providerName={providerName}
-        providerImage={imageUrl}
+        providerImage={image || "default"}
         classes="cancel-consultation__provider-consultation"
+        t={t}
       />
     </Backdrop>
   );

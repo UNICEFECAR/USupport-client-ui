@@ -20,9 +20,9 @@ export const ActivityHistory = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const consultationId = location.state?.consultationId;
+  const consultation = location.state?.consultation;
   const providerId = location.state?.providerId;
-  if (!consultationId || !providerId) return <Navigate to="/consultations" />;
+  if (!consultation || !providerId) return <Navigate to="/consultations" />;
 
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
@@ -97,7 +97,8 @@ export const ActivityHistory = () => {
     >
       <ActivityHistoryBlock
         openSelectConsultation={openSelectConsultation}
-        consultationId={consultationId}
+        consultation={consultation}
+        providerId={providerId}
       />
       {width < 768 && (
         <RadialCircle classes="page__activity-history__radial-circle" />

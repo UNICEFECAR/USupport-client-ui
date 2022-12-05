@@ -3,6 +3,7 @@ import { Backdrop, ButtonSelector } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
 import "./join-consultation.scss";
+import { useNavigate } from "react-router-dom";
 
 /**
  * JoinConsultation
@@ -11,14 +12,14 @@ import "./join-consultation.scss";
  *
  * @return {jsx}
  */
-export const JoinConsultation = ({ isOpen, onClose }) => {
+export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation("join-consultation");
+
   const handleClick = (redirectTo) => {
-    if (redirectTo === "video") {
-      console.log("video");
-    } else if (redirectTo === "chat") {
-      console.log("chat");
-    }
+    navigate("/consultation", {
+      state: { consultation, videoOn: redirectTo === "video" },
+    });
 
     onClose();
   };
@@ -30,7 +31,7 @@ export const JoinConsultation = ({ isOpen, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
       heading={t("heading")}
-      text={"subheading"}
+      text={t("subheading")}
     >
       <ButtonSelector
         label={t("button_label_1")}

@@ -217,8 +217,6 @@ export const UserDetails = ({
     setDataProcessing(value); // Perform an optimistic update
     setIsProcessingUpdateDataProcessing(true);
 
-    // TODO: Send data processing value to the server
-    // The server should return the new value of the "data_processing" field
     const res = await clientSvc.changeDataProcessingAgreement(value);
     return res.data.data_processing;
   };

@@ -28,3 +28,4 @@ export * as CookiePolicy from "./CookiePolicy/locales.js";
 export * as ActivityHistory from "./ActivityHistory/locales.js";
 export * as Dashboard from "./Dashboard/locales.js";
 export * as MoodTracker from "./MoodTracker/locales.js";
+export * as Consultation from "./Consultation/locales.js";

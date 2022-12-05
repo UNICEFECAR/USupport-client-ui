@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   Avatar,
@@ -11,8 +11,12 @@ import {
   Icon,
   Loading,
 } from "@USupport-components-library/src";
-import { useGetConsultationData } from "#hooks";
+
+import { useGetChatData } from "#hooks";
+
 import "./activity-history.scss";
+
+const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
 /**
  * ActivityHistory
@@ -21,41 +25,43 @@ import "./activity-history.scss";
  *
  * @return {jsx}
  */
-export const ActivityHistory = ({ openSelectConsultation, consultationId }) => {
+export const ActivityHistory = ({
+  openSelectConsultation,
+  consultation,
+  providerId,
+}) => {
+  const navigate = useNavigate();
   const { t } = useTranslation("activity-history");
 
-  const consultationDataQuery = useGetConsultationData(consultationId);
-  const data = consultationDataQuery.data;
-
-  const id = "1";
+  const chatQueryData = useGetChatData(consultation?.chatId);
 
   const renderAllMessages = () => {
-    return data?.messages.map((message, index) => {
+    return chatQueryData.data?.messages.map((message, index) => {
       if (message.type === "system-message") {
         return (
           <SystemMessage
-            key={index + message.date}
-            title={message.message}
-            date={new Date(message.date)}
+            key={index + message.time}
+            title={message.content}
+            date={new Date(message.time)}
           />
         );
       } else {
-        if (message.senderId === id) {
+        if (message.senderId !== providerId) {
           return (
             <Message
-              key={index + message.date}
-              message={message.message}
+              key={index + message.time}
+              message={message.content}
               sent
-              date={new Date(message.date)}
+              date={new Date(message.time)}
             />
           );
         } else {
           return (
             <Message
-              key={index + message.date}
-              message={message.message}
+              key={index + message.time}
+              message={message.content}
               received
-              date={new Date(message.date)}
+              date={new Date(message.time)}
             />
           );
         }
@@ -67,7 +73,7 @@ export const ActivityHistory = ({ openSelectConsultation, consultationId }) => {
     openSelectConsultation();
   };
 
-  return consultationDataQuery.isLoading ? (
+  return chatQueryData.isLoading ? (
     <Loading size="lg" />
   ) : (
     <>
@@ -78,9 +84,12 @@ export const ActivityHistory = ({ openSelectConsultation, consultationId }) => {
             classes="activity-history__header-block__provider-container__icon"
             size="md"
             color="#20809E"
+            onClick={() => navigate(-1)}
           />
-          <Avatar />
-          <h4>{data.providerName}</h4>
+          <Avatar
+            image={AMAZON_S3_BUCKET + "/" + (consultation.image || "default")}
+          />
+          <h4>{consultation.providerName}</h4>
         </div>
       </Block>
 

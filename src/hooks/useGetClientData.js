@@ -6,7 +6,6 @@ import { clientSvc } from "@USupport-components-library/services";
  * Reuseable hook to get and transform the client data in a desired format
  */
 export default function useGetClientData(enabled = true) {
-  console.log("call useGetClientData");
   const queryClient = useQueryClient();
   const oldData = queryClient.getQueryData({ queryKey: ["client-data"] });
   const [clientData, setClientData] = useState(oldData || null);

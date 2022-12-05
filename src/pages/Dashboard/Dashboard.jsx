@@ -41,7 +41,6 @@ export const Dashboard = () => {
   const { t } = useTranslation("dashboard-page");
   const navigate = useNavigate();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
-
   const clientData = useGetClientData()[1];
   const clientName = clientData
     ? clientData?.nickname || `${clientData.name} ${clientData.surname}`
@@ -89,9 +88,9 @@ export const Dashboard = () => {
   const closeCancelConsultation = () => setIsCancelConsultationOpen(false);
 
   const [isJoinConsultationOpen, setIsJoinConsultationOpen] = useState(false);
-  const openJoinConsultation = (consultationId) => {
+  const openJoinConsultation = (consultation) => {
+    setSelectedConsultation(consultation);
     setIsJoinConsultationOpen(true);
-    setConsultationId(consultationId);
   };
   const closeJoinConsultation = () => setIsJoinConsultationOpen(false);
 
@@ -187,8 +186,6 @@ export const Dashboard = () => {
 
   const handleBlockSlot = (slot) => {
     setIsBlockSlotSubmitting(true);
-    // TODO: Call the reschedule endpoint with the selectedConsultationId
-    console.log("reschedule", selectedConsultationId);
     setSelectedSlot(slot);
     blockSlotMutation.mutate({
       slot,
@@ -218,6 +215,7 @@ export const Dashboard = () => {
           handleSchedule={handleScheduleConsultation}
           handleAcceptSuggestion={handleAcceptSuggestion}
           name={clientName}
+          t={t}
         />
         <MoodTracker />
         <ArticlesDashboard />
@@ -228,6 +226,7 @@ export const Dashboard = () => {
           handleSchedule={handleScheduleConsultation}
           upcomingConsultations={upcomingConsultations}
           isLoading={consultationsQuery.isLoading}
+          t={t}
         />
         {/* <ActivityLogDashboard /> */}
         {selectedConsultation && (
@@ -250,6 +249,7 @@ export const Dashboard = () => {
         <JoinConsultation
           isOpen={isJoinConsultationOpen}
           onClose={closeJoinConsultation}
+          consultation={selectedConsultation}
         />
         <SelectConsultation
           isOpen={isSelectConsultationBackdropOpen}
