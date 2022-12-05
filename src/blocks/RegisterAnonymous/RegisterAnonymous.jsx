@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import Joi from "joi";
@@ -177,6 +177,7 @@ export const RegisterAnonymous = () => {
               textTwo={t("terms_agreement_text_2")}
               textThree={t("terms_agreement_text_3")}
               textFour={t("terms_agreement_text_4")}
+              Link={Link}
             />
             <Button
               label={t("register_button_label")}
