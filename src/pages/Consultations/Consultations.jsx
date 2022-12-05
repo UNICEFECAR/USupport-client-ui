@@ -112,8 +112,6 @@ export const Consultations = () => {
 
   const handleBlockSlot = (slot) => {
     setIsBlockSlotSubmitting(true);
-    // TODO: Call the reschedule endpoint with the selectedConsultationId
-    console.log("reschedule", selectedConsultationId);
     setSelectedSlot(slot);
     blockSlotMutation.mutate({
       slot,

@@ -1,36 +1,37 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
-  NotFound,
-  SOSCenter,
-  RegisterAboutYou,
-  ForgotPassword,
-  ContactUs,
-  NotificationPreferencesPage,
-  Login,
-  Welcome,
-  UserProfile,
-  InformationPortal,
-  Articles,
-  ArticleInformation,
-  SelectProvider,
-  PlatformRating,
-  SharePlatform,
-  RegisterAnonymous,
-  RegisterSupport,
-  Consultations,
-  ProviderOverview,
-  RegisterPreview,
-  PrivacyPolicy,
-  RegisterEmail,
-  FAQ,
-  UserDetails,
-  ResetPassword,
   ActivityHistory,
+  ArticleInformation,
+  Articles,
+  Consultation,
+  Consultations,
+  ContactUs,
   CookiePolicy,
-  TermsOfUse,
   Dashboard,
+  FAQ,
+  ForgotPassword,
+  InformationPortal,
+  Login,
   MoodTracker,
+  NotFound,
+  NotificationPreferencesPage,
+  PlatformRating,
+  PrivacyPolicy,
+  ProviderOverview,
+  RegisterAboutYou,
+  RegisterAnonymous,
+  RegisterEmail,
+  RegisterPreview,
+  RegisterSupport,
+  ResetPassword,
+  SelectProvider,
+  SharePlatform,
+  SOSCenter,
+  TermsOfUse,
+  UserDetails,
+  UserProfile,
+  Welcome,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData } from "#hooks";
@@ -55,6 +56,14 @@ export default function Root() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/consultation"
+          element={
+            <ProtectedRoute>
+              <Consultation />
             </ProtectedRoute>
           }
         />

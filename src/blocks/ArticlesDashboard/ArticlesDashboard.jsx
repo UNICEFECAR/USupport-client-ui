@@ -72,10 +72,7 @@ export const ArticlesDashboard = () => {
 
       setSelectedCategory(categoriesData[0]);
       return categoriesData;
-    } catch (err) {
-      // TODO: Handle the error
-      console.log(err, "Error when calling getCategories");
-    }
+    } catch {}
   };
 
   const categoriesQuery = useQuery(

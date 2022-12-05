@@ -57,10 +57,7 @@ export const Articles = ({
       }));
       setSelectedAgeGroup(ageGroupsData[0]);
       return ageGroupsData;
-    } catch (err) {
-      // TODO: Handle the error
-      console.log(err, "err");
-    }
+    } catch {}
   };
 
   const ageGroupsQuery = useQuery(["ageGroups", usersLanguage], getAgeGroups, {
@@ -107,10 +104,7 @@ export const Articles = ({
 
       setSelectedCategory(categoriesData[0]);
       return categoriesData;
-    } catch (err) {
-      // TODO: Handle the error
-      console.log(err, "Error when calling getCategories");
-    }
+    } catch {}
   };
 
   const categoriesQuery = useQuery(

@@ -170,16 +170,16 @@ export const InformationPortal = () => {
                   lg={6}
                   classes="page__information-portal__view-more-item"
                 >
-                  <Button
-                    type="link"
-                    color="purple"
-                    label={t("view all")}
+                  <p
+                    className="small-text view-all-button"
                     onClick={() =>
                       navigate("/information-portal/articles", {
                         state: { sort: "createdAt" },
                       })
                     }
-                  ></Button>
+                  >
+                    {t("view_all")}
+                  </p>
                 </GridItem>
                 {newestArticles?.map((article, index) => {
                   return (
@@ -225,16 +225,16 @@ export const InformationPortal = () => {
                   lg={6}
                   classes="page__information-portal__view-more-item"
                 >
-                  <Button
-                    type="link"
-                    color="purple"
-                    label={t("view all")}
+                  <p
+                    className="small-text view-all-button"
                     onClick={() =>
                       navigate("/information-portal/articles", {
                         state: { sort: "read_count" },
                       })
                     }
-                  ></Button>
+                  >
+                    {t("view_all")}
+                  </p>
                 </GridItem>
                 {mostReadArticles?.map((article, index) => {
                   return (

@@ -8,8 +8,6 @@ import {
 
 import { ONE_HOUR } from "@USupport-components-library/utils";
 
-const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
-
 import "./edit-consultation.scss";
 
 /**
@@ -31,7 +29,7 @@ export const EditConsultation = ({
   const { providerName, providerId, consultationId, timestamp, image } =
     consultation;
 
-  const imageUrl = AMAZON_S3_BUCKET + "/" + (image || "default");
+  const imageUrl = image || "default";
   const startDate = new Date(timestamp);
   const endDate = new Date(timestamp + ONE_HOUR);
 
@@ -62,6 +60,7 @@ export const EditConsultation = ({
         providerName={providerName}
         providerImage={imageUrl}
         classes="edit-consultation__provider-consultation"
+        t={t}
       />
       <ButtonSelector
         onClick={handleEditClick}

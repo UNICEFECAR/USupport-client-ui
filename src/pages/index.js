@@ -28,3 +28,4 @@ export * from "./CookiePolicy";
 export * from "./ActivityHistory";
 export * from "./Dashboard";
 export * from "./MoodTracker";
+export * from "./Consultation";

@@ -11,5 +11,17 @@
   "no_upcoming_consultations": "You have no upcoming consultations",
   "no_past_consultations": "You have no past consultations",
   "reject_consultation_success": "Consultation rejected successfully",
-  "accept_consultation_success": "Consultation accepted successfully"
+  "accept_consultation_success": "Consultation accepted successfully",
+
+  "join": "Join",
+  "edit": "Edit",
+  "details": "See details",
+  "active": "Now",
+  "reject": "Reject suggestion",
+  "accept": "Accept consultation",
+  "cancel_consultation": "Cancel consultation",
+  "suggested": "Suggested",
+  "view_profile": "View personal profile",
+  "conducted": "Consultation ended",
+  "not_conducted": "Not conducted"
 }

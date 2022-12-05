@@ -9,6 +9,7 @@ export default function useGetAllConsultations() {
     for (let i = 0; i < data?.length; i++) {
       const consultation = data[i];
       formattedData.push({
+        chatId: consultation.chat_id,
         consultationId: consultation.consultation_id,
         providerId: consultation.provider_detail_id,
         providerName: consultation.provider_name,

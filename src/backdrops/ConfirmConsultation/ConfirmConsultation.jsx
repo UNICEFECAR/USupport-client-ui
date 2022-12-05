@@ -8,6 +8,7 @@ import {
 import { useTranslation } from "react-i18next";
 
 import "./confirm-consultation.scss";
+import { useNavigate } from "react-router-dom";
 
 /**
  * ConfirmConsultation
@@ -17,10 +18,12 @@ import "./confirm-consultation.scss";
  * @return {jsx}
  */
 export const ConfirmConsultation = ({ isOpen, onClose, consultation }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation("confirm-consultation");
 
   const handleContinue = () => {
     onClose();
+    navigate("/consultations");
   };
 
   const { startDate, endDate } = consultation;

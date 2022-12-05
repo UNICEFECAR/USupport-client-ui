@@ -1,0 +1,54 @@
+/* Consultation styles */
+@import "@USupport-components-library/styles";
+
+.page__consultation {
+  &__container {
+    @include full-height-page-navbar;
+    position: relative;
+    padding: $spacing_3_2;
+
+    &__grid {
+      padding-bottom: $spacing_4_8;
+    }
+
+    &__messages {
+      min-height: 20rem;
+      padding-top: $spacing_2_4;
+      padding-bottom: $spacing_4_8;
+
+      &__messages-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto;
+
+        @media screen and (min-width: $screen-lg) {
+          width: 70%;
+        }
+
+        & .message,
+        & .system-message {
+          margin-bottom: $spacing_1_8;
+        }
+
+        & .system-message {
+          align-self: center;
+        }
+
+        & .message-sent {
+          align-self: flex-end;
+        }
+      }
+
+      & .messages-list {
+        min-height: 20rem;
+      }
+    }
+
+    & .send-message {
+      bottom: 3%;
+      position: absolute;
+      left: calc(50% - 40rem / 2);
+    }
+  }
+}

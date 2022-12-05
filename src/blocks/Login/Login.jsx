@@ -60,7 +60,6 @@ export const Login = () => {
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
-      // TODO: Maybe instead of using setQueryData, we should use prefetch the query
       queryClient.setQueryData(["client-data"], userData);
 
       setErrors({});

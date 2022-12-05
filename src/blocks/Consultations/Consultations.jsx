@@ -71,12 +71,11 @@ export const Consultations = ({
     openEditConsultation(consultation);
   };
 
-  const handleOpenDetails = (providerId, consultationId) => {
-    // TODO: Redirect to the activity history page
+  const handleOpenDetails = (consultation) => {
     navigate("/activity-history", {
       state: {
-        providerId,
-        consultationId,
+        providerId: consultation.providerId,
+        consultation,
       },
     });
   };
@@ -156,10 +155,11 @@ export const Consultations = ({
             handleOpenDetails={handleOpenDetails}
             daysOfWeekTranslations={daysOfWeekTranslations}
             consultation={consultation}
-            overview={consultation.status === "finished" ? true : false}
+            overview={false}
             suggested={consultation.status === "suggested" ? true : false}
             handleAcceptConsultation={acceptConsultation}
             handleRejectConsultation={rejectConsultation}
+            t={t}
           />
         </GridItem>
       );

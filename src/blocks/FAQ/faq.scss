@@ -1,6 +1,8 @@
 @import "@USupport-components-library/styles";
 
 .faq {
+  @include full-height-page-navbar;
+
   padding: $spacing_5_2 $spacing_1_5 $spacing_15_6 $spacing_1_5;
 
   @media screen and (min-width: $screen-md) {
