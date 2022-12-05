@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useError } from "#hooks";
 
@@ -155,6 +155,7 @@ export const RegisterEmail = () => {
             textTwo={t("terms_agreement_text_2")}
             textThree={t("terms_agreement_text_3")}
             textFour={t("terms_agreement_text_4")}
+            Link={Link}
           />
           {errors.submit ? <Error message={errors.submit} /> : null}
           <Button

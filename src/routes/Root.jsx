@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { userSvc } from "@USupport-components-library/services";
+
 import {
   ActivityHistory,
   ArticleInformation,
@@ -38,7 +41,9 @@ import { useGetClientData } from "#hooks";
 
 export default function Root() {
   const token = localStorage.getItem("token");
-  useGetClientData(!!token);
+  const isTmpUser = userSvc.getUserID() === "tmp-user";
+  const enabled = token && !isTmpUser;
+  useGetClientData(!!enabled);
 
   return (
     <Router basename="/client">
