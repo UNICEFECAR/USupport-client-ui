@@ -25,3 +25,4 @@ export * from "./useRejectConsultation.js";
 export * from "./useAddMoodTrack.js";
 export * from "./useGetChatData.js";
 export * from "./useSendMessage.js";
+export * from "./useLeaveConsultation.js";

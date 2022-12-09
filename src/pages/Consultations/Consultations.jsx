@@ -48,7 +48,6 @@ export const Consultations = () => {
 
   const [isJoinConsultationOpen, setIsJoinConsultationOpen] = useState(false);
   const openJoinConsultation = (consultation) => {
-    console.log(consultation);
     setIsJoinConsultationOpen(true);
     setSelectedConsultation(consultation);
   };

@@ -13,7 +13,7 @@ import {
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import { useGetChatData, useSendMessage } from "#hooks";
+import { useGetChatData, useSendMessage, useLeaveConsultation } from "#hooks";
 import { Page, VideoRoom } from "#blocks";
 
 import "./consultation.scss";
@@ -45,6 +45,7 @@ export const Consultation = () => {
 
   const [messages, setMessages] = useState([]);
 
+  // Mutations
   const onSendSuccess = (data) => {
     setMessages([...data.messages]);
   };
@@ -52,6 +53,7 @@ export const Consultation = () => {
     toast(err, { type: "error" });
   };
   const sendMessageMutation = useSendMessage(onSendSuccess, onSendError);
+  const leaveConsultationMutation = useLeaveConsultation();
 
   const chatDataQuery = useGetChatData(consultation?.chatId, (data) =>
     setMessages(data.messages)
@@ -63,10 +65,7 @@ export const Consultation = () => {
   const country = localStorage.getItem("country");
   const socketRef = useRef();
 
-  // TODO: Send a consultation join request for
   // TODO: Send a system message when the user joins the consultation
-  // TODO: Send a leave request when the user leaves the consultation
-  // TODO: Send a system message when the user leaves the consultation
   // TODO: Send a consultation add services request only when the provider leaves the consultation
   // TODO: Send a system message when the client/provider toggles camera
   useEffect(() => {
@@ -161,10 +160,8 @@ export const Consultation = () => {
   const toggleChat = () => setIsChatShownOnMobile(!isChatShownOnMobile);
 
   const leaveConsultation = () => {
-    socketRef.current.emit("leave chat", {
-      country,
-      language,
-      chatId: consultation.chatId,
+    leaveConsultationMutation.mutate({
+      consultationId: consultation.consultationId,
       userType: "client",
     });
 
