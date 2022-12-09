@@ -1,1 +1,10 @@
-{}
+{
+  "sunday": "Sun",
+  "monday": "Mon",
+  "tuesday": "Tue",
+  "wednesday": "Wed",
+  "thursday": "Thu",
+  "friday": "Fri",
+  "saturday": "Sat",
+  "client_left": "Client left the consultation"
+}

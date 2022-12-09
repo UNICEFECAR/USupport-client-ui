@@ -218,7 +218,7 @@ export const Dashboard = () => {
           t={t}
         />
         <MoodTracker />
-        <ArticlesDashboard />
+        {/* <ArticlesDashboard /> */}
         <ConsultationsDashboard
           openJoinConsultation={openJoinConsultation}
           openEditConsultation={openEditConsultation}

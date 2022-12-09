@@ -3,12 +3,20 @@
 
 .page__consultation {
   &__container {
-    @include full-height-page-navbar;
+    min-height: 100vh;
     position: relative;
-    padding: $spacing_3_2;
+    // padding: $spacing_3_2;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: $screen-md) {
+      flex-direction: row;
+      justify-content: center;
+    }
 
     &__grid {
       padding-bottom: $spacing_4_8;
+      min-height: 60vh;
     }
 
     &__messages {
@@ -18,17 +26,22 @@
 
       &__messages-container {
         display: flex;
+        margin-top: 5rem;
+        margin-left: $spacing_1_8;
         flex-direction: column;
-        width: 100%;
-        margin: 0 auto;
 
-        @media screen and (min-width: $screen-lg) {
-          width: 70%;
+        @media screen and (min-width: 1024px) {
+          height: 70vh;
+          overflow-y: auto;
         }
 
         & .message,
         & .system-message {
           margin-bottom: $spacing_1_8;
+
+          @media screen and (min-width: 1024px) {
+            max-width: 25rem;
+          }
         }
 
         & .system-message {
@@ -44,11 +57,26 @@
         min-height: 20rem;
       }
     }
+  }
+
+  &__chat-backdrop {
+    height: 60%;
+    padding-bottom: 1.6rem;
+
+    &.backdrop__shown {
+      top: 40%;
+    }
 
     & .send-message {
-      bottom: 3%;
-      position: absolute;
-      left: calc(50% - 40rem / 2);
+      margin-bottom: $spacing_0_4;
+    }
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding: 0 $spacing_0_4;
     }
   }
 }

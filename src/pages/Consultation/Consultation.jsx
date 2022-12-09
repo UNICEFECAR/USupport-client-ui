@@ -1,21 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import io from "socket.io-client";
 
 import {
   SendMessage,
-  Controls,
-  Grid,
-  GridItem,
   Message,
   SystemMessage,
   Loading,
+  Backdrop,
 } from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import { useGetChatData, useSendMessage } from "#hooks";
-import { Page } from "#blocks";
+import { useGetChatData, useSendMessage, useLeaveConsultation } from "#hooks";
+import { Page, VideoRoom } from "#blocks";
 
 import "./consultation.scss";
 
@@ -30,12 +29,31 @@ const SOCKET_IO_URL = `${import.meta.env.VITE_SOCKET_IO_URL}`;
  */
 export const Consultation = () => {
   const { t } = useTranslation("consultation-page");
+  const { width } = useWindowDimensions();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const consultation = location.state?.consultation;
-  if (!consultation) return <Navigate to="/consultations" />;
+  const joinWithVideo = location.state?.videoOn;
+  const token = location.state?.token;
+
+  if (!consultation || !token) return <Navigate to="/consultations" />;
+
+  const [isChatShownOnMobile, setIsChatShownOnMobile] = useState(
+    !joinWithVideo
+  );
 
   const [messages, setMessages] = useState([]);
+
+  // Mutations
+  const onSendSuccess = (data) => {
+    setMessages([...data.messages]);
+  };
+  const onSendError = (err) => {
+    toast(err, { type: "error" });
+  };
+  const sendMessageMutation = useSendMessage(onSendSuccess, onSendError);
+  const leaveConsultationMutation = useLeaveConsultation();
 
   const chatDataQuery = useGetChatData(consultation?.chatId, (data) =>
     setMessages(data.messages)
@@ -46,6 +64,10 @@ export const Consultation = () => {
   const language = localStorage.getItem("language");
   const country = localStorage.getItem("country");
   const socketRef = useRef();
+
+  // TODO: Send a system message when the user joins the consultation
+  // TODO: Send a consultation add services request only when the provider leaves the consultation
+  // TODO: Send a system message when the client/provider toggles camera
   useEffect(() => {
     socketRef.current = io(SOCKET_IO_URL, {
       path: "/api/v1/ws/socket.io",
@@ -55,11 +77,15 @@ export const Consultation = () => {
     socketRef.current.emit("join chat", {
       country,
       language,
-      chatId: consultation?.chatId,
+      chatId: consultation.chatId,
       userType: "client",
     });
 
     socketRef.current.on("receive message", receiveMessage);
+    // window.addEventListener("beforeunload", (ev) => {
+    //   console.log("asd");
+    //   return (ev.returnValue = "Are you sure you want to close?");
+    // });
 
     return () => {
       if (socketRef.current) {
@@ -109,14 +135,6 @@ export const Consultation = () => {
     });
   };
 
-  const onSendSuccess = (data) => {
-    setMessages([...data.messages]);
-  };
-  const onSendError = (err) => {
-    toast(err, { type: "error" });
-  };
-  const sendMessageMutation = useSendMessage(onSendSuccess, onSendError);
-
   const handleSendMessage = (content) => {
     const message = {
       content,
@@ -137,34 +155,65 @@ export const Consultation = () => {
     });
   };
 
+  const showChat = width < 768;
+
+  const toggleChat = () => setIsChatShownOnMobile(!isChatShownOnMobile);
+
+  const leaveConsultation = () => {
+    leaveConsultationMutation.mutate({
+      consultationId: consultation.consultationId,
+      userType: "client",
+    });
+
+    navigate("/consultations");
+    sendMessageMutation.mutate({
+      chatId: consultation.chatId,
+      message: {
+        time: JSON.stringify(new Date().getTime()),
+        content: t("client_left"),
+        type: "system",
+      },
+    });
+  };
+
   return (
-    <Page classes="page__consultation" showGoBackArrow={false}>
+    <Page
+      showNavbar={width < 768 ? false : true}
+      showFooter={width < 768 ? false : true}
+      showEmergencyButton={false}
+      classes="page__consultation"
+      showGoBackArrow={false}
+    >
       <div className="page__consultation__container">
-        <Grid classes="page__consultation__container__grid">
-          <GridItem md={8} lg={12}>
-            <Controls
-              startDate={new Date()}
-              endDate={new Date()}
-              providerName="Georgi"
-              providerImage="default"
-              t={t}
-            />
-          </GridItem>
-          <GridItem
-            md={8}
-            lg={12}
-            classes="page__consultation__container__messages"
-          >
-            {/* <MessagesList messages={messages} /> */}
+        <VideoRoom
+          joinWithVideo={joinWithVideo}
+          consultation={consultation}
+          toggleChat={toggleChat}
+          leaveConsultation={leaveConsultation}
+          token={token}
+          t={t}
+        />
+        {width >= 1024 ? (
+          <div>
             <div className="page__consultation__container__messages__messages-container">
               {renderAllMessages()}
             </div>
-          </GridItem>
-          {/* <GridItem md={8} lg={12}> */}
-          <SendMessage handleSubmit={handleSendMessage} />
-          {/* </GridItem> */}
-        </Grid>
+            <SendMessage handleSubmit={handleSendMessage} />
+          </div>
+        ) : null}
       </div>
+      <Backdrop
+        classes="page__consultation__chat-backdrop"
+        isOpen={isChatShownOnMobile}
+        onClose={() => setIsChatShownOnMobile(false)}
+      >
+        <div className="page__consultation__chat-backdrop__conatiner">
+          <div className="page__consultation__container__messages__messages-container">
+            {renderAllMessages()}
+          </div>
+          <SendMessage handleSubmit={handleSendMessage} />
+        </div>
+      </Backdrop>
     </Page>
   );
 };

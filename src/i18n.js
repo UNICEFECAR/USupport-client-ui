@@ -67,6 +67,7 @@ import {
   TermsOfUse as TermsOfUsePage,
   MoodTracker as MoodTrackerPage,
   Dashboard as DashboardPage,
+  Consultation as ConsultationPage,
 } from "#pages/locales.js";
 
 import {
@@ -152,6 +153,7 @@ const resources = {
     "terms-of-use-page": TermsOfUsePage.en,
     "mood-tracker-page": MoodTrackerPage.en,
     "dashboard-page": DashboardPage.en,
+    "consultation-page": ConsultationPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
