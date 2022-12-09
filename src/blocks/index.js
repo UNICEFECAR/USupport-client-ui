@@ -32,3 +32,4 @@ export * from "./ConsultationsDashboard";
 export * from "./ActivityLogDashboard";
 export * from "./ArticlesDashboard";
 export * from "./MoodTrackerHistory";
+export * from "./VideoRoom";

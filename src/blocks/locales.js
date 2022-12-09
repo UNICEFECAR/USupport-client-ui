@@ -31,3 +31,4 @@ export * as ConsultationsDashboard from "./ConsultationsDashboard/locales.js";
 export * as ActivityLogDashboard from "./ActivityLogDashboard/locales.js";
 export * as ArticlesDashboard from "./ArticlesDashboard/locales.js";
 export * as MoodTrackerHistory from "./MoodTrackerHistory/locales.js";
+export * as VideoRoom from "./VideoRoom/locales.js";
