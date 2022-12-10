@@ -10,7 +10,13 @@ import {
   ConfirmConsultation,
   SelectConsultation,
 } from "#backdrops";
-import { useBlockSlot, useRescheduleConsultation } from "#hooks";
+import { RequireDataAgreement } from "#modals";
+import {
+  useBlockSlot,
+  useRescheduleConsultation,
+  useGetClientData,
+} from "#hooks";
+
 import { Button } from "@USupport-components-library/src";
 
 import "./consultations.scss";
@@ -26,6 +32,8 @@ export const Consultations = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t } = useTranslation("consultations-page");
+
+  const clientData = useGetClientData()[1];
 
   const [selectedConsultation, setSelectedConsultation] = useState();
   const [selectedConsultationProviderId, setSelectedConsultationProviderId] =
@@ -53,6 +61,10 @@ export const Consultations = () => {
   };
   const closeJoinConsultation = () => setIsJoinConsultationOpen(false);
 
+  const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
+    useState(false);
+  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
+
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
@@ -66,8 +78,10 @@ export const Consultations = () => {
   const [isConfirmBackdropOpen, setIsConfirmBackdropOpen] = useState(false);
 
   // Open modals
-  const openSelectConsultation = () =>
+  const openSelectConsultation = () => {
     setIsSelectConsultationBackdropOpen(true);
+  };
+
   const openConfirmConsultationBackdrop = () => setIsConfirmBackdropOpen(true);
 
   // Close modals
@@ -123,7 +137,11 @@ export const Consultations = () => {
   };
 
   const handleScheduleConsultationClick = () => {
-    navigate("/select-provider");
+    if (!clientData.dataProcessing) {
+      openRequireDataAgreement();
+    } else {
+      navigate("/select-provider");
+    }
   };
 
   return (
@@ -133,7 +151,7 @@ export const Consultations = () => {
       headingButton={
         <Button
           label={t("button_label")}
-          onClick={() => handleScheduleConsultationClick()}
+          onClick={handleScheduleConsultationClick}
           size="lg"
         />
       }
@@ -187,6 +205,11 @@ export const Consultations = () => {
           }}
         />
       )}
+      <RequireDataAgreement
+        isOpen={isRequireDataAgreementOpen}
+        onClose={() => setIsRequireDataAgreementOpen(false)}
+        onSuccess={() => setIsRequireDataAgreementOpen(false)}
+      />
     </Page>
   );
 };

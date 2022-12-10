@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Button, RadialCircle } from "@USupport-components-library/src";
-import { useBlockSlot, useScheduleConsultation } from "#hooks";
+import { RadialCircle } from "@USupport-components-library/src";
+
+import {
+  useBlockSlot,
+  useScheduleConsultation,
+  useGetClientData,
+} from "#hooks";
 import { Page, ProviderOverview as ProviderOverviewBlock } from "#blocks";
 import { SelectConsultation, ConfirmConsultation } from "#backdrops";
+import { RequireDataAgreement } from "#modals";
 
 import "./provider-overview.scss";
 
@@ -23,6 +29,8 @@ export const ProviderOverview = () => {
   );
   if (!providerId) return <Navigate to="/select-provider" />;
 
+  const clientData = useGetClientData()[1];
+
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
@@ -31,15 +39,25 @@ export const ProviderOverview = () => {
   // Modal state variables
   const [isScheduleBackdropOpen, setIsScheduleBackdropOpen] = useState(false);
   const [isConfirmBackdropOpen, setIsConfirmBackdropOpen] = useState(false);
+  const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
+    useState(false);
 
   // Open modals
-  const openScheduleBackdrop = () => setIsScheduleBackdropOpen(true);
+  const openScheduleBackdrop = () => {
+    if (!clientData.dataProcessing) {
+      openRequireDataAgreement();
+    } else {
+      setIsScheduleBackdropOpen(true);
+    }
+  };
   const openConfirmConsultationBackdrop = () => setIsConfirmBackdropOpen(true);
+  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
 
   // Close modals
   const closeConfirmConsultationBackdrop = () =>
     setIsConfirmBackdropOpen(false);
   const closeScheduleBackdrop = () => setIsScheduleBackdropOpen(false);
+  const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const onBlockSlotSuccess = (consultationId) => {
     // setIsBlockSlotSubmitting(false);
@@ -119,6 +137,11 @@ export const ProviderOverview = () => {
           }}
         />
       )}
+      <RequireDataAgreement
+        isOpen={isRequireDataAgreementOpen}
+        onClose={closeRequireDataAgreement}
+        onSuccess={() => setIsScheduleBackdropOpen(true)}
+      />
     </Page>
   );
 };
