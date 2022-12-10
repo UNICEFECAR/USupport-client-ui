@@ -13,6 +13,7 @@ export function VideoRoom({
   consultation,
   toggleChat,
   leaveConsultation,
+  handleSendMessage,
   token,
   t,
 }) {
@@ -59,6 +60,8 @@ export function VideoRoom({
           toggleMicrophone={toggleMicrophone}
           toggleChat={toggleChat}
           leaveConsultation={handleLeaveConsultation}
+          handleSendMessage={handleSendMessage}
+          renderIn="client"
           isCameraOn={isCameraOn}
           isMicrophoneOn={isMicrophoneOn}
           t={t}
