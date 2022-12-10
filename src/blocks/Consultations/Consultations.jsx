@@ -111,17 +111,26 @@ export const Consultations = ({
   const filterConsultations = useCallback(() => {
     const currentDateTs = new Date().getTime();
 
-    return consultationsQuery.data?.filter((consultation) => {
-      const endTime = consultation.timestamp + ONE_HOUR;
-      if (filter === "upcoming") {
-        return (
-          consultation.timestamp >= currentDateTs ||
-          (currentDateTs >= consultation.timestamp && currentDateTs <= endTime)
-        );
-      } else {
-        return endTime < currentDateTs;
-      }
-    });
+    return consultationsQuery.data
+      ?.filter((consultation) => {
+        const endTime = consultation.timestamp + ONE_HOUR;
+        if (filter === "upcoming") {
+          return (
+            consultation.timestamp >= currentDateTs ||
+            (currentDateTs >= consultation.timestamp &&
+              currentDateTs <= endTime)
+          );
+        } else {
+          return endTime < currentDateTs;
+        }
+      })
+      .sort((a, b) => {
+        if (filter === "upcoming") {
+          return a.timestamp - b.timestamp;
+        } else {
+          return b.timestamp - a.timestamp;
+        }
+      });
   }, [consultationsQuery.data, filter]);
 
   const renderAllConsultations = useMemo(() => {
