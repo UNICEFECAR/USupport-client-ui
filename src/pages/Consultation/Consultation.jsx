@@ -32,6 +32,7 @@ export const Consultation = () => {
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
   const location = useLocation();
+  const backdropMessagesContainerRef = useRef();
 
   const consultation = location.state?.consultation;
   const joinWithVideo = location.state?.videoOn;
@@ -44,6 +45,19 @@ export const Consultation = () => {
   );
 
   const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    if (
+      messages?.length > 0 &&
+      backdropMessagesContainerRef.current &&
+      backdropMessagesContainerRef.current.scrollHeight > 0
+    ) {
+      backdropMessagesContainerRef.current.scrollTo({
+        top: backdropMessagesContainerRef.current?.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages, backdropMessagesContainerRef.current?.scrollHeight]);
 
   // Mutations
   const onSendSuccess = (data) => {
@@ -108,7 +122,7 @@ export const Consultation = () => {
           <SystemMessage
             key={message.time}
             title={message.content}
-            date={new Date(message.time)}
+            date={new Date(Number(message.time))}
           />
         );
       } else {
@@ -118,7 +132,7 @@ export const Consultation = () => {
               key={message.time}
               message={message.content}
               sent
-              date={new Date(message.time)}
+              date={new Date(Number(message.time))}
             />
           );
         } else {
@@ -127,7 +141,7 @@ export const Consultation = () => {
               key={message.time}
               message={message.content}
               received
-              date={new Date(message.time)}
+              date={new Date(Number(message.time))}
             />
           );
         }
@@ -135,10 +149,10 @@ export const Consultation = () => {
     });
   };
 
-  const handleSendMessage = (content) => {
+  const handleSendMessage = (content, type = "text") => {
     const message = {
       content,
-      type: "text",
+      type,
       time: JSON.stringify(new Date().getTime()),
     };
     sendMessageMutation.mutate({
@@ -157,7 +171,17 @@ export const Consultation = () => {
 
   const showChat = width < 768;
 
-  const toggleChat = () => setIsChatShownOnMobile(!isChatShownOnMobile);
+  const toggleChat = () => {
+    if (!isChatShownOnMobile) {
+      setTimeout(() => {
+        backdropMessagesContainerRef.current?.scrollTo({
+          top: backdropMessagesContainerRef.current?.scrollHeight,
+          behavior: "smooth",
+        });
+      }, 200);
+    }
+    setIsChatShownOnMobile(!isChatShownOnMobile);
+  };
 
   const leaveConsultation = () => {
     leaveConsultationMutation.mutate({
@@ -166,13 +190,24 @@ export const Consultation = () => {
     });
 
     navigate("/consultations");
+
+    const leaveMessage = {
+      time: JSON.stringify(new Date().getTime()),
+      content: t("client_left"),
+      type: "system",
+    };
+
     sendMessageMutation.mutate({
       chatId: consultation.chatId,
-      message: {
-        time: JSON.stringify(new Date().getTime()),
-        content: t("client_left"),
-        type: "system",
-      },
+      message: leaveMessage,
+    });
+
+    socketRef.current.emit("send message", {
+      language,
+      country,
+      chatId: consultation.chatId,
+      to: "provider",
+      message: leaveMessage,
     });
   };
 
@@ -190,22 +225,23 @@ export const Consultation = () => {
           consultation={consultation}
           toggleChat={toggleChat}
           leaveConsultation={leaveConsultation}
+          handleSendMessage={handleSendMessage}
           token={token}
           t={t}
         />
-        {width >= 1024 ? (
-          <div>
-            <div className="page__consultation__container__messages__messages-container">
-              {renderAllMessages()}
-            </div>
-            <SendMessage handleSubmit={handleSendMessage} />
-          </div>
-        ) : null}
+        <MessageList
+          messages={messages}
+          isLoading={chatDataQuery.isLoading}
+          handleSendMessage={handleSendMessage}
+          clientId={clientId}
+          width={width}
+        />
       </div>
       <Backdrop
         classes="page__consultation__chat-backdrop"
         isOpen={isChatShownOnMobile}
         onClose={() => setIsChatShownOnMobile(false)}
+        reference={backdropMessagesContainerRef}
       >
         <div className="page__consultation__chat-backdrop__conatiner">
           <div className="page__consultation__container__messages__messages-container">
@@ -216,4 +252,74 @@ export const Consultation = () => {
       </Backdrop>
     </Page>
   );
+};
+
+const MessageList = ({
+  messages,
+  isLoading,
+  width,
+  handleSendMessage,
+  clientId,
+}) => {
+  const messagesContainerRef = useRef();
+
+  useEffect(() => {
+    if (
+      messages?.length > 0 &&
+      messagesContainerRef.current &&
+      messagesContainerRef.current.scrollHeight > 0
+    ) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current?.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages, messagesContainerRef.current?.scrollHeight]);
+
+  const renderAllMessages = () => {
+    if (isLoading) return <Loading size="lg" />;
+    return messages.map((message) => {
+      if (message.type === "system") {
+        return (
+          <SystemMessage
+            key={message.time}
+            title={message.content}
+            date={new Date(Number(message.time))}
+          />
+        );
+      } else {
+        if (message.senderId === clientId) {
+          return (
+            <Message
+              key={message.time}
+              message={message.content}
+              sent
+              date={new Date(Number(message.time))}
+            />
+          );
+        } else {
+          return (
+            <Message
+              key={message.time}
+              message={message.content}
+              received
+              date={new Date(Number(message.time))}
+            />
+          );
+        }
+      }
+    });
+  };
+
+  return width >= 1024 ? (
+    <div>
+      <div
+        ref={messagesContainerRef}
+        className="page__consultation__container__messages__messages-container"
+      >
+        {renderAllMessages()}
+      </div>
+      <SendMessage handleSubmit={handleSendMessage} />
+    </div>
+  ) : null;
 };
