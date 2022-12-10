@@ -103,7 +103,7 @@ export const Consultation = () => {
   const renderAllMessages = () => {
     if (chatDataQuery.isLoading) return <Loading size="lg" />;
     return messages.map((message) => {
-      if (message.type === "system-message") {
+      if (message.type === "system") {
         return (
           <SystemMessage
             key={message.time}

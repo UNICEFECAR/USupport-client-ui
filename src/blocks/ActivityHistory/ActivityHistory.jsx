@@ -37,12 +37,12 @@ export const ActivityHistory = ({
 
   const renderAllMessages = () => {
     return chatQueryData.data?.messages.map((message, index) => {
-      if (message.type === "system-message") {
+      if (message.type === "system") {
         return (
           <SystemMessage
             key={index + message.time}
             title={message.content}
-            date={new Date(message.time)}
+            date={new Date(Number(message.time))}
           />
         );
       } else {
@@ -52,7 +52,7 @@ export const ActivityHistory = ({
               key={index + message.time}
               message={message.content}
               sent
-              date={new Date(message.time)}
+              date={new Date(Number(message.time))}
             />
           );
         } else {
@@ -61,7 +61,7 @@ export const ActivityHistory = ({
               key={index + message.time}
               message={message.content}
               received
-              date={new Date(message.time)}
+              date={new Date(Number(message.time))}
             />
           );
         }
