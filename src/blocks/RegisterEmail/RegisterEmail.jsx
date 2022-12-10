@@ -92,7 +92,10 @@ export const RegisterEmail = () => {
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
-      queryClient.setQueryData(["client-data"], userData);
+      queryClient.setQueryData(
+        ["client-data"],
+        userSvc.transformUserData(userData)
+      );
 
       navigate("/register/about-you");
     },

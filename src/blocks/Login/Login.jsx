@@ -60,7 +60,10 @@ export const Login = () => {
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
-      queryClient.setQueryData(["client-data"], userData);
+      queryClient.setQueryData(
+        ["client-data"],
+        userSvc.transformUserData(userData)
+      );
 
       setErrors({});
       navigate("/dashboard");

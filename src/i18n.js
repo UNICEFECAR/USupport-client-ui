@@ -84,7 +84,7 @@ import {
   JoinConsultation,
 } from "#backdrops/locales.js";
 
-import { RequireRegistration } from "#modals/locales.js";
+import { RequireRegistration, RequireDataAgreement } from "#modals/locales.js";
 
 const resources = {
   en: {
@@ -172,6 +172,7 @@ const resources = {
 
     //Modals
     "require-registration": RequireRegistration.en,
+    "require-data-agreement": RequireDataAgreement.en,
   },
   kk: {
     // Blocks

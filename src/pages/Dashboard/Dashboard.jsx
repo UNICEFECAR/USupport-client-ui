@@ -3,6 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
 import {
   Page,
   MascotWelcomeHeader,
@@ -10,6 +11,7 @@ import {
   ConsultationsDashboard,
   ArticlesDashboard,
 } from "#blocks";
+
 import {
   CancelConsultation,
   EditConsultation,
@@ -17,6 +19,7 @@ import {
   ConfirmConsultation,
   SelectConsultation,
 } from "#backdrops";
+
 import {
   useAcceptConsultation,
   useBlockSlot,
@@ -25,6 +28,8 @@ import {
   useScheduleConsultation,
   useGetClientData,
 } from "#hooks";
+
+import { RequireDataAgreement } from "#modals";
 
 import { userSvc } from "@USupport-components-library/services";
 import { ONE_HOUR } from "@USupport-components-library/utils";
@@ -67,6 +72,11 @@ export const Dashboard = () => {
     }
     return null;
   }, [consultationsQuery.data]);
+
+  const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
+    useState(false);
+  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
+  const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const [selectedConsultation, setSelectedConsultation] = useState();
   const [selectedConsultationProviderId, setSelectedConsultationProviderId] =
@@ -192,10 +202,15 @@ export const Dashboard = () => {
       providerId: selectedConsultationProviderId,
     });
   };
-
   const handleScheduleConsultation = () => {
-    navigate("/select-provider");
+    if (!clientData.dataProcessing) {
+      openRequireDataAgreement();
+    } else {
+      navigate("/select-provider");
+    }
   };
+
+  const handleDataAgreementSucess = () => navigate("/select-provider");
 
   return (
     <Page
@@ -218,7 +233,7 @@ export const Dashboard = () => {
           t={t}
         />
         <MoodTracker />
-        {/* <ArticlesDashboard /> */}
+        <ArticlesDashboard />
         <ConsultationsDashboard
           openJoinConsultation={openJoinConsultation}
           openEditConsultation={openEditConsultation}
@@ -274,6 +289,11 @@ export const Dashboard = () => {
           />
         )}
       </div>
+      <RequireDataAgreement
+        isOpen={isRequireDataAgreementOpen}
+        onClose={closeRequireDataAgreement}
+        onSuccess={handleDataAgreementSucess}
+      />
     </Page>
   );
 };

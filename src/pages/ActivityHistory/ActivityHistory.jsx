@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
-import { Page, ActivityHistory as ActivityHistoryBlock } from "#blocks";
 import { RadialCircle } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { useBlockSlot, useScheduleConsultation } from "#hooks";
+
+import {
+  useBlockSlot,
+  useScheduleConsultation,
+  useGetClientData,
+} from "#hooks";
 import { SelectConsultation, ConfirmConsultation } from "#backdrops";
+import { Page, ActivityHistory as ActivityHistoryBlock } from "#blocks";
+import { RequireDataAgreement } from "#modals";
 
 import "./activity-history.scss";
 
@@ -24,6 +30,8 @@ export const ActivityHistory = () => {
   const providerId = location.state?.providerId;
   if (!consultation || !providerId) return <Navigate to="/consultations" />;
 
+  const clientData = useGetClientData()[1];
+
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
   // const [consultationId, setConsultationId] = useState();
@@ -33,15 +41,25 @@ export const ActivityHistory = () => {
   const [isSelectConsultationOpen, setIsSelectConsultationOpen] =
     useState(false);
   const [isConfirmBackdropOpen, setIsConfirmBackdropOpen] = useState(false);
+  const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
+    useState(false);
 
   // Open modals
-  const openSelectConsultation = () => setIsSelectConsultationOpen(true);
+  const openSelectConsultation = () => {
+    if (!clientData.dataProcessing) {
+      openRequireDataAgreement();
+    } else {
+      setIsSelectConsultationOpen(true);
+    }
+  };
   const openConfirmConsultationBackdrop = () => setIsConfirmBackdropOpen(true);
+  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
 
   // Close modals
   const closeConfirmConsultationBackdrop = () =>
     setIsConfirmBackdropOpen(false);
   const closeSelectConsultation = () => setIsSelectConsultationOpen(false);
+  const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const onBlockSlotSuccess = (consultationId) => {
     // setIsBlockSlotSubmitting(false);
@@ -126,6 +144,11 @@ export const ActivityHistory = () => {
           }}
         />
       )}
+      <RequireDataAgreement
+        isOpen={isRequireDataAgreementOpen}
+        onClose={closeRequireDataAgreement}
+        onSuccess={() => setIsSelectConsultationOpen(true)}
+      />
     </Page>
   );
 };

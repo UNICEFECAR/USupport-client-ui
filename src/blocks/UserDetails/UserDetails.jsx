@@ -226,6 +226,7 @@ export const UserDetails = ({
       setDataProcessing(data);
       setIsProcessingUpdateDataProcessing(false);
       closeDataProcessingModal();
+      queryClient.invalidateQueries({ queryKey: ["clientData"] });
     },
     onError: (error) => {
       setDataProcessing((prev) => !prev); // Revert the optimistic update
