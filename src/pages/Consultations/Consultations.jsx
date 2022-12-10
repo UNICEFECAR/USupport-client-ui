@@ -64,6 +64,7 @@ export const Consultations = () => {
   const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
     useState(false);
   const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
+  const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
@@ -144,6 +145,10 @@ export const Consultations = () => {
     }
   };
 
+  const handleDataAgreementSuccess = () => {
+    navigate("/select-provider");
+  };
+
   return (
     <Page
       heading={t("header")}
@@ -207,8 +212,8 @@ export const Consultations = () => {
       )}
       <RequireDataAgreement
         isOpen={isRequireDataAgreementOpen}
-        onClose={() => setIsRequireDataAgreementOpen(false)}
-        onSuccess={() => setIsRequireDataAgreementOpen(false)}
+        onClose={closeRequireDataAgreement}
+        onSuccess={handleDataAgreementSuccess}
       />
     </Page>
   );
