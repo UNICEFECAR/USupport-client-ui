@@ -49,6 +49,7 @@ export const Page = ({
   heading,
   subheading,
   headingButton,
+  showHeadingButtonInline = false,
   classes,
   children,
 }) => {
@@ -222,7 +223,9 @@ export const Page = ({
           <>
             {headingButton && (
               <div className="page__mobile-button-container">
-                {width < 768 && headingButton}
+                {width < 768 && !showHeadingButtonInline && headingButton
+                  ? headingButton
+                  : null}
               </div>
             )}
             <div className="page__header">
@@ -236,7 +239,7 @@ export const Page = ({
                 />
               )}
               {heading && <h3 className="page__header-heading">{heading}</h3>}
-              {headingButton && width >= 768 && (
+              {headingButton && (width >= 768 || showHeadingButtonInline) && (
                 <div className="page__header-button-container">
                   {headingButton}
                 </div>
