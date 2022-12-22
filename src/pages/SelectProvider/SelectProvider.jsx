@@ -70,6 +70,7 @@ export const SelectProvider = () => {
       classes="page__select-provider"
       heading={t("heading")}
       subheading={t("subheading")}
+      showHeadingButtonInline
       headingButton={
         <ButtonWithIcon
           label={t("button_label")}

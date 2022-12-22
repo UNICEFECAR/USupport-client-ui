@@ -75,7 +75,7 @@ export const RegisterEmail = () => {
       countryID,
       password: data.password,
       clientData: {
-        email: data.email,
+        email: data.email.toLowerCase(),
         nickname: data.nickname,
       },
     });

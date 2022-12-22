@@ -138,8 +138,10 @@ export const Page = ({
   const { data: countries } = useQuery(["countries"], fetchCountries);
   const { data: languages } = useQuery(["languages"], fetchLanguages);
 
-  // const token = localStorage.getItem("token");
-  // const clientData = useGetClientData(!!token)[0].data;
+  const hasUnreadNotifications = queryClient.getQueryData([
+    "has-unread-notifications",
+  ]);
+
   const clientData = queryClient.getQueryData(["client-data"]);
   const image = clientData?.image;
 
@@ -210,6 +212,7 @@ export const Page = ({
           countries={countries}
           initialLanguage={selectedLanguage}
           initialCountry={selectedCountry}
+          hasUnreadNotifications={hasUnreadNotifications}
         />
       )}
       <div

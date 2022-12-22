@@ -21,6 +21,8 @@ export default function useUpdateClientData(data, onSuccess, onError) {
     delete dataCopy.image;
     delete dataCopy.clientID;
 
+    dataCopy.email = dataCopy.email.toLowerCase();
+
     const res = await clientSvc.updateClientData(dataCopy);
     return res.data;
   };
