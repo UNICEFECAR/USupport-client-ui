@@ -7,10 +7,28 @@
   &__content-container {
     display: flex;
     flex: 1;
+    flex-direction: row;
     justify-content: center;
+    align-items: flex-start;
+    padding-top: $spacing_4_0;
   }
 
-  &__provider-consultation {
-    margin-top: $spacing_4_0;
+  &__price-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $color_purple_dac3f6;
+    color: $color_secondary_9749fa;
+    padding: $spacing_0_4 $spacing_0_8;
+    border-radius: $border_radius_1_6;
+    margin-right: $spacing_1_4;
+    margin-top: $spacing_1_6;
+    margin-left: $spacing_3_2;
+
+    &--free {
+      background-color: rgba(32, 128, 158, 0.3);
+      color: $color_primary_20809e;
+    }
   }
 }

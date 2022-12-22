@@ -72,9 +72,17 @@ export const CancelConsultation = ({
           endDate={endDate}
           providerName={providerName}
           providerImage={image || "default"}
-          classes="cancel-consultation__provider-consultation"
           t={t}
         />
+        <div
+          className={[
+            "cancel-consultation__price-badge",
+            //TODO: refactor if price === 0, then free
+            1 === 1 && "cancel-consultation__price-badge--free",
+          ].join(" ")}
+        >
+          <p className="small-text">$50</p>
+        </div>
       </div>
     </Backdrop>
   );
