@@ -78,7 +78,7 @@ export const FilterProviders = ({ isOpen, onClose }) => {
       heading={t("heading")}
       text={t("subheading")}
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleSave}
       ctaLabel={t("button_label")}
       ctaHandleClick={handleSave}
     >
