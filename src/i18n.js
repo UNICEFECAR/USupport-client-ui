@@ -35,6 +35,7 @@ import {
   ActivityLogDashboard,
   ArticlesDashboard,
   MoodTrackerHistory,
+  Notifications,
 } from "#blocks/locales.js";
 
 import {
@@ -122,6 +123,7 @@ const resources = {
     "activity-log-dashboard": ActivityLogDashboard.en,
     "articles-dashboard": ArticlesDashboard.en,
     "mood-tracker-history": MoodTrackerHistory.en,
+    notifications: Notifications.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,

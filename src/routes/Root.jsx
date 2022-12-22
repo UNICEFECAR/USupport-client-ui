@@ -35,15 +35,17 @@ import {
   UserDetails,
   UserProfile,
   Welcome,
+  Notifications,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
-import { useGetClientData } from "#hooks";
+import { useGetClientData, useCheckHasUnreadNotifications } from "#hooks";
 
 export default function Root() {
   const token = localStorage.getItem("token");
   const isTmpUser = userSvc.getUserID() === "tmp-user";
   const enabled = token && !isTmpUser;
   useGetClientData(!!enabled);
+  useCheckHasUnreadNotifications();
 
   return (
     <Router basename="/client">
@@ -69,6 +71,14 @@ export default function Root() {
           element={
             <ProtectedRoute>
               <Consultation />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notifications />
             </ProtectedRoute>
           }
         />
