@@ -66,14 +66,16 @@ export const CancelConsultation = ({
       secondaryCtaHandleClick={onClose}
       errorMessage={error}
     >
-      <ConsultationInformation
-        startDate={startDate}
-        endDate={endDate}
-        providerName={providerName}
-        providerImage={image || "default"}
-        classes="cancel-consultation__provider-consultation"
-        t={t}
-      />
+      <div className="cancel-consultation__content-container">
+        <ConsultationInformation
+          startDate={startDate}
+          endDate={endDate}
+          providerName={providerName}
+          providerImage={image || "default"}
+          classes="cancel-consultation__provider-consultation"
+          t={t}
+        />
+      </div>
     </Backdrop>
   );
 };
