@@ -36,6 +36,9 @@ export const CancelConsultation = ({
   const startDate = new Date(timestamp);
   const endDate = new Date(timestamp + ONE_HOUR);
 
+  const isConsultationLessThan24HoursBefore =
+    new Date().getTime() + 24 * ONE_HOUR >= startDate.getTime();
+
   const onCancelSuccess = () => {
     queryClient.invalidateQueries(["all-consultations"]);
     onClose();
@@ -59,9 +62,15 @@ export const CancelConsultation = ({
       title="CancelConsultation"
       isOpen={isOpen}
       onClose={onClose}
-      heading={t("heading")}
+      heading={
+        isConsultationLessThan24HoursBefore
+          ? t("paid_heading", { price: "50" })
+          : t("heading")
+      }
+      text={isConsultationLessThan24HoursBefore && t("paid_cancel_subheading")}
       ctaLabel={t("cancel_button_label")}
       ctaHandleClick={handleCancelClick}
+      ctaColor={isConsultationLessThan24HoursBefore ? "red" : "green"}
       secondaryCtaLabel={t("keep_button_label")}
       secondaryCtaHandleClick={onClose}
       errorMessage={error}
