@@ -47,7 +47,7 @@
   &__main__button-container {
     padding: $spacing_2_0 0;
     padding-bottom: calc(5vh);
-    // position: fixed;
+    position: sticky;
     bottom: 0;
     background: $gradient_transparent;
     display: flex;
@@ -63,6 +63,8 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
+    height: 75vh;
+    overflow: auto;
   }
 
   &__main__messages-container {
