@@ -53,6 +53,7 @@ export const SOSCenter = () => {
     let { data } = await cmsSvc.getSOSCenters({
       locale: i18n.language,
       ids: sosCenterIdsQuerry.data,
+      populate: true,
     });
 
     const sosCenters = data.data;
@@ -94,6 +95,10 @@ export const SOSCenter = () => {
                       phone={sosCenter.attributes.phone}
                       btnLabelLink={t("button_link")}
                       btnLabelCall={t("button_call")}
+                      image={
+                        sosCenter.attributes.image?.data?.attributes?.formats
+                          ?.medium?.url
+                      }
                     />
                   </GridItem>
                 );
