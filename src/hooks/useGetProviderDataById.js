@@ -31,6 +31,7 @@ export default function useGetProviderDataById(id) {
       workWith: data.work_with || [],
       totalConsultations: data.total_consultations || 0,
       earliestAvailableSlot: data.earliest_available_slot || "",
+      videoLink: data.video_link || "",
     };
     return formattedData;
   };

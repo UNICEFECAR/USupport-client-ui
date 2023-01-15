@@ -7,5 +7,5 @@ export * from "./SafetyFeedback";
 export * from "./SelectConsultation";
 export * from "./ChangePassword";
 export * from "./DeleteAccount";
-export * from "./UploadPicture";
 export * from "./DeleteProfilePicture";
+export * from "./SelectAvatar";

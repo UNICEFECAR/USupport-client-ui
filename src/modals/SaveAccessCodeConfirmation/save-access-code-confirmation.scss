@@ -1,0 +1,16 @@
+@import "@USupport-components-library/styles";
+
+.save-access-code-confirmation {
+  &__container {
+    align-items: center;
+    display: flex;
+
+    & .icon {
+      margin-right: $spacing_2_4;
+    }
+
+    & p {
+      width: 90%;
+    }
+  }
+}

@@ -24,7 +24,6 @@ export const SelectProvider = ({ providers }) => {
   const handleProviderClick = (provider) => {
     navigate(`/provider-overview?provider-id=${provider.providerDetailId}`);
   };
-
   const renderProviders = () => {
     if (providers?.length === 0)
       return (
@@ -46,8 +45,10 @@ export const SelectProvider = ({ providers }) => {
             patronym={provider.patronym}
             surname={provider.surname}
             specializations={provider.specializations.map((x) => t(x))}
+            price={provider.consultationPrice}
             onClick={() => handleProviderClick(provider)}
             image={provider.image}
+            freeLabel={t("free")}
           />
         </GridItem>
       );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Page, CookiePolicy as CookiePolicyPage } from "#blocks";
+import { Page, CookiePolicy as CookiePolicyBlock } from "#blocks";
 import { useTranslation } from "react-i18next";
 
 /**
@@ -13,7 +13,7 @@ export const CookiePolicy = () => {
   const { t } = useTranslation("cookie-policy-page");
   return (
     <Page classes="page__cookie-policy" heading={t("heading")}>
-      <CookiePolicyPage />
+      <CookiePolicyBlock />
     </Page>
   );
 };

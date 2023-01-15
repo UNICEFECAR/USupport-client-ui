@@ -36,7 +36,13 @@ export default function useGetProvidersData() {
       formattedData.push(formattedProvider);
     }
     // Return only the providers that have available slot
-    return formattedData.filter((x) => x.earliestAvailableSlot);
+    return formattedData
+      .filter((x) => x.earliestAvailableSlot)
+      .sort((a, b) => {
+        return (
+          new Date(a.earliestAvailableSlot) - new Date(b.earliestAvailableSlot)
+        );
+      });
   };
 
   const providersDataQuery = useQuery(

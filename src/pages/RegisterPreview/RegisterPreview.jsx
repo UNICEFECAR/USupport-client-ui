@@ -30,6 +30,7 @@ export const RegisterPreview = () => {
     <Page
       classes="page__register-preview"
       additionalPadding={false}
+      showHeadingButtonInline
       headingButton={
         <Button
           size="md"
