@@ -4,7 +4,7 @@ import { Page, UserDetails as UserDetailsBlock } from "#blocks";
 import {
   ChangePassword,
   DeleteAccount,
-  UploadPicture,
+  SelectAvatar,
   DeleteProfilePicture,
 } from "#backdrops";
 
@@ -56,7 +56,7 @@ export const UserDetails = () => {
         isOpen={isDeleteBackdropShown}
         onClose={closeDeleteAccountBackdrop}
       />
-      <UploadPicture
+      <SelectAvatar
         isOpen={isUploadPictureModalOpen}
         onClose={closeUploadPictureModal}
       />
