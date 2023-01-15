@@ -36,6 +36,7 @@ import {
   ArticlesDashboard,
   MoodTrackerHistory,
   Notifications,
+  SafetyFeedback as SafetyFeedbackBlock,
 } from "#blocks/locales.js";
 
 import {
@@ -80,12 +81,16 @@ import {
   SelectConsultation,
   ChangePassword as ChangePasswordBackdrop,
   DeleteAccount,
-  UploadPicture,
   DeleteProfilePicture,
   JoinConsultation,
+  SelectAvatar,
 } from "#backdrops/locales.js";
 
-import { RequireRegistration, RequireDataAgreement } from "#modals/locales.js";
+import {
+  RequireRegistration,
+  RequireDataAgreement,
+  SaveAccessCodeConfirmation,
+} from "#modals/locales.js";
 
 const resources = {
   en: {
@@ -124,6 +129,7 @@ const resources = {
     "articles-dashboard": ArticlesDashboard.en,
     "mood-tracker-history": MoodTrackerHistory.en,
     notifications: Notifications.en,
+    "safety-feedback-block": SafetyFeedbackBlock.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -168,13 +174,14 @@ const resources = {
     "select-consultation": SelectConsultation.en,
     "change-password-backdrop": ChangePasswordBackdrop.en,
     "delete-account": DeleteAccount.en,
-    "upload-picture": UploadPicture.en,
     "delete-profile-picture": DeleteProfilePicture.en,
     "join-consultation": JoinConsultation.en,
+    "select-avatar": SelectAvatar.en,
 
     //Modals
     "require-registration": RequireRegistration.en,
     "require-data-agreement": RequireDataAgreement.en,
+    "save-access-code-confirmation": SaveAccessCodeConfirmation.en,
   },
   kk: {
     // Blocks

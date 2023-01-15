@@ -7,5 +7,5 @@ export * as SafetyFeedback from "./SafetyFeedback/locales.js";
 export * as SelectConsultation from "./SelectConsultation/locales.js";
 export * as ChangePassword from "./ChangePassword/locales.js";
 export * as DeleteAccount from "./DeleteAccount/locales.js";
-export * as UploadPicture from "./UploadPicture/locales.js";
 export * as DeleteProfilePicture from "./DeleteProfilePicture/locales.js";
+export * as SelectAvatar from "./SelectAvatar/locales.js";

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from '@USupport-components-library/src';
 
-import { UploadPicture } from './UploadPicture';
+import { SelectAvatar } from './SelectAvatar';
 
 export default {
-  title: 'Client UI/backdrops/UploadPicture',
-  component: UploadPicture,
+  title: 'Client UI/backdrops/SelectAvatar',
+  component: SelectAvatar,
   argTypes: {},
 };
 
@@ -22,8 +22,8 @@ const Template = (props) => {
 
   return (
     <>
-      <Button label='Toggle UploadPicture' onClick={handleOpen} />
-      <UploadPicture {...props} isOpen={isOpen} onClose={handleClose} />
+      <Button label='Toggle SelectAvatar' onClick={handleOpen} />
+      <SelectAvatar {...props} isOpen={isOpen} onClose={handleClose} />
     </>
   );
 };

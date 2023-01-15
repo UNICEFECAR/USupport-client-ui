@@ -1,0 +1,43 @@
+@import "@USupport-components-library/styles";
+
+.select-avatar {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    text-align: center;
+
+    &__preview {
+      width: 14.8rem;
+      height: 14.8rem;
+      border-radius: 50%;
+      align-self: center;
+      margin: 0 auto;
+      margin-top: $spacing_2_4;
+      object-fit: cover;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: $spacing_3_2;
+      padding-top: $spacing_4_8;
+    }
+
+    &__text {
+      padding-top: $spacing_4_0;
+    }
+
+    &__avatar {
+      width: 6.4rem;
+      height: 6.4rem;
+      border-radius: 50%;
+      border: 0.35rem solid transparent;
+
+      &--selected {
+        border-color: $color_primary_20809e;
+      }
+    }
+  }
+}
