@@ -39,7 +39,13 @@ export const SelectProvider = () => {
   };
 
   const handleFilterSave = (data) => {
-    const { providerTypes, providerSex, maxPrice } = data;
+    const {
+      providerTypes,
+      providerSex,
+      maxPrice,
+      language,
+      onlyFreeConsultation,
+    } = data;
     const initialData = JSON.parse(JSON.stringify(providersDataQuery.data));
     const filteredData = [];
     for (let i = 0; i < initialData.length; i++) {
@@ -48,17 +54,34 @@ export const SelectProvider = () => {
         !providerTypes || providerTypes.length === 0
           ? true
           : checkProviderHasType(provider, providerTypes);
+
       const isDesiredSex =
         !providerSex || providerSex.length === 0
           ? true
           : providerSex.includes(provider.sex);
+
       const isPriceMatching =
         maxPrice === ""
           ? true
           : provider.price <= Number(maxPrice)
           ? false
           : true;
-      if (hasType && isDesiredSex && isPriceMatching) {
+
+      const providerLanguages = provider.languages.map((x) => x.language_id);
+      const providerHasLanguage = !language
+        ? true
+        : providerLanguages.includes(language);
+
+      const providesFreeConsultation = !onlyFreeConsultation
+        ? true
+        : provider.consultationPrice === 0 || !provider.consultationPrice;
+      if (
+        hasType &&
+        isDesiredSex &&
+        isPriceMatching &&
+        providerHasLanguage &&
+        providesFreeConsultation
+      ) {
         filteredData.push(provider);
       }
     }
