@@ -16,7 +16,11 @@
     min-height: 90vh;
     justify-items: center;
     text-align: left;
-    align-items: center;
+    align-items: flex-start;
+
+    @media screen and (min-width: $screen_md) {
+      align-items: center;
+    }
 
     &__content-item {
       display: flex;
@@ -25,8 +29,26 @@
       justify-content: space-between;
 
       &__main-component {
+        padding-top: $spacing_4_0;
+
+        @media screen and (min-width: $screen_md) {
+          padding-top: $spacing_5_0;
+        }
+
         &__code-text {
           color: $color_blue_3d527b;
+        }
+
+        &__copy-container {
+          display: flex;
+
+          & .icon {
+            margin-right: $spacing_2_4;
+          }
+
+          & p {
+            max-width: 36.8rem;
+          }
         }
 
         &__input {

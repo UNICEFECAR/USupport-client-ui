@@ -10,6 +10,7 @@ import {
   Error,
   Grid,
   GridItem,
+  Icon,
   Input,
   InputPassword,
   TermsAgreement,
@@ -19,6 +20,7 @@ import {
   validateProperty,
 } from "@USupport-components-library/src/utils";
 import { useError } from "#hooks";
+import { SaveAccessCodeConfirmation } from "#modals";
 import { userSvc } from "@USupport-components-library/services";
 
 import "./register-anonymous.scss";
@@ -49,6 +51,7 @@ export const RegisterAnonymous = () => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
   // On page load send a request to the server
   // to generate a user acces token
@@ -109,6 +112,7 @@ export const RegisterAnonymous = () => {
   });
 
   const handleRegister = async () => {
+    setIsConfirmationModalOpen(false);
     if (!isSubmitting) {
       setIsSubmitting(true);
       if ((await validate(data, schema, setErrors)) === null) {
@@ -136,66 +140,84 @@ export const RegisterAnonymous = () => {
     data.password && data.isPrivacyAndTermsSelected && data.nickname;
 
   return (
-    <Block classes="register-anonymous">
-      <Grid md={8} lg={12} classes="register-anonymous__grid">
-        <GridItem
-          md={8}
-          lg={12}
-          classes="register-anonymous__grid__content-item"
-        >
-          <div className="register-anonymous__grid__content-item__main-component">
-            <AccessToken
-              accessToken={userAccessToken}
-              isLoading={userAccessTokenIsLoading}
-              accessTokenLabel={t("paragraph_1")}
-            />
-            <Input
-              label={t("nickname_label")}
-              placeholder={t("nickname_placeholder")}
-              value={data.nickname}
-              onChange={(e) => handleChange("nickname", e.target.value)}
-              onBlur={(e) => handleBlur("nickname", e.target.value)}
-              errorMessage={errors.nickname}
-              classes="register-anonymous__grid__content-item__main-component__input"
-            />
-            <InputPassword
-              label={t("password_label")}
-              classes="register-anonymous__grid__content-item__main-component__input-password"
-              value={data.password}
-              onChange={(e) => handleChange("password", e.currentTarget.value)}
-              errorMessage={errors.password}
-              onBlur={() => {
-                handleBlur("password", data.password);
-              }}
-            />
-            <TermsAgreement
-              isChecked={data.isPrivacyAndTermsSelected}
-              setIsChecked={(val) =>
-                handleChange("isPrivacyAndTermsSelected", val)
-              }
-              textOne={t("terms_agreement_text_1")}
-              textTwo={t("terms_agreement_text_2")}
-              textThree={t("terms_agreement_text_3")}
-              textFour={t("terms_agreement_text_4")}
-              Link={Link}
-            />
-            <Button
-              label={t("register_button_label")}
-              size="lg"
-              onClick={() => handleRegister()}
-              disabled={!canContinue || isSubmitting}
-            />
+    <>
+      <SaveAccessCodeConfirmation
+        isOpen={isConfirmationModalOpen}
+        onClose={() => setIsConfirmationModalOpen(false)}
+        accessToken={userAccessToken}
+        isLoading={userAccessTokenIsLoading}
+        ctaHandleClick={handleRegister}
+      />
 
-            <Button
-              label={t("login_button_label")}
-              type="ghost"
-              onClick={() => handleLoginRedirect()}
-              classes="register-anonymous__grid__login-button"
-            />
-          </div>
-          {errors.submit ? <Error message={errors.submit} /> : null}
-        </GridItem>
-      </Grid>
-    </Block>
+      <Block classes="register-anonymous">
+        <Grid md={8} lg={12} classes="register-anonymous__grid">
+          <GridItem
+            md={8}
+            lg={12}
+            classes="register-anonymous__grid__content-item"
+          >
+            <div className="register-anonymous__grid__content-item__main-component">
+              <AccessToken
+                accessToken={userAccessToken}
+                isLoading={userAccessTokenIsLoading}
+                accessTokenLabel={t("paragraph_1")}
+              />
+
+              <div className="register-anonymous__grid__content-item__main-component__copy-container">
+                <Icon name="warning" size="md" />
+                <p className="small-text">{t("copy_text")}</p>
+              </div>
+
+              <Input
+                label={t("nickname_label")}
+                placeholder={t("nickname_placeholder")}
+                value={data.nickname}
+                onChange={(e) => handleChange("nickname", e.target.value)}
+                onBlur={(e) => handleBlur("nickname", e.target.value)}
+                errorMessage={errors.nickname}
+                classes="register-anonymous__grid__content-item__main-component__input"
+              />
+              <InputPassword
+                label={t("password_label")}
+                classes="register-anonymous__grid__content-item__main-component__input-password"
+                value={data.password}
+                onChange={(e) =>
+                  handleChange("password", e.currentTarget.value)
+                }
+                errorMessage={errors.password}
+                onBlur={() => {
+                  handleBlur("password", data.password);
+                }}
+              />
+              <TermsAgreement
+                isChecked={data.isPrivacyAndTermsSelected}
+                setIsChecked={(val) =>
+                  handleChange("isPrivacyAndTermsSelected", val)
+                }
+                textOne={t("terms_agreement_text_1")}
+                textTwo={t("terms_agreement_text_2")}
+                textThree={t("terms_agreement_text_3")}
+                textFour={t("terms_agreement_text_4")}
+                Link={Link}
+              />
+              <Button
+                label={t("register_button_label")}
+                size="lg"
+                onClick={() => setIsConfirmationModalOpen(true)}
+                disabled={!canContinue || isSubmitting}
+              />
+
+              <Button
+                label={t("login_button_label")}
+                type="ghost"
+                onClick={() => handleLoginRedirect()}
+                classes="register-anonymous__grid__login-button"
+              />
+            </div>
+            {errors.submit ? <Error message={errors.submit} /> : null}
+          </GridItem>
+        </Grid>
+      </Block>
+    </>
   );
 };
