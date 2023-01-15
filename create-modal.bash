@@ -90,7 +90,7 @@ export const $modal_name = ({ isOpen, onClose }) => {
   return (
     <Modal
       classes='$modal_name_kebab'
-      title='$modal_name'
+      heading='$modal_name'
       isOpen={isOpen}
       onClose={onClose}
     ></Modal>
