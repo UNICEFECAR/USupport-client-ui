@@ -34,3 +34,4 @@ export * from "./ArticlesDashboard";
 export * from "./MoodTrackerHistory";
 export * from "./VideoRoom";
 export * from './Notifications';
+export * from './SafetyFeedback';

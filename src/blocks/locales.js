@@ -33,3 +33,4 @@ export * as ArticlesDashboard from "./ArticlesDashboard/locales.js";
 export * as MoodTrackerHistory from "./MoodTrackerHistory/locales.js";
 export * as VideoRoom from "./VideoRoom/locales.js";
 export * as Notifications from './Notifications/locales.js';
+export * as SafetyFeedback from './SafetyFeedback/locales.js';

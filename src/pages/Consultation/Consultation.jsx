@@ -13,8 +13,13 @@ import {
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import { useGetChatData, useSendMessage, useLeaveConsultation } from "#hooks";
-import { Page, VideoRoom } from "#blocks";
+import {
+  useGetChatData,
+  useSendMessage,
+  useLeaveConsultation,
+  useGetSecurityCheckAnswersByConsultationId,
+} from "#hooks";
+import { Page, VideoRoom, SafetyFeedback } from "#blocks";
 
 import "./consultation.scss";
 
@@ -40,11 +45,15 @@ export const Consultation = () => {
 
   if (!consultation || !token) return <Navigate to="/consultations" />;
 
+  const { data: securityCheckAnswers } =
+    useGetSecurityCheckAnswersByConsultationId(consultation.consultationId);
+
   const [isChatShownOnMobile, setIsChatShownOnMobile] = useState(
     !joinWithVideo
   );
 
   const [messages, setMessages] = useState([]);
+  const [isSafetyFeedbackShown, setIsSafetyFeedbackShown] = useState(false);
 
   useEffect(() => {
     if (
@@ -182,15 +191,12 @@ export const Consultation = () => {
     }
     setIsChatShownOnMobile(!isChatShownOnMobile);
   };
-
   const leaveConsultation = () => {
     leaveConsultationMutation.mutate({
       consultationId: consultation.consultationId,
       userType: "client",
     });
-
-    navigate("/consultations");
-
+    setIsSafetyFeedbackShown(true);
     const leaveMessage = {
       time: JSON.stringify(new Date().getTime()),
       content: t("client_left"),
@@ -211,7 +217,12 @@ export const Consultation = () => {
     });
   };
 
-  return (
+  return isSafetyFeedbackShown ? (
+    <SafetyFeedback
+      answers={securityCheckAnswers}
+      consultationId={consultation.consultationId}
+    />
+  ) : (
     <Page
       showNavbar={width < 768 ? false : true}
       showFooter={width < 768 ? false : true}
