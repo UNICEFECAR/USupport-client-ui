@@ -10,6 +10,7 @@
   "change_password": "Change password",
   "delete_account": "Delete account",
   "no_available_slot": "There is no available slot",
+  "consultations": "consultations",
 
   "psychologist": "Psychologist",
   "psychiatrist": "Psychiatrist",
@@ -24,5 +25,6 @@
   "panic_attack": "Panic attack",
   "relationship": "Relationship",
   "personal_development": "Personal development",
+  "video_label": "Video representation",
   "button_label": "Schedule consultation"
 }
