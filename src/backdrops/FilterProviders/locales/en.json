@@ -11,5 +11,8 @@
   "provider_sex_checkbox_group_label": "Gender of the provider",
   "max_price": "Maximum price",
   "max_price_placeholder": "Select a maximum price",
+  "language": "Language",
+  "language_placeholder": "Select a language",
+  "providers_free_consultation_label": "Only free consultation",
   "button_label": "Save"
 }

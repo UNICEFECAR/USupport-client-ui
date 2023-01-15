@@ -2,5 +2,6 @@
   "psychologist": "Psychologist",
   "psychiatrist": "Psychiatrist",
   "psychotherapist": "Psychotherapist",
-  "no_match": "No providers matching your criteria"
+  "no_match": "No providers matching your criteria",
+  "free": "Free"
 }

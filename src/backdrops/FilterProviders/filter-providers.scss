@@ -15,8 +15,13 @@
       &:has(.dropdown--expanded) {
         padding-bottom: $spacing_10_0;
       }
+
       & > * {
         margin-top: $spacing_3_2;
+      }
+
+      &__free-text {
+        padding-bottom: $spacing_1_0;
       }
     }
 

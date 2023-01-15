@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+
 import {
   Backdrop,
   CheckBoxGroup,
   Input,
+  DropdownWithLabel,
+  Toggle,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
+import { languageSvc } from "@USupport-components-library/services";
 
 import "./filter-providers.scss";
 
@@ -18,10 +23,29 @@ import "./filter-providers.scss";
 export const FilterProviders = ({ isOpen, onClose }) => {
   const { t } = useTranslation("filter-providers");
 
+  const fetchLanguages = async () => {
+    const res = await languageSvc.getAllLanguages();
+    const languages = res.data.map((x) => {
+      const languageObject = {
+        value: x["language_id"],
+        alpha2: x.alpha2,
+        label: x.name,
+        id: x["language_id"],
+      };
+      return languageObject;
+    });
+    return languages;
+  };
+  const languagesQuery = useQuery(["languages"], fetchLanguages, {
+    retry: false,
+  });
+
   const [data, setData] = useState({
     providerTypes: [],
     providerSex: [],
     maxPrice: "",
+    language: null,
+    onlyFreeConsultation: false,
   });
 
   const [providerTypes, setProviderTypes] = useState([
@@ -103,6 +127,26 @@ export const FilterProviders = ({ isOpen, onClose }) => {
             placeholder={t("max_price_placeholder")}
             type="number"
           />
+          <DropdownWithLabel
+            options={languagesQuery.data || []}
+            selected={data.language}
+            setSelected={(selectedOption) =>
+              handleSelect("language", selectedOption)
+            }
+            label={t("language")}
+            placeholder={t("language_placeholder")}
+          />
+          <div>
+            <p className="filter-providers__content__inputs-container__free-text text">
+              {t("providers_free_consultation_label")}
+            </p>
+            <Toggle
+              isToggled={data.onlyFreeConsultation}
+              setParentState={(checked) =>
+                handleSelect("onlyFreeConsultation", checked)
+              }
+            />
+          </div>
         </div>
         {/* <Button label={t("button_label")} size="lg" onClick={handleSave} /> */}
       </div>
