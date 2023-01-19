@@ -1,0 +1,32 @@
+@import "@USupport-components-library/styles";
+
+.checkout-form {
+  &__pay-button {
+    margin: auto;
+  }
+  &__payment-message {
+    color: $color_red_eb5757;
+    padding-top: $spacing_1_2;
+    text-align: center;
+  }
+
+  #payment-element {
+    margin-bottom: 24px;
+    border-radius: 40rem;
+  }
+
+  #Field-numberInput {
+    border-radius: 20rem;
+  }
+
+  .Input {
+    border-radius: 20rem;
+  }
+
+  @media only screen and (max-width: 600px) {
+    form {
+      width: 100vw;
+      min-width: initial;
+    }
+  }
+}
