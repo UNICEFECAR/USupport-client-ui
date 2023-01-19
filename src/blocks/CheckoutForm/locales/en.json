@@ -1,0 +1,8 @@
+{
+  "payment_succeded": "Payment succeded",
+  "payment_processing": "Payment failed",
+  "payment_requires_payment_method": "Your payment was not successful, please try again.",
+  "payment_something_went_wrong": "Something went wrong, please try again.",
+  "payment_unexpected_error": "An unexpected error occurred.",
+  "button_pay_now": "Pay now"
+}

@@ -37,6 +37,7 @@ import {
   MoodTrackerHistory,
   Notifications,
   SafetyFeedback as SafetyFeedbackBlock,
+  CheckoutForm as CheckoutFormBlock,
 } from "#blocks/locales.js";
 
 import {
@@ -130,6 +131,7 @@ const resources = {
     "mood-tracker-history": MoodTrackerHistory.en,
     notifications: Notifications.en,
     "safety-feedback-block": SafetyFeedbackBlock.en,
+    "checkout-form": CheckoutFormBlock.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
