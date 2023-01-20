@@ -36,3 +36,4 @@ export * from "./VideoRoom";
 export * from "./Notifications";
 export * from "./SafetyFeedback";
 export * from "./CheckoutForm";
+export * from './PaymentHistory';

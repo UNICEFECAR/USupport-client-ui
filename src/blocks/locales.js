@@ -35,3 +35,4 @@ export * as VideoRoom from "./VideoRoom/locales.js";
 export * as Notifications from "./Notifications/locales.js";
 export * as SafetyFeedback from "./SafetyFeedback/locales.js";
 export * as CheckoutForm from "./CheckoutForm/locales.js";
+export * as PaymentHistory from './PaymentHistory/locales.js';
