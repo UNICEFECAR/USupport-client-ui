@@ -104,6 +104,12 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
         <GridItem md={8} lg={12} classes="user-profile__grid__item">
           <p className="text user-profile__grid__item__label">{t("other")}</p>
           <ButtonSelector
+            label={t("payments_history_button_label")}
+            iconName="payment-history"
+            classes="user-profile__grid__item__button"
+            onClick={() => handleRedirect("payment-history")}
+          />
+          <ButtonSelector
             label={t("contact_us_button_label")}
             iconName="comment"
             classes="user-profile__grid__item__button"
