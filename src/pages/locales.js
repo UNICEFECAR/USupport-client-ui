@@ -30,3 +30,4 @@ export * as Dashboard from "./Dashboard/locales.js";
 export * as MoodTracker from "./MoodTracker/locales.js";
 export * as Consultation from "./Consultation/locales.js";
 export * as Notifications from './Notifications/locales.js';
+export * as PaymentHistory from './PaymentHistory/locales.js';

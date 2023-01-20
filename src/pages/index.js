@@ -30,3 +30,4 @@ export * from "./Dashboard";
 export * from "./MoodTracker";
 export * from "./Consultation";
 export * from './Notifications';
+export * from './PaymentHistory';
