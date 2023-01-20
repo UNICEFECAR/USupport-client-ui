@@ -36,6 +36,7 @@ import {
   UserProfile,
   Welcome,
   Notifications,
+  PaymentHistory,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData, useCheckHasUnreadNotifications } from "#hooks";
@@ -191,6 +192,14 @@ export default function Root() {
           element={
             <CountryValidationRoute>
               <PlatformRating />
+            </CountryValidationRoute>
+          }
+        />
+        <Route
+          path="/payment-history"
+          element={
+            <CountryValidationRoute>
+              <PaymentHistory />
             </CountryValidationRoute>
           }
         />
