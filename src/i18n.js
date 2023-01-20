@@ -38,6 +38,7 @@ import {
   Notifications,
   SafetyFeedback as SafetyFeedbackBlock,
   CheckoutForm as CheckoutFormBlock,
+  PaymentHistory as PaymentHistoryBlock,
 } from "#blocks/locales.js";
 
 import {
@@ -71,6 +72,7 @@ import {
   MoodTracker as MoodTrackerPage,
   Dashboard as DashboardPage,
   Consultation as ConsultationPage,
+  PaymentHistory as PaymentHistoryPage,
 } from "#pages/locales.js";
 
 import {
@@ -92,6 +94,7 @@ import {
   RequireDataAgreement,
   SaveAccessCodeConfirmation,
   Payment,
+  PaymentInformation,
 } from "#modals/locales.js";
 
 const resources = {
@@ -133,6 +136,7 @@ const resources = {
     notifications: Notifications.en,
     "safety-feedback-block": SafetyFeedbackBlock.en,
     "checkout-form": CheckoutFormBlock.en,
+    "payment-history-block": PaymentHistoryBlock.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -165,6 +169,7 @@ const resources = {
     "mood-tracker-page": MoodTrackerPage.en,
     "dashboard-page": DashboardPage.en,
     "consultation-page": ConsultationPage.en,
+    "payment-history-page": PaymentHistoryPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
@@ -186,6 +191,7 @@ const resources = {
     "require-data-agreement": RequireDataAgreement.en,
     "save-access-code-confirmation": SaveAccessCodeConfirmation.en,
     payment: Payment.en,
+    "payment-information": PaymentInformation.en,
   },
   kk: {
     // Blocks
