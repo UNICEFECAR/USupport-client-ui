@@ -2,6 +2,7 @@ import React from "react";
 import { Modal } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 import { Grid, GridItem, Line, Button } from "@USupport-components-library/src";
+import { getDateView, getTime } from "@USupport-components-library/utils";
 
 import "./payment-information.scss";
 
@@ -19,6 +20,8 @@ export const PaymentInformation = ({ isOpen, onClose, data }) => {
   const handleViewReceiptButtonClick = () => {
     window.open(invoice_pdf, "_blank");
   };
+
+  const paymentTime = getTime(date);
 
   return (
     <Modal
@@ -43,7 +46,15 @@ export const PaymentInformation = ({ isOpen, onClose, data }) => {
         <GridItem xs={4} md={8} lg={12}>
           <p className="text">
             <span className="text">{t("date_of_payment")}</span>
-            <span className="payment-information__text">{date}</span>
+            <span className="payment-information__text">
+              {getDateView(date)}
+            </span>
+          </p>
+        </GridItem>
+        <GridItem xs={4} md={8} lg={12}>
+          <p className="text">
+            <span className="text">{t("time_of_payment")}</span>
+            <span className="payment-information__text">{paymentTime}</span>
           </p>
         </GridItem>
         <GridItem xs={4} md={8} lg={12}>
