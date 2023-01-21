@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Block, PaymentsHistoryTable } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
 
 import { PaymentInformation } from "#modals";
+
+import { paymentsSvc } from "@USupport-components-library/services";
 
 import "./payment-history.scss";
 
@@ -22,23 +25,26 @@ export const PaymentHistory = () => {
 
   const [selectedPaymentData, setSelectedPaymentData] = useState();
 
-  const data = [
+  const getPaymentHistory = async () => {
+    try {
+      const res = await paymentsSvc.getPaymentHistory();
+
+      return res.data;
+    } catch {}
+  };
+
+  const paymentHistoryQuery = useQuery(
+    ["paymentHistoryData"],
+    getPaymentHistory,
     {
-      paymentId: "1234",
-      service: "Product 1",
-      price: "$100",
-      date: "2020-01-01",
-    },
-    {
-      paymentId: "123",
-      service: "Product 2",
-      price: "$150",
-      date: "2020-01-01",
-    },
-  ];
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+    }
+  );
+
   const openPaymentModal = (paymentId) => {
-    if (paymentId) {
-      const newSelectedPaymentData = data.find(
+    if (paymentId && paymentHistoryQuery.data) {
+      const newSelectedPaymentData = paymentHistoryQuery.data.find(
         (item) => item.paymentId === paymentId
       );
       setSelectedPaymentData(newSelectedPaymentData);
@@ -50,9 +56,9 @@ export const PaymentHistory = () => {
   return (
     <Block classes="payment-history">
       <PaymentsHistoryTable
-        isLoading={false}
+        isLoading={paymentHistoryQuery.isLoading}
         rows={rows}
-        data={data}
+        data={paymentHistoryQuery.data}
         handleViewMore={openPaymentModal}
         t={t}
       />
