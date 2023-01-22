@@ -24,7 +24,7 @@ import "./checkout-form.scss";
  *
  * @return {jsx}
  */
-export const CheckoutForm = ({ price = 500 }) => {
+export const CheckoutForm = ({ price, currency }) => {
   const { t } = useTranslation("checkout-form");
 
   const stripe = useStripe();
@@ -112,7 +112,7 @@ export const CheckoutForm = ({ price = 500 }) => {
             md={4}
             lg={6}
           >
-            {price}
+            {price} {currency}
           </GridItem>
         </Grid>
         <Button

@@ -24,14 +24,24 @@ export const Checkout = () => {
     locale: i18n.language ? "kk" : "ru",
   });
 
-  const fetchPaymentIntent = async () => {
-    const res = await paymentsSvc.createPaymentIntent({
-      items: [{ id: "xl-tshirt" }],
-    });
+  const [clientSecret, setClientSecret] = useState(null);
+  const [price, setPrice] = useState(null);
+  const [currency, setCurrency] = useState(null);
 
-    return res?.data?.clientSecret;
+  const fetchPaymentIntent = async () => {
+    const res = await paymentsSvc.createPaymentIntent(
+      "17eca519-ac61-471c-9030-5fce5dfedfea"
+    );
+
+    return res?.data;
   };
-  const { data: clientSecret } = useQuery(["clientSecret"], fetchPaymentIntent);
+  const paymentIntent = useQuery(["paymentIntent"], fetchPaymentIntent, {
+    onSuccess: (data) => {
+      setCurrency(data.currency);
+      setPrice(data.price);
+      setClientSecret(data.clientSecret);
+    },
+  });
 
   const appearance = {
     theme: "stripe",
@@ -45,7 +55,6 @@ export const Checkout = () => {
         borderRadius: "1rem",
         boxShadow: "2px 2px 12px rgba(104, 77, 253, 0.1)",
       },
-      ".Label": {},
       ".TabLabel": {
         color: "black",
       },
@@ -77,7 +86,7 @@ export const Checkout = () => {
       {" "}
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutFormBlock />
+          <CheckoutFormBlock price={price} currency={currency} />
         </Elements>
       )}
     </Page>
