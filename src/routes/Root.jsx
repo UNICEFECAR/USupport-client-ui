@@ -37,6 +37,8 @@ import {
   Welcome,
   Notifications,
   PaymentHistory,
+  Checkout,
+  PaymentStatus,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData, useCheckHasUnreadNotifications } from "#hooks";
@@ -299,6 +301,22 @@ export default function Root() {
           element={
             <ProtectedRoute>
               <Consultations />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment-status"
+          element={
+            <ProtectedRoute>
+              <PaymentStatus />
             </ProtectedRoute>
           }
         />
