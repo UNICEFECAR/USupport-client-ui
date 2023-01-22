@@ -1,0 +1,23 @@
+@import "@USupport-components-library/styles";
+
+.payment-status {
+  &__grid {
+    padding-top: $spacing_4_0;
+    padding-bottom: $spacing_4_0;
+    &__mascot-item {
+      padding-top: $spacing_4_0;
+      > img {
+        width: 30rem;
+        height: 23.8rem;
+      }
+    }
+
+    &__heading {
+      padding-top: $spacing_4_0;
+    }
+
+    &__subheading {
+      padding-top: $spacing_4_0;
+    }
+  }
+}
