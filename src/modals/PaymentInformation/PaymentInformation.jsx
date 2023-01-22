@@ -14,11 +14,19 @@ import "./payment-information.scss";
  * @return {jsx}
  */
 export const PaymentInformation = ({ isOpen, onClose, data }) => {
-  const { service, paymentType, price, date, invoice_pdf } = data;
+  const {
+    service,
+    paymentMethod,
+    price,
+    date,
+    recipient,
+    address,
+    receipt_url,
+  } = data;
   const { t } = useTranslation("payment-information");
 
-  const handleViewReceiptButtonClick = () => {
-    window.open(invoice_pdf, "_blank");
+  const handleViewReceiptButtonClick = (receiptUrl) => {
+    window.open(receiptUrl, "_blank");
   };
 
   const paymentTime = getTime(date);
@@ -37,12 +45,12 @@ export const PaymentInformation = ({ isOpen, onClose, data }) => {
             <span className="payment-information__text">{service}</span>
           </p>
         </GridItem>
-        <GridItem xs={4} md={8} lg={12}>
+        {/* <GridItem xs={4} md={8} lg={12}>
           <p className="text">
             <span className="text">{t("date_of_consultation")}</span>
             <span className="payment-information__text">10.02.2022</span>
           </p>
-        </GridItem>
+        </GridItem> */}
         <GridItem xs={4} md={8} lg={12}>
           <p className="text">
             <span className="text">{t("date_of_payment")}</span>
@@ -60,13 +68,19 @@ export const PaymentInformation = ({ isOpen, onClose, data }) => {
         <GridItem xs={4} md={8} lg={12}>
           <p className="text">
             <span className="text">{t("payment_method")}</span>
-            <span className="payment-information__text">{paymentType} </span>
+            <span className="payment-information__text">{paymentMethod} </span>
           </p>
         </GridItem>
         <GridItem xs={4} md={8} lg={12}>
           <p className="text">
             <span className="text">{t("recipient")}</span>
-            <span className="payment-information__text">USupport</span>
+            <span className="payment-information__text">{recipient}</span>
+          </p>
+        </GridItem>
+        <GridItem xs={4} md={8} lg={12}>
+          <p className="text">
+            <span className="text">{t("address")}</span>
+            <span className="payment-information__text">{address}</span>
           </p>
         </GridItem>
         <GridItem xs={4} md={8} lg={12}>
@@ -93,7 +107,7 @@ export const PaymentInformation = ({ isOpen, onClose, data }) => {
             type="primary"
             label={t("view_receipt")}
             size="lg"
-            onClick={handleViewReceiptButtonClick}
+            onClick={() => handleViewReceiptButtonClick(receipt_url)}
           ></Button>
         </GridItem>
       </Grid>
