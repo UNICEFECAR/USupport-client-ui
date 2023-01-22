@@ -6,6 +6,7 @@
   "time_of_payment": "Time of Payment: ",
   "payment_method": "Payment Method: ",
   "recipient": "Recipient: ",
+  "address": "Company address: ",
   "email_address": "Email Address: ",
   "price": "Price: ",
   "view_receipt": "View Receipt"
