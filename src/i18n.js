@@ -39,6 +39,7 @@ import {
   SafetyFeedback as SafetyFeedbackBlock,
   CheckoutForm as CheckoutFormBlock,
   PaymentHistory as PaymentHistoryBlock,
+  PaymentStatus as PaymentStatusBlock,
 } from "#blocks/locales.js";
 
 import {
@@ -73,6 +74,8 @@ import {
   Dashboard as DashboardPage,
   Consultation as ConsultationPage,
   PaymentHistory as PaymentHistoryPage,
+  Checkout as CheckoutPage,
+  PaymentStatus as PaymentStatusPage,
 } from "#pages/locales.js";
 
 import {
@@ -137,6 +140,7 @@ const resources = {
     "safety-feedback-block": SafetyFeedbackBlock.en,
     "checkout-form": CheckoutFormBlock.en,
     "payment-history-block": PaymentHistoryBlock.en,
+    "payment-status-block": PaymentStatusBlock.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -170,6 +174,8 @@ const resources = {
     "dashboard-page": DashboardPage.en,
     "consultation-page": ConsultationPage.en,
     "payment-history-page": PaymentHistoryPage.en,
+    "checkout-page": CheckoutPage.en,
+    "payment-status-page": PaymentStatusPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
