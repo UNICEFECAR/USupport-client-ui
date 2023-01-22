@@ -4,5 +4,7 @@
   "payment_requires_payment_method": "Your payment was not successful, please try again.",
   "payment_something_went_wrong": "Something went wrong, please try again.",
   "payment_unexpected_error": "An unexpected error occurred.",
-  "button_pay_now": "Pay now"
+  "button_pay_now": "Pay now",
+  "payment_info": "If you do not pay due to 15 minutes the reservation for consultation session will be canceled.",
+  "total_heading": "Total: "
 }

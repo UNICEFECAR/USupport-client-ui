@@ -6,7 +6,14 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { useTranslation } from "react-i18next";
-import { Block, Button, Loading } from "@USupport-components-library/src";
+import {
+  Block,
+  Button,
+  Loading,
+  Icon,
+  Grid,
+  GridItem,
+} from "@USupport-components-library/src";
 
 import "./checkout-form.scss";
 
@@ -17,7 +24,7 @@ import "./checkout-form.scss";
  *
  * @return {jsx}
  */
-export const CheckoutForm = () => {
+export const CheckoutForm = ({ price = 500 }) => {
   const { t } = useTranslation("checkout-form");
 
   const stripe = useStripe();
@@ -26,37 +33,6 @@ export const CheckoutForm = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (!stripe) {
-      return;
-    }
-
-    const clientSecret = new URLSearchParams(window.location.search).get(
-      "payment_intent_client_secret"
-    );
-
-    if (!clientSecret) {
-      return;
-    }
-
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case "succeeded":
-          setMessage(t("Payment succeeded!"));
-          break;
-        case "processing":
-          setMessage(t("payment_processing"));
-          break;
-        case "requires_payment_method":
-          setMessage(t("payment_requires_payment_method"));
-          break;
-        default:
-          setMessage(t("payment_something_went_wrong"));
-          break;
-      }
-    });
-  }, [stripe]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +49,7 @@ export const CheckoutForm = () => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://127.0.0.1:5173/client/dashboard",
+        return_url: "http://127.0.0.1:5173/client/payment-status",
       },
     });
 
@@ -100,10 +76,45 @@ export const CheckoutForm = () => {
       <form id="payment-form" onSubmit={handleSubmit}>
         <LinkAuthenticationElement
           id="link-authentication-element"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.value.email)}
         />
         <PaymentElement id="payment-element" options={paymentElementOptions} />
 
+        <Grid>
+          <GridItem
+            classes="checkout-form__grid__inforamtion-item"
+            xs={4}
+            md={8}
+            lg={12}
+          >
+            <Icon
+              name="circle-actions-alert-info"
+              classes="checkout-form__information__icon"
+              size="sm"
+              color="#20809E"
+              onClick={() => navigate(-1)}
+            />
+            <p className="small-text checkout-form__grid__information_text">
+              {t("payment_info")}
+            </p>
+          </GridItem>
+          <GridItem
+            classes="checkout-form__grid__total-item"
+            xs={2}
+            md={4}
+            lg={6}
+          >
+            <h4>{t("total_heading")}</h4>
+          </GridItem>
+          <GridItem
+            classes="checkout-form__grid__price-item"
+            xs={2}
+            md={4}
+            lg={6}
+          >
+            {price}
+          </GridItem>
+        </Grid>
         <Button
           classes="checkout-form__pay-button"
           type="primary"
