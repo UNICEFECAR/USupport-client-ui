@@ -96,7 +96,6 @@ import {
   RequireRegistration,
   RequireDataAgreement,
   SaveAccessCodeConfirmation,
-  Payment,
   PaymentInformation,
 } from "#modals/locales.js";
 
@@ -196,7 +195,6 @@ const resources = {
     "require-registration": RequireRegistration.en,
     "require-data-agreement": RequireDataAgreement.en,
     "save-access-code-confirmation": SaveAccessCodeConfirmation.en,
-    payment: Payment.en,
     "payment-information": PaymentInformation.en,
   },
   kk: {
