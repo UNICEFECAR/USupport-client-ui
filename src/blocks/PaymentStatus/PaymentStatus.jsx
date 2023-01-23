@@ -29,12 +29,12 @@ export const PaymentStatus = () => {
 
   const [statusData, setStatusData] = useState();
 
-  const getDataForState = (status) => {
+  const getDataForState = (status, description) => {
     switch (status) {
       case "succeeded":
         return {
           heading: t("payment_succeded_heading"),
-          subHeading: t("payment_succeded_subheading"),
+          subHeading: description,
           mascotToUse: mascotHappyOrange,
           buttonLabel: t("continue_button_label"),
         };
@@ -79,9 +79,12 @@ export const PaymentStatus = () => {
     }
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+      console.log(paymentIntent.description);
       switch (paymentIntent.status) {
         case "succeeded":
-          setStatusData(getDataForState("succeeded"));
+          setStatusData(
+            getDataForState("succeeded", paymentIntent.description)
+          );
 
           break;
         case "processing":
