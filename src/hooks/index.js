@@ -31,3 +31,4 @@ export * from "./useCheckHasUnreadNotifications.js";
 export * from "./useCreateConsultationSecurityCheck.js";
 export * from "./useGetSecurityCheckAnswersByConsultationId.js";
 export * from "./useUpdateSecurityCheckAnswersByConsultationId.js";
+export * from "./useSendInformationPortalSuggestion.js";

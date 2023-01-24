@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+
 import {
   Block,
   Grid,
@@ -8,7 +11,9 @@ import {
   Modal,
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
-import { useTranslation } from "react-i18next";
+
+import { useSendInformationPortalSuggestion } from "#hooks";
+
 import Joi from "joi";
 
 import "./give-suggestion.scss";
@@ -52,6 +57,16 @@ export const GiveSuggestion = () => {
 
   const closeSuccessModal = () => setIsSuccessModalOpen(false);
 
+  const onError = (error) => toast(error);
+  const onSuccess = () => {
+    setIsSubmitting(false);
+    setIsSuccessModalOpen(true);
+  };
+  const sendSuggestionMutation = useSendInformationPortalSuggestion(
+    onError,
+    onSuccess
+  );
+
   const handleChange = (field, value) => {
     setData({
       ...data,
@@ -63,11 +78,7 @@ export const GiveSuggestion = () => {
     if (!isSubmitting) {
       if ((await validate(data, schema, setErrors)) === null) {
         setIsSubmitting(true);
-        setTimeout(() => {
-          //TODO: send request to country administrator
-          setIsSubmitting(false);
-          setIsSuccessModalOpen(true);
-        }, 500);
+        sendSuggestionMutation.mutate(data.suggestion);
       }
     }
   };
