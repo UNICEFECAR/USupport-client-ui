@@ -92,7 +92,7 @@ export const $modal_name = ({ isOpen, onClose }) => {
       classes='$modal_name_kebab'
       heading='$modal_name'
       isOpen={isOpen}
-      onClose={onClose}
+      closeModal={onClose}
     ></Modal>
   );
 };" >> "src/modals/$modal_name/$modal_name.jsx"
