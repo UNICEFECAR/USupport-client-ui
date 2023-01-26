@@ -137,9 +137,16 @@ export const Notifications = () => {
     onAcceptConsultationError
   );
 
-  const handleAcceptSuggestion = (consultationId, notificationId) => {
-    acceptConsultationMutation.mutate(consultationId);
+  const handleAcceptSuggestion = (
+    consultationId,
+    consultationPrice,
+    notificationId
+  ) => {
     markAllAsReadMutation.mutate([notificationId]);
+    acceptConsultationMutation.mutate({
+      consultationId,
+      price: consultationPrice,
+    });
   };
 
   // Reject consultation loggic
@@ -311,9 +318,6 @@ export const Notifications = () => {
               endHour,
             })}
             icon="calendar"
-            handleClick={() =>
-              handleNotificationClick(notification.notificationId)
-            }
           >
             {!notification.isRead ? (
               <div className="notifications__suggested-consultation">
@@ -321,6 +325,7 @@ export const Notifications = () => {
                   onClick={() =>
                     handleAcceptSuggestion(
                       notification.content.consultationId,
+                      notification.content.consultationPrice,
                       notification.notificationId
                     )
                   }

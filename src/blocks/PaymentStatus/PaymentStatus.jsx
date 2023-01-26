@@ -7,6 +7,7 @@ import {
 } from "@USupport-components-library/src";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useTranslation } from "react-i18next";
+import { useNavigate, Navigate } from "react-router-dom";
 
 import "./payment-status.scss";
 
@@ -26,6 +27,7 @@ import {
 export const PaymentStatus = () => {
   const { t } = useTranslation("payment-status-block");
   const stripe = useStripe();
+  const navigate = useNavigate();
 
   const [statusData, setStatusData] = useState();
 
@@ -75,6 +77,7 @@ export const PaymentStatus = () => {
     );
 
     if (!clientSecret) {
+      navigate(`/not-found`);
       return;
     }
 
@@ -142,7 +145,8 @@ export const PaymentStatus = () => {
               label={statusData.buttonLabel}
               size="lg"
               isSubmit={false}
-            ></Button>
+              onClick={() => navigate("/consultations")}
+            />
           </GridItem>
         </Grid>
       )}

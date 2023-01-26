@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -52,6 +52,8 @@ export const Dashboard = () => {
     : "";
 
   const queryClient = useQueryClient();
+
+  const consultationPrice = useRef();
 
   // Get the consultations data only if the user is NOT temporary
   const consultationsQuery = isTmpUser ? [] : useGetAllConsultations();
@@ -141,8 +143,8 @@ export const Dashboard = () => {
     onAcceptConsultationError
   );
 
-  const handleAcceptSuggestion = (consultationId) => {
-    acceptConsultationMutation.mutate(consultationId);
+  const handleAcceptSuggestion = (consultationId, price) => {
+    acceptConsultationMutation.mutate({ consultationId, price });
   };
 
   // Schedule consultation logic
@@ -174,19 +176,18 @@ export const Dashboard = () => {
 
   // Block slot logic
   const onBlockSlotSuccess = (newConsultationId) => {
-    // setIsBlockSlotSubmitting(false);
-    // setConsultationId(consultationId);
     if (isEditingConsultation) {
       rescheduleConsultationMutation.mutate({
         consultationId: selectedConsultationId,
         newConsultationId,
       });
     } else {
-      scheduleConsultationMutation.mutate(selectedConsultationId);
+      if (consultationPrice.current && consultationPrice.current > 0) {
+        navigate(`/checkout`, { state: { consultationId: consultationId } });
+      } else {
+        scheduleConsultationMutation.mutate(selectedConsultationId);
+      }
     }
-
-    // closeSelectConsultationBackdrop();
-    // openConfirmConsultationBackdrop();
   };
   const onBlockSlotError = (error) => {
     setBlockSlotError(error);
@@ -194,9 +195,10 @@ export const Dashboard = () => {
   };
   const blockSlotMutation = useBlockSlot(onBlockSlotSuccess, onBlockSlotError);
 
-  const handleBlockSlot = (slot) => {
+  const handleBlockSlot = (slot, price) => {
     setIsBlockSlotSubmitting(true);
     setSelectedSlot(slot);
+    consultationPrice.current = price;
     blockSlotMutation.mutate({
       slot,
       providerId: selectedConsultationProviderId,

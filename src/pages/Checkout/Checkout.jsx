@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, Navigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useQuery } from "@tanstack/react-query";
@@ -28,10 +29,13 @@ export const Checkout = () => {
   const [price, setPrice] = useState(null);
   const [currency, setCurrency] = useState(null);
 
+  const location = useLocation();
+
+  const consultationId = location.state?.consultationId;
+  if (!consultationId) return <Navigate to="/dashboard" />;
+
   const fetchPaymentIntent = async () => {
-    const res = await paymentsSvc.createPaymentIntent(
-      "17eca519-ac61-471c-9030-5fce5dfedfea"
-    );
+    const res = await paymentsSvc.createPaymentIntent(consultationId);
 
     return res?.data;
   };

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { RadialCircle } from "@USupport-components-library/src";
@@ -24,6 +25,8 @@ import "./provider-overview.scss";
 export const ProviderOverview = () => {
   const { t } = useTranslation("provider-overview-page");
 
+  const navigate = useNavigate();
+
   const providerId = new URLSearchParams(window.location.search).get(
     "provider-id"
   );
@@ -35,6 +38,7 @@ export const ProviderOverview = () => {
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  const consultationPrice = useRef();
 
   // Modal state variables
   const [isScheduleBackdropOpen, setIsScheduleBackdropOpen] = useState(false);
@@ -60,13 +64,11 @@ export const ProviderOverview = () => {
   const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const onBlockSlotSuccess = (consultationId) => {
-    // setIsBlockSlotSubmitting(false);
-    // setConsultationId(consultationId);
-
-    scheduleConsultationMutation.mutate(consultationId);
-
-    // closeScheduleBackdrop();
-    // openConfirmConsultationBackdrop();
+    if (consultationPrice.current && consultationPrice.current > 0) {
+      navigate(`/checkout`, { state: { consultationId: consultationId } });
+    } else {
+      scheduleConsultationMutation.mutate(consultationId);
+    }
   };
   const onBlockSlotError = (error) => {
     setBlockSlotError(error);
@@ -90,9 +92,10 @@ export const ProviderOverview = () => {
     onScheduleConsultationError
   );
 
-  const handleBlockSlot = (slot) => {
+  const handleBlockSlot = (slot, price) => {
     setIsBlockSlotSubmitting(true);
     setSelectedSlot(slot);
+    consultationPrice.current = price;
     blockSlotMutation.mutate({
       slot,
       providerId,

@@ -109,7 +109,7 @@ export const SelectConsultation = ({
   };
 
   const handleSave = () => {
-    handleBlockSlot(selectedSlot);
+    handleBlockSlot(selectedSlot, providerData.consultationPrice);
   };
 
   return (
