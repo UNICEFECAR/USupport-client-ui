@@ -345,7 +345,7 @@ export const Articles = ({
               {!articles?.length &&
                 !isArticlesLoading &&
                 !isArticlesFetching &&
-                categoriesQuery?.data?.length > 1 &&
+                categoriesQuery?.data?.length > 0 &&
                 ageGroupsQuery?.data?.length > 0 && (
                   <div className="articles__no-results-container">
                     <p>{t("no_results")}</p>

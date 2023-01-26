@@ -40,6 +40,7 @@ import {
   CheckoutForm as CheckoutFormBlock,
   PaymentHistory as PaymentHistoryBlock,
   PaymentStatus as PaymentStatusBlock,
+  MoodTrackHistory,
 } from "#blocks/locales.js";
 
 import {
@@ -76,6 +77,7 @@ import {
   PaymentHistory as PaymentHistoryPage,
   Checkout as CheckoutPage,
   PaymentStatus as PaymentStatusPage,
+  MoodTrackHistory as MoodTrackHistoryPage,
 } from "#pages/locales.js";
 
 import {
@@ -97,6 +99,7 @@ import {
   RequireDataAgreement,
   SaveAccessCodeConfirmation,
   PaymentInformation,
+  MoodTrackMoreInformation,
 } from "#modals/locales.js";
 
 const resources = {
@@ -140,6 +143,7 @@ const resources = {
     "checkout-form": CheckoutFormBlock.en,
     "payment-history-block": PaymentHistoryBlock.en,
     "payment-status-block": PaymentStatusBlock.en,
+    "mood-track-history": MoodTrackHistory.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -175,6 +179,7 @@ const resources = {
     "payment-history-page": PaymentHistoryPage.en,
     "checkout-page": CheckoutPage.en,
     "payment-status-page": PaymentStatusPage.en,
+    "mood-track-history-page": MoodTrackHistoryPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
@@ -196,6 +201,7 @@ const resources = {
     "require-data-agreement": RequireDataAgreement.en,
     "save-access-code-confirmation": SaveAccessCodeConfirmation.en,
     "payment-information": PaymentInformation.en,
+    "mood-track-more-information": MoodTrackMoreInformation.en,
   },
   kk: {
     // Blocks

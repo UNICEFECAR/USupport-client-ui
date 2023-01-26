@@ -39,6 +39,7 @@ import {
   PaymentHistory,
   Checkout,
   PaymentStatus,
+  MoodTrackHistory,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData, useCheckHasUnreadNotifications } from "#hooks";
@@ -121,7 +122,7 @@ export default function Root() {
           path="/mood-tracker"
           element={
             <ProtectedRoute>
-              <MoodTracker />
+              <MoodTrackHistory />
             </ProtectedRoute>
           }
         />
