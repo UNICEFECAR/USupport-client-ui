@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { Block, PaymentsHistoryTable } from "@USupport-components-library/src";
+import {
+  Block,
+  PaymentsHistoryTable,
+  Loading,
+} from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import { PaymentInformation } from "#modals";
 
@@ -20,31 +25,44 @@ export const PaymentHistory = () => {
   const { t } = useTranslation("payment-history-block");
   const rows = ["service", "price", "date_of_payment", ""];
 
+  const [paymentsData, setPaymentsData] = useState([]);
   const [isPaymentInformationModalOpen, setIsPaymentInformationModalOpen] =
     useState(false);
 
   const [selectedPaymentData, setSelectedPaymentData] = useState();
+  const [lastPaymentId, setLastPaymentId] = useState(null);
 
   const getPaymentHistory = async () => {
+    console.log("startingAfterPaymentIntentId dsdddddd", lastPaymentId);
     try {
-      const res = await paymentsSvc.getPaymentHistory();
+      const res = await paymentsSvc.getPaymentHistory({
+        limit: 2,
+        startingAfterPaymentIntentId: lastPaymentId,
+      });
 
       return res.data;
-    } catch {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const paymentHistoryQuery = useQuery(
     ["paymentHistoryData"],
     getPaymentHistory,
     {
-      refetchOnWindowFocus: false,
-      refetchOnMount: true,
+      onSuccess: (data) => {
+        const lastPayment = data.lastPaymentId;
+        const payments = data.payments;
+
+        setPaymentsData((prevPayments) => [...prevPayments, ...payments]);
+        setLastPaymentId(lastPayment);
+      },
     }
   );
 
   const openPaymentModal = (paymentId) => {
-    if (paymentId && paymentHistoryQuery.data) {
-      const newSelectedPaymentData = paymentHistoryQuery.data.find(
+    if (paymentId && paymentsData.length > 0) {
+      const newSelectedPaymentData = paymentsData.find(
         (item) => item.paymentId === paymentId
       );
       setSelectedPaymentData(newSelectedPaymentData);
@@ -55,13 +73,22 @@ export const PaymentHistory = () => {
 
   return (
     <Block classes="payment-history">
-      <PaymentsHistoryTable
-        isLoading={paymentHistoryQuery.isLoading}
-        rows={rows}
-        data={paymentHistoryQuery.data}
-        handleViewMore={openPaymentModal}
-        t={t}
-      />
+      <InfiniteScroll
+        dataLength={paymentsData.length || 0}
+        hasMore={paymentHistoryQuery.data?.hasMore}
+        loader={<Loading />}
+        next={() => paymentHistoryQuery.refetch()}
+        initialScrollY={20}
+        scrollThreshold={0}
+      >
+        <PaymentsHistoryTable
+          isLoading={paymentHistoryQuery.isLoading}
+          rows={rows}
+          data={paymentsData}
+          handleViewMore={openPaymentModal}
+          t={t}
+        />
+      </InfiniteScroll>
 
       {selectedPaymentData && (
         <PaymentInformation

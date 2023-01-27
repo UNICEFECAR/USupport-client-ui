@@ -42,11 +42,13 @@ export const Welcome = () => {
         id: x["country_id"],
         minAge: x["min_client_age"],
         maxAge: x["max_client_age"],
+        countrySymbol: x["symbol"],
       };
 
       if (localStorageCountry === x.alpha2) {
         if (!localStorageCountryID) {
           localStorage.setItem("country_id", x["country_id"]);
+          localStorage.setItem("currency_symbol", x["symbol"]);
         }
         setSelectedCountry(x.alpha2);
       }
@@ -88,6 +90,10 @@ export const Welcome = () => {
     localStorage.setItem(
       "country_id",
       countriesQuery.data.find((x) => x.value === selectedCountry).id
+    );
+    localStorage.setItem(
+      "currency_symbol",
+      countriesQuery.data.find((x) => x.value === selectedCountry).countrySymbol
     );
     localStorage.setItem("language", language);
 

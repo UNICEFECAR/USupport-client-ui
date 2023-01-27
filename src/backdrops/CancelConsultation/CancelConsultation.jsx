@@ -28,6 +28,8 @@ export const CancelConsultation = ({
   provider,
 }) => {
   const queryClient = useQueryClient();
+  const currencySymbol = localStorage.getItem("currency_symbol");
+
   const { t } = useTranslation("cancel-consultation");
   const [error, setError] = useState();
 
@@ -68,7 +70,7 @@ export const CancelConsultation = ({
       onClose={onClose}
       heading={
         isConsultationLessThan24HoursBefore
-          ? t("paid_heading", { price: consultation.price })
+          ? t("paid_heading", { price: consultation.price, currencySymbol })
           : t("heading")
       }
       text={isConsultationLessThan24HoursBefore && t("paid_cancel_subheading")}
@@ -92,11 +94,14 @@ export const CancelConsultation = ({
         <div
           className={[
             "cancel-consultation__price-badge",
-            //TODO: refactor if price === 0, then free
-            1 === 1 && "cancel-consultation__price-badge--free",
+            !consultation.price && "cancel-consultation__price-badge--free",
           ].join(" ")}
         >
-          <p className="small-text">$50</p>
+          <p className="small-text">
+            {consultation.price
+              ? `${consultation.price}${currencySymbol}`
+              : t("free")}
+          </p>
         </div>
       </div>
     </Backdrop>
