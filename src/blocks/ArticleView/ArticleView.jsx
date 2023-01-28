@@ -42,7 +42,7 @@ export const ArticleView = ({ articleData }) => {
                 key={index}
               />
             );
-          })}{" "}
+          })}
         </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__title-item">
