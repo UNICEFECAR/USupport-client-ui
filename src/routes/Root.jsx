@@ -314,7 +314,7 @@ export default function Root() {
           }
         />
         <Route
-          path="/payment-status"
+          path="/payment-status/:consultationId"
           element={
             <ProtectedRoute>
               <PaymentStatus />

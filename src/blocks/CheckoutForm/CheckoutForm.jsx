@@ -24,7 +24,7 @@ import "./checkout-form.scss";
  *
  * @return {jsx}
  */
-export const CheckoutForm = ({ price, currency }) => {
+export const CheckoutForm = ({ price, currency, consultationId }) => {
   const { t } = useTranslation("checkout-form");
 
   const stripe = useStripe();
@@ -49,7 +49,8 @@ export const CheckoutForm = ({ price, currency }) => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://127.0.0.1:5173/client/payment-status",
+        return_url:
+          "http://127.0.0.1:5173/client/payment-status/" + `${consultationId}`,
       },
     });
 

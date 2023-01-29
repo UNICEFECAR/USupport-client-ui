@@ -87,10 +87,13 @@ export const Checkout = () => {
       subheading={t("subheading")}
       showGoBackArrow={false}
     >
-      {" "}
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutFormBlock price={price} currency={currency} />
+          <CheckoutFormBlock
+            price={price}
+            currency={currency}
+            consultationId={consultationId}
+          />
         </Elements>
       )}
     </Page>
