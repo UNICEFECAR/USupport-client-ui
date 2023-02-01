@@ -9,5 +9,6 @@
   "address": "Company address: ",
   "email_address": "Email Address: ",
   "price": "Price: ",
-  "view_receipt": "View Receipt"
+  "view_receipt": "View Receipt",
+  "text_audio_video_consultation": "Online consultation"
 }
