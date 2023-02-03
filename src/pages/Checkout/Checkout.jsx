@@ -28,6 +28,7 @@ export const Checkout = () => {
   const [clientSecret, setClientSecret] = useState(null);
   const [price, setPrice] = useState(null);
   const [currency, setCurrency] = useState(null);
+  const [consultationCreationTime, setConsultationCreationTime] = useState();
 
   const location = useLocation();
 
@@ -40,10 +41,16 @@ export const Checkout = () => {
     return res?.data;
   };
   const paymentIntent = useQuery(["paymentIntent"], fetchPaymentIntent, {
-    onSuccess: (data) => {
-      setCurrency(data.currency);
-      setPrice(data.price);
-      setClientSecret(data.clientSecret);
+    onSuccess: ({
+      currency,
+      price,
+      clientSecret,
+      consultationCreationTime,
+    }) => {
+      setCurrency(currency);
+      setPrice(price);
+      setClientSecret(clientSecret);
+      setConsultationCreationTime(consultationCreationTime);
     },
   });
 
@@ -87,10 +94,14 @@ export const Checkout = () => {
       subheading={t("subheading")}
       showGoBackArrow={false}
     >
-      {" "}
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutFormBlock price={price} currency={currency} />
+          <CheckoutFormBlock
+            price={price}
+            currency={currency}
+            consultationId={consultationId}
+            consultationCreationTime={consultationCreationTime}
+          />
         </Elements>
       )}
     </Page>

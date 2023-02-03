@@ -33,10 +33,9 @@ export const PaymentHistory = () => {
   const [lastPaymentId, setLastPaymentId] = useState(null);
 
   const getPaymentHistory = async () => {
-    console.log("startingAfterPaymentIntentId dsdddddd", lastPaymentId);
     try {
       const res = await paymentsSvc.getPaymentHistory({
-        limit: 2,
+        limit: 30,
         startingAfterPaymentIntentId: lastPaymentId,
       });
 
@@ -54,7 +53,9 @@ export const PaymentHistory = () => {
         const lastPayment = data.lastPaymentId;
         const payments = data.payments;
 
-        setPaymentsData((prevPayments) => [...prevPayments, ...payments]);
+        if (payments) {
+          setPaymentsData((prevPayments) => [...prevPayments, ...payments]);
+        }
         setLastPaymentId(lastPayment);
       },
     }
@@ -76,7 +77,7 @@ export const PaymentHistory = () => {
       <InfiniteScroll
         dataLength={paymentsData.length || 0}
         hasMore={paymentHistoryQuery.data?.hasMore}
-        loader={<Loading />}
+        loader={<Loading padding="4rem" />}
         next={() => paymentHistoryQuery.refetch()}
         initialScrollY={20}
         scrollThreshold={0}

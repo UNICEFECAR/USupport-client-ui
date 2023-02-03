@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -6,6 +7,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { useTranslation } from "react-i18next";
+
 import {
   Block,
   Button,
@@ -13,9 +15,25 @@ import {
   Icon,
   Grid,
   GridItem,
+  Modal,
 } from "@USupport-components-library/src";
 
+import { FIVE_MINUTES } from "@USupport-components-library/utils";
+
 import "./checkout-form.scss";
+
+function msToHMS(duration) {
+  let seconds = parseInt((duration / 1000) % 60),
+    minutes = parseInt((duration / (1000 * 60)) % 60),
+    hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+
+  hours = hours < 10 ? "0" + hours : hours;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  const totalSeconds = Number(Number(minutes) * 60 + seconds);
+  return totalSeconds;
+}
 
 /**
  * CheckoutForm
@@ -24,15 +42,38 @@ import "./checkout-form.scss";
  *
  * @return {jsx}
  */
-export const CheckoutForm = ({ price, currency }) => {
+export const CheckoutForm = ({
+  price,
+  currency,
+  consultationId,
+  consultationCreationTime,
+}) => {
   const { t } = useTranslation("checkout-form");
+  const navigate = useNavigate();
 
   const stripe = useStripe();
   const elements = useElements();
 
+  // Variable to track when the consultation status will become "timeout"
+  const timeOfTimeout =
+    new Date(consultationCreationTime).getTime() + FIVE_MINUTES;
+  const now = new Date().getTime();
+
+  const difference = timeOfTimeout - now;
+  const differenceInMins = msToHMS(difference);
+
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasTimeouted, setHasTimeouted] = useState(now > timeOfTimeout);
+
+  const timeout = useTimer(differenceInMins);
+
+  useEffect(() => {
+    if (timeout[0] === 0 && timeout[1] === 0) {
+      setHasTimeouted(true);
+    }
+  }, [timeout]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +90,8 @@ export const CheckoutForm = ({ price, currency }) => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://127.0.0.1:5173/client/payment-status",
+        return_url:
+          "http://127.0.0.1:5173/client/payment-status/" + `${consultationId}`,
       },
     });
 
@@ -74,6 +116,10 @@ export const CheckoutForm = ({ price, currency }) => {
   return (
     <Block classes="checkout-form">
       <form id="payment-form" onSubmit={handleSubmit}>
+        <p>
+          {timeout[0] < 10 ? `0${timeout[0]}` : timeout[0]}:
+          {timeout[1] < 10 ? `0${timeout[1]}` : timeout[1]}
+        </p>
         <LinkAuthenticationElement
           id="link-authentication-element"
           onChange={(e) => setEmail(e.value.email)}
@@ -121,11 +167,11 @@ export const CheckoutForm = ({ price, currency }) => {
           label={
             isLoading ? <Loading padding="0" size="sm" /> : t("button_pay_now")
           }
-          disabled={isLoading || !stripe || !elements}
+          disabled={isLoading || !stripe || !elements || hasTimeouted}
           size="lg"
           id="submit"
           isSubmit={true}
-        ></Button>
+        />
 
         {/* Show any error or success messages */}
         {message && (
@@ -134,6 +180,41 @@ export const CheckoutForm = ({ price, currency }) => {
           </div>
         )}
       </form>
+
+      <Modal
+        heading={t("timeout_heading")}
+        isOpen={hasTimeouted}
+        closeModal={() => {}}
+        ctaLabel={t("continue_button")}
+        ctaHandleClick={() => navigate("/select-provider")}
+      >
+        <p>{t("consultation_timeout")}</p>
+      </Modal>
     </Block>
   );
+};
+
+const useTimer = (seconds) => {
+  const [time, setTime] = useState(seconds);
+
+  useEffect(() => {
+    let interval = null;
+    interval = setInterval(() => {
+      setTime((time) => time - 1);
+    }, 1000);
+
+    if (time === 0) {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [time]);
+
+  // Convert seconds into MM:SS format
+  const minutes = Math.floor(time / 60);
+  const finalSeconds = time - minutes * 60;
+
+  if (isNaN(minutes) || isNaN(finalSeconds)) return [0, 0];
+
+  return [minutes, finalSeconds];
 };

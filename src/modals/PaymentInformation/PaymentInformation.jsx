@@ -42,7 +42,7 @@ export const PaymentInformation = ({ isOpen, onClose, data }) => {
         <GridItem xs={4} md={8} lg={12}>
           <p>
             <span className="text">{t("service")}</span>
-            <span className="payment-information__text">{service}</span>
+            <span className="payment-information__text">{t(service)}</span>
           </p>
         </GridItem>
         {/* <GridItem xs={4} md={8} lg={12}>

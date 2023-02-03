@@ -98,7 +98,7 @@ export const Page = ({
       };
 
       if (localStorageCountry === x.alpha2) {
-        localStorage.setItem("country_id", countryObject["country_id"]);
+        localStorage.setItem("country_id", countryObject.countryID);
         localStorage.setItem("currency_symbol", countryObject.currencySymbol);
 
         setSelectedCountry(countryObject);
@@ -118,15 +118,15 @@ export const Page = ({
     });
 
     if (!hasSetDefaultCountry && !localStorageCountry) {
-      localStorage.setItem("country", kazakhstanCountry.value);
-      localStorage.setItem(
-        "country_id",
-        countries.find((x) => x.value === kazakhstanCountry.value).countryID
+      const kazakhstanCountryObject = countries.find(
+        (x) => x.value === kazakhstanCountry.value
       );
+
+      localStorage.setItem("country", kazakhstanCountry.value);
+      localStorage.setItem("country_id", kazakhstanCountryObject.countryID);
       localStorage.setItem(
         "currency_symbol",
-        countries.find((x) => x.value === kazakhstanCountry.value)
-          .currencySymbol
+        kazakhstanCountryObject.currencySymbol
       );
     }
 
