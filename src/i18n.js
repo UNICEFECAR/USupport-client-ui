@@ -37,6 +37,10 @@ import {
   MoodTrackerHistory,
   Notifications,
   SafetyFeedback as SafetyFeedbackBlock,
+  CheckoutForm as CheckoutFormBlock,
+  PaymentHistory as PaymentHistoryBlock,
+  PaymentStatus as PaymentStatusBlock,
+  MoodTrackHistory,
 } from "#blocks/locales.js";
 
 import {
@@ -70,6 +74,10 @@ import {
   MoodTracker as MoodTrackerPage,
   Dashboard as DashboardPage,
   Consultation as ConsultationPage,
+  PaymentHistory as PaymentHistoryPage,
+  Checkout as CheckoutPage,
+  PaymentStatus as PaymentStatusPage,
+  MoodTrackHistory as MoodTrackHistoryPage,
 } from "#pages/locales.js";
 
 import {
@@ -90,6 +98,8 @@ import {
   RequireRegistration,
   RequireDataAgreement,
   SaveAccessCodeConfirmation,
+  PaymentInformation,
+  MoodTrackMoreInformation,
 } from "#modals/locales.js";
 
 const resources = {
@@ -130,6 +140,10 @@ const resources = {
     "mood-tracker-history": MoodTrackerHistory.en,
     notifications: Notifications.en,
     "safety-feedback-block": SafetyFeedbackBlock.en,
+    "checkout-form": CheckoutFormBlock.en,
+    "payment-history-block": PaymentHistoryBlock.en,
+    "payment-status-block": PaymentStatusBlock.en,
+    "mood-track-history": MoodTrackHistory.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -162,6 +176,10 @@ const resources = {
     "mood-tracker-page": MoodTrackerPage.en,
     "dashboard-page": DashboardPage.en,
     "consultation-page": ConsultationPage.en,
+    "payment-history-page": PaymentHistoryPage.en,
+    "checkout-page": CheckoutPage.en,
+    "payment-status-page": PaymentStatusPage.en,
+    "mood-track-history-page": MoodTrackHistoryPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
@@ -182,6 +200,8 @@ const resources = {
     "require-registration": RequireRegistration.en,
     "require-data-agreement": RequireDataAgreement.en,
     "save-access-code-confirmation": SaveAccessCodeConfirmation.en,
+    "payment-information": PaymentInformation.en,
+    "mood-track-more-information": MoodTrackMoreInformation.en,
   },
   kk: {
     // Blocks

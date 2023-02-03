@@ -1,0 +1,6 @@
+/* PaymentHistory styles */
+@import "@USupport-components-library/styles";
+
+.page__payment-history {
+  @include full-height-page-navbar;
+}

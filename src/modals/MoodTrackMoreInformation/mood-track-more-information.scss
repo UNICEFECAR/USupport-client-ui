@@ -1,0 +1,31 @@
+@import "@USupport-components-library/styles";
+
+.mood-track-more-information {
+  &__feeling-container {
+    display: flex;
+    align-items: center;
+    padding-left: $spacing_6_0;
+
+    &__left {
+      padding-right: $spacing_0_4;
+    }
+
+    &__right {
+      padding-left: $spacing_0_4;
+      padding-right: $spacing_0_4;
+    }
+
+    & .icon {
+      margin: 0 $spacing_0_2;
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+
+  &__comment {
+    text-align: center;
+    margin-top: $spacing_3_6;
+    margin-bottom: $spacing_1_2;
+    color: $color_primary_20809e;
+  }
+}

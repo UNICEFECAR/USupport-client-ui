@@ -28,6 +28,8 @@ export const CancelConsultation = ({
   provider,
 }) => {
   const queryClient = useQueryClient();
+  const currencySymbol = localStorage.getItem("currency_symbol");
+
   const { t } = useTranslation("cancel-consultation");
   const [error, setError] = useState();
 
@@ -53,7 +55,11 @@ export const CancelConsultation = ({
   );
 
   const handleCancelClick = () => {
-    cancelConsultationMutation.mutate(consultation.consultationId);
+    cancelConsultationMutation.mutate({
+      consultationId: consultation.consultationId,
+      price: consultation.price,
+      shouldRefund: isConsultationLessThan24HoursBefore ? false : true,
+    });
   };
 
   return (
@@ -64,12 +70,14 @@ export const CancelConsultation = ({
       onClose={onClose}
       heading={
         isConsultationLessThan24HoursBefore
-          ? t("paid_heading", { price: "50" })
+          ? t("paid_heading", { price: consultation.price, currencySymbol })
           : t("heading")
       }
       text={isConsultationLessThan24HoursBefore && t("paid_cancel_subheading")}
       ctaLabel={t("cancel_button_label")}
       ctaHandleClick={handleCancelClick}
+      isCtaDisabled={cancelConsultationMutation.isLoading}
+      showLoadingIfDisabled
       ctaColor={isConsultationLessThan24HoursBefore ? "red" : "green"}
       secondaryCtaLabel={t("keep_button_label")}
       secondaryCtaHandleClick={onClose}
@@ -86,11 +94,14 @@ export const CancelConsultation = ({
         <div
           className={[
             "cancel-consultation__price-badge",
-            //TODO: refactor if price === 0, then free
-            1 === 1 && "cancel-consultation__price-badge--free",
+            !consultation.price && "cancel-consultation__price-badge--free",
           ].join(" ")}
         >
-          <p className="small-text">$50</p>
+          <p className="small-text">
+            {consultation.price
+              ? `${consultation.price}${currencySymbol}`
+              : t("free")}
+          </p>
         </div>
       </div>
     </Backdrop>

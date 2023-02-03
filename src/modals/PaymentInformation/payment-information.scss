@@ -1,0 +1,12 @@
+@import "@USupport-components-library/styles";
+
+.payment-information {
+  &__text {
+    padding-left: $spacing_0_5;
+    font-weight: $font_semi_bold;
+  }
+
+  &__view-receipt-button {
+    margin: auto;
+  }
+}

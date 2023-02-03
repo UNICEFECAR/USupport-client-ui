@@ -1,0 +1,6 @@
+/* Checkout styles */
+@import "@USupport-components-library/styles";
+
+.page__checkout {
+  @include full-height-page-navbar;
+}

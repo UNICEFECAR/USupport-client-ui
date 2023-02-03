@@ -90,8 +90,8 @@ export const Consultations = ({
     onAcceptConsultationSuccess,
     onAcceptConsultationError
   );
-  const acceptConsultation = (consultationId) => {
-    acceptConsultationMutation.mutate(consultationId);
+  const acceptConsultation = (consultationId, price) => {
+    acceptConsultationMutation.mutate({ consultationId, price });
   };
 
   const onRejectConsultationSuccess = () => {

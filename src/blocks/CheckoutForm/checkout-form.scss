@@ -1,0 +1,60 @@
+@import "@USupport-components-library/styles";
+
+.checkout-form {
+  margin: auto;
+  padding-top: $spacing_3_0;
+  padding-bottom: $spacing_3_0;
+
+  @media screen and (min-width: $screen-sm) {
+    width: 50vw;
+  }
+
+  @media screen and (min-width: $screen-md) {
+    width: 40vw;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    width: 20vw;
+  }
+
+  &__grid {
+    &__inforamtion-item {
+      display: flex;
+    }
+
+    &__information_text {
+      text-align: left;
+      padding-left: $spacing_0_5;
+    }
+
+    &__total-item {
+      text-align: left;
+    }
+
+    &__price-item {
+      text-align: right;
+    }
+  }
+  &__pay-button {
+    margin: auto;
+    margin-top: $spacing_3_0;
+  }
+  &__payment-message {
+    color: $color_red_eb5757;
+    padding-top: $spacing_1_2;
+    text-align: center;
+  }
+
+  #payment-element {
+    margin-bottom: 24px;
+    border-radius: 40rem;
+  }
+
+  #Field-numberInput {
+    border-radius: 20rem;
+  }
+
+  #Input {
+    border-radius: 50rem;
+  }
+}

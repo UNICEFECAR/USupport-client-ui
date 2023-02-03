@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
 import { RadialCircle } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
@@ -36,6 +36,7 @@ export const ActivityHistory = () => {
   const [blockSlotError, setBlockSlotError] = useState();
   // const [consultationId, setConsultationId] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  const consultationPrice = useRef();
 
   // Modal state variables
   const [isSelectConsultationOpen, setIsSelectConsultationOpen] =
@@ -65,7 +66,11 @@ export const ActivityHistory = () => {
     // setIsBlockSlotSubmitting(false);
     // setConsultationId(consultationId);
 
-    scheduleConsultationMutation.mutate(consultationId);
+    if (consultationPrice.current && consultationPrice.current > 0) {
+      navigate(`/checkout`, { state: { consultationId: consultationId } });
+    } else {
+      scheduleConsultationMutation.mutate({ consultationId });
+    }
 
     // closeSelectConsultation();
     // openConfirmConsultationBackdrop();
@@ -92,9 +97,10 @@ export const ActivityHistory = () => {
     onScheduleConsultationError
   );
 
-  const handleBlockSlot = (slot) => {
+  const handleBlockSlot = (slot, price) => {
     setIsBlockSlotSubmitting(true);
     setSelectedSlot(slot);
+    consultationPrice.current = price;
     blockSlotMutation.mutate({
       slot,
       providerId: providerId,

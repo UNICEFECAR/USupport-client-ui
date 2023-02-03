@@ -31,3 +31,7 @@ export * from "./useCheckHasUnreadNotifications.js";
 export * from "./useCreateConsultationSecurityCheck.js";
 export * from "./useGetSecurityCheckAnswersByConsultationId.js";
 export * from "./useUpdateSecurityCheckAnswersByConsultationId.js";
+export * from "./useSendInformationPortalSuggestion.js";
+export * from "./useGetMoodTrackForToday.js";
+export * from "./useGetMoodTrackForWeek.js";
+export * from "./useAddPlatformRating.js";

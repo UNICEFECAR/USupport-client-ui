@@ -36,6 +36,10 @@ import {
   UserProfile,
   Welcome,
   Notifications,
+  PaymentHistory,
+  Checkout,
+  PaymentStatus,
+  MoodTrackHistory,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData, useCheckHasUnreadNotifications } from "#hooks";
@@ -118,7 +122,7 @@ export default function Root() {
           path="/mood-tracker"
           element={
             <ProtectedRoute>
-              <MoodTracker />
+              <MoodTrackHistory />
             </ProtectedRoute>
           }
         />
@@ -191,6 +195,14 @@ export default function Root() {
           element={
             <CountryValidationRoute>
               <PlatformRating />
+            </CountryValidationRoute>
+          }
+        />
+        <Route
+          path="/payment-history"
+          element={
+            <CountryValidationRoute>
+              <PaymentHistory />
             </CountryValidationRoute>
           }
         />
@@ -290,6 +302,22 @@ export default function Root() {
           element={
             <ProtectedRoute>
               <Consultations />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment-status/:consultationId"
+          element={
+            <ProtectedRoute>
+              <PaymentStatus />
             </ProtectedRoute>
           }
         />

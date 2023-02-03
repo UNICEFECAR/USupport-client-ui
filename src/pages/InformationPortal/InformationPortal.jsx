@@ -148,13 +148,13 @@ export const InformationPortal = () => {
           <GridItem md={8} lg={12} classes="articles__articles-item">
             {isNewestArticlesFetched &&
             isMostReadArticlesFetched &&
-            newestArticles.length === 0 &&
-            mostReadArticles.length === 0 ? (
+            newestArticles?.length === 0 &&
+            mostReadArticles?.length === 0 ? (
               <h4>{t("heading_no_language_results")}</h4>
             ) : null}
 
             {newestArticlesLoading ? <Loading /> : null}
-            {!newestArticlesLoading && newestArticles.length > 0 ? (
+            {!newestArticlesLoading && newestArticles?.length > 0 ? (
               <Grid>
                 <GridItem
                   xs={2}
@@ -209,7 +209,7 @@ export const InformationPortal = () => {
         <Grid classes="page__information-portal__block__grid">
           <GridItem md={8} lg={12} classes="articles__articles-item">
             {mostReadArticlesLoading ? <Loading /> : null}
-            {!mostReadArticlesLoading && mostReadArticles.length > 0 ? (
+            {!mostReadArticlesLoading && mostReadArticles?.length > 0 ? (
               <Grid>
                 <GridItem
                   xs={2}

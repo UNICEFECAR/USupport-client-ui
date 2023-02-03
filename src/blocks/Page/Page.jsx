@@ -4,23 +4,27 @@ import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
 import {
   Navbar,
   CircleIconButton,
   Footer,
   Icon,
 } from "@USupport-components-library/src";
+
 import {
   userSvc,
   countrySvc,
   languageSvc,
 } from "@USupport-components-library/services";
+
 import {
   useWindowDimensions,
   getCountryFromTimezone,
 } from "@USupport-components-library/utils";
+
 import { RequireRegistration } from "#modals";
-import { useIsLoggedIn, useGetClientData } from "#hooks";
+import { useIsLoggedIn } from "#hooks";
 
 import "./page.scss";
 
@@ -81,6 +85,7 @@ export const Page = ({
     const usersCountry = getCountryFromTimezone();
     const validCountry = res.data.find((x) => x.alpha2 === usersCountry);
     let hasSetDefaultCountry = false;
+
     const countries = res.data.map((x) => {
       const countryObject = {
         value: x.alpha2,
@@ -89,14 +94,22 @@ export const Page = ({
         iconName: x.alpha2,
         minAge: x["min_client_age"],
         maxAge: x["max_client_age"],
+        currencySymbol: x["symbol"],
       };
 
       if (localStorageCountry === x.alpha2) {
+        localStorage.setItem("country_id", countryObject.countryID);
+        localStorage.setItem("currency_symbol", countryObject.currencySymbol);
+
         setSelectedCountry(countryObject);
       } else if (!localStorageCountry) {
         if (validCountry?.alpha2 === x.alpha2) {
           hasSetDefaultCountry = true;
+
           localStorage.setItem("country", x.alpha2);
+          localStorage.setItem("country_id", countryObject.countryID);
+          localStorage.setItem("currency_symbol", countryObject.currencySymbol);
+
           setSelectedCountry(countryObject);
         }
       }
@@ -105,10 +118,15 @@ export const Page = ({
     });
 
     if (!hasSetDefaultCountry && !localStorageCountry) {
+      const kazakhstanCountryObject = countries.find(
+        (x) => x.value === kazakhstanCountry.value
+      );
+
       localStorage.setItem("country", kazakhstanCountry.value);
+      localStorage.setItem("country_id", kazakhstanCountryObject.countryID);
       localStorage.setItem(
-        "country_id",
-        countries.find((x) => x.value === kazakhstanCountry.value).countryID
+        "currency_symbol",
+        kazakhstanCountryObject.currencySymbol
       );
     }
 

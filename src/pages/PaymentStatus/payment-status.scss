@@ -1,0 +1,6 @@
+/* PaymentStatus styles */
+@import "@USupport-components-library/styles";
+
+.page__payment-status {
+  @include full-height-page-navbar;
+}
