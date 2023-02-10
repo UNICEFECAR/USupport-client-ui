@@ -194,6 +194,7 @@ export const InformationPortal = () => {
                         labels={article.labels}
                         creator={article.creator}
                         readingTime={article.readingTime}
+                        categoryName={article.categoryName}
                         onClick={() => {
                           navigate(`/information-portal/article/${article.id}`);
                         }}
@@ -249,6 +250,7 @@ export const InformationPortal = () => {
                         labels={article.labels}
                         creator={article.creator}
                         readingTime={article.readingTime}
+                        categoryName={article.categoryName}
                         onClick={() => {
                           navigate(`/information-portal/article/${article.id}`);
                         }}

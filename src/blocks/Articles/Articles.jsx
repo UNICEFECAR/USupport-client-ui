@@ -331,6 +331,7 @@ export const Articles = ({
                             labels={articleData.labels}
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
+                            categoryName={articleData.categoryName}
                             onClick={() => {
                               navigate(
                                 `/information-portal/article/${articleData.id}`
