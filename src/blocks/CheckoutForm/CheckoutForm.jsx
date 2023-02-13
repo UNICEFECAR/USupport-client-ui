@@ -35,6 +35,8 @@ function msToHMS(duration) {
   return totalSeconds;
 }
 
+const returnUrl = `${import.meta.env.VITE_HOST}/client/payment-status/`;
+
 /**
  * CheckoutForm
  *
@@ -90,8 +92,7 @@ export const CheckoutForm = ({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url:
-          "http://127.0.0.1:5173/client/payment-status/" + `${consultationId}`,
+        return_url: returnUrl + `${consultationId}`,
       },
     });
 

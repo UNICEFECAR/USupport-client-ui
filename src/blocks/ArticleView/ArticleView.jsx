@@ -54,6 +54,22 @@ export const ArticleView = ({ articleData }) => {
 
           <Icon name={"time"} size="sm" />
           <p className={"small-text"}> {articleData.readingTime} min read</p>
+
+          <div className="article-view__details-item__category">
+            <p className="small-text ">{articleData.categoryName}</p>
+          </div>
+        </GridItem>
+
+        <GridItem md={8} lg={12} classes="article-view__labels-item">
+          {articleData.labels.map((label, index) => {
+            return (
+              <Label
+                classes={"article-view__label"}
+                text={label.name}
+                key={index}
+              />
+            );
+          })}
         </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__body-item">

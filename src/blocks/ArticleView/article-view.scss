@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: row;
 
-    padding-top: $spacing_2_0;
+    padding-top: $spacing_0_8;
     flex-wrap: wrap;
 
     .article-view__label {
@@ -42,7 +42,25 @@
   &__details-item {
     display: flex;
     flex-direction: row;
+    align-items: center;
     padding-top: $spacing_1_6;
+
+    &__category {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 2.2rem;
+      background-color: $color_blue_20809E_0_3;
+      border-radius: $border_radius_2_5;
+      padding: 0 $spacing_1_2 0 $spacing_1_2;
+      margin-left: 2rem;
+
+      .small-text {
+        font-weight: $font_bold;
+        color: $color_blue_3d527b;
+      }
+    }
 
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_0_8;
