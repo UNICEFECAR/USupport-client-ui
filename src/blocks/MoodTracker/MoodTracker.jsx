@@ -31,7 +31,7 @@ export const MoodTracker = ({ classes }) => {
     { value: "happy", label: t("happy"), isSelected: false },
     { value: "good", label: t("good"), isSelected: false },
     { value: "sad", label: t("sad"), isSelected: false },
-    { value: "depressed", label: t("deperessed"), isSelected: false },
+    { value: "depressed", label: t("depressed"), isSelected: false },
     { value: "worried", label: t("worried"), isSelected: false },
   ]);
 
