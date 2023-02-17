@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
 import { Backdrop, InputPassword } from "@USupport-components-library/src";
@@ -17,6 +18,8 @@ import "./delete-account.scss";
  * @return {jsx}
  */
 export const DeleteAccount = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
+
   const { t } = useTranslation("delete-account");
 
   const schema = Joi.object({
@@ -37,6 +40,8 @@ export const DeleteAccount = ({ isOpen, onClose }) => {
     onSuccess: () => {
       setIsSubmitting(false);
       userSvc.logout();
+
+      navigate("/");
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);
