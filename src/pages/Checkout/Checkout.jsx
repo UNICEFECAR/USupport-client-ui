@@ -33,6 +33,7 @@ export const Checkout = () => {
   const location = useLocation();
 
   const consultationId = location.state?.consultationId;
+  const entryTime = location.state?.entryTime;
   if (!consultationId) return <Navigate to="/dashboard" />;
 
   const fetchPaymentIntent = async () => {
@@ -50,7 +51,11 @@ export const Checkout = () => {
       setCurrency(currency);
       setPrice(price);
       setClientSecret(clientSecret);
-      setConsultationCreationTime(consultationCreationTime);
+      if (entryTime) {
+        setConsultationCreationTime(entryTime);
+      } else {
+        setConsultationCreationTime(consultationCreationTime);
+      }
     },
   });
 
