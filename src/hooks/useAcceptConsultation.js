@@ -9,7 +9,9 @@ export default function useAcceptConsultation(onSuccess, onError) {
 
   const acceptConsultation = async ({ consultationId, price }) => {
     if (price && price > 0) {
-      navigate(`/checkout`, { state: { consultationId: consultationId } });
+      navigate(`/checkout`, {
+        state: { consultationId: consultationId, entryTime: new Date() },
+      });
       return false;
     } else {
       const res = await providerSvc.acceptConsultation(consultationId);
