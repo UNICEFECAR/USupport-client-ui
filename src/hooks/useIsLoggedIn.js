@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { useQuery } from "@tanstack/react-query";
 import { userSvc } from "@USupport-components-library/services";
+import { useEventListener } from "#hooks";
 
 export const useIsLoggedIn = () => {
   const platform = window.location.pathname.split("/")[1];
@@ -11,6 +12,8 @@ export const useIsLoggedIn = () => {
 
   // Define the API call to refresh the token
   const refreshToken = async () => {
+    localStorage.setItem("isRefreshingToken", true);
+
     const refreshToken = localStorage.getItem("refresh-token");
     const res = await userSvc.refreshToken(refreshToken);
     return res;
@@ -20,6 +23,8 @@ export const useIsLoggedIn = () => {
   // This is enabled only if the JWT token is expired
   const refreshTokenQuery = useQuery(["refresh-token"], refreshToken, {
     onSuccess: (response) => {
+      localStorage.removeItem("isRefreshingToken");
+
       const { token, expiresIn, refreshToken } = response.data;
 
       localStorage.setItem("token", token);
@@ -32,7 +37,7 @@ export const useIsLoggedIn = () => {
       }
     },
     onError: () => {
-      throw new Error("Token expired");
+      setResult(false);
     },
     retry: false,
     enabled: shouldRefreshToken,
@@ -63,8 +68,10 @@ export const useIsLoggedIn = () => {
         throw new Error("User type does not match platform");
       }
 
+      const isRefreshingToken = localStorage.getItem("isRefreshingToken");
+
       let isQueryRunning = false;
-      if (Date.now() >= decoded.exp * 1000) {
+      if (!isRefreshingToken && Date.now() >= decoded.exp * 1000) {
         // If the JWT token is expired set the shouldRefreshToken flag
         //  to true so the refreshTokenQuery will be enabled
         setShouldRefreshToken(true);
@@ -91,6 +98,11 @@ export const useIsLoggedIn = () => {
     const isLoggedIn = validateUser();
     setResult(isLoggedIn);
   }, []);
+
+  useEventListener("token-changed", () => {
+    const isLoggedIn = validateUser();
+    setResult(isLoggedIn);
+  });
 
   return result;
 };
