@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import {
@@ -14,7 +14,10 @@ import {
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
 
+import { RootContext } from "#routes";
+
 import { useSendIssueEmail, useGetClientData } from "#hooks";
+
 import Joi from "joi";
 
 import "./contact-us.scss";
@@ -35,6 +38,8 @@ const initialData = {
 export const ContactUs = () => {
   const { t } = useTranslation("contact-us-block");
 
+  const { isTmpUser } = useContext(RootContext);
+
   const initialIssues = [
     { value: "information", label: t("contact_reason_1") },
     { value: "technical-problem", label: t("contact_reason_2") },
@@ -51,12 +56,11 @@ export const ContactUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
-  const [clientDataQuery] = useGetClientData();
+  const [clientDataQuery] = useGetClientData(!isTmpUser);
 
   useEffect(() => {
     if (clientDataQuery.data) {
       const { email } = clientDataQuery.data;
-      console.log(email);
       setData({
         ...data,
         email,
@@ -148,7 +152,7 @@ export const ContactUs = () => {
 
   return (
     <Block classes="contact-us">
-      {clientDataQuery.isLoading && !clientDataQuery.data ? (
+      {clientDataQuery.isLoading && !clientDataQuery.data && !isTmpUser ? (
         <Loading size="lg" />
       ) : (
         <Grid classes="contact-us__grid" xs={4} md={8} lg={12}>
@@ -163,7 +167,7 @@ export const ContactUs = () => {
               setSelected={handleIssueChange}
             />
           </GridItem>
-          {clientDataQuery.data.accessToken && (
+          {clientDataQuery.data?.accessToken && (
             <GridItem xs={4} md={8} lg={12}>
               <Input
                 value={data.email}
