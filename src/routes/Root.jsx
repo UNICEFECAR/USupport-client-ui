@@ -49,7 +49,7 @@ export default function Root() {
   const isTmpUser = userSvc.getUserID() === "tmp-user";
   const enabled = token && !isTmpUser;
   useGetClientData(!!enabled);
-  useCheckHasUnreadNotifications();
+  useCheckHasUnreadNotifications(!!enabled);
 
   return (
     <Router basename="/client">
@@ -177,9 +177,9 @@ export default function Root() {
         <Route
           path="/share-platform"
           element={
-            <CountryValidationRoute>
+            <ProtectedRoute>
               <SharePlatform />
-            </CountryValidationRoute>
+            </ProtectedRoute>
           }
         />
         <Route
@@ -193,25 +193,25 @@ export default function Root() {
         <Route
           path="/platform-rating"
           element={
-            <CountryValidationRoute>
+            <ProtectedRoute>
               <PlatformRating />
-            </CountryValidationRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/payment-history"
           element={
-            <CountryValidationRoute>
+            <ProtectedRoute>
               <PaymentHistory />
-            </CountryValidationRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/contact-us"
           element={
-            <CountryValidationRoute>
+            <ProtectedRoute>
               <ContactUs />
-            </CountryValidationRoute>
+            </ProtectedRoute>
           }
         />
         <Route
@@ -246,7 +246,6 @@ export default function Root() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/notification-preferences"
           element={
@@ -258,37 +257,35 @@ export default function Root() {
         <Route
           path="/information-portal"
           element={
-            <CountryValidationRoute>
+            <ProtectedRoute>
               <InformationPortal />
-            </CountryValidationRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/information-portal/articles"
           element={
-            <CountryValidationRoute>
+            <ProtectedRoute>
               <Articles />
-            </CountryValidationRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/information-portal/article/:id"
           element={
-            <CountryValidationRoute>
+            <ProtectedRoute>
               <ArticleInformation />
-            </CountryValidationRoute>
+            </ProtectedRoute>
           }
         />
-
         <Route
           path="/faq"
           element={
-            <CountryValidationRoute>
+            <ProtectedRoute>
               <FAQ />
-            </CountryValidationRoute>
+            </ProtectedRoute>
           }
         />
-
         <Route
           path="/provider-overview"
           element={

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
@@ -39,6 +40,8 @@ export const UserDetails = ({
   openDeletePictureBackdrop,
 }) => {
   const { t } = useTranslation("user-details");
+
+  const navigate = useNavigate();
 
   const queryClient = useQueryClient();
 
@@ -245,6 +248,7 @@ export const UserDetails = ({
 
   const handleLogout = () => {
     userSvc.logout();
+    navigate("/");
   };
 
   // Disable the save button IF:

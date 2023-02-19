@@ -34,6 +34,7 @@ export const UserProfile = () => {
 
   const handleLogout = () => {
     userSvc.logout();
+
     navigate("/");
   };
 
