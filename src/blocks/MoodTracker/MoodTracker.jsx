@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import classNames from "classnames";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,8 @@ import {
 } from "@USupport-components-library/src";
 import { useAddMoodTrack, useGetMoodTrackForToday } from "#hooks";
 
+import { RootContext } from "#routes";
+
 import "./mood-tracker.scss";
 
 /**
@@ -21,7 +23,9 @@ import "./mood-tracker.scss";
  *
  * @return {jsx}
  */
-export const MoodTracker = ({ classes }) => {
+export const MoodTracker = ({ classes, isTmpUser }) => {
+  const { handleRegistrationModalOpen } = useContext(RootContext);
+
   const navigate = useNavigate();
   const { t } = useTranslation("mood-tracker");
 
@@ -44,6 +48,7 @@ export const MoodTracker = ({ classes }) => {
   };
   const useGetMoodTrackForTodayQuery = useGetMoodTrackForToday({
     onSuccess: onGetMoodTrackSuccess,
+    enabled: !!isTmpUser,
   });
 
   const hasSelectedMoodtracker = useCallback(() => {
@@ -88,6 +93,10 @@ export const MoodTracker = ({ classes }) => {
   const addMoodTrackMutation = useAddMoodTrack(onSuccess, onError);
 
   const handleEmoticonClick = (value) => {
+    if (isTmpUser) {
+      handleRegistrationModalOpen();
+      return;
+    }
     if (isMoodTrackCompleted) return;
     const newEmoticons = [...emoticons];
     for (let i = 0; i < newEmoticons.length; i++) {
@@ -109,7 +118,13 @@ export const MoodTracker = ({ classes }) => {
     });
   };
 
-  const handleMoodtrackClick = () => navigate("/mood-tracker");
+  const handleMoodtrackClick = () => {
+    if (isTmpUser) {
+      handleRegistrationModalOpen();
+    } else {
+      navigate("/mood-tracker");
+    }
+  };
 
   return (
     <Block classes={["mood-tracker", classNames(classes)].join(" ")}>
@@ -122,7 +137,7 @@ export const MoodTracker = ({ classes }) => {
           {t("mood_tracker")}
         </p>
       </div>
-      {!useGetMoodTrackForTodayQuery.isLoading ? (
+      {!useGetMoodTrackForTodayQuery.isLoading || isTmpUser ? (
         <>
           <div className="mood-tracker__rating">{renderEmoticons()}</div>
           {hasSelectedMoodtracker() && (

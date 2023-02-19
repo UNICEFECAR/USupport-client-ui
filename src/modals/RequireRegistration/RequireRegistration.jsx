@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Modal } from "@USupport-components-library/src";
 
 import "./require-registration.scss";
+import { useNavigate } from "react-router-dom";
 
 /**
  * RequireRegistration
@@ -11,8 +12,17 @@ import "./require-registration.scss";
  *
  * @return {jsx}
  */
-export const RequireRegistration = ({ handleContinue, isOpen, onClose }) => {
+export const RequireRegistration = ({ isOpen, onClose }) => {
+  const navigateTo = useNavigate();
   const { t } = useTranslation("require-registration");
+
+  const handleRegisterRedirection = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("refresh-token");
+    localStorage.removeItem("expires-in");
+    navigateTo("/register-preview");
+    onClose();
+  };
 
   return (
     <Modal
@@ -20,7 +30,7 @@ export const RequireRegistration = ({ handleContinue, isOpen, onClose }) => {
       heading={t("heading")}
       text={t("text")}
       ctaLabel={t("button")}
-      ctaHandleClick={handleContinue}
+      ctaHandleClick={handleRegisterRedirection}
       isOpen={isOpen}
       closeModal={onClose}
     />
