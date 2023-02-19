@@ -234,7 +234,7 @@ export const Dashboard = () => {
           name={clientName}
           t={t}
         />
-        <MoodTracker />
+        <MoodTracker isTmpUser={isTmpUser} />
         <ArticlesDashboard />
         <ConsultationsDashboard
           openJoinConsultation={openJoinConsultation}
