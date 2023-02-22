@@ -1,18 +1,22 @@
 // VideoTrack.js
 import { useEffect, useRef } from "react";
 
-export default function VideoTrack({ track }) {
+export default function VideoTrack({ type, track }) {
   const ref = useRef();
 
   useEffect(() => {
     if (track) {
       const el = ref.current;
-      if (track.track) {
-        track.track.attach(el);
-      } else {
-        track.attach(el);
-      }
 
+      try {
+        if (track.track) {
+          track.track.attach(el);
+        } else {
+          track.attach(el);
+        }
+      } catch (err) {
+        console.error(err);
+      }
       return () => {
         if (track.track) {
           track.track.detach(el);
@@ -23,5 +27,5 @@ export default function VideoTrack({ track }) {
     }
   }, [track]);
 
-  return <video ref={ref} />;
+  return <video className={`${type}-video`} ref={ref} />;
 }
