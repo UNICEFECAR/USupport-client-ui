@@ -14,12 +14,14 @@ import {
   Loading,
   Notification,
 } from "@USupport-components-library/src";
+
 import {
   getDateView,
   getTimeAsString,
   ONE_HOUR,
   checkIsFiveMinutesBefore,
 } from "@USupport-components-library/utils";
+
 import {
   notificationsSvc,
   providerSvc,
@@ -29,6 +31,7 @@ import {
   useMarkNotificationsAsRead,
   useAcceptConsultation,
   useRejectConsultation,
+  useGetAllConsultations,
 } from "#hooks";
 
 import "./notifications.scss";
@@ -47,6 +50,15 @@ export const Notifications = ({ openJoinConsultation }) => {
   const queryClient = useQueryClient();
 
   const consultationsData = queryClient.getQueryData(["all-consultations"]);
+  let shouldFetchConsultations;
+
+  if (!consultationsData) {
+    shouldFetchConsultations = true;
+  }
+
+  const consultationsDataQuery = useGetAllConsultations(
+    !!shouldFetchConsultations
+  );
 
   const [isLoadingProviders, setIsLoadingProviders] = useState(true);
 
@@ -310,14 +322,17 @@ export const Notifications = ({ openJoinConsultation }) => {
                 size="md"
                 label={t("join")}
                 color="purple"
-                onClick={() =>
-                  openJoinConsultation(
-                    consultationsData.find(
-                      (x) =>
-                        x.consultationId === notification.content.consultationId
-                    )
-                  )
-                }
+                onClick={() => {
+                  const data =
+                    consultationsData?.length !== 0
+                      ? consultationsData
+                      : consultationsDataQuery?.data;
+                  const consultationToJoin = data.find(
+                    (x) =>
+                      x.consultationId === notification.content.consultationId
+                  );
+                  openJoinConsultation(consultationToJoin);
+                }}
               />
             )}
           </Notification>
