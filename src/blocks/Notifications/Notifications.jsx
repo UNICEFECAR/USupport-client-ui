@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +18,7 @@ import {
   getDateView,
   getTimeAsString,
   ONE_HOUR,
+  checkIsFiveMinutesBefore,
 } from "@USupport-components-library/utils";
 import {
   notificationsSvc,
@@ -39,9 +40,13 @@ import "./notifications.scss";
  *
  * @return {jsx}
  */
-export const Notifications = () => {
+export const Notifications = ({ openJoinConsultation }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("notifications");
+
+  const queryClient = useQueryClient();
+
+  const consultationsData = queryClient.getQueryData(["all-consultations"]);
 
   const [isLoadingProviders, setIsLoadingProviders] = useState(true);
 
@@ -57,7 +62,10 @@ export const Notifications = () => {
         createdAt: new Date(notification.created_at),
         content: {
           ...content,
-          time: content.time * 1000,
+          time:
+            typeof content.time === "string"
+              ? new Date(content.time).getTime()
+              : content.time * 1000,
           providerDetailId: content.provider_detail_id,
           consultationId: content.consultation_id,
           newConsultationTime: content.new_consultation_time * 1000,
@@ -296,12 +304,22 @@ export const Notifications = () => {
             })}
             icon="calendar"
           >
-            <Button
-              classes="notifications__center-button"
-              size="md"
-              label={t("join")}
-              color="purple"
-            />
+            {checkIsFiveMinutesBefore(notification.content.time) && (
+              <Button
+                classes="notifications__center-button"
+                size="md"
+                label={t("join")}
+                color="purple"
+                onClick={() =>
+                  openJoinConsultation(
+                    consultationsData.find(
+                      (x) =>
+                        x.consultationId === notification.content.consultationId
+                    )
+                  )
+                }
+              />
+            )}
           </Notification>
         );
       case "consultation_suggestion":
