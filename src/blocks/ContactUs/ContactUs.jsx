@@ -42,10 +42,9 @@ export const ContactUs = () => {
 
   const initialIssues = [
     { value: "information", label: t("contact_reason_1") },
-    { value: "technical-problem", label: t("contact_reason_2") },
-    { value: "join-as-provider", label: t("contact_reason_3") },
-    { value: "partnerships", label: t("contact_reason_4") },
-    { value: "other", label: t("contact_reason_5") },
+    { value: "services-information", label: t("contact_reason_2") },
+    { value: "technical-problem", label: t("contact_reason_3") },
+    { value: "other", label: t("contact_reason_4") },
   ];
 
   const navigate = useNavigate();
