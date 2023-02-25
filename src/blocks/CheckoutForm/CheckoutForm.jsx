@@ -35,7 +35,7 @@ function msToHMS(duration) {
   return totalSeconds;
 }
 
-const returnUrl = `${import.meta.env.VITE_HOST}/client/payment-status/`;
+const returnUrl = `${import.meta.env.VITE_HOST}/payment-status/`;
 
 /**
  * CheckoutForm
