@@ -121,7 +121,11 @@ export const Consultations = ({
               currentDateTs <= endTime)
           );
         } else {
-          return endTime < currentDateTs;
+          return (
+            endTime < currentDateTs &&
+            (consultation.status === "finished" ||
+              consultation.status === "scheduled")
+          );
         }
       })
       .sort((a, b) => {

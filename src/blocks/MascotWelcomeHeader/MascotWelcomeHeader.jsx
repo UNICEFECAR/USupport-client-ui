@@ -8,7 +8,7 @@ import {
   ConsultationDashboard,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { PageContext } from "../Page";
+import { RootContext } from "#routes";
 
 import "./mascot-welcome-header.scss";
 
@@ -33,7 +33,7 @@ export const MascotWelcomeHeader = ({
   handleAcceptSuggestion,
   name,
 }) => {
-  const { isTmpUser, handleRegistrationModalOpen } = useContext(PageContext);
+  const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
   const { t } = useTranslation("mascot-welcome-header");
   const { width } = useWindowDimensions();
 

@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Page, SelectProvider as SelectProviderBlock } from "#blocks";
+import React, { useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
 import { ButtonWithIcon } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle, Loading } from "@USupport-components-library/src";
+
 import { useGetProvidersData } from "#hooks";
 import { FilterProviders } from "#backdrops";
+import { RootContext } from "#routes";
+import { Page, SelectProvider as SelectProviderBlock } from "#blocks";
 
 import "./select-provider.scss";
 
@@ -19,6 +23,10 @@ import "./select-provider.scss";
 export const SelectProvider = () => {
   const { t } = useTranslation("select-provider-page");
   const { width } = useWindowDimensions();
+
+  const { isTmpUser } = useContext(RootContext);
+
+  if (isTmpUser) return <Navigate to="/dashboard" />;
 
   const [providersDataQuery, providersData, setProvidersData] =
     useGetProvidersData();
@@ -63,9 +71,9 @@ export const SelectProvider = () => {
       const isPriceMatching =
         maxPrice === ""
           ? true
-          : provider.price <= Number(maxPrice)
-          ? false
-          : true;
+          : provider.consultationPrice <= Number(maxPrice)
+          ? true
+          : false;
 
       const providerLanguages = provider.languages.map((x) => x.language_id);
       const providerHasLanguage = !language

@@ -33,17 +33,6 @@ export const ArticleView = ({ articleData }) => {
             alt=""
           />
         </GridItem>
-        <GridItem md={8} lg={12} classes="article-view__labels-item">
-          {articleData.labels.map((label, index) => {
-            return (
-              <Label
-                classes={"article-view__label"}
-                text={label.name}
-                key={index}
-              />
-            );
-          })}
-        </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__title-item">
           <h3>{articleData.title}</h3>

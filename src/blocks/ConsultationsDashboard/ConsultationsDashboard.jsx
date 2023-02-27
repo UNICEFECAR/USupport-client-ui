@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { PageContext } from "../Page";
+import { RootContext } from "#routes";
 
 import {
   Block,
@@ -29,7 +29,7 @@ export const ConsultationsDashboard = ({
   isLoading,
 }) => {
   const navigate = useNavigate();
-  const { isTmpUser, handleRegistrationModalOpen } = useContext(PageContext);
+  const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
 
   const { t } = useTranslation("consultations-dashboard");
 

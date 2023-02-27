@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+
 import { Page, Consultations as ConsultationsBlock } from "#blocks";
 import {
   CancelConsultation,
@@ -10,12 +11,15 @@ import {
   ConfirmConsultation,
   SelectConsultation,
 } from "#backdrops";
+
 import { RequireDataAgreement } from "#modals";
+
 import {
   useBlockSlot,
   useRescheduleConsultation,
   useGetClientData,
 } from "#hooks";
+import { RootContext } from "#routes";
 
 import { Button } from "@USupport-components-library/src";
 
@@ -32,6 +36,10 @@ export const Consultations = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t } = useTranslation("consultations-page");
+
+  const { isTmpUser } = useContext(RootContext);
+
+  if (isTmpUser) return <Navigate to="/dashboard" />;
 
   const clientData = useGetClientData()[1];
 
