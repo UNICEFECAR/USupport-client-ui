@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -49,6 +49,7 @@ export const CheckoutForm = ({
   currency,
   consultationId,
   consultationCreationTime,
+  clientSecret,
 }) => {
   const { t } = useTranslation("checkout-form");
   const navigate = useNavigate();
@@ -88,13 +89,23 @@ export const CheckoutForm = ({
 
     setIsLoading(true);
 
-    const { error } = await stripe.confirmPayment({
+    const response = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: returnUrl + `${consultationId}`,
       },
+      redirect: "if_required",
     });
+
+    const error = response.error;
+
+    if (!error) {
+      navigate(
+        `/payment-status/${consultationId}/?payment_intent_client_secret=${clientSecret}`
+      );
+      return;
+    }
 
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to

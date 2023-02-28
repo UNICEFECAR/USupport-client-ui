@@ -106,6 +106,7 @@ export const Checkout = () => {
             currency={currency}
             consultationId={consultationId}
             consultationCreationTime={consultationCreationTime}
+            clientSecret={clientSecret}
           />
         </Elements>
       )}
