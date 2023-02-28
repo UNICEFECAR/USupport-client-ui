@@ -52,7 +52,6 @@ export default function Root() {
   const isTmpUser = userSvc.getUserID() === "tmp-user";
   const enabled = token && !isTmpUser;
   useGetClientData(!!enabled);
-  useCheckHasUnreadNotifications(!!enabled);
 
   const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
 
