@@ -2,5 +2,7 @@
   "heading": "Ақпараттық портал",
   "no_results": "Ештеңе табылмады",
   "could_not_load_content": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
-  "all": "Барлығы"
+  "all": "Барлығы",
+  "read_more_button": "Read more",
+  "min_read":	"min read"
 }

@@ -230,6 +230,7 @@ export const ArticlesDashboard = () => {
                           creator={article.creator}
                           readingTime={article.readingTime}
                           categoryName={article.categoryName}
+                          t={t}
                           onClick={() => {
                             navigate(
                               `/information-portal/article/${article.id}`
