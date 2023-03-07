@@ -1,6 +1,8 @@
 {
-  "heading": "Articles",
-  "heading_no_results": "No results.",
-  "view_all": "View all",
-  "all": "Барлық"
+  "heading": "Мақалалар",
+  "heading_no_results": "Ештеңе табылмады",
+  "view_all": "Барлығын көріп шығу",
+  "all": "Барлығы",
+  "read_more_button": "Read more",
+  "min_read": "min read"
 }
