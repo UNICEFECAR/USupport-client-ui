@@ -1,0 +1,14 @@
+{
+  "sunday": "Вс",
+  "monday": "Пн",
+  "tuesday": "Вт",
+  "wednesday": "Ср",
+  "thursday": "Чт",
+  "friday": "Пт",
+  "saturday": "Сб",
+  "client_left": "Клиент покинул консультацию",
+  "client_camera_off": "Клиент выключил камеру",
+  "client_camera_on": "Клиент включил камеру",
+  "client_microphone_off": "Клиент выключил микрофон",
+  "client_microphone_on": "Клиент включил микрофон"
+}

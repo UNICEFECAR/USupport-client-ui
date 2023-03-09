@@ -29,15 +29,17 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("mood-tracker");
 
-  const [isMoodTrackCompleted, setIsMoodTrackCompleted] = useState(false);
-  const [comment, setComment] = useState("");
-  const [emoticons, setEmoticons] = useState([
+  const emoticonsArray = [
     { value: "happy", label: t("happy"), isSelected: false },
     { value: "good", label: t("good"), isSelected: false },
     { value: "sad", label: t("sad"), isSelected: false },
     { value: "depressed", label: t("depressed"), isSelected: false },
     { value: "worried", label: t("worried"), isSelected: false },
-  ]);
+  ];
+
+  const [isMoodTrackCompleted, setIsMoodTrackCompleted] = useState(false);
+  const [comment, setComment] = useState("");
+  const [emoticons, setEmoticons] = useState(emoticonsArray);
 
   const onGetMoodTrackSuccess = (data) => {
     if (data) {
@@ -83,7 +85,7 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
               " "
             )}
           >
-            {emoticon.label}
+            {t(emoticon.value)}
           </p>
         </div>
       );
