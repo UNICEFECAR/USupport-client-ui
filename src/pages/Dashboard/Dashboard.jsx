@@ -275,16 +275,18 @@ export const Dashboard = () => {
           providerId={selectedConsultationProviderId}
           isCtaDisabled={isBlockSlotSubmitting}
           errorMessage={blockSlotError}
+          edit
+          campaignId={selectedConsultation?.campaignId}
         />
         {selectedSlot && (
           <ConfirmConsultation
             isOpen={isConfirmBackdropOpen}
             onClose={closeConfirmConsultationBackdrop}
             consultation={{
-              startDate: new Date(selectedSlot),
+              startDate: new Date(selectedSlot?.time || selectedSlot),
               endDate: new Date(
-                new Date(selectedSlot).setHours(
-                  new Date(selectedSlot).getHours() + 1
+                new Date(selectedSlot?.time || selectedSlot).setHours(
+                  new Date(selectedSlot?.time || selectedSlot).getHours() + 1
                 )
               ),
             }}

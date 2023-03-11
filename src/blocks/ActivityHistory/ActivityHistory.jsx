@@ -98,13 +98,15 @@ export const ActivityHistory = ({
           <div className="activity-history__main__messages-container">
             {renderAllMessages()}
           </div>
-          <div className="activity-history__main__button-container">
-            <Button
-              label={t("button_label")}
-              size="lg"
-              onClick={handleSchedule}
-            />
-          </div>
+          {!consultation.campaignId && (
+            <div className="activity-history__main__button-container">
+              <Button
+                label={t("button_label")}
+                size="lg"
+                onClick={handleSchedule}
+              />
+            </div>
+          )}
         </div>
       </Block>
     </>

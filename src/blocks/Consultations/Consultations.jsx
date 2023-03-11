@@ -172,6 +172,7 @@ export const Consultations = ({
             suggested={consultation.status === "suggested" ? true : false}
             handleAcceptConsultation={acceptConsultation}
             handleRejectConsultation={rejectConsultation}
+            sponsorImage={consultation.sponsorImage}
             t={t}
           />
         </GridItem>

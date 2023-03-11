@@ -2,11 +2,18 @@ import React, { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { ButtonWithIcon } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { RadialCircle, Loading } from "@USupport-components-library/src";
+import {
+  RadialCircle,
+  ButtonWithIcon,
+  Loading,
+  Button,
+  Modal,
+  Input,
+} from "@USupport-components-library/src";
+import { clientSvc } from "@USupport-components-library/services";
 
-import { useGetProvidersData } from "#hooks";
+import { useGetProvidersData, useError } from "#hooks";
 import { FilterProviders } from "#backdrops";
 import { RootContext } from "#routes";
 import { Page, SelectProvider as SelectProviderBlock } from "#blocks";
@@ -24,16 +31,20 @@ export const SelectProvider = () => {
   const { t } = useTranslation("select-provider-page");
   const { width } = useWindowDimensions();
 
-  const { isTmpUser } = useContext(RootContext);
+  const { isTmpUser, activeCoupon, setActiveCoupon } = useContext(RootContext);
 
   if (isTmpUser) return <Navigate to="/dashboard" />;
 
-  const [providersDataQuery, providersData, setProvidersData] =
-    useGetProvidersData();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isCouponModalOpen, setIsCouponModalOpen] = useState(false);
+  const [couponValue, setCouponValue] = useState("");
+  const [couponError, setCouponError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [providersDataQuery, providersData, setProvidersData] =
+    useGetProvidersData(activeCoupon);
 
   const closeFilter = () => setIsFilterOpen(false);
-
   const handleFilterClick = () => {
     setIsFilterOpen(true);
   };
@@ -96,28 +107,76 @@ export const SelectProvider = () => {
     setProvidersData(filteredData);
     closeFilter();
   };
+
+  const openCouponModal = () => setIsCouponModalOpen(true);
+  const closeCouponModal = () => setIsCouponModalOpen(false);
+
+  const removeCoupon = () => {
+    setActiveCoupon(null);
+  };
+
+  const handleSubmitCoupon = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await clientSvc.checkIsCouponAvailable(couponValue);
+
+      if (data?.campaign_id) {
+        setActiveCoupon({
+          couponValue,
+          campaignId: data.campaign_id,
+        });
+        closeCouponModal();
+      }
+    } catch (err) {
+      const { message: errorMessage } = useError(err);
+      setCouponError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Page
       classes="page__select-provider"
-      heading={t("heading")}
+      heading={
+        activeCoupon
+          ? t("heading_with_coupon", { coupon: activeCoupon.couponValue })
+          : t("heading")
+      }
       subheading={t("subheading")}
-      showHeadingButtonInline
+      showHeadingButtonBelow={width < 768 ? true : false}
       headingButton={
-        <ButtonWithIcon
-          label={t("button_label")}
-          iconName="filter"
-          iconColor="#ffffff"
-          iconSize="sm"
-          color="purple"
-          size="xs"
-          onClick={handleFilterClick}
-        />
+        <div className="page__select-provider__buttons">
+          <Button
+            label={
+              activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
+            }
+            size="xs"
+            color="green"
+            type="secondary"
+            onClick={activeCoupon ? removeCoupon : openCouponModal}
+          />
+          <ButtonWithIcon
+            label={t("button_label")}
+            iconName="filter"
+            iconColor="#ffffff"
+            iconSize="sm"
+            color="purple"
+            size="xs"
+            onClick={handleFilterClick}
+          />
+        </div>
       }
     >
-      {providersDataQuery.isLoading && !providersData ? (
+      {(providersDataQuery.isLoading && !providersData) ||
+      providersDataQuery.isFetching ? (
         <Loading size="lg" />
       ) : (
-        <SelectProviderBlock providers={providersData} />
+        <SelectProviderBlock
+          providers={providersData}
+          activeCoupon={activeCoupon}
+          isLoading={providersDataQuery.isFetching}
+        />
       )}
       {width < 768 && <RadialCircle color="purple" />}
 
@@ -125,6 +184,25 @@ export const SelectProvider = () => {
         isOpen={isFilterOpen}
         onClose={(data) => handleFilterSave(data)}
       />
+      <Modal
+        isOpen={isCouponModalOpen}
+        closeModal={closeCouponModal}
+        heading={t("modal_coupon_heading")}
+        text={t("modal_coupon_text")}
+        ctaLabel={t("modal_coupon_button_label")}
+        ctaHandleClick={handleSubmitCoupon}
+        isCtaLoading={isLoading}
+        errorMessage={couponError}
+      >
+        <div className="page__select-provider__coupon-modal-input">
+          <Input
+            label={t("modal_coupon_input_label")}
+            placeholder={t("modal_coupon_input_placeholder")}
+            value={couponValue}
+            onChange={(e) => setCouponValue(e.target.value)}
+          />
+        </div>
+      </Modal>
     </Page>
   );
 };
