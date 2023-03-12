@@ -53,6 +53,8 @@ export default function Root() {
   const enabled = token && !isTmpUser;
   useGetClientData(!!enabled);
 
+  const [activeCoupon, setActiveCoupon] = useState();
+
   const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
 
   const handleRegistrationModalClose = () => setIsRegistrationModalOpen(false);
@@ -64,6 +66,8 @@ export default function Root() {
         value={{
           isTmpUser,
           handleRegistrationModalOpen,
+          activeCoupon,
+          setActiveCoupon,
         }}
       >
         <Routes>

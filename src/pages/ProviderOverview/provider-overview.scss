@@ -2,6 +2,8 @@
 @import "@USupport-components-library/styles";
 
 .page__provider-overview {
+  @include full-height-page-navbar;
+
   &__radial-circle {
     top: 3.5rem;
     left: -15rem;

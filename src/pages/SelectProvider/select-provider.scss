@@ -3,4 +3,22 @@
 
 .page__select-provider {
   @include full-height-page-navbar;
+
+  &__buttons {
+    display: flex;
+    padding-right: $spacing_1_2;
+    padding-top: $spacing_2_0;
+
+    & .btn:first-of-type {
+      margin-right: $spacing_1_2;
+    }
+  }
+
+  &__coupon-modal-input {
+    margin: $spacing_1_2 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 }
