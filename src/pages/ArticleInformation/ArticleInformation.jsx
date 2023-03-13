@@ -129,6 +129,7 @@ export const ArticleInformation = () => {
                     creator={articleData.creator}
                     readingTime={articleData.readingTime}
                     categoryName={articleData.categoryName}
+                    t={t}
                     onClick={() => {
                       navigate(`/information-portal/article/${articleData.id}`);
                       onArticleClick();
