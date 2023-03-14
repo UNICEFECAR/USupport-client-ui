@@ -6,5 +6,6 @@
   "heading_no_language_results": "Сіз таңдаған тілде мақалалар таба алмадық.",
   "view_all": "Барлығын көру",
   "read_more_button": "Read more",
-  "min_read": "min read"
+  "min_read": "min read",
+  "by": "By {{creator}}"
 }

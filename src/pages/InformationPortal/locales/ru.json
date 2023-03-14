@@ -6,5 +6,6 @@
   "heading_no_language_results": "Мы не смогли найти статьи на выбранном вами языке.",
   "view_all": "Посмотреть все",
   "read_more_button": "Read more",
-  "min_read": "min read"
+  "min_read": "min read",
+  "by": "By {{creator}}"
 }

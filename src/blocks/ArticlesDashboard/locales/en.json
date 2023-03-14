@@ -4,5 +4,6 @@
   "view_all": "View all",
   "all": "All",
   "read_more_button": "Read more",
-  "min_read": "min read"
+  "min_read": "min read",
+  "by": "by {{creator}}"
 }

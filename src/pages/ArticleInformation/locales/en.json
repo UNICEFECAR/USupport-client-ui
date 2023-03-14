@@ -2,5 +2,6 @@
   "heading": "More Articles",
   "no_results": "There are no similar articles for the current selected language. ",
   "read_more_button": "Read more",
-  "min_read":	"min read"
+  "min_read":	"min read",
+  "by": "by {{creator}}"
 }
