@@ -12,7 +12,10 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { providerSvc } from "@USupport-components-library/services";
-import { getTimestampFromUTC } from "@USupport-components-library/utils";
+import {
+  getTimestampFromUTC,
+  parseUTCDate,
+} from "@USupport-components-library/utils";
 
 import { useGetProviderDataById } from "#hooks";
 
@@ -61,6 +64,14 @@ export const SelectConsultation = ({
       providerId,
       campaignId
     );
+
+    if (campaignId) {
+      return data.map((x) => ({
+        time: parseUTCDate(x.time),
+        campaign_id: x.campaign_id,
+      }));
+    }
+
     return data;
   };
   const availableSlotsQuery = useQuery(
