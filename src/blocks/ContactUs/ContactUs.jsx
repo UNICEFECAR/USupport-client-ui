@@ -52,7 +52,6 @@ export const ContactUs = () => {
   const [issues, setIssues] = useState([...initialIssues]);
   const [errors, setErrors] = useState({});
   const [canSubmit, setCanSubmit] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const [clientDataQuery] = useGetClientData(!isTmpUser);
@@ -114,12 +113,10 @@ export const ContactUs = () => {
 
   const onSendEmailSuccess = () => {
     setIsSuccessModalOpen(true);
-    setIsSubmitting(false);
     setData({ ...initialData });
   };
   const onSendEmailError = (error) => {
     setErrors({ submit: error });
-    setIsSubmitting(false);
   };
   const sendIssueEmailMutation = useSendIssueEmail(
     onSendEmailSuccess,
@@ -127,25 +124,20 @@ export const ContactUs = () => {
   );
 
   const handleSubmit = async () => {
-    if (!isSubmitting) {
-      setIsSubmitting(true);
-      const dataToValidate = {
-        issue: data.issue,
-        message: data.message,
+    const dataToValidate = {
+      issue: data.issue,
+      message: data.message,
+      email: data.email,
+    };
+    if ((await validate(dataToValidate, schema, setErrors)) === null) {
+      const payload = {
+        subjectValue: data.issue,
+        subjectLabel: "Technical issue",
+        title: issues.find((x) => x.value === data.issue)?.label,
+        text: data.message,
         email: data.email,
       };
-      if ((await validate(dataToValidate, schema, setErrors)) === null) {
-        const payload = {
-          subjectValue: data.issue,
-          subjectLabel: "Technical issue",
-          title: issues.find((x) => x.value === data.issue)?.label,
-          text: data.message,
-          email: data.email,
-        };
-        sendIssueEmailMutation.mutate(payload);
-      } else {
-        setIsSubmitting(false);
-      }
+      sendIssueEmailMutation.mutate(payload);
     }
   };
 
@@ -200,7 +192,8 @@ export const ContactUs = () => {
               type="primary"
               color="green"
               onClick={handleSubmit}
-              disabled={!canSubmit || isSubmitting}
+              disabled={!canSubmit}
+              isLoading={sendIssueEmailMutation.isLoading}
             />
           </GridItem>
         </Grid>

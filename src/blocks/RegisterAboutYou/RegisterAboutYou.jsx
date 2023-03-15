@@ -76,7 +76,6 @@ export const RegisterAboutYou = () => {
   }, [clientData]);
 
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const country = localStorage.getItem("country");
   const selectedCountry = countriesData?.find((c) => c.value === country);
@@ -101,7 +100,6 @@ export const RegisterAboutYou = () => {
 
   const onMutateError = (error) => {
     setErrors({ submit: error });
-    setIsSubmitting(false);
   };
 
   // Make sure we get the freshest data before sending it to the mutation function
@@ -132,12 +130,8 @@ export const RegisterAboutYou = () => {
   };
 
   const handleContinue = async () => {
-    setIsSubmitting(true);
-
     if ((await validate(data, schema, setErrors)) === null) {
       updateClientDetailsMutation.mutate();
-    } else {
-      setIsSubmitting(false);
     }
   };
 
@@ -196,7 +190,8 @@ export const RegisterAboutYou = () => {
           </div>
           {errors.submit ? <Error message={errors.submit} /> : null}
           <Button
-            disabled={!canContinue || isSubmitting}
+            disabled={!canContinue}
+            loading={updateClientDetailsMutation.isLoading}
             size="lg"
             label={t("button_continue_label")}
             onClick={() => handleContinue()}

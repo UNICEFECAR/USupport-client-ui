@@ -80,7 +80,8 @@ export const PlatformRating = () => {
             label={t("button_label")}
             size="lg"
             onClick={() => handleSendRating()}
-            disabled={canContinue || addRatingMutation.isLoading}
+            disabled={canContinue}
+            loading={addRatingMutation.isLoading}
           />
         </GridItem>
       </Grid>

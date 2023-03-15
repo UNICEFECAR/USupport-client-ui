@@ -33,7 +33,6 @@ export const RegisterSupport = () => {
   const [data, setData] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showError, setShowError] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState();
 
   const hasGivenPermission = useRef();
@@ -66,20 +65,17 @@ export const RegisterSupport = () => {
     onSuccess: () => {
       setSubmitError(null);
       setShowError(false);
-      setIsSubmitting(false);
       queryClient.invalidateQueries({ queryKey: ["client-data"] });
       setIsModalOpen(false);
     },
     onError: (error) => {
       hasGivenPermission.current = false;
-      setIsSubmitting(false);
       const { message: errorMessage } = useError(error);
       setSubmitError(errorMessage);
     },
   });
 
   const handleGivePermission = () => {
-    setIsSubmitting(true);
     updateDataProcessingMutation.mutate();
   };
 
@@ -128,7 +124,7 @@ export const RegisterSupport = () => {
         text={t("modal_paragraph")}
         ctaLabel={t("modal_cta_1")}
         ctaHandleClick={handleGivePermission}
-        isCtaDisabled={isSubmitting}
+        isCtaDisabled={updateDataProcessingMutation.isLoading}
         secondaryCtaLabel={t("modal_cta_2")}
         secondaryCtaType="secondary"
         secondaryCtaHandleClick={closeModal}
