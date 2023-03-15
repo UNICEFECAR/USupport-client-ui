@@ -34,7 +34,7 @@ import "./user-details.scss";
  * @return {jsx}
  */
 export const UserDetails = ({
-  openDataProcessingBackdrop,
+  openChangePasswordBackdrop,
   openDeleteAccountBackdrop,
   openUploadPictureModal,
   openDeletePictureBackdrop,
@@ -53,11 +53,6 @@ export const UserDetails = ({
 
   const [dataProcessing, setDataProcessing] = useState(null);
   const [dataProcessingModalOpen, setDataProcessingModalOpen] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [
-    isProcessingUpdateDataProcessing,
-    setIsProcessingUpdateDataProcessing,
-  ] = useState(false);
 
   const defaultSchema = {
     nickname: Joi.string().required().label(t("nickname_error")),
@@ -162,11 +157,9 @@ export const UserDetails = ({
 
   const onUpdateSuccess = () => {
     toast(t("success_message"));
-    setIsProcessing(false);
   };
   const onUpdateError = (error) => {
     setErrors({ submit: error });
-    setIsProcessing(false);
   };
   const userDataMutation = useUpdateClientData(
     clientData,
@@ -207,7 +200,6 @@ export const UserDetails = ({
       nickname: clientData.nickname,
     };
     if ((await validate(dataToValidate, schema, setErrors)) === null) {
-      setIsProcessing(true);
       userDataMutation.mutate();
     }
   };
@@ -218,7 +210,6 @@ export const UserDetails = ({
 
   const updateDataProcessing = async (value) => {
     setDataProcessing(value); // Perform an optimistic update
-    setIsProcessingUpdateDataProcessing(true);
 
     const res = await clientSvc.changeDataProcessingAgreement(value);
     return res.data.data_processing;
@@ -227,13 +218,11 @@ export const UserDetails = ({
   const updateDataProcessingMutation = useMutation(updateDataProcessing, {
     onSuccess: (data) => {
       setDataProcessing(data);
-      setIsProcessingUpdateDataProcessing(false);
       closeDataProcessingModal();
       queryClient.invalidateQueries({ queryKey: ["client-data"] });
     },
     onError: (error) => {
       setDataProcessing((prev) => !prev); // Revert the optimistic update
-      setIsProcessingUpdateDataProcessing(false);
     },
   });
 
@@ -338,7 +327,8 @@ export const UserDetails = ({
               label={t("button_text")}
               size="lg"
               onClick={handleSave}
-              disabled={isSaveDisabled || isProcessing}
+              disabled={isSaveDisabled}
+              loading={userDataMutation.isLoading}
             />
             <Button
               type="secondary"
@@ -367,7 +357,7 @@ export const UserDetails = ({
                 type="ghost"
                 label={t("change_password")}
                 classes="user-details__grid__change-password-button"
-                onClick={openDataProcessingBackdrop}
+                onClick={openChangePasswordBackdrop}
               />
               <ButtonWithIcon
                 iconName={"circle-close"}
@@ -404,7 +394,7 @@ export const UserDetails = ({
         ctaHandleClick={() => {
           updateDataProcessingMutation.mutate(false);
         }}
-        isCtaDisabled={isProcessingUpdateDataProcessing}
+        isCtaDisabled={updateDataProcessingMutation.isLoading}
         secondaryCtaLabel={t("data_processing_modal_cancel_button")}
         secondaryCtaType="secondary"
         secondaryCtaHandleClick={closeDataProcessingModal}
