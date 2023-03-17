@@ -1,13 +1,13 @@
 {
-  "payment_succeded": "Payment succeded",
-  "payment_processing": "Payment failed",
-  "payment_requires_payment_method": "Your payment was not successful, please try again.",
-  "payment_something_went_wrong": "Something went wrong, please try again.",
-  "payment_unexpected_error": "An unexpected error occurred.",
-  "button_pay_now": "Pay now",
-  "payment_info": "If you do not pay in 5 minutes the reservation for consultation session will be canceled.",
-  "total_heading": "Total: ",
-  "timeout_heading": "Payment session expired",
-  "consultation_timeout": "Your reservation has been cancelled due to inactivity. Please schedule your consultation again.",
+  "payment_succeded": "Төлем сәтті өтті",
+  "payment_processing": "Төлем сәтсіз аяқталды",
+  "payment_requires_payment_method": "Сіздің төлеміңіз сәтті болмады, қайталап көріңіз.",
+  "payment_something_went_wrong": "Бірдеңе дұрыс болмады, қайталап көріңіз.",
+  "payment_unexpected_error": "Күтпеген қате болды.",
+  "button_pay_now": "Қазір төлеу",
+  "payment_info": "Егер сіз 5 минут ішінде төлем жасамасаңыз, консультацияны брондау жойылады.",
+  "total_heading": "Барлығы: ",
+  "timeout_heading": "Төлем сессиясы аяқталды",
+  "consultation_timeout": "Сіздің брондауыңыз әрекетсіздікке байланысты жойылды. Консультацияға тағы бір рет жазылыңыз.",
   "continue_button": "Жалғастыру"
 }
