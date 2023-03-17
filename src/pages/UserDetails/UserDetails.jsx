@@ -19,19 +19,19 @@ import "./user-details.scss";
  */
 export const UserDetails = () => {
   const { t } = useTranslation("user-details-page");
-  const [isBackdropOpen, setIsBackdropOpen] = useState(false);
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [isDeleteBackdropShown, setIsDeleteBackdropShown] = useState(false);
   const [isUploadPictureModalOpen, setIsUploadPictureModalOpen] =
     useState(false);
   const [isDeletePictureBackdropShown, setIsDeletePictureBackdropShown] =
     useState(false);
 
-  const openDataProcessingBackdrop = () => setIsBackdropOpen(true);
+  const openChangePasswordBackdrop = () => setIsChangePasswordOpen(true);
   const openDeleteAccountBackdrop = () => setIsDeleteBackdropShown(true);
   const openUploadPictureModal = () => setIsUploadPictureModalOpen(true);
   const openDeletePictureBackdrop = () => setIsDeletePictureBackdropShown(true);
 
-  const closeDataProcessingBackdrop = () => setIsBackdropOpen(false);
+  const closeChangePasswordBackdrop = () => setIsChangePasswordOpen(false);
   const closeDeleteAccountBackdrop = () => setIsDeleteBackdropShown(false);
   const closeUploadPictureModal = () => setIsUploadPictureModalOpen(false);
   const closeDeletePictureBackdrop = () =>
@@ -42,15 +42,14 @@ export const UserDetails = () => {
       <UserDetailsBlock
         {...{
           openDeleteAccountBackdrop,
-          openDataProcessingBackdrop,
           openUploadPictureModal,
           openDeletePictureBackdrop,
-          closeDataProcessingBackdrop,
+          openChangePasswordBackdrop,
         }}
       />
       <ChangePassword
-        isOpen={isBackdropOpen}
-        onClose={closeDataProcessingBackdrop}
+        isOpen={isChangePasswordOpen}
+        onClose={closeChangePasswordBackdrop}
       />
       <DeleteAccount
         isOpen={isDeleteBackdropShown}

@@ -4,5 +4,6 @@
   "could_not_load_content": "Для выбранной страны и языка ничего не нашлось.",
   "all": "Все", 
   "read_more_button": "Read more",
-  "min_read":	"min read"
+  "min_read":	"min read",
+  "by": "By {{creator}}"
 }

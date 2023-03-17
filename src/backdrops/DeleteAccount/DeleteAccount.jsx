@@ -28,7 +28,6 @@ export const DeleteAccount = ({ isOpen, onClose }) => {
 
   const [data, setData] = useState({ password: "" });
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const deleteAccount = async () => {
     const res = await clientSvc.deleteClientProfile(data.password);
@@ -38,7 +37,6 @@ export const DeleteAccount = ({ isOpen, onClose }) => {
   };
   const deleteAccountMutation = useMutation(deleteAccount, {
     onSuccess: () => {
-      setIsSubmitting(false);
       userSvc.logout();
 
       navigate("/");
@@ -46,7 +44,6 @@ export const DeleteAccount = ({ isOpen, onClose }) => {
     onError: (error) => {
       const { message: errorMessage } = useError(error);
       setErrors({ submit: errorMessage });
-      setIsSubmitting(false);
     },
   });
 
@@ -61,7 +58,6 @@ export const DeleteAccount = ({ isOpen, onClose }) => {
   };
 
   const handleSubmit = () => {
-    setIsSubmitting(true);
     deleteAccountMutation.mutate();
   };
 
@@ -74,7 +70,7 @@ export const DeleteAccount = ({ isOpen, onClose }) => {
       text={t("text")}
       ctaLabel={t("delete_account_button")}
       ctaHandleClick={handleSubmit}
-      isCtaDisabled={isSubmitting}
+      isCtaDisabled={deleteAccountMutation.isLoading}
       secondaryCtaLabel={t("cancel_button")}
       secondaryCtaHandleClick={onClose}
       secondaryCtaType="secondary"

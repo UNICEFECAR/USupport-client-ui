@@ -157,7 +157,7 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
                     label={t("submit_mood_track")}
                     size="lg"
                     onClick={handleSubmit}
-                    disabled={addMoodTrackMutation.isLoading}
+                    loading={addMoodTrackMutation.isLoading}
                   />
                 </div>
               )}

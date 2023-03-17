@@ -4,5 +4,6 @@
   "view_all": "Посмотреть все",
   "all": "Все",
   "read_more_button": "Read more RU",
-  "min_read": "min read"
+  "min_read": "min read",
+  "by": "by {{creator}}"
 }
