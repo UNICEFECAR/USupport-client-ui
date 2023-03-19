@@ -12,8 +12,8 @@
   "modal_title": "Ваше сообщение было успешно отправлено",
   "modal_text": "Мы свяжемся с Вами в самое ближайшее время",
   "modal_cta_label": "Вернуться на главную страницу",
-  "contact_reason_1": "What is this platform about?",
-  "contact_reason_2": "I need more info about the services provided through the platform",
-  "contact_reason_3": "I am a client and I am experiencing a technical problem",
-  "contact_reason_4": "Something else"
+  "contact_reason_1": "О чем эта платформа?",
+  "contact_reason_2": "Мне нужно больше информации об услугах, предоставляемых через эту платформу",
+  "contact_reason_3": "Я клиент, и у меня возникла техническая проблема",
+  "contact_reason_4": "Прочее"
 }
