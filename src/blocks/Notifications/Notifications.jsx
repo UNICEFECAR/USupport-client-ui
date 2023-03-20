@@ -231,7 +231,7 @@ export const Notifications = ({ openJoinConsultation }) => {
           <Notification
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupportMe"
+            title="USupport"
             text={t(notification.type, {
               providerName:
                 notificationProviders[notification.content.providerDetailId],
@@ -250,7 +250,7 @@ export const Notifications = ({ openJoinConsultation }) => {
           <Notification
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupportMe"
+            title="USupport"
             text={t(notification.type, {
               providerName:
                 notificationProviders[notification.content.providerDetailId],
@@ -272,7 +272,7 @@ export const Notifications = ({ openJoinConsultation }) => {
           <Notification
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupportMe"
+            title="USupport"
             text={t(notification.type, {
               providerName:
                 notificationProviders[notification.content.providerDetailId],
@@ -291,7 +291,7 @@ export const Notifications = ({ openJoinConsultation }) => {
           <Notification
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupportMe"
+            title="USupport"
             text={t(notification.type, {
               providerName:
                 notificationProviders[notification.content.providerDetailId],
@@ -310,11 +310,14 @@ export const Notifications = ({ openJoinConsultation }) => {
           <Notification
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupportMe"
+            title="USupport"
             text={t(notification.type, {
               minutes: notification.content.minToConsultation,
             })}
             icon="calendar"
+            handleClick={() =>
+              handleNotificationClick(notification.notificationId)
+            }
           >
             {checkIsFiveMinutesBefore(notification.content.time) && (
               <Button
@@ -342,7 +345,7 @@ export const Notifications = ({ openJoinConsultation }) => {
           <Notification
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupportMe"
+            title="USupport"
             text={t(notification.type, {
               providerName:
                 notificationProviders[notification.content.providerDetailId],
@@ -387,7 +390,7 @@ export const Notifications = ({ openJoinConsultation }) => {
           <Notification
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupportMe"
+            title="USupport"
             text={t(notification.type, {
               providerName:
                 notificationProviders[notification.content.providerDetailId],
@@ -406,7 +409,7 @@ export const Notifications = ({ openJoinConsultation }) => {
           <Notification
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupportMe"
+            title="USupport"
             text={t(notification.type, {
               providerName:
                 notificationProviders[notification.content.providerDetailId],
