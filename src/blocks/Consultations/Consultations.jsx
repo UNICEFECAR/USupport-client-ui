@@ -184,7 +184,11 @@ export const Consultations = ({
     <Block classes="consultations">
       <Grid md={8} lg={12} classes="consultations__grid">
         <GridItem md={8} lg={12} classes="consultations__grid__tabs-item">
-          <TabsUnderlined options={tabsOptions} handleSelect={handleTabClick} />
+          <TabsUnderlined
+            options={tabsOptions}
+            handleSelect={handleTabClick}
+            t={t}
+          />
         </GridItem>
         <GridItem
           md={8}
