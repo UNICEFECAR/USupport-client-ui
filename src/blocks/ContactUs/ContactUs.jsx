@@ -132,7 +132,7 @@ export const ContactUs = () => {
     if ((await validate(dataToValidate, schema, setErrors)) === null) {
       const payload = {
         subjectValue: data.issue,
-        subjectLabel: "Technical issue",
+        subjectLabel: t("contact_form"),
         title: issues.find((x) => x.value === data.issue)?.label,
         text: data.message,
         email: data.email,
