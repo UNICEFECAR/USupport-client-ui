@@ -137,7 +137,7 @@ export const Consultations = ({
       });
   }, [consultationsQuery.data, filter]);
 
-  const renderAllConsultations = useMemo(() => {
+  const renderAllConsultations = useCallback(() => {
     const filteredConsultations = filterConsultations();
 
     if (filteredConsultations?.length === 0)
@@ -200,7 +200,7 @@ export const Consultations = ({
             lg={12}
             classe="consultations__grid__consultations-item__grid"
           >
-            {renderAllConsultations}
+            {renderAllConsultations()}
           </Grid>
         </GridItem>
       </Grid>
