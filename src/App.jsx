@@ -16,7 +16,9 @@ import "./App.scss";
 
 // Create a react-query client
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { refetcgInterval: FIVE_MINUTES } }, // 5 minutes
+  defaultOptions: {
+    queries: { refetcgInterval: FIVE_MINUTES, refetchOnWindowFocus: false },
+  },
 });
 
 function App() {
