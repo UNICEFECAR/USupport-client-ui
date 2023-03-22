@@ -122,6 +122,18 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
             onClick={() => handleRedirect("/privacy-policy")}
           />
           <ButtonSelector
+            label={t("terms_of_use")}
+            iconName="document"
+            classes="user-profile__grid__item__button"
+            onClick={() => handleRedirect("/terms-of-use")}
+          />
+          <ButtonSelector
+            label={t("cookie_policy")}
+            iconName="document"
+            classes="user-profile__grid__item__button"
+            onClick={() => handleRedirect("/cookie-policy")}
+          />
+          <ButtonSelector
             label={t("FAQ_button_label")}
             iconName="info"
             classes="user-profile__grid__item__button"
