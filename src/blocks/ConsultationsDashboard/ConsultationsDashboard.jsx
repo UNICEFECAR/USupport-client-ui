@@ -55,7 +55,10 @@ export const ConsultationsDashboard = ({
   const renderConsultations = () => {
     return upcomingConsultations?.map((consultation) => {
       return (
-        <div className="consultations-dashboard__consultation-container">
+        <div
+          className="consultations-dashboard__consultation-container"
+          key={consultation.consultationId}
+        >
           <ConsultationBig
             consultation={consultation}
             handleJoin={openJoinConsultation}
@@ -63,7 +66,6 @@ export const ConsultationsDashboard = ({
             handleAcceptSuggestion={handleAcceptSuggestion}
             handleSchedule={handleSchedule}
             t={t}
-            key={consultation.consultationId}
           />
         </div>
       );
