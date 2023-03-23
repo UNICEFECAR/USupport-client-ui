@@ -10,6 +10,10 @@
     justify-content: space-between;
     align-items: center;
 
+    > h4 {
+      text-align: left;
+    }
+
     .view-all-button {
       color: $color_secondary_9749fa;
       cursor: pointer;
@@ -27,5 +31,12 @@
 
   &__carousel-container {
     margin-top: $spacing_2_0;
+  }
+
+  &__consultation-container {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
   }
 }

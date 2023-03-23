@@ -137,7 +137,7 @@ export const Consultations = ({
       });
   }, [consultationsQuery.data, filter]);
 
-  const renderAllConsultations = useMemo(() => {
+  const renderAllConsultations = useCallback(() => {
     const filteredConsultations = filterConsultations();
 
     if (filteredConsultations?.length === 0)
@@ -184,7 +184,11 @@ export const Consultations = ({
     <Block classes="consultations">
       <Grid md={8} lg={12} classes="consultations__grid">
         <GridItem md={8} lg={12} classes="consultations__grid__tabs-item">
-          <TabsUnderlined options={tabsOptions} handleSelect={handleTabClick} />
+          <TabsUnderlined
+            options={tabsOptions}
+            handleSelect={handleTabClick}
+            t={t}
+          />
         </GridItem>
         <GridItem
           md={8}
@@ -196,7 +200,7 @@ export const Consultations = ({
             lg={12}
             classe="consultations__grid__consultations-item__grid"
           >
-            {renderAllConsultations}
+            {renderAllConsultations()}
           </Grid>
         </GridItem>
       </Grid>

@@ -10,5 +10,21 @@
   "schedule_button_label": "Жоспарлау",
   "live_label": "Қазір",
   "no_consultations": "Қазіргі Сізде алдағы консультациялар жоқ",
-  "free": "Бос"
+  "free": "Бос",
+  "ordinal_st": "-ші",
+  "ordinal_nd": "-ші",
+  "ordinal_rd": "-ші",
+  "ordinal_th": "-ші/-шы",
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December"
 }

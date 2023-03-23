@@ -24,8 +24,8 @@ export const MoodTrackMoreInformation = ({
   const date = moodTrack.time;
   const day = date?.getDate();
   const ordinal = getOrdinal(day);
-  const heading = `${day}${t(ordinal)} ${getMonthName(
-    date
+  const heading = `${day}${t(ordinal)} ${t(
+    getMonthName(date).toLowerCase()
   )} ${date.getFullYear()}`;
   const emoticonLabel = emoticons.find(
     (x) => x.value === moodTrack.mood

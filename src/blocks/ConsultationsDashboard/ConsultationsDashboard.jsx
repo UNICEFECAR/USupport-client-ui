@@ -55,15 +55,19 @@ export const ConsultationsDashboard = ({
   const renderConsultations = () => {
     return upcomingConsultations?.map((consultation) => {
       return (
-        <ConsultationBig
-          consultation={consultation}
-          handleJoin={openJoinConsultation}
-          handleChange={openEditConsultation}
-          handleAcceptSuggestion={handleAcceptSuggestion}
-          handleSchedule={handleSchedule}
-          t={t}
+        <div
+          className="consultations-dashboard__consultation-container"
           key={consultation.consultationId}
-        />
+        >
+          <ConsultationBig
+            consultation={consultation}
+            handleJoin={openJoinConsultation}
+            handleChange={openEditConsultation}
+            handleAcceptSuggestion={handleAcceptSuggestion}
+            handleSchedule={handleSchedule}
+            t={t}
+          />
+        </div>
       );
     });
   };
