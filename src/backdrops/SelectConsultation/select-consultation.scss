@@ -18,6 +18,10 @@
 
     & .header {
       padding-bottom: $spacing_1_8;
+
+      &__day-of-week {
+        cursor: pointer;
+      }
     }
 
     &__slots {
