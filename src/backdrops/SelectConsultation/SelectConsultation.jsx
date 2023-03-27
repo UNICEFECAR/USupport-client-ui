@@ -138,9 +138,13 @@ export const SelectConsultation = ({
   const handleSave = () => {
     let slotObject;
     if (campaignId) {
-      slotObject = availableSlots.find(
-        (slot) => new Date(slot.time).getTime() === selectedSlot
-      );
+      slotObject = availableSlots.find((slot) => {
+        const isTimeMatching = new Date(slot.time).getTime() === selectedSlot;
+        if (!campaignId) {
+          return isTimeMatching;
+        }
+        return isTimeMatching && slot.campaign_id === campaignId;
+      });
     }
     const time = campaignId ? slotObject : selectedSlot;
     handleBlockSlot(time, providerData.consultationPrice);
