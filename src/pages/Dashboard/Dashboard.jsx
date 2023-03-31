@@ -202,6 +202,7 @@ export const Dashboard = () => {
     blockSlotMutation.mutate({
       slot,
       providerId: selectedConsultationProviderId,
+      rescheduleCampaignSlot: slot?.campaign_id ? true : false,
     });
   };
   const handleScheduleConsultation = () => {

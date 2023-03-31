@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 import { useQuery } from "@tanstack/react-query";
 import { userSvc } from "@USupport-components-library/services";
 import { useEventListener } from "#hooks";
+import { useCallback } from "react";
 
 export const useIsLoggedIn = () => {
   const platform = window.location.pathname.split("/")[1];
@@ -30,6 +31,8 @@ export const useIsLoggedIn = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
+
+      setResult(true);
 
       const decoded = decodeToken();
       if (Date.now() >= decoded.exp * 1000) {
@@ -101,10 +104,12 @@ export const useIsLoggedIn = () => {
     setResult(isLoggedIn);
   }, []);
 
-  useEventListener("token-changed", () => {
+  const handler = useCallback(() => {
     const isLoggedIn = validateUser();
     setResult(isLoggedIn);
   });
+
+  useEventListener("token-changed", handler);
 
   return result;
 };

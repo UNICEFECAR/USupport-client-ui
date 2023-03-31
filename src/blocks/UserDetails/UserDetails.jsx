@@ -288,14 +288,16 @@ export const UserDetails = ({
             />
             <Input
               value={clientData.nickname}
-              label={t("nickname")}
+              label={t("nickname") + "*"}
               onChange={(e) => handleChange("nickname", e.currentTarget.value)}
               onBlur={handleNicknameBlur}
               placeholder={t("nickname_placeholder")}
               errorMessage={errors.nickname}
             />
             <Input
-              label={t("email")}
+              label={`${t("email")}${
+                clientDataQuery?.data?.accessToken ? "" : "*"
+              }`}
               value={clientData.email}
               onChange={(e) => handleChange("email", e.currentTarget.value)}
               onBlur={handleEmailBlur}
@@ -306,19 +308,19 @@ export const UserDetails = ({
               options={sexOptions}
               selected={clientData.sex}
               setSelected={(option) => handleChange("sex", option)}
-              label={t("sex")}
+              label={t("sex") + "*"}
             />
             <DropdownWithLabel
               options={getYearsOptions()}
               selected={clientData.yearOfBirth}
               setSelected={(option) => handleChange("yearOfBirth", option)}
-              label={t("year_of_birth")}
+              label={t("year_of_birth") + "*"}
             />
             <DropdownWithLabel
               options={urbanRuralOptions}
               selected={clientData.urbanRural}
               setSelected={(option) => handleChange("urbanRural", option)}
-              label={t("living_place")}
+              label={t("living_place") + "*"}
             />
             {errors.submit ? <ErrorMessage message={errors.submit} /> : null}
             <Button
