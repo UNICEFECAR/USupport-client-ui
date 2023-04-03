@@ -1,16 +1,9 @@
 {
-  "sunday": "Вс",
-  "monday": "Дс",
-  "tuesday": "Сс",
-  "wednesday": "Ср",
-  "thursday": "Бс",
-  "friday": "Жм",
-  "saturday": "Сб",
   "happy": "Керемет",
   "good": "Бақытты",
   "sad": "Қайғылы",
-  "depressed": "Депрессиядаs",
-  "worried": "Қобалжыған",
-  "overall_mood": "Осы аптадағы жалпы көңіл-күйіңіз",
-  "view_more": "Көбірек көру"
+  "depressed": "Депрессияда",
+  "worried": "Қобалжыған болып",
+  "you_felt": "Сіз сездіңіз",
+  "comment_text": "және Сіз түсініктеме бердіңіз:"
 }

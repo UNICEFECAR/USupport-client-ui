@@ -1,6 +1,6 @@
 /* MoodTrackHistory styles */
-@import '@USupport-components-library/styles';
+@import "@USupport-components-library/styles";
 
-.page__mood-track-history{
+.page__mood-track-history {
+  @include full-height-page-navbar;
 }
-

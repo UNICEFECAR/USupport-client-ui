@@ -1,184 +1,85 @@
 @import "@USupport-components-library/styles";
 
 .mood-track-history {
-  @include full-height-page-navbar;
-
-  position: relative;
-  padding-top: 20.2rem;
-
-  @media screen and (min-width: $screen-md) {
-    padding-top: 13.2rem;
-  }
-
-  &__heading-block {
-    background-color: $color_white_ff;
-    left: 0;
-    right: 0;
-    z-index: $z_index_2;
-  }
-
-  &__heading-grid {
-    padding-top: $spacing_3_2;
-
-    &__edit {
-      align-items: center;
-      color: $color_secondary_9749fa;
-      cursor: pointer;
-      display: flex;
-      text-align: left;
-
-      & .icon {
-        margin-right: $spacing_0_8;
-      }
-    }
-  }
-
-  &__overall-mood {
-    margin-top: $spacing_2_0;
+  &__content-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    @media screen and (min-width: $screen-md) {
-      flex-direction: row;
-      margin-bottom: $spacing_5_0;
-    }
-
-    &__label {
-      text-align: left;
-      margin-bottom: $spacing_1_6;
-      max-width: 80%;
-      align-self: center;
-
-      @media screen and (min-width: $screen-md) {
-        margin-right: $spacing_3_4;
-      }
-    }
+    flex-direction: row;
 
     &__emoticons-container {
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      margin-bottom: $spacing_1_6;
+      margin-right: $spacing_0_8;
 
-      @media screen and (min-width: $screen-md) {
-        margin-bottom: unset;
-      }
-
-      &__single-emoticon {
+      &__icon {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        align-self: flex-end;
+        height: 3.8rem;
         align-items: center;
-        margin-right: $spacing_1_8;
+        cursor: pointer;
 
-        &--unavailable {
-          opacity: 0.5;
-        }
+        &__right {
+          margin-left: $spacing_0_8;
+          @media screen and (min-width: screen_md) {
+            margin-left: $spacing_2_4;
+          }
 
-        &--available {
-          margin-right: $spacing_1_8;
-
-          & .icon {
-            width: 6.4rem;
-            height: 6.4rem;
+          &__disabled {
+            opacity: 0.5;
           }
         }
       }
     }
+
+    &__chart-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+
+      &__wrapper {
+        flex: 1;
+      }
+    }
+
+    &__chart-wrapper {
+      margin-top: $spacing_1_6;
+      padding: $spacing_0_8 0;
+      height: 28rem;
+
+      &__dates {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
   }
 
-  &__single-day {
+  &__emoticon-container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    background-color: $color_gray_ea;
-    border-radius: $border_radius_0_4;
-    border: 1.5px solid transparent;
-    color: $color_primary_20809e;
-    box-shadow: $shadow_1;
-    display: flex;
-    height: 4rem;
+    min-height: 4rem;
     justify-content: center;
-    max-width: 10rem;
-    min-width: 3.6rem;
-
-    @media screen and (min-width: 1200px) {
-      padding: $spacing_2_4 $spacing_1_6;
-      min-width: calc(14.45rem - 2 * $spacing_1_6);
-      height: 5.6rem;
-    }
-
-    &--available {
-      cursor: pointer;
-      background-color: $color_green_c1eaea;
-    }
   }
 
-  &__days-grid {
-    grid-template-columns: repeat(8, 1fr);
-    padding-bottom: $spacing_6_0;
-    grid-gap: 0.4rem;
-
-    @media screen and (min-width: $screen-md) {
-      grid-gap: 0.8rem;
-    }
-
-    &__emoticon {
-      place-self: center;
-
-      &__empty-space {
-        height: 5rem;
-      }
-
-      & .icon {
-        width: 2.6rem;
-        height: 2.6rem;
-
-        @media screen and (min-width: 1200px) {
-          width: 4.6rem;
-          height: 4.6rem;
-        }
-      }
-    }
-  }
-
-  &__day-of-week {
-    // width: 4rem;
-    height: 4rem;
-    margin-bottom: $spacing_2_4;
-
-    @media screen and (min-width: 1150px) {
-      width: 14rem;
-    }
-
-    &--today {
-      color: $color_primary_20809e;
-    }
-
-    &__day {
-      text-decoration: underline;
-    }
-  }
-
-  &__change-week {
+  &__information-container {
     display: flex;
+    align-items: center;
     justify-content: center;
-    width: 90%;
-    margin: 0 auto;
-    margin-top: $spacing_3_0;
-    margin-bottom: $spacing_2_4;
+    min-height: 24rem;
+  }
 
-    @media screen and (min-width: $screen-md) {
-      justify-content: center;
-      margin-top: 0;
-    }
+  &__icon-container {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    & .icon {
-      cursor: pointer;
-    }
-
-    &__date > p {
-      color: $color_secondary_9749fa;
-      padding: 0 $spacing_2_4;
+    &__disabled {
+      opacity: 0.5;
     }
   }
 }

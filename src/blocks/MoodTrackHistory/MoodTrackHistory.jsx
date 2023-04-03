@@ -1,43 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
   Block,
   Emoticon,
-  Grid,
-  GridItem,
   Icon,
+  MoodTrackDetails,
   Loading,
+  LineChart,
 } from "@USupport-components-library/src";
-
-import {
-  getStartAndEndOfWeek,
-  getDatesInRange,
-  isDateToday,
-  getDateView,
-  useWindowDimensions,
-  getTimestampFromUTC,
-} from "@USupport-components-library/utils";
-
-import { useGetMoodTrackForWeek } from "#hooks";
-import { MoodTrackMoreInformation } from "#modals";
+import { useWindowDimensions } from "@USupport-components-library/utils";
+import { useGetMoodTrackEntries } from "#hooks";
 
 import "./mood-track-history.scss";
-
-const namesOfDays = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-];
 
 /**
  * MoodTrackHistory
  *
- * Mood track history block
+ * MoodTrackHistory block
  *
  * @return {jsx}
  */
@@ -45,316 +25,185 @@ export const MoodTrackHistory = () => {
   const { t } = useTranslation("mood-track-history");
   const { width } = useWindowDimensions();
 
-  const today = new Date();
+  const [pageNum, setPageNum] = useState(0);
+  const [loadedPages, setLoadedPages] = useState([]);
+  const limitToLoad = width < 768 ? 6 : 13;
+  const limit = `pageNum_${pageNum}_limitToLoad_${limitToLoad}`;
+  const [moodTrackerData, setMoodTrackerData] = useState({});
+  const [selectedItemId, setSelectedItemId] = React.useState(null);
+
+  const onSuccess = (data) => {
+    const { curEntries, prevEntries, hasMore } = data;
+
+    let dataCopy = { ...moodTrackerData };
+
+    if (!dataCopy[limit]) {
+      dataCopy[limit] = {
+        entries: curEntries,
+        hasMore: prevEntries.length > 0,
+      };
+    }
+    const prevPageLimit = `pageNum_${pageNum + 1}_limitToLoad_${limitToLoad}`;
+
+    if (prevEntries.length < limitToLoad) {
+      prevEntries.push(
+        ...curEntries.slice(0, limitToLoad - prevEntries.length)
+      );
+    }
+
+    dataCopy[prevPageLimit] = { entries: prevEntries, hasMore };
+    let loadedPagesCopy = [...loadedPages];
+    loadedPagesCopy.push(pageNum);
+    setLoadedPages(loadedPagesCopy);
+
+    setMoodTrackerData(dataCopy);
+  };
+
+  const enabled = useMemo(() => {
+    return !loadedPages.includes(pageNum);
+  }, [loadedPages, pageNum]);
+
+  const moodTrackEntriesQuery = useGetMoodTrackEntries(
+    limitToLoad,
+    pageNum,
+    onSuccess,
+    enabled
+  );
 
   const emoticons = [
-    {
-      value: "happy",
-      label: t("happy"),
-      numericalValue: 4,
-      isSelected: false,
-    },
-    { value: "good", label: t("good"), numericalValue: 3, isSelected: false },
-    {
-      value: "sad",
-      label: t("sad"),
-      numericalValue: 2,
-      isSelected: false,
-    },
-    {
-      value: "depressed",
-      label: t("depressed"),
-      numericalValue: 1,
-      isSelected: false,
-    },
-    {
-      value: "worried",
-      label: t("worried"),
-      numericalValue: 0,
-      isSelected: false,
-    },
+    { name: "happy", label: "Happy", value: 4 },
+    { name: "good", label: "Good", value: 3 },
+    { name: "sad", label: "Sad", value: 2 },
+    { name: "depressed", label: "Depressed", value: 1 },
+    { name: "worried", label: "Worried", value: 0 },
   ];
 
-  const { first: startDate, last: endDate } = getStartAndEndOfWeek(today);
-  const [weekStartDate, setWeekStartDate] = useState(startDate);
-  const [weekEndDate, setWeekEndDate] = useState(endDate);
-
-  const [overallMood, setOverallMood] = useState();
-
-  const [selectedMoodTrack, setSelectedMoodTrack] = useState();
-  const [isMoreInformationModalOpen, setIsMoreInformationModalOpen] =
-    useState(false);
-
-  const moodTrackForWeekQuery = useGetMoodTrackForWeek(
-    getTimestampFromUTC(weekStartDate)
-  );
-  const days = getDatesInRange(new Date(startDate), new Date(endDate));
-  const [weekDays, setWeekDays] = useState(days);
-
-  useEffect(() => {
-    if (moodTrackForWeekQuery.data && weekDays) {
-      const moodTracks = moodTrackForWeekQuery.data;
-      const weekDaysStrings = weekDays.map((x) => x.toDateString());
-      const weekMoods = moodTracks.filter((moodTrack) => {
-        return weekDaysStrings.includes(moodTrack.time.toDateString());
-      });
-      const feelingOccurances = {};
-
-      weekMoods.forEach((mood) => {
-        if (!feelingOccurances[mood.mood]) {
-          feelingOccurances[mood.mood] = 1;
-        } else {
-          feelingOccurances[mood.mood] += 1;
-        }
-      });
-
-      const highestValue = Math.max(...Object.values(feelingOccurances));
-      const highestValueOccurance = Object.values(feelingOccurances).filter(
-        (x) => x === highestValue
-      ).length;
-
-      if (highestValueOccurance === 1) {
-        const mostFrequentFeeling = Object.keys(feelingOccurances).find(
-          (key) => feelingOccurances[key] === highestValue
-        );
-        const mostFrequentFeelingEmoticon = emoticons.find(
-          (x) => x.value === mostFrequentFeeling
-        );
-        setOverallMood(mostFrequentFeelingEmoticon);
-        return;
-      } else {
-        setOverallMood(null);
-      }
-    }
-  }, [moodTrackForWeekQuery.data, weekDays]);
-
-  const handleWeekChange = (direction) => {
-    if (direction === "next") {
-      const nextWeek = getStartAndEndOfWeek(
-        new Date(weekEndDate.getTime() + 24 * 60 * 60 * 1000)
+  const renderAllEmoticons = () => {
+    return emoticons.map((emoticon, index) => {
+      return (
+        <div className="mood-track-history__emoticon-container" key={index}>
+          <Emoticon
+            name={`emoticon-${emoticon.name}`}
+            classes="mood-track-history__emoticon"
+            size="xs"
+          />
+          <p className="small-text">
+            {width >= 768 ? t(emoticon.label.toLowerCase()) : ""}
+          </p>
+        </div>
       );
-      setWeekStartDate(nextWeek.first);
-      setWeekEndDate(nextWeek.last);
-      setWeekDays(getDatesInRange(nextWeek.first, nextWeek.last));
-    } else {
-      const prevWeek = getStartAndEndOfWeek(
-        new Date(weekStartDate.getTime() - 24 * 60 * 60 * 1000)
+    });
+  };
+
+  const renderDates = () => {
+    return moodTrackerData[limit]?.entries.map((mood, index) => {
+      const dateText = `${
+        mood.time.getDate() > 9
+          ? mood.time.getDate()
+          : `0${mood.time.getDate()}`
+      }.${
+        mood.time.getMonth() + 1 > 9
+          ? mood.time.getMonth() + 1
+          : `0${mood.time.getMonth() + 1}`
+      }`;
+      const hourText = `${mood.time.getHours()}:${
+        mood.time.getMinutes() > 9
+          ? mood.time.getMinutes()
+          : `0${mood.time.getMinutes()}`
+      }`;
+
+      return (
+        <div className="mood-track-history__date-container" key={index}>
+          <p className="small-text">{dateText}</p>
+          <p className="small-text">{hourText}</p>
+        </div>
       );
-      setWeekStartDate(prevWeek.first);
-      setWeekEndDate(prevWeek.last);
-      setWeekDays(getDatesInRange(prevWeek.first, prevWeek.last));
-    }
+    });
   };
 
-  const handleMoodTrackClick = (day, emoticon) => {
-    const moodTrack = moodTrackForWeekQuery.data?.find(
-      (x) =>
-        x.time.toDateString() === day.toDateString() &&
-        x.mood === emoticon.value
-    );
-    // console.log(moodTrack);
-    setSelectedMoodTrack(moodTrack);
-    setIsMoreInformationModalOpen(true);
+  const handlePageChange = (next = false) => {
+    setPageNum((prev) => (next ? prev + 1 : prev - 1));
   };
 
-  const checkDayMood = (day) => {
-    const dayMood = moodTrackForWeekQuery.data?.find(
-      (mood) => mood.time.toDateString() === day.toDateString()
-    );
-
-    if (dayMood) {
-      return dayMood;
-    }
-    return null;
+  const handleMoodClick = (index) => {
+    setSelectedItemId(moodTrackerData[limit].entries[index].mood_tracker_id);
+    console.log(moodTrackerData[limit].entries[index].mood_tracker_id);
   };
+
   return (
-    <>
-      <Block classes="mood-track-history__heading-block">
-        <Heading
-          handleWeekChange={handleWeekChange}
-          startDate={weekStartDate}
-          endDate={weekEndDate}
-          width={width}
-          t={t}
-        />
-        {overallMood && (
-          <OverallMood overallMood={overallMood} emoticons={emoticons} t={t} />
-        )}
-      </Block>
-      <Block classes="scheduler">
-        {moodTrackForWeekQuery.isLoading ? (
-          <Loading />
-        ) : (
-          <>
-            <Grid classes="mood-track-history__days-grid">
-              {emoticons.map((emoticon) => {
-                return (
-                  <React.Fragment key={"week" + emoticon.value}>
-                    <GridItem
-                      xs={1}
-                      classes="mood-track-history__days-grid__emoticon"
-                    >
-                      {emoticon.value === "happy" && (
-                        <div className="mood-track-history__days-grid__emoticon__empty-space" />
-                      )}
-                      <Emoticon
-                        name={`emoticon-${emoticon.value}`}
-                        size={emoticon.isSelected ? "lg" : "sm"}
-                      />
-                      {width >= 768 && (
-                        <p
-                          className={[
-                            "small-text",
-                            emoticon.isSelected && "selected",
-                          ].join(" ")}
-                        >
-                          {emoticon.label}
-                        </p>
-                      )}
-                    </GridItem>
-                    {weekDays.map((day, weekDayIndex) => {
-                      const isToday = isDateToday(day);
-                      const date = getDateView(day);
-                      const displayDate =
-                        width < 1366 ? date.slice(0, -3) : date;
-
-                      const moodForDay = checkDayMood(day);
-                      const hasDoneMoodForDay =
-                        moodForDay && moodForDay.mood === emoticon.value;
-
-                      return (
-                        <React.Fragment key={weekDayIndex}>
-                          <GridItem key={"single-day" + day} xs={1}>
-                            {emoticon.value === "happy" ? (
-                              <div
-                                className={[
-                                  "mood-track-history__day-of-week",
-                                  isToday
-                                    ? "mood-track-history__day-of-week--today"
-                                    : "",
-                                ].join(" ")}
-                              >
-                                <p className="mood-track-history__day-of-week__day">
-                                  {t(namesOfDays[day.getDay()])}
-                                </p>
-                                <p>{displayDate}</p>
-                              </div>
-                            ) : (
-                              ""
-                            )}
-                            <div
-                              onClick={() => {
-                                if (hasDoneMoodForDay) {
-                                  handleMoodTrackClick(day, emoticon);
-                                }
-                              }}
-                              className={`mood-track-history__single-day ${
-                                hasDoneMoodForDay
-                                  ? "mood-track-history__single-day--available"
-                                  : ""
-                              }`}
-                            >
-                              {hasDoneMoodForDay &&
-                                (width < 768 ? (
-                                  <Icon name="info" color="#20809e" size="md" />
-                                ) : (
-                                  <p className="small-text">{t("view_more")}</p>
-                                ))}
-                            </div>
-                          </GridItem>
-                        </React.Fragment>
-                      );
-                    })}
-                  </React.Fragment>
-                );
-              })}
-            </Grid>
-          </>
-        )}
-      </Block>
-      {isMoreInformationModalOpen && selectedMoodTrack && (
-        <MoodTrackMoreInformation
-          isOpen={isMoreInformationModalOpen}
-          onClose={() => {
-            setIsMoreInformationModalOpen(false);
-            setSelectedMoodTrack(null);
-          }}
-          moodTrack={selectedMoodTrack}
-          emoticons={emoticons}
-        />
-      )}
-    </>
-  );
-};
-
-const Heading = ({ handleWeekChange, startDate, endDate, width, t }) => {
-  return (
-    <Grid classes="mood-track-history__heading-grid">
-      <GridItem md={8} lg={12}>
-        <ChangeWeek
-          startDate={startDate}
-          endDate={endDate}
-          handleWeekChange={handleWeekChange}
-          width={width}
-        />
-      </GridItem>
-    </Grid>
-  );
-};
-
-const ChangeWeek = ({ startDate, endDate, handleWeekChange, width }) => {
-  return (
-    <div className="mood-track-history__change-week">
-      <Icon
-        color="#9749FA"
-        name="arrow-chevron-back"
-        size={width < 768 ? "lg" : "md"}
-        onClick={() => handleWeekChange("previous")}
-      />
-      <div className="mood-track-history__change-week__date">
-        <p className="text">
-          {getDateView(startDate)} - {getDateView(endDate)}
-        </p>
-      </div>
-      <Icon
-        color="#9749FA"
-        name="arrow-chevron-forward"
-        size={width < 768 ? "lg" : "md"}
-        onClick={() => handleWeekChange("next")}
-      />
-    </div>
-  );
-};
-
-const OverallMood = ({ overallMood, emoticons, t }) => {
-  return (
-    <div className="mood-track-history__overall-mood">
-      <p className="paragraph mood-track-history__overall-mood__label">
-        {t("overall_mood")}
-      </p>
-
-      <div className="mood-track-history__overall-mood__emoticons-container">
-        {emoticons.map((emoticon) => {
-          return (
-            <div
-              key={"overall" + emoticon.value}
-              className={`
-              mood-track-history__overall-mood__emoticons-container__single-emoticon
-              ${
-                emoticon.value !== overallMood?.value
-                  ? "mood-track-history__overall-mood__emoticons-container__single-emoticon--unavailable"
-                  : "mood-track-history__overall-mood__emoticons-container__single-emoticon--available"
-              }`}
-            >
-              <Emoticon
-                name={`emoticon-${emoticon.value}`}
-                size={emoticon.value === overallMood?.value ? "lg" : "sm"}
-              />
-              <p className="text">{t(emoticon.label)}</p>
+    <Block classes="mood-track-history">
+      {!moodTrackerData[limit] ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="mood-track-history__content-container">
+            <div className="mood-track-history__content-container__emoticons-container">
+              <div
+                className={[
+                  "mood-track-history__icon-container",
+                  !moodTrackerData[limit].hasMore && //TODO: make it work
+                    "mood-track-history__icon-container__disabled",
+                ].join(" ")}
+              >
+                <Icon
+                  name="arrow-chevron-back"
+                  size="sm"
+                  color="#20809E"
+                  classes="mood-track-history__content-container__emoticons-container__icon"
+                  onClick={() =>
+                    moodTrackerData[limit].hasMore ? handlePageChange(true) : {}
+                  }
+                />
+              </div>
+              {renderAllEmoticons()}
             </div>
-          );
-        })}
-      </div>
-    </div>
+            <div className="mood-track-history__content-container__chart-container">
+              <div className="mood-track-history__content-container__chart-container__wrapper">
+                <div className="mood-track-history__content-container__chart-wrapper__dates">
+                  {renderDates()}
+                </div>
+                <div className="mood-track-history__content-container__chart-wrapper">
+                  <LineChart
+                    data={moodTrackerData[limit]?.entries || []}
+                    handleSelectItem={handleMoodClick}
+                    selectedItemId={selectedItemId}
+                  />
+                </div>
+              </div>
+              <div>
+                <div
+                  className={[
+                    "mood-track-history__content-container__emoticons-container__icon",
+                    pageNum === 0 &&
+                      "mood-track-history__content-container__emoticons-container__icon__right__disabled",
+                  ].join(" ")}
+                >
+                  <Icon
+                    name="arrow-chevron-forward"
+                    size="sm"
+                    color="#20809E"
+                    classes="mood-track-history__content-container__emoticons-container__icon__right"
+                    onClick={() => (pageNum === 0 ? {} : handlePageChange())}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mood-track-history__information-container">
+            {moodTrackerData[limit]?.entries.find(
+              (x) => x.mood_tracker_id === selectedItemId
+            ) && (
+              <MoodTrackDetails
+                mood={moodTrackerData[limit]?.entries.find(
+                  (x) => x.mood_tracker_id === selectedItemId
+                )}
+                handleClose={() => setSelectedItemId(null)}
+                t={t}
+              />
+            )}
+          </div>
+        </>
+      )}
+    </Block>
   );
 };
