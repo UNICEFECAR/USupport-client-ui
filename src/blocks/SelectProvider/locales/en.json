@@ -3,5 +3,6 @@
   "psychiatrist": "Psychiatrist",
   "psychotherapist": "Psychotherapist",
   "no_match": "No providers matching your criteria",
-  "free": "Free"
+  "free": "Free",
+  "coupon": "Coupon"
 }
