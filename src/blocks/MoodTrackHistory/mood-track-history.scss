@@ -4,6 +4,7 @@
   &__content-container {
     display: flex;
     flex-direction: row;
+    margin-top: $spacing_1_6;
 
     &__emoticons-container {
       display: flex;
