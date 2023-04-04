@@ -41,6 +41,7 @@ import {
   PaymentHistory as PaymentHistoryBlock,
   PaymentStatus as PaymentStatusBlock,
   MoodTrackHistory,
+  MascotHeaderQAA,
 } from "#blocks/locales.js";
 
 import {
@@ -144,6 +145,7 @@ const resources = {
     "payment-history-block": PaymentHistoryBlock.en,
     "payment-status-block": PaymentStatusBlock.en,
     "mood-track-history": MoodTrackHistory.en,
+    "mascot-header-qaa": MascotHeaderQAA.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -244,6 +246,7 @@ const resources = {
     "payment-history-block": PaymentHistoryBlock.ru,
     "payment-status-block": PaymentStatusBlock.ru,
     "mood-track-history": MoodTrackHistory.ru,
+    "mascot-header-qaa": MascotHeaderQAA.ru,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.ru,
@@ -344,6 +347,7 @@ const resources = {
     "payment-history-block": PaymentHistoryBlock.kk,
     "payment-status-block": PaymentStatusBlock.kk,
     "mood-track-history": MoodTrackHistory.kk,
+    "mascot-header-qaa": MascotHeaderQAA.kk,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.kk,

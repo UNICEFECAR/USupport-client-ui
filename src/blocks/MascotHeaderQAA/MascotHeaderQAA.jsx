@@ -4,7 +4,6 @@ import classNames from "classnames";
 
 import { Grid, GridItem, Button } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { RootContext } from "#routes";
 
 import "./mascot-header-qaa.scss";
 
@@ -20,9 +19,8 @@ import {
  *
  * @return {jsx}
  */
-export const MascotHeaderQAA = ({ classes }) => {
-  const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
-  const { t } = useTranslation("mascot-header_qaa");
+export const MascotHeaderQAA = ({ classes, handleSeeHowItWorksClick }) => {
+  const { t } = useTranslation("mascot-header-qaa");
   const { width } = useWindowDimensions();
 
   return (
@@ -42,11 +40,11 @@ export const MascotHeaderQAA = ({ classes }) => {
         >
           <Grid>
             <GridItem xs={4} md={6} lg={8}>
-              <h4 className="heading">My Q&A</h4>
+              <h4 className="heading">{t("heading")}</h4>
               <p className="text subheading heading">
-                It`s <b>ANONYMOUS</b>! Your questions are <b>NOT</b> linked to
-                you. The answers will be public, so you can see issues that
-                others after facing as well.
+                {t("subheading_its")} <b>{t("subheading_anonymous")}</b>!{" "}
+                {t("subheading_text1")} <b>{t("subheading_not")}</b>{" "}
+                {t("subheading_text2")}
               </p>
             </GridItem>
             <GridItem xs={4} md={2} lg={4}>
@@ -54,6 +52,7 @@ export const MascotHeaderQAA = ({ classes }) => {
                 label={"See how it works"}
                 type="secondary"
                 classes="mascot-header-qaa__headings-item__button"
+                onClick={() => handleSeeHowItWorksClick()}
               />
             </GridItem>
           </Grid>

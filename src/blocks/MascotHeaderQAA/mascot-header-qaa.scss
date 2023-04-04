@@ -35,8 +35,12 @@
 
     @media screen and (min-width: $screen-md) {
       padding-top: $spacing_5_0;
+    }
 
-      &__button {
+    &__button {
+      margin-top: $spacing_1_6;
+
+      @media screen and (min-width: $screen-md) {
         margin: 0 auto;
       }
     }

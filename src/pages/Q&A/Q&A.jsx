@@ -13,7 +13,7 @@ import "./q&a.scss";
 export const QAA = () => {
   return (
     <Page classes="page__q&a" showGoBackArrow={false}>
-      <MascotHeaderQAA />
+      <MascotHeaderQAA handleSeeHowItWorksClick={console.log("TO BE DONE")} />
     </Page>
   );
 };
