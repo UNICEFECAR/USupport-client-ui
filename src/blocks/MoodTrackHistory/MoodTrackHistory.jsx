@@ -136,6 +136,9 @@ export const MoodTrackHistory = () => {
         <Loading />
       ) : (
         <>
+          <div>
+            <p>{t("no_result")}</p>
+          </div>
           <div className="mood-track-history__content-container">
             <div className="mood-track-history__content-container__emoticons-container">
               <div
