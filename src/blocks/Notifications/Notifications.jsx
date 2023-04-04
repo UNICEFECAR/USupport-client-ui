@@ -222,7 +222,10 @@ export const Notifications = ({ openJoinConsultation }) => {
       notificationId,
       redirectTo = "/consultations"
     ) => {
-      markAllAsReadMutation.mutate([notificationId]), navigate(redirectTo);
+      markAllAsReadMutation.mutate([notificationId]);
+      if (redirectTo !== null) {
+        navigate(redirectTo);
+      }
     };
 
     switch (notification.type) {
@@ -422,6 +425,46 @@ export const Notifications = ({ openJoinConsultation }) => {
               handleNotificationClick(notification.notificationId)
             }
           />
+        );
+      case "consultation_started":
+        const canJoin = checkIsFiveMinutesBefore(notification.content.time);
+        return (
+          <Notification
+            date={notification.createdAt}
+            isRead={notification.isRead}
+            title="USupport"
+            text={t(notification.type, {
+              providerName:
+                notificationProviders[notification.content.providerDetailId],
+            })}
+            icon="calendar"
+            handleClick={() =>
+              handleNotificationClick(
+                notification.notificationId,
+                canJoin ? null : "/consultations"
+              )
+            }
+          >
+            {canJoin && (
+              <Button
+                classes="notifications__center-button"
+                size="md"
+                label={t("join")}
+                color="purple"
+                onClick={() => {
+                  const data =
+                    consultationsData?.length !== 0
+                      ? consultationsData
+                      : consultationsDataQuery?.data;
+                  const consultationToJoin = data.find(
+                    (x) =>
+                      x.consultationId === notification.content.consultationId
+                  );
+                  openJoinConsultation(consultationToJoin);
+                }}
+              />
+            )}
+          </Notification>
         );
       default:
         return null;
