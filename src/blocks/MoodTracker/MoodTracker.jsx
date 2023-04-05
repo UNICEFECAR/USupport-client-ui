@@ -41,18 +41,6 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
   const [comment, setComment] = useState("");
   const [emoticons, setEmoticons] = useState(emoticonsArray);
 
-  const onGetMoodTrackSuccess = (data) => {
-    if (data) {
-      handleEmoticonClick(data.mood);
-      setComment(data.comment);
-      setIsMoodTrackCompleted(true);
-    }
-  };
-  const useGetMoodTrackForTodayQuery = useGetMoodTrackForToday({
-    onSuccess: onGetMoodTrackSuccess,
-    enabled: !!isTmpUser,
-  });
-
   const hasSelectedMoodtracker = useCallback(() => {
     return emoticons.some((emoticon) => emoticon.isSelected);
   }, [emoticons]);
@@ -139,34 +127,29 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
           {t("mood_tracker")}
         </p>
       </div>
-      {!useGetMoodTrackForTodayQuery.isLoading || isTmpUser ? (
-        <>
-          <div className="mood-tracker__rating">{renderEmoticons()}</div>
-          {hasSelectedMoodtracker() && (
-            <div className="mood-tracker__additional-comment">
-              <Textarea
-                value={comment}
-                onChange={(value) => setComment(value)}
-                placeholder={t("additional_comment_placeholder")}
-                size="md"
+      <>
+        <div className="mood-tracker__rating">{renderEmoticons()}</div>
+        {hasSelectedMoodtracker() && (
+          <div className="mood-tracker__additional-comment">
+            <Textarea
+              value={comment}
+              onChange={(value) => setComment(value)}
+              placeholder={t("additional_comment_placeholder")}
+              size="md"
+              disabled={isMoodTrackCompleted}
+            />
+            <div className="mood-tracker__additional-comment__button-container">
+              <Button
+                label={t("submit_mood_track")}
+                size="lg"
+                onClick={handleSubmit}
+                loading={addMoodTrackMutation.isLoading}
                 disabled={isMoodTrackCompleted}
               />
-              {!isMoodTrackCompleted && (
-                <div className="mood-tracker__additional-comment__button-container">
-                  <Button
-                    label={t("submit_mood_track")}
-                    size="lg"
-                    onClick={handleSubmit}
-                    loading={addMoodTrackMutation.isLoading}
-                  />
-                </div>
-              )}
             </div>
-          )}
-        </>
-      ) : (
-        <Loading size="md" />
-      )}
+          </div>
+        )}
+      </>
     </Block>
   );
 };

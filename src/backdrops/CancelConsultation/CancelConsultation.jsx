@@ -102,7 +102,9 @@ export const CancelConsultation = ({
           ].join(" ")}
         >
           <p className="small-text">
-            {consultation.price && !consultation.campaignId
+            {consultation.campaignId
+              ? t("coupon")
+              : consultation.price
               ? `${consultation.price}${currencySymbol}`
               : t("free")}
           </p>

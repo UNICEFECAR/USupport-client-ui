@@ -42,7 +42,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Root />
-      {/* <ReactQueryDevtools initialOpen /> */}
+      <ReactQueryDevtools initialOpen />
       <ToastContainer />
     </QueryClientProvider>
   );

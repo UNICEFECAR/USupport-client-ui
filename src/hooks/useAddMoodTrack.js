@@ -10,7 +10,6 @@ export default function useAddMoodTrack(onSuccess, onError, onMutate) {
    */
   const addMoodTrack = async (data) => {
     const response = await clientSvc.addMoodTrack(data.mood, data.comment);
-    console.log(response.data);
     return response.data;
   };
 

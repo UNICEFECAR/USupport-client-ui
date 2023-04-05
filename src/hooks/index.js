@@ -33,6 +33,6 @@ export * from "./useGetSecurityCheckAnswersByConsultationId.js";
 export * from "./useUpdateSecurityCheckAnswersByConsultationId.js";
 export * from "./useSendInformationPortalSuggestion.js";
 export * from "./useGetMoodTrackForToday.js";
-export * from "./useGetMoodTrackForWeek.js";
+export * from "./useGetMoodTrackEntries.js";
 export * from "./useAddPlatformRating.js";
 export * from "./useGetProviderStatus.js";
