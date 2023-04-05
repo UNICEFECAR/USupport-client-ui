@@ -87,7 +87,7 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
       handleRegistrationModalOpen();
       return;
     }
-    // if (isMoodTrackCompleted) return;
+    if (isMoodTrackCompleted) return;
     const newEmoticons = [...emoticons];
     for (let i = 0; i < newEmoticons.length; i++) {
       const currentMood = newEmoticons[i];
@@ -144,6 +144,7 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
                 size="lg"
                 onClick={handleSubmit}
                 loading={addMoodTrackMutation.isLoading}
+                disabled={isMoodTrackCompleted}
               />
             </div>
           </div>
