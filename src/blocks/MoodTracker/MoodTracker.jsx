@@ -10,7 +10,7 @@ import {
   Loading,
   Textarea,
 } from "@USupport-components-library/src";
-import { useAddMoodTrack, useGetMoodTrackForToday } from "#hooks";
+import { useAddMoodTrack } from "#hooks";
 
 import { RootContext } from "#routes";
 
@@ -37,7 +37,6 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
     { value: "worried", label: t("worried"), isSelected: false },
   ];
 
-  const [isMoodTrackCompleted, setIsMoodTrackCompleted] = useState(false);
   const [comment, setComment] = useState("");
   const [emoticons, setEmoticons] = useState(emoticonsArray);
 
@@ -46,7 +45,8 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
   }, [emoticons]);
 
   const onSuccess = () => {
-    setIsMoodTrackCompleted(true);
+    setComment("");
+    setEmoticons(emoticonsArray);
     toast(t("add_mood_tracker_success"));
   };
   const onError = (error) => {
@@ -87,7 +87,6 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
       handleRegistrationModalOpen();
       return;
     }
-    if (isMoodTrackCompleted) return;
     const newEmoticons = [...emoticons];
     for (let i = 0; i < newEmoticons.length; i++) {
       const currentMood = newEmoticons[i];
@@ -136,7 +135,6 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
               onChange={(value) => setComment(value)}
               placeholder={t("additional_comment_placeholder")}
               size="md"
-              disabled={isMoodTrackCompleted}
             />
             <div className="mood-tracker__additional-comment__button-container">
               <Button
@@ -144,7 +142,6 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
                 size="lg"
                 onClick={handleSubmit}
                 loading={addMoodTrackMutation.isLoading}
-                disabled={isMoodTrackCompleted}
               />
             </div>
           </div>
