@@ -474,7 +474,12 @@ export const Notifications = ({ openJoinConsultation }) => {
   return (
     <Block classes="notifications">
       <div className="notifications__heading-container">
-        <Icon name="arrow-chevron-back" size="md" color="#20809E" />
+        <Icon
+          name="arrow-chevron-back"
+          size="md"
+          color="#20809E"
+          onClick={() => navigate(-1)}
+        />
         <h3 className="notifications__heading-container__heading">
           {t("heading")}
         </h3>
