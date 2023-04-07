@@ -38,7 +38,7 @@ export const GiveSuggestion = () => {
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const schema = Joi.object({
-    suggestion: Joi.string().min(5).label("Please enter your sugestion"),
+    suggestion: Joi.string().min(5).label(t("error")),
   });
 
   useEffect(() => {
