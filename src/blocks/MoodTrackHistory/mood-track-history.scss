@@ -47,6 +47,7 @@
       margin-top: $spacing_1_6;
       padding: $spacing_0_8 0;
       height: 28rem;
+      cursor: pointer;
 
       &__dates {
         display: flex;
@@ -69,6 +70,7 @@
     align-items: center;
     justify-content: center;
     min-height: 24rem;
+    padding-bottom: $spacing_3_2;
   }
 
   &__icon-container {

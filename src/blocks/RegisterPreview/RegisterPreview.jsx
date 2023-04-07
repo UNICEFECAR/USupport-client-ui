@@ -31,16 +31,16 @@ export const RegisterPreview = () => {
 
   const carouselItems = [
     {
-      heading: "What to expect from us",
-      text: "The first platform created to make your mental health a priority, providing highly personalized psychological care.",
+      heading: "heading_1",
+      text: "text_1",
     },
     {
-      heading: "What to expect from us",
-      text: "The first platform created to make your mental health a priority, providing highly personalized psychological care.",
+      heading: "heading_2",
+      text: "text_2",
     },
     {
-      heading: "What to expect from us",
-      text: "The first platform created to make your mental health a priority, providing highly personalized psychological care.",
+      heading: "heading_3",
+      text: "text_3",
     },
   ];
 
@@ -51,9 +51,9 @@ export const RegisterPreview = () => {
           key={index}
           className="register-preview__grid__content-item__carousel-item"
         >
-          <h3>{item.heading}</h3>
+          <h3>{t(item.heading)}</h3>
           <p className="register-preview__grid__content-item__carousel-item__text">
-            {item.text}
+            {t(item.text)}
           </p>
         </div>
       );
