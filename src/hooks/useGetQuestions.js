@@ -21,7 +21,7 @@ export function useGetQuestions(orderBy = "all", enabled) {
         likes: question.likes,
         providerData: question.providerData,
         providerDetailId: question.provider_detail_id,
-        question: question,
+        question: question.question,
         questionCreatedAt: question.question_created_at,
         questionId: question.question_id,
         tags: question.tags,
