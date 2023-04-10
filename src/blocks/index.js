@@ -39,4 +39,5 @@ export * from "./CheckoutForm";
 export * from "./PaymentHistory";
 export * from "./PaymentStatus";
 export * from "./MoodTrackHistory";
-export * from "./MascotHeaderQAA";
+export * from "./MascotHeaderMyQA";
+export * from "./MyQA";

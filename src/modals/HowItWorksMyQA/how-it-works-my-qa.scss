@@ -1,0 +1,14 @@
+@import "@USupport-components-library/styles";
+
+.how-it-works-my-qa {
+  &__slide {
+    > img {
+      width: 100%;
+      resize: contain;
+      margin: 0 auto;
+
+      @media screen and (min-width: screen-lg) {
+      }
+    }
+  }
+}

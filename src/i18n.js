@@ -41,7 +41,8 @@ import {
   PaymentHistory as PaymentHistoryBlock,
   PaymentStatus as PaymentStatusBlock,
   MoodTrackHistory,
-  MascotHeaderQAA,
+  MascotHeaderMyQA,
+  MyQA,
 } from "#blocks/locales.js";
 
 import {
@@ -101,6 +102,9 @@ import {
   SaveAccessCodeConfirmation,
   PaymentInformation,
   MoodTrackMoreInformation,
+  CreateQuestion,
+  HowItWorksMyQA,
+  QuestionDetails,
 } from "#modals/locales.js";
 
 const resources = {
@@ -145,7 +149,8 @@ const resources = {
     "payment-history-block": PaymentHistoryBlock.en,
     "payment-status-block": PaymentStatusBlock.en,
     "mood-track-history": MoodTrackHistory.en,
-    "mascot-header-qaa": MascotHeaderQAA.en,
+    "mascot-header-MyQA": MascotHeaderMyQA.en,
+    MyQA: MyQA.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -204,6 +209,9 @@ const resources = {
     "save-access-code-confirmation": SaveAccessCodeConfirmation.en,
     "payment-information": PaymentInformation.en,
     "mood-track-more-information": MoodTrackMoreInformation.en,
+    "create-question": CreateQuestion.en,
+    "how-it-works-my-qa": HowItWorksMyQA.en,
+    "question-details": QuestionDetails.en,
   },
   ru: {
     // Blocks
@@ -246,7 +254,8 @@ const resources = {
     "payment-history-block": PaymentHistoryBlock.ru,
     "payment-status-block": PaymentStatusBlock.ru,
     "mood-track-history": MoodTrackHistory.ru,
-    "mascot-header-qaa": MascotHeaderQAA.ru,
+    "mascot-header-MyQA": MascotHeaderMyQA.ru,
+    MyQA: MyQA.ru,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.ru,
@@ -305,6 +314,9 @@ const resources = {
     "save-access-code-confirmation": SaveAccessCodeConfirmation.ru,
     "payment-information": PaymentInformation.ru,
     "mood-track-more-information": MoodTrackMoreInformation.ru,
+    "create-question": CreateQuestion.ru,
+    "how-it-works-my-qa": HowItWorksMyQA.ru,
+    "question-details": QuestionDetails.ru,
   },
   kk: {
     // Blocks
@@ -347,7 +359,8 @@ const resources = {
     "payment-history-block": PaymentHistoryBlock.kk,
     "payment-status-block": PaymentStatusBlock.kk,
     "mood-track-history": MoodTrackHistory.kk,
-    "mascot-header-qaa": MascotHeaderQAA.kk,
+    "mascot-header-MyQA": MascotHeaderMyQA.kk,
+    MyQA: MyQA.kk,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.kk,
@@ -406,6 +419,9 @@ const resources = {
     "save-access-code-confirmation": SaveAccessCodeConfirmation.kk,
     "payment-information": PaymentInformation.kk,
     "mood-track-more-information": MoodTrackMoreInformation.kk,
+    "create-question": CreateQuestion.kk,
+    "how-it-works-my-qa": HowItWorksMyQA.kk,
+    "question-details": QuestionDetails.kk,
   },
 };
 

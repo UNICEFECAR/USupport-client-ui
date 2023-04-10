@@ -41,7 +41,7 @@ import {
   Checkout,
   PaymentStatus,
   MoodTrackHistory,
-  QAA,
+  MyQA,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData, useCheckHasUnreadNotifications } from "#hooks";
@@ -337,10 +337,10 @@ export default function Root() {
             }
           />
           <Route
-            path="/qaa"
+            path="/my-qa"
             element={
               <ProtectedRoute>
-                <QAA />
+                <MyQA />
               </ProtectedRoute>
             }
           />

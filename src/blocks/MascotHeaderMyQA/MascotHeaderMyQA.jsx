@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { Grid, GridItem, Button } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import "./mascot-header-qaa.scss";
+import "./mascot-header-my-qa.scss";
 
 import {
   mascotHappyPurple,
@@ -13,22 +13,27 @@ import {
 } from "@USupport-components-library/assets";
 
 /**
- * MascotHeaderQAA
+ * MascotHeaderMyQA
  *
- * MascotHeader used in Q&A page
+ * MascotHeader used in MyQA page
  *
  * @return {jsx}
  */
-export const MascotHeaderQAA = ({ classes, handleSeeHowItWorksClick }) => {
-  const { t } = useTranslation("mascot-header-qaa");
+export const MascotHeaderMyQA = ({ classes, handleSeeHowItWorksClick }) => {
+  const { t } = useTranslation("mascot-header-MyQA");
   const { width } = useWindowDimensions();
 
   return (
-    <div className={["mascot-header-qaa", classNames(classes)].join(" ")}>
-      <Grid classes="mascot-header-qaa__banner">
-        <GridItem xs={1} md={2} lg={2} classes="mascot-header-qaa__mascot-item">
+    <div className={["mascot-header-my-qa", classNames(classes)].join(" ")}>
+      <Grid classes="mascot-header-my-qa__banner">
+        <GridItem
+          xs={1}
+          md={2}
+          lg={2}
+          classes="mascot-header-my-qa__mascot-item"
+        >
           <img
-            className="mascot-header-qaa__mascot-item__mascot"
+            className="mascot-header-my-qa__mascot-item__mascot"
             src={width > 768 ? mascotHappyPurpleFull : mascotHappyPurple}
           />
         </GridItem>
@@ -36,7 +41,7 @@ export const MascotHeaderQAA = ({ classes, handleSeeHowItWorksClick }) => {
           xs={3}
           md={6}
           lg={10}
-          classes="mascot-header-qaa__headings-item"
+          classes="mascot-header-my-qa__headings-item"
         >
           <Grid>
             <GridItem xs={4} md={6} lg={8}>
@@ -51,7 +56,7 @@ export const MascotHeaderQAA = ({ classes, handleSeeHowItWorksClick }) => {
               <Button
                 label={"See how it works"}
                 type="secondary"
-                classes="mascot-header-qaa__headings-item__button"
+                classes="mascot-header-my-qa__headings-item__button"
                 onClick={() => handleSeeHowItWorksClick()}
               />
             </GridItem>
