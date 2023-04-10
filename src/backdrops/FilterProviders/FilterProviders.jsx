@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
@@ -75,57 +75,6 @@ export const FilterProviders = ({ isOpen, onClose }) => {
     { label: t("female"), value: "female", isSelected: false },
     { label: t("unspecified"), value: "unspecified", isSelected: false },
   ]);
-
-  // const localStorageLanguage = localStorage.getItem("language");
-
-  // useEffect(() => {
-  //   setProviderTypes([
-  //     {
-  //       label: t("provider_psychologist"),
-  //       value: "psychologist",
-  //       isSelected: providerTypes
-  //         ? providerTypes.find((x) => x.value === "psychologist").isSelected
-  //         : false,
-  //     },
-  //     {
-  //       label: t("provider_psychotherapist"),
-  //       value: "psychotherapist",
-  //       isSelected: providerTypes
-  //         ? providerTypes.find((x) => x.value === "psychotherapist").isSelected
-  //         : false,
-  //     },
-  //     {
-  //       label: t("provider_psychiatrist"),
-  //       value: "psychiatrist",
-  //       isSelected: providerTypes
-  //         ? providerTypes.find((x) => x.value === "psychiatrist").isSelected
-  //         : false,
-  //     },
-  //   ]);
-  //   setProviderSex([
-  //     {
-  //       label: t("male"),
-  //       value: "male",
-  //       isSelected: providerSex
-  //         ? providerSex.find((x) => x.value === "male").isSelected
-  //         : false,
-  //     },
-  //     {
-  //       label: t("female"),
-  //       value: "female",
-  //       isSelected: providerSex
-  //         ? providerSex.find((x) => x.value === "female").isSelected
-  //         : false,
-  //     },
-  //     {
-  //       label: t("unspecified"),
-  //       value: "unspecified",
-  //       isSelected: providerSex
-  //         ? providerSex.find((x) => x.value === "unspecified").isSelected
-  //         : false,
-  //     },
-  //   ]);
-  // }, [localStorageLanguage]);
 
   const handleSelect = (field, value) => {
     const dataCopy = { ...data };
