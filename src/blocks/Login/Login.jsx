@@ -35,7 +35,6 @@ export const Login = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const login = async () => {
     const usersCountry = getCountryFromTimezone();
@@ -72,9 +71,6 @@ export const Login = () => {
       const { message: errorMessage } = useError(error);
       setErrors({ submit: errorMessage });
     },
-    onSettled: () => {
-      setIsSubmitting(false);
-    },
   });
 
   const handleChange = (field, value) => {
@@ -87,7 +83,6 @@ export const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     loginMutation.mutate();
   };
 
@@ -134,7 +129,8 @@ export const Login = () => {
               size="lg"
               classes="login-button"
               onClick={handleLogin}
-              disabled={!data.email || !data.password || isSubmitting}
+              disabled={!data.email || !data.password}
+              loading={loginMutation.isLoading}
               isSubmit
             />
             <Button

@@ -9,6 +9,10 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+
+    > h4 {
+      text-align: left;
+    }
   }
 
   &__additional-comment {
@@ -25,20 +29,23 @@
   & .mood-tracker-button {
     color: $color_secondary_9749fa;
     cursor: pointer;
+    padding: $spacing_1_6 0;
   }
 
   &__rating {
     display: flex;
     flex-direction: row;
-    width: 34.3rem;
     justify-content: space-between;
     max-width: 35rem;
     margin: 0 auto;
     margin-top: $spacing_2_4;
+    width: 100%;
+    max-width: 42rem;
 
     &__emoticon-container {
-      width: 6.5rem;
+      width: 6rem;
       height: 9rem;
+      cursor: pointer;
     }
 
     & .not-selected {

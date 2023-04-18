@@ -58,7 +58,10 @@ export const CancelConsultation = ({
     cancelConsultationMutation.mutate({
       consultationId: consultation.consultationId,
       price: consultation.price,
-      shouldRefund: isConsultationLessThan24HoursBefore ? false : true,
+      shouldRefund:
+        isConsultationLessThan24HoursBefore || consultation.campaignId
+          ? false
+          : true,
     });
   };
 
@@ -94,11 +97,14 @@ export const CancelConsultation = ({
         <div
           className={[
             "cancel-consultation__price-badge",
-            !consultation.price && "cancel-consultation__price-badge--free",
+            (!consultation.price || consultation.campaignId) &&
+              "cancel-consultation__price-badge--free",
           ].join(" ")}
         >
           <p className="small-text">
-            {consultation.price
+            {consultation.campaignId
+              ? t("coupon")
+              : consultation.price
               ? `${consultation.price}${currencySymbol}`
               : t("free")}
           </p>

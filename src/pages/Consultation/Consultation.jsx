@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import io from "socket.io-client";
 
@@ -20,6 +20,7 @@ import {
   useGetSecurityCheckAnswersByConsultationId,
 } from "#hooks";
 import { Page, VideoRoom, SafetyFeedback } from "#blocks";
+import { RootContext } from "#routes";
 
 import "./consultation.scss";
 
@@ -35,9 +36,12 @@ const SOCKET_IO_URL = `${import.meta.env.VITE_SOCKET_IO_URL}`;
 export const Consultation = () => {
   const { t } = useTranslation("consultation-page");
   const { width } = useWindowDimensions();
-  const navigate = useNavigate();
   const location = useLocation();
   const backdropMessagesContainerRef = useRef();
+
+  const { isTmpUser } = useContext(RootContext);
+
+  if (isTmpUser) return <Navigate to="/dashboard" />;
 
   const consultation = location.state?.consultation;
   const joinWithVideo = location.state?.videoOn;

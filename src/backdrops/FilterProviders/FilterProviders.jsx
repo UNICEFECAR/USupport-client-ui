@@ -36,7 +36,7 @@ export const FilterProviders = ({ isOpen, onClose }) => {
     });
     return languages;
   };
-  const languagesQuery = useQuery(["languages"], fetchLanguages, {
+  const languagesQuery = useQuery(["all-languages"], fetchLanguages, {
     retry: false,
   });
 

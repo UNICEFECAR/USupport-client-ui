@@ -2,6 +2,12 @@
 @import "@USupport-components-library/styles";
 
 .page__consultation {
+  padding-top: 0;
+
+  @media screen and (min-width: $screen-md) {
+    margin-top: 9.6rem;
+  }
+
   &__container {
     min-height: 100vh;
     position: relative;

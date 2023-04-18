@@ -17,7 +17,7 @@ import "./select-provider.scss";
  *
  * @return {jsx}
  */
-export const SelectProvider = ({ providers }) => {
+export const SelectProvider = ({ providers, activeCoupon }) => {
   const { t } = useTranslation("select-provider");
   const navigate = useNavigate();
 
@@ -45,10 +45,10 @@ export const SelectProvider = ({ providers }) => {
             patronym={provider.patronym}
             surname={provider.surname}
             specializations={provider.specializations.map((x) => t(x))}
-            price={provider.consultationPrice}
+            price={activeCoupon ? null : provider.consultationPrice}
             onClick={() => handleProviderClick(provider)}
             image={provider.image}
-            freeLabel={t("free")}
+            freeLabel={activeCoupon ? t("coupon") : t("free")}
           />
         </GridItem>
       );

@@ -1,4 +1,33 @@
-@import '@USupport-components-library/styles';
+@import "@USupport-components-library/styles";
 
-.require-data-agreement{
+.require-data-agreement {
+  &__content-cntainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  }
+
+  &__mascot-image {
+    width: 16rem;
+    margin-bottom: $spacing_0_8;
+    margin-top: 16;
+
+    @media screen and (min-width: $screen-md) {
+      width: 20rem;
+      margin-bottom: $spacing_4_0;
+    }
+  }
+
+  &__terms-text {
+    align-self: flex-start;
+    margin-top: $spacing_1_2;
+
+    & a {
+      color: $color_primary_20809e;
+      font-weight: $font_semi_bold;
+      cursor: pointer;
+    }
+  }
 }

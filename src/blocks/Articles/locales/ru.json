@@ -1,6 +1,9 @@
 {
-  "heading": "Information Portal",
-  "no_results": "No Results Found",
-  "could_not_load_content": "There are no results for the current selected country and language.",
-  "all": "Все"
+  "heading": "Информационный портал",
+  "no_results": "Ничего не нашлось",
+  "could_not_load_content": "Для выбранной страны и языка ничего не нашлось.",
+  "all": "Все", 
+  "read_more_button": "Узнать больше",
+  "min_read":	"минут на прочтение",
+  "by": "By {{creator}}"
 }

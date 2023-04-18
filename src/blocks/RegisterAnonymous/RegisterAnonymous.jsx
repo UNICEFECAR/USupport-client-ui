@@ -50,7 +50,6 @@ export const RegisterAnonymous = () => {
     isPrivacyAndTermsSelected: false,
   });
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
 
   // On page load send a request to the server
@@ -104,20 +103,13 @@ export const RegisterAnonymous = () => {
     onError: (error) => {
       const { message: errorMessage } = useError(error);
       setErrors({ submit: errorMessage });
-      setIsSubmitting(false);
-    },
-    onSettled: () => {
-      setIsSubmitting(false);
     },
   });
 
   const handleRegister = async () => {
     setIsConfirmationModalOpen(false);
-    if (!isSubmitting) {
-      setIsSubmitting(true);
-      if ((await validate(data, schema, setErrors)) === null) {
-        registerMutation.mutate(data);
-      }
+    if ((await validate(data, schema, setErrors)) === null) {
+      registerMutation.mutate(data);
     }
   };
 
@@ -204,7 +196,8 @@ export const RegisterAnonymous = () => {
                 label={t("register_button_label")}
                 size="lg"
                 onClick={() => setIsConfirmationModalOpen(true)}
-                disabled={!canContinue || isSubmitting}
+                disabled={!canContinue}
+                loading={registerMutation.isLoading}
               />
 
               <Button

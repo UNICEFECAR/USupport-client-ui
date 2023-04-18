@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -12,6 +12,7 @@ import {
 import { Page, ProviderOverview as ProviderOverviewBlock } from "#blocks";
 import { SelectConsultation, ConfirmConsultation } from "#backdrops";
 import { RequireDataAgreement } from "#modals";
+import { RootContext } from "#routes";
 
 import "./provider-overview.scss";
 
@@ -24,6 +25,7 @@ import "./provider-overview.scss";
  */
 export const ProviderOverview = () => {
   const { t } = useTranslation("provider-overview-page");
+  const { setActiveCoupon } = useContext(RootContext);
 
   const navigate = useNavigate();
 
@@ -37,8 +39,8 @@ export const ProviderOverview = () => {
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
-  const [selectedSlot, setSelectedSlot] = useState();
   const consultationPrice = useRef();
+  const selectedSlot = useRef();
 
   // Modal state variables
   const [isScheduleBackdropOpen, setIsScheduleBackdropOpen] = useState(false);
@@ -64,8 +66,17 @@ export const ProviderOverview = () => {
   const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const onBlockSlotSuccess = (consultationId) => {
-    if (consultationPrice.current && consultationPrice.current > 0) {
-      navigate(`/checkout`, { state: { consultationId: consultationId } });
+    if (
+      consultationPrice.current &&
+      consultationPrice.current > 0 &&
+      !selectedSlot.current?.campaign_id
+    ) {
+      navigate(`/checkout`, {
+        state: {
+          consultationId: consultationId,
+          campaignId: selectedSlot.current?.campaign_id,
+        },
+      });
     } else {
       scheduleConsultationMutation.mutate(consultationId);
     }
@@ -82,6 +93,7 @@ export const ProviderOverview = () => {
     closeScheduleBackdrop();
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);
+    setActiveCoupon(null);
   };
   const onScheduleConsultationError = (error) => {
     setBlockSlotError(error);
@@ -94,7 +106,7 @@ export const ProviderOverview = () => {
 
   const handleBlockSlot = (slot, price) => {
     setIsBlockSlotSubmitting(true);
-    setSelectedSlot(slot);
+    selectedSlot.current = slot;
     consultationPrice.current = price;
     blockSlotMutation.mutate({
       slot,
@@ -126,15 +138,21 @@ export const ProviderOverview = () => {
         isCtaDisabled={isBlockSlotSubmitting}
         errorMessage={blockSlotError}
       />
-      {selectedSlot && (
+      {selectedSlot.current && (
         <ConfirmConsultation
           isOpen={isConfirmBackdropOpen}
           onClose={closeConfirmConsultationBackdrop}
           consultation={{
-            startDate: new Date(selectedSlot),
+            startDate: new Date(
+              selectedSlot.current?.time || selectedSlot.current
+            ),
             endDate: new Date(
-              new Date(selectedSlot).setHours(
-                new Date(selectedSlot).getHours() + 1
+              new Date(
+                selectedSlot.current?.time || selectedSlot.current
+              ).setHours(
+                new Date(
+                  selectedSlot.current?.time || selectedSlot.current
+                ).getHours() + 1
               )
             ),
           }}

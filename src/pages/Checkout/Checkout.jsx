@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Navigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { useLocation, Navigate, useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 import { Page, CheckoutForm as CheckoutFormBlock } from "#blocks";
 
-import { paymentsSvc } from "@USupport-components-library/services";
+import { paymentsSvc, clientSvc } from "@USupport-components-library/services";
 
 import "./checkout.scss";
 
@@ -19,7 +20,9 @@ import "./checkout.scss";
  * @returns {JSX.Element}
  */
 export const Checkout = () => {
+  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("checkout-page");
+  const navigate = useNavigate();
   const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
   const stripePromise = loadStripe(stripePublicKey, {
     locale: i18n.language ? "kk" : "ru",
@@ -34,10 +37,15 @@ export const Checkout = () => {
 
   const consultationId = location.state?.consultationId;
   const entryTime = location.state?.entryTime;
+  const campaignId = location.state?.campaignId;
+
   if (!consultationId) return <Navigate to="/dashboard" />;
 
   const fetchPaymentIntent = async () => {
-    const res = await paymentsSvc.createPaymentIntent(consultationId);
+    const res = await paymentsSvc.createPaymentIntent(
+      consultationId,
+      campaignId
+    );
 
     return res?.data;
   };
@@ -92,12 +100,18 @@ export const Checkout = () => {
     appearance,
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+    clientSvc.unblockSlot(consultationId);
+    queryClient.invalidateQueries({ queryKey: ["provider-data"] });
+  };
+
   return (
     <Page
       classes="page__checkout"
       heading={t("heading")}
       subheading={t("subheading")}
-      showGoBackArrow={false}
+      handleGoBack={handleGoBack}
     >
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
@@ -106,6 +120,7 @@ export const Checkout = () => {
             currency={currency}
             consultationId={consultationId}
             consultationCreationTime={consultationCreationTime}
+            clientSecret={clientSecret}
           />
         </Elements>
       )}

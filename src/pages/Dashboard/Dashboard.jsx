@@ -202,6 +202,7 @@ export const Dashboard = () => {
     blockSlotMutation.mutate({
       slot,
       providerId: selectedConsultationProviderId,
+      rescheduleCampaignSlot: slot?.campaign_id ? true : false,
     });
   };
   const handleScheduleConsultation = () => {
@@ -234,7 +235,7 @@ export const Dashboard = () => {
           name={clientName}
           t={t}
         />
-        <MoodTracker />
+        <MoodTracker isTmpUser={isTmpUser} />
         <ArticlesDashboard />
         <ConsultationsDashboard
           openJoinConsultation={openJoinConsultation}
@@ -275,16 +276,18 @@ export const Dashboard = () => {
           providerId={selectedConsultationProviderId}
           isCtaDisabled={isBlockSlotSubmitting}
           errorMessage={blockSlotError}
+          edit
+          campaignId={selectedConsultation?.campaignId}
         />
         {selectedSlot && (
           <ConfirmConsultation
             isOpen={isConfirmBackdropOpen}
             onClose={closeConfirmConsultationBackdrop}
             consultation={{
-              startDate: new Date(selectedSlot),
+              startDate: new Date(selectedSlot?.time || selectedSlot),
               endDate: new Date(
-                new Date(selectedSlot).setHours(
-                  new Date(selectedSlot).getHours() + 1
+                new Date(selectedSlot?.time || selectedSlot).setHours(
+                  new Date(selectedSlot?.time || selectedSlot).getHours() + 1
                 )
               ),
             }}

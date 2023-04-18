@@ -19,7 +19,7 @@
   }
 
   &__categories-item {
-    overflow-x: scroll;
+    overflow-x: auto;
     width: 35rem;
     padding-top: $spacing_1_0;
 
@@ -54,5 +54,6 @@
   .view-all-button {
     color: $color_secondary_9749fa;
     cursor: pointer;
+    padding: $spacing_1_6 0;
   }
 }

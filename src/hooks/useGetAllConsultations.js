@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { clientSvc } from "@USupport-components-library/services";
 
-export default function useGetAllConsultations() {
+export default function useGetAllConsultations(enabled = true) {
   const getAllConsultations = async () => {
     const response = await clientSvc.getAllConsultations();
     const data = response.data;
@@ -17,6 +17,9 @@ export default function useGetAllConsultations() {
         timestamp: new Date(consultation.time).getTime(),
         status: consultation.status,
         price: consultation.price,
+        campaignId: consultation.campaign_id,
+        sponsorName: consultation.sponsor_name,
+        sponsorImage: consultation.sponsor_image,
       });
     }
     return formattedData;
@@ -24,7 +27,8 @@ export default function useGetAllConsultations() {
 
   const getAllConsultationsQuery = useQuery(
     ["all-consultations"],
-    getAllConsultations
+    getAllConsultations,
+    { enabled: !!enabled }
   );
 
   return getAllConsultationsQuery;

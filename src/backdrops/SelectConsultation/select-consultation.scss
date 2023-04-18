@@ -18,6 +18,10 @@
 
     & .header {
       padding-bottom: $spacing_1_8;
+
+      &__day-of-week {
+        cursor: pointer;
+      }
     }
 
     &__slots {
@@ -29,6 +33,7 @@
 
     & .radio-button-selector-group {
       padding: 0 $spacing_1_2;
+      padding-bottom: 25rem;
     }
   }
 }

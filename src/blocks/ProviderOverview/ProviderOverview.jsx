@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -9,6 +9,7 @@ import {
 } from "@USupport-components-library/src";
 
 import { useGetProviderDataById } from "#hooks";
+import { RootContext } from "#routes";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
@@ -23,8 +24,12 @@ import "./provider-overview.scss";
  */
 export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
   const { t } = useTranslation("provider-overview");
+  const { activeCoupon } = useContext(RootContext);
 
-  const { data: provider } = useGetProviderDataById(providerId);
+  const { data: provider } = useGetProviderDataById(
+    providerId,
+    activeCoupon?.campaignId
+  );
 
   const image = AMAZON_S3_BUCKET + "/" + (provider?.image || "default");
 

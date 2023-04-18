@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
 import { Root } from "#routes";
+import { FIVE_MINUTES } from "@USupport-components-library/utils";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,7 +16,9 @@ import "./App.scss";
 
 // Create a react-query client
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+  defaultOptions: {
+    queries: { refetcgInterval: FIVE_MINUTES, refetchOnWindowFocus: false },
+  },
 });
 
 function App() {

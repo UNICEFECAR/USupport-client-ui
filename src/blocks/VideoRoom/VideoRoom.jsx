@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Participant from "./Participant";
 import useRoom from "./utils/useRoom";
 
-import { Controls } from "@USupport-components-library/src";
+import { Controls, Icon } from "@USupport-components-library/src";
 
 import "./video-room.scss";
 
@@ -17,7 +17,8 @@ export function VideoRoom({
   token,
   t,
 }) {
-  const roomName = "1";
+  const roomName = consultation.consultationId;
+
   const {
     room,
     connectRoom,
@@ -44,40 +45,48 @@ export function VideoRoom({
     }
   }, [connectRoom, disconnectRoom, room, roomName, token]);
 
-  const hasRemoteParticipants = remoteParticipants.length > 0;
+  const hasRemoteParticipants = remoteParticipants?.length > 0;
 
   const handleLeaveConsultation = () => {
     disconnectRoom();
     leaveConsultation();
   };
+  useEffect(() => {
+    console.log(`%c${remoteParticipants}`, `color: red`, "REMOTE PARTICIPANTS");
+  }, [remoteParticipants]);
 
-  if (room)
-    return (
-      <div className="video-room">
-        <Controls
-          consultation={consultation}
-          toggleCamera={toggleCamera}
-          toggleMicrophone={toggleMicrophone}
-          toggleChat={toggleChat}
-          leaveConsultation={handleLeaveConsultation}
-          handleSendMessage={handleSendMessage}
-          renderIn="client"
-          isCameraOn={isCameraOn}
-          isMicrophoneOn={isMicrophoneOn}
-          t={t}
-        />
+  return (
+    <div className="video-room">
+      <Controls
+        consultation={consultation}
+        toggleCamera={toggleCamera}
+        toggleMicrophone={toggleMicrophone}
+        toggleChat={toggleChat}
+        leaveConsultation={handleLeaveConsultation}
+        handleSendMessage={handleSendMessage}
+        renderIn="provider"
+        isCameraOn={isCameraOn}
+        isMicrophoneOn={isMicrophoneOn}
+        t={t}
+      />
 
-        <div className="video-room__participants">
-          <div className="video-room__local-participant">
-            <Participant participant={localParticipant} />
+      <div className="video-room__participants">
+        <Participant type={"local"} participant={localParticipant} />
+        {!hasRemoteParticipants ? (
+          <div className="remote-video-off video-off">
+            <Icon name="stop-camera" size="lg" color="#ffffff" />
           </div>
-          <div className="video-room__remote-participant">
-            {remoteParticipants.map((p, index) => (
-              <Participant key={"participant" + index} participant={p} />
-            ))}
-          </div>
+        ) : null}
+        <div className="video-room__remote-participant">
+          {remoteParticipants.map((p, index) => (
+            <Participant
+              type={"remote"}
+              key={"participant" + index}
+              participant={p}
+            />
+          ))}
         </div>
       </div>
-    );
-  return null;
+    </div>
+  );
 }

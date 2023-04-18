@@ -12,7 +12,7 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 
-import { useGetChatData } from "#hooks";
+import { useGetChatData, useGetProviderStatus } from "#hooks";
 
 import "./activity-history.scss";
 
@@ -34,6 +34,8 @@ export const ActivityHistory = ({
   const { t } = useTranslation("activity-history");
 
   const chatQueryData = useGetChatData(consultation?.chatId);
+  const { data } = useGetProviderStatus(providerId);
+  const providerStatus = data?.status;
 
   const renderAllMessages = () => {
     return chatQueryData.data?.messages.map((message, index) => {
@@ -98,13 +100,15 @@ export const ActivityHistory = ({
           <div className="activity-history__main__messages-container">
             {renderAllMessages()}
           </div>
-          <div className="activity-history__main__button-container">
-            <Button
-              label={t("button_label")}
-              size="lg"
-              onClick={handleSchedule}
-            />
-          </div>
+          {!consultation.campaignId && providerStatus === "active" && (
+            <div className="activity-history__main__button-container">
+              <Button
+                label={t("button_label")}
+                size="lg"
+                onClick={handleSchedule}
+              />
+            </div>
+          )}
         </div>
       </Block>
     </>

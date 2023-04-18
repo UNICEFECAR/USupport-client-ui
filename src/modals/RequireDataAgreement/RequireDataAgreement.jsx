@@ -6,7 +6,11 @@ import { toast } from "react-toastify";
 import { Modal, Toggle } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
 
+import { mascotHappyBlue } from "@USupport-components-library/assets";
+
 import "./require-data-agreement.scss";
+
+const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
 
 /**
  * RequireDataAgreement
@@ -47,7 +51,6 @@ export const RequireDataAgreement = ({
     <Modal
       classes="require-data-agreement"
       heading={t("heading")}
-      text={t("text")}
       isOpen={isOpen}
       closeModal={onClose}
       ctaLabel={t("give_permission")}
@@ -55,6 +58,20 @@ export const RequireDataAgreement = ({
       secondaryCtaLabel={t("cancel")}
       secondaryCtaHandleClick={onClose}
       secondaryCtaType="secondary"
-    />
+    >
+      <div className="require-data-agreement__content-cntainer">
+        <img
+          src={mascotHappyBlue}
+          className="require-data-agreement__mascot-image"
+        />
+        <p className="text">{t("text")}</p>
+        <p className="text require-data-agreement__terms-text">
+          {t("text2")}
+          <a href={`${WEBSITE_URL}/terms-of-use`} target="_blank">
+            {t("terms")}
+          </a>
+        </p>
+      </div>
+    </Modal>
   );
 };

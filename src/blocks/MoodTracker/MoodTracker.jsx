@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import classNames from "classnames";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,9 @@ import {
   Loading,
   Textarea,
 } from "@USupport-components-library/src";
-import { useAddMoodTrack, useGetMoodTrackForToday } from "#hooks";
+import { useAddMoodTrack } from "#hooks";
+
+import { RootContext } from "#routes";
 
 import "./mood-tracker.scss";
 
@@ -21,37 +23,30 @@ import "./mood-tracker.scss";
  *
  * @return {jsx}
  */
-export const MoodTracker = ({ classes }) => {
+export const MoodTracker = ({ classes, isTmpUser }) => {
+  const { handleRegistrationModalOpen } = useContext(RootContext);
+
   const navigate = useNavigate();
   const { t } = useTranslation("mood-tracker");
 
-  const [isMoodTrackCompleted, setIsMoodTrackCompleted] = useState(false);
-  const [comment, setComment] = useState("");
-  const [emoticons, setEmoticons] = useState([
+  const emoticonsArray = [
     { value: "happy", label: t("happy"), isSelected: false },
     { value: "good", label: t("good"), isSelected: false },
     { value: "sad", label: t("sad"), isSelected: false },
     { value: "depressed", label: t("depressed"), isSelected: false },
     { value: "worried", label: t("worried"), isSelected: false },
-  ]);
+  ];
 
-  const onGetMoodTrackSuccess = (data) => {
-    if (data) {
-      handleEmoticonClick(data.mood);
-      setComment(data.comment);
-      setIsMoodTrackCompleted(true);
-    }
-  };
-  const useGetMoodTrackForTodayQuery = useGetMoodTrackForToday({
-    onSuccess: onGetMoodTrackSuccess,
-  });
+  const [comment, setComment] = useState("");
+  const [emoticons, setEmoticons] = useState(emoticonsArray);
 
   const hasSelectedMoodtracker = useCallback(() => {
     return emoticons.some((emoticon) => emoticon.isSelected);
   }, [emoticons]);
 
   const onSuccess = () => {
-    setIsMoodTrackCompleted(true);
+    setComment("");
+    setEmoticons(emoticonsArray);
     toast(t("add_mood_tracker_success"));
   };
   const onError = (error) => {
@@ -78,7 +73,7 @@ export const MoodTracker = ({ classes }) => {
               " "
             )}
           >
-            {emoticon.label}
+            {t(emoticon.value)}
           </p>
         </div>
       );
@@ -88,7 +83,10 @@ export const MoodTracker = ({ classes }) => {
   const addMoodTrackMutation = useAddMoodTrack(onSuccess, onError);
 
   const handleEmoticonClick = (value) => {
-    if (isMoodTrackCompleted) return;
+    if (isTmpUser) {
+      handleRegistrationModalOpen();
+      return;
+    }
     const newEmoticons = [...emoticons];
     for (let i = 0; i < newEmoticons.length; i++) {
       const currentMood = newEmoticons[i];
@@ -109,7 +107,13 @@ export const MoodTracker = ({ classes }) => {
     });
   };
 
-  const handleMoodtrackClick = () => navigate("/mood-tracker");
+  const handleMoodtrackClick = () => {
+    if (isTmpUser) {
+      handleRegistrationModalOpen();
+    } else {
+      navigate("/mood-tracker");
+    }
+  };
 
   return (
     <Block classes={["mood-tracker", classNames(classes)].join(" ")}>
@@ -122,34 +126,27 @@ export const MoodTracker = ({ classes }) => {
           {t("mood_tracker")}
         </p>
       </div>
-      {!useGetMoodTrackForTodayQuery.isLoading ? (
-        <>
-          <div className="mood-tracker__rating">{renderEmoticons()}</div>
-          {hasSelectedMoodtracker() && (
-            <div className="mood-tracker__additional-comment">
-              <Textarea
-                value={comment}
-                onChange={(value) => setComment(value)}
-                placeholder={t("additional_comment_placeholder")}
-                size="md"
-                disabled={isMoodTrackCompleted}
+      <>
+        <div className="mood-tracker__rating">{renderEmoticons()}</div>
+        {hasSelectedMoodtracker() && (
+          <div className="mood-tracker__additional-comment">
+            <Textarea
+              value={comment}
+              onChange={(value) => setComment(value)}
+              placeholder={t("additional_comment_placeholder")}
+              size="md"
+            />
+            <div className="mood-tracker__additional-comment__button-container">
+              <Button
+                label={t("submit_mood_track")}
+                size="lg"
+                onClick={handleSubmit}
+                loading={addMoodTrackMutation.isLoading}
               />
-              {!isMoodTrackCompleted && (
-                <div className="mood-tracker__additional-comment__button-container">
-                  <Button
-                    label={t("submit_mood_track")}
-                    size="lg"
-                    onClick={handleSubmit}
-                    disabled={addMoodTrackMutation.isLoading}
-                  />
-                </div>
-              )}
             </div>
-          )}
-        </>
-      ) : (
-        <Loading size="md" />
-      )}
+          </div>
+        )}
+      </>
     </Block>
   );
 };

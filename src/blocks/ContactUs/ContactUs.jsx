@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import {
@@ -14,7 +14,10 @@ import {
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
 
+import { RootContext } from "#routes";
+
 import { useSendIssueEmail, useGetClientData } from "#hooks";
+
 import Joi from "joi";
 
 import "./contact-us.scss";
@@ -35,12 +38,13 @@ const initialData = {
 export const ContactUs = () => {
   const { t } = useTranslation("contact-us-block");
 
+  const { isTmpUser } = useContext(RootContext);
+
   const initialIssues = [
     { value: "information", label: t("contact_reason_1") },
-    { value: "technical-problem", label: t("contact_reason_2") },
-    { value: "join-as-provider", label: t("contact_reason_3") },
-    { value: "partnerships", label: t("contact_reason_4") },
-    { value: "other", label: t("contact_reason_5") },
+    { value: "services-information", label: t("contact_reason_2") },
+    { value: "technical-problem", label: t("contact_reason_3") },
+    { value: "other", label: t("contact_reason_4") },
   ];
 
   const navigate = useNavigate();
@@ -48,15 +52,13 @@ export const ContactUs = () => {
   const [issues, setIssues] = useState([...initialIssues]);
   const [errors, setErrors] = useState({});
   const [canSubmit, setCanSubmit] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
-  const [clientDataQuery] = useGetClientData();
+  const [clientDataQuery] = useGetClientData(!isTmpUser);
 
   useEffect(() => {
     if (clientDataQuery.data) {
       const { email } = clientDataQuery.data;
-      console.log(email);
       setData({
         ...data,
         email,
@@ -111,12 +113,10 @@ export const ContactUs = () => {
 
   const onSendEmailSuccess = () => {
     setIsSuccessModalOpen(true);
-    setIsSubmitting(false);
     setData({ ...initialData });
   };
   const onSendEmailError = (error) => {
     setErrors({ submit: error });
-    setIsSubmitting(false);
   };
   const sendIssueEmailMutation = useSendIssueEmail(
     onSendEmailSuccess,
@@ -124,31 +124,26 @@ export const ContactUs = () => {
   );
 
   const handleSubmit = async () => {
-    if (!isSubmitting) {
-      setIsSubmitting(true);
-      const dataToValidate = {
-        issue: data.issue,
-        message: data.message,
+    const dataToValidate = {
+      issue: data.issue,
+      message: data.message,
+      email: data.email,
+    };
+    if ((await validate(dataToValidate, schema, setErrors)) === null) {
+      const payload = {
+        subjectValue: data.issue,
+        subjectLabel: t("contact_form"),
+        title: issues.find((x) => x.value === data.issue)?.label,
+        text: data.message,
         email: data.email,
       };
-      if ((await validate(dataToValidate, schema, setErrors)) === null) {
-        const payload = {
-          subjectValue: data.issue,
-          subjectLabel: "Technical issue",
-          title: issues.find((x) => x.value === data.issue)?.label,
-          text: data.message,
-          email: data.email,
-        };
-        sendIssueEmailMutation.mutate(payload);
-      } else {
-        setIsSubmitting(false);
-      }
+      sendIssueEmailMutation.mutate(payload);
     }
   };
 
   return (
     <Block classes="contact-us">
-      {clientDataQuery.isLoading && !clientDataQuery.data ? (
+      {clientDataQuery.isLoading && !clientDataQuery.data && !isTmpUser ? (
         <Loading size="lg" />
       ) : (
         <Grid classes="contact-us__grid" xs={4} md={8} lg={12}>
@@ -163,7 +158,7 @@ export const ContactUs = () => {
               setSelected={handleIssueChange}
             />
           </GridItem>
-          {clientDataQuery.data.accessToken && (
+          {clientDataQuery.data?.accessToken && (
             <GridItem xs={4} md={8} lg={12}>
               <Input
                 value={data.email}
@@ -197,7 +192,8 @@ export const ContactUs = () => {
               type="primary"
               color="green"
               onClick={handleSubmit}
-              disabled={!canSubmit || isSubmitting}
+              disabled={!canSubmit}
+              isLoading={sendIssueEmailMutation.isLoading}
             />
           </GridItem>
         </Grid>

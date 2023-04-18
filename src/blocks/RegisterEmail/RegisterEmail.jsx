@@ -51,7 +51,6 @@ export const RegisterEmail = () => {
     isPrivacyAndTermsSelected: false,
   });
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (field, value) => {
     let newData = { ...data };
@@ -103,17 +102,11 @@ export const RegisterEmail = () => {
       const { message: errorMessage } = useError(error);
       setErrors({ submit: errorMessage });
     },
-    onSettled: () => {
-      setIsSubmitting(false);
-    },
   });
 
   const handleRegister = async () => {
-    setIsSubmitting(true);
     if ((await validate(data, schema, setErrors)) === null) {
       registerMutation.mutate();
-    } else {
-      setIsSubmitting(false);
     }
   };
 
@@ -168,7 +161,8 @@ export const RegisterEmail = () => {
             type="primary"
             color="green"
             classes="register-email__grid__register-button"
-            disabled={!data.isPrivacyAndTermsSelected || isSubmitting}
+            disabled={!data.isPrivacyAndTermsSelected}
+            loading={registerMutation.isLoading}
           />
           <Button
             label={t("login_button_label")}

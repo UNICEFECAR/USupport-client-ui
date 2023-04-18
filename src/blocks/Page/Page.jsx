@@ -34,8 +34,6 @@ const kazakhstanCountry = {
   iconName: "KZ",
 };
 
-const PageContext = React.createContext();
-
 /**
  * Page
  *
@@ -54,6 +52,7 @@ export const Page = ({
   subheading,
   headingButton,
   showHeadingButtonInline = false,
+  showHeadingButtonBelow = false,
   classes,
   children,
 }) => {
@@ -102,7 +101,7 @@ export const Page = ({
         localStorage.setItem("currency_symbol", countryObject.currencySymbol);
 
         setSelectedCountry(countryObject);
-      } else if (!localStorageCountry) {
+      } else if (!localStorageCountry || localStorageCountry === "undefined") {
         if (validCountry?.alpha2 === x.alpha2) {
           hasSetDefaultCountry = true;
 
@@ -245,7 +244,10 @@ export const Page = ({
           <>
             {headingButton && (
               <div className="page__mobile-button-container">
-                {width < 768 && !showHeadingButtonInline && headingButton
+                {width < 768 &&
+                !showHeadingButtonInline &&
+                headingButton &&
+                !showHeadingButtonBelow
                   ? headingButton
                   : null}
               </div>
@@ -261,23 +263,22 @@ export const Page = ({
                 />
               )}
               {heading && <h3 className="page__header-heading">{heading}</h3>}
-              {headingButton && (width >= 768 || showHeadingButtonInline) && (
-                <div className="page__header-button-container">
-                  {headingButton}
-                </div>
-              )}
+              {headingButton &&
+                (width >= 768 || showHeadingButtonInline) &&
+                !showHeadingButtonBelow && (
+                  <div className="page__header-button-container">
+                    {headingButton}
+                  </div>
+                )}
             </div>
           </>
         )}
         <p className="page__subheading-text text">{subheading}</p>
-        <PageContext.Provider
-          value={{
-            isTmpUser,
-            handleRegistrationModalOpen,
-          }}
-        >
-          {children}
-        </PageContext.Provider>
+        {showHeadingButtonBelow && headingButton && (
+          <div className="page__header-button-container">{headingButton}</div>
+        )}
+
+        {children}
       </div>
       {showEmergencyButton && (
         <CircleIconButton
@@ -304,8 +305,6 @@ export const Page = ({
     </>
   );
 };
-
-export { PageContext };
 
 Page.propTypes = {
   /**

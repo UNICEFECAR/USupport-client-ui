@@ -11,5 +11,7 @@
   "privacy_policy_button_label": "Privacy Policy",
   "FAQ_button_label": "FAQ",
   "mood_tracker_button_label": "Mood tracker",
-  "payments_history_button_label": "Payment History"
+  "payments_history_button_label": "Payment History",
+  "terms_of_use": "Terms of use",
+  "cookie_policy": "Cookie policy"
 }
