@@ -29,7 +29,7 @@ export const MyQA = ({
   setTabs,
   isUserQuestionsEnabled,
 }) => {
-  const { t } = useTranslation("MyQA");
+  const { t } = useTranslation("my-qa");
 
   const handleTabChange = (index) => {
     const tabsCopy = [...tabs];

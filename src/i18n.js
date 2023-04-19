@@ -150,7 +150,7 @@ const resources = {
     "payment-status-block": PaymentStatusBlock.en,
     "mood-track-history": MoodTrackHistory.en,
     "mascot-header-MyQA": MascotHeaderMyQA.en,
-    MyQA: MyQA.en,
+    "my-qa": MyQA.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -255,7 +255,7 @@ const resources = {
     "payment-status-block": PaymentStatusBlock.ru,
     "mood-track-history": MoodTrackHistory.ru,
     "mascot-header-MyQA": MascotHeaderMyQA.ru,
-    MyQA: MyQA.ru,
+    "my-qa": MyQA.ru,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.ru,
@@ -360,7 +360,7 @@ const resources = {
     "payment-status-block": PaymentStatusBlock.kk,
     "mood-track-history": MoodTrackHistory.kk,
     "mascot-header-MyQA": MascotHeaderMyQA.kk,
-    MyQA: MyQA.kk,
+    "my-qa": MyQA.kk,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.kk,
