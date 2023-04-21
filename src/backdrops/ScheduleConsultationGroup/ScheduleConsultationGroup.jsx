@@ -7,8 +7,6 @@ import { RequireDataAgreement } from "#modals";
 
 import { useBlockSlot, useScheduleConsultation } from "#hooks";
 
-import "./schedule-consultation-group.scss";
-
 /**
  * ScheduleConsultationGroup
  *
