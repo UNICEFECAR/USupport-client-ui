@@ -35,4 +35,24 @@
   &__answer {
     margin-top: $spacing_2_4;
   }
+
+  &__search-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media screen and (min-width: $screen_md) {
+      flex-direction: row;
+      justify-content: space-between;
+      padding-bottom: $spacing_1_6;
+    }
+
+    &__button {
+      margin-top: $spacing_1_6;
+
+      @media screen and (min-width: $screen_md) {
+        margin: 0;
+      }
+    }
+  }
 }

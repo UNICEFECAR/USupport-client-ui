@@ -9,5 +9,7 @@
     "all": "All",
     "most_popular": "Most Popular",
     "newest": "Newest",
-    "your_questions": "Your Questions"
+    "your_questions": "Your Questions",
+    "search_placeholder": "Search",
+    "filter": "Filter tags"
 }

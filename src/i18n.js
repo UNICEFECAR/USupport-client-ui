@@ -94,6 +94,7 @@ import {
   DeleteProfilePicture,
   JoinConsultation,
   SelectAvatar,
+  FilterQuestions,
 } from "#backdrops/locales.js";
 
 import {
@@ -202,6 +203,7 @@ const resources = {
     "delete-profile-picture": DeleteProfilePicture.en,
     "join-consultation": JoinConsultation.en,
     "select-avatar": SelectAvatar.en,
+    "filter-questions": FilterQuestions.en,
 
     //Modals
     "require-registration": RequireRegistration.en,
@@ -307,6 +309,7 @@ const resources = {
     "delete-profile-picture": DeleteProfilePicture.ru,
     "join-consultation": JoinConsultation.ru,
     "select-avatar": SelectAvatar.ru,
+    "filter-questions": FilterQuestions.ru,
 
     //Modals
     "require-registration": RequireRegistration.ru,
@@ -412,6 +415,7 @@ const resources = {
     "delete-profile-picture": DeleteProfilePicture.kk,
     "join-consultation": JoinConsultation.kk,
     "select-avatar": SelectAvatar.kk,
+    "filter-questions": FilterQuestions.kk,
 
     //Modals
     "require-registration": RequireRegistration.kk,

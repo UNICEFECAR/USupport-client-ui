@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
-import { ScheduleConsultationGroup } from "#backdrops";
+import { ScheduleConsultationGroup, FilterQuestions } from "#backdrops";
 import {
   useGetClientQuestions,
   useGetQuestions,
@@ -33,6 +33,7 @@ export const MyQA = () => {
   const [isConfirmBackdropOpen, setIsConfirmBackdropOpen] = useState(false);
   const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
     useState(false);
+  const [isFilterQuestionsOpen, setIsFilterQuestionsOpen] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState();
   const [questions, setQuestions] = useState([]);
   const [tabs, setTabs] = useState([
@@ -42,6 +43,7 @@ export const MyQA = () => {
     { label: "Your questions", value: "your_questions", isSelected: false },
   ]);
   const [providerId, setProviderId] = useState(null);
+  const [filterTag, setFilterTag] = useState("");
 
   const clientData = useGetClientData()[1];
 
@@ -153,6 +155,8 @@ export const MyQA = () => {
         tabs={tabs}
         setTabs={setTabs}
         isUserQuestionsEnabled={isUserQuestionsEnabled}
+        filterTag={filterTag}
+        handleFilterTags={() => setIsFilterQuestionsOpen(true)}
       />
       {/* <Block>
         <Answer />
@@ -182,6 +186,11 @@ export const MyQA = () => {
         isRequireDataAgreementOpen={isRequireDataAgreementOpen}
         setIsRequireDataAgreementOpen={setIsRequireDataAgreementOpen}
         providerId={providerId}
+      />
+      <FilterQuestions
+        isOpen={isFilterQuestionsOpen}
+        onClose={() => setIsFilterQuestionsOpen(false)}
+        setTag={setFilterTag}
       />
     </Page>
   );
