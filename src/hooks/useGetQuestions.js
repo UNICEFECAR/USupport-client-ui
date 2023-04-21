@@ -19,7 +19,10 @@ export function useGetQuestions(orderBy = "all", enabled) {
         isDisliked: question.isDisliked,
         isLiked: question.isLiked,
         likes: question.likes,
-        providerData: question.providerData,
+        providerData: {
+          providerId: question.providerData.provider_detail_id,
+          ...question.providerData,
+        },
         providerDetailId: question.provider_detail_id,
         question: question.question,
         questionCreatedAt: question.question_created_at,

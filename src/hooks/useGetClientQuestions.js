@@ -15,7 +15,10 @@ export function useGetClientQuestions(enabled) {
         answerTitle: question.answer_title,
         dislikes: question.dislikes,
         likes: question.likes,
-        providerData: question.providerData,
+        providerData: {
+          providerId: question.providerData.provider_detail_id,
+          ...question.providerData,
+        },
         providerDetailId: question.provider_detail_id,
         question: question.question,
         tags: tags,

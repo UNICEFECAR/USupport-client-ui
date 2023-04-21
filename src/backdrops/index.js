@@ -9,3 +9,4 @@ export * from "./ChangePassword";
 export * from "./DeleteAccount";
 export * from "./DeleteProfilePicture";
 export * from "./SelectAvatar";
+export * from './ScheduleConsultationGroup';

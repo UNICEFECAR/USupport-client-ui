@@ -10,7 +10,6 @@ export default function useAddVoteQuestion(onSuccess, onError, onMutate) {
    */
 
   const addVoteQuestion = async ({ answerId, vote }) => {
-    console.log(answerId);
     const response = await clientSvc.addQuestionVote(answerId, vote);
     return response.data;
   };

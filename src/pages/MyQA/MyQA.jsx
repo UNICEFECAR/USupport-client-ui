@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
+import { ScheduleConsultationGroup } from "#backdrops";
 import {
   useGetClientQuestions,
   useGetQuestions,
@@ -27,6 +28,11 @@ export const MyQA = () => {
   const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
   const [isQuestionDetailsOpen, setIsQuestionDetailsOpen] = useState(false);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
+  const [isSelectConsultationOpen, setIsSelectConsultationOpen] =
+    useState(false);
+  const [isConfirmBackdropOpen, setIsConfirmBackdropOpen] = useState(false);
+  const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
+    useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState();
   const [questions, setQuestions] = useState([]);
   const [tabs, setTabs] = useState([
@@ -35,6 +41,7 @@ export const MyQA = () => {
     { label: "New", value: "newest", isSelected: false },
     { label: "Your questions", value: "your_questions", isSelected: false },
   ]);
+  const [providerId, setProviderId] = useState(null);
 
   const clientData = useGetClientData()[1];
 
@@ -115,11 +122,12 @@ export const MyQA = () => {
     addQuestionMutation.mutate({ vote, answerId });
   };
 
-  const handleScheduleConsultationClick = () => {
+  const handleScheduleConsultationClick = (question) => {
+    setProviderId(question.providerData.providerId);
     if (!clientData.dataProcessing) {
       openRequireDataAgreement();
     } else {
-      navigate("/select-provider");
+      setIsSelectConsultationOpen(true);
     }
   };
 
@@ -127,6 +135,8 @@ export const MyQA = () => {
     setSelectedQuestion(question);
     setIsQuestionDetailsOpen(true);
   };
+
+  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
 
   return (
     <Page classes="page__my-qa" showGoBackArrow={false}>
@@ -163,6 +173,15 @@ export const MyQA = () => {
       <HowItWorksMyQA
         isOpen={isHowItWorksOpen}
         onClose={() => setIsHowItWorksOpen(false)}
+      />
+      <ScheduleConsultationGroup
+        isSelectConsultationOpen={isSelectConsultationOpen}
+        setIsSelectConsultationOpen={setIsSelectConsultationOpen}
+        isConfirmBackdropOpen={isConfirmBackdropOpen}
+        setIsConfirmBackdropOpen={setIsConfirmBackdropOpen}
+        isRequireDataAgreementOpen={isRequireDataAgreementOpen}
+        setIsRequireDataAgreementOpen={setIsRequireDataAgreementOpen}
+        providerId={providerId}
       />
     </Page>
   );
