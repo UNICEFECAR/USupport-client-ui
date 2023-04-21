@@ -8,12 +8,12 @@ export default function useAddQuestion(onSuccess, onError, onMutate) {
    * @param {Object} data - containing the "mood" and "comment" fields
    * @returns
    */
-  const addMoodTrack = async (question) => {
+  const addQuestion = async (question) => {
     const response = await clientSvc.addQuestion(question);
     return response.data;
   };
 
-  const addMoodTrackMutation = useMutation(addMoodTrack, {
+  const addQuestionMutation = useMutation(addQuestion, {
     onMutate: onMutate,
     onSuccess: onSuccess,
     onError: (error, variables, rollback) => {
@@ -22,7 +22,7 @@ export default function useAddQuestion(onSuccess, onError, onMutate) {
     },
   });
 
-  return addMoodTrackMutation;
+  return addQuestionMutation;
 }
 
 export { useAddQuestion };

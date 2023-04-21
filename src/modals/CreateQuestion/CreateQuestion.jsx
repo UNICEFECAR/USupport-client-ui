@@ -24,17 +24,19 @@ export const CreateQuestion = ({ isOpen, onClose }) => {
   const [errors, setErrors] = useState("");
 
   const onSuccess = () => {
-    toast("Your question has been sent!");
+    toast(t("success_toast"));
     onClose();
   };
-  const onError = () => {
-    toast("Error");
+  const onError = (errorMessage) => {
+    const errorsCopy = { ...errors };
+    errorsCopy.query = errorMessage;
+    setErrors(errorsCopy);
   };
 
   const addQuestionMutation = useAddQuestion(onSuccess, onError);
 
   const schema = Joi.object({
-    question: Joi.string().min(20).label(t("Error message")),
+    question: Joi.string().min(10).label(t("text_area_error_label")),
   });
 
   const handleSendQuestion = async () => {
@@ -62,6 +64,7 @@ export const CreateQuestion = ({ isOpen, onClose }) => {
       secondaryCtaLabel={t("cancel")}
       secondaryCtaType="secondary"
       secondaryCtaHandleClick={onClose}
+      errorMessage={errors.query}
     >
       <Textarea
         label={t("text_area_label")}
