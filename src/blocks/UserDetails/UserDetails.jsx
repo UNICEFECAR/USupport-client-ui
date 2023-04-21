@@ -308,19 +308,25 @@ export const UserDetails = ({
               options={sexOptions}
               selected={clientData.sex}
               setSelected={(option) => handleChange("sex", option)}
-              label={t("sex") + "*"}
+              label={`${t("sex")}${
+                clientDataQuery?.data?.accessToken ? "" : "*"
+              }`}
             />
             <DropdownWithLabel
               options={getYearsOptions()}
               selected={clientData.yearOfBirth}
               setSelected={(option) => handleChange("yearOfBirth", option)}
-              label={t("year_of_birth") + "*"}
+              label={`${t("year_of_birth")}${
+                clientDataQuery?.data?.accessToken ? "" : "*"
+              }`}
             />
             <DropdownWithLabel
               options={urbanRuralOptions}
               selected={clientData.urbanRural}
               setSelected={(option) => handleChange("urbanRural", option)}
-              label={t("living_place") + "*"}
+              label={`${t("living_place")}${
+                clientDataQuery?.data?.accessToken ? "" : "*"
+              }`}
             />
             {errors.submit ? <ErrorMessage message={errors.submit} /> : null}
             <Button
