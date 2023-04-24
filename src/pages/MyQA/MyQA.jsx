@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
 
 import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
@@ -43,8 +42,6 @@ export const MyQA = () => {
   const [filterTag, setFilterTag] = useState("");
 
   const clientData = useGetClientData()[1];
-
-  const queryClient = useQueryClient();
 
   const isUserQuestionsEnabled =
     tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
@@ -90,10 +87,6 @@ export const MyQA = () => {
   };
 
   const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
-
-  const onSuccess = () => {
-    queryClient.invalidateQueries({ queryKey: ["getQuestions"] });
-  };
 
   const onError = (error, rollback) => {
     toast(error, { type: "error" });
@@ -144,11 +137,7 @@ export const MyQA = () => {
     };
   };
 
-  const addVoteQuestionMutation = useAddVoteQuestion(
-    onSuccess,
-    onError,
-    onMutate
-  );
+  const addVoteQuestionMutation = useAddVoteQuestion(onError, onMutate);
 
   return (
     <Page classes="page__my-qa" showGoBackArrow={false}>
