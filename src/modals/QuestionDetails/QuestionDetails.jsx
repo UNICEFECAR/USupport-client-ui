@@ -100,7 +100,10 @@ export const QuestionDetails = ({
         </div>
         <div
           className="question-details__schedule-button"
-          onClick={() => handleScheduleClick()}
+          onClick={() => {
+            onClose();
+            handleScheduleClick(question);
+          }}
         >
           <Icon name="calendar" color="#20809e" />
           <p className="text">{t("schedule_consultation")}</p>

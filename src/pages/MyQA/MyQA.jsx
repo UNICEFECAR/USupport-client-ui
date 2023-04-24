@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -23,8 +22,6 @@ import "./my-qa.scss";
  * @returns {JSX.Element}
  */
 export const MyQA = () => {
-  const navigate = useNavigate();
-
   const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
   const [isQuestionDetailsOpen, setIsQuestionDetailsOpen] = useState(false);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
@@ -48,6 +45,51 @@ export const MyQA = () => {
   const clientData = useGetClientData()[1];
 
   const queryClient = useQueryClient();
+
+  const isUserQuestionsEnabled =
+    tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
+      .length > 0;
+
+  const userQuestions = useGetClientQuestions(isUserQuestionsEnabled);
+  const allQuestions = useGetQuestions(
+    tabs.find((tab) => tab.isSelected).value,
+    !isUserQuestionsEnabled
+  );
+
+  useEffect(() => {
+    if (userQuestions.data || allQuestions.data) {
+      if (isUserQuestionsEnabled) {
+        setQuestions(userQuestions.data);
+      } else setQuestions(allQuestions.data);
+    }
+  }, [tabs, userQuestions.data, allQuestions.data]);
+
+  // useEffect(() => {
+  //   if (selectedQuestion)
+  //     setSelectedQuestion(
+  //       questions.find((question) => question.answerId === question.answerId)
+  //     );
+  // }, [questions]);
+
+  const handleLike = (vote, answerId) => {
+    addVoteQuestionMutation.mutate({ vote, answerId });
+  };
+
+  const handleScheduleConsultationClick = (question) => {
+    setProviderId(question.providerData.providerId);
+    if (!clientData.dataProcessing) {
+      openRequireDataAgreement();
+    } else {
+      setIsSelectConsultationOpen(true);
+    }
+  };
+
+  const handleSetIsQuestionDetailsOpen = (question) => {
+    setSelectedQuestion(question);
+    setIsQuestionDetailsOpen(true);
+  };
+
+  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
 
   const onSuccess = () => {
     queryClient.invalidateQueries({ queryKey: ["getQuestions"] });
@@ -107,51 +149,6 @@ export const MyQA = () => {
     onError,
     onMutate
   );
-
-  const isUserQuestionsEnabled =
-    tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
-      .length > 0;
-
-  const userQuestions = useGetClientQuestions(isUserQuestionsEnabled);
-  const allQuestions = useGetQuestions(
-    tabs.find((tab) => tab.isSelected).value,
-    !isUserQuestionsEnabled
-  );
-
-  useEffect(() => {
-    if (userQuestions.data || allQuestions.data) {
-      if (isUserQuestionsEnabled) {
-        setQuestions(userQuestions.data);
-      } else setQuestions(allQuestions.data);
-    }
-  }, [tabs, userQuestions.data, allQuestions.data]);
-
-  useEffect(() => {
-    if (selectedQuestion)
-      setSelectedQuestion(
-        questions.find((question) => question.answerId === question.answerId)
-      );
-  }, [questions]);
-
-  const handleLike = (vote, answerId) => {
-    addVoteQuestionMutation.mutate({ vote, answerId });
-  };
-
-  const handleScheduleConsultationClick = (question) => {
-    setProviderId(question.providerData.providerId);
-    if (!clientData.dataProcessing) {
-      openRequireDataAgreement();
-    } else {
-      setIsSelectConsultationOpen(true);
-    }
-  };
-
-  const handleSetIsQuestionDetailsOpen = (question) => {
-    setSelectedQuestion(question);
-    setIsQuestionDetailsOpen(true);
-  };
-
-  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
 
   return (
     <Page classes="page__my-qa" showGoBackArrow={false}>

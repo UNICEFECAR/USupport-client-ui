@@ -5,12 +5,18 @@
 
   &__categories-item {
     overflow-x: auto;
-    width: 35rem;
     padding-top: $spacing_1_0;
 
     @media screen and (min-width: $screen-md) {
       width: auto;
       padding-top: $spacing_2_0;
+    }
+  }
+
+  &__button-item {
+    place-self: center;
+    @media screen and (min-width: $screen-md) {
+      justify-self: end;
     }
   }
 

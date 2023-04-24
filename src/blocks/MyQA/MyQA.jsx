@@ -11,6 +11,7 @@ import {
   InputSearch,
   ButtonWithIcon,
 } from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import "./my-qa.scss";
 
@@ -34,6 +35,7 @@ export const MyQA = ({
   filterTag,
 }) => {
   const { t } = useTranslation("my-qa");
+  const { width } = useWindowDimensions();
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -58,13 +60,13 @@ export const MyQA = ({
           return null;
         }
       }
+      const value = searchValue.toLowerCase();
 
-      if (searchValue) {
+      if (value) {
         if (
-          !question.answerTitle
-            .toLowerCase()
-            .includes(searchValue.toLowerCase()) &&
-          !question.answerText.toLowerCase().includes(searchValue.toLowerCase())
+          !question.answerTitle.toLowerCase().includes(value) &&
+          !question.answerText.toLowerCase().includes(value) &&
+          !question.tags.find((x) => x.toLowerCase().includes(value))
         )
           return null;
       }
@@ -112,7 +114,7 @@ export const MyQA = ({
                 classes="my-qa__tabs-grid__filter-button"
               />
             </GridItem>
-            <GridItem md={5} lg={7} classes="my-qa__categories-item">
+            <GridItem md={6} lg={7} classes="my-qa__categories-item">
               <Tabs
                 options={tabs.map((tab) => {
                   return {
@@ -124,10 +126,10 @@ export const MyQA = ({
                 handleSelect={handleTabChange}
               />
             </GridItem>
-            <GridItem md={3} lg={5}>
+            <GridItem md={2} lg={5} classes="my-qa__button-item">
               <Button
                 label={t("ask_button_label")}
-                size="lg"
+                size={width < 980 && width > 768 ? "md" : "lg"}
                 classes="my-qa__ask-question-button"
                 onClick={handleAskAnonymous}
               />
