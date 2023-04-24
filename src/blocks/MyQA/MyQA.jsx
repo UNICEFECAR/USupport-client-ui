@@ -53,7 +53,7 @@ export const MyQA = ({
   };
 
   const renderQuestions = () => {
-    return questions.map((question, index) => {
+    const filteredQuestions = questions.filter((question) => {
       if (filterTag) {
         const tags = question.tags;
         if (!tags.includes(filterTag)) {
@@ -64,13 +64,23 @@ export const MyQA = ({
 
       if (value) {
         if (
-          !question.answerTitle.toLowerCase().includes(value) &&
-          !question.answerText.toLowerCase().includes(value) &&
-          !question.tags.find((x) => x.toLowerCase().includes(value))
+          !question.answerTitle?.toLowerCase().includes(value) &&
+          !question.answerText?.toLowerCase().includes(value) &&
+          !question.tags?.find((x) => x.toLowerCase().includes(value))
         )
           return null;
       }
+      return true;
+    });
 
+    if (!filteredQuestions.length)
+      return (
+        <GridItem md={8} lg={12}>
+          <p>{t("no_questions_found")}</p>
+        </GridItem>
+      );
+
+    return filteredQuestions.map((question, index) => {
       return (
         <Answer
           question={question}
@@ -137,8 +147,12 @@ export const MyQA = ({
           </Grid>
         </GridItem>
         <GridItem xs={4} md={8} lg={12}>
-          {questions?.length > 0 && (
+          {questions?.length > 0 ? (
             <div className="my-qa__answers-container">{renderQuestions()}</div>
+          ) : (
+            <p className="paragraph my-qa__answers-container__no-questions">
+              {t("no_questions_found")}
+            </p>
           )}
         </GridItem>
       </Grid>
