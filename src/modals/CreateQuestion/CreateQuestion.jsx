@@ -61,6 +61,7 @@ export const CreateQuestion = ({ isOpen, onClose }) => {
       closeModal={onClose}
       ctaLabel={t("send_your_question")}
       ctaHandleClick={handleSendQuestion}
+      isCtaLoading={addQuestionMutation.isLoading}
       secondaryCtaLabel={t("cancel")}
       secondaryCtaType="secondary"
       secondaryCtaHandleClick={onClose}
