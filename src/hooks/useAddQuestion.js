@@ -14,8 +14,8 @@ export default function useAddQuestion(onSuccess, onError, onMutate) {
   };
 
   const addQuestionMutation = useMutation(addQuestion, {
-    onMutate: onMutate,
-    onSuccess: onSuccess,
+    onMutate,
+    onSuccess,
     onError: (error, variables, rollback) => {
       const { message: errorMessage } = useError(error);
       onError(errorMessage, variables, rollback);

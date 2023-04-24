@@ -18,7 +18,7 @@ export function useGetQuestionsTags(onSuccess) {
     ["getQuestionsTags"],
     getQuestionsTags,
     {
-      onSuccess: onSuccess,
+      onSuccess,
     }
   );
 
