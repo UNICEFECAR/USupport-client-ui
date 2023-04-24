@@ -51,41 +51,16 @@ export const MyQA = () => {
 
   const onSuccess = () => {
     queryClient.invalidateQueries({ queryKey: ["getQuestions"] });
-    toast("Successful");
   };
 
-  const onError = () => {
-    toast(`Error`);
+  const onError = (error, rollback) => {
+    toast(error, { type: "error" });
+    rollback();
   };
 
-  const addQuestionMutation = useAddVoteQuestion(onSuccess, onError);
+  const onMutate = ({ vote, answerId }) => {
+    const rollbackCopy = JSON.parse(JSON.stringify([...questions]));
 
-  const isUserQuestionsEnabled =
-    tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
-      .length > 0;
-
-  const userQuestions = useGetClientQuestions(isUserQuestionsEnabled);
-  const allQuestions = useGetQuestions(
-    tabs.find((tab) => tab.isSelected).value,
-    !isUserQuestionsEnabled
-  );
-
-  useEffect(() => {
-    if (userQuestions.data || allQuestions.data) {
-      if (isUserQuestionsEnabled) {
-        setQuestions(userQuestions.data);
-      } else setQuestions(allQuestions.data);
-    }
-  }, [tabs, userQuestions.data, allQuestions.data]);
-
-  useEffect(() => {
-    if (selectedQuestion)
-      setSelectedQuestion(
-        questions.find((question) => question.answerId === question.answerId)
-      );
-  }, [questions]);
-
-  const handleLike = (vote, answerId) => {
     const questionsCopy = [...questions];
     const isLike = vote === "like" || vote === "remove-like";
 
@@ -121,7 +96,45 @@ export const MyQA = () => {
     }
 
     setQuestions(questionsCopy);
-    addQuestionMutation.mutate({ vote, answerId });
+
+    return () => {
+      setQuestions(rollbackCopy);
+    };
+  };
+
+  const addVoteQuestionMutation = useAddVoteQuestion(
+    onSuccess,
+    onError,
+    onMutate
+  );
+
+  const isUserQuestionsEnabled =
+    tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
+      .length > 0;
+
+  const userQuestions = useGetClientQuestions(isUserQuestionsEnabled);
+  const allQuestions = useGetQuestions(
+    tabs.find((tab) => tab.isSelected).value,
+    !isUserQuestionsEnabled
+  );
+
+  useEffect(() => {
+    if (userQuestions.data || allQuestions.data) {
+      if (isUserQuestionsEnabled) {
+        setQuestions(userQuestions.data);
+      } else setQuestions(allQuestions.data);
+    }
+  }, [tabs, userQuestions.data, allQuestions.data]);
+
+  useEffect(() => {
+    if (selectedQuestion)
+      setSelectedQuestion(
+        questions.find((question) => question.answerId === question.answerId)
+      );
+  }, [questions]);
+
+  const handleLike = (vote, answerId) => {
+    addVoteQuestionMutation.mutate({ vote, answerId });
   };
 
   const handleScheduleConsultationClick = (question) => {

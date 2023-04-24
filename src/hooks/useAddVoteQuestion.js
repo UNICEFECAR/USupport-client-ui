@@ -10,7 +10,7 @@ export default function useAddVoteQuestion(onSuccess, onError, onMutate) {
    */
 
   const addVoteQuestion = async ({ answerId, vote }) => {
-    const response = await clientSvc.addQuestionVote(answerId, vote);
+    const response = await clientSvc.addQuestionVote(answerId, null);
     return response.data;
   };
 
@@ -19,7 +19,7 @@ export default function useAddVoteQuestion(onSuccess, onError, onMutate) {
     onSuccess: onSuccess,
     onError: (error, variables, rollback) => {
       const { message: errorMessage } = useError(error);
-      onError(errorMessage, variables, rollback);
+      onError(errorMessage, rollback);
     },
   });
 
