@@ -66,6 +66,7 @@ export const QuestionDetails = ({
           answerId={question.answerId}
           isLiked={question.isLiked}
           isDisliked={question.isDisliked}
+          renderInClient
         />
       </div>
       {question.tags ? (

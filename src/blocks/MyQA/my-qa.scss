@@ -10,7 +10,6 @@
 
     @media screen and (min-width: $screen-md) {
       width: auto;
-      margin: auto;
       padding-top: $spacing_2_0;
     }
   }
@@ -18,11 +17,17 @@
   &__tabs-grid {
     align-items: center;
     justify-items: stretch;
+
+    &__filter-button {
+      margin-top: $spacing_1_6;
+      float: right;
+    }
   }
 
   &__ask-question-button {
+    margin-top: $spacing_1_6;
     max-width: 10rem;
-    margin: 0 auto;
+    float: right;
   }
 
   &__answers-container {

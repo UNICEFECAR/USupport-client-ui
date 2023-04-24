@@ -88,13 +88,19 @@ export const MyQA = ({
     <Block classes="my-qa">
       <Grid>
         <GridItem xs={4} md={8} lg={12}>
-          <GridItem md={8} lg={12}>
-            <div className="my-qa__search-input-container">
+          <Grid classes="my-qa__tabs-grid">
+            <GridItem md={5} lg={7}>
               <InputSearch
                 placeholder={t("search_placeholder")}
                 value={searchValue}
                 onChange={(value) => setSearchValue(value.toLowerCase())}
               />
+            </GridItem>
+            <GridItem
+              md={3}
+              lg={5}
+              classes="my-qa__tabs-grid__filter-button-item"
+            >
               <ButtonWithIcon
                 label={t("filter")}
                 iconName="filter"
@@ -102,12 +108,10 @@ export const MyQA = ({
                 iconSize="sm"
                 color="purple"
                 size="xs"
-                classes="customers-qa__search-input-container__button"
                 onClick={handleFilterTags}
+                classes="my-qa__tabs-grid__filter-button"
               />
-            </div>
-          </GridItem>
-          <Grid classes="my-qa__tabs-grid">
+            </GridItem>
             <GridItem md={5} lg={7} classes="my-qa__categories-item">
               <Tabs
                 options={tabs.map((tab) => {
