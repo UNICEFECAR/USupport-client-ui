@@ -38,3 +38,5 @@ export * as CheckoutForm from "./CheckoutForm/locales.js";
 export * as PaymentHistory from "./PaymentHistory/locales.js";
 export * as PaymentStatus from "./PaymentStatus/locales.js";
 export * as MoodTrackHistory from "./MoodTrackHistory/locales.js";
+export * as MascotHeaderMyQA from "./MascotHeaderMyQA/locales.js";
+export * as MyQA from "./MyQA/locales.js";

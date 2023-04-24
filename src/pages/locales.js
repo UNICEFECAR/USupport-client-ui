@@ -34,3 +34,4 @@ export * as PaymentHistory from "./PaymentHistory/locales.js";
 export * as Checkout from "./Checkout/locales.js";
 export * as PaymentStatus from "./PaymentStatus/locales.js";
 export * as MoodTrackHistory from "./MoodTrackHistory/locales.js";
+export * as MyQA from "./MyQA/locales.js";

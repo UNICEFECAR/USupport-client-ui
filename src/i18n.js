@@ -41,6 +41,8 @@ import {
   PaymentHistory as PaymentHistoryBlock,
   PaymentStatus as PaymentStatusBlock,
   MoodTrackHistory,
+  MascotHeaderMyQA,
+  MyQA,
 } from "#blocks/locales.js";
 
 import {
@@ -92,6 +94,7 @@ import {
   DeleteProfilePicture,
   JoinConsultation,
   SelectAvatar,
+  FilterQuestions,
 } from "#backdrops/locales.js";
 
 import {
@@ -100,6 +103,9 @@ import {
   SaveAccessCodeConfirmation,
   PaymentInformation,
   MoodTrackMoreInformation,
+  CreateQuestion,
+  HowItWorksMyQA,
+  QuestionDetails,
 } from "#modals/locales.js";
 
 const resources = {
@@ -144,6 +150,8 @@ const resources = {
     "payment-history-block": PaymentHistoryBlock.en,
     "payment-status-block": PaymentStatusBlock.en,
     "mood-track-history": MoodTrackHistory.en,
+    "mascot-header-MyQA": MascotHeaderMyQA.en,
+    "my-qa": MyQA.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -195,6 +203,7 @@ const resources = {
     "delete-profile-picture": DeleteProfilePicture.en,
     "join-consultation": JoinConsultation.en,
     "select-avatar": SelectAvatar.en,
+    "filter-questions": FilterQuestions.en,
 
     //Modals
     "require-registration": RequireRegistration.en,
@@ -202,6 +211,9 @@ const resources = {
     "save-access-code-confirmation": SaveAccessCodeConfirmation.en,
     "payment-information": PaymentInformation.en,
     "mood-track-more-information": MoodTrackMoreInformation.en,
+    "create-question": CreateQuestion.en,
+    "how-it-works-my-qa": HowItWorksMyQA.en,
+    "question-details": QuestionDetails.en,
   },
   ru: {
     // Blocks
@@ -244,6 +256,8 @@ const resources = {
     "payment-history-block": PaymentHistoryBlock.ru,
     "payment-status-block": PaymentStatusBlock.ru,
     "mood-track-history": MoodTrackHistory.ru,
+    "mascot-header-MyQA": MascotHeaderMyQA.ru,
+    "my-qa": MyQA.ru,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.ru,
@@ -295,6 +309,7 @@ const resources = {
     "delete-profile-picture": DeleteProfilePicture.ru,
     "join-consultation": JoinConsultation.ru,
     "select-avatar": SelectAvatar.ru,
+    "filter-questions": FilterQuestions.ru,
 
     //Modals
     "require-registration": RequireRegistration.ru,
@@ -302,6 +317,9 @@ const resources = {
     "save-access-code-confirmation": SaveAccessCodeConfirmation.ru,
     "payment-information": PaymentInformation.ru,
     "mood-track-more-information": MoodTrackMoreInformation.ru,
+    "create-question": CreateQuestion.ru,
+    "how-it-works-my-qa": HowItWorksMyQA.ru,
+    "question-details": QuestionDetails.ru,
   },
   kk: {
     // Blocks
@@ -344,6 +362,8 @@ const resources = {
     "payment-history-block": PaymentHistoryBlock.kk,
     "payment-status-block": PaymentStatusBlock.kk,
     "mood-track-history": MoodTrackHistory.kk,
+    "mascot-header-MyQA": MascotHeaderMyQA.kk,
+    "my-qa": MyQA.kk,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.kk,
@@ -395,6 +415,7 @@ const resources = {
     "delete-profile-picture": DeleteProfilePicture.kk,
     "join-consultation": JoinConsultation.kk,
     "select-avatar": SelectAvatar.kk,
+    "filter-questions": FilterQuestions.kk,
 
     //Modals
     "require-registration": RequireRegistration.kk,
@@ -402,6 +423,9 @@ const resources = {
     "save-access-code-confirmation": SaveAccessCodeConfirmation.kk,
     "payment-information": PaymentInformation.kk,
     "mood-track-more-information": MoodTrackMoreInformation.kk,
+    "create-question": CreateQuestion.kk,
+    "how-it-works-my-qa": HowItWorksMyQA.kk,
+    "question-details": QuestionDetails.kk,
   },
 };
 

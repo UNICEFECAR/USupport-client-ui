@@ -1,16 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
 import { RadialCircle } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import {
-  useBlockSlot,
-  useScheduleConsultation,
-  useGetClientData,
-} from "#hooks";
-import { SelectConsultation, ConfirmConsultation } from "#backdrops";
+import { useGetClientData } from "#hooks";
+import { ScheduleConsultationGroup } from "#backdrops";
 import { Page, ActivityHistory as ActivityHistoryBlock } from "#blocks";
-import { RequireDataAgreement } from "#modals";
 
 import "./activity-history.scss";
 
@@ -32,12 +27,6 @@ export const ActivityHistory = () => {
 
   const clientData = useGetClientData()[1];
 
-  const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
-  const [blockSlotError, setBlockSlotError] = useState();
-  // const [consultationId, setConsultationId] = useState();
-  const [selectedSlot, setSelectedSlot] = useState();
-  const consultationPrice = useRef();
-
   // Modal state variables
   const [isSelectConsultationOpen, setIsSelectConsultationOpen] =
     useState(false);
@@ -53,60 +42,7 @@ export const ActivityHistory = () => {
       setIsSelectConsultationOpen(true);
     }
   };
-  const openConfirmConsultationBackdrop = () => setIsConfirmBackdropOpen(true);
   const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
-
-  // Close modals
-  const closeConfirmConsultationBackdrop = () =>
-    setIsConfirmBackdropOpen(false);
-  const closeSelectConsultation = () => setIsSelectConsultationOpen(false);
-  const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
-
-  const onBlockSlotSuccess = (consultationId) => {
-    // setIsBlockSlotSubmitting(false);
-    // setConsultationId(consultationId);
-
-    if (consultationPrice.current && consultationPrice.current > 0) {
-      navigate(`/checkout`, { state: { consultationId: consultationId } });
-    } else {
-      scheduleConsultationMutation.mutate({ consultationId });
-    }
-
-    // closeSelectConsultation();
-    // openConfirmConsultationBackdrop();
-  };
-  const onBlockSlotError = (error) => {
-    setBlockSlotError(error);
-    setIsBlockSlotSubmitting(false);
-  };
-  const blockSlotMutation = useBlockSlot(onBlockSlotSuccess, onBlockSlotError);
-
-  const onScheduleConsultationSuccess = (data) => {
-    setIsBlockSlotSubmitting(false);
-    // setConsultationId(consultationId);
-    closeSelectConsultation();
-    openConfirmConsultationBackdrop();
-    setBlockSlotError(null);
-  };
-  const onScheduleConsultationError = (error) => {
-    setBlockSlotError(error);
-    setIsBlockSlotSubmitting(false);
-  };
-  const scheduleConsultationMutation = useScheduleConsultation(
-    onScheduleConsultationSuccess,
-    onScheduleConsultationError
-  );
-
-  const handleBlockSlot = (slot, price) => {
-    setIsBlockSlotSubmitting(true);
-    setSelectedSlot(slot);
-    consultationPrice.current = price;
-    blockSlotMutation.mutate({
-      slot,
-      providerId: providerId,
-    });
-  };
-
   const handleGoBack = () => navigate(-1);
 
   return (
@@ -127,33 +63,14 @@ export const ActivityHistory = () => {
       {width < 768 && (
         <RadialCircle classes="page__activity-history__radial-circle" />
       )}
-
-      <SelectConsultation
-        isOpen={isSelectConsultationOpen}
-        onClose={closeSelectConsultation}
-        handleBlockSlot={handleBlockSlot}
+      <ScheduleConsultationGroup
+        isSelectConsultationOpen={isSelectConsultationOpen}
+        setIsSelectConsultationOpen={setIsSelectConsultationOpen}
+        isConfirmBackdropOpen={isConfirmBackdropOpen}
+        setIsConfirmBackdropOpen={setIsConfirmBackdropOpen}
+        isRequireDataAgreementOpen={isRequireDataAgreementOpen}
+        setIsRequireDataAgreementOpen={setIsRequireDataAgreementOpen}
         providerId={providerId}
-        isCtaDisabled={isBlockSlotSubmitting}
-        errorMessage={blockSlotError}
-      />
-      {selectedSlot && (
-        <ConfirmConsultation
-          isOpen={isConfirmBackdropOpen}
-          onClose={closeConfirmConsultationBackdrop}
-          consultation={{
-            startDate: new Date(selectedSlot),
-            endDate: new Date(
-              new Date(selectedSlot).setHours(
-                new Date(selectedSlot).getHours() + 1
-              )
-            ),
-          }}
-        />
-      )}
-      <RequireDataAgreement
-        isOpen={isRequireDataAgreementOpen}
-        onClose={closeRequireDataAgreement}
-        onSuccess={() => setIsSelectConsultationOpen(true)}
       />
     </Page>
   );
