@@ -36,3 +36,8 @@ export * from "./useGetMoodTrackForToday.js";
 export * from "./useGetMoodTrackEntries.js";
 export * from "./useAddPlatformRating.js";
 export * from "./useGetProviderStatus.js";
+export * from "./useAddQuestion.js";
+export * from "./useGetClientQuestions";
+export * from "./useGetQuestions";
+export * from "./useAddVoteQuestion.js";
+export * from "./useGetQuestionsTags.js";

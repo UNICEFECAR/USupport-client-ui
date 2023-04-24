@@ -15,13 +15,17 @@ export default function useUpdateClientData(data, onSuccess, onError) {
   const updateClientData = async () => {
     // Delete the fields which the API doesn't accept
     const dataCopy = JSON.parse(JSON.stringify(data));
+    dataCopy.userAccessToken = dataCopy.accessToken || undefined;
 
     delete dataCopy.accessToken;
     delete dataCopy.dataProcessing;
     delete dataCopy.image;
     delete dataCopy.clientID;
 
-    dataCopy.email = dataCopy.email.toLowerCase();
+    dataCopy.email = dataCopy.email.toLowerCase().trim() || undefined;
+    dataCopy.sex = dataCopy.sex || undefined;
+    dataCopy.yearOfBirth = dataCopy.yearOfBirth || undefined;
+    dataCopy.urbanRural = dataCopy.urbanRural || undefined;
 
     const res = await clientSvc.updateClientData(dataCopy);
     return res.data;

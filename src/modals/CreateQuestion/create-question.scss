@@ -1,0 +1,8 @@
+@import "@USupport-components-library/styles";
+
+.create-question {
+  &__textarea {
+    width: 90%;
+    margin: $spacing_2_0 auto;
+  }
+}
