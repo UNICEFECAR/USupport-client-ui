@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import Joi from "joi";
 import {
   AccessToken,
@@ -51,6 +52,7 @@ export const RegisterAnonymous = () => {
   });
   const [errors, setErrors] = useState({});
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const [hasCopied, setHasCopied] = useState(false);
 
   // On page load send a request to the server
   // to generate a user acces token
@@ -131,6 +133,19 @@ export const RegisterAnonymous = () => {
   const canContinue =
     data.password && data.isPrivacyAndTermsSelected && data.nickname;
 
+  const handleRegisterButtonClick = () => {
+    if (hasCopied) {
+      handleRegister();
+    } else {
+      setIsConfirmationModalOpen(true);
+    }
+  };
+
+  const handleCopy = () => {
+    setHasCopied(true);
+    toast(t("copy_success"));
+  };
+
   return (
     <>
       <SaveAccessCodeConfirmation
@@ -139,6 +154,7 @@ export const RegisterAnonymous = () => {
         accessToken={userAccessToken}
         isLoading={userAccessTokenIsLoading}
         ctaHandleClick={handleRegister}
+        showToast={() => toast(t("copy_success"))}
       />
 
       <Block classes="register-anonymous">
@@ -153,6 +169,7 @@ export const RegisterAnonymous = () => {
                 accessToken={userAccessToken}
                 isLoading={userAccessTokenIsLoading}
                 accessTokenLabel={t("paragraph_1")}
+                handleCopy={handleCopy}
               />
 
               <div className="register-anonymous__grid__content-item__main-component__copy-container">
@@ -195,7 +212,7 @@ export const RegisterAnonymous = () => {
               <Button
                 label={t("register_button_label")}
                 size="lg"
-                onClick={() => setIsConfirmationModalOpen(true)}
+                onClick={handleRegisterButtonClick}
                 disabled={!canContinue}
                 loading={registerMutation.isLoading}
               />

@@ -22,30 +22,53 @@ export const SaveAccessCodeConfirmation = ({
   accessToken,
   isLoading,
   ctaHandleClick,
+  showToast,
 }) => {
-  const [hasAgreed, setHasAgreed] = useState(false);
   const { t } = useTranslation("save-access-code-confirmation");
+  const [hasAgreed, setHasAgreed] = useState(false);
+  const [hasCopied, setHasCopied] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  const handleCopy = () => {
+    setShouldAnimate(false);
+    setHasCopied(true);
+    showToast();
+  };
+
+  const handleCheckboxClick = () => {
+    setHasAgreed(!hasAgreed);
+    if (!hasAgreed && !hasCopied) {
+      setShouldAnimate(true);
+    } else if (hasAgreed) {
+      setShouldAnimate(false);
+    }
+  };
+
   return (
     <Modal
       classes="save-access-code-confirmation"
       heading={t("heading")}
       isOpen={isOpen}
-      onClose={onClose}
+      closeModal={onClose}
       ctaLabel={t("button")}
       ctaHandleClick={ctaHandleClick}
-      isCtaDisabled={!hasAgreed}
+      isCtaDisabled={!hasAgreed || !hasCopied}
     >
-      <AccessToken accessToken={accessToken} isLoading={isLoading} />
+      <AccessToken
+        accessToken={accessToken}
+        isLoading={isLoading}
+        handleCopy={handleCopy}
+        activateAnimation={shouldAnimate}
+        copyLabel={t("click_to_copy")}
+        showInstructions
+      />
       <div className="save-access-code-confirmation__container">
         <Icon name="warning" size="md" />
         <p className="text">{t("text")}</p>
       </div>
       <div className="save-access-code-confirmation__checkbox-container">
-        <CheckBox
-          isChecked={hasAgreed}
-          setIsChecked={(value) => setHasAgreed(value)}
-        />
-        <p onClick={() => setHasAgreed(!hasAgreed)} className="text">
+        <CheckBox isChecked={hasAgreed} setIsChecked={handleCheckboxClick} />
+        <p onClick={handleCheckboxClick} className="text">
           {t("warning")}
         </p>
       </div>
