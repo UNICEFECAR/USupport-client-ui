@@ -76,7 +76,7 @@ export const MyQA = ({
     if (!filteredQuestions.length)
       return (
         <GridItem md={8} lg={12}>
-          <p>{t("no_questions_found")}</p>
+          <p>{t("no_answers_found")}</p>
         </GridItem>
       );
 
