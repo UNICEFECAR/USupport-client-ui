@@ -1,0 +1,12 @@
+@import "@USupport-components-library/styles";
+
+.filter-questions {
+  &__dropdown-wrapper {
+    padding-top: $spacing_2_0;
+    padding-bottom: $spacing_24_0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}

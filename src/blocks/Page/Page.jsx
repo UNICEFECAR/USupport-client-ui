@@ -167,6 +167,7 @@ export const Page = ({
     { name: t("page_1"), url: "/dashboard", exact: true },
     { name: t("page_2"), url: "/consultations" },
     { name: t("page_3"), url: "/information-portal" },
+    { name: t("page_4"), url: "/my-qa" },
   ];
 
   const footerLists = {
