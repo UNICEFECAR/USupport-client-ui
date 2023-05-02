@@ -31,6 +31,8 @@ export const QuestionDetails = ({
 }) => {
   const { t } = useTranslation("question-details");
 
+  const isInMyQuestions = question.isAskedByCurrentClient;
+
   const providerInfo = question.providerData;
 
   const getDateText = () => {
@@ -58,21 +60,30 @@ export const QuestionDetails = ({
       <div className="question-details__heading">
         {!question.answerId ? (
           <p className="question-details__heading__text">{question.question}</p>
+        ) : isInMyQuestions ? (
+          <p className="text">{question.question}</p>
         ) : (
           <h4 className="question-details__heading__text">
             {question.answerTitle}
           </h4>
         )}
-        <Like
-          handleClick={question.answerId ? handleLike : () => {}}
-          likes={question.likes || 0}
-          dislikes={question.dislikes || 0}
-          answerId={question.answerId}
-          isLiked={question.isLiked}
-          isDisliked={question.isDisliked}
-          renderInClient
-        />
+        {question.answerId ? (
+          <Like
+            handleClick={question.answerId ? handleLike : () => {}}
+            likes={question.likes || 0}
+            dislikes={question.dislikes || 0}
+            answerId={question.answerId}
+            isLiked={question.isLiked}
+            isDisliked={question.isDisliked}
+            renderInClient
+          />
+        ) : null}
       </div>
+      {question.answerId && isInMyQuestions && (
+        <h4 className="question-details__heading__text">
+          {question.answerTitle}
+        </h4>
+      )}
       {question.tags ? (
         <div className="question-details__labels-container">
           {question.tags.map((label, index) => {
