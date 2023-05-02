@@ -56,13 +56,17 @@ export const QuestionDetails = ({
         </p>
       </div>
       <div className="question-details__heading">
-        <h4 className="question-details__heading__text">
-          {question.answerTitle}
-        </h4>
+        {!question.answerId ? (
+          <p className="question-details__heading__text">{question.question}</p>
+        ) : (
+          <h4 className="question-details__heading__text">
+            {question.answerTitle}
+          </h4>
+        )}
         <Like
-          handleClick={handleLike}
-          likes={question.likes}
-          dislikes={question.dislikes}
+          handleClick={question.answerId ? handleLike : () => {}}
+          likes={question.likes || 0}
+          dislikes={question.dislikes || 0}
           answerId={question.answerId}
           isLiked={question.isLiked}
           isDisliked={question.isDisliked}
@@ -85,30 +89,32 @@ export const QuestionDetails = ({
       <p className="text question-details__answer-text">
         {question.answerText}
       </p>
-      <div className="question-details__bottom-container">
-        <div className="question-details__answered-by-container">
-          <p className="text">{t("answered_by")}</p>
-          <Avatar
-            image={AMAZON_S3_BUCKET + "/" + providerInfo.image}
-            alt="Specialist avatar"
-            size="xs"
-            classes="question-details__answered-by-container__avatar"
-          />
-          <p className="text">
-            {providerInfo.name} {providerInfo.surname}
-          </p>
+      {question.answerId && (
+        <div className="question-details__bottom-container">
+          <div className="question-details__answered-by-container">
+            <p className="text">{t("answered_by")}</p>
+            <Avatar
+              image={AMAZON_S3_BUCKET + "/" + providerInfo.image}
+              alt="Specialist avatar"
+              size="xs"
+              classes="question-details__answered-by-container__avatar"
+            />
+            <p className="text">
+              {providerInfo.name} {providerInfo.surname}
+            </p>
+          </div>
+          <div
+            className="question-details__schedule-button"
+            onClick={() => {
+              onClose();
+              handleScheduleClick(question);
+            }}
+          >
+            <Icon name="calendar" color="#20809e" />
+            <p className="text">{t("schedule_consultation")}</p>
+          </div>
         </div>
-        <div
-          className="question-details__schedule-button"
-          onClick={() => {
-            onClose();
-            handleScheduleClick(question);
-          }}
-        >
-          <Icon name="calendar" color="#20809e" />
-          <p className="text">{t("schedule_consultation")}</p>
-        </div>
-      </div>
+      )}
     </Modal>
   );
 };
