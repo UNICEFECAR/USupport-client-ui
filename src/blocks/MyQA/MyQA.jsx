@@ -119,7 +119,7 @@ export const MyQA = ({
                 iconColor="#ffffff"
                 iconSize="sm"
                 color="purple"
-                size="xs"
+                size="sm"
                 onClick={handleFilterTags}
                 classes="my-qa__tabs-grid__filter-button"
               />
@@ -139,7 +139,7 @@ export const MyQA = ({
             <GridItem md={2} lg={5} classes="my-qa__button-item">
               <Button
                 label={t("ask_button_label")}
-                size={width < 980 && width > 768 ? "md" : "lg"}
+                size={width < 980 && width > 768 ? "sm" : "lg"}
                 classes="my-qa__ask-question-button"
                 onClick={handleAskAnonymous}
               />
