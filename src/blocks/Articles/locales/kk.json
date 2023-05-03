@@ -4,6 +4,7 @@
   "could_not_load_content": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
   "all": "Барлығы",
   "read_more_button": "Ары қарай оқу",
-  "min_read":	"минут оқуға",
-  "by": "By {{creator}}"
+  "min_read": "минут оқуға",
+  "by": "By {{creator}}",
+  "number_of_more_options": "{{count}} moreKK"
 }

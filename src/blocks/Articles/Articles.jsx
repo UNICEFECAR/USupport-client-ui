@@ -306,6 +306,7 @@ export const Articles = ({
                   <Tabs
                     options={categories}
                     handleSelect={handleCategoryOnPress}
+                    t={t}
                   />
                 )}
               </GridItem>
