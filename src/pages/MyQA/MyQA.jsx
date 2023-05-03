@@ -160,9 +160,6 @@ export const MyQA = () => {
           userQuestions.isLoading || allQuestions.isLoading
         }
       />
-      {/* <Block>
-        <Answer />
-      </Block> */}
       <CreateQuestion
         isOpen={isCreateQuestionOpen}
         onClose={() => setIsCreateQuestionOpen(false)}
