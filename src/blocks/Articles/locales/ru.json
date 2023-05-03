@@ -2,8 +2,9 @@
   "heading": "Информационный портал",
   "no_results": "Ничего не нашлось",
   "could_not_load_content": "Для выбранной страны и языка ничего не нашлось.",
-  "all": "Все", 
+  "all": "Все",
   "read_more_button": "Узнать больше",
-  "min_read":	"минут на прочтение",
-  "by": "By {{creator}}"
+  "min_read": "минут на прочтение",
+  "by": "By {{creator}}",
+  "number_of_more_options": "{{count}} moreRU"
 }
