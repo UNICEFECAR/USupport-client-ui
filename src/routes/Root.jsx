@@ -44,7 +44,7 @@ import {
   MyQA,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
-import { useGetClientData, useCheckHasUnreadNotifications } from "#hooks";
+import { useGetClientData } from "#hooks";
 
 const RootContext = React.createContext();
 

@@ -43,7 +43,8 @@ export const SelectConsultation = ({
 
   const campaignId = activeCoupon?.campaignId || campaingIdFromProps;
 
-  let providerData = useGetProviderDataById(providerId, campaignId).data;
+  const providerDataQuery = useGetProviderDataById(providerId, campaignId);
+  const providerData = providerDataQuery.data;
 
   const [startDate, setStartDate] = useState(null);
   const [currentDay, setCurrentDay] = useState(new Date().getTime());
@@ -163,21 +164,25 @@ export const SelectConsultation = ({
       isCtaDisabled={isCtaDisabled ? true : !selectedSlot ? true : false}
       errorMessage={errorMessage}
     >
-      <div className="select-consultation__content-container">
-        <Header
-          handleDayChange={handleDayChange}
-          setStartDate={setStartDate}
-          startDate={providerData?.earliestAvailableSlot}
-          t={t}
-        />
-        <div className="select-consultation__content-container__slots">
-          {availableSlotsQuery.isLoading ? (
-            <Loading size="md" />
-          ) : (
-            renderFreeSlots()
-          )}
+      {providerDataQuery.isLoading ? (
+        <Loading size="lg" />
+      ) : (
+        <div className="select-consultation__content-container">
+          <Header
+            handleDayChange={handleDayChange}
+            setStartDate={setStartDate}
+            startDate={providerData?.earliestAvailableSlot}
+            t={t}
+          />
+          <div className="select-consultation__content-container__slots">
+            {availableSlotsQuery.isLoading ? (
+              <Loading size="md" />
+            ) : (
+              renderFreeSlots()
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </Backdrop>
   );
 };
