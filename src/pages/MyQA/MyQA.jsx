@@ -63,10 +63,12 @@ export const MyQA = () => {
   }, [isTmpUser]);
 
   useEffect(() => {
-    if (userQuestions.data || allQuestions.data) {
-      if (isUserQuestionsEnabled) {
-        setQuestions(userQuestions.data);
-      } else setQuestions(allQuestions.data);
+    if (isUserQuestionsEnabled && userQuestions.data) {
+      setQuestions(userQuestions.data);
+    }
+
+    if (!isUserQuestionsEnabled && allQuestions.data) {
+      setQuestions(allQuestions.data);
     }
   }, [tabs, userQuestions.data, allQuestions.data]);
 
