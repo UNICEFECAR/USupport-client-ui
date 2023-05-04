@@ -60,7 +60,7 @@ export const MyQA = () => {
     if (isTmpUser) {
       setTabs(tabs.filter((tab) => tab.value !== "your_questions"));
     }
-  }, []);
+  }, [isTmpUser]);
 
   useEffect(() => {
     if (userQuestions.data || allQuestions.data) {
