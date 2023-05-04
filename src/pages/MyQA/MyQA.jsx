@@ -57,6 +57,12 @@ export const MyQA = () => {
   );
 
   useEffect(() => {
+    if (isTmpUser) {
+      setTabs(tabs.filter((tab) => tab.value !== "your_questions"));
+    }
+  }, []);
+
+  useEffect(() => {
     if (userQuestions.data || allQuestions.data) {
       if (isUserQuestionsEnabled) {
         setQuestions(userQuestions.data);
