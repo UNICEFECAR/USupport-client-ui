@@ -57,11 +57,10 @@ export const QuestionDetails = ({
           {getDateText()}
         </p>
       </div>
+      {isInMyQuestions && <p className="text">{question.question}</p>}
       <div className="question-details__heading">
         {!question.answerId ? (
           <p className="question-details__heading__text">{question.question}</p>
-        ) : isInMyQuestions ? (
-          <p className="text">{question.question}</p>
         ) : (
           <h4 className="question-details__heading__text">
             {question.answerTitle}
@@ -79,11 +78,11 @@ export const QuestionDetails = ({
           />
         ) : null}
       </div>
-      {question.answerId && isInMyQuestions && (
+      {/* {question.answerId && isInMyQuestions && (
         <h4 className="question-details__heading__text">
           {question.answerTitle}
         </h4>
-      )}
+      )} */}
       {question.tags ? (
         <div className="question-details__labels-container">
           {question.tags.map((label, index) => {

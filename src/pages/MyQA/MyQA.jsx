@@ -168,10 +168,10 @@ export const MyQA = () => {
         isUserQuestionsEnabled={isUserQuestionsEnabled}
         filterTag={filterTag}
         handleFilterTags={() => setIsFilterQuestionsOpen(true)}
+        isQuestionsDataLoading={
+          userQuestions.isLoading || allQuestions.isLoading
+        }
       />
-      {/* <Block>
-        <Answer />
-      </Block> */}
       <CreateQuestion
         isOpen={isCreateQuestionOpen}
         onClose={() => setIsCreateQuestionOpen(false)}

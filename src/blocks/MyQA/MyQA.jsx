@@ -10,6 +10,7 @@ import {
   Answer,
   InputSearch,
   ButtonWithIcon,
+  Loading,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
@@ -33,6 +34,7 @@ export const MyQA = ({
   isUserQuestionsEnabled,
   handleFilterTags,
   filterTag,
+  isQuestionsDataLoading,
 }) => {
   const { t } = useTranslation("my-qa");
   const { width } = useWindowDimensions();
@@ -149,6 +151,8 @@ export const MyQA = ({
         <GridItem xs={4} md={8} lg={12}>
           {questions?.length > 0 ? (
             <div className="my-qa__answers-container">{renderQuestions()}</div>
+          ) : isQuestionsDataLoading ? (
+            <Loading />
           ) : (
             <p className="paragraph my-qa__answers-container__no-questions">
               {t("no_questions_found")}

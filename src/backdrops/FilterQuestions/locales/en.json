@@ -1,6 +1,6 @@
 {
     "heading": "Filter questions by tag",
     "dropdown_label": "Select a tag",
-    "cta_label": "Save",
-    "secondary_cta_label": "Reset"
+    "cta_label": "Apply filters",
+    "secondary_cta_label": "Reset filters"
 }
