@@ -155,7 +155,7 @@ export const MyQA = ({
             <Loading />
           ) : (
             <p className="paragraph my-qa__answers-container__no-questions">
-              {t("no_questions_found")}
+              {t("no_answers_found")}
             </p>
           )}
         </GridItem>

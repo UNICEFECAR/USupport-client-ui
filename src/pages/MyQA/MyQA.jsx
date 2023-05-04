@@ -177,7 +177,7 @@ export const MyQA = () => {
         filterTag={filterTag}
         handleFilterTags={() => setIsFilterQuestionsOpen(true)}
         isQuestionsDataLoading={
-          userQuestions.isLoading || allQuestions.isLoading
+          userQuestions.isFetching || allQuestions.isFetching
         }
       />
       <CreateQuestion
