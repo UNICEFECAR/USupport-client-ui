@@ -38,7 +38,12 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
       {!provider ? (
         <Loading size="lg" />
       ) : (
-        <ProviderDetails provider={provider} t={t} image={image} />
+        <ProviderDetails
+          provider={provider}
+          t={t}
+          image={image}
+          renderIn="client"
+        />
       )}
       <div className="provider-profile__button-container">
         <Button

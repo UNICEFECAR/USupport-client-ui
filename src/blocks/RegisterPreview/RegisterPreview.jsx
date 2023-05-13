@@ -24,7 +24,7 @@ import { mascotHappyBlue } from "@USupport-components-library/assets";
  *
  * @return {jsx}
  */
-export const RegisterPreview = () => {
+export const RegisterPreview = ({ handleLoginRedirection }) => {
   const { t } = useTranslation("register-preview");
   const navigate = useNavigate();
   const [error, setErrror] = useState();
@@ -108,6 +108,12 @@ export const RegisterPreview = () => {
           <div className="register-preview__grid__content-item__carousel-container">
             <CustomCarousel>{renderCarouselItems()}</CustomCarousel>
           </div>
+          <Button
+            size="lg"
+            label={t("login")}
+            color="purple"
+            onClick={handleLoginRedirection}
+          />
           <Button
             label={t("register_email")}
             size="lg"

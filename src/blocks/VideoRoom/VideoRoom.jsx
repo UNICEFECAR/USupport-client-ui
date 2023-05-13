@@ -67,6 +67,7 @@ export function VideoRoom({
         renderIn="client"
         isCameraOn={isCameraOn}
         isMicrophoneOn={isMicrophoneOn}
+        isRoomConnecting={!localParticipant}
         t={t}
       />
 

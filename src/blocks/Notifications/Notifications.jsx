@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -230,18 +230,23 @@ export const Notifications = ({ openJoinConsultation }) => {
 
     switch (notification.type) {
       case "consultation_booking":
+        const providerName =
+          notificationProviders[notification.content.providerDetailId];
         return (
           <Notification
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
-            text={t(notification.type, {
-              providerName:
-                notificationProviders[notification.content.providerDetailId],
-              date,
-              startHour,
-              endHour,
-            })}
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName,
+                  date,
+                  startHour,
+                  endHour,
+                })}
+              </Trans>
+            }
             icon="calendar"
             handleClick={() =>
               handleNotificationClick(notification.notificationId)
@@ -254,16 +259,22 @@ export const Notifications = ({ openJoinConsultation }) => {
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
-            text={t(notification.type, {
-              providerName:
-                notificationProviders[notification.content.providerDetailId],
-              date,
-              startHour,
-              endHour,
-              newDate,
-              newStartHour,
-              newEndHour,
-            })}
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName:
+                    notificationProviders[
+                      notification.content.providerDetailId
+                    ],
+                  date,
+                  startHour,
+                  endHour,
+                  newDate,
+                  newStartHour,
+                  newEndHour,
+                })}
+              </Trans>
+            }
             icon="calendar"
             handleClick={() =>
               handleNotificationClick(notification.notificationId)
@@ -276,13 +287,19 @@ export const Notifications = ({ openJoinConsultation }) => {
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
-            text={t(notification.type, {
-              providerName:
-                notificationProviders[notification.content.providerDetailId],
-              date,
-              startHour,
-              endHour,
-            })}
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName:
+                    notificationProviders[
+                      notification.content.providerDetailId
+                    ],
+                  date,
+                  startHour,
+                  endHour,
+                })}
+              </Trans>
+            }
             icon="calendar"
             handleClick={() =>
               handleNotificationClick(notification.notificationId)
@@ -295,13 +312,19 @@ export const Notifications = ({ openJoinConsultation }) => {
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
-            text={t(notification.type, {
-              providerName:
-                notificationProviders[notification.content.providerDetailId],
-              date,
-              startHour,
-              endHour,
-            })}
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName:
+                    notificationProviders[
+                      notification.content.providerDetailId
+                    ],
+                  date,
+                  startHour,
+                  endHour,
+                })}
+              </Trans>
+            }
             icon="calendar"
             handleClick={() =>
               handleNotificationClick(notification.notificationId)
@@ -314,9 +337,13 @@ export const Notifications = ({ openJoinConsultation }) => {
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
-            text={t(notification.type, {
-              minutes: notification.content.minToConsultation,
-            })}
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  minutes: notification.content.minToConsultation,
+                })}
+              </Trans>
+            }
             icon="calendar"
             handleClick={() =>
               handleNotificationClick(notification.notificationId)
@@ -349,13 +376,19 @@ export const Notifications = ({ openJoinConsultation }) => {
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
-            text={t(notification.type, {
-              providerName:
-                notificationProviders[notification.content.providerDetailId],
-              date,
-              startHour,
-              endHour,
-            })}
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName:
+                    notificationProviders[
+                      notification.content.providerDetailId
+                    ],
+                  date,
+                  startHour,
+                  endHour,
+                })}
+              </Trans>
+            }
             icon="calendar"
           >
             {!notification.isRead ? (
@@ -394,13 +427,19 @@ export const Notifications = ({ openJoinConsultation }) => {
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
-            text={t(notification.type, {
-              providerName:
-                notificationProviders[notification.content.providerDetailId],
-              date,
-              startHour,
-              endHour,
-            })}
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName:
+                    notificationProviders[
+                      notification.content.providerDetailId
+                    ],
+                  date,
+                  startHour,
+                  endHour,
+                })}
+              </Trans>
+            }
             icon="calendar"
             handleClick={() =>
               handleNotificationClick(notification.notificationId)
@@ -413,16 +452,20 @@ export const Notifications = ({ openJoinConsultation }) => {
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
-            text={t(notification.type, {
-              providerName:
-                notificationProviders[notification.content.providerDetailId],
-              date,
-              startHour,
-              endHour,
-            })}
-            icon="calendar"
-            handleClick={() =>
-              handleNotificationClick(notification.notificationId)
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName:
+                    notificationProviders[
+                      notification.content.providerDetailId
+                    ],
+                  date,
+                  startHour,
+                  endHour,
+                })}
+                icon="calendar" handleClick=
+                {() => handleNotificationClick(notification.notificationId)}
+              </Trans>
             }
           />
         );
@@ -433,10 +476,16 @@ export const Notifications = ({ openJoinConsultation }) => {
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
-            text={t(notification.type, {
-              providerName:
-                notificationProviders[notification.content.providerDetailId],
-            })}
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName:
+                    notificationProviders[
+                      notification.content.providerDetailId
+                    ],
+                })}
+              </Trans>
+            }
             icon="calendar"
             handleClick={() =>
               handleNotificationClick(

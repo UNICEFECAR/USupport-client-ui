@@ -31,17 +31,8 @@ export const RegisterPreview = () => {
       classes="page__register-preview"
       additionalPadding={false}
       showHeadingButtonInline
-      headingButton={
-        <Button
-          size="md"
-          label={t("login")}
-          color="purple"
-          web
-          onClick={handleLoginRedirection}
-        />
-      }
     >
-      <RegisterPreviewBlock />
+      <RegisterPreviewBlock handleLoginRedirection={handleLoginRedirection} />
     </Page>
   );
 };
