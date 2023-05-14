@@ -35,10 +35,12 @@
     @media screen and (min-width: $screen-md) {
       padding-top: $spacing_5_0;
       padding-left: $spacing_5_0;
+      padding-right: $spacing_5_0;
     }
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_5_0;
       padding-left: $spacing_23_0;
+      padding-right: $spacing_23_0;
     }
 
     &-heading {
@@ -85,17 +87,14 @@
 
   &__subheading-text {
     text-align: left;
-    padding-left: $spacing_1_6;
+    padding-left: $spacing_2_4;
+
     @media screen and (min-width: $screen-md) {
-      padding-left: calc(
-        $spacing_5_0 + $spacing_3_2 + $spacing_2_4 + $spacing_6_0
-      );
+      padding-left: calc($spacing_2_6 + $spacing_2_4 + $spacing_6_0);
     }
 
     @media screen and (min-width: $screen-lg) {
-      padding-left: calc(
-        $spacing_23_0 + $spacing_3_2 + $spacing_2_4 + $spacing_16_0
-      );
+      padding-left: calc($spacing_23_0 + $spacing_16_0);
     }
   }
 
