@@ -80,6 +80,7 @@ import {
   Checkout as CheckoutPage,
   PaymentStatus as PaymentStatusPage,
   MoodTrackHistory as MoodTrackHistoryPage,
+  Notifications as NotificationsPage,
 } from "#pages/locales.js";
 
 import {
@@ -188,6 +189,7 @@ const resources = {
     "checkout-page": CheckoutPage.en,
     "payment-status-page": PaymentStatusPage.en,
     "mood-track-history-page": MoodTrackHistoryPage.en,
+    "notifications-page": NotificationsPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
@@ -294,6 +296,7 @@ const resources = {
     "checkout-page": CheckoutPage.ru,
     "payment-status-page": PaymentStatusPage.ru,
     "mood-track-history-page": MoodTrackHistoryPage.ru,
+    "notifications-page": NotificationsPage.ru,
 
     //Backdrops
     "filter-providers": FilterProviders.ru,
@@ -400,6 +403,7 @@ const resources = {
     "checkout-page": CheckoutPage.kk,
     "payment-status-page": PaymentStatusPage.kk,
     "mood-track-history-page": MoodTrackHistoryPage.kk,
+    "notifications-page": NotificationsPage.kk,
 
     //Backdrops
     "filter-providers": FilterProviders.kk,

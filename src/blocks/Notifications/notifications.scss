@@ -1,35 +1,6 @@
 @import "@USupport-components-library/styles";
 
 .notifications {
-  @include full-height-page-navbar;
-
-  &__heading-container {
-    align-items: center;
-    display: flex;
-    margin-top: $spacing_3_2;
-
-    & .icon {
-      cursor: pointer;
-    }
-
-    &__heading {
-      margin-left: $spacing_0_8;
-    }
-
-    &__mark-read {
-      align-self: flex-end;
-      color: $color_secondary_9749fa;
-      cursor: pointer;
-      flex: 1;
-      text-align: right;
-    }
-  }
-
-  &__subheading {
-    padding-top: $spacing_1_6;
-    text-align: left;
-  }
-
   &__grid {
     padding-top: $spacing_3_6;
     padding-bottom: $spacing_4_8;
