@@ -43,7 +43,12 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
       const token = result[1].data.token;
 
       navigate("/consultation", {
-        state: { consultation, videoOn: redirectTo === "video", token },
+        state: {
+          consultation,
+          videoOn: redirectTo === "video",
+          microphoneOn: redirectTo === "video",
+          token,
+        },
       });
     } catch {
       toast(t("error"), { type: "error" });

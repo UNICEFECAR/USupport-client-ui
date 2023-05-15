@@ -96,6 +96,7 @@ export const RegisterEmail = () => {
         userSvc.transformUserData(userData)
       );
 
+      window.dispatchEvent(new Event("login"));
       navigate("/register/about-you");
     },
     onError: (error) => {

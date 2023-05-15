@@ -139,6 +139,7 @@ export const Page = ({
         value: x.alpha2,
         label: x.name,
         id: x["language_id"],
+        localName: x["local_name"],
       };
       if (localStorageLanguage === x.alpha2) {
         setSelectedLanguage(languageObject);
@@ -243,16 +244,6 @@ export const Page = ({
       >
         {(heading || showGoBackArrow || headingButton) && (
           <>
-            {headingButton && (
-              <div className="page__mobile-button-container">
-                {width < 768 &&
-                !showHeadingButtonInline &&
-                headingButton &&
-                !showHeadingButtonBelow
-                  ? headingButton
-                  : null}
-              </div>
-            )}
             <div className="page__header">
               {showGoBackArrow && (
                 <Icon
@@ -272,6 +263,16 @@ export const Page = ({
                   </div>
                 )}
             </div>
+            {headingButton && (
+              <div className="page__mobile-button-container">
+                {width < 768 &&
+                !showHeadingButtonInline &&
+                headingButton &&
+                !showHeadingButtonBelow
+                  ? headingButton
+                  : null}
+              </div>
+            )}
           </>
         )}
         <p className="page__subheading-text text">{subheading}</p>

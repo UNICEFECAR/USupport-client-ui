@@ -64,6 +64,7 @@ export const Login = () => {
         userSvc.transformUserData(userData)
       );
 
+      window.dispatchEvent(new Event("login"));
       setErrors({});
       navigate("/dashboard");
     },

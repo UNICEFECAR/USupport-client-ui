@@ -72,6 +72,7 @@ export const RegisterPreview = ({ handleLoginRedirection }) => {
       localStorage.setItem("expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
+      window.dispatchEvent(new Event("login"));
       navigate("/dashboard");
     },
     onError: (error) => {
