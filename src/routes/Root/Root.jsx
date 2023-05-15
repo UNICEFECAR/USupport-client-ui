@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { userSvc } from "@USupport-components-library/services";
+import { IdleTimer } from "@USupport-components-library/src";
+
 import { RequireRegistration } from "#modals";
+import { useEventListener } from "#hooks";
 
 import {
   ActivityHistory,
@@ -49,10 +53,14 @@ import { useGetClientData } from "#hooks";
 const RootContext = React.createContext();
 
 export default function Root() {
+  const { t } = useTranslation("root");
+
   const token = localStorage.getItem("token");
   const isTmpUser = userSvc.getUserID() === "tmp-user";
   const enabled = token && !isTmpUser;
   useGetClientData(!!enabled);
+
+  const [loggedIn, setLoggedIn] = useState(!!token);
 
   const [activeCoupon, setActiveCoupon] = useState();
 
@@ -60,6 +68,18 @@ export default function Root() {
 
   const handleRegistrationModalClose = () => setIsRegistrationModalOpen(false);
   const handleRegistrationModalOpen = () => setIsRegistrationModalOpen(true);
+
+  const logoutHandler = useCallback(() => {
+    setLoggedIn(false);
+  }, []);
+
+  useEventListener("logout", logoutHandler);
+
+  const loginHandler = useCallback(() => {
+    setLoggedIn(true);
+  }, []);
+
+  useEventListener("login", loginHandler);
 
   return (
     <Router basename="/client">
@@ -71,6 +91,8 @@ export default function Root() {
           setActiveCoupon,
         }}
       >
+        {loggedIn && <IdleTimer t={t} setLoggedIn={setLoggedIn} />}
+
         <Routes>
           <Route
             path="/login"

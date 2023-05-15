@@ -109,6 +109,8 @@ import {
   QuestionDetails,
 } from "#modals/locales.js";
 
+import { Root } from "#routes/locales.js";
+
 const resources = {
   en: {
     // Blocks
@@ -216,6 +218,9 @@ const resources = {
     "create-question": CreateQuestion.en,
     "how-it-works-my-qa": HowItWorksMyQA.en,
     "question-details": QuestionDetails.en,
+
+    // Routes
+    root: Root.en,
   },
   ru: {
     // Blocks
@@ -323,6 +328,9 @@ const resources = {
     "create-question": CreateQuestion.ru,
     "how-it-works-my-qa": HowItWorksMyQA.ru,
     "question-details": QuestionDetails.ru,
+
+    // Routes
+    root: Root.ru,
   },
   kk: {
     // Blocks
@@ -430,6 +438,9 @@ const resources = {
     "create-question": CreateQuestion.kk,
     "how-it-works-my-qa": HowItWorksMyQA.kk,
     "question-details": QuestionDetails.kk,
+
+    // Routes
+    root: Root.kk,
   },
 };
 

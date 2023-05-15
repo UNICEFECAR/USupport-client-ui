@@ -96,6 +96,7 @@ export const RegisterAnonymous = () => {
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
+      window.dispatchEvent(new Event("login"));
       navigate("/register/support", {
         state: {
           hideGoBackArrow: false,

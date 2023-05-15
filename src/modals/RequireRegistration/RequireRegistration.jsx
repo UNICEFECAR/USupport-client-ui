@@ -1,9 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Modal } from "@USupport-components-library/src";
+import { userSvc } from "@USupport-components-library/services";
+import { useNavigate } from "react-router-dom";
 
 import "./require-registration.scss";
-import { useNavigate } from "react-router-dom";
 
 /**
  * RequireRegistration
@@ -17,9 +18,7 @@ export const RequireRegistration = ({ isOpen, onClose }) => {
   const { t } = useTranslation("require-registration");
 
   const handleRegisterRedirection = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("refresh-token");
-    localStorage.removeItem("expires-in");
+    userSvc.logout();
     navigateTo("/register-preview");
     onClose();
   };
