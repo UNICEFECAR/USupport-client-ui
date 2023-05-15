@@ -45,6 +45,7 @@ export const Consultation = () => {
 
   const consultation = location.state?.consultation;
   const joinWithVideo = location.state?.videoOn;
+  const joinWithMicrophone = location.state?.microphoneOn;
   const token = location.state?.token;
 
   if (!consultation || !token) return <Navigate to="/consultations" />;
@@ -237,6 +238,7 @@ export const Consultation = () => {
       <div className="page__consultation__container">
         <VideoRoom
           joinWithVideo={joinWithVideo}
+          joinWithMicrophone={joinWithMicrophone}
           consultation={consultation}
           toggleChat={toggleChat}
           leaveConsultation={leaveConsultation}
@@ -256,11 +258,20 @@ export const Consultation = () => {
         classes="page__consultation__chat-backdrop"
         isOpen={isChatShownOnMobile}
         onClose={() => setIsChatShownOnMobile(false)}
-        reference={backdropMessagesContainerRef}
+        reference={width < 768 ? backdropMessagesContainerRef : null}
       >
-        <div className="page__consultation__chat-backdrop__conatiner">
-          <div className="page__consultation__container__messages__messages-container">
+        <div className="page__consultation__chat-backdrop__container">
+          <div
+            ref={width >= 768 ? backdropMessagesContainerRef : null}
+            className="page__consultation__container__messages__messages-container"
+          >
             {renderAllMessages()}
+            <div
+              style={{
+                width: "100%",
+                marginBottom: width >= 768 ? "100px" : "50px",
+              }}
+            />
           </div>
           <SendMessage handleSubmit={handleSendMessage} />
         </div>
