@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+
 import {
   Block,
   Grid,
@@ -8,7 +11,6 @@ import {
   Loading,
   Error as ErrorComponent,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
 import {
   useGetNotificationPreferences,
   useUpdateNotificationPreferences,
@@ -41,8 +43,11 @@ export const NotificationPreferences = () => {
     const { message: errorMessage } = useError(error);
     setError(errorMessage);
   };
+  const onSuccess = () => {
+    toast(t("success"));
+  };
   const notificationsPreferencesMutation = useUpdateNotificationPreferences(
-    () => {},
+    onSuccess,
     onUpdateError
   );
 
