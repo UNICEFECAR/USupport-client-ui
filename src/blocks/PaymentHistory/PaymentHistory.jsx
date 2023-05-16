@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import {
-  Block,
-  PaymentsHistoryTable,
-  Loading,
-} from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 
+import {
+  Block,
+  Loading,
+  BaseTable,
+  Button,
+} from "@USupport-components-library/src";
+import { getDateView, getTime } from "@USupport-components-library/src/utils";
 import { PaymentInformation } from "#modals";
 
 import { paymentsSvc } from "@USupport-components-library/services";
@@ -23,7 +25,13 @@ import "./payment-history.scss";
  */
 export const PaymentHistory = () => {
   const { t } = useTranslation("payment-history-block");
-  const rows = ["service", "price", "date_of_payment", ""];
+  const rows = [
+    { label: t("service") },
+    { label: t("price"), isCentered: true },
+    { label: t("date_of_payment"), isCentered: true },
+    { label: "" },
+  ];
+  const currencySymbol = localStorage.getItem("currency_symbol");
 
   const [paymentsData, setPaymentsData] = useState([]);
   const [isPaymentInformationModalOpen, setIsPaymentInformationModalOpen] =
@@ -72,23 +80,47 @@ export const PaymentHistory = () => {
   };
   const closePaymentModal = () => setIsPaymentInformationModalOpen(false);
 
+  const getTableRows = () => {
+    return paymentsData?.map((payment) => {
+      return [
+        <p className="text">{t(payment.service)}</p>,
+        <p className="text centered">
+          {payment.price}
+          {currencySymbol}
+        </p>,
+        <p className="text centered">
+          {getDateView(payment.date)} - {getTime(payment.date)}
+        </p>,
+        <Button
+          type="link"
+          label={t("more_details")}
+          onClick={() => openPaymentModal(payment.paymentId)}
+        />,
+      ];
+    });
+  };
+
   return (
     <Block classes="payment-history">
       <InfiniteScroll
         dataLength={paymentsData.length || 0}
         hasMore={paymentHistoryQuery.data?.hasMore}
-        loader={<Loading padding="4rem" />}
+        loader={<Loading padding="1rem" />}
         next={() => paymentHistoryQuery.refetch()}
         initialScrollY={20}
         scrollThreshold={0}
       >
-        <PaymentsHistoryTable
-          isLoading={paymentHistoryQuery.isLoading}
-          rows={rows}
-          data={paymentsData}
-          handleViewMore={openPaymentModal}
-          t={t}
-        />
+        {paymentsData.length === 0 && paymentHistoryQuery.isLoading ? (
+          <Loading />
+        ) : (
+          <BaseTable
+            rowsData={getTableRows()}
+            data={paymentsData}
+            rows={rows}
+            t={t}
+            hasMenu={false}
+          />
+        )}
       </InfiniteScroll>
 
       {selectedPaymentData && (
