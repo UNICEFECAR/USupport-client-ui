@@ -224,14 +224,14 @@ export default function Root() {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/share-platform"
           element={
             <ProtectedRoute>
               <SharePlatform />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           path="/sos-center"
           element={
