@@ -296,6 +296,7 @@ export const Page = ({
           contactUsText={t("contact_us")}
           navigate={navigateTo}
           Link={Link}
+          showSocials={false}
         />
       )}
 
