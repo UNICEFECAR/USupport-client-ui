@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Page, ResetPassword as ResetPasswordBlock } from "#blocks";
 
@@ -13,8 +14,16 @@ import "./reset-password.scss";
  */
 export const ResetPassword = () => {
   const { t } = useTranslation("reset-password-page");
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate("/forgot-password");
+  };
   return (
-    <Page heading={t("heading")} classes="page__reset-password">
+    <Page
+      handleGoBack={handleGoBack}
+      heading={t("heading")}
+      classes="page__reset-password"
+    >
       <ResetPasswordBlock />
     </Page>
   );
