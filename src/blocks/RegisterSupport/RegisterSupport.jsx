@@ -1,18 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import {
   Block,
   Grid,
   GridItem,
   RadioButtonSelectorGroup,
   Button,
-  Modal,
   Error,
 } from "@USupport-components-library/src";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { clientSvc } from "@USupport-components-library/services";
+
 import { useGetClientData } from "#hooks";
+
+import { RequireDataAgreement } from "#modals";
 
 import "./register-support.scss";
 
@@ -117,18 +120,11 @@ export const RegisterSupport = () => {
           />
         </GridItem>
       </Grid>
-      <Modal
+      <RequireDataAgreement
         isOpen={isModalOpen}
-        closeModal={closeModal}
-        heading={t("modal_heading")}
-        text={t("modal_paragraph")}
-        ctaLabel={t("modal_cta_1")}
-        ctaHandleClick={handleGivePermission}
-        isCtaDisabled={updateDataProcessingMutation.isLoading}
-        secondaryCtaLabel={t("modal_cta_2")}
-        secondaryCtaType="secondary"
-        secondaryCtaHandleClick={closeModal}
-        errorMessage={submitError}
+        onClose={closeModal}
+        onGivePermission={handleGivePermission}
+        isLoading={updateDataProcessingMutation.isLoading}
       />
     </Block>
   );
