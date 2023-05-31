@@ -8,6 +8,7 @@ import {
   Input,
   DropdownWithLabel,
   Toggle,
+  DateInput,
 } from "@USupport-components-library/src";
 import { languageSvc } from "@USupport-components-library/services";
 
@@ -40,13 +41,17 @@ export const FilterProviders = ({ isOpen, onClose }) => {
     retry: false,
   });
 
-  const [data, setData] = useState({
+  const initialFilters = {
     providerTypes: [],
     providerSex: [],
     maxPrice: "",
     language: null,
     onlyFreeConsultation: false,
-  });
+    availableAfter: "",
+    availableBefore: "",
+  };
+
+  const [data, setData] = useState(initialFilters);
 
   const [providerTypes, setProviderTypes] = useState([
     {
@@ -96,6 +101,11 @@ export const FilterProviders = ({ isOpen, onClose }) => {
     onClose(dataCopy);
   };
 
+  const handleResetFilters = () => {
+    setData(initialFilters);
+    onClose(initialFilters);
+  };
+
   return (
     <Backdrop
       classes="filter-providers"
@@ -105,6 +115,9 @@ export const FilterProviders = ({ isOpen, onClose }) => {
       onClose={handleSave}
       ctaLabel={t("button_label")}
       ctaHandleClick={handleSave}
+      secondaryCtaLabel={t("reset_filter")}
+      secondaryCtaHandleClick={handleResetFilters}
+      secondaryCtaType="secondary"
     >
       <div className="filter-providers__content">
         <div className="filter-providers__content__inputs-container">
@@ -119,6 +132,30 @@ export const FilterProviders = ({ isOpen, onClose }) => {
             label={t("provider_sex_checkbox_group_label")}
             options={providerSex}
             setOptions={setProviderSex}
+          />
+          <DateInput
+            label={t("available_after")}
+            onChange={(e) =>
+              setData((prev) => ({
+                ...prev,
+                availableAfter: e?.currentTarget?.value,
+              }))
+            }
+            value={data.availableAfter || ""}
+            placeholder="DD.MM.YYY"
+            classes={["client-ratings__backdrop__date-picker"]}
+          />
+          <DateInput
+            label={t("available_before")}
+            onChange={(e) =>
+              setData((prev) => ({
+                ...prev,
+                availableBefore: e?.currentTarget?.value,
+              }))
+            }
+            value={data.availableBefore || ""}
+            placeholder="DD.MM.YYY"
+            classes={["client-ratings__backdrop__date-picker"]}
           />
           <Input
             value={data.maxPrice}
