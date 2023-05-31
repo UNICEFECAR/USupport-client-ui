@@ -4,7 +4,10 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { Page, Notifications as NotificationsBlock } from "#blocks";
 import { JoinConsultation } from "#backdrops";
-import { useMarkNotificationsAsRead } from "#hooks";
+import {
+  useMarkNotificationsAsRead,
+  useMarkAllNotificationsAsRead,
+} from "#hooks";
 import {
   notificationsSvc,
   providerSvc,
@@ -115,17 +118,22 @@ export const Notifications = () => {
     }
   );
 
+  const onMarkAllAsReadSuccess = () => {
+    window.dispatchEvent(new Event("all-notifications-read"));
+  };
+
   const onMarkAllAsReadError = (error) => toast(error, { type: "error" });
-  const markAllAsReadMutation =
+  const markNotificationAsReadByIdMutation =
     useMarkNotificationsAsRead(onMarkAllAsReadError);
 
   const handleMarkAllAsRead = async () => {
-    const unreadNotificationsIds = notificationsQuery.data?.pages
-      .flat()
-      ?.filter((x) => !x.isRead)
-      .map((x) => x.notificationId);
-    markAllAsReadMutation.mutate(unreadNotificationsIds);
+    markAllAsReadMutation.mutate();
   };
+
+  const markAllAsReadMutation = useMarkAllNotificationsAsRead(
+    onMarkAllAsReadSuccess,
+    onMarkAllAsReadError
+  );
 
   const headingButton = (
     <p className="page__notifications__mark-read" onClick={handleMarkAllAsRead}>
@@ -147,6 +155,7 @@ export const Notifications = () => {
         isLoadingProviders={isLoadingProviders}
         notificationsQuery={notificationsQuery}
         notificationProviders={notificationProviders}
+        markNotificationAsReadByIdMutation={markNotificationAsReadByIdMutation}
         markAllAsReadMutation={markAllAsReadMutation}
       />
       <JoinConsultation
