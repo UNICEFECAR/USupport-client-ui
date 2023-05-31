@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
-import { Modal, Toggle } from "@USupport-components-library/src";
+import { Modal } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
 
 import { mascotHappyBlue } from "@USupport-components-library/assets";
@@ -22,6 +22,8 @@ const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
 export const RequireDataAgreement = ({
   isOpen,
   onClose,
+  onGivePermission,
+  isLoading,
   onSuccess = () => {},
 }) => {
   const queryClient = useQueryClient();
@@ -44,7 +46,11 @@ export const RequireDataAgreement = ({
   });
 
   const handleGivePermission = () => {
-    updateDataProcessingMutation.mutate();
+    if (onGivePermission) {
+      onGivePermission();
+    } else {
+      updateDataProcessingMutation.mutate();
+    }
   };
 
   return (
@@ -55,6 +61,7 @@ export const RequireDataAgreement = ({
       closeModal={onClose}
       ctaLabel={t("give_permission")}
       ctaHandleClick={handleGivePermission}
+      isCtaLoading={updateDataProcessingMutation.isLoading || isLoading}
       secondaryCtaLabel={t("cancel")}
       secondaryCtaHandleClick={onClose}
       secondaryCtaType="secondary"
@@ -67,8 +74,8 @@ export const RequireDataAgreement = ({
         <p className="text">{t("text")}</p>
         <p className="text require-data-agreement__terms-text">
           {t("text2")}
-          <a href={`${WEBSITE_URL}/terms-of-use`} target="_blank">
-            {t("terms")}
+          <a href={`${WEBSITE_URL}/privacy-policy`} target="_blank">
+            {t("privacy_policy")}
           </a>
         </p>
       </div>
