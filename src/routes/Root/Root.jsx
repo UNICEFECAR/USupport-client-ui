@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   // BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -86,6 +87,18 @@ export default function Root() {
 
   useEventListener("login", loginHandler);
 
+  const location = useLocation();
+  const [hideIdleTimer, setHideIdleTimer] = useState(false);
+
+  useEffect(() => {
+    const currentUrl = location.pathname;
+    if (currentUrl === "consultation") {
+      setHideIdleTimer(true);
+    } else if (hideIdleTimer) {
+      setHideIdleTimer(false);
+    }
+  }, [location]);
+
   return (
     <RootContext.Provider
       value={{
@@ -95,7 +108,7 @@ export default function Root() {
         setActiveCoupon,
       }}
     >
-      {loggedIn && (
+      {loggedIn && !hideIdleTimer && (
         <IdleTimer
           t={t}
           setLoggedIn={setLoggedIn}
