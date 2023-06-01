@@ -7,11 +7,14 @@ import { JoinConsultation } from "#backdrops";
 import {
   useMarkNotificationsAsRead,
   useMarkAllNotificationsAsRead,
+  useGetClientData,
 } from "#hooks";
 import {
   notificationsSvc,
   providerSvc,
 } from "@USupport-components-library/services";
+
+import { RequireDataAgreement } from "#modals";
 
 import "./notifications.scss";
 
@@ -35,6 +38,8 @@ export const Notifications = () => {
     setIsJoinConsultationOpen(true);
   };
   const closeJoinConsultation = () => setIsJoinConsultationOpen(false);
+
+  const clientDataQuery = useGetClientData()[0];
 
   const getProviderNameForNotification = async (providerId) => {
     // Check if we already have the provider name in the cache
@@ -141,6 +146,11 @@ export const Notifications = () => {
     </p>
   );
 
+  const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
+    useState();
+  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
+  const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
+
   return (
     <Page
       classes="page__notifications"
@@ -157,11 +167,17 @@ export const Notifications = () => {
         notificationProviders={notificationProviders}
         markNotificationAsReadByIdMutation={markNotificationAsReadByIdMutation}
         markAllAsReadMutation={markAllAsReadMutation}
+        hasAgreedToDataProcessing={clientDataQuery.data?.dataProcessing}
+        openRequireDataAgreement={openRequireDataAgreement}
       />
       <JoinConsultation
         isOpen={isJoinConsultationOpen}
         onClose={closeJoinConsultation}
         consultation={selectedConsultation}
+      />
+      <RequireDataAgreement
+        isOpen={isRequireDataAgreementOpen}
+        onClose={closeRequireDataAgreement}
       />
     </Page>
   );

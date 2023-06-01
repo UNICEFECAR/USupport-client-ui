@@ -43,6 +43,8 @@ export const Notifications = ({
   notificationProviders,
   markAllAsReadMutation,
   markNotificationAsReadByIdMutation,
+  hasAgreedToDataProcessing,
+  openRequireDataAgreement,
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("notifications");
@@ -78,11 +80,15 @@ export const Notifications = ({
     consultationPrice,
     notificationId
   ) => {
-    markNotificationAsReadByIdMutation.mutate([notificationId]);
-    acceptConsultationMutation.mutate({
-      consultationId,
-      price: consultationPrice,
-    });
+    if (!hasAgreedToDataProcessing) {
+      openRequireDataAgreement();
+    } else {
+      markNotificationAsReadByIdMutation.mutate([notificationId]);
+      acceptConsultationMutation.mutate({
+        consultationId,
+        price: consultationPrice,
+      });
+    }
   };
 
   // Reject consultation loggic
