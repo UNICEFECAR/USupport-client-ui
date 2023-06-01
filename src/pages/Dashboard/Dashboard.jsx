@@ -77,7 +77,17 @@ export const Dashboard = () => {
 
   const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
     useState(false);
-  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
+  const [redirectToSelectProvider, setRedirectToSelectProvider] =
+    useState(true);
+
+  const openRequireDataAgreement = (successAction) => {
+    if (successAction) {
+      setRedirectToSelectProvider(false);
+    } else {
+      setRedirectToSelectProvider(true);
+    }
+    setIsRequireDataAgreementOpen(true);
+  };
   const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const [selectedConsultation, setSelectedConsultation] = useState();
@@ -134,6 +144,7 @@ export const Dashboard = () => {
 
   const onAcceptConsultationSuccess = () => {
     toast(t("accept_success"));
+    window.dispatchEvent(new Event("new-notification"));
   };
   const onAcceptConsultationError = (error) => {
     toast(error, { type: "error" });
@@ -144,7 +155,11 @@ export const Dashboard = () => {
   );
 
   const handleAcceptSuggestion = (consultationId, price) => {
-    acceptConsultationMutation.mutate({ consultationId, price });
+    if (!clientData.dataProcessing) {
+      openRequireDataAgreement(true);
+    } else {
+      acceptConsultationMutation.mutate({ consultationId, price });
+    }
   };
 
   // Schedule consultation logic
@@ -154,6 +169,7 @@ export const Dashboard = () => {
     closeSelectConsultationBackdrop();
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);
+    window.dispatchEvent(new Event("new-notification"));
 
     queryClient.invalidateQueries(["all-consultations"]);
   };
@@ -213,7 +229,11 @@ export const Dashboard = () => {
     }
   };
 
-  const handleDataAgreementSucess = () => navigate("/select-provider");
+  const handleDataAgreementSucess = () => {
+    if (redirectToSelectProvider) {
+      navigate("/select-provider");
+    }
+  };
 
   return (
     <Page

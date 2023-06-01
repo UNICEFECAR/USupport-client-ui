@@ -94,6 +94,7 @@ export const ProviderOverview = () => {
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);
     setActiveCoupon(null);
+    window.dispatchEvent(new Event("new-notification"));
   };
   const onScheduleConsultationError = (error) => {
     setBlockSlotError(error);
