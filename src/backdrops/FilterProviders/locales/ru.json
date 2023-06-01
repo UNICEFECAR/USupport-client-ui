@@ -14,5 +14,6 @@
   "language": "Язык",
   "language_placeholder": "Выберите язык",
   "providers_free_consultation_label": "Только бесплатная консультация",
-  "button_label": "Сохранить"
+  "button_label": "Примените фильтры",
+  "reset_filter": "Сбросить фильтр"
 }
