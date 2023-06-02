@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
@@ -24,7 +24,7 @@ import {
 } from "@USupport-components-library/utils";
 
 import { RequireRegistration } from "#modals";
-import { useIsLoggedIn } from "#hooks";
+import { useIsLoggedIn, useEventListener } from "#hooks";
 
 import "./page.scss";
 
@@ -156,9 +156,24 @@ export const Page = ({
   const { data: countries } = useQuery(["countries"], fetchCountries);
   const { data: languages } = useQuery(["languages"], fetchLanguages);
 
-  const hasUnreadNotifications = queryClient.getQueryData([
-    "has-unread-notifications",
-  ]);
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
+
+  useEffect(() => {
+    const hasUnreadNotificationsData = queryClient.getQueryData([
+      "has-unread-notifications",
+    ]);
+    setHasUnreadNotifications(hasUnreadNotificationsData);
+  }, []);
+
+  const newNotificationHandler = useCallback(() => {
+    setHasUnreadNotifications(true);
+  }, []);
+  useEventListener("new-notification", newNotificationHandler);
+
+  const allNotificationsReadHandler = useCallback(() => {
+    setHasUnreadNotifications(false);
+  });
+  useEventListener("all-notifications-read", allNotificationsReadHandler);
 
   const clientData = queryClient.getQueryData(["client-data"]);
   const image = clientData?.image;
@@ -296,6 +311,7 @@ export const Page = ({
           contactUsText={t("contact_us")}
           navigate={navigateTo}
           Link={Link}
+          showSocials={false}
         />
       )}
 

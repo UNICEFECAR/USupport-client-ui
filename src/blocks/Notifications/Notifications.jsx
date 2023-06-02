@@ -42,6 +42,9 @@ export const Notifications = ({
   notificationsQuery,
   notificationProviders,
   markAllAsReadMutation,
+  markNotificationAsReadByIdMutation,
+  hasAgreedToDataProcessing,
+  openRequireDataAgreement,
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("notifications");
@@ -62,6 +65,7 @@ export const Notifications = ({
   // Accept consultation logic
   const onAcceptConsultationSuccess = () => {
     toast(t("accept_consultation_success"));
+    window.dispatchEvent(new Event("new-notification"));
   };
   const onAcceptConsultationError = (error) => {
     toast(error, { type: "error" });
@@ -76,11 +80,15 @@ export const Notifications = ({
     consultationPrice,
     notificationId
   ) => {
-    markAllAsReadMutation.mutate([notificationId]);
-    acceptConsultationMutation.mutate({
-      consultationId,
-      price: consultationPrice,
-    });
+    if (!hasAgreedToDataProcessing) {
+      openRequireDataAgreement();
+    } else {
+      markNotificationAsReadByIdMutation.mutate([notificationId]);
+      acceptConsultationMutation.mutate({
+        consultationId,
+        price: consultationPrice,
+      });
+    }
   };
 
   // Reject consultation loggic
@@ -126,7 +134,7 @@ export const Notifications = ({
       notificationId,
       redirectTo = "/consultations"
     ) => {
-      markAllAsReadMutation.mutate([notificationId]);
+      markNotificationAsReadByIdMutation.mutate([notificationId]);
       if (redirectTo !== null) {
         navigate(redirectTo);
       }

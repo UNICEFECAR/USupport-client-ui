@@ -4,11 +4,17 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { Page, Notifications as NotificationsBlock } from "#blocks";
 import { JoinConsultation } from "#backdrops";
-import { useMarkNotificationsAsRead } from "#hooks";
+import {
+  useMarkNotificationsAsRead,
+  useMarkAllNotificationsAsRead,
+  useGetClientData,
+} from "#hooks";
 import {
   notificationsSvc,
   providerSvc,
 } from "@USupport-components-library/services";
+
+import { RequireDataAgreement } from "#modals";
 
 import "./notifications.scss";
 
@@ -32,6 +38,8 @@ export const Notifications = () => {
     setIsJoinConsultationOpen(true);
   };
   const closeJoinConsultation = () => setIsJoinConsultationOpen(false);
+
+  const clientDataQuery = useGetClientData()[0];
 
   const getProviderNameForNotification = async (providerId) => {
     // Check if we already have the provider name in the cache
@@ -115,23 +123,33 @@ export const Notifications = () => {
     }
   );
 
+  const onMarkAllAsReadSuccess = () => {
+    window.dispatchEvent(new Event("all-notifications-read"));
+  };
+
   const onMarkAllAsReadError = (error) => toast(error, { type: "error" });
-  const markAllAsReadMutation =
+  const markNotificationAsReadByIdMutation =
     useMarkNotificationsAsRead(onMarkAllAsReadError);
 
   const handleMarkAllAsRead = async () => {
-    const unreadNotificationsIds = notificationsQuery.data?.pages
-      .flat()
-      ?.filter((x) => !x.isRead)
-      .map((x) => x.notificationId);
-    markAllAsReadMutation.mutate(unreadNotificationsIds);
+    markAllAsReadMutation.mutate();
   };
+
+  const markAllAsReadMutation = useMarkAllNotificationsAsRead(
+    onMarkAllAsReadSuccess,
+    onMarkAllAsReadError
+  );
 
   const headingButton = (
     <p className="page__notifications__mark-read" onClick={handleMarkAllAsRead}>
       {t("mark_read")}
     </p>
   );
+
+  const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
+    useState();
+  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
+  const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   return (
     <Page
@@ -147,12 +165,19 @@ export const Notifications = () => {
         isLoadingProviders={isLoadingProviders}
         notificationsQuery={notificationsQuery}
         notificationProviders={notificationProviders}
+        markNotificationAsReadByIdMutation={markNotificationAsReadByIdMutation}
         markAllAsReadMutation={markAllAsReadMutation}
+        hasAgreedToDataProcessing={clientDataQuery.data?.dataProcessing}
+        openRequireDataAgreement={openRequireDataAgreement}
       />
       <JoinConsultation
         isOpen={isJoinConsultationOpen}
         onClose={closeJoinConsultation}
         consultation={selectedConsultation}
+      />
+      <RequireDataAgreement
+        isOpen={isRequireDataAgreementOpen}
+        onClose={closeRequireDataAgreement}
       />
     </Page>
   );

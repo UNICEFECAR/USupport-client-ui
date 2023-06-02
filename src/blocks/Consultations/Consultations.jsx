@@ -12,11 +12,7 @@ import {
 } from "@USupport-components-library/src";
 import { ONE_HOUR } from "@USupport-components-library/utils";
 
-import {
-  useGetAllConsultations,
-  useAcceptConsultation,
-  useRejectConsultation,
-} from "#hooks";
+import { useGetAllConsultations, useRejectConsultation } from "#hooks";
 
 import "./consultations.scss";
 
@@ -30,6 +26,7 @@ import "./consultations.scss";
 export const Consultations = ({
   openEditConsultation,
   openJoinConsultation,
+  acceptConsultation,
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("consultations");
@@ -78,20 +75,6 @@ export const Consultations = ({
         consultation,
       },
     });
-  };
-
-  const onAcceptConsultationSuccess = () => {
-    toast(t("accept_consultation_success"));
-  };
-  const onAcceptConsultationError = (error) => {
-    toast(error, { type: "error" });
-  };
-  const acceptConsultationMutation = useAcceptConsultation(
-    onAcceptConsultationSuccess,
-    onAcceptConsultationError
-  );
-  const acceptConsultation = (consultationId, price) => {
-    acceptConsultationMutation.mutate({ consultationId, price });
   };
 
   const onRejectConsultationSuccess = () => {

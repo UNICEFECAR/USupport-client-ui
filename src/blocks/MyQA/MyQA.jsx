@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -38,6 +39,7 @@ export const MyQA = ({
 }) => {
   const { t } = useTranslation("my-qa");
   const { width } = useWindowDimensions();
+  const navigate = useNavigate();
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -53,6 +55,10 @@ export const MyQA = ({
     }
     setTabs(tabsCopy);
   };
+
+  const handleProviderClick = (providerId) => {
+    navigate(`/provider-overview?provider-id=${providerId}`);
+  }
 
   const renderQuestions = () => {
     const filteredQuestions = questions.filter((question) => {
@@ -92,6 +98,7 @@ export const MyQA = ({
           handleLike={handleLike}
           handleReadMore={() => handleReadMore(question)}
           handleScheduleConsultationClick={handleScheduleConsultationClick}
+          handleProviderClick={handleProviderClick}
           t={t}
         />
       );

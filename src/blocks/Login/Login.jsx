@@ -67,6 +67,10 @@ export const Login = () => {
       window.dispatchEvent(new Event("login"));
       setErrors({});
       navigate("/dashboard");
+      const language = localStorage.getItem("language");
+      userSvc.changeLanguage(language).catch((err) => {
+        console.log(err, "Error when changing language");
+      });
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);

@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
 import { Root } from "#routes";
 import { FIVE_MINUTES } from "@USupport-components-library/utils";
+import { userSvc } from "@USupport-components-library/services";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -37,6 +38,14 @@ function App() {
     if (language) {
       i18n.changeLanguage(language);
     }
+
+    window.addEventListener("beforeunload", (e) => {
+      if (!(performance.getEntriesByType("navigation")[0].type === "reload")) {
+        // If the page is being refreshed, do nothing
+        e.preventDefault();
+        userSvc.logout();
+      }
+    });
   }, []);
 
   return (

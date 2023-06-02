@@ -45,8 +45,7 @@ export const ForgotPassword = () => {
         );
         setIsModalOpen(true);
       } catch (error) {
-        const { message: errorMessage } = useError(error);
-        setErrors({ submit: errorMessage });
+        setIsModalOpen(true);
       }
     }
   };

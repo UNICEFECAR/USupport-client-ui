@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+
 import {
   Block,
   Grid,
@@ -8,7 +11,6 @@ import {
   Loading,
   Error as ErrorComponent,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
 import {
   useGetNotificationPreferences,
   useUpdateNotificationPreferences,
@@ -16,6 +18,8 @@ import {
 } from "#hooks";
 
 import "./notification-preferences.scss";
+
+import { useGetClientData } from "#hooks";
 
 /**
  * NotificationPreferences
@@ -37,12 +41,18 @@ export const NotificationPreferences = () => {
   const [notificationPreferencesQuery] = useGetNotificationPreferences();
   const data = notificationPreferencesQuery.data;
 
+  const clientDataQuery = useGetClientData()[0];
+  const isAnon = !clientDataQuery.data?.email;
+
   const onUpdateError = (error) => {
     const { message: errorMessage } = useError(error);
     setError(errorMessage);
   };
+  const onSuccess = () => {
+    toast(t("success"));
+  };
   const notificationsPreferencesMutation = useUpdateNotificationPreferences(
-    () => {},
+    onSuccess,
     onUpdateError
   );
 
@@ -55,22 +65,25 @@ export const NotificationPreferences = () => {
   return (
     <Block classes="notification-preferences">
       {notificationPreferencesQuery.isLoading &&
+      clientDataQuery.isLoading &&
       !notificationPreferencesQuery.data ? (
         <Loading size="lg" />
       ) : (
         <Grid classes="notification-preferences__grid">
-          <GridItem
-            xs={4}
-            md={8}
-            lg={12}
-            classes="notification-preferences__grid__item"
-          >
-            <p className="paragraph">{t("email")}</p>
-            <Toggle
-              isToggled={data?.email}
-              setParentState={(value) => handleChange("email", value)}
-            />
-          </GridItem>
+          {isAnon ? null : (
+            <GridItem
+              xs={4}
+              md={8}
+              lg={12}
+              classes="notification-preferences__grid__item"
+            >
+              <p className="paragraph">{t("email")}</p>
+              <Toggle
+                isToggled={data?.email}
+                setParentState={(value) => handleChange("email", value)}
+              />
+            </GridItem>
+          )}
           <GridItem
             xs={4}
             md={8}

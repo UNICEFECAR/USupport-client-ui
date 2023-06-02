@@ -5,7 +5,12 @@ import {
   TelegramShareButton,
   VKShareButton,
 } from "react-share";
-import { Block, Box, Grid, GridItem } from "@USupport-components-library/src";
+import {
+  Block,
+  Grid,
+  GridItem,
+  Button,
+} from "@USupport-components-library/src";
 
 import "./share-platform.scss";
 
@@ -26,23 +31,32 @@ export const SharePlatform = ({ shareUrl = WEBSITE_URL }) => {
       <Grid md={8} lg={12} classes="share-platform__grid">
         <GridItem md={8} lg={12} classes="share-platform__grid__item">
           <VKShareButton url={shareUrl}>
-            <Box boxShadow={1} classes="share-platform__grid__item__button">
-              <p>{`${t("button_label_share_text")} VKontakte`}</p>
-            </Box>
+            <Button
+              type="secondary"
+              size="lg"
+              classes="share-platform__grid__item__button"
+              label={`${t("button_label_share_text")} VKontakte`}
+            />
           </VKShareButton>
         </GridItem>
         <GridItem md={8} lg={12} classes="share-platform__grid__item">
           <FacebookShareButton url={shareUrl}>
-            <Box boxShadow={1} classes="share-platform__grid__item__button">
-              <p>{`${t("button_label_share_text")} Facebook`}</p>
-            </Box>
+            <Button
+              type="secondary"
+              size="lg"
+              classes="share-platform__grid__item__button"
+              label={`${t("button_label_share_text")} Facebook`}
+            />
           </FacebookShareButton>
         </GridItem>
         <GridItem md={8} lg={12} classes="share-platform__grid__item">
           <TelegramShareButton url={shareUrl}>
-            <Box boxShadow={1} classes="share-platform__grid__item__button">
-              <p>{`${t("button_label_share_text")} Telegram`}</p>
-            </Box>
+            <Button
+              type="secondary"
+              size="lg"
+              classes="share-platform__grid__item__button"
+              label={`${t("button_label_share_text")} Telegram`}
+            />
           </TelegramShareButton>
         </GridItem>
       </Grid>

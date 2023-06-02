@@ -59,6 +59,7 @@ export const ScheduleConsultationGroup = ({
   const onScheduleConsultationSuccess = (data) => {
     setIsBlockSlotSubmitting(false);
     // setConsultationId(consultationId);
+    window.dispatchEvent(new Event("new-notification"));
     closeSelectConsultation();
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);

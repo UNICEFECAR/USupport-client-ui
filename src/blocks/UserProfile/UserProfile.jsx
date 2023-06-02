@@ -94,12 +94,12 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
             classes="user-profile__grid__item__button"
             onClick={() => handleRedirect("/platform-rating")}
           />
-          <ButtonSelector
+          {/* <ButtonSelector
             label={t("share_button_label")}
             iconName="share"
             classes="user-profile__grid__item__button"
             onClick={() => handleRedirect("/share-platform")}
-          />
+          /> */}
         </GridItem>
         <GridItem md={8} lg={12} classes="user-profile__grid__item">
           <p className="text user-profile__grid__item__label">{t("other")}</p>

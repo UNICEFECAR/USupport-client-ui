@@ -1,5 +1,6 @@
 {
   "email": "Электрондық пошта арқылы хабарландырулар",
   "appointment": "Кездесулер хабарландырулар",
-  "minutes_before": "минут дейін"
+  "minutes_before": "минут дейін",
+  "success": "Settings saved successfullyKK"
 }
