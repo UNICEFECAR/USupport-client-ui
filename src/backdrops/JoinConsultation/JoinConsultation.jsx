@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import { Backdrop, ButtonSelector } from "@USupport-components-library/src";
-import { messageSvc, userSvc } from "@USupport-components-library/services";
+import { messageSvc, videoSvc } from "@USupport-components-library/services";
 
 import "./join-consultation.scss";
 
@@ -31,7 +31,7 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
       chatId: consultation.chatId,
     });
 
-    const getConsultationTokenPromise = userSvc.getTwilioToken(
+    const getConsultationTokenPromise = videoSvc.getTwilioToken(
       consultation.consultationId
     );
 

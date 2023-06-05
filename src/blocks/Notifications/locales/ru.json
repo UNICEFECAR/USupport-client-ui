@@ -9,7 +9,7 @@
   "consultation_suggestion": "<0>{{providerName}}</0> предложил консультацию на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
   "consultation_suggestion_booking": "Вы приняли предложенную консультацию от <0>{{providerName}}</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
   "consultation_suggestion_cancellation": "Вы отклонили предложенную консультацию от <0>{{providerName}}</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
-  "consultation_started": "Your consultation with provider <0>{{providerName}}</0> startedRU",
+  "consultation_started": "Ваша консультация с консультантом {{providerName}} началась",
   "join": "Присоединиться",
   "accept": "Принять",
   "accept_consultation_success": "Консультация успешно принята",

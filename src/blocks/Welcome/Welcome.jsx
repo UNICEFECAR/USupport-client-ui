@@ -118,12 +118,14 @@ export const Welcome = () => {
           {!(countriesQuery.isLoading || languagesQuery.isLoading) ? (
             <>
               <DropdownWithLabel
-                options={countriesQuery.data.map((x) => {
-                  return {
-                    ...x,
-                    label: `${x.label} (${x.localName})`,
-                  };
-                })}
+                options={
+                  countriesQuery.data?.map((x) => {
+                    return {
+                      ...x,
+                      label: `${x.label} (${x.localName})`,
+                    };
+                  }) || []
+                }
                 classes="welcome__grid__content-item__countries-dropdown"
                 selected={selectedCountry}
                 setSelected={setSelectedCountry}
@@ -131,7 +133,7 @@ export const Welcome = () => {
                 placeholder={t("placeholder")}
               />
               <DropdownWithLabel
-                options={languagesQuery.data}
+                options={languagesQuery.data || []}
                 selected={selectedLanguage}
                 setSelected={setSelectedLanguage}
                 classes="welcome__grid__content-item__languages-dropdown"
