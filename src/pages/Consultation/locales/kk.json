@@ -10,5 +10,6 @@
   "client_camera_off": "Клиент камераны өшірді",
   "client_camera_on": "Клиент камераны қосты",
   "client_microphone_off": "Клиент микрофонды өшірді",
-  "client_microphone_on": "Клиент микрофонды қосты"
+  "client_microphone_on": "Клиент микрофонды қосты",
+  "show_system_messages": "Show system messagesKK"
 }

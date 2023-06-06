@@ -50,9 +50,6 @@ export function VideoRoom({
     disconnectRoom();
     leaveConsultation();
   };
-  useEffect(() => {
-    console.log(`%c${remoteParticipants}`, `color: red`, "REMOTE PARTICIPANTS");
-  }, [remoteParticipants]);
 
   return (
     <div className="video-room">

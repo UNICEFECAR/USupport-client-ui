@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useContext,
+  useCallback,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -10,6 +16,7 @@ import {
   SystemMessage,
   Loading,
   Backdrop,
+  Toggle,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
@@ -58,6 +65,7 @@ export const Consultation = () => {
   );
 
   const [messages, setMessages] = useState([]);
+  const [areSystemMessagesShown, setAreSystemMessagesShown] = useState(true);
   const [isSafetyFeedbackShown, setIsSafetyFeedbackShown] = useState(false);
 
   useEffect(() => {
@@ -128,10 +136,11 @@ export const Consultation = () => {
     setMessages((messages) => [...messages, message]);
   };
 
-  const renderAllMessages = () => {
+  const renderAllMessages = useCallback(() => {
     if (chatDataQuery.isLoading) return <Loading size="lg" />;
     return messages.map((message) => {
       if (message.type === "system") {
+        if (!areSystemMessagesShown) return null;
         return (
           <SystemMessage
             key={message.time}
@@ -161,7 +170,7 @@ export const Consultation = () => {
         }
       }
     });
-  };
+  }, [messages, chatDataQuery.isLoading, clientId, areSystemMessagesShown]);
 
   const handleSendMessage = (content, type = "text") => {
     const message = {
@@ -252,6 +261,9 @@ export const Consultation = () => {
           handleSendMessage={handleSendMessage}
           clientId={clientId}
           width={width}
+          areSystemMessagesShown={areSystemMessagesShown}
+          setAreSystemMessagesShown={setAreSystemMessagesShown}
+          t={t}
         />
       </div>
       <Backdrop
@@ -259,6 +271,15 @@ export const Consultation = () => {
         isOpen={isChatShownOnMobile}
         onClose={() => setIsChatShownOnMobile(false)}
         reference={width < 768 ? backdropMessagesContainerRef : null}
+        headingComponent={
+          <div className="page__consultation__system-message-toggle">
+            <Toggle
+              isToggled={areSystemMessagesShown}
+              setParentState={setAreSystemMessagesShown}
+            />
+            <p>{t("show_system_messages")}</p>
+          </div>
+        }
       >
         <div className="page__consultation__chat-backdrop__container">
           <div
@@ -286,6 +307,9 @@ const MessageList = ({
   width,
   handleSendMessage,
   clientId,
+  areSystemMessagesShown,
+  setAreSystemMessagesShown,
+  t,
 }) => {
   const messagesContainerRef = useRef();
 
@@ -306,6 +330,7 @@ const MessageList = ({
     if (isLoading) return <Loading size="lg" />;
     return messages.map((message) => {
       if (message.type === "system") {
+        if (!areSystemMessagesShown) return null;
         return (
           <SystemMessage
             key={message.time}
@@ -339,6 +364,13 @@ const MessageList = ({
 
   return width >= 1024 ? (
     <div>
+      <div className="page__consultation__system-message-toggle">
+        <Toggle
+          isToggled={areSystemMessagesShown}
+          setParentState={setAreSystemMessagesShown}
+        />
+        <p>{t("show_system_messages")}</p>
+      </div>
       <div
         ref={messagesContainerRef}
         className="page__consultation__container__messages__messages-container"

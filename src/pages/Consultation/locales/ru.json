@@ -10,5 +10,6 @@
   "client_camera_off": "Клиент выключил камеру",
   "client_camera_on": "Клиент включил камеру",
   "client_microphone_off": "Клиент выключил микрофон",
-  "client_microphone_on": "Клиент включил микрофон"
+  "client_microphone_on": "Клиент включил микрофон",
+  "show_system_messages": "Show system messagesRU"
 }
