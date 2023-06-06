@@ -9,7 +9,12 @@ import {
   BaseTable,
   Button,
 } from "@USupport-components-library/src";
-import { getDateView, getTime } from "@USupport-components-library/src/utils";
+
+import {
+  getDateView,
+  getTime,
+  downloadCSVFile,
+} from "@USupport-components-library/src/utils";
 import { PaymentInformation } from "#modals";
 
 import { paymentsSvc } from "@USupport-components-library/services";
@@ -65,6 +70,11 @@ export const PaymentHistory = () => {
           setPaymentsData((prevPayments) => [...prevPayments, ...payments]);
         }
         setLastPaymentId(lastPayment);
+        if (data.hasMore) {
+          setTimeout(() => {
+            paymentHistoryQuery.refetch();
+          }, 150);
+        }
       },
     }
   );
@@ -100,13 +110,27 @@ export const PaymentHistory = () => {
     });
   };
 
+  const handleExportPaymentHistory = () => {
+    let csv = `${rows
+      .slice(0, rows.length - 1)
+      .map((x) => x.label)
+      .join(",")},${t("more_details")}\n`;
+
+    paymentsData.forEach((p) => {
+      csv += `${p.service},${p.price}${currencySymbol},${getDateView(
+        p.date
+      )} - ${getTime(p.date)},${p.receipt_url}\n`;
+    });
+    downloadCSVFile(csv, `payment-history-${getDateView(new Date())}.csv`);
+  };
+
   return (
     <Block classes="payment-history">
       <InfiniteScroll
         dataLength={paymentsData.length || 0}
         hasMore={paymentHistoryQuery.data?.hasMore}
         loader={<Loading padding="1rem" />}
-        next={() => paymentHistoryQuery.refetch()}
+        next={() => {}}
         initialScrollY={20}
         scrollThreshold={0}
       >
@@ -119,6 +143,12 @@ export const PaymentHistory = () => {
             rows={rows}
             t={t}
             hasMenu={false}
+            secondaryButtonLabel={t("export_label")}
+            secondaryButtonAction={handleExportPaymentHistory}
+            isSecondaryButtonDisabled={
+              paymentsData.length === 0 ||
+              paymentHistoryQuery.data?.hasMore === true
+            }
           />
         )}
       </InfiniteScroll>

@@ -211,6 +211,8 @@ export const SelectProvider = () => {
         isCtaLoading={isLoading}
         errorMessage={couponError}
       >
+        <p className="text">{t("coupon_paragraph")}</p>
+        <p className="text">{t("coupon_paragraph_two")}</p>
         <div className="page__select-provider__coupon-modal-input">
           <Input
             label={t("modal_coupon_input_label")}
