@@ -100,4 +100,15 @@
       position: relative;
     }
   }
+
+  &__system-message-toggle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: $spacing_1_2;
+
+    & p {
+      margin-left: $spacing_1_8;
+    }
+  }
 }

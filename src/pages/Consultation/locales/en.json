@@ -10,5 +10,6 @@
   "client_camera_off": "The client has turned off the camera",
   "client_camera_on": "The client has turned on the camera",
   "client_microphone_off": "The client has turned off the microphone",
-  "client_microphone_on": "The client has turned on the microphone"
+  "client_microphone_on": "The client has turned on the microphone",
+  "show_system_messages": "Show system messages"
 }
