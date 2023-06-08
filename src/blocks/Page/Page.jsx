@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import jwtDecode from "jwt-decode";
 
 import {
   Navbar,
@@ -24,7 +25,11 @@ import {
 } from "@USupport-components-library/utils";
 
 import { RequireRegistration } from "#modals";
-import { useIsLoggedIn, useEventListener } from "#hooks";
+import {
+  useIsLoggedIn,
+  useEventListener,
+  useCheckHasUnreadNotifications,
+} from "#hooks";
 
 import "./page.scss";
 
@@ -71,6 +76,11 @@ export const Page = ({
   const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
+
+  const token = localStorage.getItem("token");
+  const decoded = token ? jwtDecode(token) : null;
+
+  const unreadNotificationsQuery = useCheckHasUnreadNotifications(!!token);
 
   const localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
@@ -157,13 +167,10 @@ export const Page = ({
   const { data: languages } = useQuery(["languages"], fetchLanguages);
 
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
-
   useEffect(() => {
-    const hasUnreadNotificationsData = queryClient.getQueryData([
-      "has-unread-notifications",
-    ]);
+    const hasUnreadNotificationsData = unreadNotificationsQuery.data;
     setHasUnreadNotifications(hasUnreadNotificationsData);
-  }, []);
+  }, [unreadNotificationsQuery.data]);
 
   const newNotificationHandler = useCallback(() => {
     setHasUnreadNotifications(true);
