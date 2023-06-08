@@ -117,7 +117,7 @@ export const PaymentHistory = () => {
       .join(",")},${t("more_details")}\n`;
 
     paymentsData.forEach((p) => {
-      csv += `${p.service},${p.price}${currencySymbol},${getDateView(
+      csv += `${t(p.service)},${p.price}${currencySymbol},${getDateView(
         p.date
       )} - ${getTime(p.date)},${p.receipt_url}\n`;
     });

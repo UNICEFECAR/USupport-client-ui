@@ -170,7 +170,6 @@ export const SelectProvider = () => {
             }
             size="xs"
             color="green"
-            type="secondary"
             onClick={activeCoupon ? removeCoupon : openCouponModal}
           />
           <ButtonWithIcon
@@ -205,7 +204,6 @@ export const SelectProvider = () => {
         isOpen={isCouponModalOpen}
         closeModal={closeCouponModal}
         heading={t("modal_coupon_heading")}
-        text={t("modal_coupon_text")}
         ctaLabel={t("modal_coupon_button_label")}
         ctaHandleClick={handleSubmitCoupon}
         isCtaLoading={isLoading}

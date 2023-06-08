@@ -11,5 +11,9 @@
   "client_camera_on": "The client has turned on the camera",
   "client_microphone_off": "The client has turned off the microphone",
   "client_microphone_on": "The client has turned on the microphone",
-  "show_system_messages": "Show system messages"
+  "show_system_messages": "Show system messages",
+  "show_previous_consultations": "Show previous consultations",
+  "hide_options": "Hide options",
+  "show_options": "Show options",
+  "search": "Search"
 }

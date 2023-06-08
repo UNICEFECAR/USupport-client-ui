@@ -25,7 +25,7 @@ export const Checkout = () => {
   const navigate = useNavigate();
   const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
   const stripePromise = loadStripe(stripePublicKey, {
-    locale: i18n.language ? "kk" : "ru",
+    locale: i18n.language || "en",
   });
 
   const [clientSecret, setClientSecret] = useState(null);

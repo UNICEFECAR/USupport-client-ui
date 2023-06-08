@@ -14,6 +14,7 @@ export function VideoRoom({
   toggleChat,
   leaveConsultation,
   handleSendMessage,
+  hasUnreadMessages,
   token,
   t,
 }) {
@@ -64,6 +65,7 @@ export function VideoRoom({
         isCameraOn={isCameraOn}
         isMicrophoneOn={isMicrophoneOn}
         isRoomConnecting={!localParticipant}
+        hasUnreadMessages={hasUnreadMessages}
         t={t}
       />
 
