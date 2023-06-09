@@ -60,7 +60,7 @@
           }
         }
 
-        & > button {
+        & > button:first-of-type {
           margin-top: $spacing_3_2;
 
           @media screen and (min-width: $screen_md) {
@@ -74,6 +74,7 @@
     &__login-button {
       margin: 0 auto;
       margin-top: $spacing_1_6;
+      padding-right: $spacing_4_0;
     }
   }
 
