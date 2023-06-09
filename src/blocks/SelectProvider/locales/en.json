@@ -4,5 +4,13 @@
   "psychotherapist": "Psychotherapist",
   "no_match": "No providers matching your criteria",
   "free": "Free",
-  "coupon": "Coupon"
+  "coupon": "Coupon",
+  "earliest_available_slot": "First available consultation:",
+  "sunday": "Sun",
+  "monday": "Mon",
+  "tuesday": "Tue",
+  "wednesday": "Wed",
+  "thursday": "Thu",
+  "friday": "Fri",
+  "saturday": "Sat"
 }

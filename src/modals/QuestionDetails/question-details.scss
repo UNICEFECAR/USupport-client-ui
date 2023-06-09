@@ -75,6 +75,11 @@
 
     &__avatar {
       margin: 0 $spacing_0_4;
+      cursor: pointer;
+    }
+
+    &__provider-name {
+      cursor: pointer;
     }
   }
 

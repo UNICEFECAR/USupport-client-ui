@@ -74,9 +74,14 @@ export const RequireDataAgreement = ({
         <p className="text">{t("text")}</p>
         <p className="text require-data-agreement__terms-text">
           {t("text2")}
-          <a href={`${WEBSITE_URL}/privacy-policy`} target="_blank">
+          <span
+            className="require-data-agreement__terms-text__link"
+            onClick={() =>
+              window.open(`${WEBSITE_URL}/privacy-policy`, "_blank").focus()
+            }
+          >
             {t("privacy_policy")}
-          </a>
+          </span>
         </p>
       </div>
     </Modal>
