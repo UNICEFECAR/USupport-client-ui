@@ -49,6 +49,8 @@ export const SelectProvider = ({ providers, activeCoupon }) => {
             onClick={() => handleProviderClick(provider)}
             image={provider.image}
             freeLabel={activeCoupon ? t("coupon") : t("free")}
+            earliestAvailableSlot={provider.earliestAvailableSlot}
+            t={t}
           />
         </GridItem>
       );
