@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
@@ -23,6 +24,7 @@ import "./my-qa.scss";
  */
 export const MyQA = () => {
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
+  const navigate = useNavigate();
 
   const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
   const [isQuestionDetailsOpen, setIsQuestionDetailsOpen] = useState(false);
@@ -159,6 +161,10 @@ export const MyQA = () => {
     }
   };
 
+  const handleProviderClick = (providerId) => {
+    navigate(`/provider-overview?provider-id=${providerId}`);
+  };
+
   return (
     <Page classes="page__my-qa" showGoBackArrow={false}>
       <MascotHeaderMyQA
@@ -191,6 +197,7 @@ export const MyQA = () => {
           question={selectedQuestion}
           handleLike={handleLike}
           handleScheduleClick={handleScheduleConsultationClick}
+          handleProviderClick={handleProviderClick}
         />
       )}
       <HowItWorksMyQA
