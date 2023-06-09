@@ -8,7 +8,6 @@ import {
   Error,
   Input,
   DropdownWithLabel,
-  RadioButtonSelectorGroup,
   Button,
   Grid,
   GridItem,
@@ -179,13 +178,13 @@ export const RegisterAboutYou = () => {
               label={t("dropdown_year_label")}
               classes="register-about-you__grid__content-item__inputs-container__year-dropdown"
             />
-            <RadioButtonSelectorGroup
-              name="urbanRural"
-              label={t("living_place_label")}
+            <DropdownWithLabel
               options={urbanRuralOptions}
               selected={data.urbanRural}
               errorMessage={errors.urbanRural}
               setSelected={(option) => handleSelect("urbanRural", option)}
+              label={t("living_place_label")}
+              classes="register-about-you__grid__content-item__inputs-container__year-dropdown"
             />
           </div>
           {errors.submit ? <Error message={errors.submit} /> : null}
