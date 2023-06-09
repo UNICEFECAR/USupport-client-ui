@@ -1,6 +1,9 @@
 @import "@USupport-components-library/styles";
 
 .select-consultation {
+  & .base-modal__body {
+    overflow: hidden;
+  }
   & .backdrop__children {
     flex: 0.9;
     overflow: hidden;
