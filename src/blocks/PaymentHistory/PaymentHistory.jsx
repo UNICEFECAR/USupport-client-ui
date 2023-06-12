@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -29,13 +29,26 @@ import "./payment-history.scss";
  * @return {jsx}
  */
 export const PaymentHistory = () => {
-  const { t } = useTranslation("payment-history-block");
-  const rows = [
-    { label: t("service") },
-    { label: t("price"), isCentered: true },
-    { label: t("date_of_payment"), isCentered: true },
-    { label: "" },
-  ];
+  const { t, i18n } = useTranslation("payment-history-block");
+  const rows = useMemo(() => {
+    return [
+      { label: t("service") },
+      {
+        label: t("price"),
+        isCentered: true,
+        sortingKey: "price",
+        isNumbered: true,
+      },
+      {
+        label: t("date_of_payment"),
+        isCentered: true,
+        sortingKey: "date",
+        isDate: true,
+      },
+      { label: "" },
+    ];
+  }, [i18n.language]);
+
   const currencySymbol = localStorage.getItem("currency_symbol");
 
   const [paymentsData, setPaymentsData] = useState([]);
@@ -92,6 +105,7 @@ export const PaymentHistory = () => {
 
   const getTableRows = () => {
     return paymentsData?.map((payment) => {
+      console.log(payment.price, "price");
       return [
         <p className="text">{t(payment.service)}</p>,
         <p className="text centered">
@@ -145,6 +159,7 @@ export const PaymentHistory = () => {
             hasMenu={false}
             secondaryButtonLabel={t("export_label")}
             secondaryButtonAction={handleExportPaymentHistory}
+            updateData={setPaymentsData}
             isSecondaryButtonDisabled={
               paymentsData.length === 0 ||
               paymentHistoryQuery.data?.hasMore === true
