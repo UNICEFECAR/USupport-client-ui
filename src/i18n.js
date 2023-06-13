@@ -96,6 +96,7 @@ import {
   JoinConsultation,
   SelectAvatar,
   FilterQuestions,
+  CodeVerification,
 } from "#backdrops/locales.js";
 
 import {
@@ -208,6 +209,7 @@ const resources = {
     "join-consultation": JoinConsultation.en,
     "select-avatar": SelectAvatar.en,
     "filter-questions": FilterQuestions.en,
+    "code-verification": CodeVerification.en,
 
     //Modals
     "require-registration": RequireRegistration.en,
@@ -318,6 +320,7 @@ const resources = {
     "join-consultation": JoinConsultation.ru,
     "select-avatar": SelectAvatar.ru,
     "filter-questions": FilterQuestions.ru,
+    "code-verification": CodeVerification.ru,
 
     //Modals
     "require-registration": RequireRegistration.ru,
@@ -428,6 +431,7 @@ const resources = {
     "join-consultation": JoinConsultation.kk,
     "select-avatar": SelectAvatar.kk,
     "filter-questions": FilterQuestions.kk,
+    "code-verification": CodeVerification.kk,
 
     //Modals
     "require-registration": RequireRegistration.kk,

@@ -1,0 +1,11 @@
+{
+  "heading": "Code Verification",
+  "subheading": "Please enter the code you received via email. It is valid for 30 minutes after you received the email.",
+  "expiration_text": "Code will expire in ",
+  "button_with_icon_label_view": "View Code",
+  "button_with_icon_label_hide": "Hide Code",
+  "send_button_label": "Send",
+  "didnt_get_code": "Didn’t get code?",
+  "resend_code_button_label": "Resend email",
+  "seconds": " in {{seconds}} seconds"
+}
