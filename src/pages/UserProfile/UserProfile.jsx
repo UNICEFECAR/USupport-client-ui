@@ -54,6 +54,7 @@ export const UserProfile = () => {
           onClick={handleLogout}
         />
       }
+      showHeadingButtonInline
     >
       <UserProfileBlock {...{ openModal, closeModal, isTmpUser }} />
       {width < 768 && (

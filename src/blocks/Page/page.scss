@@ -14,13 +14,6 @@
     }
   }
 
-  @media screen and (min-width: 1050px) {
-    // padding-top: $spacing_8_0;
-    &--no-additional-top-padding {
-      padding-top: 0;
-    }
-  }
-
   &__mobile-button-container .btn {
     margin: 0 auto;
     margin-top: $spacing_2_4;
@@ -47,13 +40,6 @@
       max-width: 75rem;
       word-break: break-word;
       text-align: left;
-
-      @media screen and (min-width: $screen_md) {
-        padding-left: $spacing_6_0;
-      }
-      @media screen and (min-width: $screen_lg) {
-        padding-left: $spacing_16_0;
-      }
     }
 
     &-button-container {
@@ -90,11 +76,11 @@
     padding-left: $spacing_2_4;
 
     @media screen and (min-width: $screen-md) {
-      padding-left: calc($spacing_2_6 + $spacing_2_4 + $spacing_6_0);
+      padding-left: calc($spacing_2_6 + $spacing_8_0);
     }
 
     @media screen and (min-width: $screen-lg) {
-      padding-left: calc($spacing_23_0 + $spacing_16_0);
+      padding-left: calc($spacing_23_0 + $spacing_5_6);
     }
   }
 
