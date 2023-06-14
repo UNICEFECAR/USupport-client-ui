@@ -19,6 +19,7 @@
     position: relative;
     min-height: 100vh;
     min-width: 100vw;
+    width: 100%;
 
     @media screen and (min-width: 1024px) {
       flex-direction: row;
@@ -47,9 +48,11 @@
     transform: scaleX(-1);
 
     @media screen and (min-width: 1024px) {
-      width: calc(100vw - 50rem);
+      // width: calc(100vw - 50rem);
+      width: 100%;
       border-radius: 2.5rem;
-      max-height: 80vh;
+      // max-height: 80vh;
+      max-height: calc(100vh - 15rem);
     }
   }
 
