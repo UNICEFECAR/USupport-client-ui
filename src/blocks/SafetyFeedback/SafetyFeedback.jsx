@@ -26,7 +26,7 @@ import "./safety-feedback.scss";
  *
  * @return {jsx}
  */
-export const SafetyFeedback = ({ consultationId, answers }) => {
+export const SafetyFeedback = ({ consultationId, answers = {} }) => {
   const { t } = useTranslation("safety-feedback-block");
   const navigate = useNavigate();
   const hasAnsweredBefore =
