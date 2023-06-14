@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import {
   // BrowserRouter as Router,
   Routes,
@@ -27,7 +27,7 @@ import {
   ForgotPassword,
   InformationPortal,
   Login,
-  MoodTracker,
+  // MoodTracker,
   NotFound,
   NotificationPreferencesPage,
   PlatformRating,
@@ -90,9 +90,27 @@ export default function Root() {
   const location = useLocation();
   const [hideIdleTimer, setHideIdleTimer] = useState(false);
 
+  const previousLocation = useRef();
+  const leaveConsultationFn = useRef(null);
+
+  // If the user is in a consultation and navigates to a different page through
+  // some of the tabs we have to make sure that he will be disconnected from the consultation
+  // This is done by placing the leaveConsultationFn ref in the RootContext so it can be accessible everywhere
+  // and then setting it to the "leaveConsultation" function in the "Consultation" page
   useEffect(() => {
     const currentUrl = location.pathname;
-    if (currentUrl === "consultation") {
+    if (
+      previousLocation.current === "/consultation" &&
+      currentUrl !== "/consultation"
+    ) {
+      if (leaveConsultationFn.current) {
+        leaveConsultationFn.current();
+      }
+    }
+
+    previousLocation.current = currentUrl;
+
+    if (currentUrl === "/consultation") {
       setHideIdleTimer(true);
     } else if (hideIdleTimer) {
       setHideIdleTimer(false);
@@ -106,12 +124,14 @@ export default function Root() {
         handleRegistrationModalOpen,
         activeCoupon,
         setActiveCoupon,
+        leaveConsultationFn,
       }}
     >
       {loggedIn && !hideIdleTimer && (
         <IdleTimer
           t={t}
           setLoggedIn={setLoggedIn}
+          leaveConsultation={leaveConsultationFn.current}
           NavigateComponent={Navigate}
         />
       )}

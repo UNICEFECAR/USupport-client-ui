@@ -57,7 +57,7 @@ export const Consultation = () => {
   const backdropMessagesContainerRef = useRef();
   const socketRef = useRef();
 
-  const { isTmpUser } = useContext(RootContext);
+  const { isTmpUser, leaveConsultationFn } = useContext(RootContext);
 
   if (isTmpUser) return <Navigate to="/dashboard" />;
 
@@ -113,16 +113,18 @@ export const Consultation = () => {
     });
 
     socketRef.current.on("receive message", receiveMessage);
-    // window.addEventListener("beforeunload", (ev) => {
-    //   console.log("asd");
-    //   return (ev.returnValue = "Are you sure you want to close?");
-    // });
+
+    const handleBeforeUnload = () => {
+      leaveConsultation();
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
       if (socketRef.current) {
         socketRef.current.disconnect();
         socketRef.current.off();
       }
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -182,12 +184,12 @@ export const Consultation = () => {
 
   const renderAllMessages = useCallback(() => {
     if (chatDataQuery.isLoading) return <Loading size="lg" />;
-    return messages?.map((message) => {
+    return messages?.map((message, index) => {
       if (message.type === "system") {
         if (!areSystemMessagesShown) return null;
         return (
           <SystemMessage
-            key={message.time}
+            key={`${message.time}-${index}`}
             title={message.content}
             date={new Date(Number(message.time))}
           />
@@ -196,7 +198,7 @@ export const Consultation = () => {
         if (message.senderId === clientId) {
           return (
             <Message
-              key={message.time}
+              key={`${message.time}-${index}`}
               message={message.content}
               sent
               date={new Date(Number(message.time))}
@@ -205,7 +207,7 @@ export const Consultation = () => {
         } else {
           return (
             <Message
-              key={message.time}
+              key={`${message.time}-${index}`}
               message={message.content}
               received
               date={new Date(Number(message.time))}
@@ -284,6 +286,12 @@ export const Consultation = () => {
       message: leaveMessage,
     });
   };
+
+  useEffect(() => {
+    if (leaveConsultation) {
+      leaveConsultationFn.current = leaveConsultation;
+    }
+  }, [leaveConsultation]);
 
   const handleTextareaFocus = () => {
     if (hasUnreadMessages) {
@@ -427,12 +435,12 @@ const MessageList = ({
 
   const renderAllMessages = useCallback(() => {
     if (isLoading) return <Loading size="lg" />;
-    return messages?.map((message) => {
+    return messages?.map((message, index) => {
       if (message.type === "system") {
         if (!areSystemMessagesShown) return null;
         return (
           <SystemMessage
-            key={message.time}
+            key={`${message.time}-${index}`}
             title={message.content}
             date={new Date(Number(message.time))}
           />
@@ -441,7 +449,7 @@ const MessageList = ({
         if (message.senderId === clientId) {
           return (
             <Message
-              key={message.time}
+              key={`${message.time}-${index}`}
               message={message.content}
               sent
               date={new Date(Number(message.time))}
@@ -450,7 +458,7 @@ const MessageList = ({
         } else {
           return (
             <Message
-              key={message.time}
+              key={`${message.time}-${index}`}
               message={message.content}
               received
               date={new Date(Number(message.time))}
