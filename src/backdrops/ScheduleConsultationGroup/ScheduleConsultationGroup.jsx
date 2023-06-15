@@ -22,6 +22,7 @@ export const ScheduleConsultationGroup = ({
   setIsConfirmBackdropOpen,
   isRequireDataAgreementOpen,
   setIsRequireDataAgreementOpen,
+  // campaignId,
 }) => {
   const navigate = useNavigate();
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
@@ -92,6 +93,7 @@ export const ScheduleConsultationGroup = ({
         providerId={providerId}
         isCtaDisabled={isBlockSlotSubmitting}
         errorMessage={blockSlotError}
+        // campaignId={campaignId}
       />
       {selectedSlot && (
         <ConfirmConsultation
