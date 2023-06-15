@@ -258,7 +258,7 @@ export const ActivityHistory = ({
             )}
           </div>
         </div>
-        {!consultation.campaignId && providerStatus === "active" && (
+        {providerStatus === "active" && (
           <div className="activity-history__main__button-container">
             <Button
               label={t("button_label")}
