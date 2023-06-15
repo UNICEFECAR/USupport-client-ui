@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -10,6 +10,8 @@ import {
   Button,
   Modal,
   Input,
+  Toggle,
+  Block,
 } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
 
@@ -40,6 +42,10 @@ export const SelectProvider = () => {
   const [couponValue, setCouponValue] = useState("");
   const [couponError, setCouponError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [sharedFilters, setSharedFilters] = useState({
+    maxPrice: "",
+    onlyFreeConsultation: false,
+  });
 
   const [providersDataQuery, providersData, setProvidersData] =
     useGetProvidersData(activeCoupon);
@@ -67,7 +73,13 @@ export const SelectProvider = () => {
       availableAfter,
       availableBefore,
     } = data;
-    const initialData = JSON.parse(JSON.stringify(providersDataQuery.data));
+    setSharedFilters({
+      maxPrice,
+      onlyFreeConsultation,
+    });
+    const initialData = JSON.parse(
+      JSON.stringify(providersDataQuery.data || [])
+    );
     const filteredData = [];
     for (let i = 0; i < initialData.length; i++) {
       const provider = initialData[i];
@@ -164,14 +176,6 @@ export const SelectProvider = () => {
       showHeadingButtonBelow={width < 768 ? true : false}
       headingButton={
         <div className="page__select-provider__buttons">
-          <Button
-            label={
-              activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
-            }
-            size="xs"
-            color="green"
-            onClick={activeCoupon ? removeCoupon : openCouponModal}
-          />
           <ButtonWithIcon
             label={t("button_label")}
             iconName="filter"
@@ -184,6 +188,14 @@ export const SelectProvider = () => {
         </div>
       }
     >
+      <FiltersBlock
+        handleSave={handleFilterSave}
+        t={t}
+        activeCoupon={activeCoupon}
+        removeCoupon={removeCoupon}
+        openCouponModal={openCouponModal}
+        sharedFilters={sharedFilters}
+      />
       {(providersDataQuery.isLoading && !providersData) ||
       providersDataQuery.isFetching ? (
         <Loading size="lg" />
@@ -199,6 +211,7 @@ export const SelectProvider = () => {
       <FilterProviders
         isOpen={isFilterOpen}
         onClose={(data) => handleFilterSave(data)}
+        sharedFilters={sharedFilters}
       />
       <Modal
         isOpen={isCouponModalOpen}
@@ -221,5 +234,55 @@ export const SelectProvider = () => {
         </div>
       </Modal>
     </Page>
+  );
+};
+
+const FiltersBlock = ({
+  handleSave,
+  activeCoupon,
+  removeCoupon,
+  openCouponModal,
+  sharedFilters,
+  t,
+}) => {
+  const [data, setData] = useState({
+    maxPrice: "",
+    onlyFreeConsultation: false,
+  });
+
+  useEffect(() => {
+    setData({ ...sharedFilters });
+  }, [sharedFilters]);
+
+  const handleChange = (field, val) => {
+    const newData = { ...data };
+    newData[field] = val;
+    setData(newData);
+    handleSave(newData);
+  };
+
+  return (
+    <Block classes="page__select-provider__filters-block">
+      <Input
+        type="number"
+        label={t("max_price")}
+        placeholder={t("max_price")}
+        value={data.maxPrice}
+        onChange={(e) => handleChange("maxPrice", e.target.value)}
+      />
+      <Toggle
+        isToggled={data.onlyFreeConsultation}
+        setParentState={(val) => handleChange("onlyFreeConsultation", val)}
+        label={t("providers_free_consultation_label")}
+      />
+      <Button
+        label={
+          activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
+        }
+        size="sm"
+        color="green"
+        onClick={activeCoupon ? removeCoupon : openCouponModal}
+      />
+    </Block>
   );
 };

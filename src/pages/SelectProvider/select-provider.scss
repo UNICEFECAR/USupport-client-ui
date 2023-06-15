@@ -14,11 +14,53 @@
     }
   }
 
+  .page__header-button-container {
+    @media screen and (max-width: $screen_md) {
+      justify-content: flex-start;
+      margin-left: $spacing_1_2;
+      margin-bottom: $spacing_1_8;
+    }
+  }
+
   &__coupon-modal-input {
     margin: $spacing_1_2 0;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+  }
+
+  &__filters-block .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    @media screen and (min-width: $screen_md) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding-top: $spacing_2_4;
+    }
+
+    & .input-container {
+      width: 30rem;
+      margin-bottom: $spacing_1_2;
+
+      @media screen and (min-width: $screen_md) {
+        width: 24rem;
+        // margin-right: $spacing_1_2;
+      }
+    }
+
+    & .toggle-wrapper {
+      margin-bottom: $spacing_1_2;
+
+      @media screen and (min-width: $screen_md) {
+        margin: 0 $spacing_2_4;
+        // margin-right: $spacing_1_2;
+      }
+    }
   }
 }
