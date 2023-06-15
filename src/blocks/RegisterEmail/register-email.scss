@@ -41,6 +41,14 @@
       margin: 0 auto;
       margin-top: $spacing_1_6;
     }
+
+    & .terms-agreement {
+      margin-bottom: $spacing_1_2;
+    }
+
+    &__submit-error {
+      text-align: center;
+    }
   }
 
   .error-message {

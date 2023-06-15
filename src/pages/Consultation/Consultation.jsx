@@ -57,7 +57,7 @@ export const Consultation = () => {
   const backdropMessagesContainerRef = useRef();
   const socketRef = useRef();
 
-  const { isTmpUser } = useContext(RootContext);
+  const { isTmpUser, leaveConsultationFn } = useContext(RootContext);
 
   if (isTmpUser) return <Navigate to="/dashboard" />;
 
@@ -113,29 +113,35 @@ export const Consultation = () => {
     });
 
     socketRef.current.on("receive message", receiveMessage);
-    // window.addEventListener("beforeunload", (ev) => {
-    //   console.log("asd");
-    //   return (ev.returnValue = "Are you sure you want to close?");
-    // });
+
+    const handleBeforeUnload = () => {
+      leaveConsultation();
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
       if (socketRef.current) {
         socketRef.current.disconnect();
         socketRef.current.off();
       }
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Filter the messages based on the search input
   useEffect(() => {
+    const messagesToFilter = showAllMessages
+      ? allChatHistoryQuery.data?.messages
+      : chatDataQuery.data?.messages;
+
     if (debouncedSearch) {
-      const filteredMessages = chatDataQuery.data.messages.filter((message) =>
+      const filteredMessages = messagesToFilter.filter((message) =>
         message.content.toLowerCase().includes(debouncedSearch.toLowerCase())
       );
       setMessages(filteredMessages);
     } else if (!debouncedSearch && chatDataQuery.data?.messages) {
-      setMessages(chatDataQuery.data.messages);
+      setMessages(messagesToFilter);
     }
   }, [debouncedSearch]);
 
@@ -178,12 +184,12 @@ export const Consultation = () => {
 
   const renderAllMessages = useCallback(() => {
     if (chatDataQuery.isLoading) return <Loading size="lg" />;
-    return messages?.map((message) => {
+    return messages?.map((message, index) => {
       if (message.type === "system") {
         if (!areSystemMessagesShown) return null;
         return (
           <SystemMessage
-            key={message.time}
+            key={`${message.time}-${index}`}
             title={message.content}
             date={new Date(Number(message.time))}
           />
@@ -192,7 +198,7 @@ export const Consultation = () => {
         if (message.senderId === clientId) {
           return (
             <Message
-              key={message.time}
+              key={`${message.time}-${index}`}
               message={message.content}
               sent
               date={new Date(Number(message.time))}
@@ -201,7 +207,7 @@ export const Consultation = () => {
         } else {
           return (
             <Message
-              key={message.time}
+              key={`${message.time}-${index}`}
               message={message.content}
               received
               date={new Date(Number(message.time))}
@@ -234,7 +240,7 @@ export const Consultation = () => {
       message,
     });
   };
-
+  const [isChatShownOnTablet, setIsChatShownOnTablet] = useState(true);
   const toggleChat = () => {
     if (!isChatShownOnMobile) {
       setTimeout(() => {
@@ -247,7 +253,12 @@ export const Consultation = () => {
     if (!isChatShownOnMobile && hasUnreadMessages) {
       setHasUnreadMessages(false);
     }
-    setIsChatShownOnMobile(!isChatShownOnMobile);
+
+    if (width < 1024) {
+      setIsChatShownOnMobile(!isChatShownOnMobile);
+    } else {
+      setIsChatShownOnTablet(!isChatShownOnTablet);
+    }
   };
 
   const leaveConsultation = () => {
@@ -275,6 +286,12 @@ export const Consultation = () => {
       message: leaveMessage,
     });
   };
+
+  useEffect(() => {
+    if (leaveConsultation) {
+      leaveConsultationFn.current = leaveConsultation;
+    }
+  }, [leaveConsultation]);
 
   const handleTextareaFocus = () => {
     if (hasUnreadMessages) {
@@ -307,23 +324,25 @@ export const Consultation = () => {
           hasUnreadMessages={hasUnreadMessages}
           t={t}
         />
-        <MessageList
-          messages={messages}
-          isLoading={chatDataQuery.isLoading}
-          handleSendMessage={handleSendMessage}
-          clientId={clientId}
-          width={width}
-          areSystemMessagesShown={areSystemMessagesShown}
-          setAreSystemMessagesShown={setAreSystemMessagesShown}
-          showOptions={showOptions}
-          setShowOptions={setShowOptions}
-          search={search}
-          setSearch={setSearch}
-          showAllMessages={showAllMessages}
-          setShowAllMessages={setShowAllMessages}
-          onTextareaFocus={handleTextareaFocus}
-          t={t}
-        />
+        {isChatShownOnTablet && (
+          <MessageList
+            messages={messages}
+            isLoading={chatDataQuery.isLoading}
+            handleSendMessage={handleSendMessage}
+            clientId={clientId}
+            width={width}
+            areSystemMessagesShown={areSystemMessagesShown}
+            setAreSystemMessagesShown={setAreSystemMessagesShown}
+            showOptions={showOptions}
+            setShowOptions={setShowOptions}
+            search={search}
+            setSearch={setSearch}
+            showAllMessages={showAllMessages}
+            setShowAllMessages={setShowAllMessages}
+            onTextareaFocus={handleTextareaFocus}
+            t={t}
+          />
+        )}
       </div>
       <Backdrop
         classes="page__consultation__chat-backdrop"
@@ -387,28 +406,41 @@ const MessageList = ({
   t,
 }) => {
   const messagesContainerRef = useRef();
+  const [showMessages, setShowMessages] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowMessages(true);
+    }, 200);
+
+    return () => {
+      clearTimeout(timeout);
+      setShowMessages(false);
+    };
+  }, []);
 
   useEffect(() => {
     if (
       messages?.length > 0 &&
       messagesContainerRef.current &&
-      messagesContainerRef.current.scrollHeight > 0
+      messagesContainerRef.current.scrollHeight > 0 &&
+      showMessages
     ) {
       messagesContainerRef.current.scrollTo({
         top: messagesContainerRef.current?.scrollHeight,
         behavior: "smooth",
       });
     }
-  }, [messages, messagesContainerRef.current?.scrollHeight]);
+  }, [messages, messagesContainerRef.current?.scrollHeight, showMessages]);
 
-  const renderAllMessages = () => {
+  const renderAllMessages = useCallback(() => {
     if (isLoading) return <Loading size="lg" />;
-    return messages?.map((message) => {
+    return messages?.map((message, index) => {
       if (message.type === "system") {
         if (!areSystemMessagesShown) return null;
         return (
           <SystemMessage
-            key={message.time}
+            key={`${message.time}-${index}`}
             title={message.content}
             date={new Date(Number(message.time))}
           />
@@ -417,7 +449,7 @@ const MessageList = ({
         if (message.senderId === clientId) {
           return (
             <Message
-              key={message.time}
+              key={`${message.time}-${index}`}
               message={message.content}
               sent
               date={new Date(Number(message.time))}
@@ -426,7 +458,7 @@ const MessageList = ({
         } else {
           return (
             <Message
-              key={message.time}
+              key={`${message.time}-${index}`}
               message={message.content}
               received
               date={new Date(Number(message.time))}
@@ -435,7 +467,7 @@ const MessageList = ({
         }
       }
     });
-  };
+  }, [messages, areSystemMessagesShown]);
 
   return width >= 1024 ? (
     <div style={{ position: "relative" }}>
@@ -459,7 +491,7 @@ const MessageList = ({
             : ""
         }`}
       >
-        {renderAllMessages()}
+        {showMessages && renderAllMessages()}
       </div>
       <SendMessage
         handleSubmit={handleSendMessage}

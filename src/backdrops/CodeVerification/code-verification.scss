@@ -1,0 +1,49 @@
+@import "@USupport-components-library/styles";
+
+.code-verification {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: $spacing_3_2;
+  }
+
+  .pincode-input-container {
+    margin-top: $spacing_3_6;
+  }
+
+  .pincode-input-text {
+    border: 0 !important;
+    box-shadow: $shadow_1;
+    border-radius: $border_radius_1_6;
+    -webkit-appearance: none;
+  }
+
+  & input[type="password"] {
+    color: #5f549b;
+    font-size: $font_size_3_2;
+  }
+
+  &__expire-time-text {
+    margin-top: $spacing_0_8;
+  }
+
+  &__view-code-button {
+    margin-top: $spacing_2_0;
+  }
+
+  &__send-button {
+    margin-top: $spacing_3_6;
+  }
+
+  &__resend-code-container {
+    margin-top: $spacing_2_0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &__button {
+      margin: 0 $spacing_0_4;
+    }
+  }
+}

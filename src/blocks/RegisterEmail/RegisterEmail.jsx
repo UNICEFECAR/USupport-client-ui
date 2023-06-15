@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Link } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useError } from "#hooks";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import Joi from "joi";
+
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 import {
   Block,
@@ -17,7 +18,6 @@ import {
   Button,
 } from "@USupport-components-library/src";
 import { validateProperty, validate } from "@USupport-components-library/utils";
-import { userSvc } from "@USupport-components-library/services";
 
 import "./register-email.scss";
 
@@ -28,10 +28,18 @@ import "./register-email.scss";
  *
  * @return {jsx}
  */
-export const RegisterEmail = () => {
+export const RegisterEmail = ({
+  data,
+  setData,
+  submitError,
+  handleSubmit,
+  isMutating,
+  isSubmitEnabled,
+  handleCaptchaChange,
+  showCaptcha,
+}) => {
   const { t } = useTranslation("register-email");
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const schema = Joi.object({
     password: Joi.string()
@@ -44,12 +52,6 @@ export const RegisterEmail = () => {
     isPrivacyAndTermsSelected: Joi.boolean(),
   });
 
-  const [data, setData] = useState({
-    email: "",
-    nickname: "",
-    password: "",
-    isPrivacyAndTermsSelected: false,
-  });
   const [errors, setErrors] = useState({});
 
   const handleChange = (field, value) => {
@@ -62,52 +64,9 @@ export const RegisterEmail = () => {
     validateProperty(field, data[field], schema, setErrors);
   };
 
-  const register = async () => {
-    const countryID = localStorage.getItem("country_id");
-    if (!countryID) {
-      navigate("/");
-      return;
-    }
-    // Send data to server
-    return await userSvc.signUp({
-      userType: "client",
-      countryID,
-      password: data.password,
-      clientData: {
-        email: data.email.toLowerCase(),
-        nickname: data.nickname,
-      },
-    });
-  };
-
-  const registerMutation = useMutation(register, {
-    // If the mutation succeeds, get the data returned
-    // from the server, and put it in the cache
-    onSuccess: (response) => {
-      const { user: userData, token: tokenData } = response.data;
-      const { token, expiresIn, refreshToken } = tokenData;
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("token-expires-in", expiresIn);
-      localStorage.setItem("refresh-token", refreshToken);
-
-      queryClient.setQueryData(
-        ["client-data"],
-        userSvc.transformUserData(userData)
-      );
-
-      window.dispatchEvent(new Event("login"));
-      navigate("/register/about-you");
-    },
-    onError: (error) => {
-      const { message: errorMessage } = useError(error);
-      setErrors({ submit: errorMessage });
-    },
-  });
-
   const handleRegister = async () => {
     if ((await validate(data, schema, setErrors)) === null) {
-      registerMutation.mutate();
+      handleSubmit();
     }
   };
 
@@ -154,7 +113,19 @@ export const RegisterEmail = () => {
             textFour={t("terms_agreement_text_4")}
             Link={Link}
           />
-          {errors.submit ? <Error message={errors.submit} /> : null}
+          {showCaptcha && (
+            <ReCAPTCHA
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={handleCaptchaChange}
+              onExpired={() => handleCaptchaChange("expired")}
+            />
+          )}
+          {errors.submit || submitError ? (
+            <Error
+              classes="register-email__grid__submit-error"
+              message={errors.submit || submitError}
+            />
+          ) : null}
           <Button
             size="lg"
             label={t("register_button")}
@@ -162,8 +133,8 @@ export const RegisterEmail = () => {
             type="primary"
             color="green"
             classes="register-email__grid__register-button"
-            disabled={!data.isPrivacyAndTermsSelected}
-            loading={registerMutation.isLoading}
+            disabled={!data.isPrivacyAndTermsSelected || !isSubmitEnabled}
+            loading={isMutating}
           />
           <Button
             label={t("login_button_label")}
