@@ -43,8 +43,7 @@ export const SelectConsultation = ({
 }) => {
   const { t } = useTranslation("select-consultation");
   const { activeCoupon } = useContext(RootContext);
-
-  const [couponCode, setCouponCode] = useState("");
+  const [couponCode, setCouponCode] = useState(activeCoupon?.couponValue || "");
   const [campaignId, setCampaignId] = useState(
     activeCoupon?.campaignId || campaingIdFromProps
   );
@@ -199,6 +198,7 @@ export const SelectConsultation = ({
           value={couponCode}
           onChange={(e) => setCouponCode(e.currentTarget.value)}
           label={t("coupon_code")}
+          placeholder="COUPON1"
         />
         <Button
           label={
