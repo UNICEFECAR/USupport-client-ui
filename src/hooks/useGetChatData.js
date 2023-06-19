@@ -11,13 +11,8 @@ export default function useGetChatData(chatId, onSuccess = () => {}) {
       providerDetailId: data.provider_detail_id,
       messages: data.messages || [],
     };
-    const nonSystemMessages = formattedData.messages.filter(
-      (x) => x.type !== "system"
-    );
-    return {
-      ...formattedData,
-      nonSystemMessages,
-    };
+
+    return formattedData;
   };
   const query = useQuery(["chat-data", chatId], fetchChatData, {
     enabled: !!chatId,

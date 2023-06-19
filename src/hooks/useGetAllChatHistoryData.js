@@ -18,19 +18,13 @@ export default function useGetAllChatHistoryData(
       providerDetailId: data.provider_detail_id,
       messages: data.messages || [],
     };
-    const nonSystemMessages = formattedData.messages.filter(
-      (x) => x.type !== "system"
-    );
-    return {
-      ...formattedData,
-      nonSystemMessages,
-    };
+    return formattedData;
   };
   const query = useQuery(
     ["all-chat-data", providerDetailId, clientDetailId],
     fetchChatData,
     {
-      enabled: !!enabled,
+      enabled: !!enabled && !!providerDetailId && !!clientDetailId,
     }
   );
 
