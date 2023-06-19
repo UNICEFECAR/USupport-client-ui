@@ -1,5 +1,5 @@
 {
-  "heading": "Are you still here?",
-  "text": "You've been inactive for a while. For your security, we'll automatically log you out in {{seconds}} seconds.",
-  "cta": "I'm still here"
+  "heading": "Сіз әлі осындасыз ба?",
+  "text": "Сіз біраз уақыт белсенді болмадыңыз. Қауіпсіздігіңіз үшін {{seconds}} секундтан кейін жүйеден автоматты түрде шығарамыз.",
+  "cta": "Мен әлі осындамын"
 }
