@@ -22,12 +22,10 @@ export const ScheduleConsultationGroup = ({
   setIsConfirmBackdropOpen,
   isRequireDataAgreementOpen,
   setIsRequireDataAgreementOpen,
-  // campaignId,
 }) => {
   const navigate = useNavigate();
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
-  // const [consultationId, setConsultationId] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
   const consultationPrice = useRef();
 
@@ -39,17 +37,11 @@ export const ScheduleConsultationGroup = ({
   const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const onBlockSlotSuccess = (consultationId) => {
-    // setIsBlockSlotSubmitting(false);
-    // setConsultationId(consultationId);
-
     if (consultationPrice.current && consultationPrice.current > 0) {
       navigate(`/checkout`, { state: { consultationId: consultationId } });
     } else {
       scheduleConsultationMutation.mutate(consultationId);
     }
-
-    // closeSelectConsultation();
-    // openConfirmConsultationBackdrop();
   };
   const onBlockSlotError = (error) => {
     setBlockSlotError(error);
@@ -59,7 +51,6 @@ export const ScheduleConsultationGroup = ({
 
   const onScheduleConsultationSuccess = (data) => {
     setIsBlockSlotSubmitting(false);
-    // setConsultationId(consultationId);
     window.dispatchEvent(new Event("new-notification"));
     closeSelectConsultation();
     openConfirmConsultationBackdrop();
@@ -93,7 +84,6 @@ export const ScheduleConsultationGroup = ({
         providerId={providerId}
         isCtaDisabled={isBlockSlotSubmitting}
         errorMessage={blockSlotError}
-        // campaignId={campaignId}
       />
       {selectedSlot && (
         <ConfirmConsultation

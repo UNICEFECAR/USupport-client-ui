@@ -10,7 +10,6 @@ import {
   GridItem,
   InputPassword,
   Button,
-  // ButtonOnlyIcon,
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 import { useError } from "#hooks";
@@ -146,28 +145,6 @@ export const Login = () => {
             />
           </form>
         </GridItem>
-        {/* <GridItem md={8} lg={12} classes="login__grid__content-item">
-          <div>
-            <p className="text">{t("paragraph")}</p>
-            <div className="login__grid__content-item__buttons-container">
-              <ButtonOnlyIcon
-                onClick={() => handleOAuthLogin("facebook")}
-                iconName="facebook-login"
-                iconSize="lg"
-              />
-              <ButtonOnlyIcon
-                onClick={() => handleOAuthLogin("apple")}
-                iconName="app-store"
-                iconSize="lg"
-              />
-              <ButtonOnlyIcon
-                onClick={() => handleOAuthLogin("google")}
-                iconName="google-login"
-                iconSize="lg"
-              />
-            </div>
-          </div>
-        </GridItem> */}
       </Grid>
     </Block>
   );
