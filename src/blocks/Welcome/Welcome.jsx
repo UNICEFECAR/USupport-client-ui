@@ -135,7 +135,10 @@ export const Welcome = () => {
               <DropdownWithLabel
                 options={languagesQuery.data || []}
                 selected={selectedLanguage}
-                setSelected={setSelectedLanguage}
+                setSelected={(lang) => {
+                  setSelectedLanguage(lang);
+                  i18n.changeLanguage(lang);
+                }}
                 classes="welcome__grid__content-item__languages-dropdown"
                 label={t("language")}
                 placeholder={t("placeholder")}
