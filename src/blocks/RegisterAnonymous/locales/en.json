@@ -12,5 +12,7 @@
   "register_button_label": "Register",
   "login_button_label": "I already have an account",
   "copy_text": "Copy and save or write down your anonymous code, if you lose it you cannot get access to your account anymore",
-  "copy_success": "Code copied successfully"
+  "copy_success": "Code copied successfully",
+  "confirm_password_label": "Confirm password",
+  "password_match_error": "The Password and Confirm Password fields do not match"
 }
