@@ -133,15 +133,10 @@ export const Consultations = () => {
 
   // Block slot logic
   const onBlockSlotSuccess = (newConsultationId) => {
-    // setIsBlockSlotSubmitting(false);
-    // setConsultationId(consultationId);
     rescheduleConsultationMutation.mutate({
       consultationId: selectedConsultationId,
       newConsultationId,
     });
-
-    // closeSelectConsultationBackdrop();
-    // openConfirmConsultationBackdrop();
   };
   const onBlockSlotError = (error) => {
     setBlockSlotError(error);

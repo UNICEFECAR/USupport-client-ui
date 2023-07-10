@@ -4,6 +4,6 @@
   "no_messages": "Сообщения не найдены",
   "show_system_messages": "Показать системные сообщения",
   "show_previous_consultations": "Показать предыдущие консультации",
-  "export_label": "ExportRU",
-  "chat_history": "Consultation chat history withRU"
+  "export_label": "Экспорт",
+  "chat_history": "История чата консультаций с"
 }

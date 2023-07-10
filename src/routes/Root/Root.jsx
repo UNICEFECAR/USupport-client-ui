@@ -1,11 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import {
-  // BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { userSvc } from "@USupport-components-library/services";
@@ -27,7 +21,6 @@ import {
   ForgotPassword,
   InformationPortal,
   Login,
-  // MoodTracker,
   NotFound,
   NotificationPreferencesPage,
   PlatformRating,
