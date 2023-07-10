@@ -16,5 +16,6 @@
   "hide_options": "Hide optionsRU",
   "show_options": "Show optionsRU",
   "search": "Поиск",
-  "sponsored_by": "This session is sponsored by: RU"
+  "sponsored_by": "This session is sponsored by: RU",
+  "consultation_end_reminder": "Ваша консультация закончится через {{minutes}} минут"
 }
