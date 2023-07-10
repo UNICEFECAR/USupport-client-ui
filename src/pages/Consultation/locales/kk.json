@@ -12,10 +12,10 @@
   "client_microphone_off": "Клиент микрофонды өшірді",
   "client_microphone_on": "Клиент микрофонды қосты",
   "show_system_messages": "Жүйелік хабарламаларды көрсету",
-  "show_previous_consultations": "Show previous consultationsKK",
-  "hide_options": "Hide optionsKK",
-  "show_options": "Show optionsKK",
+  "show_previous_consultations": "Алдыңғы кеңестерді көрсетіңіз",
+  "hide_options": "Параметрлерді жасыру",
+  "show_options": "Параметрлерді көрсету",
   "search": "Іздеу",
-  "sponsored_by": "This session is sponsored by: KK",
+  "sponsored_by": "Бұл сессияның демеушісі: ",
   "consultation_end_reminder": "Сіздің консультацияңыз {{minutes}} минуттан кейін аяқталады"
 }

@@ -4,6 +4,6 @@
   "no_messages": "Хабарламалар табылмады",
   "show_system_messages": "Жүйелік хабарламаларды көрсету",
   "show_previous_consultations": "Алдыңғы кеңестерді көрсетіңіз",
-  "export_label": "ExportKK",
-  "chat_history": "Consultation chat history withKK"
+  "export_label": "Экспорт",
+  "chat_history": "Чат тарихы - консультант: "
 }

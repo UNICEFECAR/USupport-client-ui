@@ -12,10 +12,10 @@
   "client_microphone_off": "Клиент выключил микрофон",
   "client_microphone_on": "Клиент включил микрофон",
   "show_system_messages": "Показать системные сообщения",
-  "show_previous_consultations": "Show previous consultationsRU",
-  "hide_options": "Hide optionsRU",
-  "show_options": "Show optionsRU",
+  "show_previous_consultations": "Показать предыдущие консультации",
+  "hide_options": "Скрыть параметры",
+  "show_options": "Показать параметры",
   "search": "Поиск",
-  "sponsored_by": "This session is sponsored by: RU",
+  "sponsored_by": "Эта сессия спонсируется: ",
   "consultation_end_reminder": "Ваша консультация закончится через {{minutes}} минут"
 }
