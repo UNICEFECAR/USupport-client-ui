@@ -18,17 +18,7 @@ To install all the dependencies use:
 npm install
 ```
 
-The USupport Client UI can be run in one of the 2 following ways:
-
-1. via Storybook package that allows to preview blocks/pages in isolation. For more information about Storybook please see the documentation https://storybook.js.org/docs/react/get-started/introduction.
-
-To run the project via Storybook use the following command:
-
-```
-npm run storybook
-```
-
-2. via Vite build tool. For more information about Vite please see the documentation https://vitejs.dev/guide/.
+The USupport Client UI can be run via the Vite build tool. For more information about Vite [please see the documentation](https://vitejs.dev/guide)
 
 To run the project via Vite use the following command:
 
