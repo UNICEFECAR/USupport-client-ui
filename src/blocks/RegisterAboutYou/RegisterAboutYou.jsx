@@ -94,7 +94,7 @@ export const RegisterAboutYou = () => {
     return years.reverse();
   }, [countriesData]);
   const onMutateSuccess = () => {
-    navigate("/register/support");
+    navigate("/dashboard");
   };
 
   const onMutateError = (error) => {
