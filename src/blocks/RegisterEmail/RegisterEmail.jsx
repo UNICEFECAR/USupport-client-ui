@@ -34,7 +34,6 @@ export const RegisterEmail = ({
   submitError,
   handleSubmit,
   isMutating,
-  isSubmitEnabled,
   handleCaptchaChange,
   showCaptcha,
 }) => {
@@ -53,6 +52,7 @@ export const RegisterEmail = ({
       .label(t("email_error")),
     nickname: Joi.string().label(t("nickname_error")),
     isPrivacyAndTermsSelected: Joi.boolean(),
+    isAgeTermsSelected: Joi.boolean(),
   });
 
   const [errors, setErrors] = useState({});
@@ -104,6 +104,14 @@ export const RegisterEmail = ({
     navigate("/login");
   };
 
+  const canContinue =
+    data.password &&
+    data.confirmPassword &&
+    data.isPrivacyAndTermsSelected &&
+    data.isAgeTermsSelected &&
+    data.email &&
+    data.nickname;
+
   return (
     <Block classes="register-email">
       <Grid classes="register-email__grid">
@@ -153,6 +161,11 @@ export const RegisterEmail = ({
             textFour={t("terms_agreement_text_4")}
             Link={Link}
           />
+          <TermsAgreement
+            isChecked={data.isAgeTermsSelected}
+            setIsChecked={(val) => handleChange("isAgeTermsSelected", val)}
+            textOne={t("age_terms_agreement_text_1")}
+          />
           {showCaptcha && (
             <ReCAPTCHA
               sitekey={RECAPTCHA_SITE_KEY}
@@ -173,7 +186,7 @@ export const RegisterEmail = ({
             type="primary"
             color="green"
             classes="register-email__grid__register-button"
-            disabled={!data.isPrivacyAndTermsSelected || !isSubmitEnabled}
+            disabled={!canContinue}
             loading={isMutating}
           />
           <Button
