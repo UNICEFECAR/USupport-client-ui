@@ -29,6 +29,7 @@ export const RegisterEmail = () => {
     nickname: "",
     password: "",
     isPrivacyAndTermsSelected: false,
+    isAgeTermsSelected: false,
     confirmPassword: "",
   });
   const SHOW_CAPTCHA = import.meta.env.MODE !== "development";
