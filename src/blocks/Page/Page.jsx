@@ -204,6 +204,7 @@ export const Page = ({
       { name: t("footer_5"), url: "/terms-of-use", exact: true },
       { name: t("footer_6"), url: "/privacy-policy" },
       { name: t("footer_7"), url: "/cookie-policy" },
+      { name: t("footer_8"), url: "/faq" },
     ],
     list3: [
       { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
