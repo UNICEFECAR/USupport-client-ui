@@ -103,9 +103,9 @@ export const RegisterAnonymous = () => {
       localStorage.setItem("refresh-token", refreshToken);
 
       window.dispatchEvent(new Event("login"));
-      navigate("/register/support", {
+      navigate("/register/about-you", {
         state: {
-          hideGoBackArrow: false,
+          isAnonymous: true,
         },
       });
     },

@@ -22,7 +22,7 @@ export default function useUpdateClientData(data, onSuccess, onError) {
     delete dataCopy.image;
     delete dataCopy.clientID;
 
-    dataCopy.email = dataCopy.email.toLowerCase().trim() || undefined;
+    dataCopy.email = dataCopy.email?.toLowerCase().trim() || undefined;
     dataCopy.sex = dataCopy.sex || undefined;
     dataCopy.yearOfBirth = dataCopy.yearOfBirth || undefined;
     dataCopy.urbanRural = dataCopy.urbanRural || undefined;
