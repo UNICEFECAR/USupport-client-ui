@@ -1,7 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
+
+import { PaymentInformation } from "#modals";
 
 import {
   Block,
@@ -15,7 +17,6 @@ import {
   getTime,
   downloadCSVFile,
 } from "@USupport-components-library/src/utils";
-import { PaymentInformation } from "#modals";
 
 import { paymentsSvc } from "@USupport-components-library/services";
 
@@ -29,6 +30,7 @@ import "./payment-history.scss";
  * @return {jsx}
  */
 export const PaymentHistory = () => {
+  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("payment-history-block");
   const rows = useMemo(() => {
     return [
@@ -57,14 +59,26 @@ export const PaymentHistory = () => {
 
   const [selectedPaymentData, setSelectedPaymentData] = useState();
   const [lastPaymentId, setLastPaymentId] = useState(null);
+  const [isScreenFocused, setIsScreenFocused] = useState(true);
 
-  const getPaymentHistory = async () => {
+  useEffect(() => {
+    setIsScreenFocused(true);
+    return () => {
+      setIsScreenFocused(false);
+      setLastPaymentId(null);
+      if (paymentHistoryQuery.isFetching) {
+        queryClient.cancelQueries({ queryKey: ["paymentHistoryData"] });
+      }
+    };
+  }, []);
+
+  const getPaymentHistory = async (signal) => {
     try {
       const res = await paymentsSvc.getPaymentHistory({
         limit: 30,
         startingAfterPaymentIntentId: lastPaymentId,
+        signal,
       });
-
       return res.data;
     } catch (err) {
       console.log(err);
@@ -73,20 +87,20 @@ export const PaymentHistory = () => {
 
   const paymentHistoryQuery = useQuery(
     ["paymentHistoryData"],
-    getPaymentHistory,
+    ({ signal }) => getPaymentHistory(signal),
     {
       onSuccess: (data) => {
         const lastPayment = data.lastPaymentId;
-        const payments = data.payments;
+        const payments = data.payments || [];
 
-        if (payments) {
+        if (isScreenFocused) {
           setPaymentsData((prevPayments) => [...prevPayments, ...payments]);
-        }
-        setLastPaymentId(lastPayment);
-        if (data.hasMore) {
-          setTimeout(() => {
-            paymentHistoryQuery.refetch();
-          }, 150);
+          setLastPaymentId(lastPayment);
+          if (data.hasMore) {
+            setTimeout(() => {
+              paymentHistoryQuery.refetch();
+            }, 150);
+          }
         }
       },
     }
@@ -105,7 +119,6 @@ export const PaymentHistory = () => {
 
   const getTableRows = () => {
     return paymentsData?.map((payment) => {
-      console.log(payment.price, "price");
       return [
         <p className="text">{t(payment.service)}</p>,
         <p className="text centered">
@@ -140,17 +153,17 @@ export const PaymentHistory = () => {
 
   return (
     <Block classes="payment-history">
-      <InfiniteScroll
-        dataLength={paymentsData.length || 0}
-        hasMore={paymentHistoryQuery.data?.hasMore}
-        loader={<Loading padding="1rem" />}
-        next={() => {}}
-        initialScrollY={20}
-        scrollThreshold={0}
-      >
-        {paymentsData.length === 0 && paymentHistoryQuery.isLoading ? (
-          <Loading />
-        ) : (
+      {paymentsData.length === 0 && paymentHistoryQuery.isFetching ? (
+        <Loading />
+      ) : (
+        <InfiniteScroll
+          dataLength={paymentsData.length || 0}
+          hasMore={paymentHistoryQuery.data?.hasMore}
+          loader={<Loading padding="5rem" />}
+          next={() => {}}
+          initialScrollY={20}
+          scrollThreshold={0}
+        >
           <BaseTable
             rowsData={getTableRows()}
             data={paymentsData}
@@ -165,9 +178,8 @@ export const PaymentHistory = () => {
               paymentHistoryQuery.data?.hasMore === true
             }
           />
-        )}
-      </InfiniteScroll>
-
+        </InfiniteScroll>
+      )}
       {selectedPaymentData && (
         <PaymentInformation
           isOpen={isPaymentInformationModalOpen}
