@@ -22,7 +22,7 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
   const handleClick = async (redirectTo) => {
     const sytemMessage = {
       type: "system",
-      content: t("client_joined"),
+      content: "client_joined",
       time: JSON.stringify(new Date().getTime()),
     };
 
@@ -50,7 +50,8 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
           token,
         },
       });
-    } catch {
+    } catch (err) {
+      console.log(err);
       toast(t("error"), { type: "error" });
     }
 

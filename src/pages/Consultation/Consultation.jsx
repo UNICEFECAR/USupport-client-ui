@@ -19,6 +19,7 @@ import {
   SystemMessage,
   Toggle,
   InputSearch,
+  TypingIndicator,
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
@@ -89,6 +90,8 @@ export const Consultation = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [search, setSearch] = useState("");
   const [hasUnreadMessages, setHasUnreadMessages] = useState(true);
+
+  const [isProviderTyping, setIsProviderTyping] = useState(false);
 
   const debouncedSearch = useDebounce(search, 500);
 
@@ -168,6 +171,30 @@ export const Consultation = () => {
 
     socketRef.current.on("receive message", receiveMessage);
 
+    socketRef.current.on("typing", (type) => {
+      if (!isProviderTyping && type == "typing") {
+        setIsProviderTyping(true);
+      } else if (type === "stop") {
+        setIsProviderTyping(false);
+      }
+    });
+
+    const systemMessage = {
+      type: "system",
+      content: t("client_joined"),
+      time: JSON.stringify(new Date().getTime()),
+    };
+
+    const emitJoinMessageTimeout = setTimeout(() => {
+      socketRef.current.emit("send message", {
+        language,
+        country,
+        chatId: consultation.chatId,
+        to: "provider",
+        message: systemMessage,
+      });
+    }, 1500);
+
     const handleBeforeUnload = () => {
       leaveConsultation();
     };
@@ -177,6 +204,7 @@ export const Consultation = () => {
       if (socketRef.current) {
         socketRef.current.disconnect();
         socketRef.current.off();
+        clearTimeout(emitJoinMessageTimeout);
       }
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
@@ -240,7 +268,7 @@ export const Consultation = () => {
       );
     }
 
-    return messagesToShow?.map((message, index) => {
+    const messagesToReturn = messagesToShow?.map((message, index) => {
       if (message.type === "system") {
         if (!areSystemMessagesShown) return null;
         return (
@@ -272,6 +300,10 @@ export const Consultation = () => {
         }
       }
     });
+    if (isProviderTyping) {
+      messagesToReturn.push(<TypingIndicator text={t("typing")} />);
+    }
+    return messagesToReturn;
   }, [
     messages,
     chatDataQuery.isLoading,
@@ -279,6 +311,7 @@ export const Consultation = () => {
     areSystemMessagesShown,
     debouncedSearch,
     showAllMessages,
+    isProviderTyping,
   ]);
 
   const handleSendMessage = (content, type = "text") => {
@@ -363,6 +396,16 @@ export const Consultation = () => {
     }
   };
 
+  const emitTyping = (type) => {
+    socketRef.current.emit("typing", {
+      to: "provider",
+      language,
+      country,
+      chatId: consultation.chatId,
+      type,
+    });
+  };
+
   return isSafetyFeedbackShown ? (
     <SafetyFeedback
       answers={securityCheckAnswers}
@@ -404,6 +447,7 @@ export const Consultation = () => {
             onTextareaFocus={handleTextareaFocus}
             debouncedSearch={debouncedSearch}
             renderAllMessages={renderAllMessages}
+            emitTyping={emitTyping}
             t={t}
           />
         )}
@@ -444,6 +488,7 @@ export const Consultation = () => {
             <SendMessage
               handleSubmit={handleSendMessage}
               onTextareaFocus={handleTextareaFocus}
+              emitTyping={emitTyping}
             />
           )}
         </div>
@@ -467,6 +512,7 @@ const MessageList = ({
   onTextareaFocus,
   debouncedSearch,
   renderAllMessages,
+  emitTyping,
   t,
 }) => {
   const messagesContainerRef = useRef();
@@ -530,6 +576,7 @@ const MessageList = ({
       <SendMessage
         handleSubmit={handleSendMessage}
         onTextareaFocus={onTextareaFocus}
+        emitTyping={emitTyping}
       />
     </div>
   ) : null;
