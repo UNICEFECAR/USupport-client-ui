@@ -90,17 +90,29 @@ export const Consultation = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [search, setSearch] = useState("");
   const [hasUnreadMessages, setHasUnreadMessages] = useState(true);
-
+  const [isProviderInSession, setIsProviderInSession] = useState(false);
   const [isProviderTyping, setIsProviderTyping] = useState(false);
 
   const debouncedSearch = useDebounce(search, 500);
 
-  const chatDataQuery = useGetChatData(consultation?.chatId, (data) =>
+  const checkHasProviderJoined = (messages) => {
+    // Sort the messages by time descending so the latest messages are first
+    // Then check which one of the following two cases is true:
+    const joinMessages = messages
+      .filter(
+        (x) => x.content === "provider_joined" || x.content === "provider_left"
+      )
+      .sort((a, b) => new Date(Number(b.time)) - new Date(Number(a.time)));
+    return joinMessages[0].content === "provider_joined";
+  };
+
+  const chatDataQuery = useGetChatData(consultation?.chatId, (data) => {
+    setIsProviderInSession(checkHasProviderJoined(data.messages));
     setMessages((prev) => ({
       ...prev,
       currentSession: data.messages,
-    }))
-  );
+    }));
+  });
 
   const clientId = chatDataQuery.data?.clientDetailId;
   const providerId = chatDataQuery.data?.providerDetailId;
@@ -181,7 +193,7 @@ export const Consultation = () => {
 
     const systemMessage = {
       type: "system",
-      content: t("client_joined"),
+      content: "client_joined",
       time: JSON.stringify(new Date().getTime()),
     };
 
@@ -246,6 +258,11 @@ export const Consultation = () => {
   const leaveConsultationMutation = useLeaveConsultation();
 
   const receiveMessage = (message) => {
+    if (message.content === "provider_left") {
+      setIsProviderInSession(false);
+    } else if (message.content === "provider_joined") {
+      setIsProviderInSession(true);
+    }
     setHasUnreadMessages(true);
     setMessages((messages) => {
       return {
@@ -254,6 +271,21 @@ export const Consultation = () => {
       };
     });
   };
+
+  const systemMessageTypes = [
+    "client_joined",
+    "client_left",
+    "client_microphone_on",
+    "client_microphone_off",
+    "client_camera_on",
+    "client_camera_off",
+    "provider_joined",
+    "provider_left",
+    "provider_microphone_on",
+    "provider_microphone_off",
+    "provider_camera_on",
+    "provider_camera_off",
+  ];
 
   const renderAllMessages = useCallback(() => {
     if (chatDataQuery.isLoading) return <Loading size="lg" />;
@@ -274,7 +306,11 @@ export const Consultation = () => {
         return (
           <SystemMessage
             key={`${message.time}-${index}`}
-            title={message.content}
+            title={
+              systemMessageTypes.includes(message.content)
+                ? t(message.content)
+                : message.content
+            }
             date={new Date(Number(message.time))}
           />
         );
@@ -366,7 +402,7 @@ export const Consultation = () => {
     setIsSafetyFeedbackShown(true);
     const leaveMessage = {
       time: JSON.stringify(new Date().getTime()),
-      content: t("client_left"),
+      content: "client_left",
       type: "system",
     };
 
@@ -429,6 +465,7 @@ export const Consultation = () => {
           handleSendMessage={handleSendMessage}
           token={token}
           hasUnreadMessages={hasUnreadMessages}
+          isProviderInSession={isProviderInSession}
           t={t}
         />
         {isChatShownOnTablet && (
