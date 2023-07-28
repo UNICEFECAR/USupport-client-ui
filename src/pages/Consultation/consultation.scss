@@ -32,7 +32,6 @@
 
       &__messages-container {
         display: flex;
-        // margin-top: 5rem;
         margin-left: $spacing_1_8;
         flex-direction: column;
         overflow: auto;
@@ -78,7 +77,7 @@
   }
 
   &__chat-backdrop {
-    height: 60%;
+    height: 50vh;
     padding-bottom: $spacing_1_6;
 
     & .base-modal__body {
@@ -86,7 +85,7 @@
     }
 
     &.backdrop__shown {
-      top: 40%;
+      top: 50vh;
     }
 
     & .send-message {
