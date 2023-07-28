@@ -4,6 +4,7 @@ import React, {
   useRef,
   useContext,
   useCallback,
+  useMemo,
 } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, useLocation } from "react-router-dom";
@@ -24,6 +25,7 @@ import {
 import {
   useWindowDimensions,
   ONE_HOUR,
+  getDateView,
 } from "@USupport-components-library/utils";
 
 import {
@@ -34,7 +36,9 @@ import {
   useDebounce,
   useGetAllChatHistoryData,
 } from "#hooks";
+
 import { Page, VideoRoom, SafetyFeedback } from "#blocks";
+
 import { RootContext } from "#routes";
 
 import { Logger } from "twilio-video";
@@ -44,6 +48,21 @@ logger.setLevel("silent");
 import "./consultation.scss";
 
 const SOCKET_IO_URL = `${import.meta.env.VITE_SOCKET_IO_URL}`;
+
+const systemMessageTypes = [
+  "client_joined",
+  "client_left",
+  "client_microphone_on",
+  "client_microphone_off",
+  "client_camera_on",
+  "client_camera_off",
+  "provider_joined",
+  "provider_left",
+  "provider_microphone_on",
+  "provider_microphone_off",
+  "provider_camera_on",
+  "provider_camera_off",
+];
 
 /**
  * Consultation
@@ -92,6 +111,7 @@ export const Consultation = () => {
   const [hasUnreadMessages, setHasUnreadMessages] = useState(true);
   const [isProviderInSession, setIsProviderInSession] = useState(false);
   const [isProviderTyping, setIsProviderTyping] = useState(false);
+  const [isChatShownOnTablet, setIsChatShownOnTablet] = useState(true);
 
   const debouncedSearch = useDebounce(search, 500);
 
@@ -121,6 +141,15 @@ export const Consultation = () => {
     clientId,
     true
   );
+
+  const [areMessagesHidden, setAreMessagesHidden] = useState(true);
+
+  const hasMessages = useMemo(() => {
+    return (
+      messages?.currentSession?.length > 0 ||
+      messages?.previousSessions?.length > 0
+    );
+  }, [messages]);
 
   useEffect(() => {
     const endTime = new Date(consultation.timestamp + ONE_HOUR);
@@ -223,13 +252,38 @@ export const Consultation = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    let timeout, timeoutTwo;
+    if (hasMessages && areMessagesHidden && isChatShownOnMobile) {
+      timeout = setTimeout(() => {
+        if (backdropMessagesContainerRef.current) {
+          backdropMessagesContainerRef.current.scrollTop =
+            backdropMessagesContainerRef.current.scrollHeight;
+        }
+        setAreMessagesHidden(false);
+      }, 1000);
+    }
+
+    if (!areMessagesHidden && !isChatShownOnMobile) {
+      timeoutTwo = setTimeout(() => {
+        setAreMessagesHidden(true);
+      }, 300);
+    }
+
+    return () => {
+      if (timeout) clearTimeout(timeout);
+      if (timeoutTwo) clearTimeout(timeoutTwo);
+    };
+  }, [messages, isChatShownOnMobile]);
+
   // Scroll the messages container to the bottom when a new message is received
   useEffect(() => {
     if (
       (messages.currentSession?.length > 0 ||
         messages.previousSessions?.length > 0) &&
       backdropMessagesContainerRef.current &&
-      backdropMessagesContainerRef.current.scrollHeight > 0
+      backdropMessagesContainerRef.current.scrollHeight > 0 &&
+      !areMessagesHidden
     ) {
       backdropMessagesContainerRef.current.scrollTo({
         top: backdropMessagesContainerRef.current?.scrollHeight,
@@ -240,6 +294,7 @@ export const Consultation = () => {
     messages,
     backdropMessagesContainerRef.current?.scrollHeight,
     debouncedSearch,
+    areMessagesHidden,
   ]);
 
   // Mutations
@@ -272,21 +327,6 @@ export const Consultation = () => {
     });
   };
 
-  const systemMessageTypes = [
-    "client_joined",
-    "client_left",
-    "client_microphone_on",
-    "client_microphone_off",
-    "client_camera_on",
-    "client_camera_off",
-    "provider_joined",
-    "provider_left",
-    "provider_microphone_on",
-    "provider_microphone_off",
-    "provider_camera_on",
-    "provider_camera_off",
-  ];
-
   const renderAllMessages = useCallback(() => {
     if (chatDataQuery.isLoading) return <Loading size="lg" />;
 
@@ -300,7 +340,14 @@ export const Consultation = () => {
       );
     }
 
-    const messagesToReturn = messagesToShow?.map((message, index) => {
+    let lastDate;
+    const messagesToReturn = messagesToShow.map((message, index) => {
+      let shouldShowDate = false;
+      const currentMessageDate = getDateView(new Date(Number(message.time)));
+      if (currentMessageDate !== lastDate) {
+        shouldShowDate = true;
+        lastDate = currentMessageDate;
+      }
       if (message.type === "system") {
         if (!areSystemMessagesShown) return null;
         return (
@@ -312,6 +359,7 @@ export const Consultation = () => {
                 : message.content
             }
             date={new Date(Number(message.time))}
+            showDate={shouldShowDate}
           />
         );
       } else {
@@ -322,6 +370,7 @@ export const Consultation = () => {
               message={message.content}
               sent
               date={new Date(Number(message.time))}
+              showDate={shouldShowDate}
             />
           );
         } else {
@@ -331,6 +380,7 @@ export const Consultation = () => {
               message={message.content}
               received
               date={new Date(Number(message.time))}
+              showDate={shouldShowDate}
             />
           );
         }
@@ -373,7 +423,6 @@ export const Consultation = () => {
       message,
     });
   };
-  const [isChatShownOnTablet, setIsChatShownOnTablet] = useState(true);
   const toggleChat = () => {
     if (!isChatShownOnMobile) {
       setTimeout(() => {
@@ -468,7 +517,7 @@ export const Consultation = () => {
           isProviderInSession={isProviderInSession}
           t={t}
         />
-        {isChatShownOnTablet && (
+        {isChatShownOnTablet && width >= 1366 && (
           <MessageList
             messages={messages}
             handleSendMessage={handleSendMessage}
@@ -491,9 +540,9 @@ export const Consultation = () => {
       </div>
       <Backdrop
         classes="page__consultation__chat-backdrop"
-        isOpen={isChatShownOnMobile}
+        isOpen={isChatShownOnMobile && width < 1024}
         onClose={() => setIsChatShownOnMobile(false)}
-        reference={width < 768 ? backdropMessagesContainerRef : null}
+        // reference={width < 768 ? backdropMessagesContainerRef : null}
         headingComponent={
           <OptionsContainer
             showOptions={showOptions}
@@ -509,17 +558,15 @@ export const Consultation = () => {
         }
       >
         <div className="page__consultation__chat-backdrop__container">
+          {areMessagesHidden && <Loading size="lg" />}
           <div
-            ref={width >= 768 ? backdropMessagesContainerRef : null}
+            ref={backdropMessagesContainerRef}
             className="page__consultation__container__messages__messages-container"
+            style={{
+              visibility: areMessagesHidden ? "hidden" : "visible",
+            }}
           >
             {renderAllMessages()}
-            <div
-              style={{
-                width: "100%",
-                marginBottom: width >= 768 ? "100px" : "50px",
-              }}
-            />
           </div>
           {(isChatShownOnMobile || width >= 768) && (
             <SendMessage
@@ -566,24 +613,51 @@ const MessageList = ({
     };
   }, []);
 
+  const belowMessagesRef = useRef(null);
+  const [isHidden, setIsHidden] = useState(true);
+
   useEffect(() => {
+    let timeout;
+    if (
+      messages?.currentSession?.length > 0 ||
+      messages?.previousSessions?.length > 0
+    ) {
+      timeout = setTimeout(() => {
+        if (messagesContainerRef.current) {
+          messagesContainerRef.current.scrollTop =
+            messagesContainerRef.current.scrollHeight;
+        }
+        setIsHidden(false);
+      }, 1000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [messages]);
+
+  useEffect(() => {
+    let timeout;
     if (
       (messages.currentSession?.length > 0 ||
         messages.previousSessions?.length > 0) &&
-      messagesContainerRef.current &&
-      messagesContainerRef.current.scrollHeight > 0 &&
-      showMessages
+      messagesContainerRef.current?.scrollHeight > 0 &&
+      showMessages &&
+      !isHidden
     ) {
-      messagesContainerRef.current.scrollTo({
-        top: messagesContainerRef.current?.scrollHeight,
-        behavior: "smooth",
-      });
+      timeout = setTimeout(() => {
+        messagesContainerRef.current.scrollTo({
+          top: messagesContainerRef.current?.scrollHeight,
+          behavior: "smooth",
+        });
+      }, 300);
     }
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
   }, [
     messages,
     messagesContainerRef.current?.scrollHeight,
     showMessages,
-    debouncedSearch,
+    isHidden,
   ]);
 
   return width >= 1024 ? (
@@ -600,6 +674,8 @@ const MessageList = ({
         isAbsolute
         t={t}
       />
+      {isHidden && <Loading />}
+
       <div
         ref={messagesContainerRef}
         className={`page__consultation__container__messages__messages-container ${
@@ -607,6 +683,9 @@ const MessageList = ({
             ? "page__consultation__container__messages__messages-container--show-options"
             : ""
         }`}
+        style={{
+          visibility: isHidden ? "hidden" : "visible",
+        }}
       >
         {showMessages && renderAllMessages()}
       </div>
