@@ -23,8 +23,8 @@
 
   "show_system_messages": "Жүйелік хабарламаларды көрсету",
   "show_previous_consultations": "Алдыңғы кеңестерді көрсетіңіз",
-  "hide_options": "Параметрлерді жасыру",
-  "show_options": "Параметрлерді көрсету",
+  "hide_options": "Баптаулар жасыру",
+  "show_options": "Баптаулар",
   "search": "Іздеу",
   "sponsored_by": "Бұл сессияның демеушісі: ",
   "consultation_end_reminder": "Сіздің консультацияңыз {{minutes}} минуттан кейін аяқталады"

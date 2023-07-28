@@ -23,8 +23,8 @@
 
   "show_system_messages": "Показать системные сообщения",
   "show_previous_consultations": "Показать предыдущие консультации",
-  "hide_options": "Скрыть параметры",
-  "show_options": "Показать параметры",
+  "hide_options": "Скрыть настройки",
+  "show_options": "Настройки",
   "search": "Поиск",
   "sponsored_by": "Эта сессия спонсируется: ",
   "consultation_end_reminder": "Ваша консультация закончится через {{minutes}} минут"
