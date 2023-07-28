@@ -3,7 +3,7 @@
   "price": "Цена",
   "date_of_payment": "Дата платежа",
   "more_details": "Более подробная информация",
-  "no_data_found": "У Вас еще нет истории платежей",
+  "no_data_found": "У Вас еще нет платежей",
   "text_audio_video_consultation": "Онлайн консультации",
   "export_label": "Экспорт"
 }

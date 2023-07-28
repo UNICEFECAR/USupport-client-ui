@@ -4,6 +4,7 @@ import React, {
   useRef,
   useContext,
   useCallback,
+  useMemo,
 } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, useLocation } from "react-router-dom";
@@ -19,10 +20,12 @@ import {
   SystemMessage,
   Toggle,
   InputSearch,
+  TypingIndicator,
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
   ONE_HOUR,
+  getDateView,
 } from "@USupport-components-library/utils";
 
 import {
@@ -33,7 +36,9 @@ import {
   useDebounce,
   useGetAllChatHistoryData,
 } from "#hooks";
+
 import { Page, VideoRoom, SafetyFeedback } from "#blocks";
+
 import { RootContext } from "#routes";
 
 import { Logger } from "twilio-video";
@@ -43,6 +48,21 @@ logger.setLevel("silent");
 import "./consultation.scss";
 
 const SOCKET_IO_URL = `${import.meta.env.VITE_SOCKET_IO_URL}`;
+
+const systemMessageTypes = [
+  "client_joined",
+  "client_left",
+  "client_microphone_on",
+  "client_microphone_off",
+  "client_camera_on",
+  "client_camera_off",
+  "provider_joined",
+  "provider_left",
+  "provider_microphone_on",
+  "provider_microphone_off",
+  "provider_camera_on",
+  "provider_camera_off",
+];
 
 /**
  * Consultation
@@ -89,15 +109,30 @@ export const Consultation = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [search, setSearch] = useState("");
   const [hasUnreadMessages, setHasUnreadMessages] = useState(true);
+  const [isProviderInSession, setIsProviderInSession] = useState(false);
+  const [isProviderTyping, setIsProviderTyping] = useState(false);
+  const [isChatShownOnTablet, setIsChatShownOnTablet] = useState(true);
 
   const debouncedSearch = useDebounce(search, 500);
 
-  const chatDataQuery = useGetChatData(consultation?.chatId, (data) =>
+  const checkHasProviderJoined = (messages) => {
+    // Sort the messages by time descending so the latest messages are first
+    // Then check which one of the following two cases is true:
+    const joinMessages = messages
+      .filter(
+        (x) => x.content === "provider_joined" || x.content === "provider_left"
+      )
+      .sort((a, b) => new Date(Number(b.time)) - new Date(Number(a.time)));
+    return joinMessages[0].content === "provider_joined";
+  };
+
+  const chatDataQuery = useGetChatData(consultation?.chatId, (data) => {
+    setIsProviderInSession(checkHasProviderJoined(data.messages));
     setMessages((prev) => ({
       ...prev,
       currentSession: data.messages,
-    }))
-  );
+    }));
+  });
 
   const clientId = chatDataQuery.data?.clientDetailId;
   const providerId = chatDataQuery.data?.providerDetailId;
@@ -106,6 +141,15 @@ export const Consultation = () => {
     clientId,
     true
   );
+
+  const [areMessagesHidden, setAreMessagesHidden] = useState(true);
+
+  const hasMessages = useMemo(() => {
+    return (
+      messages?.currentSession?.length > 0 ||
+      messages?.previousSessions?.length > 0
+    );
+  }, [messages]);
 
   useEffect(() => {
     const endTime = new Date(consultation.timestamp + ONE_HOUR);
@@ -168,6 +212,30 @@ export const Consultation = () => {
 
     socketRef.current.on("receive message", receiveMessage);
 
+    socketRef.current.on("typing", (type) => {
+      if (!isProviderTyping && type == "typing") {
+        setIsProviderTyping(true);
+      } else if (type === "stop") {
+        setIsProviderTyping(false);
+      }
+    });
+
+    const systemMessage = {
+      type: "system",
+      content: "client_joined",
+      time: JSON.stringify(new Date().getTime()),
+    };
+
+    const emitJoinMessageTimeout = setTimeout(() => {
+      socketRef.current.emit("send message", {
+        language,
+        country,
+        chatId: consultation.chatId,
+        to: "provider",
+        message: systemMessage,
+      });
+    }, 1500);
+
     const handleBeforeUnload = () => {
       leaveConsultation();
     };
@@ -177,11 +245,36 @@ export const Consultation = () => {
       if (socketRef.current) {
         socketRef.current.disconnect();
         socketRef.current.off();
+        clearTimeout(emitJoinMessageTimeout);
       }
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    let timeout, timeoutTwo;
+    if (hasMessages && areMessagesHidden && isChatShownOnMobile) {
+      timeout = setTimeout(() => {
+        if (backdropMessagesContainerRef.current) {
+          backdropMessagesContainerRef.current.scrollTop =
+            backdropMessagesContainerRef.current.scrollHeight;
+        }
+        setAreMessagesHidden(false);
+      }, 1000);
+    }
+
+    if (!areMessagesHidden && !isChatShownOnMobile) {
+      timeoutTwo = setTimeout(() => {
+        setAreMessagesHidden(true);
+      }, 300);
+    }
+
+    return () => {
+      if (timeout) clearTimeout(timeout);
+      if (timeoutTwo) clearTimeout(timeoutTwo);
+    };
+  }, [messages, isChatShownOnMobile]);
 
   // Scroll the messages container to the bottom when a new message is received
   useEffect(() => {
@@ -189,7 +282,8 @@ export const Consultation = () => {
       (messages.currentSession?.length > 0 ||
         messages.previousSessions?.length > 0) &&
       backdropMessagesContainerRef.current &&
-      backdropMessagesContainerRef.current.scrollHeight > 0
+      backdropMessagesContainerRef.current.scrollHeight > 0 &&
+      !areMessagesHidden
     ) {
       backdropMessagesContainerRef.current.scrollTo({
         top: backdropMessagesContainerRef.current?.scrollHeight,
@@ -200,6 +294,7 @@ export const Consultation = () => {
     messages,
     backdropMessagesContainerRef.current?.scrollHeight,
     debouncedSearch,
+    areMessagesHidden,
   ]);
 
   // Mutations
@@ -218,6 +313,11 @@ export const Consultation = () => {
   const leaveConsultationMutation = useLeaveConsultation();
 
   const receiveMessage = (message) => {
+    if (message.content === "provider_left") {
+      setIsProviderInSession(false);
+    } else if (message.content === "provider_joined") {
+      setIsProviderInSession(true);
+    }
     setHasUnreadMessages(true);
     setMessages((messages) => {
       return {
@@ -240,14 +340,26 @@ export const Consultation = () => {
       );
     }
 
-    return messagesToShow?.map((message, index) => {
+    let lastDate;
+    const messagesToReturn = messagesToShow.map((message, index) => {
+      let shouldShowDate = false;
+      const currentMessageDate = getDateView(new Date(Number(message.time)));
+      if (currentMessageDate !== lastDate) {
+        shouldShowDate = true;
+        lastDate = currentMessageDate;
+      }
       if (message.type === "system") {
         if (!areSystemMessagesShown) return null;
         return (
           <SystemMessage
             key={`${message.time}-${index}`}
-            title={message.content}
+            title={
+              systemMessageTypes.includes(message.content)
+                ? t(message.content)
+                : message.content
+            }
             date={new Date(Number(message.time))}
+            showDate={shouldShowDate}
           />
         );
       } else {
@@ -258,6 +370,7 @@ export const Consultation = () => {
               message={message.content}
               sent
               date={new Date(Number(message.time))}
+              showDate={shouldShowDate}
             />
           );
         } else {
@@ -267,11 +380,16 @@ export const Consultation = () => {
               message={message.content}
               received
               date={new Date(Number(message.time))}
+              showDate={shouldShowDate}
             />
           );
         }
       }
     });
+    if (isProviderTyping) {
+      messagesToReturn.push(<TypingIndicator text={t("typing")} />);
+    }
+    return messagesToReturn;
   }, [
     messages,
     chatDataQuery.isLoading,
@@ -279,6 +397,7 @@ export const Consultation = () => {
     areSystemMessagesShown,
     debouncedSearch,
     showAllMessages,
+    isProviderTyping,
   ]);
 
   const handleSendMessage = (content, type = "text") => {
@@ -304,7 +423,6 @@ export const Consultation = () => {
       message,
     });
   };
-  const [isChatShownOnTablet, setIsChatShownOnTablet] = useState(true);
   const toggleChat = () => {
     if (!isChatShownOnMobile) {
       setTimeout(() => {
@@ -333,7 +451,7 @@ export const Consultation = () => {
     setIsSafetyFeedbackShown(true);
     const leaveMessage = {
       time: JSON.stringify(new Date().getTime()),
-      content: t("client_left"),
+      content: "client_left",
       type: "system",
     };
 
@@ -363,6 +481,16 @@ export const Consultation = () => {
     }
   };
 
+  const emitTyping = (type) => {
+    socketRef.current.emit("typing", {
+      to: "provider",
+      language,
+      country,
+      chatId: consultation.chatId,
+      type,
+    });
+  };
+
   return isSafetyFeedbackShown ? (
     <SafetyFeedback
       answers={securityCheckAnswers}
@@ -386,9 +514,10 @@ export const Consultation = () => {
           handleSendMessage={handleSendMessage}
           token={token}
           hasUnreadMessages={hasUnreadMessages}
+          isProviderInSession={isProviderInSession}
           t={t}
         />
-        {isChatShownOnTablet && (
+        {isChatShownOnTablet && width >= 1366 && (
           <MessageList
             messages={messages}
             handleSendMessage={handleSendMessage}
@@ -404,15 +533,16 @@ export const Consultation = () => {
             onTextareaFocus={handleTextareaFocus}
             debouncedSearch={debouncedSearch}
             renderAllMessages={renderAllMessages}
+            emitTyping={emitTyping}
             t={t}
           />
         )}
       </div>
       <Backdrop
         classes="page__consultation__chat-backdrop"
-        isOpen={isChatShownOnMobile}
+        isOpen={isChatShownOnMobile && width < 1024}
         onClose={() => setIsChatShownOnMobile(false)}
-        reference={width < 768 ? backdropMessagesContainerRef : null}
+        // reference={width < 768 ? backdropMessagesContainerRef : null}
         headingComponent={
           <OptionsContainer
             showOptions={showOptions}
@@ -428,22 +558,21 @@ export const Consultation = () => {
         }
       >
         <div className="page__consultation__chat-backdrop__container">
+          {areMessagesHidden && <Loading size="lg" />}
           <div
-            ref={width >= 768 ? backdropMessagesContainerRef : null}
+            ref={backdropMessagesContainerRef}
             className="page__consultation__container__messages__messages-container"
+            style={{
+              visibility: areMessagesHidden ? "hidden" : "visible",
+            }}
           >
             {renderAllMessages()}
-            <div
-              style={{
-                width: "100%",
-                marginBottom: width >= 768 ? "100px" : "50px",
-              }}
-            />
           </div>
           {(isChatShownOnMobile || width >= 768) && (
             <SendMessage
               handleSubmit={handleSendMessage}
               onTextareaFocus={handleTextareaFocus}
+              emitTyping={emitTyping}
             />
           )}
         </div>
@@ -467,6 +596,7 @@ const MessageList = ({
   onTextareaFocus,
   debouncedSearch,
   renderAllMessages,
+  emitTyping,
   t,
 }) => {
   const messagesContainerRef = useRef();
@@ -483,24 +613,51 @@ const MessageList = ({
     };
   }, []);
 
+  const belowMessagesRef = useRef(null);
+  const [isHidden, setIsHidden] = useState(true);
+
   useEffect(() => {
+    let timeout;
+    if (
+      messages?.currentSession?.length > 0 ||
+      messages?.previousSessions?.length > 0
+    ) {
+      timeout = setTimeout(() => {
+        if (messagesContainerRef.current) {
+          messagesContainerRef.current.scrollTop =
+            messagesContainerRef.current.scrollHeight;
+        }
+        setIsHidden(false);
+      }, 1000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [messages]);
+
+  useEffect(() => {
+    let timeout;
     if (
       (messages.currentSession?.length > 0 ||
         messages.previousSessions?.length > 0) &&
-      messagesContainerRef.current &&
-      messagesContainerRef.current.scrollHeight > 0 &&
-      showMessages
+      messagesContainerRef.current?.scrollHeight > 0 &&
+      showMessages &&
+      !isHidden
     ) {
-      messagesContainerRef.current.scrollTo({
-        top: messagesContainerRef.current?.scrollHeight,
-        behavior: "smooth",
-      });
+      timeout = setTimeout(() => {
+        messagesContainerRef.current.scrollTo({
+          top: messagesContainerRef.current?.scrollHeight,
+          behavior: "smooth",
+        });
+      }, 300);
     }
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
   }, [
     messages,
     messagesContainerRef.current?.scrollHeight,
     showMessages,
-    debouncedSearch,
+    isHidden,
   ]);
 
   return width >= 1024 ? (
@@ -517,6 +674,8 @@ const MessageList = ({
         isAbsolute
         t={t}
       />
+      {isHidden && <Loading />}
+
       <div
         ref={messagesContainerRef}
         className={`page__consultation__container__messages__messages-container ${
@@ -524,12 +683,16 @@ const MessageList = ({
             ? "page__consultation__container__messages__messages-container--show-options"
             : ""
         }`}
+        style={{
+          visibility: isHidden ? "hidden" : "visible",
+        }}
       >
         {showMessages && renderAllMessages()}
       </div>
       <SendMessage
         handleSubmit={handleSendMessage}
         onTextareaFocus={onTextareaFocus}
+        emitTyping={emitTyping}
       />
     </div>
   ) : null;

@@ -26,21 +26,22 @@ import "./register-about-you.scss";
  *
  * @return {jsx}
  */
-export const RegisterAboutYou = () => {
+export const RegisterAboutYou = ({ isAnonymous }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("register-about-you");
   const queryClient = useQueryClient();
   const countriesData = queryClient.getQueryData(["countries"]);
 
   const schema = Joi.object({
-    name: Joi.string().allow(null, "", " ").label(t("nickname_error")),
-    surname: Joi.string().allow(null, "", " ").label(t("nickname_error")),
+    name: Joi.string().allow(null, "", " ").label(t("name_error")),
+    surname: Joi.string().allow(null, "", " ").label(t("surname_error")),
     sex: Joi.string().invalid(null).label(t("sex_error")),
     yearOfBirth: Joi.number().invalid(null).label(t("year_of_birth_error")),
     urbanRural: Joi.string().invalid(null).label(t("place_of_living_error")),
   });
 
-  const clientData = useGetClientData()[1];
+  const clientDataQuery = useGetClientData(true, true)[0];
+  const clientData = clientDataQuery?.data;
 
   const sexOptions = [
     { label: t("sex_male"), value: "male" },
@@ -61,7 +62,6 @@ export const RegisterAboutYou = () => {
     yearOfBirth: "",
     urbanRural: "",
   });
-
   useEffect(() => {
     if (clientData) {
       setData({
@@ -94,7 +94,7 @@ export const RegisterAboutYou = () => {
     return years.reverse();
   }, [countriesData]);
   const onMutateSuccess = () => {
-    navigate("/register/support");
+    navigate("/dashboard");
   };
 
   const onMutateError = (error) => {
@@ -103,12 +103,25 @@ export const RegisterAboutYou = () => {
 
   // Make sure we get the freshest data before sending it to the mutation function
   const getDataToSend = useCallback(() => {
+    if (isAnonymous) {
+      const dataCopy = { ...data };
+      delete dataCopy["name"];
+      delete dataCopy["surname"];
+
+      return {
+        ...dataCopy,
+        nickname: clientData?.nickname,
+        name: "",
+        surname: "",
+        accessToken: clientData?.accessToken,
+      };
+    }
     return {
       ...data,
       email: clientData?.email,
       nickname: clientData?.nickname,
     };
-  }, [clientData, data]);
+  }, [clientData, data, isAnonymous]);
 
   const updateClientDetailsMutation = useUpdateClientData(
     getDataToSend(),
@@ -145,22 +158,28 @@ export const RegisterAboutYou = () => {
           classes="register-about-you__grid__content-item"
         >
           <div className="register-about-you__grid__content-item__inputs-container">
-            <Input
-              label={t("input_name_label")}
-              placeholder={t("input_name_placeholder")}
-              name="name"
-              onChange={(e) => handleSelect("name", e.currentTarget.value)}
-              value={data.name}
-              onBlur={() => handleBlur("name")}
-            />
-            <Input
-              label={t("input_surname_label")}
-              placeholder={t("input_surname_placeholder")}
-              name="surname"
-              onChange={(e) => handleSelect("surname", e.currentTarget.value)}
-              value={data.surname}
-              onBlur={() => handleBlur("surname")}
-            />
+            {isAnonymous ? null : (
+              <React.Fragment>
+                <Input
+                  label={t("input_name_label")}
+                  placeholder={t("input_name_placeholder")}
+                  name="name"
+                  onChange={(e) => handleSelect("name", e.currentTarget.value)}
+                  value={data.name}
+                  onBlur={() => handleBlur("name")}
+                />
+                <Input
+                  label={t("input_surname_label")}
+                  placeholder={t("input_surname_placeholder")}
+                  name="surname"
+                  onChange={(e) =>
+                    handleSelect("surname", e.currentTarget.value)
+                  }
+                  value={data.surname}
+                  onBlur={() => handleBlur("surname")}
+                />
+              </React.Fragment>
+            )}
 
             <DropdownWithLabel
               options={sexOptions}

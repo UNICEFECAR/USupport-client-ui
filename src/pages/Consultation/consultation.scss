@@ -32,13 +32,18 @@
 
       &__messages-container {
         display: flex;
-        margin-top: 5rem;
+        // margin-top: 5rem;
         margin-left: $spacing_1_8;
         flex-direction: column;
+        overflow: auto;
 
         @media screen and (min-width: 1024px) {
           height: 70vh;
           overflow-y: auto;
+        }
+
+        @media screen and (min-width: $screen-lg) {
+          margin-top: 5rem;
         }
 
         &--show-options {
@@ -74,10 +79,9 @@
 
   &__chat-backdrop {
     height: 60%;
-    padding-bottom: 1.6rem;
+    padding-bottom: $spacing_1_6;
 
     & .base-modal__body {
-      overflow: hidden;
       position: relative;
     }
 
@@ -87,14 +91,15 @@
 
     & .send-message {
       margin-bottom: $spacing_0_4;
-      position: fixed;
+      // position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       margin-bottom: 10px;
+      padding-top: $spacing_1_6;
 
       @media screen and (min-width: $screen-md) {
-        position: absolute;
+        // position: absolute;
       }
     }
 

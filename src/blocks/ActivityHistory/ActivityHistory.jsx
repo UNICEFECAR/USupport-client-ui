@@ -80,18 +80,31 @@ export const ActivityHistory = ({
 
   useEffect(() => {
     if (shownMessages) {
-      if (showAllConsultations && showSystemMessages) {
+      if (
+        showAllConsultations &&
+        showSystemMessages &&
+        allChatHistoryQuery.data
+      ) {
         setShownMessages(allChatHistoryQuery.data?.messages);
-      } else if (showAllConsultations && !showSystemMessages) {
-        setShownMessages(allChatHistoryQuery.data?.nonSystemMessages);
+      } else if (
+        showAllConsultations &&
+        !showSystemMessages &&
+        allChatHistoryQuery.data
+      ) {
+        setShownMessages(allChatHistoryQuery.data?.messages);
       } else if (!showAllConsultations && showSystemMessages) {
         setShownMessages(chatQueryData.data?.messages);
       } else if (!showAllConsultations && !showSystemMessages) {
-        setShownMessages(chatQueryData.data?.nonSystemMessages);
+        setShownMessages(chatQueryData.data?.messages);
       }
       setIsFiltering(false);
     }
-  }, [showAllConsultations, showSystemMessages]);
+  }, [
+    showAllConsultations,
+    showSystemMessages,
+    allChatHistoryQuery.data,
+    chatQueryData.data,
+  ]);
 
   useEffect(() => {
     if (shownMessages?.length && !isFiltering) {
@@ -113,7 +126,6 @@ export const ActivityHistory = ({
           {t("no_messages")}
         </p>
       );
-
     return shownMessages?.map((message, index) => {
       if (
         debouncedSearch &&
@@ -168,18 +180,6 @@ export const ActivityHistory = ({
     <Loading size="lg" />
   ) : (
     <>
-      {/* <div style={{ marginTop: "200px" }}>
-        <PDFViewer>
-          <MyDocument
-            messages={shownMessages}
-            providerId={providerId}
-            providerName={consultation.providerName}
-            showSystemMessages={showSystemMessages}
-            providerImage={providerImage}
-            t={t}
-          />
-        </PDFViewer>
-      </div> */}
       <Block classes="activity-history__header-block">
         <div className="activity-history__header-block__provider-container">
           <Icon
@@ -228,7 +228,7 @@ export const ActivityHistory = ({
             }
             fileName="somename.pdf"
           >
-            {({ blob, url, loading, error }) =>
+            {({ loading }) =>
               loading ? (
                 "Loading document..."
               ) : (

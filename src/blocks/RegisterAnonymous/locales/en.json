@@ -14,5 +14,6 @@
   "copy_text": "Copy and save or write down your anonymous code, if you lose it you cannot get access to your account anymore",
   "copy_success": "Code copied successfully",
   "confirm_password_label": "Confirm password",
-  "password_match_error": "The Password and Confirm Password fields do not match"
+  "password_match_error": "The Password and Confirm Password fields do not match",
+    "age_terms_agreement_text_1": "I am over 13 years old"
 }

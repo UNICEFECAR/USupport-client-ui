@@ -196,8 +196,6 @@ const resources = {
 
     //Backdrops
     "filter-providers": FilterProviders.en,
-    "register-preview-page": RegisterPreviewPage.en,
-    "privacy-policy": PrivacyPolicyPage.en,
     "confirm-consultation": ConfirmConsultation.en,
     "cancel-consultation": CancelConsultation.en,
     "edit-consultation": EditConsultation.en,
@@ -307,8 +305,6 @@ const resources = {
 
     //Backdrops
     "filter-providers": FilterProviders.ru,
-    "register-preview-page": RegisterPreviewPage.ru,
-    "privacy-policy": PrivacyPolicyPage.ru,
     "confirm-consultation": ConfirmConsultation.ru,
     "cancel-consultation": CancelConsultation.ru,
     "edit-consultation": EditConsultation.ru,
@@ -418,8 +414,6 @@ const resources = {
 
     //Backdrops
     "filter-providers": FilterProviders.kk,
-    "register-preview-page": RegisterPreviewPage.kk,
-    "privacy-policy": PrivacyPolicyPage.kk,
     "confirm-consultation": ConfirmConsultation.kk,
     "cancel-consultation": CancelConsultation.kk,
     "edit-consultation": EditConsultation.kk,
