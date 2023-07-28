@@ -436,7 +436,7 @@ export const Consultation = () => {
       setHasUnreadMessages(false);
     }
 
-    if (width < 1024) {
+    if (width < 1366) {
       setIsChatShownOnMobile(!isChatShownOnMobile);
     } else {
       setIsChatShownOnTablet(!isChatShownOnTablet);
@@ -444,10 +444,6 @@ export const Consultation = () => {
   };
 
   const leaveConsultation = () => {
-    leaveConsultationMutation.mutate({
-      consultationId: consultation.consultationId,
-      userType: "client",
-    });
     setIsSafetyFeedbackShown(true);
     const leaveMessage = {
       time: JSON.stringify(new Date().getTime()),
@@ -466,6 +462,11 @@ export const Consultation = () => {
       chatId: consultation.chatId,
       to: "provider",
       message: leaveMessage,
+    });
+
+    leaveConsultationMutation.mutate({
+      consultationId: consultation.consultationId,
+      userType: "client",
     });
   };
 
@@ -491,6 +492,18 @@ export const Consultation = () => {
     });
   };
 
+  const [hideControls, setHideControls] = useState(false);
+
+  useEffect(() => {
+    if (isChatShownOnMobile) {
+      setTimeout(() => {
+        setHideControls(true);
+      }, 500);
+    } else {
+      setHideControls(false);
+    }
+  }, [width, isChatShownOnMobile]);
+
   return isSafetyFeedbackShown ? (
     <SafetyFeedback
       answers={securityCheckAnswers}
@@ -515,6 +528,8 @@ export const Consultation = () => {
           token={token}
           hasUnreadMessages={hasUnreadMessages}
           isProviderInSession={isProviderInSession}
+          setIsProviderInSession={setIsProviderInSession}
+          hideControls={hideControls}
           t={t}
         />
         {isChatShownOnTablet && width >= 1366 && (
@@ -540,8 +555,9 @@ export const Consultation = () => {
       </div>
       <Backdrop
         classes="page__consultation__chat-backdrop"
-        isOpen={isChatShownOnMobile && width < 1024}
+        isOpen={isChatShownOnMobile}
         onClose={() => setIsChatShownOnMobile(false)}
+        showAlwaysAsBackdrop
         // reference={width < 768 ? backdropMessagesContainerRef : null}
         headingComponent={
           <OptionsContainer
