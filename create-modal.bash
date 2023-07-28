@@ -52,7 +52,6 @@ mkdir "src/modals/$modal_name"
 touch "src/modals/$modal_name/index.js"
 touch "src/modals/$modal_name/$modal_name.jsx"
 touch "src/modals/$modal_name/$modal_name_kebab.scss"
-touch "src/modals/$modal_name/$modal_name.stories.jsx"
 
 # Add the modal to the modal index file
 echo "export * from './$modal_name.jsx';" >> "src/modals/$modal_name/index.js"
@@ -96,40 +95,6 @@ export const $modal_name = ({ isOpen, onClose }) => {
     ></Modal>
   );
 };" >> "src/modals/$modal_name/$modal_name.jsx"
-
-# Add the modal to the stories file
-echo "import React, { useState } from 'react';
-import { Button } from '@USupport-components-library/src';
-
-import { $modal_name } from './$modal_name';
-
-export default {
-  title: 'Client UI/modals/$modal_name',
-  component: $modal_name,
-  argTypes: {},
-};
-
-const Template = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  return (
-    <>
-      <Button label='Toggle $modal_name' onClick={handleOpen} />
-      <$modal_name {...props} isOpen={isOpen} onClose={handleClose} />
-    </>
-  );
-};
-
-export const Default = Template.bind({});
-Default.args = {};" >> "src/modals/$modal_name/$modal_name.stories.jsx"
 
 # Add the theme to the modal styles file
 echo "@import '@USupport-components-library/styles';
