@@ -26,7 +26,7 @@ export const PaymentInformation = ({ isOpen, onClose, data }) => {
   const { t } = useTranslation("payment-information");
 
   const handleViewReceiptButtonClick = (receiptUrl) => {
-    window.open(receiptUrl, "_blank");
+    window.open(receiptUrl, "_blank", "noreferrer");
   };
 
   const paymentTime = getTime(date);
