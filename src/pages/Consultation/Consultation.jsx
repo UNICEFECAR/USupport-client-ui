@@ -529,7 +529,7 @@ export const Consultation = () => {
           hasUnreadMessages={hasUnreadMessages}
           isProviderInSession={isProviderInSession}
           setIsProviderInSession={setIsProviderInSession}
-          hideControls={hideControls}
+          hideControls={hideControls && width < 1366}
           t={t}
         />
         {isChatShownOnTablet && width >= 1366 && (
@@ -555,7 +555,7 @@ export const Consultation = () => {
       </div>
       <Backdrop
         classes="page__consultation__chat-backdrop"
-        isOpen={isChatShownOnMobile}
+        isOpen={isChatShownOnMobile && width < 1366}
         onClose={() => setIsChatShownOnMobile(false)}
         showAlwaysAsBackdrop
         // reference={width < 768 ? backdropMessagesContainerRef : null}

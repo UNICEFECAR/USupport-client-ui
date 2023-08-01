@@ -104,6 +104,7 @@ export const Page = ({
         minAge: x["min_client_age"],
         maxAge: x["max_client_age"],
         currencySymbol: x["symbol"],
+        localName: x.local_name,
       };
 
       if (localStorageCountry === x.alpha2) {

@@ -56,10 +56,11 @@ export default function Root() {
 
   const token = localStorage.getItem("token");
   const isTmpUser = userSvc.getUserID() === "tmp-user";
-  const enabled = token && !isTmpUser;
-  useGetClientData(!!enabled);
 
   const [loggedIn, setLoggedIn] = useState(!!token);
+
+  const enabled = token && !isTmpUser && loggedIn;
+  useGetClientData(!!enabled);
 
   const [activeCoupon, setActiveCoupon] = useState();
 
