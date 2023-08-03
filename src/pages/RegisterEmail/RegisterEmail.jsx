@@ -140,7 +140,7 @@ export const RegisterEmail = () => {
         }
         submitError={submitError}
         handleCaptchaChange={handleCaptchaChange}
-        isSubmitEnabled={!!isCaptchaValid}
+        isCaptchaValid={!!isCaptchaValid}
         showCaptcha={SHOW_CAPTCHA}
       />
       <CodeVerification

@@ -36,6 +36,7 @@ export const RegisterEmail = ({
   isMutating,
   handleCaptchaChange,
   showCaptcha,
+  isCaptchaValid,
 }) => {
   const { t } = useTranslation("register-email");
   const navigate = useNavigate();
@@ -110,7 +111,8 @@ export const RegisterEmail = ({
     data.isPrivacyAndTermsSelected &&
     data.isAgeTermsSelected &&
     data.email &&
-    data.nickname;
+    data.nickname &&
+    isCaptchaValid;
 
   return (
     <Block classes="register-email">
