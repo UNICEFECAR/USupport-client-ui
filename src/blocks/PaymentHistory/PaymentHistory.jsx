@@ -185,6 +185,7 @@ export const PaymentHistory = () => {
           isOpen={isPaymentInformationModalOpen}
           onClose={() => closePaymentModal()}
           data={selectedPaymentData}
+          currencySymbol={currencySymbol}
         />
       )}
     </Block>
