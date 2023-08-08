@@ -85,7 +85,7 @@ export default function useGetProvidersData(
       formattedData.push(formattedProvider);
     }
     // Return only the providers that have available slot
-    return formattedData;
+    return formattedData.filter((x) => x.earliestAvailableSlot);
   };
   const providersDataQuery = useInfiniteQuery(
     ["all-providers-data", activeCoupon, filters],
