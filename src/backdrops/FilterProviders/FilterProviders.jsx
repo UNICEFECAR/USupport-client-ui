@@ -21,8 +21,70 @@ import "./filter-providers.scss";
  *
  * @return {jsx}
  */
-export const FilterProviders = ({ isOpen, onClose, sharedFilters }) => {
+export const FilterProviders = ({
+  isOpen,
+  onClose,
+  allFilters,
+  setAllFilters,
+}) => {
   const { t } = useTranslation("filter-providers");
+
+  const [data, setData] = useState({ ...allFilters });
+
+  const [providerTypes, setProviderTypes] = useState([
+    {
+      label: t("provider_psychologist"),
+      value: "psychologist",
+      isSelected: false,
+    },
+    {
+      label: t("provider_psychotherapist"),
+      value: "psychotherapist",
+      isSelected: false,
+    },
+    {
+      label: t("provider_psychiatrist"),
+      value: "psychiatrist",
+      isSelected: false,
+    },
+  ]);
+
+  const [providerSex, setProviderSex] = useState([
+    {
+      label: t("male"),
+      value: "male",
+      isSelected: false,
+    },
+    { label: t("female"), value: "female", isSelected: false },
+    { label: t("unspecified"), value: "unspecified", isSelected: false },
+    { label: t("notMentioned"), value: "not_mentioned", isSelected: false },
+  ]);
+
+  useEffect(() => {
+    const dataCopy = JSON.stringify(data);
+    const allFiltersCopy = JSON.stringify(allFilters);
+    if (dataCopy !== allFiltersCopy) {
+      setData(allFilters);
+    }
+
+    setProviderTypes((prev) => {
+      return prev.map((x) => {
+        return {
+          ...x,
+          isSelected: allFilters.providerTypes.includes(x.value),
+        };
+      });
+    });
+
+    setProviderSex((prev) => {
+      return prev.map((x) => {
+        return {
+          ...x,
+          isSelected: allFilters.providerSex.includes(x.value),
+        };
+      });
+    });
+  }, [allFilters]);
 
   const fetchLanguages = async () => {
     const res = await languageSvc.getAllLanguages();
@@ -51,44 +113,6 @@ export const FilterProviders = ({ isOpen, onClose, sharedFilters }) => {
     availableBefore: "",
   };
 
-  const [data, setData] = useState(initialFilters);
-
-  useEffect(() => {
-    setData((data) => ({
-      ...data,
-      maxPrice: sharedFilters.maxPrice,
-      onlyFreeConsultation: sharedFilters.onlyFreeConsultation,
-    }));
-  }, [sharedFilters]);
-
-  const [providerTypes, setProviderTypes] = useState([
-    {
-      label: t("provider_psychologist"),
-      value: "psychologist",
-      isSelected: false,
-    },
-    {
-      label: t("provider_psychotherapist"),
-      value: "psychotherapist",
-      isSelected: false,
-    },
-    {
-      label: t("provider_psychiatrist"),
-      value: "psychiatrist",
-      isSelected: false,
-    },
-  ]);
-
-  const [providerSex, setProviderSex] = useState([
-    {
-      label: t("male"),
-      value: "male",
-      isSelected: false,
-    },
-    { label: t("female"), value: "female", isSelected: false },
-    { label: t("unspecified"), value: "unspecified", isSelected: false },
-  ]);
-
   const handleSelect = (field, value) => {
     const dataCopy = { ...data };
     dataCopy[field] = value;
@@ -105,12 +129,12 @@ export const FilterProviders = ({ isOpen, onClose, sharedFilters }) => {
       .filter((x) => x.isSelected)
       .map((x) => x.value);
 
-    setData(dataCopy);
+    setAllFilters(dataCopy);
     onClose(dataCopy);
   };
 
   const handleResetFilters = () => {
-    setData(initialFilters);
+    setAllFilters(initialFilters);
     onClose(initialFilters);
   };
 
