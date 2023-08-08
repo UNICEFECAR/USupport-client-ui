@@ -13,7 +13,12 @@ import "./payment-information.scss";
  *
  * @return {jsx}
  */
-export const PaymentInformation = ({ isOpen, onClose, data }) => {
+export const PaymentInformation = ({
+  isOpen,
+  onClose,
+  data,
+  currencySymbol,
+}) => {
   const {
     service,
     paymentMethod,
@@ -97,7 +102,10 @@ export const PaymentInformation = ({ isOpen, onClose, data }) => {
         <GridItem xs={4} md={8} lg={12}>
           <p className="text">
             <span className="text">{t("price")}</span>
-            <span className="payment-information__text">{price} </span>
+            <span className="payment-information__text">
+              {price}
+              {currencySymbol}
+            </span>
           </p>
         </GridItem>
 

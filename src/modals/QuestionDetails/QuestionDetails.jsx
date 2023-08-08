@@ -97,9 +97,9 @@ export const QuestionDetails = ({
           })}
         </div>
       ) : null}
-      <p className="text question-details__answer-text">
+      <pre className="text question-details__answer-text">
         {question.answerText}
-      </p>
+      </pre>
       {question.answerId && (
         <div className="question-details__bottom-container">
           <div className="question-details__answered-by-container">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import { toast } from "react-toastify";
 import {
   AccessToken,
@@ -26,6 +26,9 @@ import { useGetClientData, useUpdateClientData } from "#hooks";
 import Joi from "joi";
 
 import "./user-details.scss";
+
+const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
+
 /**
  * UserDetails
  *
@@ -353,7 +356,26 @@ export const UserDetails = ({
                 {t("privacy")}
               </p>
               <div className="user-details__grid-item-privacy__content-consent">
-                <p className="text">{t("consent")}</p>
+                <p className="text">
+                  <Trans
+                    components={[
+                      <span
+                        onClick={() =>
+                          window
+                            .open(
+                              `${WEBSITE_URL}/privacy-policy`,
+                              "_blank",
+                              "noreferrer"
+                            )
+                            .focus()
+                        }
+                        className="user-details__modal-heading"
+                      />,
+                    ]}
+                  >
+                    {t("consent")}
+                  </Trans>
+                </p>
                 <Toggle
                   isToggled={dataProcessing ? true : false}
                   setParentState={handleToggleClick}
@@ -368,7 +390,7 @@ export const UserDetails = ({
                 onClick={openChangePasswordBackdrop}
               />
               <ButtonWithIcon
-                iconName={"circle-close"}
+                iconName={"exit"}
                 iconSize={"md"}
                 size="lg"
                 iconColor={"#20809e"}
@@ -396,7 +418,27 @@ export const UserDetails = ({
       <Modal
         isOpen={dataProcessingModalOpen}
         closeModal={closeDataProcessingModal}
-        heading={t("data_processing_modal_heading")}
+        heading={
+          <Trans
+            components={[
+              <span
+                className="user-details__modal-heading"
+                isBold
+                onClick={() =>
+                  window
+                    .open(
+                      `${WEBSITE_URL}/privacy-policy`,
+                      "_blank",
+                      "noreferrer"
+                    )
+                    .focus()
+                }
+              />,
+            ]}
+          >
+            {t("data_processing_modal_heading")}
+          </Trans>
+        }
         text={t("data_processing_modal_text")}
         ctaLabel={t("data_processing_modal_confirm_button")}
         ctaHandleClick={() => {
