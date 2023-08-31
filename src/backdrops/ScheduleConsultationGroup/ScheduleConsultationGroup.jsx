@@ -38,7 +38,7 @@ export const ScheduleConsultationGroup = ({
 
   const onBlockSlotSuccess = (consultationId) => {
     if (consultationPrice.current && consultationPrice.current > 0) {
-      navigate(`/checkout`, { state: { consultationId: consultationId } });
+      navigate("/checkout", { state: { consultationId: consultationId } });
     } else {
       scheduleConsultationMutation.mutate(consultationId);
     }
@@ -49,7 +49,7 @@ export const ScheduleConsultationGroup = ({
   };
   const blockSlotMutation = useBlockSlot(onBlockSlotSuccess, onBlockSlotError);
 
-  const onScheduleConsultationSuccess = (data) => {
+  const onScheduleConsultationSuccess = () => {
     setIsBlockSlotSubmitting(false);
     window.dispatchEvent(new Event("new-notification"));
     closeSelectConsultation();

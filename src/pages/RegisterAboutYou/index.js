@@ -1,1 +1,1 @@
-export * from './RegisterAboutYou.jsx';
+export * from "./RegisterAboutYou.jsx";

@@ -1,1 +1,1 @@
-export * from './ActivityLogDashboard.jsx';
+export * from "./ActivityLogDashboard.jsx";

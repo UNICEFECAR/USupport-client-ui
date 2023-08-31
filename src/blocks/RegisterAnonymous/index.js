@@ -1,1 +1,1 @@
-export * from './RegisterAnonymous.jsx';
+export * from "./RegisterAnonymous.jsx";

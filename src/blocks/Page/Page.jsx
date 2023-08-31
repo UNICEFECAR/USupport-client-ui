@@ -4,7 +4,6 @@ import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import jwtDecode from "jwt-decode";
 
 import {
   Navbar,
@@ -78,7 +77,6 @@ export const Page = ({
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
   const token = localStorage.getItem("token");
-  const decoded = token ? jwtDecode(token) : null;
 
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(!!token);
 
@@ -210,7 +208,7 @@ export const Page = ({
     list3: [
       { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
       {
-        value: `Beibitshilik St 10а, Astana 010000, Kazakhstan`,
+        value: "Beibitshilik St 10а, Astana 010000, Kazakhstan",
         iconName: "pin",
       },
       {

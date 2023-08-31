@@ -21,13 +21,11 @@ export const EditConsultation = ({
   isOpen,
   onClose,
   consultation,
-  provider,
   openCancelConsultation,
   openSelectConsultation,
 }) => {
   // const consultation = { startDate: new Date(), endDate: new Date() };
-  const { providerName, providerId, consultationId, timestamp, image } =
-    consultation;
+  const { providerName, timestamp, image } = consultation;
 
   const imageUrl = image || "default";
   const startDate = new Date(timestamp);

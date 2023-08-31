@@ -9,5 +9,11 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {
+    "quotes": ["error", "double"],
+    "react/prop-types": "off",
+    "react/jsx-key": "off",
+    "no-case-declarations": "off",
+    "no-prototype-builtins": "off"
+  }
 }

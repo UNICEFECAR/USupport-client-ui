@@ -11,7 +11,6 @@ import {
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
-import { useError } from "#hooks";
 import Joi from "joi";
 
 import "./forgot-password.scss";

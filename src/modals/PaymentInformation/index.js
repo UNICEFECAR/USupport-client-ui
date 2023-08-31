@@ -1,1 +1,1 @@
-export * from './PaymentInformation.jsx';
+export * from "./PaymentInformation.jsx";

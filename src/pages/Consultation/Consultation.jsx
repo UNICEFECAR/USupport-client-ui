@@ -123,6 +123,7 @@ export const Consultation = () => {
         (x) => x.content === "provider_joined" || x.content === "provider_left"
       )
       .sort((a, b) => new Date(Number(b.time)) - new Date(Number(a.time)));
+    if (joinMessages.length === 0) return false;
     return joinMessages[0].content === "provider_joined";
   };
 
@@ -249,7 +250,6 @@ export const Consultation = () => {
       }
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -610,7 +610,6 @@ const MessageList = ({
   showAllMessages,
   setShowAllMessages,
   onTextareaFocus,
-  debouncedSearch,
   renderAllMessages,
   emitTyping,
   t,
@@ -629,7 +628,6 @@ const MessageList = ({
     };
   }, []);
 
-  const belowMessagesRef = useRef(null);
   const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {

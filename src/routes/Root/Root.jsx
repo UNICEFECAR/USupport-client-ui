@@ -33,7 +33,6 @@ import {
   RegisterSupport,
   ResetPassword,
   SelectProvider,
-  SharePlatform,
   SOSCenter,
   TermsOfUse,
   UserDetails,

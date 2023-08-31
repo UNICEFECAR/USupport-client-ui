@@ -1,1 +1,1 @@
-export * from './ChangePassword.jsx';
+export * from "./ChangePassword.jsx";

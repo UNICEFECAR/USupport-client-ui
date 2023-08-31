@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -24,10 +24,8 @@ import "./checkout-form.scss";
 
 function msToHMS(duration) {
   let seconds = parseInt((duration / 1000) % 60),
-    minutes = parseInt((duration / (1000 * 60)) % 60),
-    hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+    minutes = parseInt((duration / (1000 * 60)) % 60);
 
-  hours = hours < 10 ? "0" + hours : hours;
   minutes = minutes < 10 ? "0" + minutes : minutes;
   seconds = seconds < 10 ? "0" + seconds : seconds;
 
@@ -65,7 +63,6 @@ export const CheckoutForm = ({
   const difference = timeOfTimeout - now;
   const differenceInMins = msToHMS(difference);
 
-  const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [hasTimeouted, setHasTimeouted] = useState(now > timeOfTimeout);
@@ -134,7 +131,7 @@ export const CheckoutForm = ({
         </p>
         <LinkAuthenticationElement
           id="link-authentication-element"
-          onChange={(e) => setEmail(e.value.email)}
+          // onChange={(e) => setEmail(e.value.email)}
         />
         <PaymentElement id="payment-element" options={paymentElementOptions} />
 

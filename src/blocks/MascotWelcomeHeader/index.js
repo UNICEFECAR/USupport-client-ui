@@ -1,1 +1,1 @@
-export * from './MascotWelcomeHeader.jsx';
+export * from "./MascotWelcomeHeader.jsx";
