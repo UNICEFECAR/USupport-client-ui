@@ -123,6 +123,7 @@ export const Consultation = () => {
         (x) => x.content === "provider_joined" || x.content === "provider_left"
       )
       .sort((a, b) => new Date(Number(b.time)) - new Date(Number(a.time)));
+    if (joinMessages.length === 0) return false;
     return joinMessages[0].content === "provider_joined";
   };
 
