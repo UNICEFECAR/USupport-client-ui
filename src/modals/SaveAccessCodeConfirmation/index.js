@@ -1,1 +1,1 @@
-export * from './SaveAccessCodeConfirmation.jsx';
+export * from "./SaveAccessCodeConfirmation.jsx";

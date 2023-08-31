@@ -12,7 +12,6 @@ import {
   Error as ErrorMessage,
   Grid,
   GridItem,
-  Icon,
   Input,
   Loading,
   Modal,
@@ -224,7 +223,7 @@ export const UserDetails = ({
       closeDataProcessingModal();
       queryClient.invalidateQueries({ queryKey: ["client-data"] });
     },
-    onError: (error) => {
+    onError: () => {
       setDataProcessing((prev) => !prev); // Revert the optimistic update
     },
   });
@@ -423,7 +422,6 @@ export const UserDetails = ({
             components={[
               <span
                 className="user-details__modal-heading"
-                isBold
                 onClick={() =>
                   window
                     .open(

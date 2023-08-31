@@ -8,7 +8,6 @@ import {
   GridItem,
   Block,
   CardMedia,
-  Button,
   Loading,
   Tabs,
 } from "@USupport-components-library/src";
@@ -61,7 +60,7 @@ export const ArticlesDashboard = () => {
       let categoriesData = [
         { label: t("all"), value: "all", isSelected: true },
       ];
-      res.data.map((category, index) =>
+      res.data.map((category) =>
         categoriesData.push({
           label: category.attributes.name,
           value: category.attributes.name,
@@ -72,7 +71,9 @@ export const ArticlesDashboard = () => {
 
       setSelectedCategory(categoriesData[0]);
       return categoriesData;
-    } catch {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const categoriesQuery = useQuery(

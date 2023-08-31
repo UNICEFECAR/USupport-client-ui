@@ -1,1 +1,1 @@
-export * from './PlatformRating.jsx';
+export * from "./PlatformRating.jsx";

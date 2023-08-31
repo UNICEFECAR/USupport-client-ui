@@ -63,12 +63,7 @@ export const MoodTrackHistory = () => {
     return !loadedPages.includes(pageNum);
   }, [loadedPages, pageNum]);
 
-  const moodTrackEntriesQuery = useGetMoodTrackEntries(
-    limitToLoad,
-    pageNum,
-    onSuccess,
-    enabled
-  );
+  useGetMoodTrackEntries(limitToLoad, pageNum, onSuccess, enabled);
 
   const emoticons = [
     { name: "happy", label: "Happy", value: 4 },

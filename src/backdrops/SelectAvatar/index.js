@@ -1,1 +1,1 @@
-export * from './SelectAvatar.jsx';
+export * from "./SelectAvatar.jsx";

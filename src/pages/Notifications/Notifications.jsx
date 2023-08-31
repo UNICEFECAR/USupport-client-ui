@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 import { Page, Notifications as NotificationsBlock } from "#blocks";
 import { JoinConsultation } from "#backdrops";

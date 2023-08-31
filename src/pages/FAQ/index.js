@@ -1,1 +1,1 @@
-export * from './FAQ.jsx';
+export * from "./FAQ.jsx";

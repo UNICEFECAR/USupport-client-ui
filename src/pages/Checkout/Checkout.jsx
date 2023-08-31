@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocation, Navigate, useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
@@ -49,7 +49,7 @@ export const Checkout = () => {
 
     return res?.data;
   };
-  const paymentIntent = useQuery(["paymentIntent"], fetchPaymentIntent, {
+  useQuery(["paymentIntent"], fetchPaymentIntent, {
     onSuccess: ({
       currency,
       price,

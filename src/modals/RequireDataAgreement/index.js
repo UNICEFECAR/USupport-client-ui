@@ -1,1 +1,1 @@
-export * from './RequireDataAgreement.jsx';
+export * from "./RequireDataAgreement.jsx";

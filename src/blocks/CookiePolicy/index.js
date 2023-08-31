@@ -1,1 +1,1 @@
-export * from './CookiePolicy.jsx';
+export * from "./CookiePolicy.jsx";

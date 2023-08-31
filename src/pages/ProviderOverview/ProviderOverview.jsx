@@ -71,7 +71,7 @@ export const ProviderOverview = () => {
       consultationPrice.current > 0 &&
       !selectedSlot.current?.campaign_id
     ) {
-      navigate(`/checkout`, {
+      navigate("/checkout", {
         state: {
           consultationId: consultationId,
           campaignId: selectedSlot.current?.campaign_id,
@@ -87,7 +87,7 @@ export const ProviderOverview = () => {
   };
   const blockSlotMutation = useBlockSlot(onBlockSlotSuccess, onBlockSlotError);
 
-  const onScheduleConsultationSuccess = (data) => {
+  const onScheduleConsultationSuccess = () => {
     setIsBlockSlotSubmitting(false);
     setConsultationId(consultationId);
     closeScheduleBackdrop();

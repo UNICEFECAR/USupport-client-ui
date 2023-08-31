@@ -1,1 +1,1 @@
-export * from './TermsOfUse.jsx';
+export * from "./TermsOfUse.jsx";

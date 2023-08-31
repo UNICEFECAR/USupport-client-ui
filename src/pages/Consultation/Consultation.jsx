@@ -250,7 +250,6 @@ export const Consultation = () => {
       }
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -611,7 +610,6 @@ const MessageList = ({
   showAllMessages,
   setShowAllMessages,
   onTextareaFocus,
-  debouncedSearch,
   renderAllMessages,
   emitTyping,
   t,
@@ -630,7 +628,6 @@ const MessageList = ({
     };
   }, []);
 
-  const belowMessagesRef = useRef(null);
   const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {

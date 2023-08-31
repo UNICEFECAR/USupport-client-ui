@@ -5,8 +5,9 @@ import { toast } from "react-toastify";
 
 import { Modal } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
-
 import { mascotHappyBlue } from "@USupport-components-library/assets";
+
+import { useError } from "#hooks";
 
 import "./require-data-agreement.scss";
 

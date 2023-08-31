@@ -1,1 +1,1 @@
-export * from './MoodTrackMoreInformation.jsx';
+export * from "./MoodTrackMoreInformation.jsx";

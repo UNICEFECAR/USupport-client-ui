@@ -118,7 +118,7 @@ export const Dashboard = () => {
   };
   const closeJoinConsultation = () => setIsJoinConsultationOpen(false);
 
-  const [isEditingConsultation, setIsEditingConsultation] = useState(true);
+  const [isEditingConsultation] = useState(true);
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
@@ -201,7 +201,7 @@ export const Dashboard = () => {
       });
     } else {
       if (consultationPrice.current && consultationPrice.current > 0) {
-        navigate(`/checkout`, { state: { consultationId: consultationId } });
+        navigate("/checkout", { state: { consultationId: consultationId } });
       } else {
         scheduleConsultationMutation.mutate(selectedConsultationId);
       }

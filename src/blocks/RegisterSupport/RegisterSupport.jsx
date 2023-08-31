@@ -36,7 +36,6 @@ export const RegisterSupport = () => {
   const [data, setData] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showError, setShowError] = useState(false);
-  const [submitError, setSubmitError] = useState();
 
   const hasGivenPermission = useRef();
 
@@ -66,15 +65,12 @@ export const RegisterSupport = () => {
   };
   const updateDataProcessingMutation = useMutation(updateDataProcessing, {
     onSuccess: () => {
-      setSubmitError(null);
       setShowError(false);
       queryClient.invalidateQueries({ queryKey: ["client-data"] });
       setIsModalOpen(false);
     },
-    onError: (error) => {
+    onError: () => {
       hasGivenPermission.current = false;
-      const { message: errorMessage } = useError(error);
-      setSubmitError(errorMessage);
     },
   });
 

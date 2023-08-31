@@ -6,7 +6,6 @@ import { useWindowDimensions } from "@USupport-components-library/utils";
 import {
   RadialCircle,
   ButtonWithIcon,
-  Loading,
   Button,
   Modal,
   Input,
