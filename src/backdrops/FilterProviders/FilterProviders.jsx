@@ -33,17 +33,17 @@ export const FilterProviders = ({
 
   const [providerTypes, setProviderTypes] = useState([
     {
-      label: t("provider_psychologist"),
+      label: "provider_psychologist",
       value: "psychologist",
       isSelected: false,
     },
     {
-      label: t("provider_psychotherapist"),
+      label: "provider_psychotherapist",
       value: "psychotherapist",
       isSelected: false,
     },
     {
-      label: t("provider_psychiatrist"),
+      label: "provider_psychiatrist",
       value: "psychiatrist",
       isSelected: false,
     },
@@ -51,13 +51,13 @@ export const FilterProviders = ({
 
   const [providerSex, setProviderSex] = useState([
     {
-      label: t("male"),
+      label: "male",
       value: "male",
       isSelected: false,
     },
-    { label: t("female"), value: "female", isSelected: false },
-    { label: t("unspecified"), value: "unspecified", isSelected: false },
-    { label: t("notMentioned"), value: "not_mentioned", isSelected: false },
+    { label: "female", value: "female", isSelected: false },
+    { label: "unspecified", value: "unspecified", isSelected: false },
+    { label: "not_mentioned", value: "not_mentioned", isSelected: false },
   ]);
 
   useEffect(() => {
@@ -156,13 +156,19 @@ export const FilterProviders = ({
           <CheckBoxGroup
             name="providerType"
             label={t("provider_type_checkbox_group_label")}
-            options={providerTypes}
+            options={providerTypes.map((x) => ({
+              ...x,
+              label: t(x.label),
+            }))}
             setOptions={setProviderTypes}
           />
           <CheckBoxGroup
             name="sex"
             label={t("provider_sex_checkbox_group_label")}
-            options={providerSex}
+            options={providerSex.map((x) => ({
+              ...x,
+              label: t(x.label),
+            }))}
             setOptions={setProviderSex}
           />
           <div>
@@ -178,24 +184,16 @@ export const FilterProviders = ({
           </div>
           <DateInput
             label={t("available_after")}
-            onChange={(e) =>
-              setData((prev) => ({
-                ...prev,
-                availableAfter: e?.currentTarget?.value,
-              }))
-            }
+            onChange={(e) => {
+              handleSelect("availableAfter", e.target.value);
+            }}
             value={data.availableAfter || ""}
             placeholder="DD.MM.YYY"
             classes={["client-ratings__backdrop__date-picker"]}
           />
           <DateInput
             label={t("available_before")}
-            onChange={(e) =>
-              setData((prev) => ({
-                ...prev,
-                availableBefore: e?.currentTarget?.value,
-              }))
-            }
+            onChange={(e) => handleSelect("availableBefore", e.target.value)}
             value={data.availableBefore || ""}
             placeholder="DD.MM.YYY"
             classes={["client-ratings__backdrop__date-picker"]}
