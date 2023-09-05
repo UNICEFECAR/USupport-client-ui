@@ -27,6 +27,10 @@ export const ConfirmConsultation = ({ isOpen, onClose, consultation }) => {
   };
 
   const { startDate, endDate } = consultation;
+  const getMonthNameString = (date) => {
+    let monthName = t(getMonthName(date).toLowerCase());
+    return monthName;
+  };
 
   return (
     <Backdrop
@@ -48,7 +52,7 @@ export const ConfirmConsultation = ({ isOpen, onClose, consultation }) => {
         <p className="text confirm-consultation__content__text">
           {t("text", {
             startDate: startDate.getDate(),
-            month: getMonthName(startDate),
+            month: getMonthNameString(startDate),
             year: startDate.getFullYear(),
             startTime: getTimeAsString(startDate),
             endTime: getTimeAsString(endDate),
