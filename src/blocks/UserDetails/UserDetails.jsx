@@ -313,6 +313,7 @@ export const UserDetails = ({
               label={`${t("sex")}${
                 clientDataQuery?.data?.accessToken ? "" : "*"
               }`}
+              placeholder={t("sex_placeholder")}
             />
             <DropdownWithLabel
               options={getYearsOptions()}
@@ -321,6 +322,7 @@ export const UserDetails = ({
               label={`${t("year_of_birth")}${
                 clientDataQuery?.data?.accessToken ? "" : "*"
               }`}
+              placeholder={t("year_of_birth_placeholder")}
             />
             <DropdownWithLabel
               options={urbanRuralOptions}
@@ -329,6 +331,7 @@ export const UserDetails = ({
               label={`${t("living_place")}${
                 clientDataQuery?.data?.accessToken ? "" : "*"
               }`}
+              placeholder={t("living_place_placeholder")}
             />
             {errors.submit ? <ErrorMessage message={errors.submit} /> : null}
             <Button
