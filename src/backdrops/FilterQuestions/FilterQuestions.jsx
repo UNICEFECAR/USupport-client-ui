@@ -65,6 +65,7 @@ export const FilterQuestions = ({ isOpen, onClose, setTag }) => {
             className="filter-questions__dropdown"
             selected={selectedTagId}
             setSelected={setSelectedTagId}
+            placeholder={t("dropdown_placeholder")}
           />
         </div>
       )}

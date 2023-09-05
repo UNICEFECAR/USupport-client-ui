@@ -35,5 +35,8 @@
   "data_processing_modal_text": "Сіз қосымша кеңес беруді жоспарлай алмайсыз.",
   "data_processing_modal_confirm_button": "Рұқсатты жою",
   "data_processing_modal_cancel_button": "Болдырмау",
-  "success_message": "Парақша сәтті жаңартылды"
+  "success_message": "Парақша сәтті жаңартылды",
+  "sex_placeholder": "Жынысыңызды енгізіңіз",
+  "year_of_birth_placeholder": "Туған жылыңызды енгізіңіз",
+  "living_place_placeholder": "Тұрғылықты жеріңізді енгізіңіз"
 }
