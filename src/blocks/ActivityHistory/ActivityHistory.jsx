@@ -24,7 +24,11 @@ import {
   Toggle,
 } from "@USupport-components-library/src";
 
-import { getDateView, getTime } from "@USupport-components-library/utils";
+import {
+  getDateView,
+  getTime,
+  systemMessageTypes,
+} from "@USupport-components-library/utils";
 
 import { logoHorizontalPng } from "@USupport-components-library/assets";
 
@@ -137,7 +141,11 @@ export const ActivityHistory = ({
         return (
           <SystemMessage
             key={index + message.time}
-            title={t(message.content)}
+            title={
+              systemMessageTypes.includes(message.content)
+                ? t(message.content)
+                : message.content
+            }
             date={new Date(Number(message.time))}
           />
         );
