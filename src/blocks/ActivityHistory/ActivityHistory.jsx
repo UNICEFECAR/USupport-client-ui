@@ -137,7 +137,7 @@ export const ActivityHistory = ({
         return (
           <SystemMessage
             key={index + message.time}
-            title={message.content}
+            title={t(message.content)}
             date={new Date(Number(message.time))}
           />
         );
@@ -226,7 +226,7 @@ export const ActivityHistory = ({
                 t={t}
               />
             }
-            fileName="somename.pdf"
+            fileName={`Chat-history-${consultation.providerName}.pdf`}
           >
             {({ loading }) =>
               loading ? (
@@ -308,7 +308,11 @@ const MyDocument = ({
                   message.type === "system" && styles.systemMessage,
                 ]}
               >
-                <Text style={styles.messageText}>{message.content}</Text>
+                <Text style={styles.messageText}>
+                  {message.type === "system"
+                    ? t(message.content)
+                    : message.content}
+                </Text>
                 <Text style={[styles.date, isSent ? styles.dateSent : ""]}>
                   {getDateView(new Date(Number(message.time)))},{" "}
                   {getTime(new Date(Number(message.time)))}
