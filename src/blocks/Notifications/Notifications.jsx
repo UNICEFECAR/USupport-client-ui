@@ -146,6 +146,7 @@ export const Notifications = ({
           notificationProviders[notification.content.providerDetailId];
         return (
           <Notification
+            t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
@@ -167,6 +168,7 @@ export const Notifications = ({
       case "consultation_reschedule":
         return (
           <Notification
+            t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
@@ -194,6 +196,7 @@ export const Notifications = ({
       case "consultation_cancellation":
         return (
           <Notification
+            t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
@@ -218,6 +221,7 @@ export const Notifications = ({
       case "consultation_cancellation_provider":
         return (
           <Notification
+            t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
@@ -242,6 +246,7 @@ export const Notifications = ({
       case "consultation_remind_start":
         return (
           <Notification
+            t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
@@ -280,6 +285,7 @@ export const Notifications = ({
       case "consultation_suggestion":
         return (
           <Notification
+            t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
@@ -330,6 +336,7 @@ export const Notifications = ({
       case "consultation_suggestion_booking":
         return (
           <Notification
+            t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
@@ -354,6 +361,7 @@ export const Notifications = ({
       case "consultation_suggestion_cancellation":
         return (
           <Notification
+            t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"
@@ -378,6 +386,7 @@ export const Notifications = ({
         const canJoin = checkIsFiveMinutesBefore(notification.content.time);
         return (
           <Notification
+            t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
             title="USupport"

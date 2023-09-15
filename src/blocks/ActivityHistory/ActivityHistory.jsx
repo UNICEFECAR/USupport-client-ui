@@ -24,7 +24,11 @@ import {
   Toggle,
 } from "@USupport-components-library/src";
 
-import { getDateView, getTime } from "@USupport-components-library/utils";
+import {
+  getDateView,
+  getTime,
+  systemMessageTypes,
+} from "@USupport-components-library/utils";
 
 import { logoHorizontalPng } from "@USupport-components-library/assets";
 
@@ -137,7 +141,11 @@ export const ActivityHistory = ({
         return (
           <SystemMessage
             key={index + message.time}
-            title={message.content}
+            title={
+              systemMessageTypes.includes(message.content)
+                ? t(message.content)
+                : message.content
+            }
             date={new Date(Number(message.time))}
           />
         );
@@ -226,7 +234,7 @@ export const ActivityHistory = ({
                 t={t}
               />
             }
-            fileName="somename.pdf"
+            fileName={`Chat-history-${consultation.providerName}.pdf`}
           >
             {({ loading }) =>
               loading ? (
@@ -308,7 +316,11 @@ const MyDocument = ({
                   message.type === "system" && styles.systemMessage,
                 ]}
               >
-                <Text style={styles.messageText}>{message.content}</Text>
+                <Text style={styles.messageText}>
+                  {message.type === "system"
+                    ? t(message.content)
+                    : message.content}
+                </Text>
                 <Text style={[styles.date, isSent ? styles.dateSent : ""]}>
                   {getDateView(new Date(Number(message.time)))},{" "}
                   {getTime(new Date(Number(message.time)))}
