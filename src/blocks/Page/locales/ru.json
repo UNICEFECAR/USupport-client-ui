@@ -17,5 +17,8 @@
 
   "button_text": "Перейти к приложению",
   "contact_us": "Свяжитесь с нами",
-  "your_profile_text": "Ваш профиль"
+  "your_profile_text": "Ваш профиль",
+  "password": "Пароль",
+  "wrong_password": "Неверный пароль",
+  "submit": "Отправить"
 }

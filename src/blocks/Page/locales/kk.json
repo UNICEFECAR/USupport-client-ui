@@ -17,5 +17,8 @@
 
   "button_text": "Қосымшаға өту",
   "contact_us": "Бізге хабарласыңыз",
-  "your_profile_text": "Сіздің парақшаңыз"
+  "your_profile_text": "Сіздің парақшаңыз",
+  "password": "Құпия сөз",
+  "wrong_password": "Құпия сөз дұрыс емес",
+  "submit": "Жіберу"
 }
