@@ -17,5 +17,8 @@
 
   "button_text": "Go to app",
   "contact_us": "Contact us",
-  "your_profile_text": "Your profile"
+  "your_profile_text": "Your profile",
+  "password": "Password",
+  "wrong_password": "Wrong password",
+  "submit": "Submit"
 }

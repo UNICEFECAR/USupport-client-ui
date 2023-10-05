@@ -10,6 +10,7 @@ import {
   CircleIconButton,
   Footer,
   Icon,
+  PasswordModal,
 } from "@USupport-components-library/src";
 
 import {
@@ -236,8 +237,31 @@ export const Page = ({
     navigateTo("/register-preview");
   };
 
+  const hasEnteredPassword = queryClient.getQueryData(["hasEnteredPassword"]);
+
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
+    !hasEnteredPassword
+  );
+  const [password, setPasswordError] = useState("");
+
+  const handlePasswordCheck = (password) => {
+    if (password === "USupport!2023") {
+      queryClient.setQueryData(["hasEnteredPassword"], true);
+      setIsPasswordModalOpen(false);
+    } else {
+      setPasswordError(t("wrong_password"));
+    }
+  };
+
   return (
     <>
+      <PasswordModal
+        label={t("password")}
+        btnLabel={t("submit")}
+        isOpen={isPasswordModalOpen}
+        error={password}
+        handleSubmit={handlePasswordCheck}
+      />
       {isNavbarShown === true && (
         <Navbar
           i18n={i18n}
