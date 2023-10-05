@@ -18,7 +18,8 @@ import "./article-view.scss";
  *
  * @return {jsx}
  */
-export const ArticleView = ({ articleData }) => {
+export const ArticleView = ({ articleData, t }) => {
+  const creator = articleData.creator ? articleData.creator : null;
   return (
     <Block classes="article-view">
       <Grid classes="article-view__main-grid">
@@ -39,7 +40,7 @@ export const ArticleView = ({ articleData }) => {
         </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__details-item">
-          <p className={"small-text"}>By {articleData.creator}</p>
+          {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
 
           <Icon name={"time"} size="sm" />
           <p className={"small-text"}> {articleData.readingTime} min read</p>

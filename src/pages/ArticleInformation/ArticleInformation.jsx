@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -99,7 +99,7 @@ export const ArticleInformation = () => {
   return (
     <Page classes="page__article-information" showGoBackArrow={false}>
       {articleData ? (
-        <ArticleView articleData={articleData} />
+        <ArticleView articleData={articleData} t={t} />
       ) : (
         <Loading size="lg" />
       )}

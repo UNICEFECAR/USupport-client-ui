@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import { Backdrop, ButtonSelector } from "@USupport-components-library/src";
-import { messageSvc, userSvc } from "@USupport-components-library/services";
+import { messageSvc, videoSvc } from "@USupport-components-library/services";
 
 import "./join-consultation.scss";
 
@@ -22,7 +22,7 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
   const handleClick = async (redirectTo) => {
     const sytemMessage = {
       type: "system",
-      content: t("client_joined"),
+      content: "client_joined",
       time: JSON.stringify(new Date().getTime()),
     };
 
@@ -31,7 +31,7 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
       chatId: consultation.chatId,
     });
 
-    const getConsultationTokenPromise = userSvc.getTwilioToken(
+    const getConsultationTokenPromise = videoSvc.getTwilioToken(
       consultation.consultationId
     );
 
@@ -43,9 +43,15 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
       const token = result[1].data.token;
 
       navigate("/consultation", {
-        state: { consultation, videoOn: redirectTo === "video", token },
+        state: {
+          consultation,
+          videoOn: redirectTo === "video",
+          microphoneOn: redirectTo === "video",
+          token,
+        },
       });
-    } catch {
+    } catch (err) {
+      console.log(err);
       toast(t("error"), { type: "error" });
     }
 

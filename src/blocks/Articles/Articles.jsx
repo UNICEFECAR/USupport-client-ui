@@ -57,7 +57,9 @@ export const Articles = ({
       }));
       setSelectedAgeGroup(ageGroupsData[0]);
       return ageGroupsData;
-    } catch {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const ageGroupsQuery = useQuery(["ageGroups", usersLanguage], getAgeGroups, {
@@ -93,7 +95,7 @@ export const Articles = ({
       let categoriesData = [
         { label: t("all"), value: "all", isSelected: true },
       ];
-      res.data.map((category, index) =>
+      res.data.map((category) =>
         categoriesData.push({
           label: category.attributes.name,
           value: category.attributes.name,
@@ -104,7 +106,9 @@ export const Articles = ({
 
       setSelectedCategory(categoriesData[0]);
       return categoriesData;
-    } catch {}
+    } catch (err) {
+      console.log9err;
+    }
   };
 
   const categoriesQuery = useQuery(
@@ -244,12 +248,6 @@ export const Articles = ({
       ageGroupId = selectedAgeGroup.id;
     }
 
-    let categoryId = "";
-    if (categories) {
-      let selectedCategory = categories.find((o) => o.isSelected === true);
-      categoryId = selectedCategory.id;
-    }
-
     const { data } = await cmsSvc.getArticles({
       startFrom: articles?.length,
       limit: 6,
@@ -306,6 +304,7 @@ export const Articles = ({
                   <Tabs
                     options={categories}
                     handleSelect={handleCategoryOnPress}
+                    t={t}
                   />
                 )}
               </GridItem>

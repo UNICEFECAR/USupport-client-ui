@@ -7,6 +7,7 @@
   "male": "Мужчина",
   "female": "Женщина",
   "unspecified": "Не указан",
+  "not_mentioned": "Предпочитаю не говорить",
   "provider_type_checkbox_group_label": "Вид консультанта",
   "provider_sex_checkbox_group_label": "Пол консультанта",
   "max_price": "Максимальная цена",
@@ -14,5 +15,8 @@
   "language": "Язык",
   "language_placeholder": "Выберите язык",
   "providers_free_consultation_label": "Только бесплатная консультация",
-  "button_label": "Сохранить"
+  "button_label": "Примените фильтры",
+  "reset_filter": "Сбросить фильтр",
+  "available_before": "Доступно до",
+  "available_after": "Доступно после"
 }

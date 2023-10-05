@@ -58,7 +58,6 @@ mkdir "src/pages/$page_name"
 touch "src/pages/$page_name/index.js"
 touch "src/pages/$page_name/$page_name.jsx"
 touch "src/pages/$page_name/$page_name_kebab.scss"
-touch "src/pages/$page_name/$page_name.stories.jsx"
 
 # Add the page to the page index file
 echo "export * from './$page_name.jsx';" >> "src/pages/$page_name/index.js"
@@ -99,22 +98,6 @@ export const $page_name = () => {
         </Page>
     );
 }; " >> "src/pages/$page_name/$page_name.jsx"
-
-# Add the page to the storybook file
-echo "import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { $page_name } from './$page_name';
-
-export default {
-    title: 'Client UI/pages/$page_name',
-    component: $page_name,
-    argTypes: {},
-};
-
-const Template = (props) => <Router><$page_name {...props} /></Router>;
-
-export const Default = Template.bind({});
-Default.args = {}; " >> "src/pages/$page_name/$page_name.stories.jsx"
 
 # Add the theme to the page styles file 
 echo "/* $page_name styles */

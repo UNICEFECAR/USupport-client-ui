@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -10,6 +11,7 @@ import {
   Answer,
   InputSearch,
   ButtonWithIcon,
+  Loading,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
@@ -33,9 +35,11 @@ export const MyQA = ({
   isUserQuestionsEnabled,
   handleFilterTags,
   filterTag,
+  isQuestionsDataLoading,
 }) => {
   const { t } = useTranslation("my-qa");
   const { width } = useWindowDimensions();
+  const navigate = useNavigate();
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -52,6 +56,10 @@ export const MyQA = ({
     setTabs(tabsCopy);
   };
 
+  const handleProviderClick = (providerId) => {
+    navigate(`/provider-overview?provider-id=${providerId}`);
+  };
+
   const renderQuestions = () => {
     const filteredQuestions = questions.filter((question) => {
       if (filterTag) {
@@ -63,13 +71,29 @@ export const MyQA = ({
       const value = searchValue.toLowerCase();
 
       if (value) {
-        if (
-          !question.answerTitle?.toLowerCase().includes(value) &&
-          !question.answerText?.toLowerCase().includes(value) &&
-          !question.tags?.find((x) => x.toLowerCase().includes(value))
-        )
-          return null;
+        const isTitleMatching = question.answerTitle
+          ?.toLowerCase()
+          .includes(value);
+        const isTextMatching = question.answerText
+          ?.toLowerCase()
+          .includes(value);
+        const isTagMatching = question.tags?.find((x) =>
+          x.toLowerCase().includes(value)
+        );
+        const isQuestionMatching = question.question
+          ?.toLowerCase()
+          .includes(value);
+
+        const isMatching =
+          isTitleMatching ||
+          isTextMatching ||
+          isTagMatching ||
+          isQuestionMatching
+            ? true
+            : false;
+        return !!isMatching;
       }
+
       return true;
     });
 
@@ -90,6 +114,7 @@ export const MyQA = ({
           handleLike={handleLike}
           handleReadMore={() => handleReadMore(question)}
           handleScheduleConsultationClick={handleScheduleConsultationClick}
+          handleProviderClick={handleProviderClick}
           t={t}
         />
       );
@@ -119,7 +144,7 @@ export const MyQA = ({
                 iconColor="#ffffff"
                 iconSize="sm"
                 color="purple"
-                size="xs"
+                size="sm"
                 onClick={handleFilterTags}
                 classes="my-qa__tabs-grid__filter-button"
               />
@@ -139,7 +164,7 @@ export const MyQA = ({
             <GridItem md={2} lg={5} classes="my-qa__button-item">
               <Button
                 label={t("ask_button_label")}
-                size={width < 980 && width > 768 ? "md" : "lg"}
+                size={width < 980 && width > 768 ? "sm" : "lg"}
                 classes="my-qa__ask-question-button"
                 onClick={handleAskAnonymous}
               />
@@ -149,9 +174,11 @@ export const MyQA = ({
         <GridItem xs={4} md={8} lg={12}>
           {questions?.length > 0 ? (
             <div className="my-qa__answers-container">{renderQuestions()}</div>
+          ) : isQuestionsDataLoading ? (
+            <Loading />
           ) : (
             <p className="paragraph my-qa__answers-container__no-questions">
-              {t("no_questions_found")}
+              {t("no_answers_found")}
             </p>
           )}
         </GridItem>

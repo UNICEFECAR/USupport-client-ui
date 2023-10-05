@@ -32,13 +32,24 @@
 
       &__messages-container {
         display: flex;
-        margin-top: 5rem;
         margin-left: $spacing_1_8;
         flex-direction: column;
+        overflow: auto;
 
         @media screen and (min-width: 1024px) {
           height: 70vh;
           overflow-y: auto;
+        }
+
+        @media screen and (min-width: $screen-lg) {
+          margin-top: 5rem;
+        }
+
+        &--show-options {
+          @media screen and (min-width: 1024px) {
+            height: calc(70vh - 15rem) !important;
+            margin-top: 20rem;
+          }
         }
 
         & .message,
@@ -66,15 +77,29 @@
   }
 
   &__chat-backdrop {
-    height: 60%;
-    padding-bottom: 1.6rem;
+    height: 50vh;
+    padding-bottom: $spacing_1_6;
+
+    & .base-modal__body {
+      position: relative;
+    }
 
     &.backdrop__shown {
-      top: 40%;
+      top: 50vh;
     }
 
     & .send-message {
       margin-bottom: $spacing_0_4;
+      // position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin-bottom: 10px;
+      padding-top: $spacing_1_6;
+
+      @media screen and (min-width: $screen-md) {
+        // position: absolute;
+      }
     }
 
     &__container {
@@ -83,6 +108,29 @@
       justify-content: space-between;
       height: 100%;
       padding: 0 $spacing_0_4;
+      position: relative;
     }
+  }
+
+  &__system-message-toggle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: $spacing_1_2;
+
+    & p {
+      margin-left: $spacing_1_8;
+    }
+  }
+
+  &__options-container {
+    background-color: $color_white_ff;
+    z-index: 2;
+    width: 100%;
+    top: 0;
+  }
+
+  & .send-message {
+    margin-bottom: $spacing_2_8;
   }
 }

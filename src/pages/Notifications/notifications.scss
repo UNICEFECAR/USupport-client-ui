@@ -1,6 +1,14 @@
 /* Notifications styles */
-@import '@USupport-components-library/styles';
+@import "@USupport-components-library/styles";
 
-.page__notifications{
+.page__notifications {
+  @include full-height-page-navbar;
+
+  &__mark-read {
+    align-self: flex-end;
+    color: $color_secondary_9749fa;
+    cursor: pointer;
+    flex: 1;
+    text-align: right;
+  }
 }
-

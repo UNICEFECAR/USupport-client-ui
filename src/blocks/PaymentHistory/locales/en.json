@@ -3,6 +3,7 @@
   "price": "Price",
   "date_of_payment": "Date of payment",
   "more_details": "More details",
-  "no_payments_history_found": "You don't have any payments history yet",
-  "text_audio_video_consultation": "Online consultation"
+  "no_data_found": "You don't have any payments yet",
+  "text_audio_video_consultation": "Online consultation",
+  "export_label": "Export"
 }

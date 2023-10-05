@@ -1,0 +1,11 @@
+{
+  "heading": "Кодты тексеру",
+  "subheading": "Электронды пошта арқылы алған кодты енгізіңіз. Сіз оны хатты алғаннан кейін 30 минут ішінде пайдалана аласыз.",
+  "expiration_text": "Код мерзімі аяқталуға қалған уақыт ",
+  "button_with_icon_label_view": "Кодты қарау",
+  "button_with_icon_label_hide": "Кодты жасыру",
+  "send_button_label": "Жіберу",
+  "didnt_get_code": "Кодты алған жоқсыз ба?",
+  "resend_code_button_label": "Хатты қайта жіберу",
+  "seconds": " {{seconds}} секундтан кейін"
+}

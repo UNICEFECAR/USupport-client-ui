@@ -28,8 +28,11 @@ export const QuestionDetails = ({
   isOpen,
   onClose,
   handleScheduleClick,
+  handleProviderClick,
 }) => {
   const { t } = useTranslation("question-details");
+
+  const isInMyQuestions = question.isAskedByCurrentClient;
 
   const providerInfo = question.providerData;
 
@@ -55,6 +58,7 @@ export const QuestionDetails = ({
           {getDateText()}
         </p>
       </div>
+      {isInMyQuestions && <p className="text">{question.question}</p>}
       <div className="question-details__heading">
         {!question.answerId ? (
           <p className="question-details__heading__text">{question.question}</p>
@@ -63,16 +67,23 @@ export const QuestionDetails = ({
             {question.answerTitle}
           </h4>
         )}
-        <Like
-          handleClick={question.answerId ? handleLike : () => {}}
-          likes={question.likes || 0}
-          dislikes={question.dislikes || 0}
-          answerId={question.answerId}
-          isLiked={question.isLiked}
-          isDisliked={question.isDisliked}
-          renderInClient
-        />
+        {question.answerId ? (
+          <Like
+            handleClick={question.answerId ? handleLike : () => {}}
+            likes={question.likes || 0}
+            dislikes={question.dislikes || 0}
+            answerId={question.answerId}
+            isLiked={question.isLiked}
+            isDisliked={question.isDisliked}
+            renderInClient
+          />
+        ) : null}
       </div>
+      {/* {question.answerId && isInMyQuestions && (
+        <h4 className="question-details__heading__text">
+          {question.answerTitle}
+        </h4>
+      )} */}
       {question.tags ? (
         <div className="question-details__labels-container">
           {question.tags.map((label, index) => {
@@ -86,9 +97,9 @@ export const QuestionDetails = ({
           })}
         </div>
       ) : null}
-      <p className="text question-details__answer-text">
+      <pre className="text question-details__answer-text">
         {question.answerText}
-      </p>
+      </pre>
       {question.answerId && (
         <div className="question-details__bottom-container">
           <div className="question-details__answered-by-container">
@@ -98,8 +109,12 @@ export const QuestionDetails = ({
               alt="Specialist avatar"
               size="xs"
               classes="question-details__answered-by-container__avatar"
+              onClick={() => handleProviderClick(providerInfo.providerId)}
             />
-            <p className="text">
+            <p
+              className="text question-details__answered-by-container__provider-name"
+              onClick={() => handleProviderClick(providerInfo.providerId)}
+            >
               {providerInfo.name} {providerInfo.surname}
             </p>
           </div>

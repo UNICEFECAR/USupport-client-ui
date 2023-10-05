@@ -1,1 +1,1 @@
-export * from './DeleteAccount.jsx';
+export * from "./DeleteAccount.jsx";

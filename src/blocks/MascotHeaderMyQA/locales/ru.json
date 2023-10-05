@@ -1,8 +1,9 @@
 {
-    "heading": "My MyQA",
-    "subheading_its": "It`s",
-    "subheading_anonymous": "ANONYMOUS",
-    "subheading_text1": "Your questions are",
-    "subheading_not": "NOT",
-    "subheading_text2": "linked to you. The answers will be public, so you can see issues that others after facing as well."
+  "heading": "Мой Q&A (Вопрос/Ответ)",
+  "subheading_its": "Это",
+  "subheading_anonymous": "АНОНИМНЫЙ",
+  "subheading_text1": "Ваши вопросы",
+  "subheading_not": "НЕТ",
+  "subheading_text2": "связан с вами. Ответы будут общедоступными и Вы сможете увидеть проблемы, с которыми столкнулись и другие.",
+  "how_it_works": "Посмотрите, как это работает"
 }

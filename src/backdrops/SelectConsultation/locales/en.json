@@ -17,11 +17,14 @@
   "october": "October",
   "november": "November",
   "december": "December",
-  "su":	"Su",
-  "mo":	"Mo",
-  "tu":	"Tu",
-  "we":	"We",
-  "th":	"Th",
-  "fr":	"Fr",
-  "sa":	"Sa"
+  "su": "Su",
+  "mo": "Mo",
+  "tu": "Tu",
+  "we": "We",
+  "th": "Th",
+  "fr": "Fr",
+  "sa": "Sa",
+  "coupon_code": "Coupon code",
+  "apply_coupon": "Apply coupon",
+  "remove_coupon": "Remove coupon"
 }

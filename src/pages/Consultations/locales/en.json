@@ -1,4 +1,6 @@
 {
-    "header": "Consultations",
-    "button_label": "Schedule a consultation"
+  "header": "Consultations",
+  "button_label": "Schedule a consultation",
+  "reject_consultation_success": "Consultation rejected successfully",
+  "accept_consultation_success": "Consultation accepted successfully"
 }

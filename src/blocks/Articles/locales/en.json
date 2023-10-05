@@ -4,6 +4,7 @@
   "could_not_load_content": "There are no results for the current selected country and language.",
   "all": "All",
   "read_more_button": "Read more",
-  "min_read":	"min read",
-  "by": "By {{creator}}"
+  "min_read": "min read",
+  "by": "By {{creator}}",
+  "number_of_more_options": "{{count}} more"
 }

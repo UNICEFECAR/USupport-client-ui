@@ -18,7 +18,7 @@
   "button_text": "Сохранить изменения",
   "button_secondary_text": "Отменить изменения",
   "privacy": "Конфиденциальность и безопасность",
-  "consent": "Согласие на обработку персональных данных",
+  "consent": "Согласие на использование персональных данных в соответствии с <0>Privacy Policy</0>",
   "change_password": "Изменить пароль",
   "delete_account": "Удалить аккаунт",
   "logout": "Выйти",
@@ -31,9 +31,12 @@
   "sex_none": "Предпочитаю не говорить",
   "place_of_living_urban": "Город",
   "place_of_living_rural": "Село",
-  "data_processing_modal_heading": "Уверены, что хотите отозвать разрешение на обработку своих персональных данных?",
+  "data_processing_modal_heading": "Уверены, что хотите отозвать разрешение на использование своих персональных данных как определено в <0>Privacy Policy</0>?",
   "data_processing_modal_text": "Вы не сможете запланировать дальнейшие консультации.",
   "data_processing_modal_confirm_button": "Удалить разрешение",
   "data_processing_modal_cancel_button": "Отмена",
-  "success_message": "Профиль успешно обновлен"
+  "success_message": "Профиль успешно обновлен",
+  "sex_placeholder": "Введите свой пол",
+  "year_of_birth_placeholder": "Введите свой год рождения",
+  "living_place_placeholder": "Введите место вашего жительства"
 }

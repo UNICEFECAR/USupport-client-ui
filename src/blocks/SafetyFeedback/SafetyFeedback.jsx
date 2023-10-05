@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +26,7 @@ import "./safety-feedback.scss";
  *
  * @return {jsx}
  */
-export const SafetyFeedback = ({ consultationId, answers }) => {
+export const SafetyFeedback = ({ consultationId, answers = {} }) => {
   const { t } = useTranslation("safety-feedback-block");
   const navigate = useNavigate();
   const hasAnsweredBefore =
@@ -102,6 +102,13 @@ export const SafetyFeedback = ({ consultationId, answers }) => {
     }
   };
 
+  const canSubmit = useMemo(() => {
+    return (
+      questions.filter((x) => x.value !== null && x.value !== undefined)
+        .length === questions.length
+    );
+  }, [questions]);
+
   return (
     <Block classes="safety-feedback">
       <Grid classes="safety-feedback__grid">
@@ -141,8 +148,8 @@ export const SafetyFeedback = ({ consultationId, answers }) => {
           <Button
             label={t("button")}
             size="lg"
-            disabled={questions.filter((x) => x.value !== null).length !== 4}
             onClick={handleSubmit}
+            disabled={!canSubmit}
           />
         </GridItem>
         {hasAnsweredBefore && (
@@ -155,7 +162,7 @@ export const SafetyFeedback = ({ consultationId, answers }) => {
               label={t("continue_button")}
               size="lg"
               type="secondary"
-              disabled={questions.filter((x) => x.value !== null).length !== 4}
+              disabled={!canSubmit}
               onClick={handleSubmit}
             />
           </GridItem>

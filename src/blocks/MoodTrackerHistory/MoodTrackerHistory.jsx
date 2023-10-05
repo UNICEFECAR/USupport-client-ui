@@ -20,7 +20,7 @@ export const MoodTrackerHistory = () => {
   const { t } = useTranslation("mood-tracker-history");
 
   //TODO - get the Data from the API
-  const [emoticons, setEmoticons] = useState([
+  const [emoticons] = useState([
     { name: "happy", label: t("perfect"), isSelected: false, counter: 6 },
     { name: "good", label: t("happy"), isSelected: false, counter: 2 },
     { name: "not-good", label: t("sad"), isSelected: true, counter: 10 },

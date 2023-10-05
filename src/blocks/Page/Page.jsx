@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
@@ -10,6 +10,7 @@ import {
   CircleIconButton,
   Footer,
   Icon,
+  PasswordModal,
 } from "@USupport-components-library/src";
 
 import {
@@ -24,7 +25,11 @@ import {
 } from "@USupport-components-library/utils";
 
 import { RequireRegistration } from "#modals";
-import { useIsLoggedIn } from "#hooks";
+import {
+  useIsLoggedIn,
+  useEventListener,
+  useCheckHasUnreadNotifications,
+} from "#hooks";
 
 import "./page.scss";
 
@@ -72,6 +77,10 @@ export const Page = ({
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
+  const token = localStorage.getItem("token");
+
+  const unreadNotificationsQuery = useCheckHasUnreadNotifications(!!token);
+
   const localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
   const [selectedLanguage, setSelectedLanguage] = useState(
@@ -94,6 +103,7 @@ export const Page = ({
         minAge: x["min_client_age"],
         maxAge: x["max_client_age"],
         currencySymbol: x["symbol"],
+        localName: x.local_name,
       };
 
       if (localStorageCountry === x.alpha2) {
@@ -139,6 +149,7 @@ export const Page = ({
         value: x.alpha2,
         label: x.name,
         id: x["language_id"],
+        localName: x["local_name"],
       };
       if (localStorageLanguage === x.alpha2) {
         setSelectedLanguage(languageObject);
@@ -155,9 +166,21 @@ export const Page = ({
   const { data: countries } = useQuery(["countries"], fetchCountries);
   const { data: languages } = useQuery(["languages"], fetchLanguages);
 
-  const hasUnreadNotifications = queryClient.getQueryData([
-    "has-unread-notifications",
-  ]);
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
+  useEffect(() => {
+    const hasUnreadNotificationsData = unreadNotificationsQuery.data;
+    setHasUnreadNotifications(hasUnreadNotificationsData);
+  }, [unreadNotificationsQuery.data]);
+
+  const newNotificationHandler = useCallback(() => {
+    setHasUnreadNotifications(true);
+  }, []);
+  useEventListener("new-notification", newNotificationHandler);
+
+  const allNotificationsReadHandler = useCallback(() => {
+    setHasUnreadNotifications(false);
+  });
+  useEventListener("all-notifications-read", allNotificationsReadHandler);
 
   const clientData = queryClient.getQueryData(["client-data"]);
   const image = clientData?.image;
@@ -181,11 +204,12 @@ export const Page = ({
       { name: t("footer_5"), url: "/terms-of-use", exact: true },
       { name: t("footer_6"), url: "/privacy-policy" },
       { name: t("footer_7"), url: "/cookie-policy" },
+      { name: t("footer_8"), url: "/faq" },
     ],
     list3: [
       { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
       {
-        value: `Beibitshilik St 10а, Astana 010000, Kazakhstan`,
+        value: "Beibitshilik St 10а, Astana 010000, Kazakhstan",
         iconName: "pin",
       },
       {
@@ -213,8 +237,31 @@ export const Page = ({
     navigateTo("/register-preview");
   };
 
+  const hasEnteredPassword = queryClient.getQueryData(["hasEnteredPassword"]);
+
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
+    !hasEnteredPassword
+  );
+  const [password, setPasswordError] = useState("");
+
+  const handlePasswordCheck = (password) => {
+    if (password === "USupport!2023") {
+      queryClient.setQueryData(["hasEnteredPassword"], true);
+      setIsPasswordModalOpen(false);
+    } else {
+      setPasswordError(t("wrong_password"));
+    }
+  };
+
   return (
     <>
+      <PasswordModal
+        label={t("password")}
+        btnLabel={t("submit")}
+        isOpen={isPasswordModalOpen}
+        error={password}
+        handleSubmit={handlePasswordCheck}
+      />
       {isNavbarShown === true && (
         <Navbar
           i18n={i18n}
@@ -243,16 +290,6 @@ export const Page = ({
       >
         {(heading || showGoBackArrow || headingButton) && (
           <>
-            {headingButton && (
-              <div className="page__mobile-button-container">
-                {width < 768 &&
-                !showHeadingButtonInline &&
-                headingButton &&
-                !showHeadingButtonBelow
-                  ? headingButton
-                  : null}
-              </div>
-            )}
             <div className="page__header">
               {showGoBackArrow && (
                 <Icon
@@ -272,6 +309,16 @@ export const Page = ({
                   </div>
                 )}
             </div>
+            {headingButton && (
+              <div className="page__mobile-button-container">
+                {width < 768 &&
+                !showHeadingButtonInline &&
+                headingButton &&
+                !showHeadingButtonBelow
+                  ? headingButton
+                  : null}
+              </div>
+            )}
           </>
         )}
         <p className="page__subheading-text text">{subheading}</p>
@@ -295,6 +342,7 @@ export const Page = ({
           contactUsText={t("contact_us")}
           navigate={navigateTo}
           Link={Link}
+          showSocials={false}
         />
       )}
 

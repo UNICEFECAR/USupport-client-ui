@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
@@ -8,6 +8,7 @@ import {
   Input,
   DropdownWithLabel,
   Toggle,
+  DateInput,
 } from "@USupport-components-library/src";
 import { languageSvc } from "@USupport-components-library/services";
 
@@ -20,8 +21,70 @@ import "./filter-providers.scss";
  *
  * @return {jsx}
  */
-export const FilterProviders = ({ isOpen, onClose }) => {
+export const FilterProviders = ({
+  isOpen,
+  onClose,
+  allFilters,
+  setAllFilters,
+}) => {
   const { t } = useTranslation("filter-providers");
+
+  const [data, setData] = useState({ ...allFilters });
+
+  const [providerTypes, setProviderTypes] = useState([
+    {
+      label: "provider_psychologist",
+      value: "psychologist",
+      isSelected: false,
+    },
+    {
+      label: "provider_psychotherapist",
+      value: "psychotherapist",
+      isSelected: false,
+    },
+    {
+      label: "provider_psychiatrist",
+      value: "psychiatrist",
+      isSelected: false,
+    },
+  ]);
+
+  const [providerSex, setProviderSex] = useState([
+    {
+      label: "male",
+      value: "male",
+      isSelected: false,
+    },
+    { label: "female", value: "female", isSelected: false },
+    { label: "unspecified", value: "unspecified", isSelected: false },
+    { label: "not_mentioned", value: "not_mentioned", isSelected: false },
+  ]);
+
+  useEffect(() => {
+    const dataCopy = JSON.stringify(data);
+    const allFiltersCopy = JSON.stringify(allFilters);
+    if (dataCopy !== allFiltersCopy) {
+      setData(allFilters);
+    }
+
+    setProviderTypes((prev) => {
+      return prev.map((x) => {
+        return {
+          ...x,
+          isSelected: allFilters.providerTypes.includes(x.value),
+        };
+      });
+    });
+
+    setProviderSex((prev) => {
+      return prev.map((x) => {
+        return {
+          ...x,
+          isSelected: allFilters.providerSex.includes(x.value),
+        };
+      });
+    });
+  }, [allFilters]);
 
   const fetchLanguages = async () => {
     const res = await languageSvc.getAllLanguages();
@@ -40,41 +103,15 @@ export const FilterProviders = ({ isOpen, onClose }) => {
     retry: false,
   });
 
-  const [data, setData] = useState({
+  const initialFilters = {
     providerTypes: [],
     providerSex: [],
     maxPrice: "",
     language: null,
     onlyFreeConsultation: false,
-  });
-
-  const [providerTypes, setProviderTypes] = useState([
-    {
-      label: t("provider_psychologist"),
-      value: "psychologist",
-      isSelected: false,
-    },
-    {
-      label: t("provider_psychotherapist"),
-      value: "psychotherapist",
-      isSelected: false,
-    },
-    {
-      label: t("provider_psychiatrist"),
-      value: "psychiatrist",
-      isSelected: false,
-    },
-  ]);
-
-  const [providerSex, setProviderSex] = useState([
-    {
-      label: t("male"),
-      value: "male",
-      isSelected: false,
-    },
-    { label: t("female"), value: "female", isSelected: false },
-    { label: t("unspecified"), value: "unspecified", isSelected: false },
-  ]);
+    availableAfter: "",
+    availableBefore: "",
+  };
 
   const handleSelect = (field, value) => {
     const dataCopy = { ...data };
@@ -92,8 +129,13 @@ export const FilterProviders = ({ isOpen, onClose }) => {
       .filter((x) => x.isSelected)
       .map((x) => x.value);
 
-    setData(dataCopy);
+    setAllFilters(dataCopy);
     onClose(dataCopy);
+  };
+
+  const handleResetFilters = () => {
+    setAllFilters(initialFilters);
+    onClose(initialFilters);
   };
 
   return (
@@ -105,20 +147,56 @@ export const FilterProviders = ({ isOpen, onClose }) => {
       onClose={handleSave}
       ctaLabel={t("button_label")}
       ctaHandleClick={handleSave}
+      secondaryCtaLabel={t("reset_filter")}
+      secondaryCtaHandleClick={handleResetFilters}
+      secondaryCtaType="secondary"
     >
       <div className="filter-providers__content">
         <div className="filter-providers__content__inputs-container">
           <CheckBoxGroup
             name="providerType"
             label={t("provider_type_checkbox_group_label")}
-            options={providerTypes}
+            options={providerTypes.map((x) => ({
+              ...x,
+              label: t(x.label),
+            }))}
             setOptions={setProviderTypes}
           />
           <CheckBoxGroup
             name="sex"
             label={t("provider_sex_checkbox_group_label")}
-            options={providerSex}
+            options={providerSex.map((x) => ({
+              ...x,
+              label: t(x.label),
+            }))}
             setOptions={setProviderSex}
+          />
+          <div>
+            <p className="filter-providers__content__inputs-container__free-text text">
+              {t("providers_free_consultation_label")}
+            </p>
+            <Toggle
+              isToggled={data.onlyFreeConsultation}
+              setParentState={(checked) =>
+                handleSelect("onlyFreeConsultation", checked)
+              }
+            />
+          </div>
+          <DateInput
+            label={t("available_after")}
+            onChange={(e) => {
+              handleSelect("availableAfter", e.target.value);
+            }}
+            value={data.availableAfter || ""}
+            placeholder="DD.MM.YYY"
+            classes={["client-ratings__backdrop__date-picker"]}
+          />
+          <DateInput
+            label={t("available_before")}
+            onChange={(e) => handleSelect("availableBefore", e.target.value)}
+            value={data.availableBefore || ""}
+            placeholder="DD.MM.YYY"
+            classes={["client-ratings__backdrop__date-picker"]}
           />
           <Input
             value={data.maxPrice}
@@ -136,17 +214,6 @@ export const FilterProviders = ({ isOpen, onClose }) => {
             label={t("language")}
             placeholder={t("language_placeholder")}
           />
-          <div>
-            <p className="filter-providers__content__inputs-container__free-text text">
-              {t("providers_free_consultation_label")}
-            </p>
-            <Toggle
-              isToggled={data.onlyFreeConsultation}
-              setParentState={(checked) =>
-                handleSelect("onlyFreeConsultation", checked)
-              }
-            />
-          </div>
         </div>
         {/* <Button label={t("button_label")} size="lg" onClick={handleSave} /> */}
       </div>

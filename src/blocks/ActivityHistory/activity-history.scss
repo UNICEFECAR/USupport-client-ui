@@ -7,6 +7,7 @@
     background-color: $color_white_ff;
     left: 0;
     padding: $spacing_2_0;
+    padding-bottom: 0;
     position: fixed;
     right: 0;
     z-index: $z_index_2;
@@ -41,12 +42,68 @@
   }
 
   &__main {
-    padding-top: $spacing_8_0;
+    padding-top: 24.5rem;
+
+    @media screen and (min-width: $screen_md) {
+      padding-top: $spacing_20_0;
+    }
+
+    &__controls {
+      margin: 0 auto;
+      padding: $spacing_1_8;
+      padding-top: 0;
+      max-width: 34rem;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      @media screen and (min-width: $screen_md) {
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: $spacing_1_8;
+        max-width: 100%;
+      }
+
+      &__toggle {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: $spacing_1_8;
+
+        @media screen and (min-width: $screen_md) {
+          margin-right: $spacing_1_2;
+        }
+
+        & p {
+          margin-left: $spacing_1_2;
+        }
+      }
+      &__export-button {
+        margin-top: $spacing_1_8;
+      }
+    }
+
+    &__search {
+      margin: 0 auto;
+      margin-top: $spacing_1_8;
+      width: 30rem;
+
+      @media screen and (min-width: $screen_md) {
+        margin: unset;
+        margin-right: $spacing_2_0;
+        width: 34rem;
+      }
+    }
   }
 
   &__main__button-container {
     padding: $spacing_2_0 0;
-    padding-bottom: calc(5vh);
+    padding-bottom: calc(10vh);
     position: sticky;
     bottom: 0;
     background: $gradient_transparent;
@@ -55,7 +112,6 @@
     justify-content: center;
     width: 100%;
     z-index: $z_index_emergency_button;
-    // padding-bottom: $spacing_12_0;
   }
 
   &__main__content {
@@ -63,8 +119,12 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    height: 75vh;
+    height: 52vh;
     overflow: auto;
+
+    @media screen and (min-width: $screen_md) {
+      height: 61vh;
+    }
   }
 
   &__main__messages-container {
@@ -72,9 +132,28 @@
     flex-direction: column;
     flex: 1;
     width: 100%;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.4rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      margin: $spacing_2_4;
+      background: rgba(217, 217, 217, 0.63);
+      border-radius: 0.3rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $color_primary_20809e;
+      border-radius: 0.3rem;
+    }
 
     @media screen and (min-width: $screen_md) {
       max-width: 75rem;
+    }
+
+    &__no-messages {
+      margin-top: $spacing_2_4;
     }
 
     .system-message {

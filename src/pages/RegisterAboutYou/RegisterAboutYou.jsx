@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Page, RegisterAboutYou as RegisterAboutYouBlock } from "#blocks";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle } from "@USupport-components-library/src";
@@ -16,6 +16,8 @@ import "./register-about-you.scss";
  */
 export const RegisterAboutYou = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isAnonymous = location?.state?.isAnonymous;
   const { t } = useTranslation("register-about-you-page");
   const { width } = useWindowDimensions();
 
@@ -33,7 +35,7 @@ export const RegisterAboutYou = () => {
       handleGoBack={handleGoBack}
       showGoBackArrow={false}
     >
-      <RegisterAboutYouBlock />
+      <RegisterAboutYouBlock isAnonymous={isAnonymous} />
       {width < 768 && <RadialCircle color="purple" />}
     </Page>
   );

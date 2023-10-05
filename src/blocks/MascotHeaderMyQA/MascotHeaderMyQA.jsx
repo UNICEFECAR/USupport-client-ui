@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
 
@@ -54,7 +54,7 @@ export const MascotHeaderMyQA = ({ classes, handleSeeHowItWorksClick }) => {
             </GridItem>
             <GridItem xs={4} md={2} lg={4}>
               <Button
-                label={"See how it works"}
+                label={t("how_it_works")}
                 type="secondary"
                 classes="mascot-header-my-qa__headings-item__button"
                 onClick={() => handleSeeHowItWorksClick()}

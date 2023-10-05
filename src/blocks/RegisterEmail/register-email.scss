@@ -1,7 +1,7 @@
 @import "@USupport-components-library/styles";
 
 .register-email {
-  @include full-height-page(calc($spacing_9_6 + $spacing_6_4));
+  @include full-height-page-navbar();
 
   @media screen and (min-width: $screen-md) {
     padding-top: $spacing_6_4;
@@ -40,6 +40,14 @@
     &__login-button {
       margin: 0 auto;
       margin-top: $spacing_1_6;
+    }
+
+    & .terms-agreement {
+      margin-bottom: $spacing_1_2;
+    }
+
+    &__submit-error {
+      text-align: center;
     }
   }
 

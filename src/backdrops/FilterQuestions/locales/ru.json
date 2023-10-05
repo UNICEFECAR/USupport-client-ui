@@ -1,5 +1,7 @@
 {
-    "heading": "Filter questions by tag",
-    "dropdown_label": "Select a tag",
-    "cta_label": "Сохранить"
+    "heading": "Фильтровать вопросы по тегу",
+    "dropdown_label": "Выберите тег",
+    "cta_label": "Примените фильтры",
+    "secondary_cta_label": "Сбросить фильтры",
+    "dropdown_placeholder": "Выберите тег"
 }

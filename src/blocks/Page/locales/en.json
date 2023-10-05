@@ -8,13 +8,17 @@
   "footer_2": "Consultations",
   "footer_3": "Information portal",
   "footer_4": "Your profile",
-  "footer_5": "Terms and Conditions",
+  "footer_5": "Terms of Use",
   "footer_6": "Privacy Policy",
   "footer_7": "Cookie Settings",
+  "footer_8": "FAQ",
 
   "emergency_button": "SOS Center",
 
   "button_text": "Go to app",
   "contact_us": "Contact us",
-  "your_profile_text": "Your profile"
+  "your_profile_text": "Your profile",
+  "password": "Password",
+  "wrong_password": "Wrong password",
+  "submit": "Submit"
 }

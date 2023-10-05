@@ -11,6 +11,7 @@ export default function useGetChatData(chatId, onSuccess = () => {}) {
       providerDetailId: data.provider_detail_id,
       messages: data.messages || [],
     };
+
     return formattedData;
   };
   const query = useQuery(["chat-data", chatId], fetchChatData, {

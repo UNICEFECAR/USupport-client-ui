@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -7,7 +7,6 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { useGetQuestionsTags } from "#hooks";
-
 import "./filter-questions.scss";
 
 /**
@@ -35,6 +34,12 @@ export const FilterQuestions = ({ isOpen, onClose, setTag }) => {
     onClose();
   };
 
+  const handleResetFilter = () => {
+    setSelectedTagId(null);
+    setTag(null);
+    onClose();
+  };
+
   return (
     <Backdrop
       classes="filter-questions"
@@ -45,10 +50,7 @@ export const FilterQuestions = ({ isOpen, onClose, setTag }) => {
       ctaLabel={t("cta_label")}
       ctaHandleClick={handleSave}
       secondaryCtaLabel={t("secondary_cta_label")}
-      secondaryCtaHandleClick={() => {
-        setTag("");
-        onClose();
-      }}
+      secondaryCtaHandleClick={handleResetFilter}
       secondaryCtaType="secondary"
     >
       {tagsQuery.isLoading ? (
@@ -63,6 +65,7 @@ export const FilterQuestions = ({ isOpen, onClose, setTag }) => {
             className="filter-questions__dropdown"
             selected={selectedTagId}
             setSelected={setSelectedTagId}
+            placeholder={t("dropdown_placeholder")}
           />
         </div>
       )}

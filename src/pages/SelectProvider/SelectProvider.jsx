@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -6,10 +6,11 @@ import { useWindowDimensions } from "@USupport-components-library/utils";
 import {
   RadialCircle,
   ButtonWithIcon,
-  Loading,
   Button,
   Modal,
   Input,
+  Toggle,
+  Block,
 } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
 
@@ -41,70 +42,48 @@ export const SelectProvider = () => {
   const [couponError, setCouponError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const [providersDataQuery, providersData, setProvidersData] =
-    useGetProvidersData(activeCoupon);
+  const initialFilters = {
+    providerTypes: [],
+    providerSex: [],
+    maxPrice: "",
+    language: null,
+    onlyFreeConsultation: false,
+    availableAfter: "",
+    availableBefore: "",
+  };
+  const [allFilters, setAllFilters] = useState({
+    ...initialFilters,
+  });
+  // Set this to true when the filters have been changed and set
+  // it back to false when the providers data has been fetched
+  const [isFiltering, setIsFiltering] = useState(false);
+
+  const onSuccess = () => {
+    setIsFiltering(false);
+  };
+  const providersQuery = useGetProvidersData(
+    activeCoupon,
+    allFilters,
+    onSuccess
+  );
+  const [providersData, setProvidersData] = useState();
+
+  useEffect(() => {
+    if (providersQuery.data) {
+      setProvidersData(providersQuery.data.pages.flat());
+    }
+  }, [providersQuery.data]);
 
   const closeFilter = () => setIsFilterOpen(false);
   const handleFilterClick = () => {
     setIsFilterOpen(true);
   };
 
-  const checkProviderHasType = (provider, types) => {
-    return types
-      .map((x) => {
-        return provider.specializations.includes(x);
-      })
-      .some((x) => x === true);
-  };
-
   const handleFilterSave = (data) => {
-    const {
-      providerTypes,
-      providerSex,
-      maxPrice,
-      language,
-      onlyFreeConsultation,
-    } = data;
-    const initialData = JSON.parse(JSON.stringify(providersDataQuery.data));
-    const filteredData = [];
-    for (let i = 0; i < initialData.length; i++) {
-      const provider = initialData[i];
-      const hasType =
-        !providerTypes || providerTypes.length === 0
-          ? true
-          : checkProviderHasType(provider, providerTypes);
+    setIsFiltering(true);
 
-      const isDesiredSex =
-        !providerSex || providerSex.length === 0
-          ? true
-          : providerSex.includes(provider.sex);
+    setAllFilters((prev) => ({ ...prev, ...data }));
 
-      const isPriceMatching =
-        maxPrice === ""
-          ? true
-          : provider.consultationPrice <= Number(maxPrice)
-          ? true
-          : false;
-
-      const providerLanguages = provider.languages.map((x) => x.language_id);
-      const providerHasLanguage = !language
-        ? true
-        : providerLanguages.includes(language);
-
-      const providesFreeConsultation = !onlyFreeConsultation
-        ? true
-        : provider.consultationPrice === 0 || !provider.consultationPrice;
-      if (
-        hasType &&
-        isDesiredSex &&
-        isPriceMatching &&
-        providerHasLanguage &&
-        providesFreeConsultation
-      ) {
-        filteredData.push(provider);
-      }
-    }
-    setProvidersData(filteredData);
     closeFilter();
   };
 
@@ -126,6 +105,7 @@ export const SelectProvider = () => {
           campaignId: data.campaign_id,
         });
         closeCouponModal();
+        setCouponError("");
       }
     } catch (err) {
       const { message: errorMessage } = useError(err);
@@ -147,15 +127,6 @@ export const SelectProvider = () => {
       showHeadingButtonBelow={width < 768 ? true : false}
       headingButton={
         <div className="page__select-provider__buttons">
-          <Button
-            label={
-              activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
-            }
-            size="xs"
-            color="green"
-            type="secondary"
-            onClick={activeCoupon ? removeCoupon : openCouponModal}
-          />
           <ButtonWithIcon
             label={t("button_label")}
             iconName="filter"
@@ -168,32 +139,43 @@ export const SelectProvider = () => {
         </div>
       }
     >
-      {(providersDataQuery.isLoading && !providersData) ||
-      providersDataQuery.isFetching ? (
-        <Loading size="lg" />
-      ) : (
-        <SelectProviderBlock
-          providers={providersData}
-          activeCoupon={activeCoupon}
-          isLoading={providersDataQuery.isFetching}
-        />
-      )}
+      <FiltersBlock
+        handleSave={handleFilterSave}
+        t={t}
+        activeCoupon={activeCoupon}
+        removeCoupon={removeCoupon}
+        openCouponModal={openCouponModal}
+        allFilters={allFilters}
+        setAllFilters={setAllFilters}
+        isFiltering={isFiltering}
+      />
+
+      <SelectProviderBlock
+        providers={providersData}
+        activeCoupon={activeCoupon}
+        isLoading={providersQuery.isFetching}
+        providersQuery={providersQuery}
+      />
+
       {width < 768 && <RadialCircle color="purple" />}
 
       <FilterProviders
         isOpen={isFilterOpen}
         onClose={(data) => handleFilterSave(data)}
+        allFilters={allFilters}
+        setAllFilters={setAllFilters}
       />
       <Modal
         isOpen={isCouponModalOpen}
         closeModal={closeCouponModal}
         heading={t("modal_coupon_heading")}
-        text={t("modal_coupon_text")}
         ctaLabel={t("modal_coupon_button_label")}
         ctaHandleClick={handleSubmitCoupon}
         isCtaLoading={isLoading}
         errorMessage={couponError}
       >
+        <p className="text">{t("coupon_paragraph")}</p>
+        <p className="text">{t("coupon_paragraph_two")}</p>
         <div className="page__select-provider__coupon-modal-input">
           <Input
             label={t("modal_coupon_input_label")}
@@ -204,5 +186,47 @@ export const SelectProvider = () => {
         </div>
       </Modal>
     </Page>
+  );
+};
+
+const FiltersBlock = ({
+  handleSave,
+  activeCoupon,
+  removeCoupon,
+  openCouponModal,
+  allFilters,
+  setAllFilters,
+  t,
+}) => {
+  const handleChange = (field, val) => {
+    const newData = { ...allFilters };
+    newData[field] = val;
+    setAllFilters(newData);
+    handleSave(newData);
+  };
+
+  return (
+    <Block classes="page__select-provider__filters-block">
+      <Input
+        type="number"
+        label={t("max_price")}
+        placeholder={t("max_price")}
+        value={allFilters.maxPrice}
+        onChange={(e) => handleChange("maxPrice", e.target.value)}
+      />
+      <Toggle
+        isToggled={allFilters.onlyFreeConsultation}
+        setParentState={(val) => handleChange("onlyFreeConsultation", val)}
+        label={t("providers_free_consultation_label")}
+      />
+      <Button
+        label={
+          activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
+        }
+        size="sm"
+        color="green"
+        onClick={activeCoupon ? removeCoupon : openCouponModal}
+      />
+    </Block>
   );
 };

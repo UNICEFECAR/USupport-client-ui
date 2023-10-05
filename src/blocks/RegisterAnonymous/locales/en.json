@@ -7,10 +7,13 @@
   "terms_agreement_text_1": "I agree with the",
   "terms_agreement_text_2": "Privacy Policy",
   "terms_agreement_text_3": "and",
-  "terms_agreement_text_4": "Terms of Conditions",
+  "terms_agreement_text_4": "Terms of Use",
   "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
   "register_button_label": "Register",
   "login_button_label": "I already have an account",
   "copy_text": "Copy and save or write down your anonymous code, if you lose it you cannot get access to your account anymore",
-  "copy_success": "Code copied successfully"
+  "copy_success": "Code copied successfully",
+  "confirm_password_label": "Confirm password",
+  "password_match_error": "The Password and Confirm Password fields do not match",
+  "age_terms_agreement_text_1": "I am over 13 years old"
 }

@@ -80,6 +80,7 @@ import {
   Checkout as CheckoutPage,
   PaymentStatus as PaymentStatusPage,
   MoodTrackHistory as MoodTrackHistoryPage,
+  Notifications as NotificationsPage,
 } from "#pages/locales.js";
 
 import {
@@ -95,6 +96,7 @@ import {
   JoinConsultation,
   SelectAvatar,
   FilterQuestions,
+  CodeVerification,
 } from "#backdrops/locales.js";
 
 import {
@@ -107,6 +109,8 @@ import {
   HowItWorksMyQA,
   QuestionDetails,
 } from "#modals/locales.js";
+
+import { Root } from "#routes/locales.js";
 
 const resources = {
   en: {
@@ -188,11 +192,10 @@ const resources = {
     "checkout-page": CheckoutPage.en,
     "payment-status-page": PaymentStatusPage.en,
     "mood-track-history-page": MoodTrackHistoryPage.en,
+    "notifications-page": NotificationsPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
-    "register-preview-page": RegisterPreviewPage.en,
-    "privacy-policy": PrivacyPolicyPage.en,
     "confirm-consultation": ConfirmConsultation.en,
     "cancel-consultation": CancelConsultation.en,
     "edit-consultation": EditConsultation.en,
@@ -204,6 +207,7 @@ const resources = {
     "join-consultation": JoinConsultation.en,
     "select-avatar": SelectAvatar.en,
     "filter-questions": FilterQuestions.en,
+    "code-verification": CodeVerification.en,
 
     //Modals
     "require-registration": RequireRegistration.en,
@@ -214,6 +218,9 @@ const resources = {
     "create-question": CreateQuestion.en,
     "how-it-works-my-qa": HowItWorksMyQA.en,
     "question-details": QuestionDetails.en,
+
+    // Routes
+    root: Root.en,
   },
   ru: {
     // Blocks
@@ -294,11 +301,10 @@ const resources = {
     "checkout-page": CheckoutPage.ru,
     "payment-status-page": PaymentStatusPage.ru,
     "mood-track-history-page": MoodTrackHistoryPage.ru,
+    "notifications-page": NotificationsPage.ru,
 
     //Backdrops
     "filter-providers": FilterProviders.ru,
-    "register-preview-page": RegisterPreviewPage.ru,
-    "privacy-policy": PrivacyPolicyPage.ru,
     "confirm-consultation": ConfirmConsultation.ru,
     "cancel-consultation": CancelConsultation.ru,
     "edit-consultation": EditConsultation.ru,
@@ -310,6 +316,7 @@ const resources = {
     "join-consultation": JoinConsultation.ru,
     "select-avatar": SelectAvatar.ru,
     "filter-questions": FilterQuestions.ru,
+    "code-verification": CodeVerification.ru,
 
     //Modals
     "require-registration": RequireRegistration.ru,
@@ -320,6 +327,9 @@ const resources = {
     "create-question": CreateQuestion.ru,
     "how-it-works-my-qa": HowItWorksMyQA.ru,
     "question-details": QuestionDetails.ru,
+
+    // Routes
+    root: Root.ru,
   },
   kk: {
     // Blocks
@@ -400,11 +410,10 @@ const resources = {
     "checkout-page": CheckoutPage.kk,
     "payment-status-page": PaymentStatusPage.kk,
     "mood-track-history-page": MoodTrackHistoryPage.kk,
+    "notifications-page": NotificationsPage.kk,
 
     //Backdrops
     "filter-providers": FilterProviders.kk,
-    "register-preview-page": RegisterPreviewPage.kk,
-    "privacy-policy": PrivacyPolicyPage.kk,
     "confirm-consultation": ConfirmConsultation.kk,
     "cancel-consultation": CancelConsultation.kk,
     "edit-consultation": EditConsultation.kk,
@@ -416,6 +425,7 @@ const resources = {
     "join-consultation": JoinConsultation.kk,
     "select-avatar": SelectAvatar.kk,
     "filter-questions": FilterQuestions.kk,
+    "code-verification": CodeVerification.kk,
 
     //Modals
     "require-registration": RequireRegistration.kk,
@@ -426,6 +436,9 @@ const resources = {
     "create-question": CreateQuestion.kk,
     "how-it-works-my-qa": HowItWorksMyQA.kk,
     "question-details": QuestionDetails.kk,
+
+    // Routes
+    root: Root.kk,
   },
 };
 

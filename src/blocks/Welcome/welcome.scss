@@ -1,8 +1,10 @@
 @import "@USupport-components-library/styles";
 
 .welcome {
+  @include full-height-page-navbar();
+
   &__grid {
-    height: 110vh;
+    min-height: 110vh;
     place-items: center;
 
     &__logo-item {

@@ -41,3 +41,5 @@ export * from "./useGetClientQuestions";
 export * from "./useGetQuestions";
 export * from "./useAddVoteQuestion.js";
 export * from "./useGetQuestionsTags.js";
+export * from "./useMarkAllNotificationsAsRead.js";
+export * from "./useGetAllChatHistoryData.js";

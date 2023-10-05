@@ -46,7 +46,9 @@ export const Dashboard = () => {
   const { t } = useTranslation("dashboard-page");
   const navigate = useNavigate();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
-  const clientData = useGetClientData(!isTmpUser)[1];
+  const clientDataQuery = useGetClientData(!isTmpUser)[0];
+  const clientData = clientDataQuery?.data;
+
   const clientName = clientData
     ? clientData?.nickname || `${clientData.name} ${clientData.surname}`
     : "";
@@ -77,7 +79,17 @@ export const Dashboard = () => {
 
   const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
     useState(false);
-  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
+  const [redirectToSelectProvider, setRedirectToSelectProvider] =
+    useState(true);
+
+  const openRequireDataAgreement = (successAction) => {
+    if (successAction) {
+      setRedirectToSelectProvider(false);
+    } else {
+      setRedirectToSelectProvider(true);
+    }
+    setIsRequireDataAgreementOpen(true);
+  };
   const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const [selectedConsultation, setSelectedConsultation] = useState();
@@ -106,7 +118,7 @@ export const Dashboard = () => {
   };
   const closeJoinConsultation = () => setIsJoinConsultationOpen(false);
 
-  const [isEditingConsultation, setIsEditingConsultation] = useState(true);
+  const [isEditingConsultation] = useState(true);
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
@@ -134,6 +146,7 @@ export const Dashboard = () => {
 
   const onAcceptConsultationSuccess = () => {
     toast(t("accept_success"));
+    window.dispatchEvent(new Event("new-notification"));
   };
   const onAcceptConsultationError = (error) => {
     toast(error, { type: "error" });
@@ -144,7 +157,11 @@ export const Dashboard = () => {
   );
 
   const handleAcceptSuggestion = (consultationId, price) => {
-    acceptConsultationMutation.mutate({ consultationId, price });
+    if (!clientData.dataProcessing) {
+      openRequireDataAgreement(true);
+    } else {
+      acceptConsultationMutation.mutate({ consultationId, price });
+    }
   };
 
   // Schedule consultation logic
@@ -154,6 +171,7 @@ export const Dashboard = () => {
     closeSelectConsultationBackdrop();
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);
+    window.dispatchEvent(new Event("new-notification"));
 
     queryClient.invalidateQueries(["all-consultations"]);
   };
@@ -183,7 +201,7 @@ export const Dashboard = () => {
       });
     } else {
       if (consultationPrice.current && consultationPrice.current > 0) {
-        navigate(`/checkout`, { state: { consultationId: consultationId } });
+        navigate("/checkout", { state: { consultationId: consultationId } });
       } else {
         scheduleConsultationMutation.mutate(selectedConsultationId);
       }
@@ -213,7 +231,11 @@ export const Dashboard = () => {
     }
   };
 
-  const handleDataAgreementSucess = () => navigate("/select-provider");
+  const handleDataAgreementSucess = () => {
+    if (redirectToSelectProvider) {
+      navigate("/select-provider");
+    }
+  };
 
   return (
     <Page

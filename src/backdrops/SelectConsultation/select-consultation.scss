@@ -1,6 +1,9 @@
 @import "@USupport-components-library/styles";
 
 .select-consultation {
+  & .base-modal__body {
+    overflow: hidden;
+  }
   & .backdrop__children {
     flex: 0.9;
     overflow: hidden;
@@ -8,6 +11,24 @@
 
   & .backdrop__buttons-container {
     flex: 0.1;
+  }
+
+  &__coupon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding-top: $spacing_0_8;
+
+    & .input-container {
+      width: 20rem;
+      margin-right: $spacing_2_4;
+    }
+
+    & .error-message {
+      display: block;
+      width: 100%;
+    }
   }
 
   &__content-container {
@@ -33,7 +54,7 @@
 
     & .radio-button-selector-group {
       padding: 0 $spacing_1_2;
-      padding-bottom: 25rem;
+      padding-bottom: 28rem;
     }
   }
 }

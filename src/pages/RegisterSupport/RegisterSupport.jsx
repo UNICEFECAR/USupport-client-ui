@@ -18,6 +18,7 @@ import "./register-support.scss";
 export const RegisterSupport = () => {
   const location = useLocation();
   const showGoBackArrow = location?.state?.hideGoBackArrow ?? true;
+  const isAnonymous = location?.state?.isAnonymous;
   const { t } = useTranslation("register-support-page");
 
   const { width } = useWindowDimensions();
@@ -31,7 +32,7 @@ export const RegisterSupport = () => {
       showGoBackArrow={showGoBackArrow}
       heading={width < 768 ? t("heading_1") : t("heading_2")}
     >
-      <RegisterSupportBlock />
+      <RegisterSupportBlock isAnonymous={isAnonymous} />
       {width < 768 && <RadialCircle color="purple" />}
     </Page>
   );

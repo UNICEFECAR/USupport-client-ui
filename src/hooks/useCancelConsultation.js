@@ -14,7 +14,6 @@ export default function useCancelConsultation(onSuccess, onError) {
     if (price > 0 && shouldRefund) {
       await paymentsSvc.refund(consultationId);
     } else {
-      console.log("no refund");
       await providerSvc.cancelConsultation(consultationId);
     }
     return true;

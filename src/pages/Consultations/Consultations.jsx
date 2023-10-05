@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 import { Page, Consultations as ConsultationsBlock } from "#blocks";
 import {
@@ -18,10 +19,11 @@ import {
   useBlockSlot,
   useRescheduleConsultation,
   useGetClientData,
+  useAcceptConsultation,
 } from "#hooks";
 import { RootContext } from "#routes";
 
-import { Button } from "@USupport-components-library/src";
+import { Button, Loading } from "@USupport-components-library/src";
 
 import "./consultations.scss";
 
@@ -41,7 +43,7 @@ export const Consultations = () => {
 
   if (isTmpUser) return <Navigate to="/dashboard" />;
 
-  const clientData = useGetClientData()[1];
+  const clientDataQuery = useGetClientData()[0];
 
   const [selectedConsultation, setSelectedConsultation] = useState();
   const [selectedConsultationProviderId, setSelectedConsultationProviderId] =
@@ -71,7 +73,18 @@ export const Consultations = () => {
 
   const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
     useState(false);
-  const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
+
+  const [redirectToSelectProvider, setRedirectToSelectProvider] =
+    useState(true);
+
+  const openRequireDataAgreement = (successAction) => {
+    if (successAction) {
+      setRedirectToSelectProvider(false);
+    } else {
+      setRedirectToSelectProvider(true);
+    }
+    setIsRequireDataAgreementOpen(true);
+  };
   const closeRequireDataAgreement = () => setIsRequireDataAgreementOpen(false);
 
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
@@ -100,7 +113,7 @@ export const Consultations = () => {
     setIsSelectConsultationBackdropOpen(false);
 
   // Schedule consultation logic
-  const onRescheduleConsultationSuccess = (data) => {
+  const onRescheduleConsultationSuccess = () => {
     setIsBlockSlotSubmitting(false);
     setConsultationId(consultationId);
     closeSelectConsultationBackdrop();
@@ -120,15 +133,10 @@ export const Consultations = () => {
 
   // Block slot logic
   const onBlockSlotSuccess = (newConsultationId) => {
-    // setIsBlockSlotSubmitting(false);
-    // setConsultationId(consultationId);
     rescheduleConsultationMutation.mutate({
       consultationId: selectedConsultationId,
       newConsultationId,
     });
-
-    // closeSelectConsultationBackdrop();
-    // openConfirmConsultationBackdrop();
   };
   const onBlockSlotError = (error) => {
     setBlockSlotError(error);
@@ -145,8 +153,27 @@ export const Consultations = () => {
     });
   };
 
+  const onAcceptConsultationSuccess = () => {
+    toast(t("accept_consultation_success"));
+    window.dispatchEvent(new Event("new-notification"));
+  };
+  const onAcceptConsultationError = (error) => {
+    toast(error, { type: "error" });
+  };
+  const acceptConsultationMutation = useAcceptConsultation(
+    onAcceptConsultationSuccess,
+    onAcceptConsultationError
+  );
+  const acceptConsultation = (consultationId, price) => {
+    if (!clientDataQuery.data?.dataProcessing) {
+      openRequireDataAgreement(true);
+    } else {
+      acceptConsultationMutation.mutate({ consultationId, price });
+    }
+  };
+
   const handleScheduleConsultationClick = () => {
-    if (!clientData.dataProcessing) {
+    if (!clientDataQuery.data?.dataProcessing) {
       openRequireDataAgreement();
     } else {
       navigate("/select-provider");
@@ -154,7 +181,9 @@ export const Consultations = () => {
   };
 
   const handleDataAgreementSuccess = () => {
-    navigate("/select-provider");
+    if (redirectToSelectProvider) {
+      navigate("/select-provider");
+    }
   };
 
   return (
@@ -169,10 +198,16 @@ export const Consultations = () => {
         />
       }
     >
-      <ConsultationsBlock
-        openJoinConsultation={openJoinConsultation}
-        openEditConsultation={openEditConsultation}
-      />
+      {clientDataQuery.isLoading || clientDataQuery.isFetching ? (
+        <Loading />
+      ) : (
+        <ConsultationsBlock
+          openJoinConsultation={openJoinConsultation}
+          openEditConsultation={openEditConsultation}
+          acceptConsultation={acceptConsultation}
+          openRequireDataAgreement={openRequireDataAgreement}
+        />
+      )}
       {selectedConsultation && (
         <>
           <EditConsultation

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocation, Navigate, useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
@@ -25,7 +25,7 @@ export const Checkout = () => {
   const navigate = useNavigate();
   const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
   const stripePromise = loadStripe(stripePublicKey, {
-    locale: i18n.language ? "kk" : "ru",
+    locale: i18n.language || "en",
   });
 
   const [clientSecret, setClientSecret] = useState(null);
@@ -49,7 +49,7 @@ export const Checkout = () => {
 
     return res?.data;
   };
-  const paymentIntent = useQuery(["paymentIntent"], fetchPaymentIntent, {
+  useQuery(["paymentIntent"], fetchPaymentIntent, {
     onSuccess: ({
       currency,
       price,

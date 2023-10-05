@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
@@ -10,6 +11,7 @@ import {
   useAddVoteQuestion,
   useGetClientData,
 } from "#hooks";
+import { RootContext } from "#routes";
 
 import "./my-qa.scss";
 
@@ -21,6 +23,9 @@ import "./my-qa.scss";
  * @returns {JSX.Element}
  */
 export const MyQA = () => {
+  const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
+  const navigate = useNavigate();
+
   const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
   const [isQuestionDetailsOpen, setIsQuestionDetailsOpen] = useState(false);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
@@ -54,30 +59,39 @@ export const MyQA = () => {
   );
 
   useEffect(() => {
-    if (userQuestions.data || allQuestions.data) {
-      if (isUserQuestionsEnabled) {
-        setQuestions(userQuestions.data);
-      } else setQuestions(allQuestions.data);
+    if (isTmpUser) {
+      setTabs(tabs.filter((tab) => tab.value !== "your_questions"));
+    }
+  }, [isTmpUser]);
+
+  useEffect(() => {
+    if (isUserQuestionsEnabled && userQuestions.data) {
+      setQuestions(userQuestions.data);
+    }
+
+    if (!isUserQuestionsEnabled && allQuestions.data) {
+      setQuestions(allQuestions.data);
     }
   }, [tabs, userQuestions.data, allQuestions.data]);
 
-  // useEffect(() => {
-  //   if (selectedQuestion)
-  //     setSelectedQuestion(
-  //       questions.find((question) => question.answerId === question.answerId)
-  //     );
-  // }, [questions]);
-
   const handleLike = (vote, answerId) => {
-    addVoteQuestionMutation.mutate({ vote, answerId });
+    if (isTmpUser) {
+      handleRegistrationModalOpen();
+    } else {
+      addVoteQuestionMutation.mutate({ vote, answerId });
+    }
   };
 
   const handleScheduleConsultationClick = (question) => {
-    setProviderId(question.providerData.providerId);
-    if (!clientData.dataProcessing) {
-      openRequireDataAgreement();
+    if (isTmpUser) {
+      handleRegistrationModalOpen();
     } else {
-      setIsSelectConsultationOpen(true);
+      setProviderId(question.providerData.providerId);
+      if (!clientData.dataProcessing) {
+        openRequireDataAgreement();
+      } else {
+        setIsSelectConsultationOpen(true);
+      }
     }
   };
 
@@ -139,6 +153,18 @@ export const MyQA = () => {
 
   const addVoteQuestionMutation = useAddVoteQuestion(onError, onMutate);
 
+  const handleAskAnonymous = () => {
+    if (isTmpUser) {
+      handleRegistrationModalOpen();
+    } else {
+      setIsCreateQuestionOpen(true);
+    }
+  };
+
+  const handleProviderClick = (providerId) => {
+    navigate(`/provider-overview?provider-id=${providerId}`);
+  };
+
   return (
     <Page classes="page__my-qa" showGoBackArrow={false}>
       <MascotHeaderMyQA
@@ -146,7 +172,7 @@ export const MyQA = () => {
         handleHowItWorks={() => setIsHowItWorksOpen(true)}
       />
       <MyQABlock
-        handleAskAnonymous={() => setIsCreateQuestionOpen(true)}
+        handleAskAnonymous={handleAskAnonymous}
         handleReadMore={handleSetIsQuestionDetailsOpen}
         handleLike={handleLike}
         handleScheduleConsultationClick={handleScheduleConsultationClick}
@@ -156,10 +182,10 @@ export const MyQA = () => {
         isUserQuestionsEnabled={isUserQuestionsEnabled}
         filterTag={filterTag}
         handleFilterTags={() => setIsFilterQuestionsOpen(true)}
+        isQuestionsDataLoading={
+          userQuestions.isFetching || allQuestions.isFetching
+        }
       />
-      {/* <Block>
-        <Answer />
-      </Block> */}
       <CreateQuestion
         isOpen={isCreateQuestionOpen}
         onClose={() => setIsCreateQuestionOpen(false)}
@@ -171,6 +197,7 @@ export const MyQA = () => {
           question={selectedQuestion}
           handleLike={handleLike}
           handleScheduleClick={handleScheduleConsultationClick}
+          handleProviderClick={handleProviderClick}
         />
       )}
       <HowItWorksMyQA

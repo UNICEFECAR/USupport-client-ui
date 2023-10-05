@@ -41,14 +41,20 @@ export const RegisterAnonymous = () => {
     password: Joi.string()
       .pattern(new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}"))
       .label(t("password_error")),
+    confirmPassword: Joi.string()
+      .pattern(new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}"))
+      .label(t("password_match_error")),
     nickname: Joi.string().label(t("nickname_error")),
     isPrivacyAndTermsSelected: Joi.boolean().invalid(false),
+    isAgeTermsSelected: Joi.boolean().invalid(false),
   });
 
   const [data, setData] = useState({
     password: "",
     nickname: "",
     isPrivacyAndTermsSelected: false,
+    isAgeTermsSelected: false,
+    confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
@@ -96,9 +102,10 @@ export const RegisterAnonymous = () => {
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
-      navigate("/register/support", {
+      window.dispatchEvent(new Event("login"));
+      navigate("/register/about-you", {
         state: {
-          hideGoBackArrow: false,
+          isAnonymous: true,
         },
       });
     },
@@ -116,13 +123,35 @@ export const RegisterAnonymous = () => {
   };
 
   const handleChange = (field, value) => {
+    if (
+      field === "confirmPassword" &&
+      value.length >= 8 &&
+      data.password !== value
+    ) {
+      setErrors({ confirmPassword: t("password_match_error") });
+    }
+    if (
+      field === "confirmPassword" &&
+      value.length >= 8 &&
+      data.password === value
+    ) {
+      setErrors({ confirmPassword: "" });
+    }
     let newData = { ...data };
     newData[field] = value;
     setData(newData);
-    // validateProperty("password", data.password, schema, setErrors);
   };
 
   const handleBlur = (field, value) => {
+    if (
+      (field === "password" && data.confirmPassword.length >= 8) ||
+      field === "confirmPassword"
+    ) {
+      if (data.password !== data.confirmPassword) {
+        setErrors({ confirmPassword: t("password_match_error") });
+        return;
+      }
+    }
     validateProperty(field, value, schema, setErrors);
   };
 
@@ -131,9 +160,17 @@ export const RegisterAnonymous = () => {
   };
 
   const canContinue =
-    data.password && data.isPrivacyAndTermsSelected && data.nickname;
+    data.password &&
+    data.confirmPassword &&
+    data.isPrivacyAndTermsSelected &&
+    data.isAgeTermsSelected &&
+    data.nickname;
 
   const handleRegisterButtonClick = () => {
+    if (data.password !== data.confirmPassword) {
+      setErrors({ confirmPassword: t("password_match_error") });
+      return;
+    }
     if (hasCopied) {
       handleRegister();
     } else {
@@ -198,6 +235,16 @@ export const RegisterAnonymous = () => {
                   handleBlur("password", data.password);
                 }}
               />
+              <InputPassword
+                classes="register-email__grid__password-input"
+                label={t("confirm_password_label")}
+                value={data.confirmPassword}
+                onChange={(e) =>
+                  handleChange("confirmPassword", e.currentTarget.value)
+                }
+                onBlur={() => handleBlur("confirmPassword")}
+                errorMessage={errors.confirmPassword}
+              />
               <TermsAgreement
                 isChecked={data.isPrivacyAndTermsSelected}
                 setIsChecked={(val) =>
@@ -208,6 +255,11 @@ export const RegisterAnonymous = () => {
                 textThree={t("terms_agreement_text_3")}
                 textFour={t("terms_agreement_text_4")}
                 Link={Link}
+              />
+              <TermsAgreement
+                isChecked={data.isAgeTermsSelected}
+                setIsChecked={(val) => handleChange("isAgeTermsSelected", val)}
+                textOne={t("age_terms_agreement_text_1")}
               />
               <Button
                 label={t("register_button_label")}

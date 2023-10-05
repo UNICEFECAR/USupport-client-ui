@@ -26,9 +26,7 @@ export const UserProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleRegisterRedirection = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("refresh-token");
-    localStorage.removeItem("expires-in");
+    userSvc.logout();
     navigate("/register-preview");
   };
 
@@ -56,6 +54,7 @@ export const UserProfile = () => {
           onClick={handleLogout}
         />
       }
+      showHeadingButtonInline
     >
       <UserProfileBlock {...{ openModal, closeModal, isTmpUser }} />
       {width < 768 && (
