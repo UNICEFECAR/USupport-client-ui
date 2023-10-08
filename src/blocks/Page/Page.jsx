@@ -261,6 +261,7 @@ export const Page = ({
         isOpen={isPasswordModalOpen}
         error={password}
         handleSubmit={handlePasswordCheck}
+        placeholder={t("password_placeholder")}
       />
       {isNavbarShown === true && (
         <Navbar
