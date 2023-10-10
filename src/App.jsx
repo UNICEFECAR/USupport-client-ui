@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,7 @@ import { FIVE_MINUTES } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
 
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 // AOS imports
 import "aos/dist/aos.css";
@@ -48,12 +49,27 @@ function App() {
     });
   }, []);
 
+  const getDefaultTheme = () => {
+    const localStorageTheme = localStorage.getItem("default-theme");
+    return localStorageTheme || "light";
+  };
+
+  const [theme, setTheme] = useState(getDefaultTheme());
+
+  useEffect(() => {
+    localStorage.setItem("default-theme", theme);
+  }, [theme]);
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Root />
-      <ReactQueryDevtools initialOpen />
-      <ToastContainer />
-    </QueryClientProvider>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <div className={`theme-${theme}`}>
+        <QueryClientProvider client={queryClient}>
+          <Root />
+          <ReactQueryDevtools initialOpen />
+          <ToastContainer />
+        </QueryClientProvider>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
