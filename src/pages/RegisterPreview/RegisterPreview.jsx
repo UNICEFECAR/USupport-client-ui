@@ -29,7 +29,6 @@ export const RegisterPreview = () => {
       classes="page__register-preview"
       additionalPadding={false}
       showHeadingButtonInline
-      showEmergencyButton={false}
     >
       <RegisterPreviewBlock handleLoginRedirection={handleLoginRedirection} />
     </Page>
