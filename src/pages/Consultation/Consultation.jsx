@@ -586,6 +586,7 @@ export const Consultation = () => {
           </div>
           {(isChatShownOnMobile || width >= 768) && (
             <SendMessage
+              t={t}
               handleSubmit={handleSendMessage}
               onTextareaFocus={handleTextareaFocus}
               emitTyping={emitTyping}
