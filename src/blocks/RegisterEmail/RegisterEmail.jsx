@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useQuery } from "@tanstack/react-query";
 
 import Joi from "joi";
 
@@ -17,11 +16,8 @@ import {
   InputPassword,
   TermsAgreement,
   Button,
-  DropdownWithLabel,
-  Loading,
 } from "@USupport-components-library/src";
 import { validateProperty, validate } from "@USupport-components-library/utils";
-import { languageSvc } from "@USupport-components-library/services";
 
 import "./register-email.scss";
 
@@ -42,7 +38,7 @@ export const RegisterEmail = ({
   showCaptcha,
   isCaptchaValid,
 }) => {
-  const { t, i18n } = useTranslation("register-email");
+  const { t } = useTranslation("register-email");
   const navigate = useNavigate();
 
   const schema = Joi.object({
@@ -118,49 +114,10 @@ export const RegisterEmail = ({
     data.nickname &&
     isCaptchaValid;
 
-  const localStorageLanguage = localStorage.getItem("language");
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
-
-  const fetchLanguages = async () => {
-    const res = await languageSvc.getActiveLanguages();
-    const languages = res.data.map((x) => {
-      const languageObject = {
-        value: x.alpha2,
-        label: x.name === "English" ? x.name : `${x.name} (${x.local_name})`,
-        id: x["language_id"],
-      };
-      if (localStorageLanguage === x.alpha2) {
-        setSelectedLanguage(x.alpha2);
-        i18n.changeLanguage(localStorageLanguage);
-      }
-      return languageObject;
-    });
-    return languages;
-  };
-
-  const languagesQuery = useQuery(["languages"], fetchLanguages, {
-    retry: false,
-  });
-
   return (
     <Block classes="register-email">
       <Grid classes="register-email__grid">
         <GridItem md={8} lg={12}>
-          {!languagesQuery.isLoading ? (
-            <DropdownWithLabel
-              options={languagesQuery.data || []}
-              selected={selectedLanguage}
-              setSelected={(lang) => {
-                setSelectedLanguage(lang);
-                i18n.changeLanguage(lang);
-              }}
-              classes="register-email__grid__language-dropdown"
-              label={t("language")}
-              placeholder={t("placeholder")}
-            />
-          ) : (
-            <Loading size="md" padding="0" />
-          )}
           <Input
             label={t("email_label")}
             placeholder="user@mail.com"
