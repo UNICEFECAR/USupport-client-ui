@@ -107,7 +107,9 @@ export const RegisterPreview = ({ handleLoginRedirection }) => {
         </GridItem>
         <GridItem md={4} lg={6} classes="register-preview__grid__content-item">
           <div className="register-preview__grid__content-item__carousel-container">
-            <CustomCarousel>{renderCarouselItems()}</CustomCarousel>
+            <CustomCarousel speed={6000}>
+              {renderCarouselItems()}
+            </CustomCarousel>
           </div>
           <Button
             size="lg"
