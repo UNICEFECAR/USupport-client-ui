@@ -8,9 +8,15 @@
   }
 
   &__grid {
-    min-height: 90vh;
+    min-height: 85vh;
     place-items: center;
     text-align: left;
+
+    &__logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     &__inputs-item {
       &__input--password {
