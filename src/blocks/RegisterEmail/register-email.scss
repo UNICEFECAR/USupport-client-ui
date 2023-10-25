@@ -3,10 +3,6 @@
 .register-email {
   @include full-height-page-navbar();
 
-  @media screen and (min-width: $screen-md) {
-    padding-top: $spacing_6_4;
-  }
-
   &__grid {
     place-items: center;
     min-height: 90vh;
