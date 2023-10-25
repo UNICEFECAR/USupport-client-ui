@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import OutsideClickHandler from "react-outside-click-handler";
 
 import {
   Navbar,
@@ -11,6 +12,7 @@ import {
   Footer,
   Icon,
   PasswordModal,
+  Box,
 } from "@USupport-components-library/src";
 
 import {
@@ -60,6 +62,7 @@ export const Page = ({
   showHeadingButtonBelow = false,
   classes,
   children,
+  renderLanguageSelector = false,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -73,7 +76,7 @@ export const Page = ({
 
   const { width } = useWindowDimensions();
 
-  const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
+  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
@@ -253,6 +256,11 @@ export const Page = ({
     }
   };
 
+  const [languagesShown, setLanguagesShown] = useState(false);
+  const handleLanguageSelectorClick = () => {
+    setLanguagesShown(!languagesShown);
+  };
+
   return (
     <>
       <PasswordModal
@@ -309,6 +317,73 @@ export const Page = ({
                     {headingButton}
                   </div>
                 )}
+              {renderLanguageSelector && (
+                <div className="page__header__language">
+                  <div
+                    className="page__header__language__heading"
+                    onClick={handleLanguageSelectorClick}
+                  >
+                    <p className="page__header__language__heading__text">
+                      {selectedLanguage.value}
+                    </p>
+                    <Icon
+                      name="arrow-chevron-down"
+                      color="#20809e"
+                      size="sm"
+                      classes={[
+                        "page__header__language__heading__icon",
+                        languagesShown
+                          ? "page__header__language__heading__icon--rotated"
+                          : "",
+                      ].join(" ")}
+                    />
+                  </div>
+
+                  <OutsideClickHandler
+                    onOutsideClick={() => setLanguagesShown(false)}
+                  >
+                    <Box
+                      classes={[
+                        "page__header__language__dropdown",
+                        languagesShown
+                          ? "page__header__language__dropdown--shown"
+                          : "",
+                      ].join(" ")}
+                    >
+                      <div className="page__header__language__dropdown__content">
+                        {languages.map((language) => (
+                          <div
+                            className="page__header__language__dropdown__content__item"
+                            key={language.value}
+                            onClick={() => {
+                              setSelectedLanguage(language);
+                              i18n.changeLanguage(language.value);
+                              localStorage.setItem("language", language.value);
+                              setLanguagesShown(false);
+                            }}
+                          >
+                            <p
+                              className={[
+                                "page__header__language__dropdown__content__item__text",
+                                language.value === selectedLanguage.value
+                                  ? "page__header__language__dropdown__content__item__text--selected"
+                                  : "",
+                              ].join(" ")}
+                            >
+                              {`${language.label} ${
+                                language.label !== "English" &&
+                                language.localName
+                                  ? `(${language.localName})`
+                                  : ""
+                              }`}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </Box>
+                  </OutsideClickHandler>
+                </div>
+              )}
             </div>
             {headingButton && (
               <div className="page__mobile-button-container">
@@ -349,7 +424,7 @@ export const Page = ({
 
       <RequireRegistration
         handleContinue={handleRegisterRedirection}
-        isOpen={isRegistrationModalOpan}
+        isOpen={isRegistrationModalOpen}
         onClose={handleRegistrationModalClose}
       />
     </>
