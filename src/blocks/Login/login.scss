@@ -16,6 +16,10 @@
       min-height: 75vh;
     }
 
+    @media screen and (min-width: $screen-lg) {
+      min-height: 65vh;
+    }
+
     &__logo-item {
       display: flex;
       flex-direction: column;
