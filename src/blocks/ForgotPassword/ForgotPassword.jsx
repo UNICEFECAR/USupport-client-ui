@@ -86,6 +86,11 @@ export const ForgotPassword = () => {
             />
           </div>
         </GridItem>
+        <GridItem
+          md={8}
+          lg={12}
+          classes="forgot-password__grid__content-item"
+        ></GridItem>
       </Grid>
       <Modal
         isOpen={isModalOpen}
