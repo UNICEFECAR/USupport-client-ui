@@ -12,6 +12,10 @@
     place-items: center;
     text-align: left;
 
+    @media screen and (min-width: $screen-md) {
+      min-height: 75vh;
+    }
+
     &__logo-item {
       display: flex;
       flex-direction: column;
