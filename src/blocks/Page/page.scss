@@ -36,6 +36,104 @@
       padding-right: $spacing_23_0;
     }
 
+    &__language {
+      margin-left: 3rem;
+      margin-right: 1rem;
+      position: relative;
+      cursor: pointer;
+
+      @media screen and (min-width: $screen-sm) {
+        margin-left: auto;
+      }
+
+      &:hover::before {
+        width: 50%;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 0.2rem;
+        width: 0;
+        background-color: $color_primary_20809e;
+        transition: width 0.3s;
+      }
+
+      &__heading {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+
+        &__text {
+          text-transform: uppercase;
+          font-weight: $font_bold;
+          @include themify($themes, "color", "color_primary_20809e");
+        }
+
+        &__icon {
+          transition: transform 0.5s;
+
+          &--rotated {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      &__dropdown {
+        position: absolute;
+        top: calc(100% + 1rem);
+        left: -50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        min-width: 18rem;
+
+        @media screen and (min-width: $screen-lg) {
+          left: 50%;
+          min-width: 21rem;
+        }
+
+        max-height: 0;
+        transition: max-height 0.4s ease-in-out;
+        overflow-y: auto;
+
+        &--shown {
+          max-height: 16rem;
+
+          @media screen and (min-width: $navbar-tight) {
+            max-height: 20rem;
+          }
+        }
+
+        &__content {
+          padding: 2rem 2rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+
+          &__item {
+            display: flex;
+            cursor: pointer;
+
+            &__text {
+              padding: 0.5rem 0;
+
+              &--selected {
+                @include themify($themes, "color", "color_primary_20809e");
+              }
+            }
+          }
+        }
+      }
+    }
+
     &-heading {
       max-width: 75rem;
       word-break: break-word;

@@ -11,6 +11,14 @@
     place-items: center;
     min-height: 90vh;
 
+    &__language-dropdown {
+      text-align: left;
+
+      & .dropdown-content {
+        text-align: center;
+      }
+    }
+
     & .input-container:not(:first-of-type) {
       padding-top: $spacing_2_4;
     }

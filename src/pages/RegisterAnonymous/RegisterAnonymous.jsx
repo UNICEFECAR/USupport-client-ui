@@ -35,6 +35,7 @@ export const RegisterAnonymous = () => {
       heading={t("heading")}
       handleGoBack={handleGoBack}
       subheading={t("subheading")}
+      renderLanguageSelector={true}
       showEmergencyButton={false}
     >
       <RegisterAnonymousBlock />
