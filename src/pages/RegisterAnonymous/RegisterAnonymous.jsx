@@ -36,6 +36,7 @@ export const RegisterAnonymous = () => {
       handleGoBack={handleGoBack}
       subheading={t("subheading")}
       renderLanguageSelector={true}
+      showEmergencyButton={false}
     >
       <RegisterAnonymousBlock />
       {width < 768 && <RadialCircle color="purple" />}

@@ -130,6 +130,7 @@ export const RegisterEmail = () => {
       heading={t("heading")}
       handleGoBack={handleGoBack}
       renderLanguageSelector={true}
+      showEmergencyButton={false}
     >
       <RegisterEmailBlock
         data={data}
