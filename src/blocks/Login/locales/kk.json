@@ -6,5 +6,7 @@
   "forgot_password_label": "Мен құпия сөзімді ұмытып қалдым",
   "login_label": "Авторизация",
   "paragraph": "Немесе келесінің көмегімен кіріңіз:",
-  "register_button_label": "Менде аккаунт жоқ"
+  "register_button_label": "Менде аккаунт жоқ",
+  "heading": "Қош келдіңіз, бұл - ",
+  "client": "Клиент"
 }
