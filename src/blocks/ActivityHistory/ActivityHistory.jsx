@@ -309,7 +309,6 @@ const MyDocument = ({
   providerId,
   providerName,
   showSystemMessages,
-  providerImage,
   t,
 }) => {
   return (
@@ -325,16 +324,6 @@ const MyDocument = ({
           {t("chat_history")}
         </Text>
         <View style={styles.nameContainer}>
-          <Image
-            style={styles.image}
-            src={{
-              uri: providerImage,
-              method: "GET",
-              headers: { "Cache-Control": "no-cache" },
-              body: "",
-            }}
-          />
-
           <Text style={styles.providerName}>{providerName}</Text>
         </View>
         {messages.map((message, index) => {

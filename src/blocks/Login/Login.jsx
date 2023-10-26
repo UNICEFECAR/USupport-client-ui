@@ -14,6 +14,7 @@ import {
 import { userSvc } from "@USupport-components-library/services";
 import { useError } from "#hooks";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
+import { logoVerticalSvg } from "@USupport-components-library/assets";
 
 import "./login.scss";
 
@@ -101,6 +102,19 @@ export const Login = () => {
   return (
     <Block classes="login">
       <Grid md={8} lg={12} classes="login__grid">
+        <GridItem md={8} lg={12} classes="login__grid__inputs-item">
+          <div className="login__grid__logo-item">
+            <h2 className="welcome__grid__logo-item__heading">
+              {t("heading")}
+            </h2>
+            <img
+              src={logoVerticalSvg}
+              alt="Logo"
+              className="welcome__grid__logo-item__logo"
+            />
+            <h2 className="welcome__grid__logo-item__heading">{t("client")}</h2>
+          </div>
+        </GridItem>
         <GridItem md={8} lg={12} classes="login__grid__inputs-item">
           <form onSubmit={handleLogin}>
             <Input
