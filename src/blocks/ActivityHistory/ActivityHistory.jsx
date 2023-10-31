@@ -10,6 +10,7 @@ import {
   StyleSheet,
   PDFDownloadLink,
   Image,
+  Font,
 } from "@react-pdf/renderer";
 
 import {
@@ -30,7 +31,12 @@ import {
   systemMessageTypes,
 } from "@USupport-components-library/utils";
 
-import { logoHorizontalPng } from "@USupport-components-library/assets";
+import {
+  logoHorizontalPng,
+  NunitoSans,
+  NunitoSansSemiBold,
+  NunitoSansBold,
+} from "@USupport-components-library/assets";
 
 import {
   useGetChatData,
@@ -42,6 +48,24 @@ import {
 import "./activity-history.scss";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
+
+Font.register({
+  family: "NunitoSans",
+  fonts: [
+    {
+      src: NunitoSans,
+      fontWeight: 400,
+    },
+    {
+      src: NunitoSansSemiBold,
+      fontWeight: 600,
+    },
+    {
+      src: NunitoSansBold,
+      fontWeight: 700,
+    },
+  ],
+});
 
 /**
  * ActivityHistory
@@ -285,7 +309,6 @@ const MyDocument = ({
   providerId,
   providerName,
   showSystemMessages,
-  providerImage,
   t,
 }) => {
   return (
@@ -301,7 +324,6 @@ const MyDocument = ({
           {t("chat_history")}
         </Text>
         <View style={styles.nameContainer}>
-          <Image src={providerImage} style={styles.image} />
           <Text style={styles.providerName}>{providerName}</Text>
         </View>
         {messages.map((message, index) => {
@@ -337,6 +359,7 @@ const MyDocument = ({
 const styles = StyleSheet.create({
   page: {
     height: "1000px",
+    fontFamily: "NunitoSans",
   },
   logo: {
     width: "30%",
@@ -351,6 +374,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: "24px",
     marginTop: "6px",
+    fontWeight: "normal",
   },
   image: {
     width: "40px",
@@ -358,7 +382,11 @@ const styles = StyleSheet.create({
     borderRadius: "50%",
     marginRight: "10px",
   },
-  providerName: { textAlign: "center", alignSelf: "center" },
+  providerName: {
+    textAlign: "center",
+    alignSelf: "center",
+    fontWeight: "normal",
+  },
   view: {
     width: "100%",
     display: "flex",
@@ -380,7 +408,9 @@ const styles = StyleSheet.create({
     width: "50%",
   },
   messageText: {
-    color: "#373737",
+    color: "#20809e",
+    fontSize: "14px",
+    fontWeight: "bold",
   },
   messageSent: {
     backgroundColor: "#54cfd9",
