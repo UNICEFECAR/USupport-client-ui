@@ -351,7 +351,7 @@ export const Page = ({
                       ].join(" ")}
                     >
                       <div className="page__header__language__dropdown__content">
-                        {languages.map((language) => (
+                        {languages?.map((language) => (
                           <div
                             className="page__header__language__dropdown__content__item"
                             key={language.value}
