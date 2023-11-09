@@ -176,10 +176,12 @@
 
     @media screen and (min-width: $screen-md) {
       padding-left: calc($spacing_2_6 + $spacing_8_0);
+      padding-right: calc($spacing_2_6 + $spacing_8_0);
     }
 
     @media screen and (min-width: $screen-lg) {
       padding-left: calc($spacing_23_0 + $spacing_5_6);
+      padding-right: calc($spacing_23_0 + $spacing_5_6);
     }
   }
 
