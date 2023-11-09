@@ -27,5 +27,6 @@
   "show_options": "Settings",
   "search": "Search",
   "sponsored_by": "This session is sponsored by: ",
-  "consultation_end_reminder": "Your consultation will end in {{minutes}} minutes"
+  "consultation_end_reminder": "Your consultation will end in {{minutes}} minutes",
+  "textarea_placeholder": "Type your message here..."
 }
