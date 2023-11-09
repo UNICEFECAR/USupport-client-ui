@@ -705,6 +705,7 @@ const MessageList = ({
         {showMessages && renderAllMessages()}
       </div>
       <SendMessage
+        t={t}
         handleSubmit={handleSendMessage}
         onTextareaFocus={onTextareaFocus}
         emitTyping={emitTyping}
