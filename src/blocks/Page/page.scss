@@ -102,6 +102,7 @@
         max-height: 0;
         transition: max-height 0.4s ease-in-out;
         overflow-y: auto;
+        @include scrollbar-secondary;
 
         &--shown {
           max-height: 16rem;
@@ -124,6 +125,7 @@
 
             &__text {
               padding: 0.5rem 0;
+              text-align: left;
 
               &--selected {
                 @include themify($themes, "color", "color_primary_20809e");
