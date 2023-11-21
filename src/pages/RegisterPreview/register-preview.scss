@@ -3,6 +3,7 @@
 
 .page__register-preview {
   min-height: 100vh;
+  min-width: 38rem;
 
   @media screen and (max-width: $screen_md) {
     background-image: url(../assets/background-spiral-2.png);
