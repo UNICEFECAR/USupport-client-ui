@@ -29,6 +29,7 @@ export const Login = () => {
       classes="page__login"
       additionalPadding={false}
       heading={width >= 768 ? t("heading_1") : t("heading_2")}
+      renderLanguageSelector={true}
     >
       <LoginBlock />
       {width < 768 && <RadialCircle color="purple" />}

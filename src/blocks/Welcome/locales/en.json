@@ -3,5 +3,6 @@
   "country": "Country",
   "language": "Language",
   "placeholder": "Select",
-  "button": "Continue"
+  "button": "Continue",
+  "client": "Client"
 }
