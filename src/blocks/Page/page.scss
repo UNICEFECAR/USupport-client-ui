@@ -102,6 +102,7 @@
         max-height: 0;
         transition: max-height 0.4s ease-in-out;
         overflow-y: auto;
+        @include scrollbar-secondary;
 
         &--shown {
           max-height: 16rem;
@@ -124,6 +125,7 @@
 
             &__text {
               padding: 0.5rem 0;
+              text-align: left;
 
               &--selected {
                 @include themify($themes, "color", "color_primary_20809e");
@@ -176,10 +178,12 @@
 
     @media screen and (min-width: $screen-md) {
       padding-left: calc($spacing_2_6 + $spacing_8_0);
+      padding-right: calc($spacing_2_6 + $spacing_8_0);
     }
 
     @media screen and (min-width: $screen-lg) {
       padding-left: calc($spacing_23_0 + $spacing_5_6);
+      padding-right: calc($spacing_23_0 + $spacing_5_6);
     }
   }
 
