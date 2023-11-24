@@ -8,6 +8,7 @@
     background: $gradient_secondary_0_3_opacity;
     border-radius: 0 0 0 $spacing_10_0;
     padding-top: $spacing_2_0;
+    min-width: calc(38rem);
 
     @media screen and (min-width: $screen-md) {
       height: 17.4rem;
@@ -31,7 +32,9 @@
   }
 
   &__headings-item {
-    padding: $spacing_4_0 0 0 $spacing_6_0;
+    padding: $spacing_3_2 0 0 $spacing_4_0;
+    margin-right: $spacing_1_6;
+
     .subheading {
       padding-top: $spacing_1_6;
     }

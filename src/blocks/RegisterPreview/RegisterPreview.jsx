@@ -111,29 +111,31 @@ export const RegisterPreview = ({ handleLoginRedirection }) => {
               {renderCarouselItems()}
             </CustomCarousel>
           </div>
-          <Button
-            size="lg"
-            label={t("login")}
-            color="purple"
-            onClick={handleLoginRedirection}
-          />
-          <Button
-            label={t("register_email")}
-            size="lg"
-            onClick={() => handleRedirect("email")}
-          />
-          <Button
-            label={t("register_anonymously")}
-            size="lg"
-            type="secondary"
-            onClick={() => handleRedirect("anonymously")}
-          />
-          <Button
-            label={t("continue_as_guest")}
-            type="ghost"
-            size="lg"
-            onClick={() => handleRedirect("guest")}
-          />
+          <div className="register-preview__grid__content-item__btns-container">
+            <Button
+              size="lg"
+              label={t("login")}
+              color="purple"
+              onClick={handleLoginRedirection}
+            />
+            <Button
+              label={t("register_email")}
+              size="lg"
+              onClick={() => handleRedirect("email")}
+            />
+            <Button
+              label={t("register_anonymously")}
+              size="lg"
+              type="secondary"
+              onClick={() => handleRedirect("anonymously")}
+            />
+            <Button
+              label={t("continue_as_guest")}
+              type="ghost"
+              size="lg"
+              onClick={() => handleRedirect("guest")}
+            />
+          </div>
           {error ? <ErrorComponent message={error} /> : null}
         </GridItem>
       </Grid>
