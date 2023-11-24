@@ -300,16 +300,18 @@ export const Page = ({
         {(heading || showGoBackArrow || headingButton) && (
           <>
             <div className="page__header">
-              {showGoBackArrow && (
-                <Icon
-                  classes="page__header-icon"
-                  name="arrow-chevron-back"
-                  size="md"
-                  color="#20809E"
-                  onClick={handleGoBackArrowClick}
-                />
-              )}
-              {heading && <h3 className="page__header-heading">{heading}</h3>}
+              <div className="page__header__text-container">
+                {showGoBackArrow && (
+                  <Icon
+                    classes="page__header-icon"
+                    name="arrow-chevron-back"
+                    size="md"
+                    color="#20809E"
+                    onClick={handleGoBackArrowClick}
+                  />
+                )}
+                {heading && <h3 className="page__header-heading">{heading}</h3>}
+              </div>
               {headingButton &&
                 (width >= 768 || showHeadingButtonInline) &&
                 !showHeadingButtonBelow && (
