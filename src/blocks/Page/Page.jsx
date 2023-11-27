@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
@@ -14,18 +14,16 @@ import {
   PasswordModal,
   Box,
 } from "@USupport-components-library/src";
-
 import {
   userSvc,
   countrySvc,
   languageSvc,
 } from "@USupport-components-library/services";
-
 import {
   useWindowDimensions,
   getCountryFromTimezone,
+  ThemeContext,
 } from "@USupport-components-library/utils";
-
 import { RequireRegistration } from "#modals";
 import {
   useIsLoggedIn,
@@ -231,6 +229,27 @@ export const Page = ({
     }
   };
 
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  const themeButton = () => {
+    return (
+      <Icon
+        name={theme === "light" ? "dark-mode-switch" : "light-mode"}
+        size="lg"
+        classes="page__theme-button"
+        onClick={toggleTheme}
+      />
+    );
+  };
+
   const handleRegistrationModalClose = () => setIsRegistrationModalOpen(false);
   const handleRegistrationModalOpen = () => setIsRegistrationModalOpen(true);
   const handleRegisterRedirection = () => {
@@ -263,14 +282,14 @@ export const Page = ({
 
   return (
     <>
-      <PasswordModal
+      {/* <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
         isOpen={isPasswordModalOpen}
         error={password}
         handleSubmit={handlePasswordCheck}
         placeholder={t("password_placeholder")}
-      />
+      /> */}
       {isNavbarShown === true && (
         <Navbar
           i18n={i18n}
@@ -404,6 +423,7 @@ export const Page = ({
 
         {children}
       </div>
+      {themeButton()}
       {showEmergencyButton && (
         <CircleIconButton
           iconName="phone-emergency"

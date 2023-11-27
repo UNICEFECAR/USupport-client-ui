@@ -36,14 +36,6 @@
       padding-top: $spacing_5_0;
     }
 
-    & .heading {
-      color: $color_blue_263238;
-    }
-
-    & .subheading {
-      padding-top: $spacing_1_6;
-    }
-
     & > button {
       margin-top: $spacing_1_6;
       align-self: center;
@@ -52,5 +44,25 @@
     &__consultation-card {
       margin-top: $spacing_1_6;
     }
+  }
+
+  &__heading {
+    @include themifyCustom(
+      $themes,
+      "color",
+      "color_blue_3d527b",
+      "color_3d527b_white"
+    );
+  }
+
+  &__subheading {
+    padding-top: $spacing_1_6;
+
+    @include themifyCustom(
+      $themes,
+      "color",
+      "color_blue_3d527b",
+      "color_3d527b_white"
+    );
   }
 }

@@ -45,16 +45,28 @@
       }
     }
 
-    & .heading {
-      color: $color_blue_263238;
-    }
-
-    & .subheading {
-      padding-top: $spacing_1_6;
-    }
-
     &__span {
       text-transform: capitalize;
     }
+  }
+
+  &__heading {
+    @include themifyCustom(
+      $themes,
+      "color",
+      "color_blue_3d527b",
+      "color_3d527b_white"
+    );
+  }
+
+  &__subheading {
+    padding-top: $spacing_1_6;
+
+    @include themifyCustom(
+      $themes,
+      "color",
+      "color_blue_3d527b",
+      "color_3d527b_white"
+    );
   }
 }
