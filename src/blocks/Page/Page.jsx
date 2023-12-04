@@ -282,14 +282,14 @@ export const Page = ({
 
   return (
     <>
-      {/* <PasswordModal
+      <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
         isOpen={isPasswordModalOpen}
         error={password}
         handleSubmit={handlePasswordCheck}
         placeholder={t("password_placeholder")}
-      /> */}
+      />
       {isNavbarShown === true && (
         <Navbar
           i18n={i18n}
