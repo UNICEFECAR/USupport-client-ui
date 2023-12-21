@@ -40,6 +40,7 @@ export const UserDetails = ({
   openDeleteAccountBackdrop,
   openUploadPictureModal,
   openDeletePictureBackdrop,
+  openDeleteChatHistory,
 }) => {
   const { t } = useTranslation("user-details");
 
@@ -412,6 +413,17 @@ export const UserDetails = ({
                 type={"ghost"}
                 classes="user-details__grid__delete-account-button"
                 onClick={openDeleteAccountBackdrop}
+              />
+              <ButtonWithIcon
+                iconName={"circle-close"}
+                iconSize={"md"}
+                size="lg"
+                iconColor={"#eb5757"}
+                color={"red"}
+                label={t("delete_chat")}
+                type={"ghost"}
+                classes="user-details__grid__delete-account-button"
+                onClick={openDeleteChatHistory}
               />
             </div>
           </GridItem>
