@@ -6,4 +6,4 @@ export * from "./PaymentInformation";
 export * from "./CreateQuestion";
 export * from "./QuestionDetails";
 export * from "./HowItWorksMyQA";
-export * from './DeleteChatHistory';
+export * from "./DeleteChatHistory";
