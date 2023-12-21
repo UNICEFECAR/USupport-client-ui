@@ -31,7 +31,6 @@ export const DeleteChatHistory = ({ isOpen, onClose }) => {
       onClose();
     },
     onError: (error) => {
-      console.log(error);
       const { message: errorMessage } = useError(error);
       setErrors({ submit: errorMessage });
     },
