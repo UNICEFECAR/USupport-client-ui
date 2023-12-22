@@ -72,8 +72,10 @@ export const MascotWelcomeHeader = ({
             </>
           ) : (
             <>
-              <h4 className="heading">{t("welcome", { name })}</h4>
-              <p className="text subheading heading">
+              <h4 className="mascot-welcome-header__heading">
+                {t("welcome", { name })}
+              </h4>
+              <p className="text mascot-welcome-header__subheading">
                 {t("next_consultation")}
               </p>
               <ConsultationDashboard

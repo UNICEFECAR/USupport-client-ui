@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -13,8 +13,14 @@ import {
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 import { useError } from "#hooks";
-import { getCountryFromTimezone } from "@USupport-components-library/utils";
-import { logoVerticalSvg } from "@USupport-components-library/assets";
+import {
+  getCountryFromTimezone,
+  ThemeContext,
+} from "@USupport-components-library/utils";
+import {
+  logoVerticalSvg,
+  logoVerticalDarkSvg,
+} from "@USupport-components-library/assets";
 
 import "./login.scss";
 
@@ -29,6 +35,7 @@ export const Login = () => {
   const { t } = useTranslation("login");
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
 
   const [data, setData] = useState({
     email: "",
@@ -108,7 +115,7 @@ export const Login = () => {
               {t("heading")}
             </h2>
             <img
-              src={logoVerticalSvg}
+              src={theme === "dark" ? logoVerticalDarkSvg : logoVerticalSvg}
               alt="Logo"
               className="welcome__grid__logo-item__logo"
             />
