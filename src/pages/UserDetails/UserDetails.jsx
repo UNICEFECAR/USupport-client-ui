@@ -7,6 +7,7 @@ import {
   SelectAvatar,
   DeleteProfilePicture,
 } from "#backdrops";
+import { DeleteChatHistory } from "#modals";
 
 import "./user-details.scss";
 
@@ -25,17 +26,20 @@ export const UserDetails = () => {
     useState(false);
   const [isDeletePictureBackdropShown, setIsDeletePictureBackdropShown] =
     useState(false);
+  const [isDeleteChatHistoryOpen, setIsDeleteChatHistoryOpen] = useState(false);
 
   const openChangePasswordBackdrop = () => setIsChangePasswordOpen(true);
   const openDeleteAccountBackdrop = () => setIsDeleteBackdropShown(true);
   const openUploadPictureModal = () => setIsUploadPictureModalOpen(true);
   const openDeletePictureBackdrop = () => setIsDeletePictureBackdropShown(true);
+  const openDeleteChatHistory = () => setIsDeleteChatHistoryOpen(true);
 
   const closeChangePasswordBackdrop = () => setIsChangePasswordOpen(false);
   const closeDeleteAccountBackdrop = () => setIsDeleteBackdropShown(false);
   const closeUploadPictureModal = () => setIsUploadPictureModalOpen(false);
   const closeDeletePictureBackdrop = () =>
     setIsDeletePictureBackdropShown(false);
+  const closeDeleteChatHistory = () => setIsDeleteChatHistoryOpen(false);
 
   return (
     <Page heading={t("heading")} classes="page__user-details">
@@ -45,6 +49,7 @@ export const UserDetails = () => {
           openUploadPictureModal,
           openDeletePictureBackdrop,
           openChangePasswordBackdrop,
+          openDeleteChatHistory,
         }}
       />
       <ChangePassword
@@ -62,6 +67,10 @@ export const UserDetails = () => {
       <DeleteProfilePicture
         isOpen={isDeletePictureBackdropShown}
         onClose={closeDeletePictureBackdrop}
+      />
+      <DeleteChatHistory
+        isOpen={isDeleteChatHistoryOpen}
+        onClose={closeDeleteChatHistory}
       />
     </Page>
   );

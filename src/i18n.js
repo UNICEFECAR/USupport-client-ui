@@ -108,6 +108,7 @@ import {
   CreateQuestion,
   HowItWorksMyQA,
   QuestionDetails,
+  DeleteChatHistory,
 } from "#modals/locales.js";
 
 import { Root } from "#routes/locales.js";
@@ -218,6 +219,7 @@ const resources = {
     "create-question": CreateQuestion.en,
     "how-it-works-my-qa": HowItWorksMyQA.en,
     "question-details": QuestionDetails.en,
+    "delete-chat-history": DeleteChatHistory.en,
 
     // Routes
     root: Root.en,
@@ -327,6 +329,7 @@ const resources = {
     "create-question": CreateQuestion.ru,
     "how-it-works-my-qa": HowItWorksMyQA.ru,
     "question-details": QuestionDetails.ru,
+    "delete-chat-history": DeleteChatHistory.ru,
 
     // Routes
     root: Root.ru,
@@ -436,6 +439,7 @@ const resources = {
     "create-question": CreateQuestion.kk,
     "how-it-works-my-qa": HowItWorksMyQA.kk,
     "question-details": QuestionDetails.kk,
+    "delete-chat-history": DeleteChatHistory.kk,
 
     // Routes
     root: Root.kk,
