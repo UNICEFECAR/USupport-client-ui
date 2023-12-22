@@ -27,6 +27,7 @@
 
       & > .paragraph {
         color: $color_blue_3d527b;
+        @include themify($themes, "color", "color_3d527b_white");
         padding-bottom: $spacing_1_6;
       }
     }

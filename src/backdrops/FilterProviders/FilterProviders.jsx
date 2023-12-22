@@ -172,14 +172,12 @@ export const FilterProviders = ({
             setOptions={setProviderSex}
           />
           <div>
-            <p className="filter-providers__content__inputs-container__free-text text">
-              {t("providers_free_consultation_label")}
-            </p>
             <Toggle
               isToggled={data.onlyFreeConsultation}
               setParentState={(checked) =>
                 handleSelect("onlyFreeConsultation", checked)
               }
+              label={t("providers_free_consultation_label")}
             />
           </div>
           <DateInput

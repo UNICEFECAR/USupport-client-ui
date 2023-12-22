@@ -45,8 +45,8 @@ export const MascotHeaderMyQA = ({ classes, handleSeeHowItWorksClick }) => {
         >
           <Grid>
             <GridItem xs={4} md={6} lg={8}>
-              <h4 className="heading">{t("heading")}</h4>
-              <p className="text subheading heading">
+              <h4 className="mascot-header-my-qa__heading">{t("heading")}</h4>
+              <p className="text mascot-header-my-qa__subheading">
                 {t("subheading_its")} <b>{t("subheading_anonymous")}</b>!{" "}
                 {t("subheading_text1")} <b>{t("subheading_not")}</b>{" "}
                 {t("subheading_text2")}

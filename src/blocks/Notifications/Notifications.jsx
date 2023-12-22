@@ -149,7 +149,7 @@ export const Notifications = ({
             t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupport"
+            title="uSupport"
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {
@@ -171,7 +171,7 @@ export const Notifications = ({
             t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupport"
+            title="uSupport"
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {
@@ -199,7 +199,7 @@ export const Notifications = ({
             t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupport"
+            title="uSupport"
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {
@@ -224,7 +224,7 @@ export const Notifications = ({
             t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupport"
+            title="uSupport"
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {
@@ -249,7 +249,7 @@ export const Notifications = ({
             t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupport"
+            title="uSupport"
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {
@@ -288,7 +288,7 @@ export const Notifications = ({
             t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupport"
+            title="uSupport"
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {
@@ -339,7 +339,7 @@ export const Notifications = ({
             t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupport"
+            title="uSupport"
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {
@@ -364,7 +364,7 @@ export const Notifications = ({
             t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupport"
+            title="uSupport"
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {
@@ -389,7 +389,7 @@ export const Notifications = ({
             t={t}
             date={notification.createdAt}
             isRead={notification.isRead}
-            title="USupport"
+            title="uSupport"
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {

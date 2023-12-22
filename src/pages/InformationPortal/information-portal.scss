@@ -13,6 +13,11 @@
     @media screen and (min-width: $screen-md) {
       height: 17.4rem;
     }
+
+    & h3,
+    & p {
+      @include themify($themes, "color", "color_3d527b_white");
+    }
   }
 
   & .view-all-button {

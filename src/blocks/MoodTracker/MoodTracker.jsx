@@ -10,6 +10,7 @@ import {
   Textarea,
 } from "@USupport-components-library/src";
 import { useAddMoodTrack } from "#hooks";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import { RootContext } from "#routes";
 
@@ -23,6 +24,7 @@ import "./mood-tracker.scss";
  * @return {jsx}
  */
 export const MoodTracker = ({ classes, isTmpUser }) => {
+  const { theme } = useContext(ThemeContext);
   const { handleRegistrationModalOpen } = useContext(RootContext);
 
   const navigate = useNavigate();
@@ -58,7 +60,8 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
         <div
           className={[
             "mood-tracker__rating__emoticon-container",
-            !emoticon.isSelected && "not-selected",
+            !emoticon.isSelected &&
+              "mood-tracker__rating__emoticon-container--not-selected",
           ].join(" ")}
           key={index}
           onClick={() => handleEmoticonClick(emoticon.value)}
@@ -68,9 +71,12 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
             size={emoticon.isSelected ? "lg" : "sm"}
           />
           <p
-            className={["small-text", emoticon.isSelected && "selected"].join(
-              " "
-            )}
+            className={[
+              "small-text",
+              emoticon.isSelected &&
+                theme !== "dark" &&
+                "mood-tracker__rating__emoticon-container__text--selected",
+            ].join(" ")}
           >
             {t(emoticon.value)}
           </p>

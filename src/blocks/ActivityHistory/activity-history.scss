@@ -4,7 +4,7 @@
   @include full-height-page-navbar;
 
   &__header-block {
-    background-color: $color_white_ff;
+    @include themify($themes, "background-color", "color_white_ff");
     left: 0;
     padding: $spacing_2_0;
     padding-bottom: 0;
@@ -101,17 +101,19 @@
     }
   }
 
-  &__main__button-container {
-    padding: $spacing_2_0 0;
-    padding-bottom: calc(10vh);
-    position: sticky;
-    bottom: 0;
-    background: $gradient_transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    z-index: $z_index_emergency_button;
+  &__main {
+    &__button-container {
+      padding: $spacing_2_0 0;
+      padding-bottom: calc(10vh);
+      position: sticky;
+      bottom: 0;
+      // background: $gradient_transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      z-index: $z_index_emergency_button;
+    }
   }
 
   &__main__content {
