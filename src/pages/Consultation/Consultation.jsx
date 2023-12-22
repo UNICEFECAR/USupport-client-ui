@@ -26,6 +26,7 @@ import {
   useWindowDimensions,
   ONE_HOUR,
   getDateView,
+  ThemeContext,
 } from "@USupport-components-library/utils";
 
 import {
@@ -73,6 +74,7 @@ const systemMessageTypes = [
  */
 export const Consultation = () => {
   const { t } = useTranslation("consultation-page");
+  const { theme } = useContext(ThemeContext);
   const language = localStorage.getItem("language");
   const country = localStorage.getItem("country");
   const { width } = useWindowDimensions();
@@ -554,7 +556,10 @@ export const Consultation = () => {
         )}
       </div>
       <Backdrop
-        classes="page__consultation__chat-backdrop"
+        classes={[
+          "page__consultation__chat-backdrop",
+          theme === "dark" && "page__consultation__chat-backdrop--dark",
+        ].join(" ")}
         isOpen={isChatShownOnMobile && width < 1366}
         onClose={() => setIsChatShownOnMobile(false)}
         showAlwaysAsBackdrop

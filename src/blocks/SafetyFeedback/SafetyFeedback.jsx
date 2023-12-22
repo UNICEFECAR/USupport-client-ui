@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,7 @@ import {
   RadioButtonSelector,
   Textarea,
 } from "@USupport-components-library/src";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import {
   useCreateConsultationSecurityCheck,
@@ -27,6 +28,7 @@ import "./safety-feedback.scss";
  * @return {jsx}
  */
 export const SafetyFeedback = ({ consultationId, answers = {} }) => {
+  const { theme } = useContext(ThemeContext);
   const { t } = useTranslation("safety-feedback-block");
   const navigate = useNavigate();
   const hasAnsweredBefore =
@@ -110,7 +112,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
   }, [questions]);
 
   return (
-    <Block classes="safety-feedback">
+    <Block classes={["safety-feedback", "safety-feedback--dark"].join(" ")}>
       <Grid classes="safety-feedback__grid">
         <GridItem md={8} lg={12} classes="safety-feedback__grid__headings-item">
           <h4>{t("heading")}</h4>

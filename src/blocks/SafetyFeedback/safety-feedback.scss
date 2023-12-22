@@ -1,6 +1,10 @@
 @import "@USupport-components-library/styles";
 
 .safety-feedback {
+  &--dark {
+    background-color: $color_black_37;
+  }
+
   &__grid {
     text-align: left;
     place-items: center;
