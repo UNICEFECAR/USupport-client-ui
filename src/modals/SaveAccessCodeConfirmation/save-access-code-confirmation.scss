@@ -27,4 +27,12 @@
       cursor: pointer;
     }
   }
+
+  &__access-token--dark {
+    & .access-token-container {
+      & h4 {
+        color: $color_primary_20809e;
+      }
+    }
+  }
 }
