@@ -3,7 +3,7 @@
 .page {
   padding-top: $spacing_6_6;
   @include themify($themes, "background-color", "color_white_ff");
-  min-width: 38rem;
+  min-width: 34rem;
 
   &--no-additional-top-padding {
     padding-top: 0;
