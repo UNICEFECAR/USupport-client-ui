@@ -134,6 +134,17 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
             onClick={() => handleRedirect("/cookie-policy")}
           />
           <ButtonSelector
+            label={t("user_guide")}
+            iconName="document"
+            classes="user-profile__grid__item__button"
+            onClick={() =>
+              window.open(
+                "https://7digit-1.gitbook.io/usupport/y0yJCW2nZ6Sb52p4arjv",
+                "_blank"
+              )
+            }
+          />
+          <ButtonSelector
             label={t("FAQ_button_label")}
             iconName="info"
             classes="user-profile__grid__item__button"
