@@ -334,7 +334,8 @@ const MyDocument = ({
               <View
                 style={[
                   styles.message,
-                  isSent ? styles.messageSent : styles.messageReceived,
+                  message.type != "system" &&
+                    (isSent ? styles.messageSent : styles.messageReceived),
                   message.type === "system" && styles.systemMessage,
                 ]}
               >
@@ -393,11 +394,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   message: {
-    borderRadius: "24px",
-    padding: "16px 24px",
+    borderRadius: "18px",
+    padding: "8px 14px",
     textAlign: "left",
     maxWidth: "35%",
-    marginTop: "16px",
+    marginTop: "8px",
   },
   systemMessage: {
     alignSelf: "center",
@@ -409,19 +410,19 @@ const styles = StyleSheet.create({
   },
   messageText: {
     color: "#20809e",
-    fontSize: "14px",
+    fontSize: "12px",
     fontWeight: "bold",
   },
   messageSent: {
     backgroundColor: "#54cfd9",
     alignSelf: "flex-end",
-    marginRight: "5px",
+    marginRight: "16px",
   },
   messageReceived: {
     backgroundColor: "#e6f1f4",
-    marginLeft: "5px",
+    marginLeft: "16px",
   },
-  date: { color: "gray", marginTop: "6px", fontSize: "14" },
+  date: { color: "gray", marginTop: "6px", fontSize: "10" },
   dateSent: {
     color: "#66768d",
   },
