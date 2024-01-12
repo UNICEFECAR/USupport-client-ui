@@ -20,5 +20,7 @@
   "provider_camera_off": "Консультант отключил камеру",
   "provider_camera_on": "Консультант включил камеру",
   "provider_microphone_off": "Консультант отключил микрофон",
-  "provider_microphone_on": "Консультант включил микрофон"
+  "provider_microphone_on": "Консультант включил микрофон",
+
+  "exported_at": "Экспортировано в: {{time}}"
 }

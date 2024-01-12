@@ -29,6 +29,7 @@ import {
   getDateView,
   getTime,
   systemMessageTypes,
+  getTimeAsString,
 } from "@USupport-components-library/utils";
 
 import {
@@ -326,6 +327,11 @@ const MyDocument = ({
         <View style={styles.nameContainer}>
           <Text style={styles.providerName}>{providerName}</Text>
         </View>
+        <Text style={styles.dateText}>
+          {t("exported_at", {
+            time: getTimeAsString(new Date()) + ", " + getDateView(new Date()),
+          })}
+        </Text>
         {messages.map((message, index) => {
           const isSent = message.senderId !== providerId;
           if (message.type === "system" && !showSystemMessages) return null;
@@ -373,9 +379,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "24px",
     marginTop: "6px",
     fontWeight: "normal",
+  },
+  dateText: {
+    alignSelf: "center",
+    marginTop: "6px",
+    fontWeight: "normal",
+    textAlign: "center",
   },
   image: {
     width: "40px",
