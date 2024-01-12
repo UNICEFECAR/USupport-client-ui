@@ -20,5 +20,7 @@
   "provider_camera_off": "Консультант камераны өшірді",
   "provider_camera_on": "Консультант камераны қосты",
   "provider_microphone_off": "Консультант микрофонды өшірді",
-  "provider_microphone_on": "Консультант микрофонды қосты"
+  "provider_microphone_on": "Консультант микрофонды қосты",
+
+  "exported_at": "Экспортталған уақыты: {{time}}"
 }

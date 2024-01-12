@@ -29,6 +29,7 @@ import {
   getDateView,
   getTime,
   systemMessageTypes,
+  getTimeAsString,
 } from "@USupport-components-library/utils";
 
 import {
@@ -326,6 +327,11 @@ const MyDocument = ({
         <View style={styles.nameContainer}>
           <Text style={styles.providerName}>{providerName}</Text>
         </View>
+        <Text style={styles.dateText}>
+          {t("exported_at", {
+            time: getTimeAsString(new Date()) + ", " + getDateView(new Date()),
+          })}
+        </Text>
         {messages.map((message, index) => {
           const isSent = message.senderId !== providerId;
           if (message.type === "system" && !showSystemMessages) return null;
@@ -334,7 +340,8 @@ const MyDocument = ({
               <View
                 style={[
                   styles.message,
-                  isSent ? styles.messageSent : styles.messageReceived,
+                  message.type != "system" &&
+                    (isSent ? styles.messageSent : styles.messageReceived),
                   message.type === "system" && styles.systemMessage,
                 ]}
               >
@@ -372,9 +379,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "24px",
     marginTop: "6px",
     fontWeight: "normal",
+  },
+  dateText: {
+    alignSelf: "center",
+    marginTop: "6px",
+    fontWeight: "normal",
+    textAlign: "center",
   },
   image: {
     width: "40px",
@@ -393,11 +405,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   message: {
-    borderRadius: "24px",
-    padding: "16px 24px",
+    borderRadius: "18px",
+    padding: "8px 14px",
     textAlign: "left",
     maxWidth: "35%",
-    marginTop: "16px",
+    marginTop: "8px",
   },
   systemMessage: {
     alignSelf: "center",
@@ -409,19 +421,19 @@ const styles = StyleSheet.create({
   },
   messageText: {
     color: "#20809e",
-    fontSize: "14px",
+    fontSize: "12px",
     fontWeight: "bold",
   },
   messageSent: {
     backgroundColor: "#54cfd9",
     alignSelf: "flex-end",
-    marginRight: "5px",
+    marginRight: "16px",
   },
   messageReceived: {
     backgroundColor: "#e6f1f4",
-    marginLeft: "5px",
+    marginLeft: "16px",
   },
-  date: { color: "gray", marginTop: "6px", fontSize: "14" },
+  date: { color: "gray", marginTop: "6px", fontSize: "10" },
   dateSent: {
     color: "#66768d",
   },
