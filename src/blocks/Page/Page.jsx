@@ -307,6 +307,8 @@ export const Page = ({
           initialCountry={selectedCountry}
           hasUnreadNotifications={hasUnreadNotifications}
           renderIn="client"
+          hasThemeButton
+          t={t}
         />
       )}
       <div
