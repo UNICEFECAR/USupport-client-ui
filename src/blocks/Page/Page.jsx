@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import OutsideClickHandler from "react-outside-click-handler";
@@ -29,6 +29,7 @@ import {
   useIsLoggedIn,
   useEventListener,
   useCheckHasUnreadNotifications,
+  useError,
 } from "#hooks";
 
 import "./page.scss";
@@ -250,20 +251,31 @@ export const Page = ({
     navigateTo("/register-preview");
   };
 
-  const hasEnteredPassword = queryClient.getQueryData(["hasEnteredPassword"]);
+  const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasEnteredPassword
+    !hasPassedValidation
   );
-  const [password, setPasswordError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const handlePasswordCheck = (password) => {
-    if (password === "USupport!2023") {
-      queryClient.setQueryData(["hasEnteredPassword"], true);
-      setIsPasswordModalOpen(false);
-    } else {
-      setPasswordError(t("wrong_password"));
+  const validatePlatformPasswordMutation = useMutation(
+    async (value) => {
+      return await userSvc.validatePlatformPassword(value);
+    },
+    {
+      onError: (error) => {
+        const { message: errorMessage } = useError(error);
+        setPasswordError(errorMessage);
+      },
+      onSuccess: () => {
+        queryClient.setQueryData(["hasPassedValidation"], true);
+        setIsPasswordModalOpen(false);
+      },
     }
+  );
+
+  const handlePasswordCheck = (value) => {
+    validatePlatformPasswordMutation.mutate(value);
   };
 
   const [languagesShown, setLanguagesShown] = useState(false);
@@ -277,7 +289,8 @@ export const Page = ({
         label={t("password")}
         btnLabel={t("submit")}
         isOpen={isPasswordModalOpen}
-        error={password}
+        isLoading={validatePlatformPasswordMutation.isLoading}
+        error={passwordError}
         handleSubmit={handlePasswordCheck}
         placeholder={t("password_placeholder")}
       />
