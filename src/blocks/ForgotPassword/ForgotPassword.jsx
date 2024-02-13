@@ -29,6 +29,7 @@ export const ForgotPassword = () => {
   const [data, setData] = useState({ email: "" });
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const schema = Joi.object({
     email: Joi.string()
@@ -37,6 +38,7 @@ export const ForgotPassword = () => {
   });
 
   const handleResetPassword = async () => {
+    setLoading(true);
     if ((await validate(data, schema, setErrors)) == null) {
       try {
         await userSvc.generateForgotPasswordLink(
@@ -48,6 +50,7 @@ export const ForgotPassword = () => {
         setIsModalOpen(true);
       }
     }
+    setLoading(false);
   };
 
   const canContinue = data.email === "";
@@ -83,6 +86,7 @@ export const ForgotPassword = () => {
               size="lg"
               onClick={() => handleResetPassword()}
               disabled={canContinue}
+              loading={loading}
             />
           </div>
         </GridItem>
