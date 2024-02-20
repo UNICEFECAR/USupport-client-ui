@@ -1,6 +1,8 @@
 @import "@USupport-components-library/styles";
 
 .safety-feedback {
+  height: 100vh;
+
   &--dark {
     background-color: $color_black_37;
   }
