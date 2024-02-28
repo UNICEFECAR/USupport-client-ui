@@ -1,6 +1,9 @@
 @import "@USupport-components-library/styles";
 
 .safety-feedback {
+  height: 100vh;
+  overflow: scroll;
+
   &--dark {
     background-color: $color_black_37;
   }

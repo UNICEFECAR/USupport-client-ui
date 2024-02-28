@@ -408,7 +408,7 @@ export const Consultation = () => {
       setHasUnreadMessages(false);
     }
 
-    if (width < 1366) {
+    if (width < 1150) {
       setIsChatShownOnMobile(!isChatShownOnMobile);
     } else {
       setIsChatShownOnTablet(!isChatShownOnTablet);
@@ -501,10 +501,10 @@ export const Consultation = () => {
           hasUnreadMessages={hasUnreadMessages}
           isProviderInSession={isProviderInSession}
           setIsProviderInSession={setIsProviderInSession}
-          hideControls={hideControls && width < 1366}
+          hideControls={hideControls && width < 1150}
           t={t}
         />
-        {isChatShownOnTablet && width >= 1366 && (
+        {isChatShownOnTablet && width >= 1150 && (
           <MessageList
             messages={messages}
             handleSendMessage={handleSendMessage}
@@ -530,7 +530,7 @@ export const Consultation = () => {
           "page__consultation__chat-backdrop",
           theme === "dark" && "page__consultation__chat-backdrop--dark",
         ].join(" ")}
-        isOpen={isChatShownOnMobile && width < 1366}
+        isOpen={isChatShownOnMobile && width < 1150}
         onClose={() => setIsChatShownOnMobile(false)}
         showAlwaysAsBackdrop
         // reference={width < 768 ? backdropMessagesContainerRef : null}
