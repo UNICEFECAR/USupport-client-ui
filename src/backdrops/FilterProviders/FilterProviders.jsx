@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 import {
   Backdrop,
   CheckBoxGroup,
-  Input,
   DropdownWithLabel,
   Toggle,
   DateInput,
 } from "@USupport-components-library/src";
-import { languageSvc } from "@USupport-components-library/services";
 
 import "./filter-providers.scss";
 
@@ -26,6 +23,9 @@ export const FilterProviders = ({
   onClose,
   allFilters,
   setAllFilters,
+  isToggleDisabled = false,
+  languages,
+  initialFilters,
 }) => {
   const { t } = useTranslation("filter-providers");
 
@@ -57,7 +57,7 @@ export const FilterProviders = ({
     },
     { label: "female", value: "female", isSelected: false },
     { label: "unspecified", value: "unspecified", isSelected: false },
-    { label: "not_mentioned", value: "not_mentioned", isSelected: false },
+    // { label: "not_mentioned", value: "not_mentioned", isSelected: false },
   ]);
 
   useEffect(() => {
@@ -85,33 +85,6 @@ export const FilterProviders = ({
       });
     });
   }, [allFilters]);
-
-  const fetchLanguages = async () => {
-    const res = await languageSvc.getAllLanguages();
-    const languages = res.data.map((x) => {
-      const languageObject = {
-        value: x["language_id"],
-        alpha2: x.alpha2,
-        label: x.name,
-        id: x["language_id"],
-      };
-      return languageObject;
-    });
-    return languages;
-  };
-  const languagesQuery = useQuery(["all-languages"], fetchLanguages, {
-    retry: false,
-  });
-
-  const initialFilters = {
-    providerTypes: [],
-    providerSex: [],
-    maxPrice: "",
-    language: null,
-    onlyFreeConsultation: false,
-    availableAfter: "",
-    availableBefore: "",
-  };
 
   const handleSelect = (field, value) => {
     const dataCopy = { ...data };
@@ -153,15 +126,15 @@ export const FilterProviders = ({
     >
       <div className="filter-providers__content">
         <div className="filter-providers__content__inputs-container">
-          <CheckBoxGroup
-            name="providerType"
-            label={t("provider_type_checkbox_group_label")}
-            options={providerTypes.map((x) => ({
-              ...x,
-              label: t(x.label),
-            }))}
-            setOptions={setProviderTypes}
-          />
+          {/* <CheckBoxGroup
+              name="providerType"
+              label={t("provider_type_checkbox_group_label")}
+              options={providerTypes.map((x) => ({
+                ...x,
+                label: t(x.label),
+              }))}
+              setOptions={setProviderTypes}
+            /> */}
           <CheckBoxGroup
             name="sex"
             label={t("provider_sex_checkbox_group_label")}
@@ -178,6 +151,7 @@ export const FilterProviders = ({
                 handleSelect("onlyFreeConsultation", checked)
               }
               label={t("providers_free_consultation_label")}
+              isDisabled={isToggleDisabled}
             />
           </div>
           <DateInput
@@ -196,15 +170,19 @@ export const FilterProviders = ({
             placeholder="DD.MM.YYY"
             classes={["client-ratings__backdrop__date-picker"]}
           />
-          <Input
+          {/* <Input
             value={data.maxPrice}
             onChange={(e) => handleSelect("maxPrice", e.target.value)}
             label={t("max_price")}
             placeholder={t("max_price_placeholder")}
             type="number"
-          />
+          /> */}
           <DropdownWithLabel
-            options={languagesQuery.data || []}
+            options={
+              languages?.map((x) => {
+                return { ...x, label: x.name, value: x.language_id };
+              }) || []
+            }
             selected={data.language}
             setSelected={(selectedOption) =>
               handleSelect("language", selectedOption)
