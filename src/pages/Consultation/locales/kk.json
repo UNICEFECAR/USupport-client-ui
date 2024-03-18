@@ -28,6 +28,6 @@
   "show_options": "Баптаулар",
   "search": "Іздеу",
   "sponsored_by": "Бұл сессияның демеушісі: ",
-  "consultation_end_reminder": "Сіздің консультацияңыз {{minutes}} минуттан кейін аяқталады",
+  "consultation_end_reminder": "Ваша консультация закончится через {{minutes}} минут",
   "textarea_placeholder": "Хабарламаңызды осы жерге енгізіңіз..."
 }
