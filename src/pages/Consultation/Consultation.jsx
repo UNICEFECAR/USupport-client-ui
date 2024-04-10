@@ -26,6 +26,8 @@ import {
   useWindowDimensions,
   ONE_HOUR,
   getDateView,
+  ThemeContext,
+  systemMessageTypes,
 } from "@USupport-components-library/utils";
 
 import {
@@ -49,21 +51,6 @@ import "./consultation.scss";
 
 const SOCKET_IO_URL = `${import.meta.env.VITE_SOCKET_IO_URL}`;
 
-const systemMessageTypes = [
-  "client_joined",
-  "client_left",
-  "client_microphone_on",
-  "client_microphone_off",
-  "client_camera_on",
-  "client_camera_off",
-  "provider_joined",
-  "provider_left",
-  "provider_microphone_on",
-  "provider_microphone_off",
-  "provider_camera_on",
-  "provider_camera_off",
-];
-
 /**
  * Consultation
  *
@@ -73,6 +60,7 @@ const systemMessageTypes = [
  */
 export const Consultation = () => {
   const { t } = useTranslation("consultation-page");
+  const { theme } = useContext(ThemeContext);
   const language = localStorage.getItem("language");
   const country = localStorage.getItem("country");
   const { width } = useWindowDimensions();
@@ -127,20 +115,25 @@ export const Consultation = () => {
     return joinMessages[0].content === "provider_joined";
   };
 
-  const chatDataQuery = useGetChatData(consultation?.chatId, (data) => {
+  const onGetChatDataSuccess = (data) => {
     setIsProviderInSession(checkHasProviderJoined(data.messages));
     setMessages((prev) => ({
       ...prev,
       currentSession: data.messages,
     }));
-  });
+  };
+
+  const chatDataQuery = useGetChatData(
+    consultation?.chatId,
+    onGetChatDataSuccess
+  );
 
   const clientId = chatDataQuery.data?.clientDetailId;
   const providerId = chatDataQuery.data?.providerDetailId;
   const allChatHistoryQuery = useGetAllChatHistoryData(
     providerId,
     clientId,
-    true
+    chatDataQuery.isFetched
   );
 
   const [areMessagesHidden, setAreMessagesHidden] = useState(true);
@@ -152,50 +145,29 @@ export const Consultation = () => {
     );
   }, [messages]);
 
-  useEffect(() => {
-    const endTime = new Date(consultation.timestamp + ONE_HOUR);
-    let isTenMinAlertShown,
-      isFiveMinAlertShown = false;
-
-    const interval = setInterval(() => {
-      const now = new Date();
-      const timeDifferenceInMinutes = Math.floor((endTime - now) / (1000 * 60));
-
-      if (timeDifferenceInMinutes <= 10 && !isTenMinAlertShown) {
-        toast(t("consultation_end_reminder", { minutes: 10 }), {
-          autoClose: false,
-          type: "info",
-        });
-        isTenMinAlertShown = true;
-      }
-      if (timeDifferenceInMinutes <= 5 && !isFiveMinAlertShown) {
-        toast(t("consultation_end_reminder", { minutes: 5 }), {
-          autoClose: false,
-          type: "info",
-        });
-        isFiveMinAlertShown;
-        clearInterval(interval);
-      }
-    }, 20000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  // End of seession alerts
+  useSessionEndReminder(consultation.timestamp, t);
 
   useEffect(() => {
     if (
       allChatHistoryQuery.data?.messages &&
+      chatDataQuery.data?.messages &&
       !messages.previousSessions.length
     ) {
       setMessages((prev) => {
+        const currentMessagesTimes = chatDataQuery.data.messages.map(
+          (x) => x.time
+        );
+        const previousFiltered = allChatHistoryQuery.data.messages
+          .flat()
+          .filter((x) => !currentMessagesTimes.includes(x.time));
         return {
           ...prev,
-          previousSessions: allChatHistoryQuery.data.messages,
+          previousSessions: previousFiltered,
         };
       });
     }
-  }, [allChatHistoryQuery.data]);
+  }, [allChatHistoryQuery.data, chatDataQuery.data]);
 
   // TODO: Send a consultation add services request only when the provider leaves the consultation
   useEffect(() => {
@@ -436,7 +408,7 @@ export const Consultation = () => {
       setHasUnreadMessages(false);
     }
 
-    if (width < 1366) {
+    if (width < 1150) {
       setIsChatShownOnMobile(!isChatShownOnMobile);
     } else {
       setIsChatShownOnTablet(!isChatShownOnTablet);
@@ -529,10 +501,10 @@ export const Consultation = () => {
           hasUnreadMessages={hasUnreadMessages}
           isProviderInSession={isProviderInSession}
           setIsProviderInSession={setIsProviderInSession}
-          hideControls={hideControls && width < 1366}
+          hideControls={hideControls && width < 1150}
           t={t}
         />
-        {isChatShownOnTablet && width >= 1366 && (
+        {isChatShownOnTablet && width >= 1150 && (
           <MessageList
             messages={messages}
             handleSendMessage={handleSendMessage}
@@ -554,8 +526,11 @@ export const Consultation = () => {
         )}
       </div>
       <Backdrop
-        classes="page__consultation__chat-backdrop"
-        isOpen={isChatShownOnMobile && width < 1366}
+        classes={[
+          "page__consultation__chat-backdrop",
+          theme === "dark" && "page__consultation__chat-backdrop--dark",
+        ].join(" ")}
+        isOpen={isChatShownOnMobile && width < 1150}
         onClose={() => setIsChatShownOnMobile(false)}
         showAlwaysAsBackdrop
         // reference={width < 768 ? backdropMessagesContainerRef : null}
@@ -764,4 +739,37 @@ const OptionsContainer = ({
       )}
     </div>
   );
+};
+
+const useSessionEndReminder = (timestamp, t) => {
+  useEffect(() => {
+    const endTime = new Date(timestamp + ONE_HOUR);
+    let isTenMinAlertShown,
+      isFiveMinAlertShown = false;
+
+    const interval = setInterval(() => {
+      const now = new Date();
+      const timeDifferenceInMinutes = Math.floor((endTime - now) / (1000 * 60));
+
+      if (timeDifferenceInMinutes <= 10 && !isTenMinAlertShown) {
+        toast(t("consultation_end_reminder", { minutes: 10 }), {
+          autoClose: false,
+          type: "info",
+        });
+        isTenMinAlertShown = true;
+      }
+      if (timeDifferenceInMinutes <= 5 && !isFiveMinAlertShown) {
+        toast(t("consultation_end_reminder", { minutes: 5 }), {
+          autoClose: false,
+          type: "info",
+        });
+        isFiveMinAlertShown;
+        clearInterval(interval);
+      }
+    }, 20000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 };

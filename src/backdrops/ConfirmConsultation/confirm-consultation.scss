@@ -18,6 +18,10 @@
     &__heading {
       margin-top: $spacing_5_4;
       color: $color_blue_3d527b;
+
+      &--dark {
+        color: $color_gray_d2dcde;
+      }
     }
 
     &__text {

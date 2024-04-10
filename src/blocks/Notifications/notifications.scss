@@ -1,6 +1,8 @@
 @import "@USupport-components-library/styles";
 
 .notifications {
+  @include full-height-page-navbar;
+
   &__grid {
     padding-top: $spacing_3_6;
     padding-bottom: $spacing_4_8;

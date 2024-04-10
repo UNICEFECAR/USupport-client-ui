@@ -20,6 +20,7 @@
   "provider_camera_on": "Консультант камераны қосты",
   "provider_microphone_off": "Консультант микрофонды өшірді",
   "provider_microphone_on": "Консультант микрофонды қосты",
+  "chat_history_deleted_by_client": "Сіз чат тарихын жойдыңыз",
 
   "show_system_messages": "Жүйелік хабарламаларды көрсету",
   "show_previous_consultations": "Алдыңғы кеңестерді көрсетіңіз",
@@ -27,6 +28,6 @@
   "show_options": "Баптаулар",
   "search": "Іздеу",
   "sponsored_by": "Бұл сессияның демеушісі: ",
-  "consultation_end_reminder": "Сіздің консультацияңыз {{minutes}} минуттан кейін аяқталады",
+  "consultation_end_reminder": "Ваша консультация закончится через {{minutes}} минут",
   "textarea_placeholder": "Хабарламаңызды осы жерге енгізіңіз..."
 }

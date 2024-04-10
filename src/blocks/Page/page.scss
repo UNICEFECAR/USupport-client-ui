@@ -2,6 +2,8 @@
 
 .page {
   padding-top: $spacing_6_6;
+  @include themify($themes, "background-color", "color_white_ff");
+  min-width: 34rem;
 
   &--no-additional-top-padding {
     padding-top: 0;
@@ -21,9 +23,11 @@
 
   &__header {
     align-items: center;
+    justify-content: space-between;
     display: flex;
     flex: 1;
     padding: $spacing_3_2 $spacing_1_6 $spacing_1_6 $spacing_2_4;
+    min-width: calc(38rem - ($spacing_1_6 + $spacing_2_4));
 
     @media screen and (min-width: $screen-md) {
       padding-top: $spacing_5_0;
@@ -34,6 +38,12 @@
       padding-top: $spacing_5_0;
       padding-left: $spacing_23_0;
       padding-right: $spacing_23_0;
+    }
+
+    &__text-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
 
     &__language {
@@ -140,6 +150,7 @@
       max-width: 75rem;
       word-break: break-word;
       text-align: left;
+      @include themify($themes, "color", "color_3d527b_white");
     }
 
     &-button-container {
@@ -192,6 +203,22 @@
     position: fixed;
     right: $spacing_1_6;
     z-index: $z_index_emergency_button;
+
+    @media screen and (min-width: $screen-md) {
+      right: $spacing_3_2;
+    }
+  }
+
+  &__theme-button {
+    bottom: 5vh;
+    position: fixed;
+    left: $spacing_1_6;
+    z-index: $z_index_emergency_button;
+    max-width: 10rem;
+    cursor: pointer;
+    background-color: $color_primary_20809e;
+    padding: 1rem;
+    border-radius: 5rem;
 
     @media screen and (min-width: $screen-md) {
       right: $spacing_3_2;

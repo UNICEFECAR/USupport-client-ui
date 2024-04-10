@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import OutsideClickHandler from "react-outside-click-handler";
@@ -14,23 +14,22 @@ import {
   PasswordModal,
   Box,
 } from "@USupport-components-library/src";
-
 import {
   userSvc,
   countrySvc,
   languageSvc,
 } from "@USupport-components-library/services";
-
 import {
   useWindowDimensions,
   getCountryFromTimezone,
+  ThemeContext,
 } from "@USupport-components-library/utils";
-
 import { RequireRegistration } from "#modals";
 import {
   useIsLoggedIn,
   useEventListener,
   useCheckHasUnreadNotifications,
+  useError,
 } from "#hooks";
 
 import "./page.scss";
@@ -199,27 +198,18 @@ export const Page = ({
   const footerLists = {
     list1: [
       { name: t("footer_1"), url: "/dashboard" },
-      { name: t("footer_2"), url: "/consultations" },
-      { name: t("footer_3"), url: "/information-portal" },
       { name: t("footer_4"), url: "/profile" },
+      { name: t("footer_2"), url: "/consultations" },
     ],
     list2: [
+      { name: t("footer_3"), url: "/information-portal" },
+      { name: t("footer_8"), url: "/faq" },
+      { name: t("contact_us"), url: "/contact-us" },
+    ],
+    list3: [
       { name: t("footer_5"), url: "/terms-of-use", exact: true },
       { name: t("footer_6"), url: "/privacy-policy" },
       { name: t("footer_7"), url: "/cookie-policy" },
-      { name: t("footer_8"), url: "/faq" },
-    ],
-    list3: [
-      { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
-      {
-        value: "Beibitshilik St 10а, Astana 010000, Kazakhstan",
-        iconName: "pin",
-      },
-      {
-        value: "usupport@7digit.io",
-        iconName: "mail-filled",
-        onClick: "mail",
-      },
     ],
   };
 
@@ -231,6 +221,27 @@ export const Page = ({
     }
   };
 
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  const themeButton = () => {
+    return (
+      <Icon
+        name={theme === "light" ? "dark-mode-switch" : "light-mode"}
+        size="lg"
+        classes="page__theme-button"
+        onClick={toggleTheme}
+      />
+    );
+  };
+
   const handleRegistrationModalClose = () => setIsRegistrationModalOpen(false);
   const handleRegistrationModalOpen = () => setIsRegistrationModalOpen(true);
   const handleRegisterRedirection = () => {
@@ -240,20 +251,31 @@ export const Page = ({
     navigateTo("/register-preview");
   };
 
-  const hasEnteredPassword = queryClient.getQueryData(["hasEnteredPassword"]);
+  const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasEnteredPassword
+    !hasPassedValidation
   );
-  const [password, setPasswordError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const handlePasswordCheck = (password) => {
-    if (password === "USupport!2023") {
-      queryClient.setQueryData(["hasEnteredPassword"], true);
-      setIsPasswordModalOpen(false);
-    } else {
-      setPasswordError(t("wrong_password"));
+  const validatePlatformPasswordMutation = useMutation(
+    async (value) => {
+      return await userSvc.validatePlatformPassword(value);
+    },
+    {
+      onError: (error) => {
+        const { message: errorMessage } = useError(error);
+        setPasswordError(errorMessage);
+      },
+      onSuccess: () => {
+        queryClient.setQueryData(["hasPassedValidation"], true);
+        setIsPasswordModalOpen(false);
+      },
     }
+  );
+
+  const handlePasswordCheck = (value) => {
+    validatePlatformPasswordMutation.mutate(value);
   };
 
   const [languagesShown, setLanguagesShown] = useState(false);
@@ -267,7 +289,8 @@ export const Page = ({
         label={t("password")}
         btnLabel={t("submit")}
         isOpen={isPasswordModalOpen}
-        error={password}
+        isLoading={validatePlatformPasswordMutation.isLoading}
+        error={passwordError}
         handleSubmit={handlePasswordCheck}
         placeholder={t("password_placeholder")}
       />
@@ -288,6 +311,8 @@ export const Page = ({
           initialCountry={selectedCountry}
           hasUnreadNotifications={hasUnreadNotifications}
           renderIn="client"
+          hasThemeButton
+          t={t}
         />
       )}
       <div
@@ -300,16 +325,18 @@ export const Page = ({
         {(heading || showGoBackArrow || headingButton) && (
           <>
             <div className="page__header">
-              {showGoBackArrow && (
-                <Icon
-                  classes="page__header-icon"
-                  name="arrow-chevron-back"
-                  size="md"
-                  color="#20809E"
-                  onClick={handleGoBackArrowClick}
-                />
-              )}
-              {heading && <h3 className="page__header-heading">{heading}</h3>}
+              <div className="page__header__text-container">
+                {showGoBackArrow && (
+                  <Icon
+                    classes="page__header-icon"
+                    name="arrow-chevron-back"
+                    size="md"
+                    color="#20809E"
+                    onClick={handleGoBackArrowClick}
+                  />
+                )}
+                {heading && <h3 className="page__header-heading">{heading}</h3>}
+              </div>
               {headingButton &&
                 (width >= 768 || showHeadingButtonInline) &&
                 !showHeadingButtonBelow && (
@@ -404,6 +431,7 @@ export const Page = ({
 
         {children}
       </div>
+      {themeButton()}
       {showEmergencyButton && (
         <CircleIconButton
           iconName="phone-emergency"
@@ -415,7 +443,6 @@ export const Page = ({
       {isFooterShown && (
         <Footer
           lists={footerLists}
-          contactUsText={t("contact_us")}
           navigate={navigateTo}
           Link={Link}
           showSocials={false}

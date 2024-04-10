@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Backdrop } from "@USupport-components-library/src";
 import { mascotHappyOrange } from "@USupport-components-library/assets";
 import {
   getTimeAsString,
   getMonthName,
+  ThemeContext,
 } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 
@@ -20,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 export const ConfirmConsultation = ({ isOpen, onClose, consultation }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("confirm-consultation");
+  const { theme } = useContext(ThemeContext);
 
   const handleContinue = () => {
     onClose();
@@ -46,7 +48,12 @@ export const ConfirmConsultation = ({ isOpen, onClose, consultation }) => {
           src={mascotHappyOrange}
           className="confirm-consultation__content__mascot"
         />
-        <h4 className="confirm-consultation__content__heading">
+        <h4
+          className={[
+            "confirm-consultation__content__heading",
+            theme === "dark" && "confirm-consultation__content__heading--dark",
+          ].join(" ")}
+        >
           {t("heading")}
         </h4>
         <p className="text confirm-consultation__content__text">
