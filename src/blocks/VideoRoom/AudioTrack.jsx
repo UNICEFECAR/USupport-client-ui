@@ -1,5 +1,5 @@
 // AudioTrack.js
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 export default function AudioTrack({ track }) {
   const ref = useRef();

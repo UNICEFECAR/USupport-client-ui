@@ -113,7 +113,7 @@ export const Consultations = () => {
     setIsSelectConsultationBackdropOpen(false);
 
   // Schedule consultation logic
-  const onRescheduleConsultationSuccess = (data) => {
+  const onRescheduleConsultationSuccess = () => {
     setIsBlockSlotSubmitting(false);
     setConsultationId(consultationId);
     closeSelectConsultationBackdrop();

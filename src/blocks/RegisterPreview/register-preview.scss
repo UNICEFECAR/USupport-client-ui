@@ -29,7 +29,7 @@
       }
 
       > img {
-        width: 30rem;
+        // width: 30rem;
         height: 23.8rem;
         @media screen and (max-width: $screen_md) {
           transform: translateX(12.5rem);
@@ -38,15 +38,26 @@
     }
 
     &__content-item {
-      justify-self: center;
       &__carousel-item {
         text-align: left;
+
         &__text {
           margin-top: $spacing_1_6;
 
           @media screen and (min-width: $screen_md) {
             margin-top: $spacing_2_4;
           }
+        }
+      }
+
+      &__btns-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        @media screen and (min-width: $screen_md) {
+          align-items: flex-start;
         }
       }
 

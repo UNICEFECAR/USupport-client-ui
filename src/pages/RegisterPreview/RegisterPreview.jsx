@@ -1,8 +1,7 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Page, RegisterPreview as RegisterPreviewBlock } from "#blocks";
-import { Button, Loading } from "@USupport-components-library/src";
+import { Loading } from "@USupport-components-library/src";
 import { useIsLoggedIn } from "#hooks";
 
 import "./register-preview.scss";
@@ -15,7 +14,6 @@ import "./register-preview.scss";
  * @returns {JSX.Element}
  */
 export const RegisterPreview = () => {
-  const { t } = useTranslation("register-preview-page");
   const navigate = useNavigate();
   const isLoggedIn = useIsLoggedIn();
 

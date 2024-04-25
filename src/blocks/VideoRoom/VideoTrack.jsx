@@ -1,5 +1,5 @@
 // VideoTrack.js
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 export default function VideoTrack({ type, track }) {
   const ref = useRef();
@@ -18,10 +18,14 @@ export default function VideoTrack({ type, track }) {
         console.error(err);
       }
       return () => {
-        if (track.track) {
-          track.track.detach(el);
-        } else {
-          track.detach(el);
+        try {
+          if (track.track) {
+            track.track.detach(el);
+          } else {
+            track.detach(el);
+          }
+        } catch (err) {
+          console.log(err, "err in detaching");
         }
       };
     }

@@ -1,1 +1,1 @@
-export * from './RequireRegistration.jsx';
+export * from "./RequireRegistration.jsx";

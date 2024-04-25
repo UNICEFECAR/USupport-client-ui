@@ -8,7 +8,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useTranslation } from "react-i18next";
-import { useNavigate, Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getDateView, getTime } from "@USupport-components-library/utils";
 
 import "./payment-status.scss";
@@ -42,7 +42,7 @@ export const PaymentStatus = () => {
 
     return res?.data;
   };
-  const consultationQuerry = useQuery(["consultation"], getConsultation, {
+  useQuery(["consultation"], getConsultation, {
     onSuccess: (data) => {
       setConsultationDate(getDateView(data.time));
       setConsultaitonTime(getTime(data.time));
@@ -57,7 +57,7 @@ export const PaymentStatus = () => {
       );
 
       if (!clientSecret) {
-        navigate(`/not-found`);
+        navigate("/not-found");
       } else {
         stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
           let newStatusData = {};

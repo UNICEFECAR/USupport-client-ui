@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -13,7 +13,14 @@ import {
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 import { useError } from "#hooks";
-import { getCountryFromTimezone } from "@USupport-components-library/utils";
+import {
+  getCountryFromTimezone,
+  ThemeContext,
+} from "@USupport-components-library/utils";
+import {
+  logoVerticalSvg,
+  logoVerticalDarkSvg,
+} from "@USupport-components-library/assets";
 
 import "./login.scss";
 
@@ -28,6 +35,7 @@ export const Login = () => {
   const { t } = useTranslation("login");
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
 
   const [data, setData] = useState({
     email: "",
@@ -101,6 +109,19 @@ export const Login = () => {
   return (
     <Block classes="login">
       <Grid md={8} lg={12} classes="login__grid">
+        <GridItem md={8} lg={12} classes="login__grid__inputs-item">
+          <div className="login__grid__logo-item">
+            <h2 className="welcome__grid__logo-item__heading">
+              {t("heading")}
+            </h2>
+            <img
+              src={theme === "dark" ? logoVerticalDarkSvg : logoVerticalSvg}
+              alt="Logo"
+              className="welcome__grid__logo-item__logo"
+            />
+            <h2 className="welcome__grid__logo-item__heading">{t("client")}</h2>
+          </div>
+        </GridItem>
         <GridItem md={8} lg={12} classes="login__grid__inputs-item">
           <form onSubmit={handleLogin}>
             <Input

@@ -80,4 +80,9 @@
       padding: 0;
     }
   }
+
+  &__modal-heading {
+    color: $color_primary_20809e;
+    cursor: pointer;
+  }
 }

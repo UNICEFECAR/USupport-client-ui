@@ -107,31 +107,35 @@ export const RegisterPreview = ({ handleLoginRedirection }) => {
         </GridItem>
         <GridItem md={4} lg={6} classes="register-preview__grid__content-item">
           <div className="register-preview__grid__content-item__carousel-container">
-            <CustomCarousel>{renderCarouselItems()}</CustomCarousel>
+            <CustomCarousel speed={6000}>
+              {renderCarouselItems()}
+            </CustomCarousel>
           </div>
-          <Button
-            size="lg"
-            label={t("login")}
-            color="purple"
-            onClick={handleLoginRedirection}
-          />
-          <Button
-            label={t("register_email")}
-            size="lg"
-            onClick={() => handleRedirect("email")}
-          />
-          <Button
-            label={t("register_anonymously")}
-            size="lg"
-            type="secondary"
-            onClick={() => handleRedirect("anonymously")}
-          />
-          <Button
-            label={t("continue_as_guest")}
-            type="ghost"
-            size="lg"
-            onClick={() => handleRedirect("guest")}
-          />
+          <div className="register-preview__grid__content-item__btns-container">
+            <Button
+              size="lg"
+              label={t("login")}
+              color="purple"
+              onClick={handleLoginRedirection}
+            />
+            <Button
+              label={t("register_email")}
+              size="lg"
+              onClick={() => handleRedirect("email")}
+            />
+            <Button
+              label={t("register_anonymously")}
+              size="lg"
+              type="secondary"
+              onClick={() => handleRedirect("anonymously")}
+            />
+            <Button
+              label={t("continue_as_guest")}
+              type="ghost"
+              size="lg"
+              onClick={() => handleRedirect("guest")}
+            />
+          </div>
           {error ? <ErrorComponent message={error} /> : null}
         </GridItem>
       </Grid>

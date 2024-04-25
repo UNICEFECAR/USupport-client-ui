@@ -34,6 +34,7 @@ export const RegisterAboutYou = () => {
       heading={width >= 768 ? t("heading_1") : t("heading_2")}
       handleGoBack={handleGoBack}
       showGoBackArrow={false}
+      showEmergencyButton={false}
     >
       <RegisterAboutYouBlock isAnonymous={isAnonymous} />
       {width < 768 && <RadialCircle color="purple" />}

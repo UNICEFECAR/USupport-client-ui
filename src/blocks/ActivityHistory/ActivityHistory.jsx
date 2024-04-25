@@ -10,6 +10,7 @@ import {
   StyleSheet,
   PDFDownloadLink,
   Image,
+  Font,
 } from "@react-pdf/renderer";
 
 import {
@@ -24,9 +25,19 @@ import {
   Toggle,
 } from "@USupport-components-library/src";
 
-import { getDateView, getTime } from "@USupport-components-library/utils";
+import {
+  getDateView,
+  getTime,
+  systemMessageTypes,
+  getTimeAsString,
+} from "@USupport-components-library/utils";
 
-import { logoHorizontalPng } from "@USupport-components-library/assets";
+import {
+  logoHorizontalPng,
+  NunitoSans,
+  NunitoSansSemiBold,
+  NunitoSansBold,
+} from "@USupport-components-library/assets";
 
 import {
   useGetChatData,
@@ -38,6 +49,24 @@ import {
 import "./activity-history.scss";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
+
+Font.register({
+  family: "NunitoSans",
+  fonts: [
+    {
+      src: NunitoSans,
+      fontWeight: 400,
+    },
+    {
+      src: NunitoSansSemiBold,
+      fontWeight: 600,
+    },
+    {
+      src: NunitoSansBold,
+      fontWeight: 700,
+    },
+  ],
+});
 
 /**
  * ActivityHistory
@@ -137,7 +166,11 @@ export const ActivityHistory = ({
         return (
           <SystemMessage
             key={index + message.time}
-            title={message.content}
+            title={
+              systemMessageTypes.includes(message.content)
+                ? t(message.content)
+                : message.content
+            }
             date={new Date(Number(message.time))}
           />
         );
@@ -226,7 +259,7 @@ export const ActivityHistory = ({
                 t={t}
               />
             }
-            fileName="somename.pdf"
+            fileName={`Chat-history-${consultation.providerName}.pdf`}
           >
             {({ loading }) =>
               loading ? (
@@ -277,7 +310,6 @@ const MyDocument = ({
   providerId,
   providerName,
   showSystemMessages,
-  providerImage,
   t,
 }) => {
   return (
@@ -293,9 +325,13 @@ const MyDocument = ({
           {t("chat_history")}
         </Text>
         <View style={styles.nameContainer}>
-          <Image src={providerImage} style={styles.image} />
           <Text style={styles.providerName}>{providerName}</Text>
         </View>
+        <Text style={styles.dateText}>
+          {t("exported_at", {
+            time: getTimeAsString(new Date()) + ", " + getDateView(new Date()),
+          })}
+        </Text>
         {messages.map((message, index) => {
           const isSent = message.senderId !== providerId;
           if (message.type === "system" && !showSystemMessages) return null;
@@ -304,11 +340,16 @@ const MyDocument = ({
               <View
                 style={[
                   styles.message,
-                  isSent ? styles.messageSent : styles.messageReceived,
+                  message.type != "system" &&
+                    (isSent ? styles.messageSent : styles.messageReceived),
                   message.type === "system" && styles.systemMessage,
                 ]}
               >
-                <Text style={styles.messageText}>{message.content}</Text>
+                <Text style={styles.messageText}>
+                  {message.type === "system"
+                    ? t(message.content)
+                    : message.content}
+                </Text>
                 <Text style={[styles.date, isSent ? styles.dateSent : ""]}>
                   {getDateView(new Date(Number(message.time)))},{" "}
                   {getTime(new Date(Number(message.time)))}
@@ -325,6 +366,7 @@ const MyDocument = ({
 const styles = StyleSheet.create({
   page: {
     height: "1000px",
+    fontFamily: "NunitoSans",
   },
   logo: {
     width: "30%",
@@ -337,8 +379,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "24px",
     marginTop: "6px",
+    fontWeight: "normal",
+  },
+  dateText: {
+    alignSelf: "center",
+    marginTop: "6px",
+    fontWeight: "normal",
+    textAlign: "center",
   },
   image: {
     width: "40px",
@@ -346,18 +394,22 @@ const styles = StyleSheet.create({
     borderRadius: "50%",
     marginRight: "10px",
   },
-  providerName: { textAlign: "center", alignSelf: "center" },
+  providerName: {
+    textAlign: "center",
+    alignSelf: "center",
+    fontWeight: "normal",
+  },
   view: {
     width: "100%",
     display: "flex",
     flexDirection: "column",
   },
   message: {
-    borderRadius: "24px",
-    padding: "16px 24px",
+    borderRadius: "18px",
+    padding: "8px 14px",
     textAlign: "left",
     maxWidth: "35%",
-    marginTop: "16px",
+    marginTop: "8px",
   },
   systemMessage: {
     alignSelf: "center",
@@ -368,18 +420,20 @@ const styles = StyleSheet.create({
     width: "50%",
   },
   messageText: {
-    color: "#373737",
+    color: "#20809e",
+    fontSize: "12px",
+    fontWeight: "bold",
   },
   messageSent: {
     backgroundColor: "#54cfd9",
     alignSelf: "flex-end",
-    marginRight: "5px",
+    marginRight: "16px",
   },
   messageReceived: {
     backgroundColor: "#e6f1f4",
-    marginLeft: "5px",
+    marginLeft: "16px",
   },
-  date: { color: "gray", marginTop: "6px", fontSize: "14" },
+  date: { color: "gray", marginTop: "6px", fontSize: "10" },
   dateSent: {
     color: "#66768d",
   },

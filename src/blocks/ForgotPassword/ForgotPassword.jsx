@@ -11,8 +11,8 @@ import {
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
-import { useError } from "#hooks";
 import Joi from "joi";
+import { logoVerticalSvg } from "@USupport-components-library/assets";
 
 import "./forgot-password.scss";
 
@@ -29,6 +29,7 @@ export const ForgotPassword = () => {
   const [data, setData] = useState({ email: "" });
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const schema = Joi.object({
     email: Joi.string()
@@ -37,6 +38,7 @@ export const ForgotPassword = () => {
   });
 
   const handleResetPassword = async () => {
+    setLoading(true);
     if ((await validate(data, schema, setErrors)) == null) {
       try {
         await userSvc.generateForgotPasswordLink(
@@ -48,6 +50,7 @@ export const ForgotPassword = () => {
         setIsModalOpen(true);
       }
     }
+    setLoading(false);
   };
 
   const canContinue = data.email === "";
@@ -56,6 +59,17 @@ export const ForgotPassword = () => {
     <Block classes="forgot-password">
       <Grid md={8} lg={12} classes="forgot-password__grid">
         <GridItem md={8} lg={12} classes="forgot-password__grid__content-item">
+          <div>
+            <h2 className="welcome__grid__logo-item__heading">
+              {t("heading")}
+            </h2>
+            <img
+              src={logoVerticalSvg}
+              alt="Logo"
+              className="welcome__grid__logo-item__logo"
+            />
+            <h2 className="welcome__grid__logo-item__heading">{t("client")}</h2>
+          </div>
           <div className="forgot-password__grid__content-item__main-container">
             <Input
               label={t("input_email_label")}
@@ -72,9 +86,15 @@ export const ForgotPassword = () => {
               size="lg"
               onClick={() => handleResetPassword()}
               disabled={canContinue}
+              loading={loading}
             />
           </div>
         </GridItem>
+        <GridItem
+          md={8}
+          lg={12}
+          classes="forgot-password__grid__content-item"
+        ></GridItem>
       </Grid>
       <Modal
         isOpen={isModalOpen}

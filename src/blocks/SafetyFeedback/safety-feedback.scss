@@ -1,6 +1,13 @@
 @import "@USupport-components-library/styles";
 
 .safety-feedback {
+  height: 100vh;
+  overflow: scroll;
+
+  &--dark {
+    background-color: $color_black_37;
+  }
+
   &__grid {
     text-align: left;
     place-items: center;
@@ -54,6 +61,26 @@
         margin-top: $spacing_0_8;
         width: 40%;
       }
+
+      &__emoticon-container {
+        margin-top: $spacing_0_8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & .small-text {
+          text-align: center;
+        }
+      }
     }
+
+    &__slider {
+      padding-top: $spacing_1_0;
+    }
+  }
+
+  &__question-item {
+    width: 100%;
+    max-width: 36.8rem;
   }
 }

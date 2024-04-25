@@ -1,34 +1,35 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import jwtDecode from "jwt-decode";
+import OutsideClickHandler from "react-outside-click-handler";
 
 import {
   Navbar,
   CircleIconButton,
   Footer,
   Icon,
+  PasswordModal,
+  Box,
 } from "@USupport-components-library/src";
-
 import {
   userSvc,
   countrySvc,
   languageSvc,
 } from "@USupport-components-library/services";
-
 import {
   useWindowDimensions,
   getCountryFromTimezone,
+  ThemeContext,
 } from "@USupport-components-library/utils";
-
 import { RequireRegistration } from "#modals";
 import {
   useIsLoggedIn,
   useEventListener,
   useCheckHasUnreadNotifications,
+  useError,
 } from "#hooks";
 
 import "./page.scss";
@@ -60,6 +61,7 @@ export const Page = ({
   showHeadingButtonBelow = false,
   classes,
   children,
+  renderLanguageSelector = false,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -70,15 +72,15 @@ export const Page = ({
   const isLoggedIn = useIsLoggedIn();
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
+  const IS_DEV = process.env.NODE_ENV === "development";
 
   const { width } = useWindowDimensions();
 
-  const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
+  const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
   const token = localStorage.getItem("token");
-  const decoded = token ? jwtDecode(token) : null;
 
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(!!token);
 
@@ -104,6 +106,7 @@ export const Page = ({
         minAge: x["min_client_age"],
         maxAge: x["max_client_age"],
         currencySymbol: x["symbol"],
+        localName: x.local_name,
       };
 
       if (localStorageCountry === x.alpha2) {
@@ -196,27 +199,18 @@ export const Page = ({
   const footerLists = {
     list1: [
       { name: t("footer_1"), url: "/dashboard" },
-      { name: t("footer_2"), url: "/consultations" },
-      { name: t("footer_3"), url: "/information-portal" },
       { name: t("footer_4"), url: "/profile" },
+      { name: t("footer_2"), url: "/consultations" },
     ],
     list2: [
+      { name: t("footer_3"), url: "/information-portal" },
+      { name: t("footer_8"), url: "/faq" },
+      { name: t("contact_us"), url: "/contact-us" },
+    ],
+    list3: [
       { name: t("footer_5"), url: "/terms-of-use", exact: true },
       { name: t("footer_6"), url: "/privacy-policy" },
       { name: t("footer_7"), url: "/cookie-policy" },
-      { name: t("footer_8"), url: "/faq" },
-    ],
-    list3: [
-      { value: "+7 717 232 28 78", iconName: "call-filled", onClick: "phone" },
-      {
-        value: `Beibitshilik St 10а, Astana 010000, Kazakhstan`,
-        iconName: "pin",
-      },
-      {
-        value: "usupport@7digit.io",
-        iconName: "mail-filled",
-        onClick: "mail",
-      },
     ],
   };
 
@@ -228,6 +222,27 @@ export const Page = ({
     }
   };
 
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+
+  const themeButton = () => {
+    return (
+      <Icon
+        name={theme === "light" ? "dark-mode-switch" : "light-mode"}
+        size="lg"
+        classes="page__theme-button"
+        onClick={toggleTheme}
+      />
+    );
+  };
+
   const handleRegistrationModalClose = () => setIsRegistrationModalOpen(false);
   const handleRegistrationModalOpen = () => setIsRegistrationModalOpen(true);
   const handleRegisterRedirection = () => {
@@ -237,8 +252,49 @@ export const Page = ({
     navigateTo("/register-preview");
   };
 
+  const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
+
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
+    IS_DEV ? false : !hasPassedValidation
+  );
+  const [passwordError, setPasswordError] = useState("");
+
+  const validatePlatformPasswordMutation = useMutation(
+    async (value) => {
+      return await userSvc.validatePlatformPassword(value);
+    },
+    {
+      onError: (error) => {
+        const { message: errorMessage } = useError(error);
+        setPasswordError(errorMessage);
+      },
+      onSuccess: () => {
+        queryClient.setQueryData(["hasPassedValidation"], true);
+        setIsPasswordModalOpen(false);
+      },
+    }
+  );
+
+  const handlePasswordCheck = (value) => {
+    validatePlatformPasswordMutation.mutate(value);
+  };
+
+  const [languagesShown, setLanguagesShown] = useState(false);
+  const handleLanguageSelectorClick = () => {
+    setLanguagesShown(!languagesShown);
+  };
+
   return (
     <>
+      <PasswordModal
+        label={t("password")}
+        btnLabel={t("submit")}
+        isOpen={isPasswordModalOpen}
+        isLoading={validatePlatformPasswordMutation.isLoading}
+        error={passwordError}
+        handleSubmit={handlePasswordCheck}
+        placeholder={t("password_placeholder")}
+      />
       {isNavbarShown === true && (
         <Navbar
           i18n={i18n}
@@ -256,6 +312,8 @@ export const Page = ({
           initialCountry={selectedCountry}
           hasUnreadNotifications={hasUnreadNotifications}
           renderIn="client"
+          hasThemeButton
+          t={t}
         />
       )}
       <div
@@ -268,16 +326,18 @@ export const Page = ({
         {(heading || showGoBackArrow || headingButton) && (
           <>
             <div className="page__header">
-              {showGoBackArrow && (
-                <Icon
-                  classes="page__header-icon"
-                  name="arrow-chevron-back"
-                  size="md"
-                  color="#20809E"
-                  onClick={handleGoBackArrowClick}
-                />
-              )}
-              {heading && <h3 className="page__header-heading">{heading}</h3>}
+              <div className="page__header__text-container">
+                {showGoBackArrow && (
+                  <Icon
+                    classes="page__header-icon"
+                    name="arrow-chevron-back"
+                    size="md"
+                    color="#20809E"
+                    onClick={handleGoBackArrowClick}
+                  />
+                )}
+                {heading && <h3 className="page__header-heading">{heading}</h3>}
+              </div>
               {headingButton &&
                 (width >= 768 || showHeadingButtonInline) &&
                 !showHeadingButtonBelow && (
@@ -285,6 +345,73 @@ export const Page = ({
                     {headingButton}
                   </div>
                 )}
+              {renderLanguageSelector && (
+                <div className="page__header__language">
+                  <div
+                    className="page__header__language__heading"
+                    onClick={handleLanguageSelectorClick}
+                  >
+                    <p className="page__header__language__heading__text">
+                      {selectedLanguage.value}
+                    </p>
+                    <Icon
+                      name="arrow-chevron-down"
+                      color="#20809e"
+                      size="sm"
+                      classes={[
+                        "page__header__language__heading__icon",
+                        languagesShown
+                          ? "page__header__language__heading__icon--rotated"
+                          : "",
+                      ].join(" ")}
+                    />
+                  </div>
+
+                  <OutsideClickHandler
+                    onOutsideClick={() => setLanguagesShown(false)}
+                  >
+                    <Box
+                      classes={[
+                        "page__header__language__dropdown",
+                        languagesShown
+                          ? "page__header__language__dropdown--shown"
+                          : "",
+                      ].join(" ")}
+                    >
+                      <div className="page__header__language__dropdown__content">
+                        {languages?.map((language) => (
+                          <div
+                            className="page__header__language__dropdown__content__item"
+                            key={language.value}
+                            onClick={() => {
+                              setSelectedLanguage(language);
+                              i18n.changeLanguage(language.value);
+                              localStorage.setItem("language", language.value);
+                              setLanguagesShown(false);
+                            }}
+                          >
+                            <p
+                              className={[
+                                "page__header__language__dropdown__content__item__text",
+                                language.value === selectedLanguage.value
+                                  ? "page__header__language__dropdown__content__item__text--selected"
+                                  : "",
+                              ].join(" ")}
+                            >
+                              {`${language.label} ${
+                                language.label !== "English" &&
+                                language.localName
+                                  ? `(${language.localName})`
+                                  : ""
+                              }`}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </Box>
+                  </OutsideClickHandler>
+                </div>
+              )}
             </div>
             {headingButton && (
               <div className="page__mobile-button-container">
@@ -305,6 +432,7 @@ export const Page = ({
 
         {children}
       </div>
+      {themeButton()}
       {showEmergencyButton && (
         <CircleIconButton
           iconName="phone-emergency"
@@ -316,7 +444,6 @@ export const Page = ({
       {isFooterShown && (
         <Footer
           lists={footerLists}
-          contactUsText={t("contact_us")}
           navigate={navigateTo}
           Link={Link}
           showSocials={false}
@@ -325,7 +452,7 @@ export const Page = ({
 
       <RequireRegistration
         handleContinue={handleRegisterRedirection}
-        isOpen={isRegistrationModalOpan}
+        isOpen={isRegistrationModalOpen}
         onClose={handleRegistrationModalClose}
       />
     </>

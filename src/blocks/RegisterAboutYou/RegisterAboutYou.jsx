@@ -47,7 +47,7 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
     { label: t("sex_male"), value: "male" },
     { label: t("sex_female"), value: "female" },
     { label: t("sex_unspecified"), value: "unspecified" },
-    { label: t("sex_none"), value: "notMentioned" },
+    // { label: t("sex_none"), value: "notMentioned" },
   ];
 
   const urbanRuralOptions = [
@@ -188,6 +188,7 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
               setSelected={(option) => handleSelect("sex", option)}
               label={t("dropdown_sex_label")}
               classes="register-about-you__grid__content-item__inputs-container__sex-dropdown"
+              placeholder={t("sex_placeholder")}
             />
             <DropdownWithLabel
               options={getYearsOptions()}
@@ -196,6 +197,7 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
               setSelected={(option) => handleSelect("yearOfBirth", option)}
               label={t("dropdown_year_label")}
               classes="register-about-you__grid__content-item__inputs-container__year-dropdown"
+              placeholder={t("year_of_birth_placeholder")}
             />
             <DropdownWithLabel
               options={urbanRuralOptions}
@@ -204,6 +206,7 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
               setSelected={(option) => handleSelect("urbanRural", option)}
               label={t("living_place_label")}
               classes="register-about-you__grid__content-item__inputs-container__year-dropdown"
+              placeholder={t("living_place_placeholder")}
             />
           </div>
           {errors.submit ? <Error message={errors.submit} /> : null}

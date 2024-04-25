@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,11 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { languageSvc, countrySvc } from "@USupport-components-library/services";
-import { logoVerticalSvg } from "@USupport-components-library/assets";
+import {
+  logoVerticalSvg,
+  logoVerticalDarkSvg,
+} from "@USupport-components-library/assets";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./welcome.scss";
 
@@ -26,6 +30,7 @@ import "./welcome.scss";
 export const Welcome = () => {
   const { t, i18n } = useTranslation("welcome");
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
 
@@ -109,10 +114,11 @@ export const Welcome = () => {
         <GridItem md={8} lg={12} classes="welcome__grid__logo-item">
           <h2 className="welcome__grid__logo-item__heading">{t("heading")}</h2>
           <img
-            src={logoVerticalSvg}
+            src={theme === "dark" ? logoVerticalDarkSvg : logoVerticalSvg}
             alt="Logo"
             className="welcome__grid__logo-item__logo"
-          />
+          />{" "}
+          <h2 className="welcome__grid__logo-item__heading">{t("client")}</h2>
         </GridItem>
         <GridItem md={8} lg={12} classes="welcome__grid__content-item">
           {!(countriesQuery.isLoading || languagesQuery.isLoading) ? (

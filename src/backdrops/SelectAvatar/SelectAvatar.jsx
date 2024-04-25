@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import {
-  Backdrop,
-  Loading,
-  Grid,
-  GridItem,
-} from "@USupport-components-library/src";
-import { userSvc, clientSvc } from "@USupport-components-library/services";
-
-import { useError } from "#hooks";
+import { Backdrop, Grid, GridItem } from "@USupport-components-library/src";
+import { clientSvc } from "@USupport-components-library/services";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
@@ -30,8 +23,7 @@ export const SelectAvatar = ({ isOpen, onClose }) => {
   const image = clientData?.image;
 
   const [selectedAvatar, setSelectedAvatar] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  // const [error, setError] = useState();
 
   const changeAvatar = async () => {
     const res = await clientSvc.changeImage(selectedAvatar);
@@ -39,17 +31,14 @@ export const SelectAvatar = ({ isOpen, onClose }) => {
   };
 
   const changeAvatarMutation = useMutation(changeAvatar, {
-    onSuccess: (res) => {
-      console.log(res, "res");
-      setIsLoading(false);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["client-data"] });
       onClose();
     },
-    onError: (error) => {
-      setIsLoading(false);
-      const { message: errorMessage } = useError(error);
-      setError(errorMessage);
-    },
+    // onError: (error) => {
+    //   const { message: errorMessage } = useError(error);
+    //   setError(errorMessage);
+    // },
   });
 
   const avatars = [

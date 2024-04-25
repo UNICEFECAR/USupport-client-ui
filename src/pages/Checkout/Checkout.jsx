@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocation, Navigate, useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 import { Page, CheckoutForm as CheckoutFormBlock } from "#blocks";
-
+import { ThemeContext } from "@USupport-components-library/utils";
 import { paymentsSvc, clientSvc } from "@USupport-components-library/services";
 
 import "./checkout.scss";
@@ -23,6 +23,7 @@ export const Checkout = () => {
   const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("checkout-page");
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
   const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
   const stripePromise = loadStripe(stripePublicKey, {
     locale: i18n.language || "en",
@@ -49,7 +50,7 @@ export const Checkout = () => {
 
     return res?.data;
   };
-  const paymentIntent = useQuery(["paymentIntent"], fetchPaymentIntent, {
+  useQuery(["paymentIntent"], fetchPaymentIntent, {
     onSuccess: ({
       currency,
       price,
@@ -68,7 +69,7 @@ export const Checkout = () => {
   });
 
   const appearance = {
-    theme: "stripe",
+    theme: theme === "dark" ? "night" : "stripe",
     variables: {
       spacingGridRow: "1rem",
       fontFamily: "'Nunito', sans-serif",

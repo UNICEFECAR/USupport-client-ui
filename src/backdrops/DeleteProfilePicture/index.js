@@ -1,1 +1,1 @@
-export * from './DeleteProfilePicture.jsx';
+export * from "./DeleteProfilePicture.jsx";

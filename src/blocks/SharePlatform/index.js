@@ -1,1 +1,1 @@
-export * from './SharePlatform.jsx';
+export * from "./SharePlatform.jsx";

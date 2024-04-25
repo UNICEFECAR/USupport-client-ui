@@ -1,1 +1,1 @@
-export * from './PrivacyPolicy.jsx';
+export * from "./PrivacyPolicy.jsx";

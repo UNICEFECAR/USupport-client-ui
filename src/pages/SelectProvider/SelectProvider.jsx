@@ -1,19 +1,19 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useMemo, useContext, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
 
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import {
   RadialCircle,
   ButtonWithIcon,
-  Loading,
   Button,
   Modal,
   Input,
   Toggle,
   Block,
 } from "@USupport-components-library/src";
-import { clientSvc } from "@USupport-components-library/services";
+import { clientSvc, countrySvc } from "@USupport-components-library/services";
 
 import { useGetProvidersData, useError } from "#hooks";
 import { FilterProviders } from "#backdrops";
@@ -21,6 +21,13 @@ import { RootContext } from "#routes";
 import { Page, SelectProvider as SelectProviderBlock } from "#blocks";
 
 import "./select-provider.scss";
+
+const fetchCountry = async () => {
+  const { data } = await countrySvc.getActiveCountries();
+  const currentCountryId = localStorage.getItem("country_id");
+  const currentCountry = data.find((x) => x.country_id === currentCountryId);
+  return currentCountry?.alpha2 === "KZ" ? true : false;
+};
 
 /**
  * SelectProvider
@@ -35,6 +42,8 @@ export const SelectProvider = () => {
 
   const { isTmpUser, activeCoupon, setActiveCoupon } = useContext(RootContext);
 
+  const { data: isKzCountry } = useQuery(["country-min-price"], fetchCountry);
+
   if (isTmpUser) return <Navigate to="/dashboard" />;
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -42,98 +51,62 @@ export const SelectProvider = () => {
   const [couponValue, setCouponValue] = useState("");
   const [couponError, setCouponError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [sharedFilters, setSharedFilters] = useState({
-    maxPrice: "",
-    onlyFreeConsultation: false,
+
+  const initialFilters = useMemo(() => {
+    return {
+      providerTypes: [],
+      providerSex: [],
+      maxPrice: "",
+      language: null,
+      onlyFreeConsultation: isKzCountry || false,
+      availableAfter: "",
+      availableBefore: "",
+    };
+  }, [isKzCountry]);
+
+  const [allFilters, setAllFilters] = useState({
+    ...initialFilters,
   });
 
-  const [providersDataQuery, providersData, setProvidersData] =
-    useGetProvidersData(activeCoupon);
+  useEffect(() => {
+    if (isKzCountry) {
+      setAllFilters((prev) => ({
+        ...prev,
+        onlyFreeConsultation: true,
+      }));
+    }
+  }, [isKzCountry]);
+
+  // Set this to true when the filters have been changed and set
+  // it back to false when the providers data has been fetched
+  const [isFiltering, setIsFiltering] = useState(false);
+
+  const onSuccess = () => {
+    setIsFiltering(false);
+  };
+  const providersQuery = useGetProvidersData(
+    activeCoupon,
+    allFilters,
+    onSuccess
+  );
+  const [providersData, setProvidersData] = useState();
+
+  useEffect(() => {
+    if (providersQuery.data) {
+      setProvidersData(providersQuery.data.pages.flat());
+    }
+  }, [providersQuery.data]);
 
   const closeFilter = () => setIsFilterOpen(false);
   const handleFilterClick = () => {
     setIsFilterOpen(true);
   };
 
-  const checkProviderHasType = (provider, types) => {
-    return types
-      .map((x) => {
-        return provider.specializations.includes(x);
-      })
-      .some((x) => x === true);
-  };
-
   const handleFilterSave = (data) => {
-    const {
-      providerTypes,
-      providerSex,
-      maxPrice,
-      language,
-      onlyFreeConsultation,
-      availableAfter,
-      availableBefore,
-    } = data;
-    setSharedFilters({
-      maxPrice,
-      onlyFreeConsultation,
-    });
-    const initialData = JSON.parse(
-      JSON.stringify(providersDataQuery.data || [])
-    );
-    const filteredData = [];
-    for (let i = 0; i < initialData.length; i++) {
-      const provider = initialData[i];
-      const hasType =
-        !providerTypes || providerTypes.length === 0
-          ? true
-          : checkProviderHasType(provider, providerTypes);
+    setIsFiltering(true);
 
-      const isDesiredSex =
-        !providerSex || providerSex.length === 0
-          ? true
-          : providerSex.includes(provider.sex);
+    setAllFilters((prev) => ({ ...prev, ...data }));
 
-      const isPriceMatching =
-        maxPrice === ""
-          ? true
-          : provider.consultationPrice <= Number(maxPrice)
-          ? true
-          : false;
-
-      const providerLanguages = provider.languages.map((x) => x.language_id);
-      const providerHasLanguage = !language
-        ? true
-        : providerLanguages.includes(language);
-
-      const providesFreeConsultation = !onlyFreeConsultation
-        ? true
-        : provider.consultationPrice === 0 || !provider.consultationPrice;
-
-      const isAvailableAfter = !availableAfter
-        ? true
-        : new Date(new Date(availableAfter).setHours(0, 0, 0, 0)).getTime() <=
-          new Date(provider.earliestAvailableSlot).getTime();
-
-      const isAvailableBefore = !availableBefore
-        ? true
-        : new Date(availableBefore).getTime() >=
-          new Date(
-            new Date(provider.earliestAvailableSlot).setHours(0, 0, 0, 0)
-          ).getTime();
-
-      if (
-        hasType &&
-        isDesiredSex &&
-        isPriceMatching &&
-        providerHasLanguage &&
-        providesFreeConsultation &&
-        isAvailableAfter &&
-        isAvailableBefore
-      ) {
-        filteredData.push(provider);
-      }
-    }
-    setProvidersData(filteredData);
     closeFilter();
   };
 
@@ -155,6 +128,7 @@ export const SelectProvider = () => {
           campaignId: data.campaign_id,
         });
         closeCouponModal();
+        setCouponError("");
       }
     } catch (err) {
       const { message: errorMessage } = useError(err);
@@ -163,6 +137,17 @@ export const SelectProvider = () => {
       setIsLoading(false);
     }
   };
+
+  const providerLanguages = providersQuery.data?.pages
+    .flat()
+    .map((x) => x.languages)
+    .flat()
+    ?.reduce((acc, curr) => {
+      if (!acc.some((y) => y.language_id === curr.language_id)) {
+        acc.push(curr);
+      }
+      return acc;
+    }, []);
 
   return (
     <Page
@@ -194,24 +179,29 @@ export const SelectProvider = () => {
         activeCoupon={activeCoupon}
         removeCoupon={removeCoupon}
         openCouponModal={openCouponModal}
-        sharedFilters={sharedFilters}
+        allFilters={allFilters}
+        setAllFilters={setAllFilters}
+        isFiltering={isFiltering}
+        isToggleDisabled={isKzCountry}
       />
-      {(providersDataQuery.isLoading && !providersData) ||
-      providersDataQuery.isFetching ? (
-        <Loading size="lg" />
-      ) : (
-        <SelectProviderBlock
-          providers={providersData}
-          activeCoupon={activeCoupon}
-          isLoading={providersDataQuery.isFetching}
-        />
-      )}
+
+      <SelectProviderBlock
+        providers={providersData}
+        activeCoupon={activeCoupon}
+        isLoading={providersQuery.isFetching}
+        providersQuery={providersQuery}
+      />
+
       {width < 768 && <RadialCircle color="purple" />}
 
       <FilterProviders
         isOpen={isFilterOpen}
         onClose={(data) => handleFilterSave(data)}
-        sharedFilters={sharedFilters}
+        allFilters={allFilters}
+        setAllFilters={setAllFilters}
+        isToggleDisabled={isKzCountry}
+        languages={providerLanguages}
+        initialFilters={initialFilters}
       />
       <Modal
         isOpen={isCouponModalOpen}
@@ -242,38 +232,32 @@ const FiltersBlock = ({
   activeCoupon,
   removeCoupon,
   openCouponModal,
-  sharedFilters,
+  allFilters,
+  setAllFilters,
+  isToggleDisabled = false,
   t,
 }) => {
-  const [data, setData] = useState({
-    maxPrice: "",
-    onlyFreeConsultation: false,
-  });
-
-  useEffect(() => {
-    setData({ ...sharedFilters });
-  }, [sharedFilters]);
-
   const handleChange = (field, val) => {
-    const newData = { ...data };
+    const newData = { ...allFilters };
     newData[field] = val;
-    setData(newData);
+    setAllFilters(newData);
     handleSave(newData);
   };
 
   return (
     <Block classes="page__select-provider__filters-block">
-      <Input
+      {/* <Input
         type="number"
         label={t("max_price")}
         placeholder={t("max_price")}
-        value={data.maxPrice}
+        value={allFilters.maxPrice}
         onChange={(e) => handleChange("maxPrice", e.target.value)}
-      />
+      /> */}
       <Toggle
-        isToggled={data.onlyFreeConsultation}
+        isToggled={allFilters.onlyFreeConsultation}
         setParentState={(val) => handleChange("onlyFreeConsultation", val)}
         label={t("providers_free_consultation_label")}
+        isDisabled={isToggleDisabled}
       />
       <Button
         label={

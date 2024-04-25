@@ -15,6 +15,12 @@
     margin-right: $spacing_2_2;
   }
 
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__participants {
     position: relative;
     min-height: 100vh;
@@ -27,6 +33,65 @@
       min-width: calc(100vw - 50em);
       min-height: 48rem;
     }
+
+    & .remote-video,
+    & .remote-video-off.video-off {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      object-fit: cover;
+      transform: scaleX(-1);
+
+      @media screen and (min-width: 1024px) {
+        // width: calc(100vw - 50rem);
+        width: 100%;
+        border-radius: 2.5rem;
+        // max-height: 80vh;
+        max-height: calc(100vh - 15rem);
+      }
+    }
+
+    & .local-video,
+    & .local-video-off.video-off {
+      visibility: visible;
+      width: 13rem;
+      height: 13rem;
+      object-fit: cover;
+      position: absolute;
+      bottom: 0.5rem;
+      right: $spacing_1_8;
+      z-index: 2;
+      transform: scaleX(-1);
+      border-radius: 2.5rem;
+
+      @media screen and (min-width: 1024px) {
+        width: 19rem;
+        height: 19rem;
+      }
+    }
+
+    & .local-video-off.video-off,
+    & .remote-video-off.video-off {
+      transform: scaleX(1);
+    }
+
+    &--shrink-video {
+      & .remote-video,
+      & .remote-video-off.video-off {
+        height: 40vh;
+        width: 50vh;
+        margin: 0 auto;
+
+        @media screen and (min-width: 1024px) {
+          height: calc(50vh - 10rem);
+        }
+      }
+      & .local-video {
+        visibility: hidden;
+      }
+    }
   }
 
   .video-off {
@@ -35,48 +100,6 @@
     border: 1px solid $color_primary_20809e;
     display: flex;
     justify-content: center;
-  }
-
-  & .remote-video,
-  & .remote-video-off.video-off {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    object-fit: cover;
-    transform: scaleX(-1);
-
-    @media screen and (min-width: 1024px) {
-      // width: calc(100vw - 50rem);
-      width: 100%;
-      border-radius: 2.5rem;
-      // max-height: 80vh;
-      max-height: calc(100vh - 15rem);
-    }
-  }
-
-  & .local-video,
-  & .local-video-off.video-off {
-    width: 13rem;
-    height: 13rem;
-    object-fit: cover;
-    position: absolute;
-    bottom: 0.5rem;
-    right: $spacing_1_8;
-    z-index: 2;
-    transform: scaleX(-1);
-    border-radius: 2.5rem;
-
-    @media screen and (min-width: 1024px) {
-      width: 19rem;
-      height: 19rem;
-    }
-  }
-
-  & .local-video-off.video-off,
-  & .remote-video-off.video-off {
-    transform: scaleX(1);
   }
 
   @media screen and (min-width: $screen-md) {

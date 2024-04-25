@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 import {
   Backdrop,
   CheckBoxGroup,
-  Input,
   DropdownWithLabel,
   Toggle,
   DateInput,
 } from "@USupport-components-library/src";
-import { languageSvc } from "@USupport-components-library/services";
 
 import "./filter-providers.scss";
 
@@ -21,59 +18,32 @@ import "./filter-providers.scss";
  *
  * @return {jsx}
  */
-export const FilterProviders = ({ isOpen, onClose, sharedFilters }) => {
+export const FilterProviders = ({
+  isOpen,
+  onClose,
+  allFilters,
+  setAllFilters,
+  isToggleDisabled = false,
+  languages,
+  initialFilters,
+}) => {
   const { t } = useTranslation("filter-providers");
 
-  const fetchLanguages = async () => {
-    const res = await languageSvc.getAllLanguages();
-    const languages = res.data.map((x) => {
-      const languageObject = {
-        value: x["language_id"],
-        alpha2: x.alpha2,
-        label: x.name,
-        id: x["language_id"],
-      };
-      return languageObject;
-    });
-    return languages;
-  };
-  const languagesQuery = useQuery(["all-languages"], fetchLanguages, {
-    retry: false,
-  });
-
-  const initialFilters = {
-    providerTypes: [],
-    providerSex: [],
-    maxPrice: "",
-    language: null,
-    onlyFreeConsultation: false,
-    availableAfter: "",
-    availableBefore: "",
-  };
-
-  const [data, setData] = useState(initialFilters);
-
-  useEffect(() => {
-    setData((data) => ({
-      ...data,
-      maxPrice: sharedFilters.maxPrice,
-      onlyFreeConsultation: sharedFilters.onlyFreeConsultation,
-    }));
-  }, [sharedFilters]);
+  const [data, setData] = useState({ ...allFilters });
 
   const [providerTypes, setProviderTypes] = useState([
     {
-      label: t("provider_psychologist"),
+      label: "provider_psychologist",
       value: "psychologist",
       isSelected: false,
     },
     {
-      label: t("provider_psychotherapist"),
+      label: "provider_psychotherapist",
       value: "psychotherapist",
       isSelected: false,
     },
     {
-      label: t("provider_psychiatrist"),
+      label: "provider_psychiatrist",
       value: "psychiatrist",
       isSelected: false,
     },
@@ -81,13 +51,40 @@ export const FilterProviders = ({ isOpen, onClose, sharedFilters }) => {
 
   const [providerSex, setProviderSex] = useState([
     {
-      label: t("male"),
+      label: "male",
       value: "male",
       isSelected: false,
     },
-    { label: t("female"), value: "female", isSelected: false },
-    { label: t("unspecified"), value: "unspecified", isSelected: false },
+    { label: "female", value: "female", isSelected: false },
+    { label: "unspecified", value: "unspecified", isSelected: false },
+    // { label: "not_mentioned", value: "not_mentioned", isSelected: false },
   ]);
+
+  useEffect(() => {
+    const dataCopy = JSON.stringify(data);
+    const allFiltersCopy = JSON.stringify(allFilters);
+    if (dataCopy !== allFiltersCopy) {
+      setData(allFilters);
+    }
+
+    setProviderTypes((prev) => {
+      return prev.map((x) => {
+        return {
+          ...x,
+          isSelected: allFilters.providerTypes.includes(x.value),
+        };
+      });
+    });
+
+    setProviderSex((prev) => {
+      return prev.map((x) => {
+        return {
+          ...x,
+          isSelected: allFilters.providerSex.includes(x.value),
+        };
+      });
+    });
+  }, [allFilters]);
 
   const handleSelect = (field, value) => {
     const dataCopy = { ...data };
@@ -105,12 +102,12 @@ export const FilterProviders = ({ isOpen, onClose, sharedFilters }) => {
       .filter((x) => x.isSelected)
       .map((x) => x.value);
 
-    setData(dataCopy);
+    setAllFilters(dataCopy);
     onClose(dataCopy);
   };
 
   const handleResetFilters = () => {
-    setData(initialFilters);
+    setAllFilters(initialFilters);
     onClose(initialFilters);
   };
 
@@ -129,62 +126,63 @@ export const FilterProviders = ({ isOpen, onClose, sharedFilters }) => {
     >
       <div className="filter-providers__content">
         <div className="filter-providers__content__inputs-container">
-          <CheckBoxGroup
-            name="providerType"
-            label={t("provider_type_checkbox_group_label")}
-            options={providerTypes}
-            setOptions={setProviderTypes}
-          />
+          {/* <CheckBoxGroup
+              name="providerType"
+              label={t("provider_type_checkbox_group_label")}
+              options={providerTypes.map((x) => ({
+                ...x,
+                label: t(x.label),
+              }))}
+              setOptions={setProviderTypes}
+            /> */}
           <CheckBoxGroup
             name="sex"
             label={t("provider_sex_checkbox_group_label")}
-            options={providerSex}
+            options={providerSex.map((x) => ({
+              ...x,
+              label: t(x.label),
+            }))}
             setOptions={setProviderSex}
           />
           <div>
-            <p className="filter-providers__content__inputs-container__free-text text">
-              {t("providers_free_consultation_label")}
-            </p>
             <Toggle
               isToggled={data.onlyFreeConsultation}
               setParentState={(checked) =>
                 handleSelect("onlyFreeConsultation", checked)
               }
+              label={t("providers_free_consultation_label")}
+              isDisabled={isToggleDisabled}
             />
           </div>
           <DateInput
             label={t("available_after")}
-            onChange={(e) =>
-              setData((prev) => ({
-                ...prev,
-                availableAfter: e?.currentTarget?.value,
-              }))
-            }
+            onChange={(e) => {
+              handleSelect("availableAfter", e.target.value);
+            }}
             value={data.availableAfter || ""}
             placeholder="DD.MM.YYY"
             classes={["client-ratings__backdrop__date-picker"]}
           />
           <DateInput
             label={t("available_before")}
-            onChange={(e) =>
-              setData((prev) => ({
-                ...prev,
-                availableBefore: e?.currentTarget?.value,
-              }))
-            }
+            onChange={(e) => handleSelect("availableBefore", e.target.value)}
             value={data.availableBefore || ""}
             placeholder="DD.MM.YYY"
             classes={["client-ratings__backdrop__date-picker"]}
           />
-          <Input
+          {/* <Input
             value={data.maxPrice}
             onChange={(e) => handleSelect("maxPrice", e.target.value)}
             label={t("max_price")}
             placeholder={t("max_price_placeholder")}
             type="number"
-          />
+          /> */}
           <DropdownWithLabel
-            options={languagesQuery.data || []}
+            options={
+              languages?.map((x) => {
+                return { ...x, label: x.name, value: x.language_id };
+              }) || []
+            }
             selected={data.language}
             setSelected={(selectedOption) =>
               handleSelect("language", selectedOption)

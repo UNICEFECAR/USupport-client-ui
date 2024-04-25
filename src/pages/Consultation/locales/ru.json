@@ -20,6 +20,7 @@
   "provider_camera_on": "Консультант включил камеру",
   "provider_microphone_off": "Консультант отключил микрофон",
   "provider_microphone_on": "Консультант включил микрофон",
+  "chat_history_deleted_by_client": "Вы удалили историю чата",
 
   "show_system_messages": "Показать системные сообщения",
   "show_previous_consultations": "Показать предыдущие консультации",
@@ -27,5 +28,6 @@
   "show_options": "Настройки",
   "search": "Поиск",
   "sponsored_by": "Эта сессия спонсируется: ",
-  "consultation_end_reminder": "Ваша консультация закончится через {{minutes}} минут"
+  "consultation_end_reminder": "Сіздің консультацияңыз {{minutes}} минуттан кейін аяқталады",
+  "textarea_placeholder": "Введите Ваше сообщение здесь..."
 }

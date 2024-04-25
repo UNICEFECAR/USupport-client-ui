@@ -46,14 +46,16 @@
       width: 6rem;
       height: 9rem;
       cursor: pointer;
-    }
 
-    & .not-selected {
-      opacity: 0.5;
-    }
+      &--not-selected {
+        opacity: 0.5;
+      }
 
-    & .selected {
-      color: $color_black_37;
+      &__text--selected {
+        &.small-text {
+          color: $color_black_37;
+        }
+      }
     }
   }
 }

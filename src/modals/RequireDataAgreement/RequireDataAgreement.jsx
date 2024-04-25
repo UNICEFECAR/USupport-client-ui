@@ -5,8 +5,9 @@ import { toast } from "react-toastify";
 
 import { Modal } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
-
 import { mascotHappyBlue } from "@USupport-components-library/assets";
+
+import { useError } from "#hooks";
 
 import "./require-data-agreement.scss";
 
@@ -77,7 +78,9 @@ export const RequireDataAgreement = ({
           <span
             className="require-data-agreement__terms-text__link"
             onClick={() =>
-              window.open(`${WEBSITE_URL}/privacy-policy`, "_blank").focus()
+              window
+                .open(`${WEBSITE_URL}/privacy-policy`, "_blank", "noreferrer")
+                .focus()
             }
           >
             {t("privacy_policy")}

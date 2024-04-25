@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import PinInput from "react-pin-input";
 
 import { useError } from "#hooks";
 
@@ -11,6 +10,7 @@ import {
   ButtonWithIcon,
   Button,
   Error,
+  PinInput,
 } from "@USupport-components-library/src";
 
 import { userSvc } from "@USupport-components-library/services";
@@ -109,8 +109,8 @@ export const CodeVerification = ({
         <div className="code-verification__content">
           <PinInput
             length={4}
-            secret={false}
-            onChange={(value) => handleCodeChange(value)}
+            secret={isCodeHidden}
+            onChange={handleCodeChange}
           />
           <ButtonWithIcon
             classes="code-verification__view-code-button"

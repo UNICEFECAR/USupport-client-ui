@@ -129,6 +129,8 @@ export const RegisterEmail = () => {
       classes="page__register-email"
       heading={t("heading")}
       handleGoBack={handleGoBack}
+      renderLanguageSelector={true}
+      showEmergencyButton={false}
     >
       <RegisterEmailBlock
         data={data}
@@ -140,7 +142,7 @@ export const RegisterEmail = () => {
         }
         submitError={submitError}
         handleCaptchaChange={handleCaptchaChange}
-        isSubmitEnabled={!!isCaptchaValid}
+        isCaptchaValid={!!isCaptchaValid}
         showCaptcha={SHOW_CAPTCHA}
       />
       <CodeVerification

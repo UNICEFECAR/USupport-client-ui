@@ -10,8 +10,6 @@ import { useCancelConsultation } from "#hooks";
 
 import { ONE_HOUR } from "@USupport-components-library/utils";
 
-const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
-
 import "./cancel-consultation.scss";
 
 /**
@@ -21,12 +19,7 @@ import "./cancel-consultation.scss";
  *
  * @return {jsx}
  */
-export const CancelConsultation = ({
-  isOpen,
-  onClose,
-  consultation,
-  provider,
-}) => {
+export const CancelConsultation = ({ isOpen, onClose, consultation }) => {
   const queryClient = useQueryClient();
   const currencySymbol = localStorage.getItem("currency_symbol");
 

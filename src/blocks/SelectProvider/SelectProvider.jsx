@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import InfiniteScroll from "react-infinite-scroll-component";
+
 import {
   Block,
   Grid,
   GridItem,
   ProviderOverview,
+  Loading,
 } from "@USupport-components-library/src";
 
 import "./select-provider.scss";
@@ -17,14 +20,26 @@ import "./select-provider.scss";
  *
  * @return {jsx}
  */
-export const SelectProvider = ({ providers, activeCoupon }) => {
+export const SelectProvider = ({
+  activeCoupon,
+  providersQuery,
+  isFiltering,
+}) => {
   const { t } = useTranslation("select-provider");
   const navigate = useNavigate();
 
   const handleProviderClick = (provider) => {
     navigate(`/provider-overview?provider-id=${provider.providerDetailId}`);
   };
+
+  const providers = providersQuery.data?.pages.flat() || [];
   const renderProviders = () => {
+    if ((isFiltering && providersQuery.isFetching) || providersQuery.isLoading)
+      return (
+        <GridItem classes="select-provider__grid__item-no-match" md={8} lg={12}>
+          <Loading />
+        </GridItem>
+      );
     if (providers?.length === 0)
       return (
         <GridItem classes="select-provider__grid__item-no-match" md={8} lg={12}>
@@ -59,9 +74,19 @@ export const SelectProvider = ({ providers, activeCoupon }) => {
 
   return (
     <Block classes="select-provider">
-      <Grid md={8} lg={12} classes="select-provider__grid">
-        {renderProviders()}
-      </Grid>
+      <InfiniteScroll
+        dataLength={providersQuery.data?.pages.length || 0}
+        next={providersQuery.fetchNextPage}
+        hasMore={providersQuery.hasNextPage}
+        loader={<Loading />}
+        initialScrollY={20}
+        hasChildren={true}
+        scrollThreshold={0}
+      >
+        <Grid md={8} lg={12} classes="select-provider__grid">
+          {renderProviders()}
+        </Grid>
+      </InfiniteScroll>
     </Block>
   );
 };
