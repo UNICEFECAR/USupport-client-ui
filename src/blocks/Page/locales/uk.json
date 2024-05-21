@@ -1,0 +1,29 @@
+{
+  "page_1": "Головна",
+  "page_2": "Консультації",
+  "page_3": "Інформаційний портал",
+  "page_4": "Мої запитання й відповіді",
+
+  "footer_1": "Головна",
+  "footer_2": "Консультації",
+  "footer_3": "Інформаційний портал",
+  "footer_4": "Ваш профіль",
+  "footer_5": "Умови й положення",
+  "footer_6": "Політика конфіденційності",
+  "footer_7": "Налаштування файлів cookie",
+  "footer_8": "ПОШИРЕНІ ЗАПИТАННЯ",
+
+  "emergency_button": "SOS-центр",
+
+  "button_text": "Перейти до додатку",
+  "contact_us": "Зв'яжіться з нами",
+  "your_profile_text": "Ваш профіль",
+  
+  "password_placeholder": "Password", 
+  "password": "Please enter your password to access the site",
+  "wrong_password": "Wrong password",
+  "submit": "Submit",
+
+  "dark": "Темний",
+  "light": "Світлий"
+}

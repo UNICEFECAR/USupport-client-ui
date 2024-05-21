@@ -1,0 +1,19 @@
+{
+  "email_error": "Будь ласка, введіть дійсну електронну адресу",
+  "password_error": "Пароль має містити щонайменше 8 символів, 1 велику літеру, 1 малу літеру і 1 цифру",
+  "email_label": "Електронна пошта *",
+  "nickname_label": "Нікнейм *",
+  "nickname_placeholder": "Введіть нікнейм",
+  "nickname_error": "Нікнейм обов'язковий",
+  "password_label": "Пароль *",
+  "terms_agreement_text_1": "Погоджуюся, що",
+  "terms_agreement_text_2": "Політика конфіденційності",
+  "terms_agreement_text_3": "і",
+  "terms_agreement_text_4": "Умови використання",
+  "register_button": "Зареєструватися",
+  "paragraph": "Або зареєструватися на сайті:",
+  "login_button_label": "Вже маю обліковий запис",
+  "confirm_password_label": "Підтвердити пароль",
+  "password_match_error": "Поля «Пароль» і «Підтвердити пароль» не збігаються",
+  "age_terms_agreement_text_1": "Мені більше 13 років"
+}

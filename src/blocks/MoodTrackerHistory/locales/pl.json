@@ -1,0 +1,11 @@
+{
+    "heading": "Ogólnie rzecz biorąc, czułeś się {{feeling}} w ciągu ostatnich 30 dni",
+    "perfect": "Doskonały",
+    "happy": "Szczęśliwy",
+    "sad": "Smutny",
+    "depressed": "Przygnębiony",
+    "worried": "Zmartwiony",
+    "last_thirty_days_text": "W ciągu ostatnich 30 dni zgłaszałeś(-aś), że czułeś(-aś) się:",
+    "time": "raz",
+    "times": "razy"
+}

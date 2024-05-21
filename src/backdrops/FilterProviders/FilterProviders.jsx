@@ -144,7 +144,7 @@ export const FilterProviders = ({
             }))}
             setOptions={setProviderSex}
           />
-          <div>
+          {/* <div>
             <Toggle
               isToggled={data.onlyFreeConsultation}
               setParentState={(checked) =>
@@ -153,7 +153,7 @@ export const FilterProviders = ({
               label={t("providers_free_consultation_label")}
               isDisabled={isToggleDisabled}
             />
-          </div>
+          </div> */}
           <DateInput
             label={t("available_after")}
             onChange={(e) => {
