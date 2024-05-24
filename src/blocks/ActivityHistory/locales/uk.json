@@ -22,5 +22,5 @@
   "provider_microphone_off": "Консультант(ка) вимкнув(ла) мікрофон",
   "provider_microphone_on": "Консультант(ка) увімкнув(ла) мікрофон",
   
-  "exported_at": "Exported at: {{time}}"
+  "exported_at": "Експортновано о {{time}}"
 }
