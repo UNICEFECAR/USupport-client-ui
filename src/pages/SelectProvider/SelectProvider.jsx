@@ -253,12 +253,12 @@ const FiltersBlock = ({
         value={allFilters.maxPrice}
         onChange={(e) => handleChange("maxPrice", e.target.value)}
       /> */}
-      <Toggle
+      {/* <Toggle
         isToggled={allFilters.onlyFreeConsultation}
         setParentState={(val) => handleChange("onlyFreeConsultation", val)}
         label={t("providers_free_consultation_label")}
         isDisabled={isToggleDisabled}
-      />
+      /> */}
       <Button
         label={
           activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")

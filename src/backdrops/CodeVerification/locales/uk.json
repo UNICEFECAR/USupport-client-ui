@@ -1,0 +1,11 @@
+{
+  "heading": "Перевірка коду",
+  "subheading": "Будь ласка, введіть код, який отримали на електронну пошту. Воно дійсне протягом 30 хвилин після того, як Ви отримали лист.",
+  "expiration_text": "Термін дії коду закінчується в ",
+  "button_with_icon_label_view": "Переглянути код",
+  "button_with_icon_label_hide": "Приховати код",
+  "send_button_label": "Продовжити",
+  "didnt_get_code": "Не отримали коду?",
+  "resend_code_button_label": "Повторно надіслати листа",
+  "seconds": "за {{seconds}} секунд"
+}
