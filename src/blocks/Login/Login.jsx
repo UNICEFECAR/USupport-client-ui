@@ -65,6 +65,7 @@ export const Login = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
+      sessionStorage.setItem("userSession", true);
 
       queryClient.setQueryData(
         ["client-data"],
@@ -98,7 +99,7 @@ export const Login = () => {
     loginMutation.mutate();
   };
 
-  const handleForgotPassowrd = () => {
+  const handleForgotPassword = () => {
     navigate("/forgot-password");
   };
 
@@ -146,7 +147,7 @@ export const Login = () => {
               color="purple"
               classes="login__grid__forgot-password"
               label={t("forgot_password_label")}
-              onClick={() => handleForgotPassowrd()}
+              onClick={() => handleForgotPassword()}
             />
             {errors.submit ? <Error message={errors.submit} /> : null}
             <Button
