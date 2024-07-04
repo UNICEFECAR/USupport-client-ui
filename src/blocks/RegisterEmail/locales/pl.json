@@ -1,9 +1,9 @@
 {
-  "email_error": "Wprowadź ważny adres e-mail",
+  "email_error": "Wprowadź ważny adres email",
   "password_error": "Hasło powinno zawierać co najmniej 8 znaków, 1 wielką literę, 1 małą literę i 1 cyfrę.",
   "email_label": "Email *",
   "nickname_label": "Nick *",
-  "nickname_placeholder": "Wprowadzić swój nick",
+  "nickname_placeholder": "Wprowadź swój nick",
   "nickname_error": "Nick jest wymagany",
   "password_label": "Hasło *",
   "terms_agreement_text_1": "Zgadzam się z",

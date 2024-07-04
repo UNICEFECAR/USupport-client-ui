@@ -19,10 +19,10 @@
   "contact_us": "Skontaktuj się z nami",
   "your_profile_text": "Twój profil",
   
-  "password_placeholder": "Password", 
-  "password": "Please enter your password to access the site",
-  "wrong_password": "Wrong password",
-  "submit": "Submit",
+  "password_placeholder": "Hasło", 
+  "password": "Wprowadź hasło aby uzyskać dostęp do platformy",
+  "wrong_password": "Nieprawidłowe hasło",
+  "submit": "Wyślij",
 
   "dark": "Ciemny",
   "light": "Jasny"
