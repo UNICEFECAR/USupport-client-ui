@@ -1,12 +1,12 @@
 {
   "issue": "Zagadnienie",
-  "issue_placeholder": "Wybrać zagadnienie",
+  "issue_placeholder": "Wybierz zagadnienie",
   "issue_error": "Wybierz zagadnienie",
-  "email_error": "Wprowadź swój adres e-mail",
+  "email_error": "Wprowadź swój adres email",
   "message": "Wiadomość",
   "message_placeholder": "Twoja wiadomość do nas",
   "message_error": "Wprowadź wiadomość",
-  "email": "E-mail",
+  "email": "Email",
   "button": "Wyślij wiadomość",
 
   "modal_title": "Twoja wiadomość została pomyślnie wysłana",

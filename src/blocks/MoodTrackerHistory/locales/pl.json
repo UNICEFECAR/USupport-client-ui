@@ -1,6 +1,6 @@
 {
-    "heading": "Ogólnie rzecz biorąc, czułeś się {{feeling}} w ciągu ostatnich 30 dni",
-    "perfect": "Doskonały",
+    "heading": "Ogólnie rzecz biorąc, czułeś się/czułaś się {{feeling}} w ciągu ostatnich 30 dnik",
+    "perfect": "Doskonale",
     "happy": "Szczęśliwy",
     "sad": "Smutny",
     "depressed": "Przygnębiony",

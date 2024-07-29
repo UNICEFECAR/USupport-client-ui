@@ -9,11 +9,11 @@
   "consultation_suggestion": "{{providerName}} sugerował konsultację w dniu {{date}} od {{startHour}} do {{endHour}}",
   "consultation_suggestion_booking": "Zaakceptowałeś sugerowaną konsultację z {{providerName}} na {{date}} od {{startHour}} do {{endHour}}",
   "consultation_suggestion_cancellation": "Odrzuciłeś sugerowaną konsultację z {{providerName}} na {{date}} od {{startHour}} do {{endHour}}",
-  "consultation_started": "Rozpoczęła się konsultacja z dostawcą {{providerName}} ",
+  "consultation_started": "Rozpoczęła się konsultacja z konsultantem  {{providerName}}",
   "join": "Dołącz",
   "accept": "Akceptuj",
   "accept_consultation_success": "Konsultacja została pomyślnie zaakceptowana",
-  "reject": "Odrzucić",
+  "reject": "Odrzuć ",
   "reject_consultation_success": "Konsultacja została pomyślnie odrzucona",
   "no_notifications": "Nie masz jeszcze żadnych powiadomień.",
   "yesterday": "wczoraj"
