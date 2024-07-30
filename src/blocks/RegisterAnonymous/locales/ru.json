@@ -1,6 +1,6 @@
 {
-  "nickname_label": "Псведоним *",
-  "nickname_placeholder": "Введите сврй псевдоним",
+  "nickname_label": "Псевдоним *",
+  "nickname_placeholder": "Введите свой псевдоним",
   "nickname_error": "Необходимо указать псевдоним",
   "paragraph_1": "Ваш код анонимного доступа",
   "password_label": "Пароль *",
