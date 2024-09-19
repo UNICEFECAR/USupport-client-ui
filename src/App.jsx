@@ -16,6 +16,8 @@ import AOS from "aos";
 
 import "./App.scss";
 
+const IS_DEV = process.env.NODE_ENV === "development";
+
 // Create a react-query client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,13 +42,17 @@ function App() {
       i18n.changeLanguage(language);
     }
 
-    window.addEventListener("beforeunload", (e) => {
-      if (!(performance.getEntriesByType("navigation")[0].type === "reload")) {
-        // If the page is being refreshed, do nothing
-        e.preventDefault();
-        userSvc.logout();
-      }
-    });
+    if (!IS_DEV) {
+      window.addEventListener("beforeunload", (e) => {
+        if (
+          !(performance.getEntriesByType("navigation")[0].type === "reload")
+        ) {
+          // If the page is being refreshed, do nothing
+          e.preventDefault();
+          userSvc.logout();
+        }
+      });
+    }
   }, []);
 
   const getDefaultTheme = () => {
