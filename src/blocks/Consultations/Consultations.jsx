@@ -156,6 +156,7 @@ export const Consultations = ({
             handleAcceptConsultation={acceptConsultation}
             handleRejectConsultation={rejectConsultation}
             sponsorImage={consultation.sponsorImage}
+            withOrganization={!!consultation.organizationId}
             t={t}
           />
         </GridItem>

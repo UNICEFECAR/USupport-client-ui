@@ -2,6 +2,7 @@
 
 .article-view {
   text-align: left;
+  margin-top: $spacing_1_6;
 
   @media screen and (min-width: $screen-lg) {
     padding: 0 $spacing_30_7;
@@ -23,6 +24,7 @@
   &__labels-item {
     display: flex;
     flex-direction: row;
+    margin-bottom: $spacing_1_6;
 
     padding-top: $spacing_0_8;
     flex-wrap: wrap;
