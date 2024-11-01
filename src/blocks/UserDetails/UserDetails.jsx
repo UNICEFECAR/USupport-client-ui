@@ -155,6 +155,10 @@ export const UserDetails = ({
     ) {
       years.push({ label: year.toString(), value: year });
     }
+    years.push({
+      label: t("parent"),
+      value: "parent",
+    });
     return years.reverse();
   }, [countriesData]);
 
