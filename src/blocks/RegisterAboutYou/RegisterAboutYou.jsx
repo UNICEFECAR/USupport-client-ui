@@ -36,7 +36,7 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
     name: Joi.string().allow(null, "", " ").label(t("name_error")),
     surname: Joi.string().allow(null, "", " ").label(t("surname_error")),
     sex: Joi.string().invalid(null).label(t("sex_error")),
-    yearOfBirth: Joi.number().invalid(null).label(t("year_of_birth_error")),
+    yearOfBirth: Joi.string().invalid(null).label(t("year_of_birth_error")),
     urbanRural: Joi.string().invalid(null).label(t("place_of_living_error")),
   });
 
@@ -91,6 +91,10 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
     ) {
       years.push({ label: year.toString(), value: year });
     }
+    years.push({
+      label: t("parent"),
+      value: "parent",
+    });
     return years.reverse();
   }, [countriesData]);
   const onMutateSuccess = () => {
@@ -194,7 +198,9 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
               options={getYearsOptions()}
               selected={data.yearOfBirth}
               errorMessage={errors.yearOfBirth}
-              setSelected={(option) => handleSelect("yearOfBirth", option)}
+              setSelected={(option) =>
+                handleSelect("yearOfBirth", option.toString())
+              }
               label={t("dropdown_year_label")}
               classes="register-about-you__grid__content-item__inputs-container__year-dropdown"
               placeholder={t("year_of_birth_placeholder")}
