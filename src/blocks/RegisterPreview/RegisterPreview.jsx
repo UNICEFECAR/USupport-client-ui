@@ -119,15 +119,15 @@ export const RegisterPreview = ({ handleLoginRedirection }) => {
               onClick={handleLoginRedirection}
             />
             <Button
-              label={t("register_email")}
-              size="lg"
-              onClick={() => handleRedirect("email")}
-            />
-            <Button
               label={t("register_anonymously")}
               size="lg"
-              type="secondary"
               onClick={() => handleRedirect("anonymously")}
+            />
+            <Button
+              label={t("register_email")}
+              size="lg"
+              type="ghost"
+              onClick={() => handleRedirect("email")}
             />
             <Button
               label={t("continue_as_guest")}
