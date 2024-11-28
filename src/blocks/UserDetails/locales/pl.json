@@ -39,5 +39,6 @@
   "success_message": "Profil został pomyślnie zaktualizowany",
   "sex_placeholder": "Wprowadź swoją płeć",
   "year_of_birth_placeholder": "Wprowadź swój rok urodzenia",
-  "living_place_placeholder": "Wprowadź swoje miejsce zamieszkania"
+  "living_place_placeholder": "Wprowadź swoje miejsce zamieszkania",
+  "parent": "Rodzic"
 }

@@ -46,14 +46,14 @@ export const RegisterAnonymous = () => {
       .label(t("password_match_error")),
     nickname: Joi.string().label(t("nickname_error")),
     isPrivacyAndTermsSelected: Joi.boolean().invalid(false),
-    isAgeTermsSelected: Joi.boolean().invalid(false),
+    // isAgeTermsSelected: Joi.boolean().invalid(false),
   });
 
   const [data, setData] = useState({
     password: "",
     nickname: "",
     isPrivacyAndTermsSelected: false,
-    isAgeTermsSelected: false,
+    // isAgeTermsSelected: false,
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
@@ -163,7 +163,7 @@ export const RegisterAnonymous = () => {
     data.password &&
     data.confirmPassword &&
     data.isPrivacyAndTermsSelected &&
-    data.isAgeTermsSelected &&
+    // data.isAgeTermsSelected &&
     data.nickname;
 
   const handleRegisterButtonClick = () => {
@@ -256,11 +256,11 @@ export const RegisterAnonymous = () => {
                 textFour={t("terms_agreement_text_4")}
                 Link={Link}
               />
-              <TermsAgreement
+              {/* <TermsAgreement
                 isChecked={data.isAgeTermsSelected}
                 setIsChecked={(val) => handleChange("isAgeTermsSelected", val)}
                 textOne={t("age_terms_agreement_text_1")}
-              />
+              /> */}
               <Button
                 label={t("register_button_label")}
                 size="lg"

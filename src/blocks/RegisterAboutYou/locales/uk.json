@@ -18,5 +18,6 @@
   "place_of_living_error": "Будь ласка, вкажіть місце проживання",
   "sex_placeholder": "Введіть стать",
   "year_of_birth_placeholder": "Введіть рік народження",
-  "living_place_placeholder": "Введіть місце проживання"
+  "living_place_placeholder": "Введіть місце проживання",
+  "parent": "Батько"
 }

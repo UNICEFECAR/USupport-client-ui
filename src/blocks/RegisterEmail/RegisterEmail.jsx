@@ -53,7 +53,7 @@ export const RegisterEmail = ({
       .label(t("email_error")),
     nickname: Joi.string().label(t("nickname_error")),
     isPrivacyAndTermsSelected: Joi.boolean(),
-    isAgeTermsSelected: Joi.boolean(),
+    // isAgeTermsSelected: Joi.boolean(),
   });
 
   const [errors, setErrors] = useState({});
@@ -109,7 +109,7 @@ export const RegisterEmail = ({
     data.password &&
     data.confirmPassword &&
     data.isPrivacyAndTermsSelected &&
-    data.isAgeTermsSelected &&
+    // data.isAgeTermsSelected &&
     data.email &&
     data.nickname &&
     isCaptchaValid;
@@ -163,11 +163,11 @@ export const RegisterEmail = ({
             textFour={t("terms_agreement_text_4")}
             Link={Link}
           />
-          <TermsAgreement
+          {/* <TermsAgreement
             isChecked={data.isAgeTermsSelected}
             setIsChecked={(val) => handleChange("isAgeTermsSelected", val)}
             textOne={t("age_terms_agreement_text_1")}
-          />
+          /> */}
           {showCaptcha && (
             <ReCAPTCHA
               sitekey={RECAPTCHA_SITE_KEY}

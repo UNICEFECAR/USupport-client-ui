@@ -39,5 +39,6 @@
   "success_message": "Парақша сәтті жаңартылды",
   "sex_placeholder": "Жынысыңызды енгізіңіз",
   "year_of_birth_placeholder": "Туған жылыңызды енгізіңіз",
-  "living_place_placeholder": "Тұрғылықты жеріңізді енгізіңіз"
+  "living_place_placeholder": "Тұрғылықты жеріңізді енгізіңіз",
+  "parent": "Ата-ана"
 }
