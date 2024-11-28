@@ -39,5 +39,6 @@
   "success_message": "Профиль успешно обновлен",
   "sex_placeholder": "Введите свой пол",
   "year_of_birth_placeholder": "Введите свой год рождения",
-  "living_place_placeholder": "Введите место вашего жительства"
+  "living_place_placeholder": "Введите место вашего жительства",
+  "parent": "Родитель"
 }

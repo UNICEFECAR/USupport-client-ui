@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import Joi from "joi";
@@ -36,6 +36,9 @@ import "./register-anonymous.scss";
 export const RegisterAnonymous = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("register-anonymous");
+  const queryClient = useQueryClient();
+
+  const countriesData = queryClient.getQueryData(["countries"]);
 
   const schema = Joi.object({
     password: Joi.string()
@@ -46,19 +49,23 @@ export const RegisterAnonymous = () => {
       .label(t("password_match_error")),
     nickname: Joi.string().label(t("nickname_error")),
     isPrivacyAndTermsSelected: Joi.boolean().invalid(false),
-    isAgeTermsSelected: Joi.boolean().invalid(false),
+    // isAgeTermsSelected: Joi.boolean().invalid(false),
   });
 
   const [data, setData] = useState({
     password: "",
     nickname: "",
     isPrivacyAndTermsSelected: false,
-    isAgeTermsSelected: false,
+    // isAgeTermsSelected: false,
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [hasCopied, setHasCopied] = useState(false);
+
+  const country = localStorage.getItem("country");
+  const selectedCountry = countriesData?.find((c) => c.value === country);
+  const minAge = selectedCountry?.minAge;
 
   // On page load send a request to the server
   // to generate a user acces token
@@ -163,7 +170,7 @@ export const RegisterAnonymous = () => {
     data.password &&
     data.confirmPassword &&
     data.isPrivacyAndTermsSelected &&
-    data.isAgeTermsSelected &&
+    // data.isAgeTermsSelected &&
     data.nickname;
 
   const handleRegisterButtonClick = () => {
@@ -259,7 +266,7 @@ export const RegisterAnonymous = () => {
               <TermsAgreement
                 isChecked={data.isAgeTermsSelected}
                 setIsChecked={(val) => handleChange("isAgeTermsSelected", val)}
-                textOne={t("age_terms_agreement_text_1")}
+                textOne={t("age_terms_agreement_text_1", { age: minAge })}
               />
               <Button
                 label={t("register_button_label")}
