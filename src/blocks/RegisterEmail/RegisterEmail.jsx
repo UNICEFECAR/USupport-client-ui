@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useQueryClient } from "@tanstack/react-query";
 
 import Joi from "joi";
 
@@ -40,6 +41,8 @@ export const RegisterEmail = ({
 }) => {
   const { t } = useTranslation("register-email");
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const countriesData = queryClient.getQueryData(["countries"]);
 
   const schema = Joi.object({
     password: Joi.string()
@@ -57,6 +60,10 @@ export const RegisterEmail = ({
   });
 
   const [errors, setErrors] = useState({});
+
+  const country = localStorage.getItem("country");
+  const selectedCountry = countriesData?.find((c) => c.value === country);
+  const minAge = selectedCountry?.minAge;
 
   const handleChange = (field, value) => {
     if (
@@ -163,11 +170,11 @@ export const RegisterEmail = ({
             textFour={t("terms_agreement_text_4")}
             Link={Link}
           />
-          {/* <TermsAgreement
+          <TermsAgreement
             isChecked={data.isAgeTermsSelected}
             setIsChecked={(val) => handleChange("isAgeTermsSelected", val)}
-            textOne={t("age_terms_agreement_text_1")}
-          /> */}
+            textOne={t("age_terms_agreement_text_1", { age: minAge })}
+          />
           {showCaptcha && (
             <ReCAPTCHA
               sitekey={RECAPTCHA_SITE_KEY}
