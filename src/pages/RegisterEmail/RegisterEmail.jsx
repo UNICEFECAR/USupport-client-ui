@@ -29,7 +29,7 @@ export const RegisterEmail = () => {
     nickname: "",
     password: "",
     isPrivacyAndTermsSelected: false,
-    // isAgeTermsSelected: false,
+    isAgeTermsSelected: false,
     confirmPassword: "",
   });
   const SHOW_CAPTCHA = import.meta.env.MODE !== "development";
@@ -70,6 +70,7 @@ export const RegisterEmail = () => {
       setSubmitError(null);
     },
     onError: (error) => {
+      console.log(error, "error");
       const { message: errorMessage } = useError(error);
       setSubmitError(errorMessage);
     },

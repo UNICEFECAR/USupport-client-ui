@@ -49,14 +49,14 @@ export const RegisterAnonymous = () => {
       .label(t("password_match_error")),
     nickname: Joi.string().label(t("nickname_error")),
     isPrivacyAndTermsSelected: Joi.boolean().invalid(false),
-    // isAgeTermsSelected: Joi.boolean().invalid(false),
+    isAgeTermsSelected: Joi.boolean().invalid(false),
   });
 
   const [data, setData] = useState({
     password: "",
     nickname: "",
     isPrivacyAndTermsSelected: false,
-    // isAgeTermsSelected: false,
+    isAgeTermsSelected: false,
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
