@@ -56,7 +56,7 @@ export const RegisterEmail = ({
       .label(t("email_error")),
     nickname: Joi.string().label(t("nickname_error")),
     isPrivacyAndTermsSelected: Joi.boolean(),
-    // isAgeTermsSelected: Joi.boolean(),
+    isAgeTermsSelected: Joi.boolean(),
   });
 
   const [errors, setErrors] = useState({});
@@ -107,7 +107,7 @@ export const RegisterEmail = ({
       handleSubmit();
     }
   };
-
+  console.log(errors, "errors");
   const handleLoginRedirect = () => {
     navigate("/login");
   };
@@ -116,7 +116,7 @@ export const RegisterEmail = ({
     data.password &&
     data.confirmPassword &&
     data.isPrivacyAndTermsSelected &&
-    // data.isAgeTermsSelected &&
+    data.isAgeTermsSelected &&
     data.email &&
     data.nickname &&
     isCaptchaValid;
