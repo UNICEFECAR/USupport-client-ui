@@ -107,7 +107,7 @@ export const RegisterEmail = ({
       handleSubmit();
     }
   };
-  console.log(errors, "errors");
+
   const handleLoginRedirect = () => {
     navigate("/login");
   };
