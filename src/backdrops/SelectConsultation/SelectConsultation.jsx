@@ -50,6 +50,9 @@ export const SelectConsultation = ({
   const [startDate, setStartDate] = useState(null);
   const [currentDay, setCurrentDay] = useState(new Date().getTime());
 
+  const localStorageCountry = localStorage.getItem("country");
+  const SHOW_COUPON = localStorageCountry !== "KZ";
+
   const providerDataQuery = useGetProviderDataById(providerId, campaignId);
   const providerData = providerDataQuery.data;
 
@@ -234,23 +237,27 @@ export const SelectConsultation = ({
       isCtaDisabled={isCtaDisabled ? true : !selectedSlot ? true : false}
       errorMessage={errorMessage}
     >
-      <div className="select-consultation__coupon-container">
-        <Input
-          value={couponCode}
-          onChange={(e) => setCouponCode(e.currentTarget.value)}
-          label={t("coupon_code")}
-          placeholder="COUPON1"
-        />
-        <Button
-          label={
-            campaignId && couponCode ? t("remove_coupon") : t("apply_coupon")
-          }
-          onClick={campaignId && couponCode ? removeCoupon : handleSubmitCoupon}
-          size="md"
-          loading={isCouponLoading}
-        />
-        {couponError && <Error message={couponError} />}
-      </div>
+      {SHOW_COUPON && (
+        <div className="select-consultation__coupon-container">
+          <Input
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.currentTarget.value)}
+            label={t("coupon_code")}
+            placeholder="COUPON1"
+          />
+          <Button
+            label={
+              campaignId && couponCode ? t("remove_coupon") : t("apply_coupon")
+            }
+            onClick={
+              campaignId && couponCode ? removeCoupon : handleSubmitCoupon
+            }
+            size="md"
+            loading={isCouponLoading}
+          />
+          {couponError && <Error message={couponError} />}
+        </div>
+      )}
       {providerDataQuery.isLoading ? (
         <Loading size="lg" />
       ) : (
