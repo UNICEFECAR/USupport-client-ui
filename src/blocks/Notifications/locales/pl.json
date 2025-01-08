@@ -10,6 +10,7 @@
   "consultation_suggestion_booking": "Zaakceptowałeś sugerowaną konsultację z {{providerName}} na {{date}} od {{startHour}} do {{endHour}}",
   "consultation_suggestion_cancellation": "Odrzuciłeś sugerowaną konsultację z {{providerName}} na {{date}} od {{startHour}} do {{endHour}}",
   "consultation_started": "Rozpoczęła się konsultacja z konsultantem  {{providerName}}",
+  "question_answered": "{{providerName}} odpowiedział na Twoje pytanie",
   "join": "Dołącz",
   "accept": "Akceptuj",
   "accept_consultation_success": "Konsultacja została pomyślnie zaakceptowana",
