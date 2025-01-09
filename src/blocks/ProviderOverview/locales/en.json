@@ -50,5 +50,6 @@
 
   "video_label": "Video representation",
   "button_label": "Schedule consultation",
-  "hour_consultation": "for 1 hour consultation"
+  "hour_consultation": "for 1 hour consultation",
+  "free": "free of charge"
 }

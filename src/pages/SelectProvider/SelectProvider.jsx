@@ -237,6 +237,9 @@ const FiltersBlock = ({
   isToggleDisabled = false,
   t,
 }) => {
+  const localStorageCountry = localStorage.getItem("country");
+  const SHOW_COUPON = localStorageCountry !== "KZ";
+
   const handleChange = (field, val) => {
     const newData = { ...allFilters };
     newData[field] = val;
@@ -259,14 +262,16 @@ const FiltersBlock = ({
         label={t("providers_free_consultation_label")}
         isDisabled={isToggleDisabled}
       /> */}
-      <Button
-        label={
-          activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
-        }
-        size="sm"
-        color="green"
-        onClick={activeCoupon ? removeCoupon : openCouponModal}
-      />
+      {SHOW_COUPON && (
+        <Button
+          label={
+            activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
+          }
+          size="sm"
+          color="green"
+          onClick={activeCoupon ? removeCoupon : openCouponModal}
+        />
+      )}
     </Block>
   );
 };
