@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Participant from "./Participant";
 import useRoom from "./utils/useRoom";
 
-import { Controls, Icon } from "@USupport-components-library/src";
+import { Controls, Icon, Modal } from "@USupport-components-library/src";
 
 import "./video-room.scss";
 
@@ -20,6 +20,7 @@ export function VideoRoom({
   hideControls,
   t,
 }) {
+  const [showPermissionsPopUp, setShowPermissionsPopUp] = useState(false);
   const roomName = consultation.consultationId;
   const {
     room,
@@ -31,7 +32,17 @@ export function VideoRoom({
     toggleCamera,
     isMicrophoneOn,
     toggleMicrophone,
+    error,
   } = useRoom(joinWithVideo, joinWithMicrophone, setIsProviderInSession);
+
+  useEffect(() => {
+    if (error) {
+      if (error.message.includes("Permission denied")) {
+        console.log("Permission error");
+        setShowPermissionsPopUp(true);
+      }
+    }
+  }, [error]);
 
   useEffect(() => {
     if (!room && token && roomName) {
@@ -66,6 +77,13 @@ export function VideoRoom({
 
   return (
     <div className="video-room">
+      <Modal
+        isOpen={showPermissionsPopUp}
+        heading={t("permissions_error")}
+        closeModal={() => setShowPermissionsPopUp(false)}
+      >
+        <p>{t("allow_permissions")}</p>
+      </Modal>
       {!hideControls && (
         <Controls
           consultation={consultation}
@@ -89,7 +107,11 @@ export function VideoRoom({
           hideControls ? "video-room__participants--shrink-video" : ""
         }`}
       >
-        <Participant type={"local"} participant={localParticipant} />
+        <Participant
+          deniedPermissions={!!error}
+          type={"local"}
+          participant={localParticipant}
+        />
         {!hasRemoteParticipants ? (
           <div className="remote-video-off video-off">
             <Icon name="stop-camera" size="lg" color="#ffffff" />

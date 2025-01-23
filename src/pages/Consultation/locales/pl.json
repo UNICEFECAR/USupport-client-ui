@@ -29,5 +29,7 @@
   "search": "Wyszukiwanie",
   "sponsored_by": "Ta sesja jest sponsorowana przez: ",
   "consultation_end_reminder": "Konsultacja zakończy się w ciągu {{minutes}} minut",
-  "textarea_placeholder": "Wpisz swoją wiadomość tutaj"
+  "textarea_placeholder": "Wpisz swoją wiadomość tutaj",
+  "permissions_error": "Odmówiłeś udzielenia uprawnień",
+  "allow_permissions": "Uprawnienia do korzystania z kamery i/lub mikrofonu zostały odrzucone. Jeśli chcesz porozmawiać z dostawcą, włącz uprawnienia w ustawieniach przeglądarki lub za pomocą ikony informacji na pasku adresu."
 }
