@@ -4,7 +4,7 @@ import VideoTrack from "./VideoTrack";
 import AudioTrack from "./AudioTrack";
 import { Icon, Loading } from "@USupport-components-library/src";
 
-export default function Participant({ type, participant }) {
+export default function Participant({ type, participant, deniedPermissions }) {
   const { videoOn, audioOn, videoTrack, audioTrack } = useTrack({
     participant,
   });
@@ -15,7 +15,7 @@ export default function Participant({ type, participant }) {
         <VideoTrack type={type} track={videoTrack} />
       ) : (
         <div className={`${type}-video-off video-off`}>
-          {participant ? (
+          {participant || deniedPermissions ? (
             <Icon name="stop-camera" size="lg" color="#ffffff" />
           ) : (
             <Loading padding="0" size="md" />

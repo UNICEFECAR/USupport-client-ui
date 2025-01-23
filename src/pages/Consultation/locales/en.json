@@ -29,5 +29,8 @@
   "search": "Search",
   "sponsored_by": "This session is sponsored by: ",
   "consultation_end_reminder": "Your consultation will end in {{minutes}} minutes",
-  "textarea_placeholder": "Type your message here..."
+  "textarea_placeholder": "Type your message here...",
+
+  "permissions_error": "You have denied the permissions",
+  "allow_permissions": "The camera and/or microphone permissions have been denied. If you want to talk to the provider, please allow the permissions in your browser settings or from the information icon in the address bar."
 }
