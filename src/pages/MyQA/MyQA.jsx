@@ -59,7 +59,10 @@ export const MyQA = () => {
     shouldFetchQuestions &&
     !!selectedLanguage;
 
-  const userQuestions = useGetClientQuestions(isUserQuestionsEnabled);
+  const userQuestions = useGetClientQuestions(
+    isUserQuestionsEnabled,
+    selectedLanguage
+  );
   const allQuestions = useGetQuestions(
     tabs.find((tab) => tab.isSelected).value,
     !isUserQuestionsEnabled,
