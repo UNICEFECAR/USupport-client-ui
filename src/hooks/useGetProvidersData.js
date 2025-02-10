@@ -1,5 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { providerSvc } from "@USupport-components-library/services";
+import {
+  getStartAndEndOfWeek,
+  getTimestampFromUTC,
+} from "@USupport-components-library/utils";
 
 const constructFiltersQueryString = (filters) => {
   const providerTypes = filters.providerTypes?.join(",");
@@ -9,6 +13,7 @@ const constructFiltersQueryString = (filters) => {
   const onlyFreeConsultation = filters.onlyFreeConsultation;
   const availableAfter = new Date(filters.availableAfter).getTime() / 1000;
   const availableBefore = new Date(filters.availableBefore).getTime() / 1000;
+  const startDate = filters.startDate;
 
   let queryString = "";
   if (providerTypes) {
@@ -39,6 +44,10 @@ const constructFiltersQueryString = (filters) => {
     queryString += `&language=${language}`;
   }
 
+  if (startDate) {
+    queryString += `&startDate=${startDate}`;
+  }
+
   return queryString || "";
 };
 
@@ -51,8 +60,15 @@ export default function useGetProvidersData(
   onSuccess = () => {}
 ) {
   const fetchProvidersData = async ({ pageParam = 1 }) => {
+    const today = new Date();
+    const { first, last } = getStartAndEndOfWeek(today);
+    const startDate = getTimestampFromUTC(first);
+
     const providersLimit = 15;
-    const filtersQueryString = constructFiltersQueryString(filters);
+    const filtersQueryString = constructFiltersQueryString({
+      ...filters,
+      startDate,
+    });
 
     const { data } = await providerSvc.getAllProviders({
       campaignId: activeCoupon?.campaignId,
@@ -103,6 +119,7 @@ export default function useGetProvidersData(
       enabled: activeCoupon === null ? true : !!activeCoupon,
     }
   );
+  console.log(providersDataQuery.error);
   return providersDataQuery;
 }
 
