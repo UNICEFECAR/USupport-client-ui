@@ -119,7 +119,6 @@ export default function useGetProvidersData(
       enabled: activeCoupon === null ? true : !!activeCoupon,
     }
   );
-  console.log(providersDataQuery.error);
   return providersDataQuery;
 }
 
