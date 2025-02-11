@@ -61,7 +61,7 @@ export default function useGetProvidersData(
 ) {
   const fetchProvidersData = async ({ pageParam = 1 }) => {
     const today = new Date();
-    const { first, last } = getStartAndEndOfWeek(today);
+    const { first } = getStartAndEndOfWeek(today);
     const startDate = getTimestampFromUTC(first);
 
     const providersLimit = 15;
