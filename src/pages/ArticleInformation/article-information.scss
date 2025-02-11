@@ -3,6 +3,10 @@
 .page__article-information {
   @include full-height-page-navbar;
 
+  & .article-view {
+    margin-bottom: $spacing_2_2;
+  }
+
   &__more-articles {
     padding-top: $spacing_4_0;
     padding-bottom: $spacing_5_6;

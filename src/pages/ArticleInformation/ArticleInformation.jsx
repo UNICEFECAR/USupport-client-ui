@@ -82,6 +82,7 @@ export const ArticleInformation = () => {
     data: moreArticles,
     isLoading: isMoreArticlesLoading,
     isFetched: isMoreArticlesFetched,
+    isFetching: isMoreArticlesFetching,
   } = useQuery(["more-articles", id, i18n.language], getSimilarArticles, {
     enabled:
       !isFetchingArticleData &&
@@ -142,7 +143,9 @@ export const ArticleInformation = () => {
           </Grid>
         </Block>
       )}
-      {!moreArticles && isMoreArticlesLoading && <Loading size="lg" />}
+      {!moreArticles && isMoreArticlesLoading && isMoreArticlesFetching && (
+        <Loading size="lg" />
+      )}
       {!moreArticles?.length &&
         !isMoreArticlesLoading &&
         isMoreArticlesFetched && (
