@@ -13,6 +13,7 @@ import {
   Icon,
   PasswordModal,
   Box,
+  CookieBanner,
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -455,6 +456,7 @@ export const Page = ({
         isOpen={isRegistrationModalOpen}
         onClose={handleRegistrationModalClose}
       />
+      <CookieBanner t={t} isInClient />
     </>
   );
 };

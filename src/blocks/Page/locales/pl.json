@@ -18,12 +18,19 @@
   "button_text": "Przejdź do aplikacji",
   "contact_us": "Skontaktuj się z nami",
   "your_profile_text": "Twój profil",
-  
-  "password_placeholder": "Hasło", 
+
+  "password_placeholder": "Hasło",
   "password": "Wprowadź hasło aby uzyskać dostęp do platformy",
   "wrong_password": "Nieprawidłowe hasło",
   "submit": "Wyślij",
 
   "dark": "Ciemny",
-  "light": "Jasny"
+  "light": "Jasny",
+
+  "cookie_banner_header": "Cenimy Twoją prywatność",
+  "cookie_banner_text": "Ta strona używa plików cookie, aby poprawić i zabezpieczyć Twoje doświadczenia podczas przeglądania. Korzystając z naszej strony, zgadzasz się na naszą Politykę Cookie.",
+  "accept_all_cookies": "Akceptuj wszystkie",
+  "reject_all_cookies": "Odrzuć wszystkie",
+  "accept_necessary_cookies": "Akceptuj tylko niezbędne",
+  "save": "Zapisz"
 }
