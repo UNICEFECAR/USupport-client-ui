@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
-import { useNavigate, Link, NavLink } from "react-router-dom";
+import { useNavigate, Link, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import OutsideClickHandler from "react-outside-click-handler";
 
@@ -76,7 +76,7 @@ export const Page = ({
   const IS_DEV = process.env.NODE_ENV === "development";
 
   const { width } = useWindowDimensions();
-
+  const location = useLocation();
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
@@ -188,6 +188,23 @@ export const Page = ({
 
   const clientData = queryClient.getQueryData(["client-data"]);
   const image = clientData?.image;
+
+  useEffect(() => {
+    if (clientData) {
+      if (
+        (!clientData.sex ||
+          !clientData.yearOfBirth ||
+          !clientData.urbanRural) &&
+        location.pathname !== "/register/about-you"
+      ) {
+        navigateTo("/register/about-you", {
+          state: {
+            isAnonymous: !!clientData.accessToken,
+          },
+        });
+      }
+    }
+  }, [clientData]);
 
   const { t, i18n } = useTranslation("page");
   const pages = [
