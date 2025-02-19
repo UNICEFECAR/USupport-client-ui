@@ -48,17 +48,25 @@ export const MyQA = () => {
   const [filterTag, setFilterTag] = useState("");
   const [hasOpenedQuestionFromLocation, setHasOpenedQuestionFromLocation] =
     useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
 
   const clientData = useGetClientData()[1];
 
   const isUserQuestionsEnabled =
     tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
-      .length > 0;
+      .length > 0 &&
+    shouldFetchQuestions &&
+    !!selectedLanguage;
 
-  const userQuestions = useGetClientQuestions(isUserQuestionsEnabled);
+  const userQuestions = useGetClientQuestions(
+    isUserQuestionsEnabled,
+    selectedLanguage
+  );
   const allQuestions = useGetQuestions(
     tabs.find((tab) => tab.isSelected).value,
-    !isUserQuestionsEnabled
+    !isUserQuestionsEnabled,
+    selectedLanguage
   );
 
   // If redirected to this screen from notifications
@@ -207,6 +215,9 @@ export const MyQA = () => {
         isQuestionsDataLoading={
           userQuestions.isFetching || allQuestions.isFetching
         }
+        selectedLanguage={selectedLanguage}
+        setSelectedLanguage={setSelectedLanguage}
+        setShouldFetchQuestions={setShouldFetchQuestions}
       />
       <CreateQuestion
         isOpen={isCreateQuestionOpen}

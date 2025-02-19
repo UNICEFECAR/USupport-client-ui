@@ -11,6 +11,13 @@
       width: auto;
       padding-top: $spacing_2_0;
     }
+
+    &__language-dropdown {
+      width: 34.4rem;
+      text-align: left;
+      margin-bottom: $spacing_1_2;
+      margin-top: $spacing_1_2;
+    }
   }
 
   &__button-item {
