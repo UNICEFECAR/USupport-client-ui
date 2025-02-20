@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -12,8 +12,11 @@ import {
   InputSearch,
   ButtonWithIcon,
   Loading,
+  DropdownWithLabel,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
+
+import { useEventListener, useGetLanguages } from "#hooks";
 
 import "./my-qa.scss";
 
@@ -36,12 +39,51 @@ export const MyQA = ({
   handleFilterTags,
   filterTag,
   isQuestionsDataLoading,
+  selectedLanguage,
+  setSelectedLanguage,
+  setShouldFetchQuestions,
 }) => {
   const { t } = useTranslation("my-qa");
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
   const [searchValue, setSearchValue] = useState("");
+
+  const { data: languages } = useGetLanguages();
+
+  const handler = useCallback(() => {
+    const lang = localStorage.getItem("language");
+    const languageId = languages?.find((x) => x.alpha2 === lang)?.language_id;
+    setSelectedLanguage(languageId || "all");
+  }, [languages]);
+
+  useEventListener("languageChanged", handler);
+
+  useEffect(() => {
+    if (languages?.length) {
+      const currentLang = localStorage.getItem("language");
+      const langObject = languages.find((x) => x.alpha2 === currentLang);
+      setSelectedLanguage(langObject?.language_id || "all");
+      setShouldFetchQuestions(true);
+    }
+  }, [languages]);
+
+  const languageOptions = useMemo(() => {
+    const showAllOption = {
+      value: "all",
+      label: t("all"),
+    };
+
+    if (!languages) return [showAllOption];
+
+    return [
+      showAllOption,
+      ...languages.map((x) => ({
+        value: x.language_id,
+        label: x.local_name,
+      })),
+    ];
+  }, [languages, t]);
 
   const handleTabChange = (index) => {
     const tabsCopy = [...tabs];
@@ -131,6 +173,17 @@ export const MyQA = ({
                 placeholder={t("search_placeholder")}
                 value={searchValue}
                 onChange={(value) => setSearchValue(value.toLowerCase())}
+              />
+              <DropdownWithLabel
+                options={languageOptions}
+                selected={selectedLanguage}
+                setSelected={(lang) => {
+                  console.log(lang);
+                  setSelectedLanguage(lang);
+                }}
+                label={t("language")}
+                placeholder={t("placeholder")}
+                classes="my-qa__categories-item__language-dropdown"
               />
             </GridItem>
             <GridItem

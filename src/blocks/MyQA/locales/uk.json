@@ -12,5 +12,6 @@
   "your_questions": "Ваше запитання",
   "search_placeholder": "Пошук",
   "filter": "Фільтрувати теґи",
-  "no_answers_found": "Немає відповідей на запитання"
+  "no_answers_found": "Немає відповідей на запитання",
+  "language": "Мова"
 }

@@ -18,12 +18,19 @@
   "button_text": "Перейти до додатку",
   "contact_us": "Зв'яжіться з нами",
   "your_profile_text": "Ваш профіль",
-  
-  "password_placeholder": "Пароль", 
+
+  "password_placeholder": "Пароль",
   "password": "Будь ласка, введіть Ваш пароль для доступу на сайт",
   "wrong_password": "Невірний пароль",
   "submit": "Надіслати",
 
   "dark": "Темний",
-  "light": "Світлий"
+  "light": "Світлий",
+
+  "cookie_banner_header": "Ми цінуємо вашу конфіденційність",
+  "cookie_banner_text": "Цей вебсайт використовує файли cookie для покращення та захисту вашого перегляду. Використовуючи наш вебсайт, ви погоджуєтеся з нашою Політикою щодо файлів cookie.",
+  "accept_all_cookies": "Прийняти всі",
+  "reject_all_cookies": "Відхилити всі",
+  "accept_necessary_cookies": "Прийняти лише необхідні",
+  "save": "Зберегти"
 }
