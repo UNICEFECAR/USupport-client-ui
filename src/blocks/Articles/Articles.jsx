@@ -29,7 +29,7 @@ import "./articles.scss";
 export const Articles = ({
   showSearch,
   showCategories,
-  showAgeGroups,
+  showAgeGroups = true,
   sort,
 }) => {
   const navigate = useNavigate();
@@ -186,8 +186,8 @@ export const Articles = ({
       contains: debouncedSearchValue,
       ageGroupId,
       categoryId,
-      sortBy: sort ? sort : null,
-      sortOrder: sort ? "desc" : null,
+      // sortBy: sort ? sort : "createdAt",
+      // sortOrder: sort ? "desc" : "desc",
       locale: usersLanguage,
       populate: true,
       ids: articleIdsQuery.data,
@@ -263,7 +263,7 @@ export const Articles = ({
 
     const newArticles = data.data;
 
-    setArticles((prevArticles) => [...prevArticles, ...newArticles]);
+    setArticles((prevArticles) => [...(prevArticles || []), ...newArticles]);
   };
 
   let areCategoriesAndAgeGroupsReady =
@@ -293,7 +293,7 @@ export const Articles = ({
                 </GridItem>
               )}
             {showSearch && areCategoriesAndAgeGroupsReady && (
-              <GridItem md={8} lg={12} classes="articles__search-item">
+              <GridItem md={8} lg={4} classes="articles__search-item">
                 <InputSearch onChange={handleInputChange} value={searchValue} />
               </GridItem>
             )}
