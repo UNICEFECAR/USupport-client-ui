@@ -3,7 +3,7 @@
   "search": "Wyszukiwanie",
   "no_messages": "Nie znaleziono żadnych wiadomości",
   "show_system_messages": "Wyświetlanie komunikatów systemowych",
-  "show_previous_consultations": "Pokazać poprzednie konsultacje",
+  "show_previous_consultations": "Pokaż poprzednie konsultacje",
   "export_label": "Eksport",
   "chat_history": "Historia czatów konsultacyjnych z",
 
@@ -22,5 +22,5 @@
   "provider_microphone_off": "Konsultant wyłączył mikrofon",
   "provider_microphone_on": "Konsultant włączył mikrofon",
   
-  "exported_at": "Exported at: {{time}}"
+  "exported_at": "Wyeksportowano o: {{time}}"
 }

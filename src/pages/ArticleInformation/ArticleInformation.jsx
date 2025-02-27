@@ -39,7 +39,6 @@ export const ArticleInformation = () => {
       articleIdToFetch,
       i18n.language
     );
-
     const finalData = destructureArticleData(data);
     return finalData;
   };
@@ -60,6 +59,7 @@ export const ArticleInformation = () => {
       excludeId: articleData.id,
       populate: true,
       ids: articleIdsQuerry.data,
+      ageGroupId: articleData.ageGroupId,
     });
 
     if (data.length === 0) {
@@ -71,6 +71,7 @@ export const ArticleInformation = () => {
         excludeId: articleData.id,
         populate: true,
         ids: articleIdsQuerry.data,
+        ageGroupId: articleData.ageGroupId,
       });
       return newest.data;
     }
@@ -81,6 +82,7 @@ export const ArticleInformation = () => {
     data: moreArticles,
     isLoading: isMoreArticlesLoading,
     isFetched: isMoreArticlesFetched,
+    isFetching: isMoreArticlesFetching,
   } = useQuery(["more-articles", id, i18n.language], getSimilarArticles, {
     enabled:
       !isFetchingArticleData &&
@@ -141,7 +143,9 @@ export const ArticleInformation = () => {
           </Grid>
         </Block>
       )}
-      {!moreArticles && isMoreArticlesLoading && <Loading size="lg" />}
+      {!moreArticles && isMoreArticlesLoading && isMoreArticlesFetching && (
+        <Loading size="lg" />
+      )}
       {!moreArticles?.length &&
         !isMoreArticlesLoading &&
         isMoreArticlesFetched && (

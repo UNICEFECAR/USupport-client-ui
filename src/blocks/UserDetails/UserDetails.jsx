@@ -153,8 +153,12 @@ export const UserDetails = ({
       year <= currentYear - minAge;
       year++
     ) {
-      years.push({ label: year.toString(), value: year });
+      years.push({ label: year.toString(), value: year.toString() });
     }
+    years.push({
+      label: t("parent"),
+      value: "parent",
+    });
     return years.reverse();
   }, [countriesData]);
 

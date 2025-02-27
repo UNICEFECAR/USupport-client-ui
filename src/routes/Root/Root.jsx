@@ -57,14 +57,24 @@ export default function Root() {
   const token = localStorage.getItem("token");
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
+  const [country, setCountry] = useState(
+    localStorage.getItem("country") || null
+  );
   const [loggedIn, setLoggedIn] = useState(!!token);
+  const [activeCoupon, setActiveCoupon] = useState();
+  const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
+
+  const handler = useCallback(() => {
+    const country = localStorage.getItem("country");
+    if (country !== currentCountry) {
+      setCountry(country);
+    }
+  }, []);
+
+  useEventListener("countryChanged", handler);
 
   const enabled = token && !isTmpUser && loggedIn;
   useGetClientData(!!enabled);
-
-  const [activeCoupon, setActiveCoupon] = useState();
-
-  const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
 
   const handleRegistrationModalClose = () => setIsRegistrationModalOpen(false);
   const handleRegistrationModalOpen = () => setIsRegistrationModalOpen(true);
@@ -82,9 +92,10 @@ export default function Root() {
   useEventListener("login", loginHandler);
 
   useQuery({
-    queryKey: ["addPlatformAccess", loggedIn],
+    queryKey: ["addPlatformAccess", loggedIn, country],
     queryFn: async () => await userSvc.addPlatformAccess("client"),
     staleTime: Infinity,
+    enabled: !!country,
   });
 
   const location = useLocation();

@@ -84,9 +84,13 @@ export const Welcome = () => {
   const countriesQuery = useQuery(["countries"], fetchCountries, {
     retry: false,
   });
-  const languagesQuery = useQuery(["languages"], fetchLanguages, {
-    retry: false,
-  });
+  const languagesQuery = useQuery(
+    ["languages", selectedCountry],
+    fetchLanguages,
+    {
+      retry: false,
+    }
+  );
 
   const handleContinue = () => {
     const country = selectedCountry;
@@ -134,12 +138,18 @@ export const Welcome = () => {
                 }
                 classes="welcome__grid__content-item__countries-dropdown"
                 selected={selectedCountry}
-                setSelected={setSelectedCountry}
+                setSelected={(country) => {
+                  localStorage.setItem("country", country);
+                  setTimeout(() => {
+                    setSelectedCountry(country);
+                  }, 1);
+                }}
                 label={t("country")}
                 placeholder={t("placeholder")}
               />
               <DropdownWithLabel
                 options={languagesQuery.data || []}
+                disabled={!selectedCountry}
                 selected={selectedLanguage}
                 setSelected={(lang) => {
                   setSelectedLanguage(lang);

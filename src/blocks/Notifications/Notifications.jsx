@@ -132,11 +132,14 @@ export const Notifications = ({
 
     const handleNotificationClick = (
       notificationId,
-      redirectTo = "/consultations"
+      redirectTo = "/consultations",
+      content
     ) => {
       markNotificationAsReadByIdMutation.mutate([notificationId]);
       if (redirectTo !== null) {
-        navigate(redirectTo);
+        navigate(redirectTo, {
+          state: content,
+        });
       }
     };
 
@@ -427,6 +430,29 @@ export const Notifications = ({
               />
             )}
           </Notification>
+        );
+      case "question_answered":
+        return (
+          <Notification
+            t={t}
+            date={notification.createdAt}
+            isRead={notification.isRead}
+            title="uSupport"
+            handleClick={() =>
+              handleNotificationClick(
+                notification.notificationId,
+                "/my-qa",
+                notification.content
+              )
+            }
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName: notification.content.providerName,
+                })}
+              </Trans>
+            }
+          />
         );
       default:
         return null;

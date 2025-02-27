@@ -1,10 +1,10 @@
 {
-  "error_email_message": "Wprowadź swój adres e-mail",
-  "input_email_label": "E-mail",
+  "error_email_message": "Wprowadź swój adres email",
+  "input_email_label": "Email",
   "reset_password_button_label": "Resetowanie hasła",
   "register_redirect_button_label": "Nie mam konta",
-  "modal_heading": "Sprawdź swoją skrzynkę e-mail",
+  "modal_heading": "Sprawdź swoją skrzynkę email",
   "modal_text": "Jeśli jesteś zarejestrowany na platformie, otrzymasz link do zresetowania hasła.",
-  "client": "Client",
+  "client": "Klient",
   "heading": "Witamy w"
 }

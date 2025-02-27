@@ -20,6 +20,7 @@ export default function useGetAllConsultations(enabled = true) {
         campaignId: consultation.campaign_id,
         sponsorName: consultation.sponsor_name,
         sponsorImage: consultation.sponsor_image,
+        organizationId: consultation.organization_id,
       });
     }
     return formattedData;

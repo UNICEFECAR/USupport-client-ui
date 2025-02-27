@@ -50,6 +50,9 @@ export const SelectConsultation = ({
   const [startDate, setStartDate] = useState(null);
   const [currentDay, setCurrentDay] = useState(new Date().getTime());
 
+  const localStorageCountry = localStorage.getItem("country");
+  const SHOW_COUPON = localStorageCountry !== "KZ";
+
   const providerDataQuery = useGetProviderDataById(providerId, campaignId);
   const providerData = providerDataQuery.data;
 
@@ -69,7 +72,6 @@ export const SelectConsultation = ({
       providerId,
       campaignId
     );
-
     if (campaignId) {
       return data.map((x) => ({
         time: parseUTCDate(x.time),
@@ -77,7 +79,34 @@ export const SelectConsultation = ({
       }));
     }
 
-    return data;
+    const slots = data.map((x) => {
+      if (x.time) {
+        return {
+          time: parseUTCDate(x.time),
+          organization_id: x.organization_id,
+        };
+      }
+      return x;
+    });
+
+    const organizationSlotTimes = slots.reduce((acc, slot) => {
+      if (slot.organization_id) {
+        acc.push(slot.time.getTime());
+      }
+      return acc;
+    }, []);
+
+    // Ensure that there is no overlap between organization slots and regular slots
+    // If there are duplicates, remove the regular slot
+    if (organizationSlotTimes.length > 0) {
+      return slots.filter((slot) => {
+        if (slot.time) return slot;
+        const slotTime = new Date(slot).getTime();
+        return !organizationSlotTimes.includes(slotTime);
+      });
+    }
+
+    return slots;
   };
   const availableSlotsQuery = useQuery(
     ["available-slots", startDate, currentDay, providerId],
@@ -97,7 +126,7 @@ export const SelectConsultation = ({
 
   const renderFreeSlots = () => {
     const todaySlots = availableSlots?.filter((slot) => {
-      const slotDate = new Date(campaignId ? slot.time : slot).getDate();
+      const slotDate = new Date(slot.time || slot).getDate();
       const currentDayDate = new Date(currentDay).getDate();
 
       // Check if the slot is for the current campaign
@@ -111,9 +140,9 @@ export const SelectConsultation = ({
 
     const options = todaySlots?.map(
       (slot) => {
-        const slotLocal = new Date(campaignId ? slot.time : slot);
+        const slotLocal = new Date(slot.time || slot);
 
-        const value = new Date(campaignId ? slot.time : slot).getTime();
+        const value = new Date(slot.time || slot).getTime();
 
         const getDoubleDigitHour = (hour) =>
           hour === 24 ? "00" : hour < 10 ? `0${hour}` : hour;
@@ -150,8 +179,23 @@ export const SelectConsultation = ({
         }
         return isTimeMatching && slot.campaign_id === campaignId;
       });
+    } else {
+      const allMatchingSlots = availableSlots.filter((slot) => {
+        const isTimeMatching = new Date(slot.time).getTime() === selectedSlot;
+        return isTimeMatching;
+      });
+
+      if (allMatchingSlots.length >= 1) {
+        const hasOrganizationSlot = allMatchingSlots.find(
+          (slot) => !!slot.organization_id
+        );
+        if (hasOrganizationSlot) {
+          slotObject = hasOrganizationSlot;
+        }
+      }
     }
-    const time = campaignId ? slotObject : selectedSlot;
+    const time = slotObject || selectedSlot;
+
     handleBlockSlot(time, providerData.consultationPrice);
   };
 
@@ -193,23 +237,27 @@ export const SelectConsultation = ({
       isCtaDisabled={isCtaDisabled ? true : !selectedSlot ? true : false}
       errorMessage={errorMessage}
     >
-      <div className="select-consultation__coupon-container">
-        <Input
-          value={couponCode}
-          onChange={(e) => setCouponCode(e.currentTarget.value)}
-          label={t("coupon_code")}
-          placeholder="COUPON1"
-        />
-        <Button
-          label={
-            campaignId && couponCode ? t("remove_coupon") : t("apply_coupon")
-          }
-          onClick={campaignId && couponCode ? removeCoupon : handleSubmitCoupon}
-          size="md"
-          loading={isCouponLoading}
-        />
-        {couponError && <Error message={couponError} />}
-      </div>
+      {SHOW_COUPON && (
+        <div className="select-consultation__coupon-container">
+          <Input
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.currentTarget.value)}
+            label={t("coupon_code")}
+            placeholder="COUPON1"
+          />
+          <Button
+            label={
+              campaignId && couponCode ? t("remove_coupon") : t("apply_coupon")
+            }
+            onClick={
+              campaignId && couponCode ? removeCoupon : handleSubmitCoupon
+            }
+            size="md"
+            loading={isCouponLoading}
+          />
+          {couponError && <Error message={couponError} />}
+        </div>
+      )}
       {providerDataQuery.isLoading ? (
         <Loading size="lg" />
       ) : (

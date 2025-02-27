@@ -160,14 +160,14 @@ export const FilterProviders = ({
               handleSelect("availableAfter", e.target.value);
             }}
             value={data.availableAfter || ""}
-            placeholder="DD.MM.YYY"
+            placeholder={t("available_after")}
             classes={["client-ratings__backdrop__date-picker"]}
           />
           <DateInput
             label={t("available_before")}
             onChange={(e) => handleSelect("availableBefore", e.target.value)}
             value={data.availableBefore || ""}
-            placeholder="DD.MM.YYY"
+            placeholder={t("available_before")}
             classes={["client-ratings__backdrop__date-picker"]}
           />
           {/* <Input

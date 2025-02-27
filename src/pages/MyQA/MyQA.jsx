@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
@@ -25,6 +25,7 @@ import "./my-qa.scss";
 export const MyQA = () => {
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isCreateQuestionOpen, setIsCreateQuestionOpen] = useState(false);
   const [isQuestionDetailsOpen, setIsQuestionDetailsOpen] = useState(false);
@@ -45,18 +46,47 @@ export const MyQA = () => {
   ]);
   const [providerId, setProviderId] = useState(null);
   const [filterTag, setFilterTag] = useState("");
+  const [hasOpenedQuestionFromLocation, setHasOpenedQuestionFromLocation] =
+    useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
 
   const clientData = useGetClientData()[1];
 
   const isUserQuestionsEnabled =
     tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
-      .length > 0;
+      .length > 0 &&
+    shouldFetchQuestions &&
+    !!selectedLanguage;
 
-  const userQuestions = useGetClientQuestions(isUserQuestionsEnabled);
+  const userQuestions = useGetClientQuestions(
+    isUserQuestionsEnabled,
+    selectedLanguage
+  );
   const allQuestions = useGetQuestions(
     tabs.find((tab) => tab.isSelected).value,
-    !isUserQuestionsEnabled
+    !isUserQuestionsEnabled,
+    selectedLanguage
   );
+
+  // If redirected to this screen from notifications
+  // Open the question details modal
+  useEffect(() => {
+    if (
+      location.state?.questionId &&
+      allQuestions.data?.length &&
+      !hasOpenedQuestionFromLocation
+    ) {
+      const question = allQuestions.data.find(
+        (question) => question.questionId === location.state.questionId
+      );
+      if (question) {
+        handleSetIsQuestionDetailsOpen(question);
+        // Make sure to open the question modal just once
+        setHasOpenedQuestionFromLocation(true);
+      }
+    }
+  }, [location.state, allQuestions.data, hasOpenedQuestionFromLocation]);
 
   useEffect(() => {
     if (isTmpUser) {
@@ -185,6 +215,9 @@ export const MyQA = () => {
         isQuestionsDataLoading={
           userQuestions.isFetching || allQuestions.isFetching
         }
+        selectedLanguage={selectedLanguage}
+        setSelectedLanguage={setSelectedLanguage}
+        setShouldFetchQuestions={setShouldFetchQuestions}
       />
       <CreateQuestion
         isOpen={isCreateQuestionOpen}

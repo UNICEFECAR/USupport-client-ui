@@ -6,7 +6,7 @@
   max-height: 100vh;
 
   @media screen and (min-width: $screen-md) {
-    padding-top: 9.6rem;
+    padding-top: 1.4rem;
   }
 
   &__container {
@@ -40,7 +40,7 @@
 
         @media screen and (min-width: 1024px) {
           padding-bottom: 0;
-          height: 70vh;
+          height: 82vh;
           overflow-y: auto;
         }
 
@@ -50,7 +50,7 @@
 
         &--show-options {
           @media screen and (min-width: 1024px) {
-            height: calc(70vh - 15rem) !important;
+            height: calc(82vh - 15rem) !important;
             margin-top: 20rem;
           }
         }

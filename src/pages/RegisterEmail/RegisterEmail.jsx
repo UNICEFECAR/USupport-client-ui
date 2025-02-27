@@ -70,6 +70,7 @@ export const RegisterEmail = () => {
       setSubmitError(null);
     },
     onError: (error) => {
+      console.log(error, "error");
       const { message: errorMessage } = useError(error);
       setSubmitError(errorMessage);
     },

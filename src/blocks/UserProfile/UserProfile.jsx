@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
 import {
   Block,
   Grid,
   GridItem,
   ButtonSelector,
 } from "@USupport-components-library/src";
+
+import { countrySvc } from "@USupport-components-library/services";
 import { useGetClientData } from "#hooks";
 
 import "./user-profile.scss";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 const GIT_BOOK_URL = `${import.meta.env.VITE_GIT_BOOK_URL}`;
+
+const fetchCountry = async () => {
+  const { data } = await countrySvc.getActiveCountries();
+  const currentCountryId = localStorage.getItem("country_id");
+  const currentCountry = data.find((x) => x.country_id === currentCountryId);
+  return currentCountry?.alpha2 === "KZ" ? true : false;
+};
 
 /**
  * UserProfile
@@ -29,6 +39,8 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
 
   const clientQueryArray = useGetClientData(isTmpUser ? false : true);
   const clientData = isTmpUser ? {} : clientQueryArray[0].data;
+
+  const { data: isKzCountry } = useQuery(["is-kz-country"], fetchCountry);
 
   useEffect(() => {
     if (clientData) {
@@ -104,12 +116,14 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
         </GridItem>
         <GridItem md={8} lg={12} classes="user-profile__grid__item">
           <p className="text user-profile__grid__item__label">{t("other")}</p>
-          <ButtonSelector
-            label={t("payments_history_button_label")}
-            iconName="payment-history"
-            classes="user-profile__grid__item__button"
-            onClick={() => handleRedirect("payment-history")}
-          />
+          {!isKzCountry && (
+            <ButtonSelector
+              label={t("payments_history_button_label")}
+              iconName="payment-history"
+              classes="user-profile__grid__item__button"
+              onClick={() => handleRedirect("payment-history")}
+            />
+          )}
           <ButtonSelector
             label={t("contact_us_button_label")}
             iconName="comment"

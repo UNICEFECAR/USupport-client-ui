@@ -187,7 +187,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
           <p className="small-text">{t("warning")}</p>
         </GridItem>
         {questions.map((question) => (
-          <>
+          <React.Fragment key={question.id}>
             <GridItem
               md={8}
               lg={12}
@@ -230,7 +230,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
                 />
               </GridItem>
             )}
-          </>
+          </React.Fragment>
         ))}
         <GridItem md={8} lg={12} classes="safety-feedback__grid__button">
           <Button

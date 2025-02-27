@@ -1,29 +1,36 @@
 {
-  "page_1": "Home",
-  "page_2": "Consultations",
-  "page_3": "Information portal",
-  "page_4": "My Q&A",
+  "page_1": "Strona główna",
+  "page_2": "Konsultacje",
+  "page_3": "Portal informacyjny",
+  "page_4": "Q&A",
 
-  "footer_1": "Home",
-  "footer_2": "Consultations",
-  "footer_3": "Information portal",
-  "footer_4": "Your profile",
-  "footer_5": "Terms of Use",
-  "footer_6": "Privacy Policy",
-  "footer_7": "Cookie Settings",
-  "footer_8": "FAQ",
+  "footer_1": "Strona główna",
+  "footer_2": "Konsultacje",
+  "footer_3": "Portal informacyjny",
+  "footer_4": "Twój profil",
+  "footer_5": "Warunki",
+  "footer_6": "Polityka prywatności",
+  "footer_7": "Ustawienia plików cookie",
+  "footer_8": "Najczęściej zadawane pytania",
 
-  "emergency_button": "SOS Center",
+  "emergency_button": "Centrum SOS",
 
-  "button_text": "Go to app",
-  "contact_us": "Contact us",
-  "your_profile_text": "Your profile",
-  
-  "password_placeholder": "Password", 
-  "password": "Please enter your password to access the site",
-  "wrong_password": "Wrong password",
-  "submit": "Submit",
+  "button_text": "Przejdź do aplikacji",
+  "contact_us": "Skontaktuj się z nami",
+  "your_profile_text": "Twój profil",
+
+  "password_placeholder": "Hasło",
+  "password": "Wprowadź hasło aby uzyskać dostęp do platformy",
+  "wrong_password": "Nieprawidłowe hasło",
+  "submit": "Wyślij",
 
   "dark": "Ciemny",
-  "light": "Jasny"
+  "light": "Jasny",
+
+  "cookie_banner_header": "Cenimy Twoją prywatność",
+  "cookie_banner_text": "Ta strona używa plików cookie, aby poprawić i zabezpieczyć Twoje doświadczenia podczas przeglądania. Korzystając z naszej strony, zgadzasz się na naszą Politykę Cookie.",
+  "accept_all_cookies": "Akceptuj wszystkie",
+  "reject_all_cookies": "Odrzuć wszystkie",
+  "accept_necessary_cookies": "Akceptuj tylko niezbędne",
+  "save": "Zapisz"
 }

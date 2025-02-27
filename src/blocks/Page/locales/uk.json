@@ -2,7 +2,7 @@
   "page_1": "Головна",
   "page_2": "Консультації",
   "page_3": "Інформаційний портал",
-  "page_4": "Мої запитання й відповіді",
+  "page_4": "Q&A",
 
   "footer_1": "Головна",
   "footer_2": "Консультації",
@@ -11,19 +11,26 @@
   "footer_5": "Умови й положення",
   "footer_6": "Політика конфіденційності",
   "footer_7": "Налаштування файлів cookie",
-  "footer_8": "ПОШИРЕНІ ЗАПИТАННЯ",
+  "footer_8": "Поширені запитання",
 
   "emergency_button": "SOS-центр",
 
   "button_text": "Перейти до додатку",
   "contact_us": "Зв'яжіться з нами",
   "your_profile_text": "Ваш профіль",
-  
-  "password_placeholder": "Password", 
-  "password": "Please enter your password to access the site",
-  "wrong_password": "Wrong password",
-  "submit": "Submit",
+
+  "password_placeholder": "Пароль",
+  "password": "Будь ласка, введіть Ваш пароль для доступу на сайт",
+  "wrong_password": "Невірний пароль",
+  "submit": "Надіслати",
 
   "dark": "Темний",
-  "light": "Світлий"
+  "light": "Світлий",
+
+  "cookie_banner_header": "Ми цінуємо вашу конфіденційність",
+  "cookie_banner_text": "Цей вебсайт використовує файли cookie для покращення та захисту вашого перегляду. Використовуючи наш вебсайт, ви погоджуєтеся з нашою Політикою щодо файлів cookie.",
+  "accept_all_cookies": "Прийняти всі",
+  "reject_all_cookies": "Відхилити всі",
+  "accept_necessary_cookies": "Прийняти лише необхідні",
+  "save": "Зберегти"
 }
