@@ -157,6 +157,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
   };
 
   const canSubmit = useMemo(() => {
+    if (!questions[0].value) return true;
     const questionsExcludingLast = questions.slice(0, -1);
 
     return (
@@ -186,52 +187,55 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
           <Icon name="warning" size="md" />
           <p className="small-text">{t("warning")}</p>
         </GridItem>
-        {questions.map((question) => (
-          <React.Fragment key={question.id}>
-            <GridItem
-              md={8}
-              lg={12}
-              key={question.id}
-              classes="safety-feedback__question-item"
-            >
-              {question?.type === "emoji" ? (
-                <QuestionEmoji
-                  question={question}
-                  handleAnswerSelect={handleAnswerSelect}
-                  t={t}
-                  theme={theme}
-                />
-              ) : question?.type === "slider" ? (
-                <QuestionSlider
-                  question={question}
-                  handleAnswerSelect={handleAnswerSelect}
-                />
-              ) : question?.type === "textarea" ? (
-                <QuestionTextarea
-                  question={question}
-                  handleAnswerSelect={handleAnswerSelect}
-                  t={t}
-                />
-              ) : (
-                <Question
-                  question={question}
-                  handleAnswerSelect={handleAnswerSelect}
-                  t={t}
-                />
-              )}
-            </GridItem>
-            {question.id === 4 && questions[4].value === true && (
-              <GridItem md={8} lg={12}>
-                <Textarea
-                  label={t("more_details_label")}
-                  value={moreDetails}
-                  onChange={setMoreDetails}
-                  placeholder={t("more_details_placeholder")}
-                />
+        {questions.map((question) => {
+          if (!questions[0].value && question.id !== 0) return null;
+          return (
+            <React.Fragment key={question.id}>
+              <GridItem
+                md={8}
+                lg={12}
+                key={question.id}
+                classes="safety-feedback__question-item"
+              >
+                {question?.type === "emoji" ? (
+                  <QuestionEmoji
+                    question={question}
+                    handleAnswerSelect={handleAnswerSelect}
+                    t={t}
+                    theme={theme}
+                  />
+                ) : question?.type === "slider" ? (
+                  <QuestionSlider
+                    question={question}
+                    handleAnswerSelect={handleAnswerSelect}
+                  />
+                ) : question?.type === "textarea" ? (
+                  <QuestionTextarea
+                    question={question}
+                    handleAnswerSelect={handleAnswerSelect}
+                    t={t}
+                  />
+                ) : (
+                  <Question
+                    question={question}
+                    handleAnswerSelect={handleAnswerSelect}
+                    t={t}
+                  />
+                )}
               </GridItem>
-            )}
-          </React.Fragment>
-        ))}
+              {question.id === 4 && questions[4].value === true && (
+                <GridItem md={8} lg={12}>
+                  <Textarea
+                    label={t("more_details_label")}
+                    value={moreDetails}
+                    onChange={setMoreDetails}
+                    placeholder={t("more_details_placeholder")}
+                  />
+                </GridItem>
+              )}
+            </React.Fragment>
+          );
+        })}
         <GridItem md={8} lg={12} classes="safety-feedback__grid__button">
           <Button
             label={t("button")}
