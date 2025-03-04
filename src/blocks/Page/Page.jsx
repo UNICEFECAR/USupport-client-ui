@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate, Link, NavLink, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import OutsideClickHandler from "react-outside-click-handler";
 
 import {
@@ -473,7 +473,15 @@ export const Page = ({
         isOpen={isRegistrationModalOpen}
         onClose={handleRegistrationModalClose}
       />
-      <CookieBanner t={t} isInClient />
+      <CookieBanner
+        text={
+          <Trans components={[<Link to="/cookie-policy" />]}>
+            {t("cookie_banner_text")}
+          </Trans>
+        }
+        t={t}
+        isInClient
+      />
     </>
   );
 };
