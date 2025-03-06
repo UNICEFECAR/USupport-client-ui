@@ -143,9 +143,26 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
     useUpdateSecurityCheckAnswersByConsultationId(onCreateSuccess);
 
   const handleSubmit = () => {
-    const payload = { consultationId };
+    let payload = { consultationId };
     questions.forEach((question) => {
-      payload[question.field] = question.value;
+      if (questions[0].value === false) {
+        payload = {
+          consultationId,
+          providerAttend: false,
+          contactsDisclosure: false,
+          suggestOutsideMeeting: false,
+          identityCoercion: false,
+          unsafeFeeling: false,
+          feeling: null,
+          addressedNeeds: 0,
+          improveWellbeing: 0,
+          feelingsNow: 0,
+          additionalComment: "",
+          moreDetails: "",
+        };
+      } else {
+        payload[question.field] = question.value;
+      }
     });
     payload.moreDetails = payload.unsafeFeeling ? moreDetails : "";
 
@@ -188,7 +205,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
           <p className="small-text">{t("warning")}</p>
         </GridItem>
         {questions.map((question) => {
-          if (!questions[0].value && question.id !== 0) return null;
+          if (questions[0].value === false && question.id !== 0) return null;
           return (
             <React.Fragment key={question.id}>
               <GridItem
@@ -242,6 +259,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
             size="lg"
             onClick={handleSubmit}
             disabled={!canSubmit}
+            loading={createConsultationSecurityCheckMutation.isLoading}
           />
         </GridItem>
         {hasAnsweredBefore && (
@@ -256,6 +274,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
               type="secondary"
               disabled={!canSubmit}
               onClick={handleSubmit}
+              loading={updateconsultationSecurityCheckMutation.isLoading}
             />
           </GridItem>
         )}
