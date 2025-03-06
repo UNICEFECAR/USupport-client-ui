@@ -259,7 +259,10 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
             size="lg"
             onClick={handleSubmit}
             disabled={!canSubmit}
-            loading={createConsultationSecurityCheckMutation.isLoading}
+            loading={
+              createConsultationSecurityCheckMutation.isLoading ||
+              updateconsultationSecurityCheckMutation.isLoading
+            }
           />
         </GridItem>
         {hasAnsweredBefore && (
