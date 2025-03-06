@@ -281,8 +281,8 @@ export const Articles = ({
         >
           <Grid classes="articles__main-grid">
             {showAgeGroups &&
-              categoriesQuery?.data.length > 1 &&
-              ageGroupsQuery?.data.length > 0 && (
+              categoriesQuery?.data?.length > 1 &&
+              ageGroupsQuery?.data?.length > 0 && (
                 <GridItem md={8} lg={8} classes="articles__age-groups-item">
                   {ageGroups && (
                     <TabsUnderlined
