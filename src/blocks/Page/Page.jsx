@@ -77,6 +77,8 @@ export const Page = ({
 
   const { width } = useWindowDimensions();
   const location = useLocation();
+  const { t, i18n } = useTranslation("page");
+
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
@@ -92,43 +94,39 @@ export const Page = ({
   );
   const [selectedCountry, setSelectedCountry] = useState();
 
-  const fetchCountries = async () => {
-    const res = await countrySvc.getActiveCountries();
-    const usersCountry = getCountryFromTimezone();
-    const validCountry = res.data.find((x) => x.alpha2 === usersCountry);
+  useEventListener("countryChanged", () => {
+    const country = localStorage.getItem("country");
+    if (country) {
+      setSelectedCountry(country);
+    }
+  });
+
+  const handleCountrySelection = (countries) => {
     let hasSetDefaultCountry = false;
 
-    const countries = res.data.map((x) => {
-      const countryObject = {
-        value: x.alpha2,
-        label: x.name,
-        countryID: x["country_id"],
-        iconName: x.alpha2,
-        minAge: x["min_client_age"],
-        maxAge: x["max_client_age"],
-        currencySymbol: x["symbol"],
-        localName: x.local_name,
-      };
+    const usersCountry = getCountryFromTimezone();
+    const validCountry = countries.find((x) => x.value === usersCountry);
 
-      if (localStorageCountry === x.alpha2) {
-        localStorage.setItem("country_id", countryObject.countryID);
-        localStorage.setItem("currency_symbol", countryObject.currencySymbol);
+    for (let i = 0; i < countries.length; i++) {
+      const country = countries[i];
 
-        setSelectedCountry(countryObject);
+      if (localStorageCountry === country.value) {
+        localStorage.setItem("country_id", country.countryID);
+        localStorage.setItem("currency_symbol", country.currencySymbol);
+
+        setSelectedCountry(country);
       } else if (!localStorageCountry || localStorageCountry === "undefined") {
-        if (validCountry?.alpha2 === x.alpha2) {
+        if (validCountry?.value === country.value) {
           hasSetDefaultCountry = true;
 
-          localStorage.setItem("country", x.alpha2);
-          localStorage.setItem("country_id", countryObject.countryID);
-          localStorage.setItem("currency_symbol", countryObject.currencySymbol);
+          localStorage.setItem("country", country.value);
+          localStorage.setItem("country_id", country.countryID);
+          localStorage.setItem("currency_symbol", country.currencySymbol);
 
-          setSelectedCountry(countryObject);
+          setSelectedCountry(country);
         }
       }
-
-      return countryObject;
-    });
+    }
 
     if (!hasSetDefaultCountry && !localStorageCountry) {
       const kazakhstanCountryObject = countries.find(
@@ -142,6 +140,26 @@ export const Page = ({
         kazakhstanCountryObject.currencySymbol
       );
     }
+  };
+
+  const fetchCountries = async () => {
+    const res = await countrySvc.getActiveCountries();
+
+    const countries = res.data.map((x) => {
+      const countryObject = {
+        value: x.alpha2,
+        label: x.name,
+        countryID: x["country_id"],
+        iconName: x.alpha2,
+        minAge: x["min_client_age"],
+        maxAge: x["max_client_age"],
+        currencySymbol: x["symbol"],
+        localName: x.local_name,
+      };
+      return countryObject;
+    });
+
+    handleCountrySelection(countries);
 
     return countries;
   };
@@ -167,8 +185,25 @@ export const Page = ({
     return languages;
   };
 
-  const { data: countries } = useQuery(["countries"], fetchCountries);
-  const { data: languages } = useQuery(["languages"], fetchLanguages);
+  const { data: countries } = useQuery(["countries"], fetchCountries, {
+    staleTime: Infinity,
+  });
+  const { data: languages } = useQuery(
+    ["languages", selectedCountry],
+    fetchLanguages,
+    {
+      staleTime: Infinity,
+      cacheTime: 1000 * 60 * 60 * 24, // Keep cached for 24 hours
+      enabled: !!selectedCountry,
+    }
+  );
+
+  useEffect(() => {
+    const countries = queryClient.getQueryData(["countries"]);
+    if (countries) {
+      handleCountrySelection(countries);
+    }
+  }, []);
 
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false);
   useEffect(() => {
@@ -191,10 +226,9 @@ export const Page = ({
 
   useEffect(() => {
     if (clientData) {
+      const { sex, yearOfBirth, urbanRural } = clientData;
       if (
-        (!clientData.sex ||
-          !clientData.yearOfBirth ||
-          !clientData.urbanRural) &&
+        (!sex || !yearOfBirth || !urbanRural) &&
         location.pathname !== "/register/about-you"
       ) {
         navigateTo("/register/about-you", {
@@ -206,7 +240,6 @@ export const Page = ({
     }
   }, [clientData]);
 
-  const { t, i18n } = useTranslation("page");
   const pages = [
     { name: t("page_1"), url: "/dashboard", exact: true },
     { name: t("page_2"), url: "/consultations" },
