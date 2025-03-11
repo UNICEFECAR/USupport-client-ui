@@ -63,10 +63,11 @@ export default function Root() {
   const [loggedIn, setLoggedIn] = useState(!!token);
   const [activeCoupon, setActiveCoupon] = useState();
   const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
+  const [hasAddedPlatformAccess, setHasAddedPlatformAccess] = useState(false);
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
-    if (country !== currentCountry) {
+    if (country) {
       setCountry(country);
     }
   }, []);
@@ -93,9 +94,12 @@ export default function Root() {
 
   useQuery({
     queryKey: ["addPlatformAccess", loggedIn, country],
-    queryFn: async () => await userSvc.addPlatformAccess("client"),
+    queryFn: async () => {
+      await userSvc.addPlatformAccess("client");
+      setHasAddedPlatformAccess(true);
+    },
     staleTime: Infinity,
-    enabled: !!country,
+    enabled: !!country && !hasAddedPlatformAccess,
   });
 
   const location = useLocation();
