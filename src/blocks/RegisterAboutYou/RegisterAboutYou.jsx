@@ -147,6 +147,12 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
 
   const handleContinue = async () => {
     if ((await validate(data, schema, setErrors)) === null) {
+      const newClientData = {
+        ...clientData,
+        ...data,
+      };
+      queryClient.setQueryData(["client-data"], newClientData);
+      queryClient.getQueryData(["client-data"]);
       updateClientDetailsMutation.mutate();
     }
   };

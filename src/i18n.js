@@ -554,7 +554,7 @@ const resources = {
     // Routes
     root: Root.pl,
   },
-  uk: {
+  ua: {
     // Blocks
     page: Page.uk,
     "provider-overview": ProviderOverview.uk,
