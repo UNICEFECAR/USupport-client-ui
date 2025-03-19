@@ -17,13 +17,6 @@ import "./user-profile.scss";
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 const GIT_BOOK_URL = `${import.meta.env.VITE_GIT_BOOK_URL}`;
 
-const fetchCountry = async () => {
-  const { data } = await countrySvc.getActiveCountries();
-  const currentCountryId = localStorage.getItem("country_id");
-  const currentCountry = data.find((x) => x.country_id === currentCountryId);
-  return currentCountry?.alpha2 === "KZ" ? true : false;
-};
-
 /**
  * UserProfile
  *
@@ -40,7 +33,8 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
   const clientQueryArray = useGetClientData(isTmpUser ? false : true);
   const clientData = isTmpUser ? {} : clientQueryArray[0].data;
 
-  const { data: isKzCountry } = useQuery(["is-kz-country"], fetchCountry);
+  const country = localStorage.getItem("country");
+  const hidePaymentHistory = country === "KZ" || country === "PL";
 
   useEffect(() => {
     if (clientData) {
@@ -116,7 +110,7 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
         </GridItem>
         <GridItem md={8} lg={12} classes="user-profile__grid__item">
           <p className="text user-profile__grid__item__label">{t("other")}</p>
-          {!isKzCountry && (
+          {!hidePaymentHistory && (
             <ButtonSelector
               label={t("payments_history_button_label")}
               iconName="payment-history"
