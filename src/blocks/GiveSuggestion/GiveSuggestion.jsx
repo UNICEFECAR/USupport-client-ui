@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import Joi from "joi";
@@ -32,6 +33,7 @@ const initialData = {
 export const GiveSuggestion = () => {
   const { t } = useTranslation("give-suggestion");
 
+  const navigate = useNavigate();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
   const [data, setData] = useState({ ...initialData });
