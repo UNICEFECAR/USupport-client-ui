@@ -5,12 +5,12 @@
   "no_match": "Brak konsultantów spełniających kryteria",
   "free": "Wolny",
   "coupon": "Kupon",
-  "earliest_available_slot": "Pierwsza dostępna konsultacja:",
+  "earliest_available_slot": "Najbliższy dostępny termin",
   "sunday": "Niedz.",
   "monday": "Pon.",
   "tuesday": "Wt.",
   "wednesday": "Śr.",
   "thursday": "Czw.",
-  "friday": "Piąt.",
+  "friday": "Pt.",
   "saturday": "Sob."
 }

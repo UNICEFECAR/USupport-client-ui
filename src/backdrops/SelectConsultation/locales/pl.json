@@ -1,10 +1,10 @@
 {
   "heading_edit": "Zaproponuj zmianę",
   "heading_new": "Wybierz czas",
-  "subheading_edit": "Sugerować datę i godzinę zmiany terminu tego spotkania.",
+  "subheading_edit": "Zasugeruj datę i godzinę zmiany terminu tego spotkania.",
   "subheading_new": "Wybierz datę i godzinę spotkania.",
   "cta_button_label": "Zapisz",
-  "no_slots_available": "W wybranym dniu nie ma dostępnych przedziałów czasowych.",
+  "no_slots_available": "Brak dostępnych przedziałów czasowych w wybranym dniu.",
   "january": "Styczeń",
   "february": "Luty",
   "march": "Marzec",

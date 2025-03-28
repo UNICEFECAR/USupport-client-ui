@@ -3,9 +3,9 @@
   "subheading": "Tutaj możesz odkryć wszystko, czego potrzebujesz, aby poprawić swoje zdrowie psychiczne",
   "heading_newest": "Najnowsze artykuły",
   "heading_popular": "Najpopularniejsze",
-  "heading_no_language_results": "Nie mogliśmy znaleźć żadnych artykułów opartych na wybranym języku.",
+  "heading_no_language_results": "Nie znaleziono żadnych artykułów w wybranym języku.",
   "view_all": "Wyświetl wszystkie",
   "read_more_button": "Czytaj więcej",
-  "min_read": "min czytania",
+  "min_read": "min. czytania",
   "by": "Przez {{creator}}"
 }
