@@ -3,7 +3,7 @@
   "price": "Cena",
   "date_of_payment": "Data płatności",
   "more_details": "Więcej szczegółów",
-  "no_data_found": "Nie masz jeszcze żadnych płatności",
+  "no_data_found": "Brak zrealizowanych płatności.",
   "text_audio_video_consultation": "Konsultacje online",
   "export_label": "Eksport"
 }

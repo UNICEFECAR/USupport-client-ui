@@ -26,5 +26,6 @@
   "sa": "Sa",
   "coupon_code": "Coupon code",
   "apply_coupon": "Apply coupon",
-  "remove_coupon": "Remove coupon"
+  "remove_coupon": "Remove coupon",
+  "provider_not_available": "The provider has no available slots"
 }

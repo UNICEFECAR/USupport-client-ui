@@ -1,12 +1,12 @@
 {
-  "happy": "Szczęśliwy/Szęśliwa",
+  "happy": "Szczęśliwy/a",
   "good": "Dobrze",
-  "sad": "Smutny/Smutna",
-  "depressed": "Przygnębiony/Przygnębiona",
-  "worried": "Zmartwiony/Zmartwiona",
+  "sad": "Smutny/a",
+  "depressed": "Przygnębiony/a",
+  "worried": "Zmartwiony/a",
   "heading": "Jak się dziś czujesz?",
   "mood_tracker": "Monitor nastroju",
   "additional_comment_placeholder": "Co sprawiło, że tak się poczułeś?",
   "submit_mood_track": "Prześlij",
-  "add_mood_tracker_success": "Twój codzienny nastrój został pomyślnie dodany"
+  "add_mood_tracker_success": "Twój dzisiejszy nastrój został pomyślnie dodany"
 }

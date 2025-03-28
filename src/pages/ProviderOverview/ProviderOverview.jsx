@@ -137,6 +137,9 @@ export const ProviderOverview = () => {
         handleBlockSlot={handleBlockSlot}
         providerId={providerId}
         isCtaDisabled={isBlockSlotSubmitting}
+        isMutating={
+          isBlockSlotSubmitting || scheduleConsultationMutation.isLoading
+        }
         errorMessage={blockSlotError}
       />
       {selectedSlot.current && (

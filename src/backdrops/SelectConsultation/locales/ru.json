@@ -26,5 +26,6 @@
   "sa": "Сб",
   "coupon_code": "Код купона",
   "apply_coupon": "Использовать купон",
-  "remove_coupon": "Удалить купон"
+  "remove_coupon": "Удалить купон",
+  "provider_not_available": "У консультанта нет доступных слотов."
 }
