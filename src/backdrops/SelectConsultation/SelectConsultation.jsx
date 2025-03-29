@@ -7,14 +7,11 @@ import { RootContext } from "#routes";
 
 import {
   Backdrop,
-  Button,
-  Input,
   Header,
   RadioButtonSelectorGroup,
   Loading,
-  Error,
 } from "@USupport-components-library/src";
-import { providerSvc, clientSvc } from "@USupport-components-library/services";
+import { providerSvc } from "@USupport-components-library/services";
 import {
   getTimestampFromUTC,
   parseUTCDate,
@@ -37,21 +34,20 @@ export const SelectConsultation = ({
   edit = false,
   handleBlockSlot,
   providerId,
+  isMutating,
   isCtaDisabled = false,
   errorMessage,
   campaignId: campaingIdFromProps,
 }) => {
   const { t } = useTranslation("select-consultation");
   const { activeCoupon } = useContext(RootContext);
-  const [couponCode, setCouponCode] = useState(activeCoupon?.couponValue || "");
-  const [campaignId, setCampaignId] = useState(
-    activeCoupon?.campaignId || campaingIdFromProps
-  );
   const [startDate, setStartDate] = useState(null);
   const [currentDay, setCurrentDay] = useState(new Date().getTime());
 
   const localStorageCountry = localStorage.getItem("country");
   const SHOW_COUPON = localStorageCountry !== "KZ";
+
+  const campaignId = activeCoupon?.campaignId || campaingIdFromProps;
 
   const providerDataQuery = useGetProviderDataById(providerId, campaignId);
   const providerData = providerDataQuery.data;
@@ -199,31 +195,6 @@ export const SelectConsultation = ({
     handleBlockSlot(time, providerData.consultationPrice);
   };
 
-  const [isCouponLoading, setIsCouponLoading] = useState(false);
-  const handleSubmitCoupon = async () => {
-    setIsCouponLoading(true);
-    try {
-      const { data } = await clientSvc.checkIsCouponAvailable(couponCode);
-
-      if (data?.campaign_id) {
-        setCampaignId(data.campaign_id);
-      }
-    } catch (err) {
-      console.log(err, "err");
-      const { message: errorMessage } = useError(err);
-      console.log(errorMessage);
-      setCouponError(errorMessage);
-    } finally {
-      setIsCouponLoading(false);
-    }
-  };
-
-  const [couponError, setCouponError] = useState();
-  const removeCoupon = () => {
-    setCouponCode("");
-    setCampaignId("");
-  };
-
   return (
     <Backdrop
       classes="select-consultation"
@@ -235,31 +206,25 @@ export const SelectConsultation = ({
       ctaLabel={t("cta_button_label")}
       ctaHandleClick={handleSave}
       isCtaDisabled={isCtaDisabled ? true : !selectedSlot ? true : false}
+      isLoading={providerDataQuery.isLoading || availableSlotsQuery.isLoading}
+      isCtaLoading={isMutating}
       errorMessage={errorMessage}
     >
-      {SHOW_COUPON && (
+      {SHOW_COUPON && activeCoupon && (
         <div className="select-consultation__coupon-container">
-          <Input
-            value={couponCode}
-            onChange={(e) => setCouponCode(e.currentTarget.value)}
-            label={t("coupon_code")}
-            placeholder="COUPON1"
-          />
-          <Button
-            label={
-              campaignId && couponCode ? t("remove_coupon") : t("apply_coupon")
-            }
-            onClick={
-              campaignId && couponCode ? removeCoupon : handleSubmitCoupon
-            }
-            size="md"
-            loading={isCouponLoading}
-          />
-          {couponError && <Error message={couponError} />}
+          <p>
+            <strong>
+              {t("coupon_code")}: {activeCoupon.couponValue}
+            </strong>
+          </p>
         </div>
       )}
       {providerDataQuery.isLoading ? (
         <Loading size="lg" />
+      ) : !providerData.earliestAvailableSlot ? (
+        <p className="select-consultation__no-slots">
+          {t("no_available_slots")}
+        </p>
       ) : (
         <div className="select-consultation__content-container">
           <Header

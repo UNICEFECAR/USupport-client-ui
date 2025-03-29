@@ -1,7 +1,7 @@
 {
-    "heading": "Filtruj pytania według tagów",
-    "dropdown_label": "Wybrać tag",
-    "cta_label": "Zastosuj filtry",
-    "secondary_cta_label": "Zresetuj filtry",
-    "dropdown_placeholder": "Wybierz tag"
+  "heading": "Filtruj pytania według tagów",
+  "dropdown_label": "Wybierz tag",
+  "cta_label": "Zastosuj filtry",
+  "secondary_cta_label": "Zresetuj filtry",
+  "dropdown_placeholder": "Wybierz tag"
 }

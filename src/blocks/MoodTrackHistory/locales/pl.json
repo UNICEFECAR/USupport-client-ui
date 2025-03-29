@@ -1,10 +1,10 @@
 {
-  "happy": "Szczęśliwy/Szęśliwa",
+  "happy": "Szczęśliwy/a/a",
   "good": "Dobrze",
-  "sad": "Smutny/Smutna",
-  "depressed": "Przygnębiony/Przygnębiona",
-  "worried": "Zmartwiony/Zmartwiona",
-  "you_felt": "Poczułeś/Poczułaś",
+  "sad": "Smutny/a",
+  "depressed": "Przygnębiony/a/a",
+  "worried": "Zmartwiony/a/a",
+  "you_felt": "Poczułeś/aś",
   "comment_text": "i skomentowałeś/skomentowałaś:",
   "no_result": "Nie znaleziono żadnych wyników."
 }

@@ -1,7 +1,7 @@
 {
   "heading": "Weryfikacja kodu",
   "subheading": "Wprowadź kod otrzymany w wiadomości email. Jest on ważny przez 30 minut od otrzymania wiadomości email.",
-  "expiration_text": "Kod wygaśnie w ",
+  "expiration_text": "Kod wygaśnie za",
   "button_with_icon_label_view": "Wyświetl kod",
   "button_with_icon_label_hide": "Ukryj kod",
   "send_button_label": "Kontynuuj",

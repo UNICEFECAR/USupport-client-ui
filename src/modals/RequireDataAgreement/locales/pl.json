@@ -1,9 +1,9 @@
 {
-  "heading": "Czy wyrażasz zgodę na wykorzystywanie swoich danych zgodnie z polityką prywatności?",
-  "text": "Twoje dane osobowe nie zostaną ujawniane, te uprawnienia będą wykorzystywane wyłącznie do przetwarzania i przechowywania na platformie danych medycznych i historii czatu.",
+  "heading": "Czy wyrażasz zgodę na przetwarzanie Twoich danych zgodnie z polityką prywatności?",
+  "text": "Twoje dane osobowe pozostaną poufne. Będą wykorzystywane wyłącznie do przechowywania historii czatu oraz danych medycznych na platformie",
   "text2": "Jeśli chcesz dowiedzieć się więcej o tym, jak przetwarzamy dane osobowe, odwiedź naszą ",
   "terms": "Warunki",
-  "privacy_policy": "Polityka prywatności",
-  "give_permission": "Udziel uprawnienia",
+  "privacy_policy": "Polityką prywatności",
+  "give_permission": "Wyraź zgodę",
   "cancel": "Anuluj"
 }

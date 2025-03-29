@@ -1,6 +1,6 @@
 {
-  "heading": "Czy na pewno chcesz anulować konsultację?",
-  "paid_heading": "Czy na pewno chcesz anulować konsultację i stracić opłatę w wysokości{{price}}?",
+  "heading": "Czy na pewno chcesz odwołać konsultację?",
+  "paid_heading": "Czy na pewno chcesz odwołać konsultację? Opłata w wysokości {{price}} nie zostanie zwrócona.",
   "paid_cancel_subheading": "Anulujesz konsultację na mniej niż 24 godziny przed nią. Stracisz pieniądze zapłacone za konsultację.",
   "cancel_button_label": "Anuluj konsultację",
   "keep_button_label": "Zachowaj konsultację",
@@ -10,7 +10,7 @@
   "tuesday": "Wt.",
   "wednesday": "Śr.",
   "thursday": "Czw.",
-  "friday": "Piąt.",
+  "friday": "Pt.",
   "saturday": "Sob.",
   "free": "Wolny",
   "coupon": "Kupon"
