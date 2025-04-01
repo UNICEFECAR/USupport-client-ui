@@ -223,7 +223,7 @@ export const SelectConsultation = ({
         <Loading size="lg" />
       ) : !providerData.earliestAvailableSlot ? (
         <p className="select-consultation__no-slots">
-          {t("no_available_slots")}
+          {t("provider_not_available")}
         </p>
       ) : (
         <div className="select-consultation__content-container">
