@@ -12,7 +12,7 @@ import {
   InputSearch,
   ButtonWithIcon,
   Loading,
-  DropdownWithLabel,
+  Dropdown,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
@@ -168,41 +168,33 @@ export const MyQA = ({
       <Grid>
         <GridItem xs={4} md={8} lg={12}>
           <Grid classes="my-qa__tabs-grid">
-            <GridItem md={5} lg={7}>
+            <GridItem
+              md={8}
+              lg={12}
+              classes="my-qa__tabs-grid__search-container"
+            >
               <InputSearch
                 placeholder={t("search_placeholder")}
                 value={searchValue}
                 onChange={(value) => setSearchValue(value.toLowerCase())}
+                classes="my-qa__tabs-grid__search-container__input"
               />
-              <DropdownWithLabel
+              <Dropdown
                 options={languageOptions}
                 selected={selectedLanguage}
                 setSelected={(lang) => {
                   console.log(lang);
                   setSelectedLanguage(lang);
                 }}
-                label={t("language")}
                 placeholder={t("placeholder")}
                 classes="my-qa__categories-item__language-dropdown"
               />
             </GridItem>
             <GridItem
-              md={3}
-              lg={5}
+              md={8}
+              lg={8}
               classes="my-qa__tabs-grid__filter-button-item"
             >
-              <ButtonWithIcon
-                label={t("filter")}
-                iconName="filter"
-                iconColor="#ffffff"
-                iconSize="sm"
-                color="purple"
-                size="sm"
-                onClick={handleFilterTags}
-                classes="my-qa__tabs-grid__filter-button"
-              />
-            </GridItem>
-            <GridItem md={6} lg={7} classes="my-qa__categories-item">
               <Tabs
                 options={tabs.map((tab) => {
                   return {
@@ -213,13 +205,25 @@ export const MyQA = ({
                 })}
                 handleSelect={handleTabChange}
               />
+              <div>
+                <ButtonWithIcon
+                  label={t("filter")}
+                  iconName="filter"
+                  iconColor="#ffffff"
+                  iconSize="sm"
+                  color="purple"
+                  size="sm"
+                  onClick={handleFilterTags}
+                  classes="my-qa__tabs-grid__filter-button"
+                />
+              </div>
             </GridItem>
-            <GridItem md={2} lg={5} classes="my-qa__button-item">
+            <GridItem md={8} lg={4} classes="my-qa__button-item">
               <Button
                 label={t("ask_button_label")}
-                size={width < 980 && width > 768 ? "sm" : "lg"}
+                size={width < 980 && width > 768 ? "lg" : "lg"}
                 classes="my-qa__ask-question-button"
-                onClick={handleAskAnonymous}
+                onClick={handleScheduleConsultationClick}
               />
             </GridItem>
           </Grid>
