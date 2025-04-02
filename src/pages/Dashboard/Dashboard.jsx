@@ -301,6 +301,7 @@ export const Dashboard = () => {
             errorMessage={blockSlotError}
             edit
             campaignId={selectedConsultation?.campaignId}
+            couponCode={selectedConsultation?.couponCode}
           />
         )}
         {selectedSlot && (

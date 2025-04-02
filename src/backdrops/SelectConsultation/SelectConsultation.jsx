@@ -38,6 +38,7 @@ export const SelectConsultation = ({
   isCtaDisabled = false,
   errorMessage,
   campaignId: campaingIdFromProps,
+  couponCode,
 }) => {
   const { t } = useTranslation("select-consultation");
   const { activeCoupon } = useContext(RootContext);
@@ -210,11 +211,11 @@ export const SelectConsultation = ({
       isCtaLoading={isMutating}
       errorMessage={errorMessage}
     >
-      {SHOW_COUPON && activeCoupon && (
+      {SHOW_COUPON && (activeCoupon || couponCode) && (
         <div className="select-consultation__coupon-container">
           <p>
             <strong>
-              {t("coupon_code")}: {activeCoupon.couponValue}
+              {t("coupon_code")}: {activeCoupon?.couponValue || couponCode}
             </strong>
           </p>
         </div>

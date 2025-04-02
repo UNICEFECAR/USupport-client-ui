@@ -241,6 +241,7 @@ export const Consultations = () => {
           errorMessage={blockSlotError}
           edit
           campaignId={selectedConsultation?.campaignId}
+          couponCode={selectedConsultation?.couponCode}
         />
       )}
       {selectedSlot && (
