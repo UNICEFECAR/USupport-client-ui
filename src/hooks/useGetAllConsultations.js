@@ -21,6 +21,7 @@ export default function useGetAllConsultations(enabled = true) {
         sponsorName: consultation.sponsor_name,
         sponsorImage: consultation.sponsor_image,
         organizationId: consultation.organization_id,
+        couponCode: consultation.coupon_code,
       });
     }
     return formattedData;
