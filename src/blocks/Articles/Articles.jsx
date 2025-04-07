@@ -29,7 +29,7 @@ import "./articles.scss";
 export const Articles = ({
   showSearch,
   showCategories,
-  showAgeGroups = true,
+  // showAgeGroups = true,
   sort,
 }) => {
   const navigate = useNavigate();
@@ -46,6 +46,14 @@ export const Articles = ({
   //--------------------- Age Groups ----------------------//
   const [ageGroups, setAgeGroups] = useState();
   const [selectedAgeGroup, setSelectedAgeGroup] = useState();
+  const [showAgeGroups, setShowAgeGroups] = useState(true);
+
+  useEffect(() => {
+    const country = localStorage.getItem("country");
+    if (country === "PL") {
+      setShowAgeGroups(false);
+    }
+  }, []);
 
   const getAgeGroups = async () => {
     try {
@@ -154,6 +162,7 @@ export const Articles = ({
     if (country !== currentCountry) {
       setCurrentCountry(country);
     }
+    setShowAgeGroups(country !== "PL");
   }, []);
 
   // Add event listener
@@ -293,7 +302,11 @@ export const Articles = ({
                 </GridItem>
               )}
             {showSearch && areCategoriesAndAgeGroupsReady && (
-              <GridItem md={8} lg={4} classes="articles__search-item">
+              <GridItem
+                md={8}
+                lg={showAgeGroups ? 4 : 12}
+                classes="articles__search-item"
+              >
                 <InputSearch onChange={handleInputChange} value={searchValue} />
               </GridItem>
             )}

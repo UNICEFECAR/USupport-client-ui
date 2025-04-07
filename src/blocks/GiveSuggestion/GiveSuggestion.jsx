@@ -55,7 +55,7 @@ export const GiveSuggestion = () => {
   }, [data]);
 
   const handleModalSuccessCtaClick = () => {
-    window.location.reload(false);
+    navigate("/information-portal/articles");
     window.scrollTo(0, 0);
   };
 

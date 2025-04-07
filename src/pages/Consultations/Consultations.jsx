@@ -150,6 +150,7 @@ export const Consultations = () => {
     blockSlotMutation.mutate({
       slot,
       providerId: selectedConsultationProviderId,
+      rescheduleCampaignSlot: !!slot.campaign_id,
     });
   };
 
@@ -240,6 +241,7 @@ export const Consultations = () => {
           errorMessage={blockSlotError}
           edit
           campaignId={selectedConsultation?.campaignId}
+          couponCode={selectedConsultation?.couponCode}
         />
       )}
       {selectedSlot && (
