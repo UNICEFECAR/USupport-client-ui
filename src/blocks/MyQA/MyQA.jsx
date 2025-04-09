@@ -223,7 +223,7 @@ export const MyQA = ({
                 label={t("ask_button_label")}
                 size={width < 980 && width > 768 ? "lg" : "lg"}
                 classes="my-qa__ask-question-button"
-                onClick={handleScheduleConsultationClick}
+                onClick={handleAskAnonymous}
               />
             </GridItem>
           </Grid>
