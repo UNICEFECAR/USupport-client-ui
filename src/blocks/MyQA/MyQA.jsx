@@ -71,7 +71,7 @@ export const MyQA = ({
   const languageOptions = useMemo(() => {
     const showAllOption = {
       value: "all",
-      label: t("all"),
+      label: t("all_languages"),
     };
 
     if (!languages) return [showAllOption];
@@ -223,7 +223,7 @@ export const MyQA = ({
                 label={t("ask_button_label")}
                 size={width < 980 && width > 768 ? "lg" : "lg"}
                 classes="my-qa__ask-question-button"
-                onClick={handleScheduleConsultationClick}
+                onClick={handleAskAnonymous}
               />
             </GridItem>
           </Grid>
