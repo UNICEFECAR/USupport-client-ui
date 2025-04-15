@@ -87,10 +87,12 @@ export const Page = ({
 
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(!!token);
 
-  const localStorageCountry = localStorage.getItem("country");
+  let localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
   const [selectedLanguage, setSelectedLanguage] = useState(
-    localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null
+    localStorageLanguage
+      ? { value: localStorageLanguage.toUpperCase() }
+      : { value: "EN" }
   );
   const [selectedCountry, setSelectedCountry] = useState();
 
@@ -144,6 +146,14 @@ export const Page = ({
 
   const fetchCountries = async () => {
     const res = await countrySvc.getActiveCountries();
+    const subdomain = window.location.hostname.split(".")[0];
+
+    if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
+      localStorageCountry =
+        res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
+          ?.alpha2 || localStorageCountry;
+      localStorage.setItem("country", localStorageCountry);
+    }
 
     const countries = res.data.map((x) => {
       const countryObject = {
@@ -284,6 +294,8 @@ export const Page = ({
   };
 
   const themeButton = () => {
+    const url = location.pathname;
+    if (url.includes("jitsi")) return null;
     return (
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
@@ -488,7 +500,7 @@ export const Page = ({
         <CircleIconButton
           iconName="phone-emergency"
           classes="page__emergency-button"
-          onClick={() => navigateTo("/sos-center")}
+          onClick={() => navigateTo(`/sos-center`)}
           label={t("emergency_button")}
         />
       )}

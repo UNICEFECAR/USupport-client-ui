@@ -34,12 +34,22 @@ export const Welcome = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
 
-  const localStorageCountry = localStorage.getItem("country");
+  let localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
   const localStorageCountryID = localStorage.getItem("country_id");
 
   const fetchCountries = async () => {
     const res = await countrySvc.getActiveCountries();
+
+    const subdomain = window.location.hostname.split(".")[0];
+
+    if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
+      localStorageCountry =
+        res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
+          ?.alpha2 || localStorageCountry;
+      localStorage.setItem("country", localStorageCountry);
+    }
+
     const countries = res.data.map((x) => {
       const countryObject = {
         value: x.alpha2,
@@ -96,6 +106,25 @@ export const Welcome = () => {
     }
   );
 
+  const handleSelectCountry = (country) => {
+    localStorage.setItem("country", country);
+    setTimeout(() => {
+      setSelectedCountry(country);
+    }, 1);
+    const countryObject = countriesQuery.data.find(
+      (x) => x.value.toLocaleLowerCase() === country.toLocaleLowerCase()
+    );
+    const subdomain = window.location.hostname.split(".")[0];
+    if (
+      !window.location.href.includes("localhost") &&
+      subdomain !== "staging"
+    ) {
+      const label = countryObject.label.toLocaleLowerCase();
+      const newUrl = window.location.href.replace(subdomain, label);
+      window.location.href = newUrl;
+    }
+  };
+
   const handleContinue = () => {
     const country = selectedCountry;
     const language = selectedLanguage;
@@ -143,12 +172,7 @@ export const Welcome = () => {
                 }
                 classes="welcome__grid__content-item__countries-dropdown"
                 selected={selectedCountry}
-                setSelected={(country) => {
-                  localStorage.setItem("country", country);
-                  setTimeout(() => {
-                    setSelectedCountry(country);
-                  }, 1);
-                }}
+                setSelected={handleSelectCountry}
                 label={t("country")}
                 placeholder={t("placeholder")}
               />
