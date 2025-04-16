@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import {
   Block,
@@ -11,11 +10,11 @@ import {
   GridItem,
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
-import { useError } from "#hooks";
+import { mascotHappyBlue } from "@USupport-components-library/assets";
+
+import { useError, useCustomNavigate as useNavigate } from "#hooks";
 
 import "./register-preview.scss";
-
-import { mascotHappyBlue } from "@USupport-components-library/assets";
 
 /**
  * RegisterPreview
@@ -24,7 +23,7 @@ import { mascotHappyBlue } from "@USupport-components-library/assets";
  *
  * @return {jsx}
  */
-export const RegisterPreview = ({ handleLoginRedirection }) => {
+export const RegisterPreview = () => {
   const { t } = useTranslation("register-preview");
   const navigate = useNavigate();
   const [error, setErrror] = useState();
@@ -116,7 +115,7 @@ export const RegisterPreview = ({ handleLoginRedirection }) => {
               size="lg"
               label={t("login")}
               color="purple"
-              onClick={handleLoginRedirection}
+              onClick={() => navigate("/login")}
             />
             <Button
               label={t("register_anonymously")}

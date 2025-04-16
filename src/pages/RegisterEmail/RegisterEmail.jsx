@@ -1,14 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
 
 import { Loading } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 
 import { Page, RegisterEmail as RegisterEmailBlock } from "#blocks";
 import { CodeVerification } from "#backdrops";
-import { useIsLoggedIn, useError } from "#hooks";
-import { useMutation } from "@tanstack/react-query";
+import {
+  useIsLoggedIn,
+  useError,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 
 import "./register-email.scss";
 
@@ -123,7 +127,10 @@ export const RegisterEmail = () => {
   };
 
   if (isLoggedIn === "loading") return <Loading />;
-  if (isLoggedIn === true) return <Navigate to="/dashboard" />;
+  if (isLoggedIn === true)
+    return (
+      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+    );
 
   return (
     <Page

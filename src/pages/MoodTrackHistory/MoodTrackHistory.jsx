@@ -17,7 +17,10 @@ import "./mood-track-history.scss";
 export const MoodTrackHistory = () => {
   const { t } = useTranslation("mood-track-history-page");
   const { isTmpUser } = useContext(RootContext);
-  if (isTmpUser) return <Navigate to="/dashboard" />;
+  if (isTmpUser)
+    return (
+      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+    );
 
   return (
     <Page classes="page__mood-track-history" heading={t("heading")}>

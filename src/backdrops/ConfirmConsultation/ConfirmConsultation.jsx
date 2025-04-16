@@ -9,7 +9,7 @@ import {
 import { useTranslation } from "react-i18next";
 
 import "./confirm-consultation.scss";
-import { useNavigate } from "react-router-dom";
+import { useCustomNavigate as useNavigate } from "#hooks";
 
 /**
  * ConfirmConsultation
