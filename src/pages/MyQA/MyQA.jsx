@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
@@ -10,6 +10,7 @@ import {
   useGetQuestions,
   useAddVoteQuestion,
   useGetClientData,
+  useCustomNavigate as useNavigate,
 } from "#hooks";
 import { RootContext } from "#routes";
 

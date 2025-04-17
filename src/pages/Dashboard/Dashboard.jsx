@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -201,7 +201,9 @@ export const Dashboard = () => {
       });
     } else {
       if (consultationPrice.current && consultationPrice.current > 0) {
-        navigate("/checkout", { state: { consultationId: consultationId } });
+        navigate(`/checkout`, {
+          state: { consultationId: consultationId },
+        });
       } else {
         scheduleConsultationMutation.mutate(selectedConsultationId);
       }
@@ -227,13 +229,13 @@ export const Dashboard = () => {
     if (!clientData.dataProcessing) {
       openRequireDataAgreement();
     } else {
-      navigate("/select-provider");
+      navigate(`/select-provider`);
     }
   };
 
   const handleDataAgreementSucess = () => {
     if (redirectToSelectProvider) {
-      navigate("/select-provider");
+      navigate(`/select-provider`);
     }
   };
 

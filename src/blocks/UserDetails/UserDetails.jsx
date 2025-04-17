@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCustomNavigate as useNavigate } from "#hooks";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import { toast } from "react-toastify";

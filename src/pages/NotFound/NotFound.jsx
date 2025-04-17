@@ -4,7 +4,7 @@ import { NotFound as NotFoundBlock } from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
 import "./not-found.scss";
-import { useNavigate } from "react-router-dom";
+import { useCustomNavigate as useNavigate } from "#hooks";
 
 /**
  * NotFound

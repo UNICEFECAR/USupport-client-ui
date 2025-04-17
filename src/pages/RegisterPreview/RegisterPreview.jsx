@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { Page, RegisterPreview as RegisterPreviewBlock } from "#blocks";
 import { Loading } from "@USupport-components-library/src";
 import { useIsLoggedIn } from "#hooks";
@@ -14,15 +14,13 @@ import "./register-preview.scss";
  * @returns {JSX.Element}
  */
 export const RegisterPreview = () => {
-  const navigate = useNavigate();
   const isLoggedIn = useIsLoggedIn();
 
-  const handleLoginRedirection = () => {
-    navigate("/login");
-  };
-
   if (isLoggedIn === "loading") return <Loading />;
-  if (isLoggedIn === true) return <Navigate to="/dashboard" />;
+  if (isLoggedIn === true)
+    return (
+      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+    );
 
   return (
     <Page
@@ -30,7 +28,7 @@ export const RegisterPreview = () => {
       additionalPadding={false}
       showHeadingButtonInline
     >
-      <RegisterPreviewBlock handleLoginRedirection={handleLoginRedirection} />
+      <RegisterPreviewBlock />
     </Page>
   );
 };

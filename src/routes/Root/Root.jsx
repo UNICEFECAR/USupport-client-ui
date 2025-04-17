@@ -1,5 +1,11 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
@@ -45,15 +51,306 @@ import {
   PaymentStatus,
   MoodTrackHistory,
   MyQA,
+  // JitsiRoom,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData } from "#hooks";
 
 const RootContext = React.createContext();
 
+const LanguageLayout = () => {
+  const { language } = useParams();
+
+  const allLangs = ["en", "ru", "kk", "pl", "uk"];
+
+  if (!allLangs.includes(language) || !language) {
+    return <Navigate to="/en/client" />;
+  }
+  return (
+    <Routes>
+      {/* <Route path="/client/jitsi" element={<JitsiRoom />} /> */}
+      <Route
+        path="/client/login"
+        element={
+          <CountryValidationRoute>
+            <Login />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/consultation"
+        element={
+          <ProtectedRoute>
+            <Consultation />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/notifications"
+        element={
+          <ProtectedRoute>
+            <Notifications />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/register-preview"
+        element={
+          <CountryValidationRoute>
+            <RegisterPreview />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/register"
+        element={
+          <CountryValidationRoute>
+            <RegisterEmail />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/register-anonymous"
+        element={
+          <CountryValidationRoute>
+            <RegisterAnonymous />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/forgot-password"
+        element={
+          <CountryValidationRoute>
+            <ForgotPassword />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/mood-tracker"
+        element={
+          <ProtectedRoute>
+            <MoodTrackHistory />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/reset-password"
+        element={
+          <CountryValidationRoute>
+            <ResetPassword />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/privacy-policy"
+        element={
+          <CountryValidationRoute>
+            <PrivacyPolicy />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/cookie-policy"
+        element={
+          <CountryValidationRoute>
+            <CookiePolicy />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/terms-of-use"
+        element={
+          <CountryValidationRoute>
+            <TermsOfUse />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/register/about-you"
+        element={
+          <ProtectedRoute>
+            <RegisterAboutYou />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/register/support"
+        element={
+          <ProtectedRoute>
+            <RegisterSupport />
+          </ProtectedRoute>
+        }
+      />
+      {/* <Route
+    path="/client/share-platform"
+    element={
+      <ProtectedRoute>
+        <SharePlatform />
+      </ProtectedRoute>
+    }
+  /> */}
+      <Route
+        path="/client/sos-center"
+        element={
+          <CountryValidationRoute>
+            <SOSCenter />
+          </CountryValidationRoute>
+        }
+      />
+      <Route
+        path="/client/platform-rating"
+        element={
+          <ProtectedRoute>
+            <PlatformRating />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/payment-history"
+        element={
+          <ProtectedRoute>
+            <PaymentHistory />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/contact-us"
+        element={
+          <ProtectedRoute>
+            <ContactUs />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/select-provider"
+        element={
+          <ProtectedRoute>
+            <SelectProvider />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/profile"
+        element={
+          <ProtectedRoute>
+            <UserProfile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/details"
+        element={
+          <ProtectedRoute>
+            <UserDetails />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/activity-history"
+        element={
+          <ProtectedRoute>
+            <ActivityHistory />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/notification-preferences"
+        element={
+          <ProtectedRoute>
+            <NotificationPreferencesPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/information-portal"
+        element={
+          <ProtectedRoute>
+            <InformationPortal />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/information-portal/articles"
+        element={
+          <ProtectedRoute>
+            <Articles />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/information-portal/article/:id"
+        element={
+          <ProtectedRoute>
+            <ArticleInformation />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/faq"
+        element={
+          <ProtectedRoute>
+            <FAQ />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/provider-overview"
+        element={
+          <ProtectedRoute>
+            <ProviderOverview />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/consultations"
+        element={
+          <ProtectedRoute>
+            <Consultations />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/checkout"
+        element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/payment-status/:consultationId"
+        element={
+          <ProtectedRoute>
+            <PaymentStatus />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/client/my-qa"
+        element={
+          <ProtectedRoute>
+            <MyQA />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/client/" element={<Welcome />} />
+      <Route path="/client/*" element={<NotFound />} />
+    </Routes>
+  );
+};
+
 export default function Root() {
   const { t } = useTranslation("root");
 
+  const language = localStorage.getItem("language");
   const token = localStorage.getItem("token");
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
@@ -97,6 +394,7 @@ export default function Root() {
     queryFn: async () => {
       await userSvc.addPlatformAccess("client");
       setHasAddedPlatformAccess(true);
+      return true;
     },
     staleTime: Infinity,
     enabled: !!country && !hasAddedPlatformAccess,
@@ -153,278 +451,10 @@ export default function Root() {
 
       <Routes>
         <Route
-          path="/login"
-          element={
-            <CountryValidationRoute>
-              <Login />
-            </CountryValidationRoute>
-          }
+          path="/:language"
+          element={<Navigate to={`/${language}/client`} replace />}
         />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/consultation"
-          element={
-            <ProtectedRoute>
-              <Consultation />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/notifications"
-          element={
-            <ProtectedRoute>
-              <Notifications />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/register-preview"
-          element={
-            <CountryValidationRoute>
-              <RegisterPreview />
-            </CountryValidationRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <CountryValidationRoute>
-              <RegisterEmail />
-            </CountryValidationRoute>
-          }
-        />
-        <Route
-          path="/register-anonymous"
-          element={
-            <CountryValidationRoute>
-              <RegisterAnonymous />
-            </CountryValidationRoute>
-          }
-        />
-        <Route
-          path="/forgot-password"
-          element={
-            <CountryValidationRoute>
-              <ForgotPassword />
-            </CountryValidationRoute>
-          }
-        />
-        <Route
-          path="/mood-tracker"
-          element={
-            <ProtectedRoute>
-              <MoodTrackHistory />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/reset-password"
-          element={
-            <CountryValidationRoute>
-              <ResetPassword />
-            </CountryValidationRoute>
-          }
-        />
-        <Route
-          path="/privacy-policy"
-          element={
-            <CountryValidationRoute>
-              <PrivacyPolicy />
-            </CountryValidationRoute>
-          }
-        />
-        <Route
-          path="/cookie-policy"
-          element={
-            <CountryValidationRoute>
-              <CookiePolicy />
-            </CountryValidationRoute>
-          }
-        />
-        <Route
-          path="/terms-of-use"
-          element={
-            <CountryValidationRoute>
-              <TermsOfUse />
-            </CountryValidationRoute>
-          }
-        />
-        <Route
-          path="/register/about-you"
-          element={
-            <ProtectedRoute>
-              <RegisterAboutYou />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/register/support"
-          element={
-            <ProtectedRoute>
-              <RegisterSupport />
-            </ProtectedRoute>
-          }
-        />
-        {/* <Route
-          path="/share-platform"
-          element={
-            <ProtectedRoute>
-              <SharePlatform />
-            </ProtectedRoute>
-          }
-        /> */}
-        <Route
-          path="/sos-center"
-          element={
-            <CountryValidationRoute>
-              <SOSCenter />
-            </CountryValidationRoute>
-          }
-        />
-        <Route
-          path="/platform-rating"
-          element={
-            <ProtectedRoute>
-              <PlatformRating />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/payment-history"
-          element={
-            <ProtectedRoute>
-              <PaymentHistory />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/contact-us"
-          element={
-            <ProtectedRoute>
-              <ContactUs />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/select-provider"
-          element={
-            <ProtectedRoute>
-              <SelectProvider />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <UserProfile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/details"
-          element={
-            <ProtectedRoute>
-              <UserDetails />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/activity-history"
-          element={
-            <ProtectedRoute>
-              <ActivityHistory />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/notification-preferences"
-          element={
-            <ProtectedRoute>
-              <NotificationPreferencesPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/information-portal"
-          element={
-            <ProtectedRoute>
-              <InformationPortal />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/information-portal/articles"
-          element={
-            <ProtectedRoute>
-              <Articles />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/information-portal/article/:id"
-          element={
-            <ProtectedRoute>
-              <ArticleInformation />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/faq"
-          element={
-            <ProtectedRoute>
-              <FAQ />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/provider-overview"
-          element={
-            <ProtectedRoute>
-              <ProviderOverview />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/consultations"
-          element={
-            <ProtectedRoute>
-              <Consultations />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/checkout"
-          element={
-            <ProtectedRoute>
-              <Checkout />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/payment-status/:consultationId"
-          element={
-            <ProtectedRoute>
-              <PaymentStatus />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/my-qa"
-          element={
-            <ProtectedRoute>
-              <MyQA />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/" element={<Welcome />} />
+        <Route path=":language/*" element={<LanguageLayout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <RequireRegistration
