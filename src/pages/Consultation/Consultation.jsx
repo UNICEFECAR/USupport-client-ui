@@ -70,14 +70,22 @@ export const Consultation = () => {
 
   const { isTmpUser, leaveConsultationFn } = useContext(RootContext);
 
-  if (isTmpUser) return <Navigate to="/dashboard" />;
+  if (isTmpUser)
+    return (
+      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+    );
 
   const consultation = location.state?.consultation;
   const joinWithVideo = location.state?.videoOn;
   const joinWithMicrophone = location.state?.microphoneOn;
   const token = location.state?.token;
 
-  if (!consultation || !token) return <Navigate to="/consultations" />;
+  if (!consultation || !token)
+    return (
+      <Navigate
+        to={`${localStorage.getItem("language")}/client/consultations`}
+      />
+    );
 
   const { data: securityCheckAnswers } =
     useGetSecurityCheckAnswersByConsultationId(consultation.consultationId);

@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useStripe } from "@stripe/react-stripe-js";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+
+import { getDateView, getTime } from "@USupport-components-library/utils";
 import {
   Block,
   Grid,
   GridItem,
   Button,
 } from "@USupport-components-library/src";
-import { useQuery } from "@tanstack/react-query";
-import { useStripe } from "@stripe/react-stripe-js";
-import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
-import { getDateView, getTime } from "@USupport-components-library/utils";
-
-import "./payment-status.scss";
-
 import {
   mascotHappyOrange,
   mascotConfusedBlue,
@@ -20,6 +18,11 @@ import {
 } from "@USupport-components-library/assets";
 
 import { providerSvc } from "@USupport-components-library/services";
+
+import { useCustomNavigate as useNavigate } from "#hooks";
+
+import "./payment-status.scss";
+
 /**
  * PaymentStatus
  *

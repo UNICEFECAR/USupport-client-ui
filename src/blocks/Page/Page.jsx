@@ -24,6 +24,8 @@ import {
   useWindowDimensions,
   getCountryFromTimezone,
   ThemeContext,
+  replaceLanguageInUrl,
+  getLanguageFromUrl,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
 import {
@@ -87,10 +89,12 @@ export const Page = ({
 
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(!!token);
 
-  const localStorageCountry = localStorage.getItem("country");
+  let localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
   const [selectedLanguage, setSelectedLanguage] = useState(
-    localStorageLanguage ? { value: localStorageLanguage.toUpperCase() } : null
+    localStorageLanguage
+      ? { value: localStorageLanguage.toUpperCase() }
+      : { value: "EN" }
   );
   const [selectedCountry, setSelectedCountry] = useState();
 
@@ -144,6 +148,14 @@ export const Page = ({
 
   const fetchCountries = async () => {
     const res = await countrySvc.getActiveCountries();
+    const subdomain = window.location.hostname.split(".")[0];
+
+    if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
+      localStorageCountry =
+        res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
+          ?.alpha2 || localStorageCountry;
+      localStorage.setItem("country", localStorageCountry);
+    }
 
     const countries = res.data.map((x) => {
       const countryObject = {
@@ -166,6 +178,9 @@ export const Page = ({
 
   const fetchLanguages = async () => {
     const res = await languageSvc.getActiveLanguages();
+
+    const languageFromUrl = getLanguageFromUrl();
+
     const languages = res.data.map((x) => {
       const languageObject = {
         value: x.alpha2,
@@ -173,15 +188,24 @@ export const Page = ({
         id: x["language_id"],
         localName: x["local_name"],
       };
-      if (localStorageLanguage === x.alpha2) {
-        setSelectedLanguage(languageObject);
-        i18n.changeLanguage(localStorageLanguage);
-      } else if (!localStorageLanguage) {
+      if (!localStorageLanguage || !languageFromUrl) {
         localStorage.setItem("language", "en");
         i18n.changeLanguage("en");
+        replaceLanguageInUrl("en");
       }
       return languageObject;
     });
+
+    const foundLanguageFromUrl = languages.find(
+      (x) => x.value === languageFromUrl
+    );
+    if (foundLanguageFromUrl) {
+      localStorage.setItem("language", languageFromUrl);
+      setSelectedLanguage(foundLanguageFromUrl);
+      i18n.changeLanguage(languageFromUrl);
+      replaceLanguageInUrl(languageFromUrl);
+    }
+
     return languages;
   };
 
@@ -231,7 +255,7 @@ export const Page = ({
         (!sex || !yearOfBirth || !urbanRural) &&
         location.pathname !== "/register/about-you"
       ) {
-        navigateTo("/register/about-you", {
+        navigateTo(`/${localStorageLanguage}/client/register/about-you`, {
           state: {
             isAnonymous: !!clientData.accessToken,
           },
@@ -284,6 +308,8 @@ export const Page = ({
   };
 
   const themeButton = () => {
+    const url = location.pathname;
+    if (url.includes("jitsi")) return null;
     return (
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
@@ -300,7 +326,7 @@ export const Page = ({
     localStorage.removeItem("token");
     localStorage.removeItem("refresh-token");
     localStorage.removeItem("expires-in");
-    navigateTo("/register-preview");
+    navigateTo(`/${localStorageLanguage}/client/register-preview`);
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
@@ -439,6 +465,7 @@ export const Page = ({
                               i18n.changeLanguage(language.value);
                               localStorage.setItem("language", language.value);
                               setLanguagesShown(false);
+                              replaceLanguageInUrl(language.value);
                             }}
                           >
                             <p
@@ -488,12 +515,15 @@ export const Page = ({
         <CircleIconButton
           iconName="phone-emergency"
           classes="page__emergency-button"
-          onClick={() => navigateTo("/sos-center")}
+          onClick={() =>
+            navigateTo(`/${localStorageLanguage}/client/sos-center`)
+          }
           label={t("emergency_button")}
         />
       )}
       {isFooterShown && (
         <Footer
+          renderIn="client"
           lists={footerLists}
           navigate={navigateTo}
           Link={Link}

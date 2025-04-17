@@ -44,7 +44,10 @@ export const SelectProvider = () => {
 
   const { data: isKzCountry } = useQuery(["country-min-price"], fetchCountry);
 
-  if (isTmpUser) return <Navigate to="/dashboard" />;
+  if (isTmpUser)
+    return (
+      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+    );
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isCouponModalOpen, setIsCouponModalOpen] = useState(false);

@@ -1,9 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Page, RegisterAboutYou as RegisterAboutYouBlock } from "#blocks";
+import { useLocation } from "react-router-dom";
+
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle } from "@USupport-components-library/src";
+
+import { Page, RegisterAboutYou as RegisterAboutYouBlock } from "#blocks";
+import { useCustomNavigate as useNavigate } from "#hooks";
 
 import "./register-about-you.scss";
 

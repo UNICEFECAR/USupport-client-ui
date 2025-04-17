@@ -1,10 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, Navigate } from "react-router-dom";
-import { Page, RegisterAnonymous as RegisterAnonymousBlock } from "#blocks";
+import { Navigate } from "react-router-dom";
+
 import { RadialCircle, Loading } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { useIsLoggedIn } from "#hooks";
+
+import { Page, RegisterAnonymous as RegisterAnonymousBlock } from "#blocks";
+import { useCustomNavigate as useNavigate, useIsLoggedIn } from "#hooks";
 
 import "./register-anonymous.scss";
 
@@ -26,7 +28,10 @@ export const RegisterAnonymous = () => {
   };
 
   if (isLoggedIn === "loading") return <Loading />;
-  if (isLoggedIn === true) return <Navigate to="/dashboard" />;
+  if (isLoggedIn === true)
+    return (
+      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+    );
 
   return (
     <Page
