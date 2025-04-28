@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { toast } from "react-toastify";
+import propTypes from "prop-types";
+
 import {
   Block,
   Grid,
@@ -6,8 +9,9 @@ import {
   Icon,
   Label,
   Markdown,
+  Like,
 } from "@USupport-components-library/src";
-import propTypes from "prop-types";
+import { useAddContentRating } from "#hooks";
 
 import "./article-view.scss";
 
@@ -20,6 +24,77 @@ import "./article-view.scss";
  */
 export const ArticleView = ({ articleData, t }) => {
   const creator = articleData.creator ? articleData.creator : null;
+  const [contentRating, setContentRating] = React.useState(
+    articleData.contentRating
+  );
+
+  useEffect(() => {
+    setContentRating(articleData.contentRating);
+  }, [articleData.contentRating]);
+
+  const onMutate = (data) => {
+    const prevData = JSON.parse(JSON.stringify(contentRating));
+
+    const likes = prevData.likes;
+    const dislikes = prevData.dislikes;
+    const isLikedByUser = prevData.isLikedByUser;
+    const isDislikedByUser = prevData.isDislikedByUser;
+
+    const newData = { ...contentRating };
+
+    if (isLikedByUser && data.positive === null) {
+      newData.likes = likes - 1;
+      newData.isLikedByUser = false;
+    }
+    if (isDislikedByUser && data.positive === null) {
+      newData.dislikes = dislikes - 1;
+      newData.isDislikedByUser = false;
+    }
+
+    if (data.positive === true) {
+      newData.likes = likes + 1;
+      newData.isLikedByUser = true;
+      if (isDislikedByUser) {
+        newData.dislikes = dislikes - 1;
+        newData.isDislikedByUser = false;
+      }
+    }
+
+    if (data.positive === false) {
+      newData.dislikes = dislikes + 1;
+      newData.isDislikedByUser = true;
+      if (isLikedByUser) {
+        newData.likes = likes - 1;
+        newData.isLikedByUser = false;
+      }
+    }
+
+    setContentRating(newData);
+
+    return () => {
+      setContentRating(prevData);
+    };
+  };
+  const onError = (error, rollback) => {
+    rollback();
+    toast.error(error);
+  };
+
+  const addContentRatingMutation = useAddContentRating(onMutate, onError);
+
+  const handleAddRating = (action) => {
+    addContentRatingMutation({
+      contentId: articleData.id,
+      positive:
+        action === "like"
+          ? true
+          : action === "remove-like" || action === "remove-dislike"
+          ? null
+          : false,
+      contentType: "article",
+    });
+  };
+
   return (
     <Block classes="article-view">
       <Grid classes="article-view__main-grid">
@@ -38,7 +113,7 @@ export const ArticleView = ({ articleData, t }) => {
           </div>
         </GridItem>
 
-        <GridItem md={8} lg={12} classes="article-view__labels-item">
+        <GridItem xs={3} md={6} lg={8} classes="article-view__labels-item">
           {articleData.labels.map((label, index) => {
             return (
               <Label
@@ -48,6 +123,18 @@ export const ArticleView = ({ articleData, t }) => {
               />
             );
           })}
+        </GridItem>
+
+        <GridItem xs={1} md={2} lg={4} classes="article-view__like-item">
+          <Like
+            renderInClient
+            handleClick={handleAddRating}
+            likes={contentRating?.likes || 0}
+            isLiked={contentRating?.isLikedByUser || false}
+            dislikes={contentRating?.dislikes || 0}
+            isDisliked={contentRating?.isDislikedByUser || false}
+            answerId={articleData.id}
+          />
         </GridItem>
 
         <GridItem md={8} lg={12}>
