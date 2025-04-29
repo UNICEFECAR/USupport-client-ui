@@ -3,10 +3,10 @@ import { useMutation } from "@tanstack/react-query";
 import { userSvc } from "@USupport-components-library/services";
 import useError from "./useError";
 
-export const useAddContentRating = (onMutate, onError) => {
+export const useAddContentRating = (onMutate, onError, onSuccess) => {
   const addContentRating = async (payload) => {
     const { data } = await userSvc.addContentRating(payload);
-    return data;
+    return { ...data, ...payload };
   };
 
   const { mutate: addContentRatingMutation } = useMutation({
@@ -16,6 +16,7 @@ export const useAddContentRating = (onMutate, onError) => {
       const { message: errorMessage } = useError(error);
       onError(errorMessage, rollback);
     },
+    onSuccess,
   });
 
   return addContentRatingMutation;

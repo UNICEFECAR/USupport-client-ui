@@ -13,6 +13,8 @@ import {
 } from "@USupport-components-library/src";
 import { useAddContentRating } from "#hooks";
 
+import { cmsSvc } from "@USupport-components-library/services";
+
 import "./article-view.scss";
 
 /**
@@ -45,27 +47,52 @@ export const ArticleView = ({ articleData, t }) => {
     if (isLikedByUser && data.positive === null) {
       newData.likes = likes - 1;
       newData.isLikedByUser = false;
+
+      cmsSvc.addRating({
+        id: articleData.id,
+        action: "remove-like",
+      });
     }
     if (isDislikedByUser && data.positive === null) {
       newData.dislikes = dislikes - 1;
       newData.isDislikedByUser = false;
+      cmsSvc.addRating({
+        id: articleData.id,
+        action: "remove-dislike",
+      });
     }
 
     if (data.positive === true) {
       newData.likes = likes + 1;
       newData.isLikedByUser = true;
+      cmsSvc.addRating({
+        id: articleData.id,
+        action: "add-like",
+      });
       if (isDislikedByUser) {
         newData.dislikes = dislikes - 1;
         newData.isDislikedByUser = false;
+        cmsSvc.addRating({
+          id: articleData.id,
+          action: "remove-dislike",
+        });
       }
     }
 
     if (data.positive === false) {
       newData.dislikes = dislikes + 1;
       newData.isDislikedByUser = true;
+      cmsSvc.addRating({
+        id: articleData.id,
+        action: "add-dislike",
+      });
       if (isLikedByUser) {
         newData.likes = likes - 1;
         newData.isLikedByUser = false;
+        cmsSvc.addRating({
+          id: articleData.id,
+          action: "remove-like",
+        });
       }
     }
 
@@ -78,6 +105,10 @@ export const ArticleView = ({ articleData, t }) => {
   const onError = (error, rollback) => {
     rollback();
     toast.error(error);
+  };
+
+  const onSuccess = (data) => {
+    console.log(data);
   };
 
   const addContentRatingMutation = useAddContentRating(onMutate, onError);
