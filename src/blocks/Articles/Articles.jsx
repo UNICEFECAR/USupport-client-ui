@@ -15,7 +15,11 @@ import {
 } from "@USupport-components-library/src";
 import { destructureArticleData } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useDebounce, useEventListener } from "#hooks";
+import {
+  useDebounce,
+  useEventListener,
+  useGetUserContentRatings,
+} from "#hooks";
 
 import "./articles.scss";
 
@@ -54,6 +58,8 @@ export const Articles = ({
       setShowAgeGroups(false);
     }
   }, []);
+
+  const { data: contentRatings } = useGetUserContentRatings();
 
   const getAgeGroups = async () => {
     try {
@@ -330,6 +336,18 @@ export const Articles = ({
                 !isArticlesFetching && (
                   <Grid>
                     {articles?.map((article, index) => {
+                      const isLikedByUser = contentRatings?.some(
+                        (rating) =>
+                          rating.content_id === article.id &&
+                          rating.content_type === "article" &&
+                          rating.positive === true
+                      );
+                      const isDislikedByUser = contentRatings?.some(
+                        (rating) =>
+                          rating.content_id === article.id &&
+                          rating.content_type === "article" &&
+                          rating.positive === false
+                      );
                       const articleData = destructureArticleData(article);
                       return (
                         <GridItem lg={6} key={index}>
@@ -344,6 +362,10 @@ export const Articles = ({
                             creator={articleData.creator}
                             readingTime={articleData.readingTime}
                             categoryName={articleData.categoryName}
+                            isLikedByUser={isLikedByUser}
+                            isDislikedByUser={isDislikedByUser}
+                            likes={articleData.likes}
+                            dislikes={articleData.dislikes}
                             t={t}
                             onClick={() => {
                               navigate(
