@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 import propTypes from "prop-types";
 
 import {
@@ -25,6 +26,7 @@ import "./article-view.scss";
  * @return {jsx}
  */
 export const ArticleView = ({ articleData, t }) => {
+  const queryClient = useQueryClient();
   const creator = articleData.creator ? articleData.creator : null;
   const [contentRating, setContentRating] = React.useState(
     articleData.contentRating
@@ -107,11 +109,15 @@ export const ArticleView = ({ articleData, t }) => {
     toast.error(error);
   };
 
-  const onSuccess = (data) => {
-    console.log(data);
+  const onSuccess = () => {
+    queryClient.invalidateQueries({ queryKey: ["userContentRatings"] });
   };
 
-  const addContentRatingMutation = useAddContentRating(onMutate, onError);
+  const addContentRatingMutation = useAddContentRating(
+    onMutate,
+    onError,
+    onSuccess
+  );
 
   const handleAddRating = (action) => {
     addContentRatingMutation({
