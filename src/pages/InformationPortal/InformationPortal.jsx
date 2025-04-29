@@ -123,8 +123,6 @@ export const InformationPortal = () => {
     }
   );
 
-  console.log(contentRatings);
-
   return (
     <Page classes="page__information-portal" showGoBackArrow={false}>
       <Grid classes="page__information-portal__banner">
@@ -198,6 +196,7 @@ export const InformationPortal = () => {
                       rating.content_type === "article" &&
                       rating.positive === false
                   );
+                  console.log(article);
                   return (
                     <GridItem md={4} lg={6} key={index}>
                       <CardMedia
