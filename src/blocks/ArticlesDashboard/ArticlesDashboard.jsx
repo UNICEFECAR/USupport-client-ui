@@ -14,7 +14,7 @@ import {
 import { destructureArticleData } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
-import { useEventListener } from "#hooks";
+import { useEventListener, useGetUserContentRatings } from "#hooks";
 
 import "./articles-dashboard.scss";
 
@@ -53,6 +53,8 @@ export const ArticlesDashboard = () => {
   //--------------------- Categories ----------------------//
   const [categories, setCategories] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
+
+  const { data: contentRatings } = useGetUserContentRatings();
 
   const getCategories = async () => {
     try {
@@ -214,6 +216,18 @@ export const ArticlesDashboard = () => {
                   newestArticles?.length > 0 &&
                   categories.length > 1 &&
                   newestArticles?.map((article, index) => {
+                    const isLikedByUser = contentRatings?.some(
+                      (rating) =>
+                        rating.content_id === article.id &&
+                        rating.content_type === "article" &&
+                        rating.positive === true
+                    );
+                    const isDislikedByUser = contentRatings?.some(
+                      (rating) =>
+                        rating.content_id === article.id &&
+                        rating.content_type === "article" &&
+                        rating.positive === false
+                    );
                     return (
                       <GridItem
                         md={4}
@@ -232,6 +246,10 @@ export const ArticlesDashboard = () => {
                           creator={article.creator}
                           readingTime={article.readingTime}
                           categoryName={article.categoryName}
+                          isLikedByUser={isLikedByUser}
+                          isDislikedByUser={isDislikedByUser}
+                          likes={article.likes}
+                          dislikes={article.dislikes}
                           t={t}
                           onClick={() => {
                             navigate(
