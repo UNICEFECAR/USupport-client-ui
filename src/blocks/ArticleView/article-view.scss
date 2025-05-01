@@ -75,6 +75,11 @@
     }
   }
 
+  &__like-item {
+    margin-left: auto;
+    place-items: center;
+  }
+
   &__body-item {
     padding-top: $spacing_2_5;
   }

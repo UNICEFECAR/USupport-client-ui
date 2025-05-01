@@ -46,7 +46,7 @@ export const SelectProvider = () => {
 
   if (isTmpUser)
     return (
-      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
     );
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);

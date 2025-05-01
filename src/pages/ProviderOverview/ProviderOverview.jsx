@@ -35,7 +35,7 @@ export const ProviderOverview = () => {
   if (!providerId)
     return (
       <Navigate
-        to={`/${localStorage.getItem("language")}/client/select-provider`}
+        to={`/client/${localStorage.getItem("language")}/select-provider`}
       />
     );
 

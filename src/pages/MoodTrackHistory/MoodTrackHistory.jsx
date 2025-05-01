@@ -19,7 +19,7 @@ export const MoodTrackHistory = () => {
   const { isTmpUser } = useContext(RootContext);
   if (isTmpUser)
     return (
-      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
     );
 
   return (

@@ -44,7 +44,7 @@ export const Checkout = () => {
 
   if (!consultationId)
     return (
-      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
     );
 
   const fetchPaymentIntent = async () => {

@@ -1,8 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useCustomNavigate as useNavigate } from "#hooks";
+import { useTranslation } from "react-i18next";
+
+import {
+  useCustomNavigate as useNavigate,
+  useGetUserContentRatings,
+} from "#hooks";
 import { Page, ArticleView } from "#blocks";
+
 import { destructureArticleData } from "@USupport-components-library/utils";
 import {
   Block,
@@ -11,9 +17,12 @@ import {
   CardMedia,
   Loading,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
 
-import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+import {
+  userSvc,
+  cmsSvc,
+  adminSvc,
+} from "@USupport-components-library/services";
 
 import "./article-information.scss";
 
@@ -30,16 +39,23 @@ export const ArticleInformation = () => {
     return articlesIds;
   };
 
+  const { data: contentRatings } = useGetUserContentRatings();
   const articleIdsQuerry = useQuery(["articleIds"], getArticlesIds);
 
   const getArticleData = async () => {
     let articleIdToFetch = id;
+
+    const contentRatings = await userSvc.getRatingsForContent({
+      contentType: "article",
+      contentId: articleIdToFetch,
+    });
 
     const { data } = await cmsSvc.getArticleById(
       articleIdToFetch,
       i18n.language
     );
     const finalData = destructureArticleData(data);
+    finalData.contentRating = contentRatings.data;
     return finalData;
   };
 
@@ -113,6 +129,18 @@ export const ArticleInformation = () => {
               <h4>{t("heading")}</h4>
             </GridItem>
             {moreArticles.map((article, index) => {
+              const isLikedByUser = contentRatings?.some(
+                (rating) =>
+                  rating.content_id === article.id &&
+                  rating.content_type === "article" &&
+                  rating.positive === true
+              );
+              const isDislikedByUser = contentRatings?.some(
+                (rating) =>
+                  rating.content_id === article.id &&
+                  rating.content_type === "article" &&
+                  rating.positive === false
+              );
               const articleData = destructureArticleData(article);
 
               return (
@@ -131,6 +159,10 @@ export const ArticleInformation = () => {
                     creator={articleData.creator}
                     readingTime={articleData.readingTime}
                     categoryName={articleData.categoryName}
+                    likes={articleData.likes}
+                    dislikes={articleData.dislikes}
+                    isLikedByUser={isLikedByUser}
+                    isDislikedByUser={isDislikedByUser}
                     t={t}
                     onClick={() => {
                       navigate(`/information-portal/article/${articleData.id}`);
