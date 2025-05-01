@@ -10,7 +10,7 @@ export const ProtectedRoute = ({ children }) => {
   const isClient = decoded?.userType === "client";
 
   if (!isLoggedIn || !isClient)
-    return <Navigate to={`/${localStorage.getItem("language")}/client`} />;
+    return <Navigate to={`/client/${localStorage.getItem("language")}`} />;
 
   return children;
 };

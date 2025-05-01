@@ -44,7 +44,7 @@ export const Consultations = () => {
 
   if (isTmpUser)
     return (
-      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
     );
 
   const clientDataQuery = useGetClientData()[0];

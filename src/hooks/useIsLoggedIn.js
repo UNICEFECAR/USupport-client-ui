@@ -7,7 +7,7 @@ import { userSvc } from "@USupport-components-library/services";
 import { useEventListener } from "#hooks";
 
 export const useIsLoggedIn = () => {
-  const platform = window.location.pathname.split("/")[2];
+  const platform = window.location.pathname.split("/")[1];
 
   const [result, setResult] = useState("loading");
   const [shouldRefreshToken, setShouldRefreshToken] = useState(false);
