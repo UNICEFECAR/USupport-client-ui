@@ -129,7 +129,7 @@ export const RegisterEmail = () => {
   if (isLoggedIn === "loading") return <Loading />;
   if (isLoggedIn === true)
     return (
-      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
     );
 
   return (

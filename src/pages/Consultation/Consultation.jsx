@@ -72,7 +72,7 @@ export const Consultation = () => {
 
   if (isTmpUser)
     return (
-      <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
+      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
     );
 
   const consultation = location.state?.consultation;
@@ -83,7 +83,7 @@ export const Consultation = () => {
   if (!consultation || !token)
     return (
       <Navigate
-        to={`${localStorage.getItem("language")}/client/consultations`}
+        to={`/client/${localStorage.getItem("language")}/consultations`}
       />
     );
 

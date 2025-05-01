@@ -516,7 +516,7 @@ export const Page = ({
           iconName="phone-emergency"
           classes="page__emergency-button"
           onClick={() =>
-            navigateTo(`/${localStorageLanguage}/client/sos-center`)
+            navigateTo(`/client/${localStorageLanguage}/sos-center`)
           }
           label={t("emergency_button")}
         />

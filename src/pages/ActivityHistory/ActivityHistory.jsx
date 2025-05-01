@@ -26,7 +26,7 @@ export const ActivityHistory = () => {
   if (!consultation || !providerId)
     return (
       <Navigate
-        to={`/${localStorage.getItem("language")}/client/consultations`}
+        to={`/client/${localStorage.getItem("language")}/consultations`}
       />
     );
 

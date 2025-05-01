@@ -60,17 +60,16 @@ const RootContext = React.createContext();
 
 const LanguageLayout = () => {
   const { language } = useParams();
-
   const allLangs = ["en", "ru", "kk", "pl", "uk"];
 
   if (!allLangs.includes(language) || !language) {
-    return <Navigate to="/en/client" />;
+    return <Navigate to="/client/en" />;
   }
   return (
     <Routes>
-      {/* <Route path="/client/jitsi" element={<JitsiRoom />} /> */}
+      {/* <Route path="/jitsi" element={<JitsiRoom />} /> */}
       <Route
-        path="/client/login"
+        path="login"
         element={
           <CountryValidationRoute>
             <Login />
@@ -78,7 +77,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/dashboard"
+        path="dashboard"
         element={
           <ProtectedRoute>
             <Dashboard />
@@ -86,7 +85,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/consultation"
+        path="consultation"
         element={
           <ProtectedRoute>
             <Consultation />
@@ -94,7 +93,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/notifications"
+        path="notifications"
         element={
           <ProtectedRoute>
             <Notifications />
@@ -102,7 +101,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/register-preview"
+        path="register-preview"
         element={
           <CountryValidationRoute>
             <RegisterPreview />
@@ -110,7 +109,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/register"
+        path="register"
         element={
           <CountryValidationRoute>
             <RegisterEmail />
@@ -118,7 +117,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/register-anonymous"
+        path="register-anonymous"
         element={
           <CountryValidationRoute>
             <RegisterAnonymous />
@@ -126,7 +125,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/forgot-password"
+        path="forgot-password"
         element={
           <CountryValidationRoute>
             <ForgotPassword />
@@ -134,7 +133,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/mood-tracker"
+        path="mood-tracker"
         element={
           <ProtectedRoute>
             <MoodTrackHistory />
@@ -142,7 +141,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/reset-password"
+        path="reset-password"
         element={
           <CountryValidationRoute>
             <ResetPassword />
@@ -150,7 +149,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/privacy-policy"
+        path="privacy-policy"
         element={
           <CountryValidationRoute>
             <PrivacyPolicy />
@@ -158,7 +157,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/cookie-policy"
+        path="cookie-policy"
         element={
           <CountryValidationRoute>
             <CookiePolicy />
@@ -166,7 +165,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/terms-of-use"
+        path="terms-of-use"
         element={
           <CountryValidationRoute>
             <TermsOfUse />
@@ -174,7 +173,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/register/about-you"
+        path="register/about-you"
         element={
           <ProtectedRoute>
             <RegisterAboutYou />
@@ -182,7 +181,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/register/support"
+        path="register/support"
         element={
           <ProtectedRoute>
             <RegisterSupport />
@@ -190,7 +189,7 @@ const LanguageLayout = () => {
         }
       />
       {/* <Route
-    path="/client/share-platform"
+    path="share-platform"
     element={
       <ProtectedRoute>
         <SharePlatform />
@@ -198,7 +197,7 @@ const LanguageLayout = () => {
     }
   /> */}
       <Route
-        path="/client/sos-center"
+        path="sos-center"
         element={
           <CountryValidationRoute>
             <SOSCenter />
@@ -206,7 +205,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/platform-rating"
+        path="platform-rating"
         element={
           <ProtectedRoute>
             <PlatformRating />
@@ -214,7 +213,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/payment-history"
+        path="payment-history"
         element={
           <ProtectedRoute>
             <PaymentHistory />
@@ -222,7 +221,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/contact-us"
+        path="contact-us"
         element={
           <ProtectedRoute>
             <ContactUs />
@@ -230,7 +229,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/select-provider"
+        path="select-provider"
         element={
           <ProtectedRoute>
             <SelectProvider />
@@ -238,7 +237,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/profile"
+        path="profile"
         element={
           <ProtectedRoute>
             <UserProfile />
@@ -246,7 +245,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/details"
+        path="details"
         element={
           <ProtectedRoute>
             <UserDetails />
@@ -254,7 +253,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/activity-history"
+        path="activity-history"
         element={
           <ProtectedRoute>
             <ActivityHistory />
@@ -262,7 +261,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/notification-preferences"
+        path="notification-preferences"
         element={
           <ProtectedRoute>
             <NotificationPreferencesPage />
@@ -270,7 +269,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/information-portal"
+        path="information-portal"
         element={
           <ProtectedRoute>
             <InformationPortal />
@@ -278,7 +277,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/information-portal/articles"
+        path="information-portal/articles"
         element={
           <ProtectedRoute>
             <Articles />
@@ -286,7 +285,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/information-portal/article/:id"
+        path="information-portal/article/:id"
         element={
           <ProtectedRoute>
             <ArticleInformation />
@@ -294,7 +293,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/faq"
+        path="faq"
         element={
           <ProtectedRoute>
             <FAQ />
@@ -302,7 +301,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/provider-overview"
+        path="provider-overview"
         element={
           <ProtectedRoute>
             <ProviderOverview />
@@ -310,7 +309,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/consultations"
+        path="consultations"
         element={
           <ProtectedRoute>
             <Consultations />
@@ -318,7 +317,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/checkout"
+        path="checkout"
         element={
           <ProtectedRoute>
             <Checkout />
@@ -326,7 +325,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/payment-status/:consultationId"
+        path="payment-status/:consultationId"
         element={
           <ProtectedRoute>
             <PaymentStatus />
@@ -334,15 +333,15 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="/client/my-qa"
+        path="my-qa"
         element={
           <ProtectedRoute>
             <MyQA />
           </ProtectedRoute>
         }
       />
-      <Route path="/client/" element={<Welcome />} />
-      <Route path="/client/*" element={<NotFound />} />
+      <Route path="/" element={<Welcome />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
@@ -451,10 +450,10 @@ export default function Root() {
 
       <Routes>
         <Route
-          path="/:language"
-          element={<Navigate to={`/${language}/client`} replace />}
+          path="/client"
+          element={<Navigate to={`/client/${language || "en"}`} replace />}
         />
-        <Route path=":language/*" element={<LanguageLayout />} />
+        <Route path="/client/:language/*" element={<LanguageLayout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <RequireRegistration
