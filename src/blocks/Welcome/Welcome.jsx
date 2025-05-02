@@ -137,7 +137,12 @@ export const Welcome = () => {
       subdomain !== "staging"
     ) {
       const label = countryObject.label.toLocaleLowerCase();
-      const newUrl = window.location.href.replace(subdomain, label);
+      let newUrl;
+      if (subdomain === "usupport") {
+        newUrl = window.location.href.replace(subdomain, `${label}.usupport`);
+      } else {
+        newUrl = window.location.href.replace(subdomain, label);
+      }
       window.location.href = newUrl;
     }
   };
