@@ -117,17 +117,15 @@
     }
   }
 
-  &__questions-item {
-    &__no-data {
-      padding-bottom: $spacing_4_0;
-    }
-  }
-
   &__answers-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: $spacing_4_6;
+
+    &__no-questions {
+      padding-block: 100px;
+    }
   }
 
   &__answer {
