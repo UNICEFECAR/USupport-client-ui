@@ -267,7 +267,7 @@ export const Page = ({
   const pages = [
     { name: t("page_1"), url: "/dashboard", exact: true },
     { name: t("page_2"), url: "/consultations" },
-    { name: t("page_3"), url: "/information-portal" },
+    { name: t("page_3"), url: "/information-portal?tab=articles" },
     { name: t("page_4"), url: "/my-qa" },
   ];
 
@@ -278,7 +278,7 @@ export const Page = ({
       { name: t("footer_2"), url: "/consultations" },
     ],
     list2: [
-      { name: t("footer_3"), url: "/information-portal" },
+      { name: t("footer_3"), url: "/information-portal?tab=articles" },
       { name: t("footer_8"), url: "/faq" },
       { name: t("contact_us"), url: "/contact-us" },
     ],
