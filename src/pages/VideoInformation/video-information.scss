@@ -1,0 +1,30 @@
+/* VideoInformation styles */
+@import "@USupport-components-library/styles";
+
+.page__video-information {
+  &__more-videos {
+    padding-top: 32px;
+    padding-bottom: 32px;
+
+    &__main-grid {
+      justify-items: center;
+    }
+
+    .more-videos__heading-item {
+      margin-bottom: 24px;
+
+      h4 {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__more-videos-card {
+    margin-bottom: 24px;
+  }
+
+  &__no-results {
+    text-align: center;
+    padding: 80px 0;
+  }
+}
