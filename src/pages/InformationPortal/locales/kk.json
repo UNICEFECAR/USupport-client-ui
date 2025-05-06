@@ -7,5 +7,10 @@
   "view_all": "Барлығын көру",
   "read_more_button": "Ары қарай оқу",
   "min_read": "минут оқуға",
-  "by": "Дайындаушы {{creator}}"
+  "by": "Дайындаушы {{creator}}",
+  "articles": "Мақалалар",
+  "videos": "Видеолар",
+  "heading_newest_videos": "Жаңа Видеолар",
+  "heading_popular_videos": "Ең танымал Видеолар",
+  "no_results": "Нәтиже табылмады"
 }

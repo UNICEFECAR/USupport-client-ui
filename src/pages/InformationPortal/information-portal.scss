@@ -20,6 +20,12 @@
     }
   }
 
+  &__tabs-container {
+    margin-top: $spacing_6_0;
+    margin-inline: auto;
+    text-align: center;
+  }
+
   & .view-all-button {
     color: $color_secondary_9749fa;
     cursor: pointer;
@@ -49,11 +55,11 @@
   }
 
   &__block__grid {
-    padding-top: $spacing_4_0;
     justify-items: center;
+    padding-top: $spacing_2_0;
 
     @media screen and (min-width: $screen-md) {
-      padding-top: $spacing_5_6;
+      padding-top: $spacing_2_4;
     }
   }
 

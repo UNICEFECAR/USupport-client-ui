@@ -7,5 +7,10 @@
   "view_all": "Wyświetl wszystkie",
   "read_more_button": "Czytaj więcej",
   "min_read": "min. czytania",
-  "by": "Przez {{creator}}"
+  "by": "Przez {{creator}}",
+  "articles": "Artykuły",
+  "videos": "Wideo",
+  "heading_newest_videos": "Najnowsze wideo",
+  "heading_popular_videos": "Najpopularniejsze wideo",
+  "no_results": "Nie znaleziono wyników"
 }
