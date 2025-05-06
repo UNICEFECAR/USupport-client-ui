@@ -43,6 +43,7 @@ import {
   MoodTrackHistory,
   MascotHeaderMyQA,
   MyQA,
+  Videos,
 } from "#blocks/locales.js";
 
 import {
@@ -81,6 +82,8 @@ import {
   PaymentStatus as PaymentStatusPage,
   MoodTrackHistory as MoodTrackHistoryPage,
   Notifications as NotificationsPage,
+  Videos as VideosPage,
+  VideoInformation,
 } from "#pages/locales.js";
 
 import {
@@ -157,6 +160,7 @@ const resources = {
     "mood-track-history": MoodTrackHistory.en,
     "mascot-header-MyQA": MascotHeaderMyQA.en,
     "my-qa": MyQA.en,
+    videos: Videos.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -194,6 +198,8 @@ const resources = {
     "payment-status-page": PaymentStatusPage.en,
     "mood-track-history-page": MoodTrackHistoryPage.en,
     "notifications-page": NotificationsPage.en,
+    "videos-page": VideosPage.en,
+    "video-information-page": VideoInformation.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,
@@ -267,6 +273,7 @@ const resources = {
     "mood-track-history": MoodTrackHistory.ru,
     "mascot-header-MyQA": MascotHeaderMyQA.ru,
     "my-qa": MyQA.ru,
+    videos: Videos.ru,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.ru,
@@ -304,6 +311,8 @@ const resources = {
     "payment-status-page": PaymentStatusPage.ru,
     "mood-track-history-page": MoodTrackHistoryPage.ru,
     "notifications-page": NotificationsPage.ru,
+    "videos-page": VideosPage.ru,
+    "video-information-page": VideoInformation.ru,
 
     //Backdrops
     "filter-providers": FilterProviders.ru,
@@ -377,6 +386,7 @@ const resources = {
     "mood-track-history": MoodTrackHistory.kk,
     "mascot-header-MyQA": MascotHeaderMyQA.kk,
     "my-qa": MyQA.kk,
+    videos: Videos.kk,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.kk,
@@ -414,6 +424,8 @@ const resources = {
     "payment-status-page": PaymentStatusPage.kk,
     "mood-track-history-page": MoodTrackHistoryPage.kk,
     "notifications-page": NotificationsPage.kk,
+    "videos-page": VideosPage.kk,
+    "video-information-page": VideoInformation.kk,
 
     //Backdrops
     "filter-providers": FilterProviders.kk,
@@ -487,6 +499,7 @@ const resources = {
     "mood-track-history": MoodTrackHistory.pl,
     "mascot-header-MyQA": MascotHeaderMyQA.pl,
     "my-qa": MyQA.pl,
+    videos: Videos.pl,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.pl,
@@ -524,6 +537,8 @@ const resources = {
     "payment-status-page": PaymentStatusPage.pl,
     "mood-track-history-page": MoodTrackHistoryPage.pl,
     "notifications-page": NotificationsPage.pl,
+    "videos-page": VideosPage.pl,
+    "video-information-page": VideoInformation.pl,
 
     //Backdrops
     "filter-providers": FilterProviders.pl,
@@ -597,7 +612,7 @@ const resources = {
     "mood-track-history": MoodTrackHistory.uk,
     "mascot-header-MyQA": MascotHeaderMyQA.uk,
     "my-qa": MyQA.uk,
-
+    videos: Videos.uk,
     // Pages
     "provider-overview-page": ProviderOverviewPage.uk,
     "user-profile-page": UserProfilePage.uk,
@@ -634,6 +649,8 @@ const resources = {
     "payment-status-page": PaymentStatusPage.uk,
     "mood-track-history-page": MoodTrackHistoryPage.uk,
     "notifications-page": NotificationsPage.uk,
+    "videos-page": VideosPage.uk,
+    "video-information-page": VideoInformation.uk,
 
     //Backdrops
     "filter-providers": FilterProviders.uk,

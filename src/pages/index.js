@@ -35,3 +35,5 @@ export * from "./Checkout";
 export * from "./PaymentStatus";
 export * from "./MoodTrackHistory";
 export * from "./MyQA";
+export * from './Videos';
+export * from './VideoInformation';

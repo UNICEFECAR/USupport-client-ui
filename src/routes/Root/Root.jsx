@@ -51,6 +51,8 @@ import {
   PaymentStatus,
   MoodTrackHistory,
   MyQA,
+  Videos,
+  VideoInformation,
   // JitsiRoom,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
@@ -281,6 +283,22 @@ const LanguageLayout = () => {
         element={
           <ProtectedRoute>
             <Articles />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="information-portal/videos"
+        element={
+          <ProtectedRoute>
+            <Videos />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="information-portal/video/:id"
+        element={
+          <ProtectedRoute>
+            <VideoInformation />
           </ProtectedRoute>
         }
       />

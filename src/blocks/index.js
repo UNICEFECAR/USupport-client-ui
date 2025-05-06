@@ -41,3 +41,5 @@ export * from "./PaymentStatus";
 export * from "./MoodTrackHistory";
 export * from "./MascotHeaderMyQA";
 export * from "./MyQA";
+export * from './Videos';
+export * from './VideoView';
