@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCustomNavigate as useNavigate } from "#hooks";
 import { useQuery } from "@tanstack/react-query";
 import {
   Grid,
@@ -12,7 +12,7 @@ import {
 import { destructureArticleData } from "@USupport-components-library/utils";
 import { Page, GiveSuggestion } from "#blocks";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useEventListener } from "#hooks";
+import { useEventListener, useGetUserContentRatings } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import "./information-portal.scss";
@@ -42,6 +42,9 @@ export const InformationPortal = () => {
 
   // Add event listener
   useEventListener("countryChanged", handler);
+
+  const contentRatingsQuery = useGetUserContentRatings();
+  const { data: contentRatings } = contentRatingsQuery;
 
   //--------------------- Articles ----------------------//
 
@@ -181,6 +184,19 @@ export const InformationPortal = () => {
                   </p>
                 </GridItem>
                 {newestArticles?.map((article, index) => {
+                  const isLikedByUser = contentRatings?.some(
+                    (rating) =>
+                      rating.content_id === article.id &&
+                      rating.content_type === "article" &&
+                      rating.positive === true
+                  );
+                  const isDislikedByUser = contentRatings?.some(
+                    (rating) =>
+                      rating.content_id === article.id &&
+                      rating.content_type === "article" &&
+                      rating.positive === false
+                  );
+                  console.log(article);
                   return (
                     <GridItem md={4} lg={6} key={index}>
                       <CardMedia
@@ -194,6 +210,10 @@ export const InformationPortal = () => {
                         creator={article.creator}
                         readingTime={article.readingTime}
                         categoryName={article.categoryName}
+                        isLikedByUser={isLikedByUser}
+                        isDislikedByUser={isDislikedByUser}
+                        likes={article.likes}
+                        dislikes={article.dislikes}
                         t={t}
                         onClick={() => {
                           navigate(`/information-portal/article/${article.id}`);
@@ -238,6 +258,18 @@ export const InformationPortal = () => {
                   </p>
                 </GridItem>
                 {mostReadArticles?.map((article, index) => {
+                  const isLikedByUser = contentRatings?.some(
+                    (rating) =>
+                      rating.content_id === article.id &&
+                      rating.content_type === "article" &&
+                      rating.positive === true
+                  );
+                  const isDislikedByUser = contentRatings?.some(
+                    (rating) =>
+                      rating.content_id === article.id &&
+                      rating.content_type === "article" &&
+                      rating.positive === false
+                  );
                   return (
                     <GridItem md={4} lg={6} key={index}>
                       <CardMedia
@@ -252,6 +284,10 @@ export const InformationPortal = () => {
                         readingTime={article.readingTime}
                         categoryName={article.categoryName}
                         t={t}
+                        isLikedByUser={isLikedByUser}
+                        isDislikedByUser={isDislikedByUser}
+                        likes={article.likes}
+                        dislikes={article.dislikes}
                         onClick={() => {
                           navigate(`/information-portal/article/${article.id}`);
                         }}

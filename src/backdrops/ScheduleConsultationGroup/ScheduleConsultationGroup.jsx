@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useCustomNavigate as useNavigate } from "#hooks";
 
 import { SelectConsultation, ConfirmConsultation } from "#backdrops";
 import { RequireDataAgreement } from "#modals";

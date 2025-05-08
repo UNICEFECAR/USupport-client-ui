@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
 import { Page, UserProfile as UserProfileBlock } from "#blocks";
 import { ButtonWithIcon, RadialCircle } from "@USupport-components-library/src";

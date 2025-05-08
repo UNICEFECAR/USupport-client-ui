@@ -17,7 +17,10 @@ export const Welcome = () => {
   const isLoggedIn = useIsLoggedIn();
 
   if (isLoggedIn === "loading") return <Loading />;
-  if (isLoggedIn === true) return <Navigate to="/dashboard" />;
+  if (isLoggedIn === true)
+    return (
+      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
+    );
 
   return (
     <Page

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
@@ -12,6 +12,7 @@ import {
   ConfirmConsultation,
   SelectConsultation,
 } from "#backdrops";
+import { useCustomNavigate as useNavigate } from "#hooks";
 
 import { RequireDataAgreement } from "#modals";
 
@@ -41,7 +42,10 @@ export const Consultations = () => {
 
   const { isTmpUser } = useContext(RootContext);
 
-  if (isTmpUser) return <Navigate to="/dashboard" />;
+  if (isTmpUser)
+    return (
+      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
+    );
 
   const clientDataQuery = useGetClientData()[0];
 

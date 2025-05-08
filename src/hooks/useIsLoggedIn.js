@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { useQuery } from "@tanstack/react-query";
+
 import { userSvc } from "@USupport-components-library/services";
+
 import { useEventListener } from "#hooks";
-import { useCallback } from "react";
 
 export const useIsLoggedIn = () => {
   const platform = window.location.pathname.split("/")[1];

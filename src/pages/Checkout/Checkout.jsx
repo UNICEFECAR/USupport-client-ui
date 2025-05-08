@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { useLocation, Navigate, useNavigate } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
-import { Page, CheckoutForm as CheckoutFormBlock } from "#blocks";
 import { ThemeContext } from "@USupport-components-library/utils";
 import { paymentsSvc, clientSvc } from "@USupport-components-library/services";
+
+import { useCustomNavigate as useNavigate } from "#hooks";
+import { Page, CheckoutForm as CheckoutFormBlock } from "#blocks";
 
 import "./checkout.scss";
 
@@ -40,7 +42,10 @@ export const Checkout = () => {
   const entryTime = location.state?.entryTime;
   const campaignId = location.state?.campaignId;
 
-  if (!consultationId) return <Navigate to="/dashboard" />;
+  if (!consultationId)
+    return (
+      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
+    );
 
   const fetchPaymentIntent = async () => {
     const res = await paymentsSvc.createPaymentIntent(

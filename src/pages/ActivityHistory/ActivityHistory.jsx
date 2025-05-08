@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate, Navigate } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import { RadialCircle } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import { useGetClientData } from "#hooks";
+import { useCustomNavigate as useNavigate, useGetClientData } from "#hooks";
 import { ScheduleConsultationGroup } from "#backdrops";
 import { Page, ActivityHistory as ActivityHistoryBlock } from "#blocks";
 
@@ -23,7 +23,12 @@ export const ActivityHistory = () => {
   const location = useLocation();
   const consultation = location.state?.consultation;
   const providerId = location.state?.providerId;
-  if (!consultation || !providerId) return <Navigate to="/consultations" />;
+  if (!consultation || !providerId)
+    return (
+      <Navigate
+        to={`/client/${localStorage.getItem("language")}/consultations`}
+      />
+    );
 
   const clientData = useGetClientData()[1];
 

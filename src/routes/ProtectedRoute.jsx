@@ -9,7 +9,8 @@ export const ProtectedRoute = ({ children }) => {
   const decoded = token ? jwtDecode(token) : null;
   const isClient = decoded?.userType === "client";
 
-  if (!isLoggedIn || !isClient) return <Navigate to="/" />;
+  if (!isLoggedIn || !isClient)
+    return <Navigate to={`/client/${localStorage.getItem("language")}`} />;
 
   return children;
 };

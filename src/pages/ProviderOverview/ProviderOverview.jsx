@@ -1,10 +1,10 @@
 import React, { useState, useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { RadialCircle } from "@USupport-components-library/src";
 
 import {
+  useCustomNavigate as useNavigate,
   useBlockSlot,
   useScheduleConsultation,
   useGetClientData,
@@ -32,7 +32,12 @@ export const ProviderOverview = () => {
   const providerId = new URLSearchParams(window.location.search).get(
     "provider-id"
   );
-  if (!providerId) return <Navigate to="/select-provider" />;
+  if (!providerId)
+    return (
+      <Navigate
+        to={`/client/${localStorage.getItem("language")}/select-provider`}
+      />
+    );
 
   const clientData = useGetClientData()[1];
 

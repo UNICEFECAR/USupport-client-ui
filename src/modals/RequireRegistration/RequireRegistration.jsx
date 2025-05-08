@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Modal } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
-import { useNavigate } from "react-router-dom";
+import { useCustomNavigate as useNavigate } from "#hooks";
 
 import "./require-registration.scss";
 

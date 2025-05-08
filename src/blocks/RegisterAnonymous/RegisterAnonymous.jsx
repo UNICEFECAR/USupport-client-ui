@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
@@ -20,7 +20,7 @@ import {
   validate,
   validateProperty,
 } from "@USupport-components-library/src/utils";
-import { useError } from "#hooks";
+import { useError, useCustomNavigate as useNavigate } from "#hooks";
 import { SaveAccessCodeConfirmation } from "#modals";
 import { userSvc } from "@USupport-components-library/services";
 
@@ -61,7 +61,7 @@ export const RegisterAnonymous = () => {
   });
   const [errors, setErrors] = useState({});
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
-  const [hasCopied, setHasCopied] = useState(false);
+  const [hasCopied, setHasCopied] = useState(true);
 
   const country = localStorage.getItem("country");
   const selectedCountry = countriesData?.find((c) => c.value === country);
