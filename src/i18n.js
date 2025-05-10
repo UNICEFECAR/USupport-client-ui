@@ -84,6 +84,8 @@ import {
   Notifications as NotificationsPage,
   Videos as VideosPage,
   VideoInformation,
+  PodcastInformation,
+  Podcasts as PodcastsPage,
 } from "#pages/locales.js";
 
 import {
@@ -200,7 +202,8 @@ const resources = {
     "notifications-page": NotificationsPage.en,
     "videos-page": VideosPage.en,
     "video-information-page": VideoInformation.en,
-
+    "podcast-information-page": PodcastInformation.en,
+    "podcasts-page": PodcastsPage.en,
     //Backdrops
     "filter-providers": FilterProviders.en,
     "confirm-consultation": ConfirmConsultation.en,
@@ -313,6 +316,8 @@ const resources = {
     "notifications-page": NotificationsPage.ru,
     "videos-page": VideosPage.ru,
     "video-information-page": VideoInformation.ru,
+    "podcast-information-page": PodcastInformation.ru,
+    "podcasts-page": PodcastsPage.ru,
 
     //Backdrops
     "filter-providers": FilterProviders.ru,
@@ -426,6 +431,8 @@ const resources = {
     "notifications-page": NotificationsPage.kk,
     "videos-page": VideosPage.kk,
     "video-information-page": VideoInformation.kk,
+    "podcast-information-page": PodcastInformation.kk,
+    "podcasts-page": PodcastsPage.kk,
 
     //Backdrops
     "filter-providers": FilterProviders.kk,
@@ -539,6 +546,8 @@ const resources = {
     "notifications-page": NotificationsPage.pl,
     "videos-page": VideosPage.pl,
     "video-information-page": VideoInformation.pl,
+    "podcast-information-page": PodcastInformation.pl,
+    "podcasts-page": PodcastsPage.pl,
 
     //Backdrops
     "filter-providers": FilterProviders.pl,
@@ -651,6 +660,8 @@ const resources = {
     "notifications-page": NotificationsPage.uk,
     "videos-page": VideosPage.uk,
     "video-information-page": VideoInformation.uk,
+    "podcast-information-page": PodcastInformation.uk,
+    "podcasts-page": PodcastsPage.uk,
 
     //Backdrops
     "filter-providers": FilterProviders.uk,
