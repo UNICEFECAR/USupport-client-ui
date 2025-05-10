@@ -207,6 +207,7 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
                         description={videoData.description}
                         labels={videoData.labels}
                         categoryName={videoData.categoryName}
+                        contentType="videos"
                         isLikedByUser={isLikedByUser}
                         isDislikedByUser={isDislikedByUser}
                         likes={videoData.likes}
