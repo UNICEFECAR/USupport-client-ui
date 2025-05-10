@@ -22,18 +22,16 @@ export const Videos = () => {
 
   let heading = t("heading_default");
   let subheading = t("subheading_default");
-  let showBackGoBackArrow = false;
+  let showBackGoBackArrow = true;
 
   switch (sort) {
     case "createdAt":
       heading = t("heading_newest");
       subheading = t("subheading_newest");
-      showBackGoBackArrow = true;
       break;
     case "view_count":
       heading = t("heading_most_viewed");
       subheading = t("subheading_most_viewed");
-      showBackGoBackArrow = true;
       break;
     default:
       break;
