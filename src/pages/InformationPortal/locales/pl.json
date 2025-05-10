@@ -12,5 +12,9 @@
   "videos": "Wideo",
   "heading_newest_videos": "Najnowsze wideo",
   "heading_popular_videos": "Najpopularniejsze wideo",
-  "no_results": "Nie znaleziono wyników"
+  "no_results": "Nie znaleziono wyników",
+  "heading_newest_podcasts": "Najnowsze audiodyski",
+  "heading_popular_podcasts": "Najpopularniejsze audiodyski",
+  "podcasts": "Audiodyski",
+  "view_more": "Zobacz więcej"
 }

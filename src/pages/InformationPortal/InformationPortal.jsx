@@ -21,6 +21,7 @@ import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import {
   destructureArticleData,
   destructureVideoData,
+  destructurePodcastData,
 } from "@USupport-components-library/utils";
 
 import "./information-portal.scss";
@@ -41,8 +42,9 @@ export const InformationPortal = () => {
 
   // Content type tabs
   const [contentTabs, setContentTabs] = useState([
-    { label: t("articles"), value: "articles", isSelected: tab === "articles" },
-    { label: t("videos"), value: "videos", isSelected: tab === "videos" },
+    { label: "articles", value: "articles", isSelected: tab === "articles" },
+    { label: "videos", value: "videos", isSelected: tab === "videos" },
+    { label: "podcasts", value: "podcasts", isSelected: tab === "podcasts" },
   ]);
 
   const handleTabSelect = (index) => {
@@ -88,6 +90,17 @@ export const InformationPortal = () => {
 
   const videoIdsQuery = useQuery(["videoIds", currentCountry], getVideosIds);
 
+  //--------------------- Podcasts IDs ----------------------//
+  const getPodcastsIds = async () => {
+    const podcastsIds = await adminSvc.getPodcasts();
+    return podcastsIds;
+  };
+
+  const podcastIdsQuery = useQuery(
+    ["podcastIds", currentCountry],
+    getPodcastsIds
+  );
+
   // Get the selected content type
   const selectedContentType =
     contentTabs.find((tab) => tab.isSelected)?.value || "articles";
@@ -118,7 +131,10 @@ export const InformationPortal = () => {
         <Grid classes="page__information-portal__tabs-container">
           <GridItem md={8} lg={12}>
             <TabsUnderlined
-              options={contentTabs}
+              options={contentTabs.map((x) => ({
+                ...x,
+                label: t(x.label),
+              }))}
               handleSelect={handleTabSelect}
               classes="page__information-portal__tabs"
             />
@@ -142,7 +158,7 @@ export const InformationPortal = () => {
                       contentIds={articleIdsQuery.data}
                       limit={2}
                       navigateToAllPath="/information-portal/articles"
-                      contentType="article"
+                      contentType="articles"
                       getContent={cmsSvc.getArticles}
                       destructureContentData={destructureArticleData}
                       getImage={(article) => article.imageMedium}
@@ -157,7 +173,7 @@ export const InformationPortal = () => {
                       contentIds={articleIdsQuery.data}
                       limit={2}
                       navigateToAllPath="/information-portal/articles"
-                      contentType="article"
+                      contentType="articles"
                       getContent={cmsSvc.getArticles}
                       destructureContentData={destructureArticleData}
                       getImage={(article) => article.imageMedium}
@@ -213,6 +229,50 @@ export const InformationPortal = () => {
                 )}
               </>
             )}
+
+            {selectedContentType === "podcasts" && (
+              <>
+                {podcastIdsQuery.isLoading ? (
+                  <Loading />
+                ) : podcastIdsQuery.data?.length === 0 ? (
+                  <h4>{t("heading_no_language_results")}</h4>
+                ) : (
+                  <>
+                    <ContentList
+                      heading={t("heading_newest_podcasts")}
+                      sortBy="createdAt"
+                      contentRatings={contentRatings}
+                      contentIds={podcastIdsQuery.data}
+                      limit={2}
+                      navigateToAllPath="/information-portal/podcasts"
+                      contentType="podcast"
+                      getContent={cmsSvc.getPodcasts}
+                      destructureContentData={destructurePodcastData}
+                      getImage={(podcast) => podcast.imageMedium}
+                      getRoute={(podcast) =>
+                        `/information-portal/podcast/${podcast.id}`
+                      }
+                    />
+
+                    <ContentList
+                      heading={t("heading_popular_podcasts")}
+                      sortBy="view_count"
+                      contentRatings={contentRatings}
+                      contentIds={podcastIdsQuery.data}
+                      limit={2}
+                      navigateToAllPath="/information-portal/podcasts"
+                      contentType="podcast"
+                      getContent={cmsSvc.getPodcasts}
+                      destructureContentData={destructurePodcastData}
+                      getImage={(podcast) => podcast.imageMedium}
+                      getRoute={(podcast) =>
+                        `/information-portal/podcast/${podcast.id}`
+                      }
+                    />
+                  </>
+                )}
+              </>
+            )}
           </GridItem>
 
           <GridItem md={8} lg={12}>
@@ -231,7 +291,7 @@ const ContentList = ({
   contentIds,
   limit = 2,
   navigateToAllPath,
-  contentType = "article", // or "video"
+  contentType = "articles", // or "video" or "podcast"
   getContent, // Function to fetch content
   destructureContentData, // Function to transform content data
   getImage, // Function to determine image
@@ -335,6 +395,7 @@ const ContentList = ({
                     creator={item.creator}
                     readingTime={item.readingTime}
                     categoryName={item.categoryName}
+                    contentType={contentType}
                     isLikedByUser={isLikedByUser}
                     isDislikedByUser={isDislikedByUser}
                     likes={item.likes}
