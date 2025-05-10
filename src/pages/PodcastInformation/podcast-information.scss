@@ -1,0 +1,32 @@
+@import "@USupport-components-library/styles";
+
+.page__podcast-information {
+  @include full-height-page-navbar;
+  text-align: left;
+
+  &__more-podcasts {
+    padding-top: $spacing_3_2;
+    padding-bottom: $spacing_3_2;
+
+    &__main-grid {
+      justify-items: center;
+    }
+
+    .more-podcasts__heading-item {
+      margin-bottom: $spacing_2_4;
+
+      h4 {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__more-podcasts-card {
+    margin-bottom: $spacing_2_4;
+  }
+
+  &__no-results {
+    text-align: center;
+    padding: $spacing_8_0;
+  }
+}
