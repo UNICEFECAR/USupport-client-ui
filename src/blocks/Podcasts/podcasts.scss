@@ -1,0 +1,76 @@
+@import "@USupport-components-library/styles";
+
+.podcasts {
+  @include full-height-page-navbar;
+
+  padding-bottom: $spacing_3_2;
+  text-align: left;
+
+  @media screen and (min-width: $screen-md) {
+    padding-top: $spacing_2_0;
+  }
+
+  &__main-grid {
+    justify-items: center;
+  }
+
+  &__heading-text {
+    color: $color_white_ff !important;
+  }
+
+  &__most-important-item {
+    padding-top: $spacing_5_0;
+    padding-bottom: $spacing_4_0;
+  }
+
+  &__search-item {
+    padding-top: $spacing_2_4;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: 0;
+    }
+  }
+
+  &__categories-item {
+    padding-top: $spacing_3_0;
+    overflow-x: auto;
+    width: 35rem;
+
+    @media screen and (min-width: $screen-md) {
+      width: auto;
+      margin: auto;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_5_4;
+    }
+  }
+
+  &__podcasts-item {
+    padding-top: $spacing_1_2;
+    padding-bottom: $spacing_0_8;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_2_4;
+    }
+  }
+
+  &__loading-item {
+    display: flex;
+    justify-content: center;
+    padding-top: $spacing_4_0;
+  }
+
+  &__no-results-container {
+    text-align: center;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_15_3;
+    }
+
+    h3,
+    p {
+      color: $color_white_ff !important;
+    }
+  }
+}
