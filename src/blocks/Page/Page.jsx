@@ -92,7 +92,7 @@ export const Page = ({
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(!!token);
 
   let localStorageCountry = localStorage.getItem("country");
-  const localStorageLanguage = localStorage.getItem("language");
+  const localStorageLanguage = localStorage.getItem("language") || "en";
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorageLanguage
       ? { value: localStorageLanguage.toUpperCase() }
@@ -530,7 +530,11 @@ export const Page = ({
       />
       <CookieBanner
         text={
-          <Trans components={[<Link to="/cookie-policy" />]}>
+          <Trans
+            components={[
+              <Link to={`/${localStorageLanguage}/cookie-policy`} />,
+            ]}
+          >
             {t("cookie_banner_text")}
           </Trans>
         }
