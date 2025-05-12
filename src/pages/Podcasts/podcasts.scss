@@ -2,4 +2,5 @@
 @import "@USupport-components-library/styles";
 
 .page__podcasts {
+  @include full-height-page-navbar();
 }

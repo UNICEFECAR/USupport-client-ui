@@ -22,7 +22,6 @@ export const Videos = () => {
 
   let heading = t("heading_default");
   let subheading = t("subheading_default");
-  let showBackGoBackArrow = true;
 
   switch (sort) {
     case "createdAt":
@@ -42,7 +41,7 @@ export const Videos = () => {
       classes="page__videos"
       heading={heading}
       subheading={subheading}
-      showGoBackArrow={showBackGoBackArrow}
+      showGoBackArrow={true}
     >
       <VideosBlock showSearch={true} showCategories={true} sort={sort} />
     </Page>

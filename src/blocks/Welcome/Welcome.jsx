@@ -11,7 +11,7 @@ import {
   DropdownWithLabel,
   Loading,
 } from "@USupport-components-library/src";
-import { languageSvc, countrySvc } from "@USupport-components-library/services";
+import { languageSvc } from "@USupport-components-library/services";
 import {
   logoVerticalSvg,
   logoVerticalDarkSvg,
@@ -20,6 +20,7 @@ import {
   ThemeContext,
   replaceLanguageInUrl,
   getLanguageFromUrl,
+  getCountryLabelFromAlpha2,
 } from "@USupport-components-library/utils";
 
 import "./welcome.scss";
@@ -41,12 +42,33 @@ export const Welcome = () => {
 
   const localStorageLanguage = localStorage.getItem("language");
 
-  const countries = queryClient.getQueryData(["countries"]);
+  const countriesQueryData = queryClient.getQueryData(["countries"]);
+  const [countries, setCountries] = useState(countriesQueryData);
 
   useEffect(() => {
     const localStorageCountry = localStorage.getItem("country");
     if (localStorageCountry) {
       setSelectedCountry(localStorageCountry);
+
+      // If there is country in the local storage
+      // set it in the url
+      const subdomain = window.location.hostname.split(".")[0];
+      if (subdomain === "usupport") {
+        const countryLabel = getCountryLabelFromAlpha2(localStorageCountry);
+        window.location.href = window.location.href.replace(
+          subdomain,
+          `${countryLabel}.usupport`
+        );
+      }
+    }
+
+    // Make sure to get countries from query cache
+    // if they are not available on first try
+    if (!countries || !countries.length) {
+      setTimeout(() => {
+        const countries = queryClient.getQueryData(["countries"]);
+        setCountries(countries);
+      }, 2000);
     }
   }, [countries]);
 
