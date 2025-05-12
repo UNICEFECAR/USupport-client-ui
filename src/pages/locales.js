@@ -35,3 +35,7 @@ export * as Checkout from "./Checkout/locales.js";
 export * as PaymentStatus from "./PaymentStatus/locales.js";
 export * as MoodTrackHistory from "./MoodTrackHistory/locales.js";
 export * as MyQA from "./MyQA/locales.js";
+export * as Videos from "./Videos/locales.js";
+export * as VideoInformation from "./VideoInformation/locales.js";
+export * as PodcastInformation from "./PodcastInformation/locales.js";
+export * as Podcasts from "./Podcasts/locales.js";

@@ -4,6 +4,10 @@
   text-align: left;
   margin-top: $spacing_1_6;
 
+  @media screen and (min-width: $screen-md) {
+    padding: 0 $spacing_10_0;
+  }
+
   @media screen and (min-width: $screen-lg) {
     padding: 0 $spacing_30_7;
   }

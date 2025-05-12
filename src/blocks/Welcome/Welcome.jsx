@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCustomNavigate as useNavigate } from "#hooks";
 
 import {
@@ -33,51 +33,22 @@ import "./welcome.scss";
  */
 export const Welcome = () => {
   const { t, i18n } = useTranslation("welcome");
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
 
-  let localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language");
-  const localStorageCountryID = localStorage.getItem("country_id");
 
-  const fetchCountries = async () => {
-    const res = await countrySvc.getActiveCountries();
+  const countries = queryClient.getQueryData(["countries"]);
 
-    const subdomain = window.location.hostname.split(".")[0];
-
-    if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
-      localStorageCountry =
-        res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
-          ?.alpha2 || localStorageCountry;
-      localStorage.setItem("country", localStorageCountry);
+  useEffect(() => {
+    const localStorageCountry = localStorage.getItem("country");
+    if (localStorageCountry) {
+      setSelectedCountry(localStorageCountry);
     }
-
-    const countries = res.data.map((x) => {
-      const countryObject = {
-        value: x.alpha2,
-        label: x.name,
-        countryID: x["country_id"],
-        iconName: x.alpha2,
-        minAge: x["min_client_age"],
-        maxAge: x["max_client_age"],
-        currencySymbol: x["symbol"],
-        localName: x.local_name,
-      };
-
-      if (localStorageCountry === x.alpha2) {
-        if (!localStorageCountryID) {
-          localStorage.setItem("country_id", x["country_id"]);
-          localStorage.setItem("currency_symbol", x["symbol"]);
-        }
-        setSelectedCountry(x.alpha2);
-      }
-
-      return countryObject;
-    });
-    return countries;
-  };
+  }, [countries]);
 
   const fetchLanguages = async () => {
     const res = await languageSvc.getActiveLanguages();
@@ -109,9 +80,6 @@ export const Welcome = () => {
     return languages;
   };
 
-  const countriesQuery = useQuery(["countries"], fetchCountries, {
-    retry: false,
-  });
   const languagesQuery = useQuery(
     ["languages", selectedCountry],
     fetchLanguages,
@@ -124,11 +92,10 @@ export const Welcome = () => {
   );
 
   const handleSelectCountry = (country) => {
-    localStorage.setItem("country", country);
     setTimeout(() => {
       setSelectedCountry(country);
     }, 1);
-    const countryObject = countriesQuery.data.find(
+    const countryObject = countries.find(
       (x) => x.value.toLocaleLowerCase() === country.toLocaleLowerCase()
     );
     const subdomain = window.location.hostname.split(".")[0];
@@ -144,6 +111,8 @@ export const Welcome = () => {
         newUrl = window.location.href.replace(subdomain, label);
       }
       window.location.href = newUrl;
+    } else {
+      localStorage.setItem("country", country);
     }
   };
 
@@ -161,12 +130,11 @@ export const Welcome = () => {
     localStorage.setItem("country", country);
     localStorage.setItem(
       "country_id",
-      countriesQuery.data.find((x) => x.value === selectedCountry).countryID
+      countries.find((x) => x.value === selectedCountry).countryID
     );
     localStorage.setItem(
       "currency_symbol",
-      countriesQuery.data.find((x) => x.value === selectedCountry)
-        .currencySymbol
+      countries.find((x) => x.value === selectedCountry).currencySymbol
     );
     localStorage.setItem("language", language);
     window.dispatchEvent(new Event("countryChanged"));
@@ -188,11 +156,11 @@ export const Welcome = () => {
           <h2 className="welcome__grid__logo-item__heading">{t("client")}</h2>
         </GridItem>
         <GridItem md={8} lg={12} classes="welcome__grid__content-item">
-          {!(countriesQuery.isFetching || languagesQuery.isFetching) ? (
+          {!languagesQuery.isFetching ? (
             <>
               <DropdownWithLabel
                 options={
-                  countriesQuery.data?.map((x) => {
+                  countries?.map((x) => {
                     return {
                       ...x,
                       label: `${x.label} (${x.localName})`,

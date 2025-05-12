@@ -7,5 +7,14 @@
   "view_all": "Барлығын көру",
   "read_more_button": "Ары қарай оқу",
   "min_read": "минут оқуға",
-  "by": "Дайындаушы {{creator}}"
+  "by": "Дайындаушы {{creator}}",
+  "articles": "Мақалалар",
+  "videos": "Видеолар",
+  "heading_newest_videos": "Жаңа Видеолар",
+  "heading_popular_videos": "Ең танымал Видеолар",
+  "no_results": "Нәтиже табылмады",
+  "heading_newest_podcasts": "Жаңа Подкасттар",
+  "heading_popular_podcasts": "Ең танымал Подкасттар",
+  "podcasts": "Подкасттар",
+  "view_more": "Көбірек көру"
 }

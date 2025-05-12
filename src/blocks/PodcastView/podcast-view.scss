@@ -1,0 +1,116 @@
+@import "@USupport-components-library/styles";
+
+.podcast-view {
+  background-color: $color_white_ff;
+  border-radius: $border_radius_2_4;
+
+  @media screen and (min-width: $screen-md) {
+    padding: 0 $spacing_10_0;
+  }
+  @media screen and (min-width: $screen-lg) {
+    padding: 0 $spacing_30_7;
+  }
+  &__main-grid {
+    grid-gap: 0;
+  }
+
+  &__title-item {
+    margin-bottom: $spacing_1_6;
+    text-align: left;
+  }
+
+  &__details-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing_1_6;
+    width: 100%;
+    &__category {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 2.2rem;
+      // background-color: $color_blue_20809E_0_3;
+      @include themifyCustom(
+        $themes,
+        "background-color",
+        "color_blue_20809E_0_3",
+        "color_gray_66768d"
+      );
+      border-radius: $border_radius_2_5;
+      padding: 0 $spacing_1_2 0 $spacing_1_2;
+      margin-left: 2rem;
+
+      .small-text {
+        font-weight: $font_bold;
+        // color: $color_blue_3d527b;
+        @include themifyCustom(
+          $themes,
+          "color",
+          "color_blue_3d527b",
+          "color_gray_c1d7e0"
+        );
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_0_8;
+    }
+
+    .icon {
+      margin-right: $spacing_0_5;
+      margin-left: $spacing_1_6;
+    }
+  }
+
+  &__labels-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $spacing_1_6;
+    padding-top: $spacing_0_8;
+    flex-wrap: wrap;
+
+    .podcast-view__label {
+      margin-top: $spacing_0_5;
+      &:not(:last-child) {
+        margin-right: $spacing_0_8;
+      }
+    }
+  }
+
+  &__like-item {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  &__player-item {
+    margin: $spacing_2_4 0;
+    width: 100%;
+  }
+
+  &__player-container {
+    width: 100%;
+  }
+
+  &__player {
+    width: 100%;
+  }
+
+  &__description-item {
+    width: 100%;
+    text-align: left;
+  }
+
+  &__description-text {
+    white-space: pre-line;
+  }
+
+  &__label {
+    margin: 0;
+  }
+}
