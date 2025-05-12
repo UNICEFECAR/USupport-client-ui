@@ -55,22 +55,19 @@ export const VideoInformation = () => {
     });
 
     const { data } = await cmsSvc.getVideoById(id, i18n.language);
-    console.log("contentRatings", contentRatings.data);
-    console.log("Data", data);
 
     const finalData = destructureVideoData(data);
-    console.log("Final data", finalData);
     finalData.contentRating = contentRatings.data;
     return finalData;
   };
 
-  const { data: videoData, isFetching: isFetchingVideoData } = useQuery(
-    ["video", i18n.language, id],
-    getVideoData,
-    {
-      enabled: !!id,
-    }
-  );
+  const {
+    data: videoData,
+    isFetching: isFetchingVideoData,
+    isFetched,
+  } = useQuery(["video", i18n.language, id], getVideoData, {
+    enabled: !!id,
+  });
 
   const getSimilarVideos = async () => {
     let { data } = await cmsSvc.getVideos({
@@ -121,6 +118,10 @@ export const VideoInformation = () => {
     <Page classes="page__video-information" showGoBackArrow={true}>
       {videoData ? (
         <VideoView videoData={videoData} t={t} />
+      ) : isFetched ? (
+        <h3 className="page__video-information__no-results">
+          {t("not_found")}
+        </h3>
       ) : (
         <Loading size="lg" />
       )}

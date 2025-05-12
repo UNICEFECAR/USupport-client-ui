@@ -59,13 +59,13 @@ export const PodcastInformation = () => {
     return finalData;
   };
 
-  const { data: podcastData, isFetching: isFetchingPodcastData } = useQuery(
-    ["podcast", i18n.language, id],
-    getPodcastData,
-    {
-      enabled: !!id,
-    }
-  );
+  const {
+    data: podcastData,
+    isFetching: isFetchingPodcastData,
+    isFetched,
+  } = useQuery(["podcast", i18n.language, id], getPodcastData, {
+    enabled: !!id,
+  });
 
   const getSimilarPodcasts = async () => {
     let { data } = await cmsSvc.getPodcasts({
@@ -92,21 +92,20 @@ export const PodcastInformation = () => {
     return data.data;
   };
 
-  const {
-    data: morePodcasts,
-    isLoading: isMorePodcastsLoading,
-    isFetched: isMorePodcastsFetched,
-    isFetching: isMorePodcastsFetching,
-  } = useQuery(["more-podcasts", id, i18n.language], getSimilarPodcasts, {
-    enabled:
-      !isFetchingPodcastData &&
-      !podcastIdsQuery.isLoading &&
-      podcastIdsQuery.data?.length > 0 &&
-      podcastData &&
-      podcastData.categoryId
-        ? true
-        : false,
-  });
+  const { data: morePodcasts, isLoading: isMorePodcastsLoading } = useQuery(
+    ["more-podcasts", id, i18n.language],
+    getSimilarPodcasts,
+    {
+      enabled:
+        !isFetchingPodcastData &&
+        !podcastIdsQuery.isLoading &&
+        podcastIdsQuery.data?.length > 0 &&
+        podcastData &&
+        podcastData.categoryId
+          ? true
+          : false,
+    }
+  );
 
   const onPodcastClick = () => {
     window.scrollTo(0, 0);
@@ -116,6 +115,10 @@ export const PodcastInformation = () => {
     <Page classes="page__podcast-information" showGoBackArrow={true}>
       {podcastData ? (
         <PodcastView podcastData={podcastData} t={t} />
+      ) : isFetched ? (
+        <h3 className="page__podcast-information__no-results">
+          {t("not_found")}
+        </h3>
       ) : (
         <Loading size="lg" />
       )}

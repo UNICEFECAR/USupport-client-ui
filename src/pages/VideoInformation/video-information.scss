@@ -2,6 +2,8 @@
 @import "@USupport-components-library/styles";
 
 .page__video-information {
+  @include full-height-page-navbar;
+
   &__more-videos {
     padding-top: 32px;
     padding-bottom: 32px;
