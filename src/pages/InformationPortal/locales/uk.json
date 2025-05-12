@@ -7,5 +7,14 @@
   "view_all": "Переглянути всі",
   "read_more_button": "Читати далі",
   "min_read": "хв читання",
-  "by": "Від {{creator}}"
+  "by": "Від {{creator}}",
+  "articles": "Статті",
+  "videos": "Відео",
+  "heading_newest_videos": "Найновіші відео",
+  "heading_popular_videos": "Найпопулярніші відео",
+  "no_results": "Нічого не знайдено",
+  "heading_newest_podcasts": "Найновіші аудіобаки",
+  "heading_popular_podcasts": "Найпопулярніші аудіобаки",
+  "podcasts": "Аудіобаки",
+  "view_more": "Більше переглянути"
 }

@@ -1,19 +1,28 @@
 import React, { useState, useCallback } from "react";
-import { useCustomNavigate as useNavigate } from "#hooks";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import {
   Grid,
   GridItem,
   Block,
-  CardMedia,
+  TabsUnderlined,
   Loading,
+  CardMedia,
 } from "@USupport-components-library/src";
 
-import { destructureArticleData } from "@USupport-components-library/utils";
 import { Page, GiveSuggestion } from "#blocks";
+import {
+  useCustomNavigate as useNavigate,
+  useEventListener,
+  useGetUserContentRatings,
+} from "#hooks";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useEventListener, useGetUserContentRatings } from "#hooks";
-import { useTranslation } from "react-i18next";
+import {
+  destructureArticleData,
+  destructureVideoData,
+  destructurePodcastData,
+} from "@USupport-components-library/utils";
 
 import "./information-portal.scss";
 
@@ -27,9 +36,25 @@ import { mascotHappyPurple } from "@USupport-components-library/assets";
  * @returns {JSX.Element}
  */
 export const InformationPortal = () => {
-  const navigate = useNavigate();
-
   const { t, i18n } = useTranslation("information-portal");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tab = searchParams.get("tab");
+
+  // Content type tabs
+  const [contentTabs, setContentTabs] = useState([
+    { label: "articles", value: "articles", isSelected: tab === "articles" },
+    { label: "videos", value: "videos", isSelected: tab === "videos" },
+    { label: "podcasts", value: "podcasts", isSelected: tab === "podcasts" },
+  ]);
+
+  const handleTabSelect = (index) => {
+    const tabsCopy = [...contentTabs];
+    tabsCopy.forEach((tab, i) => {
+      tab.isSelected = i === index;
+    });
+    setContentTabs(tabsCopy);
+    setSearchParams({ tab: tabsCopy[index].value });
+  };
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
@@ -46,82 +71,39 @@ export const InformationPortal = () => {
   const contentRatingsQuery = useGetUserContentRatings();
   const { data: contentRatings } = contentRatingsQuery;
 
-  //--------------------- Articles ----------------------//
-
+  //--------------------- Articles IDs ----------------------//
   const getArticlesIds = async () => {
-    // Request articles ids from the master DB based for website platform
     const articlesIds = await adminSvc.getArticles();
-
     return articlesIds;
   };
 
-  const articleIdsQuerry = useQuery(
+  const articleIdsQuery = useQuery(
     ["articleIds", currentCountry],
     getArticlesIds
   );
-  //--------------------- Newest Article ----------------------//
 
-  const getNewestArticle = async () => {
-    let { data } = await cmsSvc.getArticles({
-      limit: 2, // Only get the newest article
-      sortBy: "createdAt", // Sort by created date
-      sortOrder: "desc", // Sort in descending order
-      locale: i18n.language,
-      populate: true,
-      ids: articleIdsQuerry.data,
-    });
-    for (let i = 0; i < data.data.length; i++) {
-      data.data[i] = destructureArticleData(data.data[i]);
-    }
-
-    return data.data;
+  //--------------------- Videos IDs ----------------------//
+  const getVideosIds = async () => {
+    const videosIds = await adminSvc.getVideos();
+    return videosIds;
   };
 
-  const {
-    data: newestArticles,
-    isLoading: newestArticlesLoading,
-    isFetched: isNewestArticlesFetched,
-  } = useQuery(
-    ["newestArticle", i18n.language, articleIdsQuerry.data],
-    getNewestArticle,
-    {
-      enabled: !articleIdsQuerry.isLoading && articleIdsQuerry.data?.length > 0,
+  const videoIdsQuery = useQuery(["videoIds", currentCountry], getVideosIds);
 
-      refetchOnWindowFocus: false,
-    }
-  );
-
-  //--------------------- Most Read Articles ----------------------//
-
-  const getMostReadArticles = async () => {
-    let { data } = await cmsSvc.getArticles({
-      limit: 2, // Only get the newest article
-      sortBy: "read_count", // Sort by created date
-      sortOrder: "desc", // Sort in descending order
-      locale: i18n.language,
-      populate: true,
-      ids: articleIdsQuerry.data,
-    });
-
-    for (let i = 0; i < data.data.length; i++) {
-      data.data[i] = destructureArticleData(data.data[i]);
-    }
-    return data.data;
+  //--------------------- Podcasts IDs ----------------------//
+  const getPodcastsIds = async () => {
+    const podcastsIds = await adminSvc.getPodcasts();
+    return podcastsIds;
   };
 
-  const {
-    data: mostReadArticles,
-    isLoading: mostReadArticlesLoading,
-    isFetched: isMostReadArticlesFetched,
-  } = useQuery(
-    ["mostReadArticles", i18n.language, articleIdsQuerry.data],
-    getMostReadArticles,
-    {
-      enabled: !articleIdsQuerry.isLoading && articleIdsQuerry.data?.length > 0,
-
-      refetchOnWindowFocus: false,
-    }
+  const podcastIdsQuery = useQuery(
+    ["podcastIds", currentCountry],
+    getPodcastsIds
   );
+
+  // Get the selected content type
+  const selectedContentType =
+    contentTabs.find((tab) => tab.isSelected)?.value || "articles";
 
   return (
     <Page classes="page__information-portal" showGoBackArrow={false}>
@@ -132,7 +114,7 @@ export const InformationPortal = () => {
           lg={1}
           classes="page__information-portal__mascot-item"
         >
-          <img src={mascotHappyPurple} />
+          <img src={mascotHappyPurple} alt="Mascot" />
         </GridItem>
         <GridItem
           xs={3}
@@ -146,164 +128,287 @@ export const InformationPortal = () => {
       </Grid>
 
       <Block classes="page__information-portal__block">
-        <Grid classes="page__information-portal__block__grid">
-          <GridItem md={8} lg={12} classes="articles__articles-item">
-            {isNewestArticlesFetched &&
-            isMostReadArticlesFetched &&
-            newestArticles?.length === 0 &&
-            mostReadArticles?.length === 0 ? (
-              <h4>{t("heading_no_language_results")}</h4>
-            ) : null}
-
-            {newestArticlesLoading ? <Loading /> : null}
-            {!newestArticlesLoading && newestArticles?.length > 0 ? (
-              <Grid>
-                <GridItem
-                  xs={2}
-                  md={4}
-                  lg={6}
-                  classes="page__information-portal__heading-item"
-                >
-                  <h4>{t("heading_newest")}</h4>
-                </GridItem>
-                <GridItem
-                  xs={2}
-                  md={4}
-                  lg={6}
-                  classes="page__information-portal__view-more-item"
-                >
-                  <p
-                    className="small-text view-all-button"
-                    onClick={() =>
-                      navigate("/information-portal/articles", {
-                        state: { sort: "createdAt" },
-                      })
-                    }
-                  >
-                    {t("view_all")}
-                  </p>
-                </GridItem>
-                {newestArticles?.map((article, index) => {
-                  const isLikedByUser = contentRatings?.some(
-                    (rating) =>
-                      rating.content_id === article.id &&
-                      rating.content_type === "article" &&
-                      rating.positive === true
-                  );
-                  const isDislikedByUser = contentRatings?.some(
-                    (rating) =>
-                      rating.content_id === article.id &&
-                      rating.content_type === "article" &&
-                      rating.positive === false
-                  );
-                  console.log(article);
-                  return (
-                    <GridItem md={4} lg={6} key={index}>
-                      <CardMedia
-                        type="portrait"
-                        size="lg"
-                        style={{ gridColumn: "span 4" }}
-                        title={article.title}
-                        image={article.imageMedium}
-                        description={article.description}
-                        labels={article.labels}
-                        creator={article.creator}
-                        readingTime={article.readingTime}
-                        categoryName={article.categoryName}
-                        isLikedByUser={isLikedByUser}
-                        isDislikedByUser={isDislikedByUser}
-                        likes={article.likes}
-                        dislikes={article.dislikes}
-                        t={t}
-                        onClick={() => {
-                          navigate(`/information-portal/article/${article.id}`);
-                        }}
-                      />
-                    </GridItem>
-                  );
-                })}
-              </Grid>
-            ) : null}
+        <Grid classes="page__information-portal__tabs-container">
+          <GridItem md={8} lg={12}>
+            <TabsUnderlined
+              options={contentTabs.map((x) => ({
+                ...x,
+                label: t(x.label),
+              }))}
+              handleSelect={handleTabSelect}
+              classes="page__information-portal__tabs"
+            />
           </GridItem>
         </Grid>
 
         <Grid classes="page__information-portal__block__grid">
-          <GridItem md={8} lg={12} classes="articles__articles-item">
-            {mostReadArticlesLoading ? <Loading /> : null}
-            {!mostReadArticlesLoading && mostReadArticles?.length > 0 ? (
-              <Grid>
-                <GridItem
-                  xs={2}
-                  md={4}
-                  lg={6}
-                  classes="page__information-portal__heading-item"
-                >
-                  <h4>{t("heading_popular")}</h4>
-                </GridItem>
-                <GridItem
-                  xs={2}
-                  md={4}
-                  lg={6}
-                  classes="page__information-portal__view-more-item"
-                >
-                  <p
-                    className="small-text view-all-button"
-                    onClick={() =>
-                      navigate("/information-portal/articles", {
-                        state: { sort: "read_count" },
-                      })
-                    }
-                  >
-                    {t("view_all")}
-                  </p>
-                </GridItem>
-                {mostReadArticles?.map((article, index) => {
-                  const isLikedByUser = contentRatings?.some(
-                    (rating) =>
-                      rating.content_id === article.id &&
-                      rating.content_type === "article" &&
-                      rating.positive === true
-                  );
-                  const isDislikedByUser = contentRatings?.some(
-                    (rating) =>
-                      rating.content_id === article.id &&
-                      rating.content_type === "article" &&
-                      rating.positive === false
-                  );
-                  return (
-                    <GridItem md={4} lg={6} key={index}>
-                      <CardMedia
-                        type="portrait"
-                        size="lg"
-                        style={{ gridColumn: "span 4" }}
-                        title={article.title}
-                        image={article.imageMedium}
-                        description={article.description}
-                        labels={article.labels}
-                        creator={article.creator}
-                        readingTime={article.readingTime}
-                        categoryName={article.categoryName}
-                        t={t}
-                        isLikedByUser={isLikedByUser}
-                        isDislikedByUser={isDislikedByUser}
-                        likes={article.likes}
-                        dislikes={article.dislikes}
-                        onClick={() => {
-                          navigate(`/information-portal/article/${article.id}`);
-                        }}
-                      />
-                    </GridItem>
-                  );
-                })}
-              </Grid>
-            ) : null}
+          <GridItem md={8} lg={12}>
+            {selectedContentType === "articles" && (
+              <>
+                {articleIdsQuery.isLoading ? (
+                  <Loading />
+                ) : articleIdsQuery.data?.length === 0 ? (
+                  <h4>{t("heading_no_language_results")}</h4>
+                ) : (
+                  <>
+                    <ContentList
+                      heading={t("heading_newest")}
+                      sortBy="createdAt"
+                      contentRatings={contentRatings}
+                      contentIds={articleIdsQuery.data}
+                      limit={2}
+                      navigateToAllPath="/information-portal/articles"
+                      contentType="articles"
+                      getContent={cmsSvc.getArticles}
+                      destructureContentData={destructureArticleData}
+                      getImage={(article) => article.imageMedium}
+                      getRoute={(article) =>
+                        `/information-portal/article/${article.id}`
+                      }
+                    />
+                    <ContentList
+                      heading={t("heading_popular")}
+                      sortBy="read_count"
+                      contentRatings={contentRatings}
+                      contentIds={articleIdsQuery.data}
+                      limit={2}
+                      navigateToAllPath="/information-portal/articles"
+                      contentType="articles"
+                      getContent={cmsSvc.getArticles}
+                      destructureContentData={destructureArticleData}
+                      getImage={(article) => article.imageMedium}
+                      getRoute={(article) =>
+                        `/information-portal/article/${article.id}`
+                      }
+                    />
+                  </>
+                )}
+              </>
+            )}
+
+            {selectedContentType === "videos" && (
+              <>
+                {videoIdsQuery.isLoading ? (
+                  <Loading />
+                ) : videoIdsQuery.data?.length === 0 ? (
+                  <h4>{t("heading_no_language_results")}</h4>
+                ) : (
+                  <>
+                    <ContentList
+                      heading={t("heading_newest_videos")}
+                      sortBy="createdAt"
+                      contentRatings={contentRatings}
+                      contentIds={videoIdsQuery.data}
+                      limit={2}
+                      navigateToAllPath="/information-portal/videos"
+                      contentType="video"
+                      getContent={cmsSvc.getVideos}
+                      destructureContentData={destructureVideoData}
+                      getImage={(video) => video.image}
+                      getRoute={(video) =>
+                        `/information-portal/video/${video.id}`
+                      }
+                    />
+
+                    <ContentList
+                      heading={t("heading_popular_videos")}
+                      sortBy="view_count"
+                      contentRatings={contentRatings}
+                      contentIds={videoIdsQuery.data}
+                      limit={2}
+                      navigateToAllPath="/information-portal/videos"
+                      contentType="video"
+                      getContent={cmsSvc.getVideos}
+                      destructureContentData={destructureVideoData}
+                      getImage={(video) => video.image}
+                      getRoute={(video) =>
+                        `/information-portal/video/${video.id}`
+                      }
+                    />
+                  </>
+                )}
+              </>
+            )}
+
+            {selectedContentType === "podcasts" && (
+              <>
+                {podcastIdsQuery.isLoading ? (
+                  <Loading />
+                ) : podcastIdsQuery.data?.length === 0 ? (
+                  <h4>{t("heading_no_language_results")}</h4>
+                ) : (
+                  <>
+                    <ContentList
+                      heading={t("heading_newest_podcasts")}
+                      sortBy="createdAt"
+                      contentRatings={contentRatings}
+                      contentIds={podcastIdsQuery.data}
+                      limit={2}
+                      navigateToAllPath="/information-portal/podcasts"
+                      contentType="podcast"
+                      getContent={cmsSvc.getPodcasts}
+                      destructureContentData={destructurePodcastData}
+                      getImage={(podcast) => podcast.imageMedium}
+                      getRoute={(podcast) =>
+                        `/information-portal/podcast/${podcast.id}`
+                      }
+                    />
+
+                    <ContentList
+                      heading={t("heading_popular_podcasts")}
+                      sortBy="view_count"
+                      contentRatings={contentRatings}
+                      contentIds={podcastIdsQuery.data}
+                      limit={2}
+                      navigateToAllPath="/information-portal/podcasts"
+                      contentType="podcast"
+                      getContent={cmsSvc.getPodcasts}
+                      destructureContentData={destructurePodcastData}
+                      getImage={(podcast) => podcast.imageMedium}
+                      getRoute={(podcast) =>
+                        `/information-portal/podcast/${podcast.id}`
+                      }
+                    />
+                  </>
+                )}
+              </>
+            )}
           </GridItem>
-          <GridItem md={8} lg={12} classes="articles__articles-item">
+
+          <GridItem md={8} lg={12}>
             <GiveSuggestion />
           </GridItem>
         </Grid>
       </Block>
-      {/* <Articles showSearch={false} showCategories={false} /> */}
     </Page>
+  );
+};
+
+const ContentList = ({
+  heading,
+  sortBy = "createdAt",
+  contentRatings,
+  contentIds,
+  limit = 2,
+  navigateToAllPath,
+  contentType = "articles", // or "video" or "podcast"
+  getContent, // Function to fetch content
+  destructureContentData, // Function to transform content data
+  getImage, // Function to determine image
+  getRoute, // Function to get navigation route
+}) => {
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation("information-portal");
+
+  const fetchContent = async () => {
+    let { data } = await getContent({
+      limit,
+      sortBy,
+      sortOrder: "desc",
+      locale: i18n.language,
+      populate: true,
+      ids: contentIds,
+    });
+
+    return data?.data?.map(destructureContentData) || [];
+  };
+
+  const {
+    data: contentItems,
+    isLoading,
+    isFetched,
+  } = useQuery(
+    [`${contentType}-${sortBy}`, i18n.language, contentIds],
+    fetchContent,
+    {
+      enabled: contentIds?.length > 0,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  if (isLoading) return <Loading />;
+  // if (isFetched && (!contentItems || contentItems.length === 0)) return null;
+
+  const hasNoData = isFetched && (!contentItems || contentItems.length === 0);
+
+  return (
+    <Grid classes="page__information-portal__block__grid">
+      <GridItem md={8} lg={12} classes="articles__articles-item">
+        <Grid>
+          <GridItem
+            xs={2}
+            md={4}
+            lg={6}
+            classes="page__information-portal__heading-item"
+          >
+            <h4>{heading}</h4>
+          </GridItem>
+          <GridItem
+            xs={2}
+            md={4}
+            lg={6}
+            classes="page__information-portal__view-more-item"
+          >
+            <p
+              className="small-text view-all-button"
+              onClick={() =>
+                navigate(navigateToAllPath, {
+                  state: { sort: sortBy },
+                })
+              }
+            >
+              {t("view_all")}
+            </p>
+          </GridItem>
+
+          {hasNoData ? (
+            <GridItem md={8} lg={12}>
+              <p style={{ textAlign: "center", marginTop: "12px" }}>
+                {t("no_results")}
+              </p>
+            </GridItem>
+          ) : (
+            contentItems.map((item, index) => {
+              const isLikedByUser = contentRatings?.some(
+                (rating) =>
+                  rating.content_id === item.id &&
+                  rating.content_type === contentType &&
+                  rating.positive === true
+              );
+              const isDislikedByUser = contentRatings?.some(
+                (rating) =>
+                  rating.content_id === item.id &&
+                  rating.content_type === contentType &&
+                  rating.positive === false
+              );
+
+              return (
+                <GridItem md={4} lg={6} key={index}>
+                  <CardMedia
+                    type="portrait"
+                    size="lg"
+                    style={{ gridColumn: "span 4" }}
+                    title={item.title}
+                    image={getImage(item)}
+                    description={item.description}
+                    labels={item.labels}
+                    creator={item.creator}
+                    readingTime={item.readingTime}
+                    categoryName={item.categoryName}
+                    contentType={contentType}
+                    isLikedByUser={isLikedByUser}
+                    isDislikedByUser={isDislikedByUser}
+                    likes={item.likes}
+                    dislikes={item.dislikes}
+                    t={t}
+                    onClick={() => navigate(getRoute(item))}
+                  />
+                </GridItem>
+              );
+            })
+          )}
+        </Grid>
+      </GridItem>
+    </Grid>
   );
 };

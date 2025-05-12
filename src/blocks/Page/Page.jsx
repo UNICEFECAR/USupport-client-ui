@@ -26,6 +26,7 @@ import {
   ThemeContext,
   replaceLanguageInUrl,
   getLanguageFromUrl,
+  redirectToLocalStorageCountry,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
 import {
@@ -77,6 +78,7 @@ export const Page = ({
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_DEV = process.env.NODE_ENV === "development";
 
+  const { theme, setTheme } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const location = useLocation();
   const { t, i18n } = useTranslation("page");
@@ -150,6 +152,10 @@ export const Page = ({
     const res = await countrySvc.getActiveCountries();
     const subdomain = window.location.hostname.split(".")[0];
 
+    if (subdomain === "usupport") {
+      redirectToLocalStorageCountry("client");
+    }
+
     if (subdomain && subdomain !== "www" && subdomain !== "usupport") {
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
@@ -212,6 +218,7 @@ export const Page = ({
   const { data: countries } = useQuery(["countries"], fetchCountries, {
     staleTime: Infinity,
   });
+
   const { data: languages } = useQuery(
     ["languages", selectedCountry],
     fetchLanguages,
@@ -267,7 +274,7 @@ export const Page = ({
   const pages = [
     { name: t("page_1"), url: "/dashboard", exact: true },
     { name: t("page_2"), url: "/consultations" },
-    { name: t("page_3"), url: "/information-portal" },
+    { name: t("page_3"), url: "/information-portal?tab=articles" },
     { name: t("page_4"), url: "/my-qa" },
   ];
 
@@ -278,7 +285,7 @@ export const Page = ({
       { name: t("footer_2"), url: "/consultations" },
     ],
     list2: [
-      { name: t("footer_3"), url: "/information-portal" },
+      { name: t("footer_3"), url: "/information-portal?tab=articles" },
       { name: t("footer_8"), url: "/faq" },
       { name: t("contact_us"), url: "/contact-us" },
     ],
@@ -296,8 +303,6 @@ export const Page = ({
       navigateTo(-1);
     }
   };
-
-  const { theme, setTheme } = useContext(ThemeContext);
 
   const toggleTheme = () => {
     if (theme === "light") {
