@@ -115,7 +115,7 @@ export const ArticleInformation = () => {
   };
 
   return (
-    <Page classes="page__article-information" showGoBackArrow={false}>
+    <Page classes="page__article-information">
       {articleData ? (
         <ArticleView articleData={articleData} t={t} />
       ) : (

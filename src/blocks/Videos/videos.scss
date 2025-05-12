@@ -1,0 +1,39 @@
+@import "@USupport-components-library/styles";
+
+.videos {
+  &__main-grid {
+    justify-items: center;
+  }
+
+  &__search-item {
+    padding-top: 24px;
+  }
+
+  &__categories-item {
+    overflow-x: auto;
+    width: 35rem;
+    padding-top: 30px;
+
+    @media screen and (min-width: 768px) {
+      width: auto;
+      margin: auto;
+    }
+  }
+
+  &__videos-item {
+    padding-top: 12px;
+    padding-bottom: 8px;
+
+    @media screen and (min-width: 1366px) {
+      padding-top: 24px;
+    }
+  }
+
+  &__no-results-container {
+    text-align: center;
+
+    @media screen and (min-width: 1366px) {
+      padding-top: 153px;
+    }
+  }
+}

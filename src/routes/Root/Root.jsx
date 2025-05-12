@@ -51,7 +51,10 @@ import {
   PaymentStatus,
   MoodTrackHistory,
   MyQA,
-  // JitsiRoom,
+  Videos,
+  VideoInformation,
+  PodcastInformation,
+  Podcasts,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData } from "#hooks";
@@ -67,7 +70,6 @@ const LanguageLayout = () => {
   }
   return (
     <Routes>
-      {/* <Route path="/jitsi" element={<JitsiRoom />} /> */}
       <Route
         path="login"
         element={
@@ -281,6 +283,38 @@ const LanguageLayout = () => {
         element={
           <ProtectedRoute>
             <Articles />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="information-portal/videos"
+        element={
+          <ProtectedRoute>
+            <Videos />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="information-portal/podcasts"
+        element={
+          <ProtectedRoute>
+            <Podcasts />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="information-portal/video/:id"
+        element={
+          <ProtectedRoute>
+            <VideoInformation />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="information-portal/podcast/:id"
+        element={
+          <ProtectedRoute>
+            <PodcastInformation />
           </ProtectedRoute>
         }
       />
