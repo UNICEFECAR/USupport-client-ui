@@ -1,6 +1,6 @@
 /* Videos styles */
-@import '@USupport-components-library/styles';
+@import "@USupport-components-library/styles";
 
-.page__videos{
+.page__videos {
+  @include full-height-page-navbar;
 }
-

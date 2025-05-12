@@ -41,7 +41,7 @@ export const Podcasts = () => {
       classes="page__podcasts"
       heading={heading}
       subheading={subheading}
-      showGoBackArrow={showBackGoBackArrow}
+      showGoBackArrow={true}
     >
       <PodcastsBlock showSearch={true} showCategories={true} sort={sort} />
     </Page>
