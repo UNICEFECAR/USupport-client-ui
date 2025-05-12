@@ -47,7 +47,7 @@ export const Welcome = () => {
 
   useEffect(() => {
     const localStorageCountry = localStorage.getItem("country");
-    if (localStorageCountry) {
+    if (localStorageCountry && localStorageCountry !== "global") {
       setSelectedCountry(localStorageCountry);
 
       // If there is country in the local storage
