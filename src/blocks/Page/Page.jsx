@@ -532,7 +532,7 @@ export const Page = ({
         text={
           <Trans
             components={[
-              <Link to={`/${localStorageLanguage}/cookie-policy`} />,
+              <Link to={`/client/${localStorageLanguage}/cookie-policy`} />,
             ]}
           >
             {t("cookie_banner_text")}
