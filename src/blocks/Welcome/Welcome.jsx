@@ -53,11 +53,16 @@ export const Welcome = () => {
       // If there is country in the local storage
       // set it in the url
       const subdomain = window.location.hostname.split(".")[0];
+      const countryLabel = getCountryLabelFromAlpha2(localStorageCountry);
       if (subdomain === "usupport") {
-        const countryLabel = getCountryLabelFromAlpha2(localStorageCountry);
         window.location.href = window.location.href.replace(
           subdomain,
           `${countryLabel}.usupport`
+        );
+      } else if (subdomain === "staging") {
+        window.location.href = window.location.href.replace(
+          subdomain,
+          `${countryLabel}.staging`
         );
       }
     }

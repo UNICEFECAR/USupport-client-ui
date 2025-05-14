@@ -3,5 +3,8 @@
   "no_results": "Brak podobnych artykułów dla aktualnie wybranego języka. ",
   "read_more_button": "Czytaj więcej",
   "min_read": "min czytać",
-  "by": "Przez {{creator}}"
+  "by": "Przez {{creator}}",
+  "share_title": "Udostępnij ten artykuł",
+  "share_success": "Link skopiowany do schowka!",
+  "copy_link": "Skopiuj link"
 }

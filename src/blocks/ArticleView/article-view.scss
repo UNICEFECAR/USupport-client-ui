@@ -49,9 +49,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: $spacing_1_6;
+    padding-top: $spacing_1_0;
 
     &__category {
+      width: max-content;
       display: flex;
       align-content: center;
       justify-content: center;
@@ -60,7 +61,7 @@
       background-color: $color_blue_20809E_0_3;
       border-radius: $border_radius_2_5;
       padding: 0 $spacing_1_2 0 $spacing_1_2;
-      margin-left: $spacing_1_0;
+      margin-top: $spacing_1_6;
 
       .small-text {
         font-weight: $font_bold;
@@ -69,13 +70,34 @@
       }
     }
 
-    @media screen and (min-width: $screen-lg) {
-      padding-top: $spacing_0_8;
-    }
-
     .icon {
       margin-right: $spacing_0_5;
       margin-left: $spacing_1_0;
+    }
+
+    &__download {
+      border-radius: 25px;
+      border: 1px solid $color_blue_3d527b;
+      padding: 4px 12px;
+      margin-left: $spacing_1_0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      & .loading {
+        padding: 0px 0px !important;
+        width: 16px;
+        height: 16px;
+      }
+
+      & .icon {
+        margin: 0 !important;
+      }
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_0_8;
     }
   }
 

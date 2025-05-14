@@ -147,7 +147,9 @@ export const Page = ({
       localStorageCountry =
         res.data.find((x) => x.name.toLocaleLowerCase() === subdomain)
           ?.alpha2 || localStorageCountry;
-      localStorage.setItem("country", localStorageCountry);
+      if (localStorageCountry) {
+        localStorage.setItem("country", localStorageCountry);
+      }
     }
 
     const countries = res.data.map((x) => {
@@ -532,7 +534,7 @@ export const Page = ({
         text={
           <Trans
             components={[
-              <Link to={`/${localStorageLanguage}/cookie-policy`} />,
+              <Link to={`/client/${localStorageLanguage}/cookie-policy`} />,
             ]}
           >
             {t("cookie_banner_text")}
