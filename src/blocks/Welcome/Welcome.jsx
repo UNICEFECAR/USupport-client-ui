@@ -53,11 +53,16 @@ export const Welcome = () => {
       // If there is country in the local storage
       // set it in the url
       const subdomain = window.location.hostname.split(".")[0];
+      const countryLabel = getCountryLabelFromAlpha2(localStorageCountry);
       if (subdomain === "usupport") {
-        const countryLabel = getCountryLabelFromAlpha2(localStorageCountry);
         window.location.href = window.location.href.replace(
           subdomain,
           `${countryLabel}.usupport`
+        );
+      } else if (subdomain === "staging") {
+        window.location.href = window.location.href.replace(
+          subdomain,
+          `${countryLabel}.staging`
         );
       }
     }
@@ -121,14 +126,13 @@ export const Welcome = () => {
       (x) => x.value.toLocaleLowerCase() === country.toLocaleLowerCase()
     );
     const subdomain = window.location.hostname.split(".")[0];
-    if (
-      !window.location.href.includes("localhost") &&
-      subdomain !== "staging"
-    ) {
+    if (!window.location.href.includes("localhost")) {
       const label = countryObject.label.toLocaleLowerCase();
       let newUrl;
       if (subdomain === "usupport") {
         newUrl = window.location.href.replace(subdomain, `${label}.usupport`);
+      } else if (subdomain === "staging") {
+        newUrl = window.location.href.replace(subdomain, `${label}.staging`);
       } else {
         newUrl = window.location.href.replace(subdomain, label);
       }

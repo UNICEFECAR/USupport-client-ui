@@ -158,14 +158,7 @@ const LanguageLayout = () => {
           </CountryValidationRoute>
         }
       />
-      <Route
-        path="cookie-policy"
-        element={
-          <CountryValidationRoute>
-            <CookiePolicy />
-          </CountryValidationRoute>
-        }
-      />
+      <Route path="cookie-policy" element={<CookiePolicy />} />
       <Route
         path="terms-of-use"
         element={

@@ -6,7 +6,12 @@ import { useIsLoggedIn } from "#hooks";
 export const ProtectedRoute = ({ children }) => {
   const isLoggedIn = useIsLoggedIn();
   const token = localStorage.getItem("token");
-  const decoded = token ? jwtDecode(token) : null;
+  let decoded = null;
+  try {
+    decoded = token ? jwtDecode(token) : null;
+  } catch (error) {
+    console.log(error);
+  }
   const isClient = decoded?.userType === "client";
 
   if (!isLoggedIn || !isClient)
