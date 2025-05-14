@@ -126,14 +126,13 @@ export const Welcome = () => {
       (x) => x.value.toLocaleLowerCase() === country.toLocaleLowerCase()
     );
     const subdomain = window.location.hostname.split(".")[0];
-    if (
-      !window.location.href.includes("localhost") &&
-      subdomain !== "staging"
-    ) {
+    if (!window.location.href.includes("localhost")) {
       const label = countryObject.label.toLocaleLowerCase();
       let newUrl;
       if (subdomain === "usupport") {
         newUrl = window.location.href.replace(subdomain, `${label}.usupport`);
+      } else if (subdomain === "staging") {
+        newUrl = window.location.href.replace(subdomain, `${label}.staging`);
       } else {
         newUrl = window.location.href.replace(subdomain, label);
       }
