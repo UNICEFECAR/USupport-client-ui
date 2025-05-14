@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import propTypes from "prop-types";
@@ -11,10 +11,13 @@ import {
   Label,
   Markdown,
   Like,
+  Loading,
 } from "@USupport-components-library/src";
 import { useAddContentRating } from "#hooks";
+import { ShareModal } from "#modals";
 
-import { cmsSvc } from "@USupport-components-library/services";
+import { cmsSvc, userSvc } from "@USupport-components-library/services";
+import { constructShareUrl } from "@USupport-components-library/utils";
 
 import "./article-view.scss";
 
@@ -31,6 +34,13 @@ export const ArticleView = ({ articleData, t }) => {
   const [contentRating, setContentRating] = React.useState(
     articleData.contentRating
   );
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isExportingPdf, setIsExportingPdf] = useState(false);
+
+  const url = constructShareUrl({
+    contentType: "article",
+    id: articleData.id,
+  });
 
   useEffect(() => {
     setContentRating(articleData.contentRating);
@@ -104,6 +114,7 @@ export const ArticleView = ({ articleData, t }) => {
       setContentRating(prevData);
     };
   };
+
   const onError = (error, rollback) => {
     rollback();
     toast.error(error);
@@ -132,21 +143,102 @@ export const ArticleView = ({ articleData, t }) => {
     });
   };
 
+  const handleExportToPdf = async () => {
+    try {
+      setIsExportingPdf(true);
+      // Get CMS API URL where the article can be accessed with nested image data
+      const apiUrl = `${import.meta.env.VITE_CMS_API_URL}/articles/${
+        articleData.id
+      }?populate=creator,category,labels,thumbnail.formats,image`;
+
+      // Make the fetch call
+      const response = await userSvc.generatePdf({
+        contentUrl: apiUrl,
+        contentType: "article",
+        title: articleData.title,
+        // Add image URL info to help server locate it
+        imageUrl: articleData.imageMedium || articleData.image,
+      });
+
+      if (response.status !== 200) {
+        throw new Error(`Error generating PDF: ${response.statusText}`);
+      }
+
+      // Get the PDF blob
+      const blob = response.data;
+
+      // Create a URL for the blob
+      const url = window.URL.createObjectURL(blob);
+
+      // Create download link
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute(
+        "download",
+        `${articleData.title.replace(/\s+/g, "_")}.pdf`
+      );
+
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean up
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      toast.error(t("export_failed"));
+    } finally {
+      setIsExportingPdf(false);
+    }
+  };
+
+  const handleOpenShareModal = () => {
+    setIsShareModalOpen(true);
+  };
+
+  const handleCloseShareModal = () => {
+    setIsShareModalOpen(false);
+  };
+
   return (
     <Block classes="article-view">
       <Grid classes="article-view__main-grid">
         <GridItem md={8} lg={12} classes="article-view__title-item">
-          <h3>{articleData.title}</h3>
+          <div className="article-view__title-row">
+            <h3>{articleData.title}</h3>
+          </div>
+        </GridItem>
+
+        <GridItem md={8} lg={12} classes="article-view__category-item">
+          <div className="article-view__details-item__category">
+            <p className="small-text ">{articleData.categoryName}</p>
+          </div>
         </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__details-item">
           {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
 
           <Icon name={"time"} size="sm" />
-          <p className={"small-text"}> {articleData.readingTime} min read</p>
+          <p className={"small-text"}>
+            {" "}
+            {articleData.readingTime} {t("min_read")}
+          </p>
 
-          <div className="article-view__details-item__category">
-            <p className="small-text ">{articleData.categoryName}</p>
+          <div
+            onClick={handleExportToPdf}
+            className="article-view__details-item__download"
+          >
+            {isExportingPdf ? (
+              <Loading padding="0px" size="sm" />
+            ) : (
+              <Icon name="download" size="sm" />
+            )}
+          </div>
+          <div
+            onClick={handleOpenShareModal}
+            className="article-view__details-item__download"
+          >
+            <Icon name="share" size="sm" />
           </div>
         </GridItem>
 
@@ -190,6 +282,16 @@ export const ArticleView = ({ articleData, t }) => {
           <Markdown markDownText={articleData.body} className={"text"} />
         </GridItem>
       </Grid>
+
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={handleCloseShareModal}
+        contentUrl={url}
+        title={articleData.title}
+        successText={t("share_success")}
+        copyText={t("copy_link")}
+        shareTitle={t("share_title")}
+      />
     </Block>
   );
 };
