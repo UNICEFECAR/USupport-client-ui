@@ -2,6 +2,9 @@
   "heading": "More Articles",
   "no_results": "There are no similar articles for the current selected language. ",
   "read_more_button": "Read more",
-  "min_read":	"min read",
-  "by": "by {{creator}}"
+  "min_read": "min read",
+  "by": "by {{creator}}",
+  "share_title": "Share this content",
+  "share_success": "Link copied to clipboard!",
+  "copy_link": "Copy Link"
 }
