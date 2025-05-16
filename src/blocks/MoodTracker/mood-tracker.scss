@@ -42,13 +42,26 @@
     width: 100%;
     max-width: 42rem;
 
+    @media screen and (min-width: $screen_md) {
+      max-width: 48rem;
+    }
+
     &__emoticon-container {
       width: 6rem;
       height: 9rem;
       cursor: pointer;
 
+      @media screen and (min-width: $screen_md) {
+        width: 10rem;
+      }
+
       &--not-selected {
         opacity: 0.5;
+      }
+
+      & p {
+        text-align: center;
+        word-break: break-word;
       }
 
       &__text--selected {
