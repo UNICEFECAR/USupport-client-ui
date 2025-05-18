@@ -68,6 +68,7 @@ export const ArticleView = ({ articleData, t }) => {
       cmsSvc.addRating({
         id: articleData.id,
         action: "remove-like",
+        contentType: "article",
       });
     }
     if (isDislikedByUser && data.positive === null) {
@@ -76,6 +77,7 @@ export const ArticleView = ({ articleData, t }) => {
       cmsSvc.addRating({
         id: articleData.id,
         action: "remove-dislike",
+        contentType: "article",
       });
     }
 
@@ -85,6 +87,7 @@ export const ArticleView = ({ articleData, t }) => {
       cmsSvc.addRating({
         id: articleData.id,
         action: "add-like",
+        contentType: "article",
       });
       if (isDislikedByUser) {
         newData.dislikes = dislikes - 1;
@@ -92,6 +95,7 @@ export const ArticleView = ({ articleData, t }) => {
         cmsSvc.addRating({
           id: articleData.id,
           action: "remove-dislike",
+          contentType: "article",
         });
       }
     }
@@ -102,6 +106,7 @@ export const ArticleView = ({ articleData, t }) => {
       cmsSvc.addRating({
         id: articleData.id,
         action: "add-dislike",
+        contentType: "article",
       });
       if (isLikedByUser) {
         newData.likes = likes - 1;
@@ -109,6 +114,7 @@ export const ArticleView = ({ articleData, t }) => {
         cmsSvc.addRating({
           id: articleData.id,
           action: "remove-like",
+          contentType: "article",
         });
       }
     }
