@@ -1,0 +1,41 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16.17.0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_GITHUB }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_GITHUB }}
+          aws-region: eu-central-1
+
+      - name: Clone submodules
+        run: |
+          git config --global url."https://${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+          git submodule init
+          git submodule update
+
+      - name: Upload to S3 and invalidate CloudFront
+        run: |
+          chmod +x ./deploy.sh
+          ./deploy.sh prod
