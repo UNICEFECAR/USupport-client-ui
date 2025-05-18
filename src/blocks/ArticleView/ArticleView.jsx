@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import propTypes from "prop-types";
@@ -14,10 +14,14 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { useAddContentRating } from "#hooks";
-import { ShareModal } from "#modals";
+// import { ShareModal } from "#modals";
 
 import { cmsSvc, userSvc } from "@USupport-components-library/services";
-import { constructShareUrl } from "@USupport-components-library/utils";
+
+import {
+  constructShareUrl,
+  ThemeContext,
+} from "@USupport-components-library/utils";
 
 import "./article-view.scss";
 
@@ -34,8 +38,9 @@ export const ArticleView = ({ articleData, t }) => {
   const [contentRating, setContentRating] = React.useState(
     articleData.contentRating
   );
-  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
+  const { theme } = useContext(ThemeContext);
 
   const url = constructShareUrl({
     contentType: "article",
@@ -192,12 +197,9 @@ export const ArticleView = ({ articleData, t }) => {
     }
   };
 
-  const handleOpenShareModal = () => {
-    setIsShareModalOpen(true);
-  };
-
-  const handleCloseShareModal = () => {
-    setIsShareModalOpen(false);
+  const handleCopyLink = () => {
+    navigator?.clipboard?.writeText(url);
+    toast(t("share_success"));
   };
 
   return (
@@ -218,7 +220,11 @@ export const ArticleView = ({ articleData, t }) => {
         <GridItem md={8} lg={12} classes="article-view__details-item">
           {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
 
-          <Icon name={"time"} size="sm" />
+          <Icon
+            color={theme === "dark" ? "#ffffff" : "#66768d"}
+            name={"time"}
+            size="sm"
+          />
           <p className={"small-text"}>
             {" "}
             {articleData.readingTime} {t("min_read")}
@@ -231,14 +237,22 @@ export const ArticleView = ({ articleData, t }) => {
             {isExportingPdf ? (
               <Loading padding="0px" size="sm" />
             ) : (
-              <Icon name="download" size="sm" />
+              <Icon
+                color={theme === "dark" ? "#ffffff" : "#66768d"}
+                name="download"
+                size="sm"
+              />
             )}
           </div>
           <div
-            onClick={handleOpenShareModal}
+            onClick={handleCopyLink}
             className="article-view__details-item__download"
           >
-            <Icon name="share" size="sm" />
+            <Icon
+              color={theme === "dark" ? "#ffffff" : "#66768d"}
+              name="share"
+              size="sm"
+            />
           </div>
         </GridItem>
 
@@ -283,7 +297,7 @@ export const ArticleView = ({ articleData, t }) => {
         </GridItem>
       </Grid>
 
-      <ShareModal
+      {/* <ShareModal
         isOpen={isShareModalOpen}
         onClose={handleCloseShareModal}
         contentUrl={url}
@@ -291,7 +305,7 @@ export const ArticleView = ({ articleData, t }) => {
         successText={t("share_success")}
         copyText={t("copy_link")}
         shareTitle={t("share_title")}
-      />
+      /> */}
     </Block>
   );
 };

@@ -58,15 +58,26 @@
       justify-content: center;
       flex-direction: column;
       height: 2.2rem;
-      background-color: $color_blue_20809E_0_3;
+      @include themifyCustom(
+        $themes,
+        "background-color",
+        "color_blue_20809E_0_3",
+        "color_gray_66768d"
+      );
       border-radius: $border_radius_2_5;
       padding: 0 $spacing_1_2 0 $spacing_1_2;
       margin-top: $spacing_1_6;
 
       .small-text {
         font-weight: $font_bold;
-        color: $color_blue_3d527b;
         white-space: nowrap;
+
+        @include themifyCustom(
+          $themes,
+          "color",
+          "color_blue_3d527b",
+          "color_gray_c1d7e0"
+        );
       }
     }
 
