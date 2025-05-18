@@ -152,6 +152,11 @@ export const Page = ({
       }
     }
 
+    if (subdomain === "staging" || subdomain === "usupport") {
+      localStorage.setItem("country", "global");
+      window.dispatchEvent(new Event("countryChanged"));
+    }
+
     const countries = res.data.map((x) => {
       const countryObject = {
         value: x.alpha2,

@@ -21,6 +21,7 @@ import {
   replaceLanguageInUrl,
   getLanguageFromUrl,
   getCountryLabelFromAlpha2,
+  redirectToUrl,
 } from "@USupport-components-library/utils";
 
 import "./welcome.scss";
@@ -136,7 +137,7 @@ export const Welcome = () => {
       } else {
         newUrl = window.location.href.replace(subdomain, label);
       }
-      window.location.href = newUrl;
+      redirectToUrl(newUrl);
     } else {
       localStorage.setItem("country", country);
     }
