@@ -182,7 +182,7 @@ export const Welcome = () => {
           <h2 className="welcome__grid__logo-item__heading">{t("client")}</h2>
         </GridItem>
         <GridItem md={8} lg={12} classes="welcome__grid__content-item">
-          {!languagesQuery.isFetching ? (
+          {!languagesQuery.isFetching && countries ? (
             <>
               <DropdownWithLabel
                 options={
