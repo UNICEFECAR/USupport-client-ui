@@ -263,12 +263,18 @@ export const Articles = ({
       ageGroupId = selectedAgeGroup.id;
     }
 
+    let categoryId = null;
+    if (categories) {
+      let selectedCategory = categories.find((o) => o.isSelected === true);
+      categoryId = selectedCategory.id;
+    }
+
     const { data } = await cmsSvc.getArticles({
       startFrom: articles?.length,
       limit: 6,
       contains: searchValue,
       ageGroupId: ageGroupId,
-      categoryId: null,
+      categoryId,
       locale: usersLanguage,
       sortBy: sort,
       sortOrder: sort ? "desc" : null,
