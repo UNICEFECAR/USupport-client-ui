@@ -252,11 +252,13 @@ export const Page = ({
   useEffect(() => {
     if (clientData) {
       const { sex, yearOfBirth, urbanRural } = clientData;
+      const pathname = location.pathname.split("/").filter(Boolean);
+      const pathnameWithoutLanguage = pathname.slice(2).join("/");
       if (
         (!sex || !yearOfBirth || !urbanRural) &&
-        location.pathname !== "/register/about-you"
+        pathnameWithoutLanguage !== "register/about-you"
       ) {
-        navigateTo(`/${localStorageLanguage}/client/register/about-you`, {
+        navigateTo(`/client/${localStorageLanguage}/register/about-you`, {
           state: {
             isAnonymous: !!clientData.accessToken,
           },
@@ -325,7 +327,7 @@ export const Page = ({
     localStorage.removeItem("token");
     localStorage.removeItem("refresh-token");
     localStorage.removeItem("expires-in");
-    navigateTo(`/${localStorageLanguage}/client/register-preview`);
+    navigateTo(`/${localStorageLanguage}/register-preview`);
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
