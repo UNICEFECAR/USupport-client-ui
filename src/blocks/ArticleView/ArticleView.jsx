@@ -19,11 +19,39 @@ import { useAddContentRating } from "#hooks";
 import { cmsSvc, userSvc } from "@USupport-components-library/services";
 
 import {
-  constructShareUrl,
+  // constructShareUrl,
   ThemeContext,
 } from "@USupport-components-library/utils";
 
 import "./article-view.scss";
+
+const countriesMap = {
+  global: "global",
+  kz: "kazakhstan",
+  pl: "poland",
+  ro: "romania",
+};
+
+const constructShareUrl = ({ contentType, id }) => {
+  const country = localStorage.getItem("country");
+  const language = localStorage.getItem("language");
+  const subdomain = window.location.hostname.split(".")[0];
+
+  if (subdomain === "staging") {
+    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+
+  if (country === "global") {
+    return `https://usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+  const countryName = countriesMap[country.toLocaleLowerCase()];
+
+  if (window.location.hostname.includes("staging")) {
+    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  return url;
+};
 
 /**
  * ArticleView
@@ -50,6 +78,8 @@ export const ArticleView = ({ articleData, t, language }) => {
     contentType: "article",
     id: articleData.id,
   });
+
+  console.log(url, "url");
 
   useEffect(() => {
     setRatings({
