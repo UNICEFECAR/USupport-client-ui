@@ -35,11 +35,15 @@ import "./article-view.scss";
 export const ArticleView = ({ articleData, t, language }) => {
   const queryClient = useQueryClient();
   const creator = articleData.creator ? articleData.creator : null;
-  const [contentRating, setContentRating] = React.useState(
-    articleData.contentRating
-  );
+
   // const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
+  const [ratings, setRatings] = useState({
+    likes: articleData.likes || 0,
+    dislikes: articleData.dislikes || 0,
+    isLikedByUser: articleData.contentRating?.isLikedByUser || false,
+    isDislikedByUser: articleData.contentRating?.isDislikedByUser || false,
+  });
   const { theme } = useContext(ThemeContext);
 
   const url = constructShareUrl({
@@ -48,18 +52,23 @@ export const ArticleView = ({ articleData, t, language }) => {
   });
 
   useEffect(() => {
-    setContentRating(articleData.contentRating);
-  }, [articleData.contentRating]);
+    setRatings({
+      likes: articleData.likes || 0,
+      dislikes: articleData.dislikes || 0,
+      isLikedByUser: articleData.contentRating?.isLikedByUser || false,
+      isDislikedByUser: articleData.contentRating?.isDislikedByUser || false,
+    });
+  }, [articleData, articleData.contentRating]);
 
   const onMutate = (data) => {
-    const prevData = JSON.parse(JSON.stringify(contentRating));
+    const prevData = JSON.parse(JSON.stringify(ratings));
 
     const likes = prevData.likes;
     const dislikes = prevData.dislikes;
     const isLikedByUser = prevData.isLikedByUser;
     const isDislikedByUser = prevData.isDislikedByUser;
 
-    const newData = { ...contentRating };
+    const newData = { ...ratings };
 
     if (isLikedByUser && data.positive === null) {
       newData.likes = likes - 1;
@@ -119,10 +128,10 @@ export const ArticleView = ({ articleData, t, language }) => {
       }
     }
 
-    setContentRating(newData);
+    setRatings(newData);
 
     return () => {
-      setContentRating(prevData);
+      setRatings(prevData);
     };
   };
 
@@ -279,10 +288,10 @@ export const ArticleView = ({ articleData, t, language }) => {
           <Like
             renderInClient
             handleClick={handleAddRating}
-            likes={contentRating?.likes || 0}
-            isLiked={contentRating?.isLikedByUser || false}
-            dislikes={contentRating?.dislikes || 0}
-            isDisliked={contentRating?.isDislikedByUser || false}
+            likes={ratings.likes || 0}
+            isLiked={ratings.isLikedByUser || false}
+            dislikes={ratings.dislikes || 0}
+            isDisliked={ratings.isDislikedByUser || false}
             answerId={articleData.id}
           />
         </GridItem>
