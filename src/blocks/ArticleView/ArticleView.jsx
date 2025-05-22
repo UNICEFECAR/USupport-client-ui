@@ -279,9 +279,9 @@ export const ArticleView = ({ articleData, t, language }) => {
           <Like
             renderInClient
             handleClick={handleAddRating}
-            likes={contentRating?.likes || 0}
+            likes={articleData.likes || 0}
             isLiked={contentRating?.isLikedByUser || false}
-            dislikes={contentRating?.dislikes || 0}
+            dislikes={articleData.dislikes || 0}
             isDisliked={contentRating?.isDislikedByUser || false}
             answerId={articleData.id}
           />
