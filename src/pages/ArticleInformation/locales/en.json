@@ -6,5 +6,6 @@
   "by": "by {{creator}}",
   "share_title": "Share this content",
   "share_success": "Link copied to clipboard!",
-  "copy_link": "Copy Link"
+  "copy_link": "Copy Link",
+  "export_failed": "Export failed. Please try again."
 }
