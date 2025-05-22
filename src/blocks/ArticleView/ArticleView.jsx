@@ -32,7 +32,7 @@ import "./article-view.scss";
  *
  * @return {jsx}
  */
-export const ArticleView = ({ articleData, t }) => {
+export const ArticleView = ({ articleData, t, language }) => {
   const queryClient = useQueryClient();
   const creator = articleData.creator ? articleData.creator : null;
   const [contentRating, setContentRating] = React.useState(
@@ -197,6 +197,7 @@ export const ArticleView = ({ articleData, t }) => {
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (error) {
+      console.log(error);
       toast.error(t("export_failed"));
     } finally {
       setIsExportingPdf(false);

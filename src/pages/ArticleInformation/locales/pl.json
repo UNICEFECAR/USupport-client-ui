@@ -6,5 +6,6 @@
   "by": "Przez {{creator}}",
   "share_title": "Udostępnij ten artykuł",
   "share_success": "Link skopiowany do schowka!",
-  "copy_link": "Skopiuj link"
+  "copy_link": "Skopiuj link",
+  "export_failed": "Eksportowanie nie powiodło się. Proszę spróbować ponownie."
 }
