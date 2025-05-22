@@ -158,7 +158,7 @@ export const InformationPortal = () => {
                       contentIds={articleIdsQuery.data}
                       limit={2}
                       navigateToAllPath="/information-portal/articles"
-                      contentType="articles"
+                      contentType="article"
                       getContent={cmsSvc.getArticles}
                       destructureContentData={destructureArticleData}
                       getImage={(article) => article.imageMedium}
@@ -173,7 +173,7 @@ export const InformationPortal = () => {
                       contentIds={articleIdsQuery.data}
                       limit={2}
                       navigateToAllPath="/information-portal/articles"
-                      contentType="articles"
+                      contentType="article"
                       getContent={cmsSvc.getArticles}
                       destructureContentData={destructureArticleData}
                       getImage={(article) => article.imageMedium}
@@ -291,7 +291,7 @@ const ContentList = ({
   contentIds,
   limit = 2,
   navigateToAllPath,
-  contentType = "articles", // or "video" or "podcast"
+  contentType = "article", // or "video" or "podcast"
   getContent, // Function to fetch content
   destructureContentData, // Function to transform content data
   getImage, // Function to determine image
