@@ -5,9 +5,9 @@ import { Modal, CustomCarousel } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
 // English
-import howItWorks1 from "./assets/HowItWorks1.png";
+import howItWorks1 from "./assets/HowItWorks3.png";
 import howItWorks2 from "./assets/HowItWorks2.png";
-import howItWorks3 from "./assets/HowItWorks3.png";
+import howItWorks3 from "./assets/HowItWorks1.png";
 
 import howItWorks1Mobile from "./assets/HowItWorks1Mobile.png";
 import howItWorks2Mobile from "./assets/HowItWorks2Mobile.png";
