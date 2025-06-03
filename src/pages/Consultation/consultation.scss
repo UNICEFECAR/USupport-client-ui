@@ -39,8 +39,14 @@
         padding-bottom: 15rem;
 
         @media screen and (min-width: 1024px) {
+          padding-bottom: 25rem;
+          // height: 82vh;
+          overflow-y: auto;
+        }
+
+        @media screen and (min-width: 1150px) {
           padding-bottom: 0;
-          height: 82vh;
+          // height: 82vh;
           overflow-y: auto;
         }
 
@@ -95,6 +101,17 @@
       top: 30vh;
     }
 
+    @media screen and (min-width: 1024px) {
+      padding-bottom: 25rem;
+    }
+
+    & .page__consultation__container__messages__messages-container {
+      @media screen and (min-width: $screen-md) {
+        padding-bottom: 25rem !important;
+        // position: static;
+      }
+    }
+
     & .send-message {
       margin-bottom: $spacing_0_4;
       position: fixed;
@@ -103,10 +120,6 @@
       right: 0;
       margin-bottom: 10px;
       padding-top: $spacing_1_6;
-
-      @media screen and (min-width: $screen-md) {
-        position: unset;
-      }
     }
 
     &__container {
