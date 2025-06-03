@@ -55,6 +55,7 @@ import {
   VideoInformation,
   PodcastInformation,
   Podcasts,
+  JitsiRoom,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData } from "#hooks";
@@ -90,7 +91,8 @@ const LanguageLayout = () => {
         path="consultation"
         element={
           <ProtectedRoute>
-            <Consultation />
+            <JitsiRoom />
+            {/* <Consultation /> */}
           </ProtectedRoute>
         }
       />

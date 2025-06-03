@@ -1,0 +1,27 @@
+/* JitsiRoom styles */
+@import "@USupport-components-library/styles";
+
+.page__jitsi-room {
+  padding-top: 0;
+  &__options-container {
+    padding-top: 1.2rem;
+    padding-left: 1.2rem;
+  }
+
+  & .send-message {
+    padding-left: 1.2rem;
+  }
+
+  & .page__consultation__container__messages__messages-container {
+    @media screen and (min-width: 1150px) {
+      height: calc(100vh - 12rem) !important;
+    }
+  }
+
+  .loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
