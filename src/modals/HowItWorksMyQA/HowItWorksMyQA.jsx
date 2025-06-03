@@ -5,49 +5,49 @@ import { Modal, CustomCarousel } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
 // English
-import howItWorks1 from "./assets/HowItWorks3.png";
-import howItWorks2 from "./assets/HowItWorks2.png";
-import howItWorks3 from "./assets/HowItWorks1.png";
+import howItWorks1 from "./assets/howItWorks3.png";
+import howItWorks2 from "./assets/howItWorks2.png";
+import howItWorks3 from "./assets/howItWorks1.png";
 
-import howItWorks1Mobile from "./assets/HowItWorks1Mobile.png";
-import howItWorks2Mobile from "./assets/HowItWorks2Mobile.png";
-import howItWorks3Mobile from "./assets/HowItWorks3Mobile.png";
+import howItWorks1Mobile from "./assets/howItWorks1Mobile.png";
+import howItWorks2Mobile from "./assets/howItWorks2Mobile.png";
+import howItWorks3Mobile from "./assets/howItWorks3Mobile.png";
 
 //Polish
-import howItWorks1PL from "./assets/HowItWorksPL1.png";
-import howItWorks2PL from "./assets/HowItWorksPL2.png";
-import howItWorks3PL from "./assets/HowItWorksPL3.png";
+import howItWorks1PL from "./assets/howItWorksPL1.png";
+import howItWorks2PL from "./assets/howItWorksPL2.png";
+import howItWorks3PL from "./assets/howItWorksPL3.png";
 
-import howItWorks1PLMobile from "./assets/HowItWorks1PLMobile.png";
-import howItWorks2PLMobile from "./assets/HowItWorks2PLMobile.png";
-import howItWorks3PLMobile from "./assets/HowItWorks3PLMobile.png";
+import howItWorks1PLMobile from "./assets/howItWorks1PLMobile.png";
+import howItWorks2PLMobile from "./assets/howItWorks2PLMobile.png";
+import howItWorks3PLMobile from "./assets/howItWorks3PLMobile.png";
 
 // Kazakh
 import howItWorks1KZ from "./assets/howItWorksKZ1.png";
 import howItWorks2KZ from "./assets/howItWorksKZ2.png";
 import howItWorks3KZ from "./assets/howItWorksKZ3.png";
 
-import howItWorks1KZMobile from "./assets/HowItWorks1KZMobile.png";
-import howItWorks2KZMobile from "./assets/HowItWorks2KZMobile.png";
-import howItWorks3KZMobile from "./assets/HowItWorks3KZMobile.png";
+import howItWorks1KZMobile from "./assets/howItWorks1KZMobile.png";
+import howItWorks2KZMobile from "./assets/howItWorks2KZMobile.png";
+import howItWorks3KZMobile from "./assets/howItWorks3KZMobile.png";
 
 // Ukranian
-import howItWorks1UK from "./assets/HowItWorksUK1.png";
-import howItWorks2UK from "./assets/HowItWorksUK2.png";
-import howItWorks3UK from "./assets/HowItWorksUK3.png";
+import howItWorks1UK from "./assets/howItWorksUK1.png";
+import howItWorks2UK from "./assets/howItWorksUK2.png";
+import howItWorks3UK from "./assets/howItWorksUK3.png";
 
-import howItWorks1UAMobile from "./assets/HowItWorks1UAMobile.png";
-import howItWorks2UAMobile from "./assets/HowItWorks2UAMobile.png";
-import howItWorks3UAMobile from "./assets/HowItWorks3UAMobile.png";
+import howItWorks1UAMobile from "./assets/howItWorks1UAMobile.png";
+import howItWorks2UAMobile from "./assets/howItWorks2UAMobile.png";
+import howItWorks3UAMobile from "./assets/howItWorks3UAMobile.png";
 
 // Russian
-import howItWorks1RU from "./assets/HowItWorksRU1.png";
-import howItWorks2RU from "./assets/HowItWorksRU2.png";
-import howItWorks3RU from "./assets/HowItWorksRU3.png";
+import howItWorks1RU from "./assets/howItWorksRU1.png";
+import howItWorks2RU from "./assets/howItWorksRU2.png";
+import howItWorks3RU from "./assets/howItWorksRU3.png";
 
-import howItWorks1RUMobile from "./assets/HowItWorks1RUMobile.png";
-import howItWorks2RUMobile from "./assets/HowItWorks2RUMobile.png";
-import howItWorks3RUMobile from "./assets/HowItWorks3RUMobile.png";
+import howItWorks1RUMobile from "./assets/howItWorks1RUMobile.png";
+import howItWorks2RUMobile from "./assets/howItWorks2RUMobile.png";
+import howItWorks3RUMobile from "./assets/howItWorks3RUMobile.png";
 
 import "./how-it-works-my-qa.scss";
 
