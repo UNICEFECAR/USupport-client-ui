@@ -658,7 +658,7 @@ const MessageList = ({
     isHidden,
   ]);
 
-  return width >= 1024 ? (
+  return width >= 1150 ? (
     <div style={{ position: "relative" }}>
       <OptionsContainer
         showOptions={showOptions}
