@@ -12,12 +12,6 @@
     padding-left: 1.2rem;
   }
 
-  & .page__consultation__container__messages__messages-container {
-    @media screen and (min-width: 1150px) {
-      height: calc(100vh - 12rem) !important;
-    }
-  }
-
   .loading-spinner {
     position: absolute;
     top: 50%;
