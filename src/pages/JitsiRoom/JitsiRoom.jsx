@@ -68,6 +68,9 @@ export const JitsiRoom = () => {
   const { width } = useWindowDimensions();
   const { isTmpUser, leaveConsultationFn } = useContext(RootContext);
 
+  if (!location?.state) {
+    return <Navigate to={`/client/${language}/consultations`} />;
+  }
   const { consultation, videoOn, microphoneOn, token } = location?.state;
 
   const [isLoading, setIsLoading] = useState(true);
@@ -83,6 +86,7 @@ export const JitsiRoom = () => {
     hasUnreadMessages: false,
     isProviderInSession: false,
   });
+  const interfacesRef = useRef(interfaces);
 
   const [messages, setMessages] = useState({
     currentSession: [],
@@ -92,22 +96,14 @@ export const JitsiRoom = () => {
   useSessionEndReminder(consultation.timestamp, t);
 
   const receiveMessage = (message) => {
+    const interfacesCopy = { ...interfacesRef.current };
     if (message.content === "provider_left") {
-      setInterfaceData({
-        ...interfaces,
-        isProviderInSession: false,
-      });
+      interfacesCopy.isProviderInSession = false;
     } else if (message.content === "provider_joined") {
-      setInterfaceData({
-        ...interfaces,
-        isProviderInSession: true,
-      });
+      interfacesCopy.isProviderInSession = true;
     }
 
-    setInterfaceData((prev) => ({
-      ...prev,
-      hasUnreadMessages: true,
-    }));
+    interfacesCopy.hasUnreadMessages = true;
 
     setMessages((messages) => {
       return {
@@ -115,6 +111,7 @@ export const JitsiRoom = () => {
         currentSession: [...messages.currentSession, message],
       };
     });
+    setInterfaceData(interfacesCopy);
   };
 
   const socketRef = useConsultationSocket({
@@ -124,6 +121,10 @@ export const JitsiRoom = () => {
     setInterfaceData,
     receiveMessage,
   });
+
+  useEffect(() => {
+    interfacesRef.current = interfaces;
+  }, [interfaces]);
 
   useEffect(() => {
     // If the chat is shown but user shrinks the window:
