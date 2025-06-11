@@ -380,8 +380,10 @@ export const JitsiRoom = () => {
             startWithVideoMuted: !videoOn,
           }}
           interfaceConfigOverwrite={{
+            SHOW_JITSI_WATERMARK: false,
             DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
-            TOOLBAR_BUTTONS: [],
+            TOOLBAR_BUTTONS: ["videobackgroundblur", "raisehand", "settings"],
+            SHOW_ROOM_NAME: false,
           }}
           userInfo={userInfo}
           onApiReady={async (externalApi) => {
