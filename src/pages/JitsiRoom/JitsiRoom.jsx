@@ -378,11 +378,17 @@ export const JitsiRoom = () => {
             ...defaultConfig,
             startWithAudioMuted: !microphoneOn,
             startWithVideoMuted: !videoOn,
+            hideConferenceSubject: true,
+            showJitsiBranding: false,
+            showJitsiWatermark: false,
+            SETTINGS_SECTIONS: ["language", "devices", "background", "profile"],
           }}
           interfaceConfigOverwrite={{
+            HIDE_CONFERENCE_SUBJECT: true,
             SHOW_JITSI_WATERMARK: false,
             DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
-            TOOLBAR_BUTTONS: ["videobackgroundblur", "raisehand", "settings"],
+            TOOLBAR_BUTTONS: ["raisehand", "settings", "fullscreen"],
+            SETTINGS_SECTIONS: ["language", "devices", "background", "profile"],
             SHOW_ROOM_NAME: false,
           }}
           userInfo={userInfo}
