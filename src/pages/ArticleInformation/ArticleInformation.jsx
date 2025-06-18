@@ -22,6 +22,7 @@ import {
   userSvc,
   cmsSvc,
   adminSvc,
+  clientSvc,
 } from "@USupport-components-library/services";
 
 import "./article-information.scss";
@@ -64,6 +65,20 @@ export const ArticleInformation = () => {
     getArticleData,
     {
       enabled: !!id,
+      onSuccess: (data) => {
+        // Add category interaction when article is successfully fetched
+        if (data && data.categoryId) {
+          clientSvc
+            .addClientCategoryInteraction({
+              categoryId: data.categoryId,
+              articleId: data.id,
+              tagIds: data.labels.map((label) => label.id),
+            })
+            .catch((error) => {
+              console.error("Failed to track category interaction:", error);
+            });
+        }
+      },
     }
   );
 
