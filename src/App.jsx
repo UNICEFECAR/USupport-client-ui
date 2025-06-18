@@ -53,6 +53,7 @@ function App() {
 
   useEffect(() => {
     const handleBeforeUnload = (e) => {
+      console.log(isInWelcome, "isInWelcome");
       const token = localStorage.getItem("token");
       // If the page is being refreshed, do nothing
       if (!(performance.getEntriesByType("navigation")[0].type === "reload")) {
