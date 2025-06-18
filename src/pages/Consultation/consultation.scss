@@ -38,20 +38,26 @@
         overflow: auto;
         padding-bottom: 15rem;
 
-        @media screen and (min-width: 1024px) {
-          padding-bottom: 0;
-          height: 82vh;
+        @media screen and (min-width: 1150px) {
+          padding-bottom: 25rem;
+          // height: 82vh;
           overflow-y: auto;
         }
 
-        @media screen and (min-width: $screen-lg) {
+        @media screen and (min-width: 1150px) {
+          padding-bottom: 0;
+          height: calc(100vh - 12rem);
+          overflow-y: auto;
+        }
+
+        @media screen and (min-width: 1150px) {
           margin-top: 5rem;
         }
 
         &--show-options {
-          @media screen and (min-width: 1024px) {
-            height: calc(82vh - 15rem) !important;
-            margin-top: 20rem;
+          @media screen and (min-width: 1150px) {
+            height: calc(100vh - 28rem) !important;
+            margin-top: 21rem;
           }
         }
 
@@ -59,7 +65,7 @@
         & .system-message {
           margin-bottom: $spacing_1_8;
 
-          @media screen and (min-width: 1024px) {
+          @media screen and (min-width: 1150px) {
             max-width: 25rem;
           }
         }
@@ -95,6 +101,17 @@
       top: 30vh;
     }
 
+    @media screen and (min-width: 1150px) {
+      padding-bottom: 25rem;
+    }
+
+    & .page__consultation__container__messages__messages-container {
+      @media screen and (min-width: $screen-md) {
+        padding-bottom: 25rem !important;
+        // position: static;
+      }
+    }
+
     & .send-message {
       margin-bottom: $spacing_0_4;
       position: fixed;
@@ -103,10 +120,6 @@
       right: 0;
       margin-bottom: 10px;
       padding-top: $spacing_1_6;
-
-      @media screen and (min-width: $screen-md) {
-        position: unset;
-      }
     }
 
     &__container {

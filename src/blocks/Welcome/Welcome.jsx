@@ -37,7 +37,7 @@ export const Welcome = () => {
   const { t, i18n } = useTranslation("welcome");
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { theme } = useContext(ThemeContext);
+  const { theme, setIsInWelcome } = useContext(ThemeContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
 
@@ -45,6 +45,14 @@ export const Welcome = () => {
 
   const countriesQueryData = queryClient.getQueryData(["countries"]);
   const [countries, setCountries] = useState(countriesQueryData);
+
+  useEffect(() => {
+    setIsInWelcome(true);
+
+    return () => {
+      setIsInWelcome(false);
+    };
+  }, []);
 
   useEffect(() => {
     const localStorageCountry = localStorage.getItem("country");
