@@ -36,38 +36,49 @@ function App() {
     once: false,
   });
 
-  useEffect(() => {
-    const language = localStorage.getItem("language");
-    if (language) {
-      i18n.changeLanguage(language);
-    }
-
-    if (!IS_DEV) {
-      window.addEventListener("beforeunload", (e) => {
-        if (
-          !(performance.getEntriesByType("navigation")[0].type === "reload")
-        ) {
-          // If the page is being refreshed, do nothing
-          e.preventDefault();
-          userSvc.logout();
-        }
-      });
-    }
-  }, []);
-
   const getDefaultTheme = () => {
     const localStorageTheme = localStorage.getItem("default-theme");
     return localStorageTheme || "light";
   };
 
   const [theme, setTheme] = useState(getDefaultTheme());
+  const [isInWelcome, setIsInWelcome] = useState(false);
+
+  useEffect(() => {
+    const language = localStorage.getItem("language");
+    if (language) {
+      i18n.changeLanguage(language);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      const token = localStorage.getItem("token");
+      // If the page is being refreshed, do nothing
+      if (!(performance.getEntriesByType("navigation")[0].type === "reload")) {
+        if (token && !isInWelcome) {
+          e.preventDefault();
+          e.returnValue = "";
+          userSvc.logout();
+        }
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [isInWelcome]);
 
   useEffect(() => {
     localStorage.setItem("default-theme", theme);
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, setTheme, isInWelcome, setIsInWelcome }}
+    >
       <div className={`theme-${theme}`}>
         <QueryClientProvider client={queryClient}>
           <Root />
