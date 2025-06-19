@@ -22,6 +22,7 @@ import {
   userSvc,
   cmsSvc,
   adminSvc,
+  clientSvc,
 } from "@USupport-components-library/services";
 
 import "./video-information.scss";
@@ -67,6 +68,19 @@ export const VideoInformation = () => {
     isFetched,
   } = useQuery(["video", i18n.language, id], getVideoData, {
     enabled: !!id,
+    onSuccess: (data) => {
+      if (data && data.categoryId) {
+        clientSvc
+          .addClientCategoryInteraction({
+            categoryId: data.categoryId,
+            videoId: data.id,
+            tagIds: data.labels.map((label) => label.id),
+          })
+          .catch((error) => {
+            console.error("Failed to track category interaction:", error);
+          });
+      }
+    },
   });
 
   const getSimilarVideos = async () => {
