@@ -22,7 +22,7 @@
 
   &__age-groups-item {
     @media screen and (min-width: $screen-lg) {
-      justify-self: flex-start;
+      justify-self: center;
     }
   }
 
@@ -48,7 +48,7 @@
     padding-top: $spacing_3_0;
 
     @media screen and (min-width: $screen-lg) {
-      padding-top: $spacing_5_4;
+      padding-top: $spacing_3_2;
     }
   }
 
