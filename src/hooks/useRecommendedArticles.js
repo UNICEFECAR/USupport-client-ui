@@ -90,7 +90,9 @@ export const useRecommendedArticles = ({
           tagIds,
         });
       }
-      interactedArticleIds.add(articleId);
+      if (articleId) {
+        interactedArticleIds.add(articleId);
+      }
     });
 
     // Sort categories by interaction count (descending)
