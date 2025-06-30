@@ -1,6 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useCustomNavigate as useNavigate } from "#hooks";
+
+import {
+  useCustomNavigate as useNavigate,
+  useGetOrganizationMetadata,
+  useGetAllOrganizations,
+} from "#hooks";
 
 import {
   Dropdown,
@@ -13,7 +18,6 @@ import {
   Button,
   OrganizationOverview,
 } from "@USupport-components-library/src";
-import { useGetOrganizationMetadata, useGetAllOrganizations } from "#hooks";
 
 import "./organizations.scss";
 
