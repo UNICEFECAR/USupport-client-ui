@@ -14,11 +14,12 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { destructureArticleData } from "@USupport-components-library/utils";
-import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+import { cmsSvc } from "@USupport-components-library/services";
 import {
   useDebounce,
   useEventListener,
   useGetUserContentRatings,
+  useRecommendedArticles,
 } from "#hooks";
 
 import "./articles.scss";
@@ -30,12 +31,7 @@ import "./articles.scss";
  *
  * @return {jsx}
  */
-export const Articles = ({
-  showSearch,
-  showCategories,
-  // showAgeGroups = true,
-  sort,
-}) => {
+export const Articles = ({ showSearch, showCategories, sort }) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("articles");
 
@@ -175,127 +171,45 @@ export const Articles = ({
   useEventListener("countryChanged", handler);
 
   //--------------------- Articles ----------------------//
-  const getArticlesIds = async () => {
-    const articlesIds = await adminSvc.getArticles();
-
-    return articlesIds;
-  };
-
-  const articleIdsQuery = useQuery(
-    ["articleIds", currentCountry],
-    getArticlesIds
-  );
-
-  const [hasMore, setHasMore] = useState(true);
-
-  const getArticlesData = async () => {
-    const ageGroupId = ageGroupsQuery.data.find((x) => x.isSelected).id;
-
-    let categoryId = "";
-    if (selectedCategory.value !== "all") {
-      categoryId = selectedCategory.id;
-    }
-
-    let { data } = await cmsSvc.getArticles({
-      limit: 6,
-      contains: debouncedSearchValue,
-      ageGroupId,
-      categoryId,
-      // sortBy: sort ? sort : "createdAt",
-      // sortOrder: sort ? "desc" : "desc",
-      locale: usersLanguage,
-      populate: true,
-      ids: articleIdsQuery.data,
-    });
-
-    const articles = data.data;
-    const numberOfArticles = data.meta.pagination.total;
-
-    return { articles, numberOfArticles };
-  };
-
-  const [articles, setArticles] = useState();
-  const [numberOfArticles, setNumberOfArticles] = useState();
   const {
-    isLoading: isArticlesLoading,
-    isFetching: isArticlesFetching,
-    isFetched: isArticlesFetched,
-    fetchStatus: articlesFetchStatus,
-    data: articlesQueryData,
-  } = useQuery(
-    [
-      "articles",
-      debouncedSearchValue,
-      selectedAgeGroup,
-      selectedCategory,
-      articleIdsQuery.data,
-      usersLanguage,
-    ],
-    getArticlesData,
-    {
-      enabled:
-        !articleIdsQuery.isLoading &&
-        !ageGroupsQuery.isLoading &&
-        !categoriesQuery.isLoading &&
-        categoriesQuery.data?.length > 0 &&
-        ageGroupsQuery.data?.length > 0 &&
-        articleIdsQuery.data?.length > 0 &&
-        selectedCategory !== null &&
-        selectedAgeGroup !== null,
-      refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        setArticles([...data.articles]);
-        setNumberOfArticles(data.numberOfArticles);
-      },
-    }
-  );
+    articles,
+    loading: isArticlesLoading,
+    hasMore,
+    totalCount,
+    categoriesData,
+    remainingArticlesCount,
+    readArticlesCount,
+    categoryArticlesCount,
+    loadMore,
+    error,
+    isReady,
+    fetchingCategories,
+    fetchingRemaining,
+    hasMoreRemaining,
+    hasMoreRead,
+    readArticleIds,
+  } = useRecommendedArticles({
+    limit: 16,
+    ageGroupId: selectedAgeGroup?.id,
+    enabled: selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
+    categoryIdFilter: selectedCategory?.id || null,
+    searchValue: debouncedSearchValue,
+  });
 
-  useEffect(() => {
-    if (articles) {
-      setHasMore(numberOfArticles > articles.length);
-    }
-  }, [articles]);
-
-  const getMoreArticles = async () => {
-    let ageGroupId = "";
-    if (ageGroups) {
-      let selectedAgeGroup = ageGroups.find((o) => o.isSelected === true);
-      ageGroupId = selectedAgeGroup.id;
-    }
-
-    let categoryId = null;
-    if (categories) {
-      let selectedCategory = categories.find((o) => o.isSelected === true);
-      categoryId = selectedCategory.id;
-    }
-
-    const { data } = await cmsSvc.getArticles({
-      startFrom: articles?.length,
-      limit: 6,
-      contains: searchValue,
-      ageGroupId: ageGroupId,
-      categoryId,
-      locale: usersLanguage,
-      sortBy: sort,
-      sortOrder: sort ? "desc" : null,
-      populate: true,
-      ids: articleIdsQuery.data,
-    });
-
-    const newArticles = data.data;
-
-    setArticles((prevArticles) => [...(prevArticles || []), ...newArticles]);
-  };
+  // Transform articles data to match expected format
+  const transformedArticles = articles?.map((article) => {
+    // If article already has direct properties, use them, otherwise use article.data
+    return article.data ? article.data : article;
+  });
 
   let areCategoriesAndAgeGroupsReady =
     categoriesQuery?.data?.length > 1 && ageGroupsQuery?.data?.length > 0;
-
   return (
     <Block classes="articles">
       {ageGroups?.length > 0 && categories?.length > 0 && (
         <InfiniteScroll
-          dataLength={articles?.length || 0}
-          next={getMoreArticles}
+          dataLength={transformedArticles?.length || 0}
+          next={loadMore}
           hasMore={hasMore}
           loader={<Loading />}
           // endMessage={} // Add end message here if required
@@ -304,7 +218,7 @@ export const Articles = ({
             {showAgeGroups &&
               categoriesQuery?.data?.length > 1 &&
               ageGroupsQuery?.data?.length > 0 && (
-                <GridItem md={8} lg={8} classes="articles__age-groups-item">
+                <GridItem md={8} lg={12} classes="articles__age-groups-item">
                   {ageGroups && (
                     <TabsUnderlined
                       options={ageGroups}
@@ -314,11 +228,7 @@ export const Articles = ({
                 </GridItem>
               )}
             {showSearch && areCategoriesAndAgeGroupsReady && (
-              <GridItem
-                md={8}
-                lg={showAgeGroups ? 4 : 12}
-                classes="articles__search-item"
-              >
+              <GridItem md={8} lg={12} classes="articles__search-item">
                 <InputSearch onChange={handleInputChange} value={searchValue} />
               </GridItem>
             )}
@@ -336,12 +246,10 @@ export const Articles = ({
             )}
 
             <GridItem md={8} lg={12} classes="articles__articles-item">
-              {articles?.length > 0 &&
-                areCategoriesAndAgeGroupsReady &&
-                !isArticlesLoading &&
-                !isArticlesFetching && (
+              {transformedArticles?.length > 0 &&
+                areCategoriesAndAgeGroupsReady && (
                   <Grid>
-                    {articles?.map((article, index) => {
+                    {transformedArticles?.map((article, index) => {
                       const isLikedByUser = contentRatings?.some(
                         (rating) =>
                           rating.content_id === article.id &&
@@ -362,7 +270,9 @@ export const Articles = ({
                             size="lg"
                             style={{ gridColumn: "span 4" }}
                             title={articleData.title}
-                            image={articleData.imageMedium}
+                            image={
+                              articleData.imageMedium || articleData.imageSmall
+                            }
                             description={articleData.description}
                             labels={articleData.labels}
                             creator={articleData.creator}
@@ -372,6 +282,7 @@ export const Articles = ({
                             isDislikedByUser={isDislikedByUser}
                             likes={articleData.likes}
                             dislikes={articleData.dislikes}
+                            isRead={readArticleIds.includes(articleData.id)}
                             t={t}
                             onClick={() => {
                               navigate(
@@ -384,9 +295,9 @@ export const Articles = ({
                     })}
                   </Grid>
                 )}
-              {!articles?.length &&
+              {!transformedArticles?.length &&
+                isReady &&
                 !isArticlesLoading &&
-                !isArticlesFetching &&
                 categoriesQuery?.data?.length > 0 &&
                 ageGroupsQuery?.data?.length > 0 && (
                   <div className="articles__no-results-container">
@@ -398,25 +309,15 @@ export const Articles = ({
         </InfiniteScroll>
       )}
 
-      {isArticlesFetching ||
-      articleIdsQuery.isLoading ||
-      articleIdsQuery.isFetching ? (
-        <Loading />
-      ) : null}
+      {/* Only show loading on initial load when no articles exist */}
+      {isArticlesLoading && !transformedArticles?.length && <Loading />}
 
-      {(articleIdsQuery.isFetched &&
-        (isArticlesFetched || articlesFetchStatus === "idle") &&
-        !articlesQueryData?.articles &&
-        !articlesQueryData) ||
-      ((isArticlesFetched || articlesFetchStatus === "idle") &&
-        !articleIdsQuery.isFetching &&
-        (!articlesQueryData ||
-          !articlesQueryData.articles ||
-          articlesQueryData.articles.length === 0)) ? (
+      {error && (
         <div className="articles__no-results-container">
           <h3>{t("could_not_load_content")}</h3>
+          <p>{error.message}</p>
         </div>
-      ) : null}
+      )}
     </Block>
   );
 };

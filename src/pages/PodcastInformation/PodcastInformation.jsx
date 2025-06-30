@@ -22,6 +22,7 @@ import {
   userSvc,
   cmsSvc,
   adminSvc,
+  clientSvc,
 } from "@USupport-components-library/services";
 
 import "./podcast-information.scss";
@@ -65,6 +66,19 @@ export const PodcastInformation = () => {
     isFetched,
   } = useQuery(["podcast", i18n.language, id], getPodcastData, {
     enabled: !!id,
+    onSuccess: (data) => {
+      if (data && data.categoryId) {
+        clientSvc
+          .addClientCategoryInteraction({
+            categoryId: data.categoryId,
+            podcastId: data.id,
+            tagIds: data.labels.map((label) => label.id),
+          })
+          .catch((error) => {
+            console.error("Failed to track category interaction:", error);
+          });
+      }
+    },
   });
 
   const getSimilarPodcasts = async () => {

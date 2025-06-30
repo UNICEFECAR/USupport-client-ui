@@ -48,3 +48,4 @@ export * from "./useConsultationSocket.js";
 export * from "./useCustomNavigate.js";
 export * from "./useAddContentRating.js";
 export * from "./useGetUserContentRatings.js";
+export * from "./useRecommendedArticles.js";
