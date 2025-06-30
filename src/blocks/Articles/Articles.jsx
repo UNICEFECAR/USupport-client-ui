@@ -63,9 +63,9 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       const ageGroupsData = res.data.map((age, index) => ({
         label: age.attributes.name,
         id: age.id,
-        isSelected: index === 1 ? true : false,
+        isSelected: index === 0 ? true : false,
       }));
-      setSelectedAgeGroup(ageGroupsData[1]);
+      setSelectedAgeGroup(ageGroupsData[0]);
       return ageGroupsData;
     } catch (err) {
       console.log(err);
