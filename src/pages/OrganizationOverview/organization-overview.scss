@@ -1,0 +1,11 @@
+@import "@USupport-components-library/styles";
+
+.page__organization-overview {
+  @include full-height-page-navbar;
+
+  &__radial-circle {
+    top: 3.5rem;
+    left: -15rem;
+    height: 50rem;
+  }
+}

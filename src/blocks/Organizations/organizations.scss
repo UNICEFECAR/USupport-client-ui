@@ -1,0 +1,42 @@
+@import "@USupport-components-library/styles";
+
+.organizations {
+  &__search-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: $spacing_2_4;
+
+    &__reset-filters-btn {
+      display: none;
+
+      @media screen and (min-width: $screen_md) {
+        display: block;
+      }
+    }
+  }
+
+  &__dropdowns-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $spacing_1_6;
+    padding-block: $spacing_2_4;
+  }
+
+  &__grid {
+    padding-block: $spacing_2_4;
+    justify-items: center;
+  }
+
+  &__reset-filters-btn {
+    margin: 0 auto;
+    margin-bottom: $spacing_1_2;
+
+    @media screen and (min-width: $screen_md) {
+      display: none;
+    }
+  }
+}
