@@ -10,6 +10,7 @@ export default function useGetAllOrganizations(filters) {
     paymentMethod,
     userInteraction,
     specialisation,
+    userLocation,
   } = filters;
 
   const fetchOrganizations = async () => {
@@ -57,6 +58,7 @@ export default function useGetAllOrganizations(filters) {
       paymentMethod,
       userInteraction,
       specialisation,
+      userLocation,
     ],
     queryFn: fetchOrganizations,
   });

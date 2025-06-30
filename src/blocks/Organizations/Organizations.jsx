@@ -40,6 +40,7 @@ export const Organizations = () => {
   const { t } = useTranslation("organizations");
   const navigate = useNavigate();
   const [mapControls, setMapControls] = React.useState(null);
+  const [userLocation, setUserLocation] = React.useState(null);
 
   const [filters, setFilters] = React.useState(INITIAL_FILTERS);
 
@@ -49,6 +50,7 @@ export const Organizations = () => {
     district: filters.district,
     paymentMethod: filters.paymentMethod,
     specialisation: filters.specialisation,
+    userLocation,
   });
 
   const { data: metadata, isLoading: isMetadataLoading } =
@@ -207,6 +209,8 @@ export const Organizations = () => {
       </Button>
       <InteractiveMap
         data={data}
+        userLocation={userLocation}
+        setUserLocation={setUserLocation}
         onMapReady={handleMapReady}
         t={t}
         navigate={navigate}

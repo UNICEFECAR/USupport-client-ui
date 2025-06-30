@@ -8,6 +8,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: $spacing_2_4;
+    row-gap: $spacing_1_2;
 
     &__reset-filters-btn {
       display: none;
