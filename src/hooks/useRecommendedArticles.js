@@ -32,6 +32,7 @@ export const useRecommendedArticles = ({
   const [readPage, setReadPage] = useState(1); // Page tracking for read articles
   const [categoryFilteredArticles, setCategoryFilteredArticles] = useState([]); // For category-specific filtering
   const [fetchedAllArticlesIds, setFetchedAllArticlesIds] = useState([]); // Track fetched article IDs for all articles
+  const [readArticleIds, setReadArticleIds] = useState([]); // Track fetched read article IDs
 
   const { data: countryArticles, isLoading: isLoadingCountryArticles } =
     useQuery(["countryArticles"], () => adminSvc.getArticles());
@@ -62,6 +63,7 @@ export const useRecommendedArticles = ({
       return;
     }
 
+    const allReadArticleIds = [];
     // Build category interaction map
     categoryInteractions.data.forEach((interaction) => {
       const {
@@ -70,6 +72,10 @@ export const useRecommendedArticles = ({
         count,
         tag_ids: tagIds,
       } = interaction;
+
+      if (articleId) {
+        allReadArticleIds.push(articleId);
+      }
 
       if (categoryInteractionMap.has(categoryId)) {
         categoryInteractionMap.set(categoryId, {
@@ -94,6 +100,8 @@ export const useRecommendedArticles = ({
         interactedArticleIds.add(articleId);
       }
     });
+
+    setReadArticleIds(allReadArticleIds);
 
     // Sort categories by interaction count (descending)
     const sortedCategories = Array.from(categoryInteractionMap.entries())
@@ -725,7 +733,7 @@ export const useRecommendedArticles = ({
     categoriesData,
     remainingArticlesCount: remainingArticles.length,
     readArticlesCount: readArticles.length,
-    readArticleIds: readArticles.map((article) => article.data.id),
+    readArticleIds: readArticleIds,
     categoryArticlesCount,
     loadMore,
     refetch: () => {
