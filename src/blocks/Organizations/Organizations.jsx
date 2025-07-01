@@ -5,6 +5,7 @@ import {
   useCustomNavigate as useNavigate,
   useGetOrganizationMetadata,
   useGetAllOrganizations,
+  useDebounce,
 } from "#hooks";
 
 import {
@@ -43,9 +44,10 @@ export const Organizations = () => {
   const [userLocation, setUserLocation] = React.useState(null);
 
   const [filters, setFilters] = React.useState(INITIAL_FILTERS);
+  const debouncedSearch = useDebounce(filters.search, 500);
 
   const { data, isLoading } = useGetAllOrganizations({
-    search: filters.search,
+    search: debouncedSearch,
     workWith: filters.workWith,
     district: filters.district,
     paymentMethod: filters.paymentMethod,
