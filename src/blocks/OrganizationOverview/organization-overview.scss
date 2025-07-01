@@ -1,0 +1,12 @@
+@import "@USupport-components-library/styles";
+
+.organization-overview {
+  margin: 0 auto;
+  margin-top: $spacing_3_2;
+  max-width: 120rem;
+  width: 100%;
+
+  @media screen and (min-width: $screen_md) {
+    margin-top: $spacing_4_8;
+  }
+}
