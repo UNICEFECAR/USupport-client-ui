@@ -40,3 +40,5 @@ export * from "./VideoInformation";
 export * from "./PodcastInformation";
 export * from "./Podcasts";
 export * from "./JitsiRoom";
+export * from "./Organizations";
+export * from "./OrganizationOverview";

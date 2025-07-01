@@ -44,6 +44,8 @@ import {
   MascotHeaderMyQA,
   MyQA,
   Videos,
+  Organizations,
+  OrganizationOverview,
 } from "#blocks/locales.js";
 
 import {
@@ -86,6 +88,8 @@ import {
   VideoInformation,
   PodcastInformation,
   Podcasts as PodcastsPage,
+  Organizations as OrganizationsPage,
+  OrganizationOverview as OrganizationOverviewPage,
 } from "#pages/locales.js";
 
 import {
@@ -163,6 +167,8 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.en,
     "my-qa": MyQA.en,
     videos: Videos.en,
+    organizations: Organizations.en,
+    "organization-overview": OrganizationOverview.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -204,6 +210,9 @@ const resources = {
     "video-information-page": VideoInformation.en,
     "podcast-information-page": PodcastInformation.en,
     "podcasts-page": PodcastsPage.en,
+    "organizations-page": OrganizationsPage.en,
+    "organization-overview-page": OrganizationOverviewPage.en,
+
     //Backdrops
     "filter-providers": FilterProviders.en,
     "confirm-consultation": ConfirmConsultation.en,
@@ -277,6 +286,8 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.ru,
     "my-qa": MyQA.ru,
     videos: Videos.ru,
+    organizations: Organizations.ru,
+    "organization-overview": OrganizationOverview.ru,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.ru,
@@ -318,6 +329,8 @@ const resources = {
     "video-information-page": VideoInformation.ru,
     "podcast-information-page": PodcastInformation.ru,
     "podcasts-page": PodcastsPage.ru,
+    "organizations-page": OrganizationsPage.ru,
+    "organization-overview-page": OrganizationOverviewPage.ru,
 
     //Backdrops
     "filter-providers": FilterProviders.ru,
@@ -392,6 +405,8 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.kk,
     "my-qa": MyQA.kk,
     videos: Videos.kk,
+    organizations: Organizations.kk,
+    "organization-overview": OrganizationOverview.kk,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.kk,
@@ -433,6 +448,8 @@ const resources = {
     "video-information-page": VideoInformation.kk,
     "podcast-information-page": PodcastInformation.kk,
     "podcasts-page": PodcastsPage.kk,
+    "organizations-page": OrganizationsPage.kk,
+    "organization-overview-page": OrganizationOverviewPage.kk,
 
     //Backdrops
     "filter-providers": FilterProviders.kk,
@@ -507,6 +524,8 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.pl,
     "my-qa": MyQA.pl,
     videos: Videos.pl,
+    organizations: Organizations.pl,
+    "organization-overview": OrganizationOverview.pl,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.pl,
@@ -548,6 +567,8 @@ const resources = {
     "video-information-page": VideoInformation.pl,
     "podcast-information-page": PodcastInformation.pl,
     "podcasts-page": PodcastsPage.pl,
+    "organizations-page": OrganizationsPage.pl,
+    "organization-overview-page": OrganizationOverviewPage.pl,
 
     //Backdrops
     "filter-providers": FilterProviders.pl,
@@ -622,6 +643,9 @@ const resources = {
     "mascot-header-MyQA": MascotHeaderMyQA.uk,
     "my-qa": MyQA.uk,
     videos: Videos.uk,
+    organizations: Organizations.uk,
+    "organization-overview": OrganizationOverview.uk,
+
     // Pages
     "provider-overview-page": ProviderOverviewPage.uk,
     "user-profile-page": UserProfilePage.uk,
@@ -662,6 +686,8 @@ const resources = {
     "video-information-page": VideoInformation.uk,
     "podcast-information-page": PodcastInformation.uk,
     "podcasts-page": PodcastsPage.uk,
+    "organizations-page": OrganizationsPage.uk,
+    "organization-overview-page": OrganizationOverviewPage.uk,
 
     //Backdrops
     "filter-providers": FilterProviders.uk,

@@ -41,3 +41,5 @@ export * as MoodTrackHistory from "./MoodTrackHistory/locales.js";
 export * as MascotHeaderMyQA from "./MascotHeaderMyQA/locales.js";
 export * as MyQA from "./MyQA/locales.js";
 export * as Videos from "./Videos/locales.js";
+export * as Organizations from "./Organizations/locales.js";
+export * as OrganizationOverview from "./OrganizationOverview/locales.js";

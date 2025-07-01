@@ -56,7 +56,7 @@ function App() {
       const token = localStorage.getItem("token");
       // If the page is being refreshed, do nothing
       if (!(performance.getEntriesByType("navigation")[0].type === "reload")) {
-        if (token && !isInWelcome) {
+        if (!IS_DEV && token && !isInWelcome) {
           e.preventDefault();
           e.returnValue = "";
           userSvc.logout();

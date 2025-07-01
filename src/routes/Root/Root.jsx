@@ -56,6 +56,8 @@ import {
   PodcastInformation,
   Podcasts,
   JitsiRoom,
+  Organizations,
+  OrganizationOverview,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData } from "#hooks";
@@ -366,6 +368,22 @@ const LanguageLayout = () => {
         element={
           <ProtectedRoute>
             <MyQA />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="organizations"
+        element={
+          <ProtectedRoute>
+            <Organizations />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="organization-overview/:organizationId"
+        element={
+          <ProtectedRoute>
+            <OrganizationOverview />
           </ProtectedRoute>
         }
       />
