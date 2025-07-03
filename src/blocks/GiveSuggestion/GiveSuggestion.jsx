@@ -100,7 +100,7 @@ export const GiveSuggestion = () => {
       />
       <Block classes="give-suggestion">
         <Grid classes="give-suggestion__grid">
-          <GridItem md={4} lg={12} classes="give-suggestion__heading-item">
+          <GridItem md={8} lg={12} classes="give-suggestion__heading-item">
             <h4>{t("heading")}</h4>
           </GridItem>
           <GridItem md={8} lg={12} classes="give-suggestion__subheading-item">

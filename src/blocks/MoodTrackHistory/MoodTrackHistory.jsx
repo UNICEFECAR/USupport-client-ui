@@ -189,10 +189,10 @@ export const MoodTrackHistory = () => {
               </div>
             </div>
           </div>
-          <div className="mood-track-history__information-container">
-            {moodTrackerData[limit]?.entries.find(
-              (x) => x.mood_tracker_id === selectedItemId
-            ) && (
+          {moodTrackerData[limit]?.entries.find(
+            (x) => x.mood_tracker_id === selectedItemId
+          ) && (
+            <div className="mood-track-history__information-container">
               <MoodTrackDetails
                 mood={moodTrackerData[limit]?.entries.find(
                   (x) => x.mood_tracker_id === selectedItemId
@@ -200,8 +200,8 @@ export const MoodTrackHistory = () => {
                 handleClose={() => setSelectedItemId(null)}
                 t={t}
               />
-            )}
-          </div>
+            </div>
+          )}
         </>
       )}
     </Block>

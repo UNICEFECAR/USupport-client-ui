@@ -1,8 +1,6 @@
 @import "@USupport-components-library/styles";
 
 .mood-track-history {
-  @include full-height-page-navbar;
-
   &__content-container {
     display: flex;
     flex-direction: row;
