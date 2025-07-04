@@ -45,5 +45,6 @@
   "children": "Балалар",
   "children_disabilities": "Мүгедек балалар",
   "adults": "Ересектер",
-  "adults_disabilities": "Мүгедек ересектер"
+  "adults_disabilities": "Мүгедек ересектер",
+  "copy_link_success": "Сілтеме көшірілді!"
 }

@@ -45,5 +45,6 @@
   "children": "Dzieci",
   "children_disabilities": "Dzieci z niepełnosprawnościami",
   "adults": "Dorośli",
-  "adults_disabilities": "Dorośli z niepełnosprawnościami"
+  "adults_disabilities": "Dorośli z niepełnosprawnościami",
+  "copy_link_success": "Link został skopiowany do schowka!"
 }
