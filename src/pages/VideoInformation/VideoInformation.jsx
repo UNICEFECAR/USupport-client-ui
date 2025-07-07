@@ -9,7 +9,10 @@ import {
 } from "#hooks";
 import { Page, VideoView } from "#blocks";
 
-import { destructureVideoData } from "@USupport-components-library/utils";
+import {
+  destructureVideoData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import {
   Block,
   Grid,
@@ -131,7 +134,7 @@ export const VideoInformation = () => {
   return (
     <Page classes="page__video-information" showGoBackArrow={true}>
       {videoData ? (
-        <VideoView videoData={videoData} t={t} />
+        <VideoView videoData={videoData} t={t} lanugage={i18n.language} />
       ) : isFetched ? (
         <h3 className="page__video-information__no-results">
           {t("not_found")}
@@ -182,7 +185,11 @@ export const VideoInformation = () => {
                     isDislikedByUser={isDislikedByUser}
                     t={t}
                     onClick={() => {
-                      navigate(`/information-portal/video/${videoData.id}`);
+                      navigate(
+                        `/information-portal/video/${
+                          videoData.id
+                        }/${createArticleSlug(videoData.title)}`
+                      );
                       onVideoClick();
                     }}
                   />

@@ -11,7 +11,10 @@ import {
   Tabs,
   Loading,
 } from "@USupport-components-library/src";
-import { destructureVideoData } from "@USupport-components-library/utils";
+import {
+  destructureVideoData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useDebounce, useGetUserContentRatings } from "#hooks";
 
@@ -214,7 +217,11 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
                         dislikes={videoData.dislikes}
                         t={t}
                         onClick={() => {
-                          navigate(`/information-portal/video/${videoData.id}`);
+                          navigate(
+                            `/information-portal/video/${
+                              videoData.id
+                            }/${createArticleSlug(videoData.title)}`
+                          );
                         }}
                       />
                     </GridItem>
