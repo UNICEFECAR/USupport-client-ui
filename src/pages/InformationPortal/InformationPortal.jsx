@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   Grid,
@@ -22,11 +22,11 @@ import {
   destructureArticleData,
   destructureVideoData,
   destructurePodcastData,
+  ThemeContext,
 } from "@USupport-components-library/utils";
+import { mascotHappyPurple } from "@USupport-components-library/assets";
 
 import "./information-portal.scss";
-
-import { mascotHappyPurple } from "@USupport-components-library/assets";
 
 /**
  * InformationPortal
@@ -40,12 +40,44 @@ export const InformationPortal = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
 
-  // Content type tabs
-  const [contentTabs, setContentTabs] = useState([
-    { label: "articles", value: "articles", isSelected: tab === "articles" },
-    { label: "videos", value: "videos", isSelected: tab === "videos" },
-    { label: "podcasts", value: "podcasts", isSelected: tab === "podcasts" },
-  ]);
+  const { isPodcastsActive, isVideosActive } = useContext(ThemeContext);
+
+  if (
+    (tab === "podcasts" && !isPodcastsActive) ||
+    (tab === "videos" && !isVideosActive)
+  ) {
+    setSearchParams({ tab: "articles" });
+  }
+
+  const [contentTabs, setContentTabs] = useState([]);
+
+  useEffect(() => {
+    const initialTabs = [
+      {
+        label: "articles",
+        value: "articles",
+        isSelected: tab === "articles",
+      },
+    ];
+
+    if (isVideosActive) {
+      initialTabs.push({
+        label: "videos",
+        value: "videos",
+        isSelected: tab === "videos",
+      });
+    }
+
+    if (isPodcastsActive) {
+      initialTabs.push({
+        label: "podcasts",
+        value: "podcasts",
+        isSelected: tab === "podcasts",
+      });
+    }
+
+    setContentTabs(initialTabs);
+  }, [isPodcastsActive, isVideosActive]);
 
   const handleTabSelect = (index) => {
     const tabsCopy = [...contentTabs];
@@ -128,18 +160,20 @@ export const InformationPortal = () => {
       </Grid>
 
       <Block classes="page__information-portal__block">
-        <Grid classes="page__information-portal__tabs-container">
-          <GridItem md={8} lg={12}>
-            <TabsUnderlined
-              options={contentTabs.map((x) => ({
-                ...x,
-                label: t(x.label),
-              }))}
-              handleSelect={handleTabSelect}
-              classes="page__information-portal__tabs"
-            />
-          </GridItem>
-        </Grid>
+        {contentTabs.length > 1 && (
+          <Grid classes="page__information-portal__tabs-container">
+            <GridItem md={8} lg={12}>
+              <TabsUnderlined
+                options={contentTabs.map((x) => ({
+                  ...x,
+                  label: t(x.label),
+                }))}
+                handleSelect={handleTabSelect}
+                classes="page__information-portal__tabs"
+              />
+            </GridItem>
+          </Grid>
+        )}
 
         <Grid classes="page__information-portal__block__grid">
           <GridItem md={8} lg={12}>
