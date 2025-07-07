@@ -78,7 +78,8 @@ export const Page = ({
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_DEV = process.env.NODE_ENV === "development";
 
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, setTheme, setIsPodcastsActive, setIsVideosActive } =
+    useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const location = useLocation();
   const { t, i18n } = useTranslation("page");
@@ -120,6 +121,9 @@ export const Page = ({
         localStorage.setItem("country_id", country.countryID);
         localStorage.setItem("currency_symbol", country.currencySymbol);
 
+        setIsPodcastsActive(country.podcastsActive);
+        setIsVideosActive(country.videosActive);
+
         setSelectedCountry(country);
       } else if (!localStorageCountry || localStorageCountry === "undefined") {
         if (validCountry?.value === country.value) {
@@ -128,6 +132,9 @@ export const Page = ({
           localStorage.setItem("country", country.value);
           localStorage.setItem("country_id", country.countryID);
           localStorage.setItem("currency_symbol", country.currencySymbol);
+
+          setIsPodcastsActive(country.podcastsActive);
+          setIsVideosActive(country.videosActive);
 
           setSelectedCountry(country);
         }
@@ -167,6 +174,8 @@ export const Page = ({
         maxAge: x["max_client_age"],
         currencySymbol: x["symbol"],
         localName: x.local_name,
+        videosActive: x.videos_active,
+        podcastsActive: x.podcasts_active,
       };
       return countryObject;
     });
