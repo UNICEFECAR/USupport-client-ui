@@ -23,13 +23,34 @@ import "./video-view.scss";
  *
  * @return {jsx}
  */
-export const VideoView = ({ videoData, t }) => {
+export const VideoView = ({ videoData, t, language }) => {
   const queryClient = useQueryClient();
   const creator = videoData.creator ? videoData.creator : null;
+
+  const { name } = useParams();
 
   const [contentRating, setContentRating] = React.useState(
     videoData.contentRating
   );
+  const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+
+  useEffect(() => {
+    setHasUpdatedUrl(false);
+  }, [i18n.language]);
+
+  useEffect(() => {
+    if (videoData?.title && !hasUpdatedUrl) {
+      const currentSlug = createArticleSlug(videoData.title);
+      const urlSlug = name;
+
+      if (currentSlug !== urlSlug) {
+        const newUrl = `/${i18n.language}/information-portal/article/${videoData.id}/${currentSlug}`;
+
+        window.history.replaceState(null, "", newUrl);
+        setHasUpdatedUrl(true);
+      }
+    }
+  }, [videoData?.title, name, language, hasUpdatedUrl]);
 
   useEffect(() => {
     setContentRating(videoData.contentRating);

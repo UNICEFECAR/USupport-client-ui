@@ -14,6 +14,7 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 import { useAddContentRating } from "#hooks";
+import { createArticleSlug } from "@USupport-components-library/utils";
 // import { ShareModal } from "#modals";
 
 import { cmsSvc, userSvc } from "@USupport-components-library/services";
@@ -32,24 +33,25 @@ const countriesMap = {
   ro: "romania",
 };
 
-const constructShareUrl = ({ contentType, id }) => {
+const constructShareUrl = ({ contentType, id, name }) => {
   const country = localStorage.getItem("country");
   const language = localStorage.getItem("language");
   const subdomain = window.location.hostname.split(".")[0];
+  const nameSlug = createArticleSlug(name);
 
   if (subdomain === "staging") {
-    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
   }
 
   if (country === "global") {
-    return `https://usupport.online/${language}/information-portal/${contentType}/${id}`;
+    return `https://usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
   }
   const countryName = countriesMap[country.toLocaleLowerCase()];
 
   if (window.location.hostname.includes("staging")) {
-    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
   }
-  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
   return url;
 };
 
@@ -60,7 +62,7 @@ const constructShareUrl = ({ contentType, id }) => {
  *
  * @return {jsx}
  */
-export const ArticleView = ({ articleData, t, language }) => {
+export const ArticleView = ({ articleData, t, language, navigate }) => {
   const queryClient = useQueryClient();
   const creator = articleData.creator ? articleData.creator : null;
 
@@ -72,14 +74,33 @@ export const ArticleView = ({ articleData, t, language }) => {
     isLikedByUser: articleData.contentRating?.isLikedByUser || false,
     isDislikedByUser: articleData.contentRating?.isDislikedByUser || false,
   });
+  const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
   const { theme } = useContext(ThemeContext);
 
   const url = constructShareUrl({
     contentType: "article",
     id: articleData.id,
+    name: articleData.title,
   });
 
-  console.log(url, "url");
+  useEffect(() => {
+    setHasUpdatedUrl(false);
+  }, [language]);
+
+  useEffect(() => {
+    if (articleData?.title && !hasUpdatedUrl) {
+      const currentSlug = createArticleSlug(articleData.title);
+      const urlSlug = articleData.name;
+
+      if (currentSlug !== urlSlug) {
+        const newUrl = `/${language}/information-portal/article/${articleData.id}/${currentSlug}`;
+
+        // Just replace the URL in browser history without navigation
+        window.history.replaceState(null, "", newUrl);
+        setHasUpdatedUrl(true);
+      }
+    }
+  }, [language]);
 
   useEffect(() => {
     setRatings({
