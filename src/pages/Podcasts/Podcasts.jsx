@@ -1,8 +1,9 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import { Page } from "#blocks";
 import { Podcasts as PodcastsBlock } from "#blocks";
-import { useTranslation } from "react-i18next";
+import { useGetIsPodcastsAndVideosActive } from "#hooks";
 
 import "./podcasts.scss";
 
@@ -15,6 +16,7 @@ import "./podcasts.scss";
  */
 export const Podcasts = () => {
   const { t } = useTranslation("podcasts-page");
+  const { isPodcastsActive } = useGetIsPodcastsAndVideosActive();
   const location = useLocation();
 
   const sort =
@@ -34,6 +36,16 @@ export const Podcasts = () => {
       break;
     default:
       break;
+  }
+
+  if (!isPodcastsActive) {
+    return (
+      <Navigate
+        to={`/client/${localStorage.getItem(
+          "language"
+        )}/information-portal?tab=articles`}
+      />
+    );
   }
 
   return (
