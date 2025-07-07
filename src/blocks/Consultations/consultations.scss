@@ -1,8 +1,6 @@
 @import "@USupport-components-library/styles";
 
 .consultations {
-  @include full-height-page-navbar;
-
   &__grid {
     padding-top: $spacing_2_4;
     padding-bottom: $spacing_6_4;

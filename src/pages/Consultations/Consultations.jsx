@@ -4,7 +4,11 @@ import { Navigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { Page, Consultations as ConsultationsBlock } from "#blocks";
+import {
+  Page,
+  Consultations as ConsultationsBlock,
+  GiveSuggestion,
+} from "#blocks";
 import {
   CancelConsultation,
   EditConsultation,
@@ -267,6 +271,7 @@ export const Consultations = () => {
         onClose={closeRequireDataAgreement}
         onSuccess={handleDataAgreementSuccess}
       />
+      <GiveSuggestion />
     </Page>
   );
 };
