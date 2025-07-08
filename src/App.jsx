@@ -43,6 +43,8 @@ function App() {
 
   const [theme, setTheme] = useState(getDefaultTheme());
   const [isInWelcome, setIsInWelcome] = useState(false);
+  const [isPodcastsActive, setIsPodcastsActive] = useState(false);
+  const [isVideosActive, setIsVideosActive] = useState(false);
 
   useEffect(() => {
     const language = localStorage.getItem("language");
@@ -77,7 +79,16 @@ function App() {
 
   return (
     <ThemeContext.Provider
-      value={{ theme, setTheme, isInWelcome, setIsInWelcome }}
+      value={{
+        theme,
+        setTheme,
+        isInWelcome,
+        setIsInWelcome,
+        isPodcastsActive,
+        setIsPodcastsActive,
+        isVideosActive,
+        setIsVideosActive,
+      }}
     >
       <div className={`theme-${theme}`}>
         <QueryClientProvider client={queryClient}>

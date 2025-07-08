@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { useParams, Navigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
@@ -11,6 +11,7 @@ import { Page, VideoView } from "#blocks";
 
 import {
   destructureVideoData,
+  ThemeContext,
   createArticleSlug,
 } from "@USupport-components-library/utils";
 import {
@@ -40,7 +41,7 @@ import "./video-information.scss";
 export const VideoInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-
+  const { isVideosActive } = useContext(ThemeContext);
   const { i18n, t } = useTranslation("video-information-page");
 
   const getVideosIds = async () => {
@@ -130,6 +131,16 @@ export const VideoInformation = () => {
   const onVideoClick = () => {
     window.scrollTo(0, 0);
   };
+
+  if (!isVideosActive) {
+    return (
+      <Navigate
+        to={`/client/${localStorage.getItem(
+          "language"
+        )}/information-portal?tab=articles`}
+      />
+    );
+  }
 
   return (
     <Page classes="page__video-information" showGoBackArrow={true}>
