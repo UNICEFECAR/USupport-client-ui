@@ -23,6 +23,7 @@ import {
   destructureVideoData,
   destructurePodcastData,
   ThemeContext,
+  createArticleSlug,
 } from "@USupport-components-library/utils";
 import { mascotHappyPurple } from "@USupport-components-library/assets";
 
@@ -197,7 +198,9 @@ export const InformationPortal = () => {
                       destructureContentData={destructureArticleData}
                       getImage={(article) => article.imageMedium}
                       getRoute={(article) =>
-                        `/information-portal/article/${article.id}`
+                        `/information-portal/article/${
+                          article.id
+                        }/${createArticleSlug(article.title)}`
                       }
                     />
                     <ContentList
@@ -212,7 +215,9 @@ export const InformationPortal = () => {
                       destructureContentData={destructureArticleData}
                       getImage={(article) => article.imageMedium}
                       getRoute={(article) =>
-                        `/information-portal/article/${article.id}`
+                        `/information-portal/article/${
+                          article.id
+                        }/${createArticleSlug(article.title)}`
                       }
                     />
                   </>
@@ -240,7 +245,9 @@ export const InformationPortal = () => {
                       destructureContentData={destructureVideoData}
                       getImage={(video) => video.image}
                       getRoute={(video) =>
-                        `/information-portal/video/${video.id}`
+                        `/information-portal/video/${
+                          video.id
+                        }/${createArticleSlug(video.title)}`
                       }
                     />
 
@@ -256,7 +263,9 @@ export const InformationPortal = () => {
                       destructureContentData={destructureVideoData}
                       getImage={(video) => video.image}
                       getRoute={(video) =>
-                        `/information-portal/video/${video.id}`
+                        `/information-portal/video/${
+                          video.id
+                        }/${createArticleSlug(video.title)}`
                       }
                     />
                   </>
@@ -284,7 +293,9 @@ export const InformationPortal = () => {
                       destructureContentData={destructurePodcastData}
                       getImage={(podcast) => podcast.imageMedium}
                       getRoute={(podcast) =>
-                        `/information-portal/podcast/${podcast.id}`
+                        `/information-portal/podcast/${
+                          podcast.id
+                        }/${createArticleSlug(podcast.title)}`
                       }
                     />
 
@@ -300,7 +311,9 @@ export const InformationPortal = () => {
                       destructureContentData={destructurePodcastData}
                       getImage={(podcast) => podcast.imageMedium}
                       getRoute={(podcast) =>
-                        `/information-portal/podcast/${podcast.id}`
+                        `/information-portal/podcast/${
+                          podcast.id
+                        }/${createArticleSlug(podcast.title)}`
                       }
                     />
                   </>

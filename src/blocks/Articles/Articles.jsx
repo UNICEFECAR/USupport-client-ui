@@ -13,7 +13,10 @@ import {
   Tabs,
   Loading,
 } from "@USupport-components-library/src";
-import { destructureArticleData } from "@USupport-components-library/utils";
+import {
+  destructureArticleData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import { cmsSvc } from "@USupport-components-library/services";
 import {
   useDebounce,
@@ -286,7 +289,9 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
                             t={t}
                             onClick={() => {
                               navigate(
-                                `/information-portal/article/${articleData.id}`
+                                `/information-portal/article/${
+                                  articleData.id
+                                }/${createArticleSlug(articleData.title)}`
                               );
                             }}
                           />

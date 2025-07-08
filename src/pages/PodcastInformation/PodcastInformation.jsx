@@ -12,6 +12,8 @@ import { Page, PodcastView } from "#blocks";
 import {
   destructurePodcastData,
   ThemeContext,
+  createArticleSlug,
+  destructurePodcastData,
 } from "@USupport-components-library/utils";
 import {
   Block,
@@ -142,7 +144,7 @@ export const PodcastInformation = () => {
   return (
     <Page classes="page__podcast-information" showGoBackArrow={true}>
       {podcastData ? (
-        <PodcastView podcastData={podcastData} t={t} />
+        <PodcastView podcastData={podcastData} t={t} language={i18n.language} />
       ) : isFetched ? (
         <h3 className="page__podcast-information__no-results">
           {t("not_found")}
@@ -194,7 +196,11 @@ export const PodcastInformation = () => {
                     isDislikedByUser={isDislikedByUser}
                     t={t}
                     onClick={() => {
-                      navigate(`/information-portal/podcast/${podcastData.id}`);
+                      navigate(
+                        `/information-portal/podcast/${
+                          podcastData.id
+                        }/${createArticleSlug(podcastData.title)}`
+                      );
                       onPodcastClick();
                     }}
                   />
