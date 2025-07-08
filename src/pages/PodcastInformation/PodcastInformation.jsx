@@ -1,5 +1,5 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { useParams, Navigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
@@ -9,7 +9,10 @@ import {
 } from "#hooks";
 import { Page, PodcastView } from "#blocks";
 
-import { destructurePodcastData } from "@USupport-components-library/utils";
+import {
+  destructurePodcastData,
+  ThemeContext,
+} from "@USupport-components-library/utils";
 import {
   Block,
   Grid,
@@ -37,6 +40,7 @@ import "./podcast-information.scss";
 export const PodcastInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { isPodcastsActive } = useContext(ThemeContext);
 
   const { i18n, t } = useTranslation("podcast-information-page");
 
@@ -124,6 +128,16 @@ export const PodcastInformation = () => {
   const onPodcastClick = () => {
     window.scrollTo(0, 0);
   };
+
+  if (!isPodcastsActive) {
+    return (
+      <Navigate
+        to={`/client/${localStorage.getItem(
+          "language"
+        )}/information-portal?tab=articles`}
+      />
+    );
+  }
 
   return (
     <Page classes="page__podcast-information" showGoBackArrow={true}>
