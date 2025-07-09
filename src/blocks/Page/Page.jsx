@@ -77,6 +77,7 @@ export const Page = ({
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_DEV = process.env.NODE_ENV === "development";
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   const { theme, setTheme, setIsPodcastsActive, setIsVideosActive } =
     useContext(ThemeContext);
@@ -278,16 +279,24 @@ export const Page = ({
 
   const pages = [
     { name: t("page_1"), url: "/dashboard", exact: true },
-    { name: t("page_2"), url: "/consultations" },
+    {
+      name: t(IS_RO ? "page_5" : "page_2"),
+      url: IS_RO ? "/organizations" : "/consultations",
+    },
     { name: t("page_3"), url: "/information-portal?tab=articles" },
-    { name: t("page_4"), url: "/my-qa" },
   ];
+  if (!IS_RO) {
+    pages.push({ name: t("page_4"), url: "/my-qa" });
+  }
 
   const footerLists = {
     list1: [
       { name: t("footer_1"), url: "/dashboard" },
       { name: t("footer_4"), url: "/profile" },
-      { name: t("footer_2"), url: "/consultations" },
+      {
+        name: t(IS_RO ? "page_5" : "page_2"),
+        url: IS_RO ? "/organizations" : "/consultations",
+      },
     ],
     list2: [
       { name: t("footer_3"), url: "/information-portal?tab=articles" },
