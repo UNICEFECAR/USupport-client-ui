@@ -28,6 +28,31 @@
     }
   }
 
+  &__map-container {
+    background-image: url("../../assets/map.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: $border_radius_1_6;
+    width: 20rem;
+    height: 100%;
+    margin-top: $spacing_1_2;
+
+    @media screen and (min-width: $screen_lg) {
+      width: 36.5rem;
+    }
+
+    &__overlay {
+      height: 100%;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(102, 118, 141, 0.5);
+      border-radius: $border_radius_1_6;
+    }
+  }
+
   &__headings-item {
     display: flex;
     flex-direction: column;

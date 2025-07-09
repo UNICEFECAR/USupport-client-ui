@@ -36,6 +36,7 @@ export const MascotWelcomeHeader = ({
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
   const { t } = useTranslation("mascot-welcome-header");
   const { width } = useWindowDimensions();
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   return (
     <div className={["mascot-welcome-header", classNames(classes)].join(" ")}>
@@ -75,18 +76,35 @@ export const MascotWelcomeHeader = ({
               <h4 className="mascot-welcome-header__heading">
                 {t("welcome", { name })}
               </h4>
-              <p className="text mascot-welcome-header__subheading">
-                {t("next_consultation")}
-              </p>
-              <ConsultationDashboard
-                consultation={nextConsultation}
-                classes="mascot-welcome-header__headings-item__consultation-card"
-                handleJoin={handleJoin}
-                handleEdit={handleEdit}
-                handleSchedule={handleSchedule}
-                handleAcceptSuggestion={handleAcceptSuggestion}
-                t={t}
-              />
+              {!IS_RO && (
+                <p className="text mascot-welcome-header__subheading">
+                  {t("next_consultation")}
+                </p>
+              )}
+              {IS_RO ? (
+                <div className="mascot-welcome-header__map-container">
+                  <div className="mascot-welcome-header__map-container__overlay">
+                    <Button
+                      size="sm"
+                      label={t("explore_button_label")}
+                      color="purple"
+                      onClick={() => {
+                        console.log("clicked");
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <ConsultationDashboard
+                  consultation={nextConsultation}
+                  classes="mascot-welcome-header__headings-item__consultation-card"
+                  handleJoin={handleJoin}
+                  handleEdit={handleEdit}
+                  handleSchedule={handleSchedule}
+                  handleAcceptSuggestion={handleAcceptSuggestion}
+                  t={t}
+                />
+              )}
             </>
           )}
         </GridItem>
