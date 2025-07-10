@@ -225,7 +225,7 @@ export const MyQA = () => {
         setSelectedLanguage={setSelectedLanguage}
         setShouldFetchQuestions={setShouldFetchQuestions}
       />
-      <GiveSuggestion />
+      <GiveSuggestion type="my-qa" />
       <CreateQuestion
         isOpen={isCreateQuestionOpen}
         onClose={() => setIsCreateQuestionOpen(false)}

@@ -14,7 +14,7 @@ import {
 } from "@USupport-components-library/src";
 import { validate } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
-import { useSendInformationPortalSuggestion } from "#hooks";
+import { useSendPlatformSuggestion } from "#hooks";
 import { RequireRegistration } from "#modals";
 
 import "./give-suggestion.scss";
@@ -30,7 +30,7 @@ const initialData = {
  *
  * @return {jsx}
  */
-export const GiveSuggestion = () => {
+export const GiveSuggestion = ({ type = "information-portal" }) => {
   const { t } = useTranslation("give-suggestion");
 
   const navigate = useNavigate();
@@ -63,13 +63,14 @@ export const GiveSuggestion = () => {
 
   const onError = (error) => toast(error);
   const onSuccess = () => {
-    setIsSuccessModalOpen(true);
+    if (type === "information-portal") {
+      setIsSuccessModalOpen(true);
+    } else {
+      toast.success(t("send_success_text"));
+    }
     setData({ ...initialData });
   };
-  const sendSuggestionMutation = useSendInformationPortalSuggestion(
-    onError,
-    onSuccess
-  );
+  const sendSuggestionMutation = useSendPlatformSuggestion(onError, onSuccess);
 
   const handleChange = (field, value) => {
     setData({
@@ -82,7 +83,10 @@ export const GiveSuggestion = () => {
     if (isTmpUser) {
       setIsRegistrationModalOpen(true);
     } else if ((await validate(data, schema, setErrors)) === null) {
-      sendSuggestionMutation.mutate(data.suggestion);
+      sendSuggestionMutation.mutate({
+        suggestion: data.suggestion,
+        type,
+      });
     }
   };
 

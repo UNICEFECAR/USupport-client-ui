@@ -29,7 +29,7 @@ export const MoodTrackHistory = () => {
   return (
     <Page classes="page__mood-track-history" heading={t("heading")}>
       <MoodTrackHistoryBlock />
-      <GiveSuggestion />
+      <GiveSuggestion type="mood-tracker" />
     </Page>
   );
 };
