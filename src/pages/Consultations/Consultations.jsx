@@ -271,7 +271,7 @@ export const Consultations = () => {
         onClose={closeRequireDataAgreement}
         onSuccess={handleDataAgreementSuccess}
       />
-      <GiveSuggestion />
+      <GiveSuggestion type="consultations" />
     </Page>
   );
 };

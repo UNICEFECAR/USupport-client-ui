@@ -18,6 +18,7 @@ export const Organizations = () => {
   return (
     <Page classes="page__organizations" heading={t("heading")}>
       <OrganizationsBlock />
+      <GiveSuggestion type="organizations" />
     </Page>
   );
 };
