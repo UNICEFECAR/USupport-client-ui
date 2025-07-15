@@ -11,6 +11,7 @@ export default function useGetAllOrganizations(filters) {
     userInteraction,
     specialisation,
     userLocation,
+    propertyType,
   } = filters;
 
   const fetchOrganizations = async () => {
@@ -59,6 +60,7 @@ export default function useGetAllOrganizations(filters) {
       userInteraction,
       specialisation,
       userLocation,
+      propertyType,
     ],
     queryFn: fetchOrganizations,
   });
