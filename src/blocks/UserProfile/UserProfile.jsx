@@ -34,7 +34,8 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
   const clientData = isTmpUser ? {} : clientQueryArray[0].data;
 
   const country = localStorage.getItem("country");
-  const hidePaymentHistory = country === "KZ" || country === "PL";
+  const hidePaymentHistory =
+    country === "KZ" || country === "PL" || country === "RO";
 
   useEffect(() => {
     if (clientData) {

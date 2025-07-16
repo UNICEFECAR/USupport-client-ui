@@ -1,8 +1,10 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import { Page } from "#blocks";
 import { Videos as VideosBlock } from "#blocks";
-import { useTranslation } from "react-i18next";
+
+import { useGetIsPodcastsAndVideosActive } from "#hooks";
 
 import "./videos.scss";
 
@@ -16,6 +18,7 @@ import "./videos.scss";
 export const Videos = () => {
   const { t } = useTranslation("videos-page");
   const location = useLocation();
+  const { isVideosActive } = useGetIsPodcastsAndVideosActive();
 
   const sort =
     location.state && location.state.sort ? location.state.sort : null;
@@ -34,6 +37,16 @@ export const Videos = () => {
       break;
     default:
       break;
+  }
+
+  if (!isVideosActive) {
+    return (
+      <Navigate
+        to={`/client/${localStorage.getItem(
+          "language"
+        )}/information-portal?tab=articles`}
+      />
+    );
   }
 
   return (

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useCustomNavigate as useNavigate } from "#hooks";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+
 import {
   Grid,
   GridItem,
@@ -11,9 +11,17 @@ import {
   Tabs,
   Loading,
 } from "@USupport-components-library/src";
-import { destructureVideoData } from "@USupport-components-library/utils";
+import {
+  destructureVideoData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useDebounce, useGetUserContentRatings } from "#hooks";
+
+import {
+  useCustomNavigate as useNavigate,
+  useDebounce,
+  useGetUserContentRatings,
+} from "#hooks";
 
 import "./videos.scss";
 
@@ -27,7 +35,6 @@ import "./videos.scss";
 export const Videos = ({ showSearch, showCategories, sort }) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("videos");
-
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
   useEffect(() => {
@@ -214,7 +221,11 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
                         dislikes={videoData.dislikes}
                         t={t}
                         onClick={() => {
-                          navigate(`/information-portal/video/${videoData.id}`);
+                          navigate(
+                            `/information-portal/video/${
+                              videoData.id
+                            }/${createArticleSlug(videoData.title)}`
+                          );
                         }}
                       />
                     </GridItem>

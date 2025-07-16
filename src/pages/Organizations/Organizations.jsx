@@ -1,7 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { Organizations as OrganizationsBlock, Page } from "#blocks";
+import {
+  Organizations as OrganizationsBlock,
+  Page,
+  GiveSuggestion,
+} from "#blocks";
 
 import "./organizations.scss";
 
@@ -18,6 +22,7 @@ export const Organizations = () => {
   return (
     <Page classes="page__organizations" heading={t("heading")}>
       <OrganizationsBlock />
+      <GiveSuggestion type="organizations" />
     </Page>
   );
 };

@@ -9,12 +9,42 @@ import {
   GridItem,
   Label,
   Like,
+  ActionButton,
 } from "@USupport-components-library/src";
 import { cmsSvc } from "@USupport-components-library/services";
 
 import { useAddContentRating } from "#hooks";
 
 import "./podcast-view.scss";
+
+const countriesMap = {
+  global: "global",
+  kz: "kazakhstan",
+  pl: "poland",
+  ro: "romania",
+};
+
+const constructShareUrl = ({ contentType, id, name }) => {
+  const country = localStorage.getItem("country");
+  const language = localStorage.getItem("language");
+  const subdomain = window.location.hostname.split(".")[0];
+  const nameSlug = createArticleSlug(name);
+
+  if (subdomain === "staging") {
+    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
+  }
+
+  if (country === "global") {
+    return `https://usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+  const countryName = countriesMap[country.toLocaleLowerCase()];
+
+  if (window.location.hostname.includes("staging")) {
+    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  }
+  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}`;
+  return url;
+};
 
 /**
  * PodcastView
@@ -23,13 +53,50 @@ import "./podcast-view.scss";
  *
  * @return {jsx}
  */
-export const PodcastView = ({ podcastData, t }) => {
+export const PodcastView = ({ podcastData, t, languaage }) => {
   const queryClient = useQueryClient();
   const creator = podcastData.creator ? podcastData.creator : null;
 
+  const { name } = useParams();
+
+  const [isShared, setIsShared] = React.useState(false);
   const [contentRating, setContentRating] = React.useState(
     podcastData.contentRating
   );
+  const [hasUpdatedUrl, setHasUpdatedUrl] = React.useState(false);
+
+  useEffect(() => {
+    setHasUpdatedUrl(false);
+  }, [i18n.language]);
+
+  useEffect(() => {
+    if (podcastData?.title && !hasUpdatedUrl) {
+      const currentSlug = createArticleSlug(podcastData.title);
+      const urlSlug = name;
+
+      if (currentSlug !== urlSlug) {
+        const newUrl = `/${i18n.language}/information-portal/article/${videoData.id}/${currentSlug}`;
+
+        window.history.replaceState(null, "", newUrl);
+        setHasUpdatedUrl(true);
+      }
+    }
+  }, [podcastData?.title, name, i18n.language, hasUpdatedUrl]);
+
+  const url = constructShareUrl({
+    contentType: "podcast",
+    id: podcastData.id,
+    name: podcastData.title,
+  });
+
+  const handleCopyLink = () => {
+    navigator?.clipboard?.writeText(url);
+    toast(t("share_success"));
+    if (!isShared)
+      cmsSvc.addPodcastShareCount(podcastData.id).then(() => {
+        setIsShared(true);
+      });
+  };
 
   useEffect(() => {
     setContentRating(podcastData.contentRating);
@@ -142,7 +209,10 @@ export const PodcastView = ({ podcastData, t }) => {
     <Block classes="podcast-view">
       <Grid classes="podcast-view__main-grid">
         <GridItem md={8} lg={12} classes="podcast-view__title-item">
-          <h3>{podcastData.title}</h3>
+          <div className="podcast-view__title-item__container">
+            <h3>{podcastData.title}</h3>
+            <ActionButton iconName="share" onClick={handleCopyLink} />
+          </div>
         </GridItem>
 
         <GridItem md={8} lg={12} classes="podcast-view__details-item">
