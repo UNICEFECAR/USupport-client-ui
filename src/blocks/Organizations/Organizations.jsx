@@ -27,7 +27,9 @@ const INITIAL_FILTERS = {
   workWith: "",
   district: "",
   paymentMethod: "",
+  userInteraction: "",
   specialisation: "",
+  propertyType: "",
 };
 
 /**
@@ -51,7 +53,9 @@ export const Organizations = () => {
     workWith: filters.workWith,
     district: filters.district,
     paymentMethod: filters.paymentMethod,
+    userInteraction: filters.userInteraction,
     specialisation: filters.specialisation,
+    propertyType: filters.propertyType,
     userLocation,
   });
 
@@ -109,9 +113,8 @@ export const Organizations = () => {
         <GridItem key={organization.organizationId}>
           <OrganizationOverview
             name={organization.name}
-            unitName={organization.unitName}
             image={organization.image}
-            paymentMethod={organization.paymentMethod}
+            paymentMethods={organization.paymentMethods}
             specialisations={organization.specialisations}
             address={organization.address}
             onClick={() => handleOrganizationClick(organization)}
@@ -159,10 +162,23 @@ export const Organizations = () => {
           <Dropdown
             selected={filters.paymentMethod}
             setSelected={(value) => handleChange("paymentMethod", value)}
-            placeholder={t("payment_method_placeholder")}
+            placeholder={t("payment_methods_placeholder")}
             options={metadata.paymentMethods.map((method) => ({
               label: t(method.name),
               value: method.paymentMethodId,
+            }))}
+            isSmall
+          />
+        )}
+
+        {metadata?.userInteractions && metadata.userInteractions.length > 0 && (
+          <Dropdown
+            selected={filters.userInteraction}
+            setSelected={(value) => handleChange("userInteraction", value)}
+            placeholder={t("user_interactions_placeholder")}
+            options={metadata.userInteractions.map((interaction) => ({
+              label: t(interaction.name + "_interaction"),
+              value: interaction.userInteractionId,
             }))}
             isSmall
           />
@@ -172,10 +188,23 @@ export const Organizations = () => {
           <Dropdown
             selected={filters.specialisation}
             setSelected={(value) => handleChange("specialisation", value)}
-            placeholder={t("specialisation_placeholder")}
+            placeholder={t("specialisations_placeholder")}
             options={metadata.specialisations.map((spec) => ({
               label: t(spec.name),
               value: spec.organizationSpecialisationId,
+            }))}
+            isSmall
+          />
+        )}
+
+        {metadata?.propertyTypes && metadata.propertyTypes.length > 0 && (
+          <Dropdown
+            selected={filters.propertyType}
+            setSelected={(value) => handleChange("propertyType", value)}
+            placeholder={t("property_types_placeholder")}
+            options={metadata.propertyTypes.map((propertyType) => ({
+              label: t(propertyType.name),
+              value: propertyType.organizationPropertyTypeId,
             }))}
             isSmall
           />
