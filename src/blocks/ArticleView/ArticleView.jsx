@@ -75,6 +75,7 @@ export const ArticleView = ({ articleData, t, language, navigate }) => {
     isDislikedByUser: articleData.contentRating?.isDislikedByUser || false,
   });
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+  const [isShared, setIsShare] = useState(false);
   const { theme } = useContext(ThemeContext);
 
   const url = constructShareUrl({
@@ -261,12 +262,18 @@ export const ArticleView = ({ articleData, t, language, navigate }) => {
       toast.error(t("export_failed"));
     } finally {
       setIsExportingPdf(false);
+      // Increment the download count for the article
+      cmsSvc.addArticleDownloadCount(articleData.id);
     }
   };
 
   const handleCopyLink = () => {
     navigator?.clipboard?.writeText(url);
     toast(t("share_success"));
+    if (!isShared)
+      cmsSvc.addArticleShareCount(articleData.id).then(() => {
+        setIsShare(true);
+      });
   };
 
   return (
