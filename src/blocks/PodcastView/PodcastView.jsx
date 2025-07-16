@@ -53,7 +53,7 @@ const constructShareUrl = ({ contentType, id, name }) => {
  *
  * @return {jsx}
  */
-export const PodcastView = ({ podcastData, t, languaage }) => {
+export const PodcastView = ({ podcastData, t, language }) => {
   const queryClient = useQueryClient();
   const creator = podcastData.creator ? podcastData.creator : null;
 
@@ -67,7 +67,7 @@ export const PodcastView = ({ podcastData, t, languaage }) => {
 
   useEffect(() => {
     setHasUpdatedUrl(false);
-  }, [i18n.language]);
+  }, [language]);
 
   useEffect(() => {
     if (podcastData?.title && !hasUpdatedUrl) {
@@ -75,13 +75,13 @@ export const PodcastView = ({ podcastData, t, languaage }) => {
       const urlSlug = name;
 
       if (currentSlug !== urlSlug) {
-        const newUrl = `/${i18n.language}/information-portal/article/${videoData.id}/${currentSlug}`;
+        const newUrl = `/${language}/information-portal/article/${videoData.id}/${currentSlug}`;
 
         window.history.replaceState(null, "", newUrl);
         setHasUpdatedUrl(true);
       }
     }
-  }, [podcastData?.title, name, i18n.language, hasUpdatedUrl]);
+  }, [podcastData?.title, name, language, hasUpdatedUrl]);
 
   const url = constructShareUrl({
     contentType: "podcast",
