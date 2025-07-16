@@ -8,6 +8,7 @@ import {
   ConsultationDashboard,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
+import { useCustomNavigate as useNavigate } from "#hooks";
 import { RootContext } from "#routes";
 
 import "./mascot-welcome-header.scss";
@@ -33,6 +34,7 @@ export const MascotWelcomeHeader = ({
   handleAcceptSuggestion,
   name,
 }) => {
+  const navigate = useNavigate();
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
   const { t } = useTranslation("mascot-welcome-header");
   const { width } = useWindowDimensions();
@@ -89,7 +91,7 @@ export const MascotWelcomeHeader = ({
                       label={t("explore_button_label")}
                       color="purple"
                       onClick={() => {
-                        console.log("clicked");
+                        navigate("/organizations");
                       }}
                     />
                   </div>
