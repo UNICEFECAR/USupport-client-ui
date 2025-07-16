@@ -24,13 +24,14 @@ const countriesMap = {
   ro: "romania",
 };
 
-const constructShareUrl = ({ contentType, id }) => {
+const constructShareUrl = ({ contentType, id, name }) => {
   const country = localStorage.getItem("country");
   const language = localStorage.getItem("language");
   const subdomain = window.location.hostname.split(".")[0];
+  const nameSlug = createArticleSlug(name);
 
   if (subdomain === "staging") {
-    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
+    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
   }
 
   if (country === "global") {
@@ -85,6 +86,7 @@ export const PodcastView = ({ podcastData, t, languaage }) => {
   const url = constructShareUrl({
     contentType: "podcast",
     id: podcastData.id,
+    name: podcastData.title,
   });
 
   const handleCopyLink = () => {
