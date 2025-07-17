@@ -47,3 +47,4 @@ export * from "./Podcasts";
 export * from "./PodcastView";
 export * from "./Organizations";
 export * from "./OrganizationOverview";
+export * from './BaselineAssesment';

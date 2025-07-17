@@ -46,6 +46,7 @@ import {
   Videos,
   Organizations,
   OrganizationOverview,
+  BaselineAssesment,
 } from "#blocks/locales.js";
 
 import {
@@ -90,6 +91,7 @@ import {
   Podcasts as PodcastsPage,
   Organizations as OrganizationsPage,
   OrganizationOverview as OrganizationOverviewPage,
+  BaselineAssesment as BaselineAssesmentPage,
 } from "#pages/locales.js";
 
 import {
@@ -169,6 +171,7 @@ const resources = {
     videos: Videos.en,
     organizations: Organizations.en,
     "organization-overview": OrganizationOverview.en,
+    "baseline-assesment": BaselineAssesment.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -212,6 +215,7 @@ const resources = {
     "podcasts-page": PodcastsPage.en,
     "organizations-page": OrganizationsPage.en,
     "organization-overview-page": OrganizationOverviewPage.en,
+    "baseline-assesment-page": BaselineAssesmentPage.en,
 
     //Backdrops
     "filter-providers": FilterProviders.en,

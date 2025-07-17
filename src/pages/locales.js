@@ -41,3 +41,4 @@ export * as PodcastInformation from "./PodcastInformation/locales.js";
 export * as Podcasts from "./Podcasts/locales.js";
 export * as Organizations from "./Organizations/locales.js";
 export * as OrganizationOverview from "./OrganizationOverview/locales.js";
+export * as BaselineAssesment from './BaselineAssesment/locales.js';
