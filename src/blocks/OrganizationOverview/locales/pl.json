@@ -1,5 +1,5 @@
 {
-  "error-loading-data": "Wystąpił błąd podczas ładowania danych organizacji",
+  "error_loading_data": "Wystąpił błąd podczas ładowania danych organizacji",
   "description_label": "Opis",
   "address_label": "Adres",
   "sector_label": "Dzielnica",

@@ -1,5 +1,5 @@
 {
-  "error-loading-data": "При загрузке данных организации возникла ошибка",
+  "error_loading_data": "При загрузке данных организации возникла ошибка",
   "other_services_label": "Другие услуги",
   "address_label": "Адрес",
   "sector_label": "Район",
