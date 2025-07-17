@@ -49,8 +49,12 @@ export const Dashboard = () => {
   const clientDataQuery = useGetClientData(!isTmpUser)[0];
   const clientData = clientDataQuery?.data;
 
+  const IS_RO = localStorage.getItem("country") === "RO";
+
   const clientName = clientData
-    ? clientData?.nickname || `${clientData.name} ${clientData.surname}`
+    ? clientData.name
+      ? `${clientData.name} ${clientData.surname || ""}`
+      : clientData.nickname
     : "";
 
   const queryClient = useQueryClient();
@@ -261,15 +265,17 @@ export const Dashboard = () => {
         />
         <MoodTracker isTmpUser={isTmpUser} />
         <ArticlesDashboard />
-        <ConsultationsDashboard
-          openJoinConsultation={openJoinConsultation}
-          openEditConsultation={openEditConsultation}
-          handleAcceptSuggestion={handleAcceptSuggestion}
-          handleSchedule={handleScheduleConsultation}
-          upcomingConsultations={upcomingConsultations}
-          isLoading={consultationsQuery.isLoading}
-          t={t}
-        />
+        {!IS_RO && (
+          <ConsultationsDashboard
+            openJoinConsultation={openJoinConsultation}
+            openEditConsultation={openEditConsultation}
+            handleAcceptSuggestion={handleAcceptSuggestion}
+            handleSchedule={handleScheduleConsultation}
+            upcomingConsultations={upcomingConsultations}
+            isLoading={consultationsQuery.isLoading}
+            t={t}
+          />
+        )}
         {/* <ActivityLogDashboard /> */}
         {selectedConsultation && (
           <>
@@ -287,7 +293,6 @@ export const Dashboard = () => {
             />
           </>
         )}
-
         <JoinConsultation
           isOpen={isJoinConsultationOpen}
           onClose={closeJoinConsultation}

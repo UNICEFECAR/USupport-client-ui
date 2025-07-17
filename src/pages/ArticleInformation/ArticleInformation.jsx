@@ -9,7 +9,10 @@ import {
 } from "#hooks";
 import { Page, ArticleView } from "#blocks";
 
-import { destructureArticleData } from "@USupport-components-library/utils";
+import {
+  destructureArticleData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import {
   Block,
   Grid,
@@ -224,7 +227,12 @@ export const ArticleInformation = () => {
   return (
     <Page classes="page__article-information">
       {articleData ? (
-        <ArticleView articleData={articleData} t={t} language={i18n.language} />
+        <ArticleView
+          articleData={articleData}
+          t={t}
+          language={i18n.language}
+          navigate={navigate}
+        />
       ) : (
         <Loading size="lg" />
       )}
@@ -274,7 +282,11 @@ export const ArticleInformation = () => {
                     isDislikedByUser={isDislikedByUser}
                     t={t}
                     onClick={() => {
-                      navigate(`/information-portal/article/${articleData.id}`);
+                      navigate(
+                        `/information-portal/article/${
+                          articleData.id
+                        }/${createArticleSlug(articleData.title)}`
+                      );
                       onArticleClick();
                     }}
                   />

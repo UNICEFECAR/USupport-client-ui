@@ -43,6 +43,7 @@ export const UserDetails = ({
   openDeleteChatHistory,
 }) => {
   const { t } = useTranslation("user-details");
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   const navigate = useNavigate();
 
@@ -418,17 +419,19 @@ export const UserDetails = ({
                 classes="user-details__grid__delete-account-button"
                 onClick={openDeleteAccountBackdrop}
               />
-              <ButtonWithIcon
-                iconName={"circle-close"}
-                iconSize={"md"}
-                size="lg"
-                iconColor={"#eb5757"}
-                color={"red"}
-                label={t("delete_chat")}
-                type={"ghost"}
-                classes="user-details__grid__delete-account-button"
-                onClick={openDeleteChatHistory}
-              />
+              {!IS_RO && (
+                <ButtonWithIcon
+                  iconName={"circle-close"}
+                  iconSize={"md"}
+                  size="lg"
+                  iconColor={"#eb5757"}
+                  color={"red"}
+                  label={t("delete_chat")}
+                  type={"ghost"}
+                  classes="user-details__grid__delete-account-button"
+                  onClick={openDeleteChatHistory}
+                />
+              )}
             </div>
           </GridItem>
         </Grid>

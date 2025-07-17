@@ -8,5 +8,6 @@
   "modal_text": "Bardzo nam przykro, że nie znalazłeś tego, czego szukałeś. Postaramy się odpowiedzieć na Twoje sugestie tak szybko, jak to możliwe. Dziękujemy za opinię.",
   "modal_cta_label": "Poznaj więcej artykułów",
 
-  "error": "Wprowadź swoją sugestię"
+  "error": "Wprowadź swoją sugestię",
+  "send_success_text": "Twoja sugestia została pomyślnie przesłana"
 }

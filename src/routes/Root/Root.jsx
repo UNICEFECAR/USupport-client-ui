@@ -300,7 +300,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="information-portal/video/:id"
+        path="information-portal/video/:id/:name"
         element={
           <ProtectedRoute>
             <VideoInformation />
@@ -308,7 +308,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="information-portal/podcast/:id"
+        path="information-portal/podcast/:id/:name"
         element={
           <ProtectedRoute>
             <PodcastInformation />
@@ -316,7 +316,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="information-portal/article/:id"
+        path="information-portal/article/:id/:name"
         element={
           <ProtectedRoute>
             <ArticleInformation />

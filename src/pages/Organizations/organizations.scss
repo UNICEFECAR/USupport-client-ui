@@ -1,4 +1,9 @@
 @import "@USupport-components-library/styles";
 
 .page__organizations {
+  & .give-suggestion__grid {
+    & .give-suggestion__heading-item {
+      place-self: center;
+    }
+  }
 }

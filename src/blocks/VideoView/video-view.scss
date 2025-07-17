@@ -79,7 +79,15 @@
   }
 
   &__title-item {
-    padding-top: $spacing_1_7;
+    padding-top: $spacing_1_6;
+
+    &__container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
   }
 
   &__details-item {

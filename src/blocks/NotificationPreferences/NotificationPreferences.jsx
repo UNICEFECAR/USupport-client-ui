@@ -43,6 +43,7 @@ export const NotificationPreferences = () => {
 
   const clientDataQuery = useGetClientData()[0];
   const isAnon = !clientDataQuery.data?.email;
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   const onUpdateError = (error) => {
     const { message: errorMessage } = useError(error);
@@ -84,32 +85,36 @@ export const NotificationPreferences = () => {
               />
             </GridItem>
           )}
-          <GridItem
-            xs={4}
-            md={8}
-            lg={12}
-            classes="notification-preferences__grid__item"
-          >
-            <p className="paragraph">{t("appointment")}</p>
-            <Toggle
-              isToggled={
-                data?.consultationReminder ? data?.consultationReminder : false
-              }
-              setParentState={(value) =>
-                handleChange("consultationReminder", value)
-              }
-            />
-            {data?.consultationReminder && (
-              <RadioButtonSelectorGroup
-                selected={data.consultationReminderMin}
-                setSelected={(value) =>
-                  handleChange("consultationReminderMin", value)
+          {!IS_RO && (
+            <GridItem
+              xs={4}
+              md={8}
+              lg={12}
+              classes="notification-preferences__grid__item"
+            >
+              <p className="paragraph">{t("appointment")}</p>
+              <Toggle
+                isToggled={
+                  data?.consultationReminder
+                    ? data?.consultationReminder
+                    : false
                 }
-                options={consultationReminderOptions}
+                setParentState={(value) =>
+                  handleChange("consultationReminder", value)
+                }
               />
-            )}
-            {error ? <ErrorComponent message={error} /> : null}
-          </GridItem>
+              {data?.consultationReminder && (
+                <RadioButtonSelectorGroup
+                  selected={data.consultationReminderMin}
+                  setSelected={(value) =>
+                    handleChange("consultationReminderMin", value)
+                  }
+                  options={consultationReminderOptions}
+                />
+              )}
+              {error ? <ErrorComponent message={error} /> : null}
+            </GridItem>
+          )}
         </Grid>
       )}
     </Block>

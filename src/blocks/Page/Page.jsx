@@ -77,8 +77,10 @@ export const Page = ({
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_DEV = process.env.NODE_ENV === "development";
+  const IS_RO = localStorage.getItem("country") === "RO";
 
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, setTheme, setIsPodcastsActive, setIsVideosActive } =
+    useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const location = useLocation();
   const { t, i18n } = useTranslation("page");
@@ -120,6 +122,9 @@ export const Page = ({
         localStorage.setItem("country_id", country.countryID);
         localStorage.setItem("currency_symbol", country.currencySymbol);
 
+        setIsPodcastsActive(country.podcastsActive);
+        setIsVideosActive(country.videosActive);
+
         setSelectedCountry(country);
       } else if (!localStorageCountry || localStorageCountry === "undefined") {
         if (validCountry?.value === country.value) {
@@ -128,6 +133,9 @@ export const Page = ({
           localStorage.setItem("country", country.value);
           localStorage.setItem("country_id", country.countryID);
           localStorage.setItem("currency_symbol", country.currencySymbol);
+
+          setIsPodcastsActive(country.podcastsActive);
+          setIsVideosActive(country.videosActive);
 
           setSelectedCountry(country);
         }
@@ -167,6 +175,8 @@ export const Page = ({
         maxAge: x["max_client_age"],
         currencySymbol: x["symbol"],
         localName: x.local_name,
+        videosActive: x.videos_active,
+        podcastsActive: x.podcasts_active,
       };
       return countryObject;
     });
@@ -269,16 +279,24 @@ export const Page = ({
 
   const pages = [
     { name: t("page_1"), url: "/dashboard", exact: true },
-    { name: t("page_2"), url: "/consultations" },
+    {
+      name: t(IS_RO ? "page_5" : "page_2"),
+      url: IS_RO ? "/organizations" : "/consultations",
+    },
     { name: t("page_3"), url: "/information-portal?tab=articles" },
-    { name: t("page_4"), url: "/my-qa" },
   ];
+  if (!IS_RO) {
+    pages.push({ name: t("page_4"), url: "/my-qa" });
+  }
 
   const footerLists = {
     list1: [
       { name: t("footer_1"), url: "/dashboard" },
       { name: t("footer_4"), url: "/profile" },
-      { name: t("footer_2"), url: "/consultations" },
+      {
+        name: t(IS_RO ? "page_5" : "page_2"),
+        url: IS_RO ? "/organizations" : "/consultations",
+      },
     ],
     list2: [
       { name: t("footer_3"), url: "/information-portal?tab=articles" },

@@ -267,6 +267,7 @@ export const JitsiRoom = () => {
   const leaveConsultationMutation = useLeaveConsultation();
 
   const leaveConsultation = () => {
+    setShowSafetyFeedback(true);
     const leaveMessage = {
       time: JSON.stringify(new Date().getTime()),
       content: "client_left",
@@ -290,8 +291,6 @@ export const JitsiRoom = () => {
       consultationId: consultation.consultationId,
       userType: "client",
     });
-
-    navigate("/consultations");
   };
 
   useEffect(() => {

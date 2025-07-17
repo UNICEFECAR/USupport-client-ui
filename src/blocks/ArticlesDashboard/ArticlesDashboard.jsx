@@ -12,7 +12,10 @@ import {
   Tabs,
   TabsUnderlined,
 } from "@USupport-components-library/src";
-import { destructureArticleData } from "@USupport-components-library/utils";
+import {
+  destructureArticleData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import { cmsSvc } from "@USupport-components-library/services";
 
 import { useGetUserContentRatings, useRecommendedArticles } from "#hooks";
@@ -269,7 +272,9 @@ export const ArticlesDashboard = () => {
                           t={t}
                           onClick={() => {
                             navigate(
-                              `/information-portal/article/${article.id}`
+                              `/information-portal/article/${
+                                article.id
+                              }/${createArticleSlug(article.name)}`
                             );
                           }}
                         />

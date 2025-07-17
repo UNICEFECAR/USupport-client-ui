@@ -11,7 +11,10 @@ import {
   Tabs,
   Loading,
 } from "@USupport-components-library/src";
-import { destructurePodcastData } from "@USupport-components-library/utils";
+import {
+  destructurePodcastData,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import { useDebounce, useGetUserContentRatings } from "#hooks";
 
@@ -216,7 +219,9 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
                         t={t}
                         onClick={() =>
                           navigate(
-                            `/information-portal/podcast/${podcastData.id}`
+                            `/information-portal/podcast/${
+                              podcastData.id
+                            }/${createArticleSlug(podcastData.title)}`
                           )
                         }
                       />

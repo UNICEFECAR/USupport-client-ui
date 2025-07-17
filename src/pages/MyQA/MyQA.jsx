@@ -2,7 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 
-import { Page, MascotHeaderMyQA, MyQA as MyQABlock } from "#blocks";
+import {
+  Page,
+  MascotHeaderMyQA,
+  MyQA as MyQABlock,
+  GiveSuggestion,
+} from "#blocks";
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
 import { ScheduleConsultationGroup, FilterQuestions } from "#backdrops";
 import {
@@ -220,6 +225,7 @@ export const MyQA = () => {
         setSelectedLanguage={setSelectedLanguage}
         setShouldFetchQuestions={setShouldFetchQuestions}
       />
+      <GiveSuggestion type="my-qa" />
       <CreateQuestion
         isOpen={isCreateQuestionOpen}
         onClose={() => setIsCreateQuestionOpen(false)}
