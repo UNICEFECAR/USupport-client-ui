@@ -291,8 +291,6 @@ export const JitsiRoom = () => {
       consultationId: consultation.consultationId,
       userType: "client",
     });
-
-    navigate("/consultations");
   };
 
   useEffect(() => {
