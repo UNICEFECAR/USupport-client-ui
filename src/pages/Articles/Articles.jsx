@@ -40,8 +40,8 @@ export const Articles = () => {
   return (
     <Page
       classes="page__articles"
-      heading={heading}
-      subheading={subheading}
+      // heading={heading}
+      // subheading={subheading}
       showGoBackArrow={showBackGoBackArrow}
     >
       <ArticlesBlock showSearch={true} showCategories={true} sort={sort} />
