@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useEffect, useContext } from "react";
+import { useState, useCallback, useEffect, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   Grid,
@@ -164,14 +164,17 @@ export const InformationPortal = () => {
         {contentTabs.length > 1 && (
           <Grid classes="page__information-portal__tabs-container">
             <GridItem md={8} lg={12}>
-              <TabsUnderlined
-                options={contentTabs.map((x) => ({
-                  ...x,
-                  label: t(x.label),
-                }))}
-                handleSelect={handleTabSelect}
-                classes="page__information-portal__tabs"
-              />
+              <div className="page__information-portal__tabs-container__inner">
+                <TabsUnderlined
+                  options={contentTabs.map((x) => ({
+                    ...x,
+                    label: t(x.label),
+                  }))}
+                  handleSelect={handleTabSelect}
+                  classes="page__information-portal__tabs"
+                  textType="h2"
+                />
+              </div>
             </GridItem>
           </Grid>
         )}
@@ -322,7 +325,11 @@ export const InformationPortal = () => {
             )}
           </GridItem>
 
-          <GridItem md={8} lg={12}>
+          <GridItem
+            md={8}
+            lg={12}
+            classes="page__information-portal__give-suggestion"
+          >
             <GiveSuggestion />
           </GridItem>
         </Grid>
