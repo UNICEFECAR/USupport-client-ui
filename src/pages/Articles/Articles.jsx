@@ -40,7 +40,7 @@ export const Articles = () => {
   return (
     <Page
       classes="page__articles"
-      // heading={heading}
+      heading={t("heading")}
       // subheading={subheading}
       showGoBackArrow={showBackGoBackArrow}
     >
