@@ -275,14 +275,13 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
               </GridItem>
             )}
 
-            {/* Use the new ArticlesGrid component with 2-3-1 pattern */}
             {transformedArticles?.length > 0 &&
               areCategoriesAndAgeGroupsReady && (
                 <ArticlesGrid
                   articles={transformedArticles}
                   onArticleClick={handleArticleClick}
                   t={t}
-                  pattern={[2, 3, 1]} // 2-3-1 repeating pattern
+                  pattern={[2, 3, 1]}
                 />
               )}
 

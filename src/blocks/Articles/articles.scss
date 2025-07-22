@@ -41,4 +41,12 @@
     text-align: center;
     padding: $spacing_10_0;
   }
+
+  .tabs-underlined-container {
+    h3 {
+      @media screen and (min-width: $screen-lg) {
+        font-size: $font-size_2_4;
+      }
+    }
+  }
 }
