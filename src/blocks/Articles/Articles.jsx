@@ -7,16 +7,13 @@ import {
   Grid,
   GridItem,
   Block,
-  CardMedia,
   TabsUnderlined,
   InputSearch,
   Tabs,
   Loading,
+  ArticlesGrid,
 } from "@USupport-components-library/src";
-import {
-  destructureArticleData,
-  createArticleSlug,
-} from "@USupport-components-library/utils";
+import { createArticleSlug } from "@USupport-components-library/utils";
 import { cmsSvc } from "@USupport-components-library/services";
 import {
   useDebounce,
@@ -120,7 +117,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       setSelectedCategory(categoriesData[0]);
       return categoriesData;
     } catch (err) {
-      console.log9err;
+      console.log(err);
     }
   };
 
@@ -199,14 +196,41 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     searchValue: debouncedSearchValue,
   });
 
-  // Transform articles data to match expected format
+  // Transform articles data to match expected format and add user interaction data
   const transformedArticles = articles?.map((article) => {
-    // If article already has direct properties, use them, otherwise use article.data
-    return article.data ? article.data : article;
+    // Get the base article data
+    const baseArticle = article.data ? article.data : article;
+
+    // Add user interaction data
+    const isLikedByUser = contentRatings?.some(
+      (rating) =>
+        rating.content_id === baseArticle.id &&
+        rating.content_type === "article" &&
+        rating.positive === true
+    );
+
+    const isDislikedByUser = contentRatings?.some(
+      (rating) =>
+        rating.content_id === baseArticle.id &&
+        rating.content_type === "article" &&
+        rating.positive === false
+    );
+
+    return {
+      ...baseArticle,
+      isLikedByUser,
+      isDislikedByUser,
+      isRead: readArticleIds.includes(baseArticle.id),
+    };
   });
+
+  const handleArticleClick = (id, title) => {
+    navigate(`/information-portal/article/${id}/${createArticleSlug(title)}`);
+  };
 
   let areCategoriesAndAgeGroupsReady =
     categoriesQuery?.data?.length > 1 && ageGroupsQuery?.data?.length > 0;
+
   return (
     <Block classes="articles">
       {ageGroups?.length > 0 && categories?.length > 0 && (
@@ -221,17 +245,20 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
             {showAgeGroups &&
               categoriesQuery?.data?.length > 1 &&
               ageGroupsQuery?.data?.length > 0 && (
-                <GridItem md={8} lg={12} classes="articles__age-groups-item">
+                <GridItem md={4} lg={6} classes="articles__age-groups-item">
                   {ageGroups && (
-                    <TabsUnderlined
-                      options={ageGroups}
-                      handleSelect={handleAgeGroupOnPress}
-                    />
+                    <div className="articles__age-groups-tabs__container">
+                      <TabsUnderlined
+                        options={ageGroups}
+                        handleSelect={handleAgeGroupOnPress}
+                        textType="h3"
+                      />
+                    </div>
                   )}
                 </GridItem>
               )}
             {showSearch && areCategoriesAndAgeGroupsReady && (
-              <GridItem md={8} lg={12} classes="articles__search-item">
+              <GridItem md={4} lg={6} classes="articles__search-item">
                 <InputSearch onChange={handleInputChange} value={searchValue} />
               </GridItem>
             )}
@@ -248,68 +275,27 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
               </GridItem>
             )}
 
-            <GridItem md={8} lg={12} classes="articles__articles-item">
-              {transformedArticles?.length > 0 &&
-                areCategoriesAndAgeGroupsReady && (
-                  <Grid>
-                    {transformedArticles?.map((article, index) => {
-                      const isLikedByUser = contentRatings?.some(
-                        (rating) =>
-                          rating.content_id === article.id &&
-                          rating.content_type === "article" &&
-                          rating.positive === true
-                      );
-                      const isDislikedByUser = contentRatings?.some(
-                        (rating) =>
-                          rating.content_id === article.id &&
-                          rating.content_type === "article" &&
-                          rating.positive === false
-                      );
-                      const articleData = destructureArticleData(article);
-                      return (
-                        <GridItem lg={6} key={index}>
-                          <CardMedia
-                            type="portrait"
-                            size="lg"
-                            style={{ gridColumn: "span 4" }}
-                            title={articleData.title}
-                            image={
-                              articleData.imageMedium || articleData.imageSmall
-                            }
-                            description={articleData.description}
-                            labels={articleData.labels}
-                            creator={articleData.creator}
-                            readingTime={articleData.readingTime}
-                            categoryName={articleData.categoryName}
-                            isLikedByUser={isLikedByUser}
-                            isDislikedByUser={isDislikedByUser}
-                            likes={articleData.likes}
-                            dislikes={articleData.dislikes}
-                            isRead={readArticleIds.includes(articleData.id)}
-                            t={t}
-                            onClick={() => {
-                              navigate(
-                                `/information-portal/article/${
-                                  articleData.id
-                                }/${createArticleSlug(articleData.title)}`
-                              );
-                            }}
-                          />
-                        </GridItem>
-                      );
-                    })}
-                  </Grid>
-                )}
-              {!transformedArticles?.length &&
-                isReady &&
-                !isArticlesLoading &&
-                categoriesQuery?.data?.length > 0 &&
-                ageGroupsQuery?.data?.length > 0 && (
+            {transformedArticles?.length > 0 &&
+              areCategoriesAndAgeGroupsReady && (
+                <ArticlesGrid
+                  articles={transformedArticles}
+                  onArticleClick={handleArticleClick}
+                  t={t}
+                  pattern={[2, 3, 1]}
+                />
+              )}
+
+            {!transformedArticles?.length &&
+              isReady &&
+              !isArticlesLoading &&
+              categoriesQuery?.data?.length > 0 &&
+              ageGroupsQuery?.data?.length > 0 && (
+                <GridItem md={8} lg={12} classes="articles__articles-item">
                   <div className="articles__no-results-container">
                     <p>{t("no_results")}</p>
                   </div>
-                )}
-            </GridItem>
+                </GridItem>
+              )}
           </Grid>
         </InfiniteScroll>
       )}
