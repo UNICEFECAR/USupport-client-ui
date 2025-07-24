@@ -23,7 +23,10 @@
   &__tabs-container {
     margin-top: $spacing_6_0;
     margin-inline: auto;
-    text-align: center;
+
+    &__inner {
+      display: flex;
+    }
   }
 
   & .view-all-button {
@@ -55,7 +58,6 @@
   }
 
   &__block__grid {
-    justify-items: center;
     padding-top: $spacing_2_0;
 
     @media screen and (min-width: $screen-md) {
