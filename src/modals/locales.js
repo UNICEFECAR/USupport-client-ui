@@ -7,3 +7,4 @@ export * as CreateQuestion from "./CreateQuestion/locales.js";
 export * as QuestionDetails from "./QuestionDetails/locales.js";
 export * as HowItWorksMyQA from "./HowItWorksMyQA/locales.js";
 export * as DeleteChatHistory from "./DeleteChatHistory/locales.js";
+export * as BaselineAssesmentModal from './BaselineAssesmentModal/locales.js';

@@ -8,3 +8,4 @@ export * from "./QuestionDetails";
 export * from "./HowItWorksMyQA";
 export * from "./DeleteChatHistory";
 export * from "./ShareModal";
+export * from './BaselineAssesmentModal';
