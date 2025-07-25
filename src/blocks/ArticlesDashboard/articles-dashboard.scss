@@ -20,12 +20,12 @@
 
   &__categories-item {
     overflow-x: auto;
-    width: 35rem;
+    // width: 35rem;
     padding-top: $spacing_1_0;
 
     @media screen and (min-width: $screen-md) {
-      width: auto;
-      margin: auto;
+      // width: auto;
+      // margin: auto;
       padding-top: $spacing_2_0;
     }
   }
