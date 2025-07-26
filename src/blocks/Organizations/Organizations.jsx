@@ -132,7 +132,7 @@ export const Organizations = () => {
 
     return (
       <div className="organizations__dropdowns-container">
-        {metadata?.workWith && metadata.workWith.length > 0 && (
+        {/* {metadata?.workWith && metadata.workWith.length > 0 && (
           <Dropdown
             selected={filters.workWith}
             setSelected={(value) => handleChange("workWith", value)}
@@ -143,7 +143,7 @@ export const Organizations = () => {
             }))}
             isSmall
           />
-        )}
+        )} */}
 
         {metadata?.districts && metadata.districts.length > 0 && (
           <Dropdown
