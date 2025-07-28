@@ -21,7 +21,7 @@ import "./baseline-assesment-modal.scss";
  *
  * @return {jsx}
  */
-export const BaselineAssesmentModal = ({ isOpen, onClose }) => {
+export const BaselineAssesmentModal = () => {
   const { t } = useTranslation("baseline-assesment-modal");
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -31,12 +31,15 @@ export const BaselineAssesmentModal = ({ isOpen, onClose }) => {
   const clientDataQuery = useGetClientData()[0];
   const clientData = clientDataQuery.data;
 
+  const [isOpen, setIsOpen] = useState(false);
   const [dataProcessing, setDataProcessing] = useState(false);
+  const onClose = () => setIsOpen(false);
 
   useEffect(() => {
     if (clientData) {
-      console.log(clientData);
+      console.log(clientData.hasCheckedBaselineAssessment);
       setDataProcessing(clientData.dataProcessing);
+      setIsOpen(clientData.hasCheckedBaselineAssessment);
     }
   }, [clientData]);
 
@@ -97,13 +100,12 @@ export const BaselineAssesmentModal = ({ isOpen, onClose }) => {
       isCtaLoading={createScreeningSessionMutation.isLoading}
       isCtaDisabled={!dataProcessing || clientDataQuery.isLoading}
     >
-      <p>{t("paragraph_1")}</p>
-      <br />
-      <p>{t("paragraph_2")}</p>
-      <br />
-      <p>{t("paragraph_3")}</p>
-      <br />
-      <p className="text-center">{t("paragraph_4")}</p>
+      <div className="baseline-assesment-modal__content">
+        <p>{t("paragraph_1")}</p>
+        <p>{t("paragraph_2")}</p>
+        <p>{t("paragraph_3")}</p>
+        <p className="text-center">{t("paragraph_4")}</p>
+      </div>
 
       {true && (
         <div className="baseline-assesment-modal__privacy-content">

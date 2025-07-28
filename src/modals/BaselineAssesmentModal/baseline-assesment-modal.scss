@@ -1,6 +1,11 @@
 @import "@USupport-components-library/styles";
 
 .baseline-assesment-modal {
+  &__content {
+    p {
+      font-size: 15px;
+    }
+  }
   &__privacy-content {
     margin-top: $spacing_2_0;
 
