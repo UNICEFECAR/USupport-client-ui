@@ -29,7 +29,7 @@ import {
   useGetClientData,
 } from "#hooks";
 
-import { RequireDataAgreement } from "#modals";
+import { BaselineAssesmentModal, RequireDataAgreement } from "#modals";
 
 import { userSvc } from "@USupport-components-library/services";
 import { ONE_HOUR } from "@USupport-components-library/utils";
@@ -242,7 +242,6 @@ export const Dashboard = () => {
       navigate(`/select-provider`);
     }
   };
-
   return (
     <Page
       classes="page__dashboard"
@@ -251,6 +250,7 @@ export const Dashboard = () => {
       showEmergencyButton
       showGoBackArrow={false}
     >
+      <BaselineAssesmentModal />
       <div className="page__dashboard__content">
         <MascotWelcomeHeader
           nextConsultation={
