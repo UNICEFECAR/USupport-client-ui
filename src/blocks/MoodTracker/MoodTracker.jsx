@@ -23,7 +23,12 @@ import "./mood-tracker.scss";
  *
  * @return {jsx}
  */
-export const MoodTracker = ({ classes, isTmpUser }) => {
+export const MoodTracker = ({
+  classes,
+  isTmpUser,
+  clientData,
+  openRequireDataAgreement,
+}) => {
   const { theme } = useContext(ThemeContext);
   const { handleRegistrationModalOpen } = useContext(RootContext);
 
@@ -92,6 +97,10 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
       handleRegistrationModalOpen();
       return;
     }
+    if (!clientData.dataProcessing) {
+      openRequireDataAgreement(true);
+      return;
+    }
     const newEmoticons = [...emoticons];
     for (let i = 0; i < newEmoticons.length; i++) {
       const currentMood = newEmoticons[i];
@@ -115,6 +124,8 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
   const handleMoodtrackClick = () => {
     if (isTmpUser) {
       handleRegistrationModalOpen();
+    } else if (!clientData.dataProcessing) {
+      openRequireDataAgreement(true);
     } else {
       navigate("/mood-tracker");
     }

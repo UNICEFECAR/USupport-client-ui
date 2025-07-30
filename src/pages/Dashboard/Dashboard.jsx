@@ -263,7 +263,11 @@ export const Dashboard = () => {
           name={clientName}
           t={t}
         />
-        <MoodTracker isTmpUser={isTmpUser} />
+        <MoodTracker
+          isTmpUser={isTmpUser}
+          clientData={clientData}
+          openRequireDataAgreement={openRequireDataAgreement}
+        />
         <ArticlesDashboard />
         {!IS_RO && (
           <ConsultationsDashboard
