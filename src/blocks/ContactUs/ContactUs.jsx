@@ -41,7 +41,6 @@ export const ContactUs = () => {
   const { isTmpUser } = useContext(RootContext);
 
   const country = localStorage.getItem("country");
-  console.log(country);
 
   const IS_PL = country === "PL";
 
