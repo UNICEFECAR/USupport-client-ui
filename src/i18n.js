@@ -47,6 +47,7 @@ import {
   Organizations,
   OrganizationOverview,
   BaselineAssesment,
+  BaselineAssesmentResult,
 } from "#blocks/locales.js";
 
 import {
@@ -120,6 +121,7 @@ import {
   HowItWorksMyQA,
   QuestionDetails,
   DeleteChatHistory,
+  BaselineAssesmentModal,
 } from "#modals/locales.js";
 
 import { Root } from "#routes/locales.js";
@@ -172,6 +174,7 @@ const resources = {
     organizations: Organizations.en,
     "organization-overview": OrganizationOverview.en,
     "baseline-assesment": BaselineAssesment.en,
+    "baseline-assesment-result": BaselineAssesmentResult.en,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.en,
@@ -242,6 +245,7 @@ const resources = {
     "how-it-works-my-qa": HowItWorksMyQA.en,
     "question-details": QuestionDetails.en,
     "delete-chat-history": DeleteChatHistory.en,
+    "baseline-assesment-modal": BaselineAssesmentModal.en,
 
     // Routes
     root: Root.en,
@@ -292,6 +296,8 @@ const resources = {
     videos: Videos.ru,
     organizations: Organizations.ru,
     "organization-overview": OrganizationOverview.ru,
+    "baseline-assesment": BaselineAssesment.ru,
+    "baseline-assesment-result": BaselineAssesmentResult.ru,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.ru,
@@ -361,6 +367,7 @@ const resources = {
     "how-it-works-my-qa": HowItWorksMyQA.ru,
     "question-details": QuestionDetails.ru,
     "delete-chat-history": DeleteChatHistory.ru,
+    "baseline-assesment-modal": BaselineAssesmentModal.ru,
 
     // Routes
     root: Root.ru,
@@ -411,6 +418,8 @@ const resources = {
     videos: Videos.kk,
     organizations: Organizations.kk,
     "organization-overview": OrganizationOverview.kk,
+    "baseline-assesment": BaselineAssesment.kk,
+    "baseline-assesment-result": BaselineAssesmentResult.kk,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.kk,
@@ -480,6 +489,7 @@ const resources = {
     "how-it-works-my-qa": HowItWorksMyQA.kk,
     "question-details": QuestionDetails.kk,
     "delete-chat-history": DeleteChatHistory.kk,
+    "baseline-assesment-modal": BaselineAssesmentModal.kk,
 
     // Routes
     root: Root.kk,
@@ -530,6 +540,8 @@ const resources = {
     videos: Videos.pl,
     organizations: Organizations.pl,
     "organization-overview": OrganizationOverview.pl,
+    "baseline-assesment": BaselineAssesment.pl,
+    "baseline-assesment-result": BaselineAssesmentResult.pl,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.pl,
@@ -599,6 +611,7 @@ const resources = {
     "how-it-works-my-qa": HowItWorksMyQA.pl,
     "question-details": QuestionDetails.pl,
     "delete-chat-history": DeleteChatHistory.pl,
+    "baseline-assesment-modal": BaselineAssesmentModal.pl,
 
     // Routes
     root: Root.pl,
@@ -649,6 +662,8 @@ const resources = {
     videos: Videos.uk,
     organizations: Organizations.uk,
     "organization-overview": OrganizationOverview.uk,
+    "baseline-assesment": BaselineAssesment.uk,
+    "baseline-assesment-result": BaselineAssesmentResult.uk,
 
     // Pages
     "provider-overview-page": ProviderOverviewPage.uk,
@@ -718,6 +733,7 @@ const resources = {
     "how-it-works-my-qa": HowItWorksMyQA.uk,
     "question-details": QuestionDetails.uk,
     "delete-chat-history": DeleteChatHistory.uk,
+    "baseline-assesment-modal": BaselineAssesmentModal.uk,
 
     // Routes
     root: Root.uk,
