@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 import propTypes from "prop-types";
 
 import {
@@ -12,7 +13,7 @@ import {
   ActionButton,
 } from "@USupport-components-library/src";
 import { useAddContentRating } from "#hooks";
-
+import { createArticleSlug } from "@USupport-components-library/utils";
 import { cmsSvc } from "@USupport-components-library/services";
 
 import "./video-view.scss";
