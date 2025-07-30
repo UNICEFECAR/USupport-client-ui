@@ -20,7 +20,6 @@ export default function useGetAllOrganizations(filters) {
     return data.map((organization) => ({
       organizationId: organization.organization_id,
       name: organization.name,
-      unitName: organization?.unit_name,
       websiteUrl: organization?.website_url,
       address: organization?.address,
       phone: organization?.phone,
@@ -47,6 +46,10 @@ export default function useGetAllOrganizations(filters) {
       createdBy: organization?.created_by,
       createdAt: organization?.created_at,
       specialisations: organization?.specialisations || [],
+      paymentMethods: organization?.payment_methods || [],
+      userInteractions: organization?.user_interactions || [],
+      propertyTypes: organization?.property_types || [],
+      distanceKm: organization?.distance_km,
     }));
   };
 

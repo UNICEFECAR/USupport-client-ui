@@ -61,7 +61,7 @@ export const RegisterAnonymous = () => {
   });
   const [errors, setErrors] = useState({});
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
-  const [hasCopied, setHasCopied] = useState(true);
+  const [hasCopied, setHasCopied] = useState(false);
 
   const country = localStorage.getItem("country");
   const selectedCountry = countriesData?.find((c) => c.value === country);
