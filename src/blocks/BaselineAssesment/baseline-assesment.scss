@@ -1,13 +1,15 @@
 @import "@USupport-components-library/styles";
 
 .baseline-assesment {
-  min-height: 100vh;
+  // min-height: 100vh;
   padding: $spacing_2_4 0;
 
   &__grid {
     place-items: center;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    max-width: 64rem;
+    // max-width: 64rem;
     margin: 0 auto;
     padding: 0 $spacing_1_6;
   }
@@ -39,18 +41,33 @@
         @include themify($themes, "color", "color_gray_92989b_c1d7e0");
       }
     }
+
+    &__warning {
+      margin-top: $spacing_2_4;
+      padding: $spacing_1_6;
+      background-color: rgba(249, 199, 79, 0.1);
+      border: 1px solid $color_yellow_f9c74f;
+      border-radius: $spacing_1_2;
+      margin-bottom: $spacing_2_4;
+
+      &-text {
+        color: $color_yellow_f9c74f !important;
+        font-weight: 500;
+      }
+    }
   }
 
   // Progress section
   &__progress {
-    margin-bottom: $spacing_3_2;
+    margin-bottom: $spacing_2_4;
     width: 100%;
+    max-width: 90rem;
 
     &__info {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: $spacing_1_2;
+      margin-block: $spacing_1_2;
 
       span {
         color: $color_gray_92989b;
@@ -65,14 +82,17 @@
 
   // Question section
   &__question {
-    margin-bottom: $spacing_3_2;
-    text-align: left;
+    margin-bottom: $spacing_2_0;
     width: 100%;
 
     &__content {
+      text-align: left;
+      max-width: 48rem;
+      margin: 0 auto;
+
       h3 {
         margin-bottom: $spacing_1_6;
-        text-align: center;
+        line-height: 1.4;
       }
     }
 
@@ -120,7 +140,7 @@
 
   // Rating section
   &__rating {
-    margin-bottom: $spacing_4_0;
+    margin-bottom: $spacing_3_2;
     width: 100%;
 
     &__labels {
@@ -138,15 +158,9 @@
     &-scale {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: $spacing_1_2;
+      gap: $spacing_1_6;
       max-width: 48rem;
       margin: 0 auto;
-
-      @media screen and (max-width: $screen_sm) {
-        flex-direction: column;
-        gap: $spacing_1_6;
-      }
     }
 
     &-option {
@@ -207,12 +221,13 @@
     &__buttons {
       display: flex;
       justify-content: space-between;
-      gap: $spacing_1_6;
-      max-width: 32rem;
+      gap: $spacing_2_4;
+      max-width: 48rem;
       margin: 0 auto;
 
-      @media screen and (max-width: $screen_sm) {
+      @media (max-width: 768px) {
         flex-direction: column;
+        gap: $spacing_1_6;
       }
 
       button {
@@ -226,52 +241,14 @@
     }
   }
 
-  // Completed section
-  &__completed {
-    text-align: center;
-    margin-bottom: $spacing_3_2;
-
-    h1 {
-      margin-bottom: $spacing_2_4;
-      color: $color_green_c1eaea;
-      @include themify($themes, "color", "color_green_c1eaea_white");
-    }
-
-    p.text {
-      margin-bottom: $spacing_3_2;
-      max-width: 48rem;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    &__stats {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: $spacing_1_6;
-      margin-top: $spacing_2_4;
-
-      .progress-bar {
-        max-width: 32rem;
-        width: 100%;
-      }
-
-      p {
-        color: $color_gray_92989b;
-        @include themify($themes, "color", "color_gray_92989b_c1d7e0");
-      }
-    }
-  }
-
   // Error section
   &__error {
     text-align: center;
-    padding: $spacing_4_0 $spacing_2_4;
+    padding: $spacing_3_2;
 
     h3 {
       color: $color_red_eb5757;
       margin-bottom: $spacing_1_6;
-      @include themify($themes, "color", "color_red_eb5757_white");
     }
 
     p {

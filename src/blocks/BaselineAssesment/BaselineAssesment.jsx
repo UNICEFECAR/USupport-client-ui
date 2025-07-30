@@ -1,6 +1,16 @@
 import { useState, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
+
+import { BaselineAssesmentResult } from "../BaselineAssesmentResult";
+
+import {
+  useGetScreeningQuestions,
+  useAddScreeningAnswer,
+  useCreateScreeningSession,
+  useGetClientAnswersForSessionById,
+} from "#hooks";
 
 import {
   Block,
@@ -11,13 +21,6 @@ import {
   Loading,
   ProgressBar,
 } from "@USupport-components-library/src";
-
-import {
-  useGetScreeningQuestions,
-  useAddScreeningAnswer,
-  useCreateScreeningSession,
-  useGetClientAnswersForSessionById,
-} from "#hooks";
 
 import "./baseline-assesment.scss";
 
@@ -31,9 +34,10 @@ import "./baseline-assesment.scss";
 export const BaselineAssesment = ({
   selectedSession,
   setHasStartedAssessment,
+  inProgressSession,
 }) => {
   const { t } = useTranslation("baseline-assesment");
-
+  const queryClient = useQueryClient();
   const [state, setState] = useState({
     currentStep: "intro", // intro, questions, completed
     currentQuestionIndex: 0,
@@ -41,8 +45,6 @@ export const BaselineAssesment = ({
     screeningSessionId: null,
     isNewSession: false,
   });
-
-  console.log(state.answers);
 
   const { isLoading, data: questions, error } = useGetScreeningQuestions();
 
@@ -62,7 +64,9 @@ export const BaselineAssesment = ({
         answers,
         screeningSessionId: selectedSession.screeningSessionId,
         currentQuestionIndex: selectedSession.currentPosition - 1,
-        currentStep: "questions",
+        currentStep:
+          selectedSession.status === "completed" ? "completed" : "questions",
+        finalResult: selectedSession.finalResult,
       }));
     }
   }, [answers, selectedSession]);
@@ -79,8 +83,18 @@ export const BaselineAssesment = ({
     ? (Object.keys(state.answers).length / questions.length) * 100
     : 0;
 
+  // Check if user can start a new assessment
+  const canStartNewAssessment = !inProgressSession;
+
   // Start the assessment
   const handleStartAssessment = () => {
+    if (!canStartNewAssessment) {
+      toast.error(
+        "You have an assessment in progress. Please complete it before starting a new one."
+      );
+      return;
+    }
+
     createScreeningSessionMutation.mutate(undefined, {
       onSuccess: (sessionData) => {
         setState((prev) => ({
@@ -158,7 +172,14 @@ export const BaselineAssesment = ({
             }));
           } else {
             // Assessment completed
-            setState((prev) => ({ ...prev, currentStep: "completed" }));
+            setState((prev) => ({
+              ...prev,
+              currentStep: "completed",
+              finalResult: data.finalResult,
+            }));
+            queryClient.invalidateQueries({
+              queryKey: ["screening-sessions"],
+            });
           }
         },
         onError: (error) => {
@@ -262,23 +283,27 @@ export const BaselineAssesment = ({
                 <p className="small-text">~5 minutes</p>
               </div>
             </GridItem>
-            <GridItem md={8} lg={12}>
-              <Button
-                label="Start Assessment"
-                size="lg"
-                onClick={handleStartAssessment}
-                loading={createScreeningSessionMutation.isLoading}
-                disabled={createScreeningSessionMutation.isLoading}
-              />
-            </GridItem>
+            {canStartNewAssessment && (
+              <GridItem md={8} lg={12}>
+                <Button
+                  label={"Start Assessment"}
+                  size="lg"
+                  onClick={handleStartAssessment}
+                  loading={createScreeningSessionMutation.isLoading}
+                  disabled={createScreeningSessionMutation.isLoading}
+                  type="primary"
+                />
+              </GridItem>
+            )}
           </>
         )}
 
         {/* Questions Step */}
         {state.currentStep === "questions" && currentQuestion && (
           <>
-            {/* Progress Bar */}
             <GridItem md={8} lg={12} classes="baseline-assesment__progress">
+              <h4>{t("instructions")}</h4>
+
               <div className="baseline-assesment__progress__info">
                 <span className="small-text">
                   {t("question", {
@@ -302,7 +327,7 @@ export const BaselineAssesment = ({
             {/* Question */}
             <GridItem md={8} lg={12} classes="baseline-assesment__question">
               <div className="baseline-assesment__question__content">
-                <h3>{t(currentQuestion.questionText)}</h3>
+                <h4>{t(currentQuestion.questionText)}</h4>
               </div>
             </GridItem>
 
@@ -334,25 +359,7 @@ export const BaselineAssesment = ({
 
         {/* Completed Step */}
         {state.currentStep === "completed" && (
-          <>
-            <GridItem md={8} lg={12} classes="baseline-assesment__completed">
-              <h1>{t("assessment_completed")}</h1>
-              <p className="text">{t("assessment_completed_description")}</p>
-              <div className="baseline-assesment__completed__stats">
-                <ProgressBar progress={100} height="lg" showPercentage />
-                <p className="small-text">
-                  {Object.keys(state.answers).length} questions answered
-                </p>
-              </div>
-            </GridItem>
-            <GridItem md={8} lg={12}>
-              <Button
-                label={t("assessment_completed_button")}
-                size="lg"
-                onClick={() => (window.location.href = "/dashboard")}
-              />
-            </GridItem>
-          </>
+          <BaselineAssesmentResult result={state.finalResult} t={t} />
         )}
       </Grid>
     </Block>
