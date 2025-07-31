@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
@@ -61,11 +61,9 @@ export const PodcastView = ({ podcastData, t, language }) => {
 
   const { name } = useParams();
 
-  const [isShared, setIsShared] = React.useState(false);
-  const [contentRating, setContentRating] = React.useState(
-    podcastData.contentRating
-  );
-  const [hasUpdatedUrl, setHasUpdatedUrl] = React.useState(false);
+  const [isShared, setIsShared] = useState(false);
+  const [contentRating, setContentRating] = useState(podcastData.contentRating);
+  const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
 
   useEffect(() => {
     setHasUpdatedUrl(false);
