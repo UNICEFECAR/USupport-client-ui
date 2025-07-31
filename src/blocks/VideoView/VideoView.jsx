@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import propTypes from "prop-types";
@@ -59,10 +59,8 @@ export const VideoView = ({ videoData, t, language }) => {
 
   const { name } = useParams();
 
-  const [isShared, setIsShared] = React.useState(false);
-  const [contentRating, setContentRating] = React.useState(
-    videoData.contentRating
-  );
+  const [isShared, setIsShared] = useState(false);
+  const [contentRating, setContentRating] = useState(videoData.contentRating);
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
 
   useEffect(() => {
