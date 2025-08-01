@@ -2,5 +2,7 @@
   "more_videos": "Więcej filmów",
   "read_more_button": "Zobacz więcej",
   "not_found": "Film nie znaleziony",
-  "share_success": "Link do filmu został skopiowany do schowka"
+  "share_success": "Link do filmu został skopiowany do schowka",
+  "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
+  "cookie_preferences": "Preferencje plików cookie"
 }

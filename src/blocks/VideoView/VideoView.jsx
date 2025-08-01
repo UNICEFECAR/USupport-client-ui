@@ -1,19 +1,27 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import propTypes from "prop-types";
 
 import {
+  ActionButton,
   Block,
+  Button,
   Grid,
   GridItem,
   Label,
   Like,
-  ActionButton,
 } from "@USupport-components-library/src";
-import { useAddContentRating } from "#hooks";
 
 import { cmsSvc } from "@USupport-components-library/services";
+
+import {
+  ThemeContext,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
+
+import { useAddContentRating } from "#hooks";
 
 import "./video-view.scss";
 
@@ -54,6 +62,7 @@ const constructShareUrl = ({ contentType, id, name }) => {
  * @return {jsx}
  */
 export const VideoView = ({ videoData, t, language }) => {
+  const { cookieState, setCookieState } = useContext(ThemeContext);
   const queryClient = useQueryClient();
   const creator = videoData.creator ? videoData.creator : null;
 
@@ -62,6 +71,8 @@ export const VideoView = ({ videoData, t, language }) => {
   const [isShared, setIsShared] = useState(false);
   const [contentRating, setContentRating] = useState(videoData.contentRating);
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
+
+  const DISPLAY_VIDEO = cookieState.hasAcceptedAllCookies;
 
   useEffect(() => {
     setHasUpdatedUrl(false);
@@ -188,8 +199,29 @@ export const VideoView = ({ videoData, t, language }) => {
     });
   };
 
+  const handleOpenCookieBanner = () => {
+    setCookieState({
+      ...cookieState,
+      isBannerOpen: true,
+    });
+  };
+
   const renderVideoEmbed = () => {
     if (!videoData || !videoData.videoId) return null;
+
+    if (!DISPLAY_VIDEO) {
+      return (
+        <div className="video-view__cookie-banner">
+          <p>{t("require_cookies")}</p>
+          <Button
+            onClick={handleOpenCookieBanner}
+            color="purple"
+            size="sm"
+            label={t("cookie_preferences")}
+          />
+        </div>
+      );
+    }
 
     return (
       <div className="video-view__embed-container">

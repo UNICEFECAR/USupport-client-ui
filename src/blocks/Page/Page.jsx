@@ -79,8 +79,14 @@ export const Page = ({
   const IS_DEV = process.env.NODE_ENV === "development";
   const IS_RO = localStorage.getItem("country") === "RO";
 
-  const { theme, setTheme, setIsPodcastsActive, setIsVideosActive } =
-    useContext(ThemeContext);
+  const {
+    theme,
+    setTheme,
+    setIsPodcastsActive,
+    setIsVideosActive,
+    cookieState,
+    setCookieState,
+  } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const location = useLocation();
   const { t, i18n } = useTranslation("page");
@@ -556,6 +562,8 @@ export const Page = ({
         onClose={handleRegistrationModalClose}
       />
       <CookieBanner
+        cookieState={cookieState}
+        setCookieState={setCookieState}
         text={
           <Trans
             components={[

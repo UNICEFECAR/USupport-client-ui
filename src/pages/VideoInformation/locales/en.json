@@ -2,5 +2,7 @@
   "more_videos": "More videos",
   "read_more_button": "View more",
   "not_found": "Video not found",
-  "share_success": "Video link copied to clipboard"
+  "share_success": "Video link copied to clipboard",
+  "require_cookies": "To view this video, please accept all cookies.",
+  "cookie_preferences": "Cookie preferences"
 }
