@@ -15,7 +15,7 @@ import "./require-registration.scss";
  */
 export const RequireRegistration = ({ isOpen, onClose }) => {
   const navigateTo = useNavigate();
-  const { t } = useTranslation("require-registration");
+  const { t } = useTranslation("modals", { keyPrefix: "require-registration" });
 
   const handleRegisterRedirection = () => {
     userSvc.logout();

@@ -23,7 +23,9 @@ export const CancelConsultation = ({ isOpen, onClose, consultation }) => {
   const queryClient = useQueryClient();
   const currencySymbol = localStorage.getItem("currency_symbol");
 
-  const { t } = useTranslation("cancel-consultation");
+  const { t } = useTranslation("backdrops", {
+    keyPrefix: "cancel-consultation",
+  });
   const [error, setError] = useState();
 
   const { providerName, timestamp, image } = consultation;

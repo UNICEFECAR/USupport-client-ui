@@ -25,7 +25,9 @@ export const SaveAccessCodeConfirmation = ({
   ctaHandleClick,
   showToast,
 }) => {
-  const { t } = useTranslation("save-access-code-confirmation");
+  const { t } = useTranslation("modals", {
+    keyPrefix: "save-access-code-confirmation",
+  });
   const { theme } = useContext(ThemeContext);
 
   const [hasAgreed, setHasAgreed] = useState(false);

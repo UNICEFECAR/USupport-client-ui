@@ -34,7 +34,7 @@ export const CodeVerification = ({
   canRequestNewEmail,
   isMutating,
 }) => {
-  const { t } = useTranslation("code-verification");
+  const { t } = useTranslation("backdrops", { keyPrefix: "code-verification" });
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 

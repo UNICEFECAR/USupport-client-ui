@@ -49,7 +49,7 @@ export const CheckoutForm = ({
   consultationCreationTime,
   clientSecret,
 }) => {
-  const { t } = useTranslation("checkout-form");
+  const { t } = useTranslation("blocks", { keyPrefix: "checkout-form" });
   const navigate = useNavigate();
 
   const stripe = useStripe();

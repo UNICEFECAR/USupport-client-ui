@@ -30,7 +30,7 @@ export const QuestionDetails = ({
   handleScheduleClick,
   handleProviderClick,
 }) => {
-  const { t } = useTranslation("question-details");
+  const { t } = useTranslation("modals", { keyPrefix: "question-details" });
 
   const isInMyQuestions = question.isAskedByCurrentClient;
 

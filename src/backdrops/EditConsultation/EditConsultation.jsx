@@ -31,7 +31,7 @@ export const EditConsultation = ({
   const startDate = new Date(timestamp);
   const endDate = new Date(timestamp + ONE_HOUR);
 
-  const { t } = useTranslation("edit-consultation");
+  const { t } = useTranslation("backdrops", { keyPrefix: "edit-consultation" });
 
   const handleCancelClick = () => {
     onClose();

@@ -24,7 +24,7 @@ import "./forgot-password.scss";
  * @return {jsx}
  */
 export const ForgotPassword = () => {
-  const { t } = useTranslation("forgot-password");
+  const { t } = useTranslation("blocks", { keyPrefix: "forgot-password" });
 
   const [data, setData] = useState({ email: "" });
   const [errors, setErrors] = useState({});
