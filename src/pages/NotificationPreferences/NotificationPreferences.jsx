@@ -12,7 +12,9 @@ import "./notification-preferences.scss";
  * @returns {JSX.Element}
  */
 export const NotificationPreferencesPage = () => {
-  const { t } = useTranslation("notification-preferences-page");
+  const { t } = useTranslation("pages", {
+    keyPrefix: "notification-preferences-page",
+  });
   return (
     <Page
       heading={t("heading")}

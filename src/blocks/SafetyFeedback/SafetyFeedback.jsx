@@ -31,7 +31,9 @@ import "./safety-feedback.scss";
  */
 export const SafetyFeedback = ({ consultationId, answers = {} }) => {
   const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation("safety-feedback-block");
+  const { t } = useTranslation("blocks", {
+    keyPrefix: "safety-feedback-block",
+  });
   const navigate = useNavigate();
   const hasAnsweredBefore =
     Object.values(answers).filter((x) => x !== undefined).length === 11;

@@ -1,12 +1,172 @@
 {
   "blocks": {
-    "page": {},
-    "provider-overview": {},
-    "user-profile": {},
-    "sos-center": {},
-    "register-about-you": {},
-    "register-anonymous": {},
-    "register-support": {},
+    "page": {
+      "page_1": "Головна",
+      "page_2": "Консультації",
+      "page_3": "Інформаційний портал",
+      "page_4": "Q&A",
+      "page_5": "Організації",
+
+      "footer_1": "Головна",
+      "footer_2": "Консультації",
+      "footer_3": "Інформаційний портал",
+      "footer_4": "Ваш профіль",
+      "footer_5": "Умови й положення",
+      "footer_6": "Політика конфіденційності",
+      "footer_7": "Налаштування файлів cookie",
+      "footer_8": "Поширені запитання",
+
+      "emergency_button": "SOS-центр",
+
+      "button_text": "Перейти до додатку",
+      "contact_us": "Зв'яжіться з нами",
+      "your_profile_text": "Ваш профіль",
+
+      "password_placeholder": "Пароль",
+      "password": "Будь ласка, введіть Ваш пароль для доступу на сайт",
+      "wrong_password": "Невірний пароль",
+      "submit": "Надіслати",
+
+      "dark": "Темний",
+      "light": "Світлий",
+
+      "cookie_banner_header": "Ми цінуємо вашу конфіденційність",
+      "cookie_banner_text": "Цей вебсайт використовує файли cookie для покращення та захисту вашого перегляду. Використовуючи наш вебсайт, ви погоджуєтеся з нашою <0>Політикою щодо файлів cookie</0>.",
+      "accept_all_cookies": "Прийняти всі",
+      "reject_all_cookies": "Відхилити всі",
+      "accept_necessary_cookies": "Прийняти лише необхідні",
+      "save": "Зберегти"
+    },
+    "provider-overview": {
+      "earliest_slot_label": "Найперший доступний час для консультації",
+      "languages_label": "Мови",
+      "education_label": "Освіта",
+      "work_with_label": "Спеціалізація",
+      "specializations_label": "Спеціалізації",
+      "done_consultations_label": "Загальний обсяг проведених консультацій",
+      "description_label": "Про мене",
+      "edit_details": "Редагувати дані",
+      "change_password": "Змінити пароль",
+      "delete_account": "Видалити обліковий запис",
+      "no_available_slot": "Немає вільного слоту",
+      "consultations": "консультації",
+
+      "psychologist": "Психолог(иня)",
+      "psychiatrist": "Психіатр(иня)",
+      "psychotherapist": "Психотерапевт(ка)",
+
+      "addiction": "Залежність",
+      "stress": "Стрес",
+      "burnout": "Вигорання",
+      "eating_disorder": "Розлад харчової поведінки",
+      "depression": "Депресія",
+      "anxiety": "Тривога",
+      "panic_attack": "Панічний напад",
+      "relationship": "Відносини",
+      "personal_development": "Особистий розвиток",
+      "ptsd": "Посттравматичний стресовий розлад (ПТСР)",
+      "phobia": "Фобії",
+      "sexuality": "Сексуальність та проблеми інтимних стосунків",
+      "lgbtq": "Питання ЛГБТК+",
+      "goal": "Постановка цілей та особистий розвиток",
+      "emotional_intelligence": " Емоційний інтелект та регуляція",
+      "productivity": "Продуктивність та управління часом",
+      "self_care": "Практики самодопомоги",
+      "insomnia": "Безсоння та проблеми зі сном",
+      "motivation": "Мотивація та самовдосконалення",
+      "anger": "Управління гнівом",
+      "bullying": "Булінг та тиск з боку однолітків",
+      "grief": "Скорбота та втрати",
+      "gender_identity": "Гендерна ідентичність",
+      "family": "Сімейні та батьківські конфлікти",
+      "low_mood": "Поганий настрій та емоційне благополуччя",
+      "hiv": " ВІЛ/СНІД",
+      "loneliness": "Самотність та соціальна ізоляція",
+      "toxic_relationships": "Токсичні стосунки",
+      "love": "Любовні та романтичні стосунки",
+      "social_skills": "Соціальні навички та дружба",
+      "body_image": "Образ тіла та самооцінка",
+
+      "video_label": "Відеоряд",
+      "button_label": "Записатися на консультацію",
+      "hour_consultation": "за 1 годину консультації",
+      "free": "безкоштовно"
+    },
+    "user-profile": {
+      "your_profile": "Ваш профіль",
+      "guest": "Гість(гостя)",
+      "application_settings": "Налаштування програми",
+      "rate_share": "Ставка",
+      "other": "Інше",
+      "notifications_settings_button_label": "Налаштування сповіщень",
+      "rate_us_button_label": "Оцініть нас",
+      "share_button_label": "Поділитися додатком",
+      "contact_us_button_label": "Зв'яжіться з нами",
+      "privacy_policy_button_label": "Політика конфіденційності",
+      "FAQ_button_label": "Поширені запитання",
+      "mood_tracker_button_label": "Відстежувач настрою",
+      "payments_history_button_label": "Історія платежів",
+      "terms_of_use": "Умови використання",
+      "cookie_policy": "Політика щодо файлів cookie",
+      "user_guide": "Використання платформи"
+    },
+    "sos-center": {
+      "button_link": "Відвідати сайт",
+      "button_call": "Зв'яжіться з нами зараз",
+      "no_results": "Для обраної країни й мови немає результатів."
+    },
+    "register-about-you": {
+      "input_name_label": "Ім'я",
+      "input_name_placeholder": "Введіть ім'я",
+      "input_surname_label": "Прізвище",
+      "input_surname_placeholder": "Введіть прізвище",
+      "dropdown_sex_label": "Стать *",
+      "dropdown_year_label": "Рік народження *",
+      "living_place_label": "Місце проживання *",
+      "button_continue_label": "Продовжити",
+      "sex_male": "Чоловік",
+      "sex_female": "Жінка",
+      "sex_unspecified": "Не визначено",
+      "sex_none": "Волію не казати",
+      "place_of_living_urban": "Міський",
+      "place_of_living_rural": "Сільський",
+      "sex_error": "Будь ласка, введіть стать",
+      "year_of_birth_error": "Будь ласка, введіть рік народження",
+      "place_of_living_error": "Будь ласка, вкажіть місце проживання",
+      "sex_placeholder": "Введіть стать",
+      "year_of_birth_placeholder": "Введіть рік народження",
+      "living_place_placeholder": "Введіть місце проживання",
+      "parent": "Батько"
+    },
+    "register-anonymous": {
+      "nickname_label": "Нікнейм *",
+      "nickname_placeholder": "Введіть нікнейм",
+      "nickname_error": "Нікнейм обов'язковий",
+      "paragraph_1": "Ваш анонімний код доступу",
+      "password_label": "Пароль *",
+      "terms_agreement_text_1": "Погоджуюся, що",
+      "terms_agreement_text_2": "Політика конфіденційності",
+      "terms_agreement_text_3": "і",
+      "terms_agreement_text_4": "Умови використання",
+      "password_error": "Пароль має містити щонайменше 8 символів, 1 велику літеру, 1 малу літеру і 1 цифру",
+      "register_button_label": "Зареєструватися",
+      "login_button_label": "Вже маю обліковий запис",
+      "copy_text": "Скопіюйте та збережіть або запишіть анонімний код, бо якщо Ви його втратите, то більше не зможете отримати доступ до облікового запису.",
+      "copy_success": "Код скопійовано",
+      "confirm_password_label": "Підтвердити пароль",
+      "password_match_error": "Поля «Пароль» і «Підтвердити пароль» не збігаються",
+      "age_terms_agreement_text_1": "Мені більше {{age}} років"
+    },
+    "register-support": {
+      "button_continue_label": "Продовжити",
+      "answer_yes_label": "Так, я хочу отримати консультацію",
+      "answer_no_label": "Ні",
+      "modal_heading": "Чи даєте дозвіл на обробку персональних даних?",
+      "modal_paragraph": "Щоб надати доступ до консультацій, потрібен дозвіл на обробку персональних даних. Змінити налаштування завжди можна у профілі.",
+      "modal_cta_1": "Даю дозвіл",
+      "modal_cta_2": "Скасувати",
+      "error": "* Щоб отримати доступ до консультацій, Ви маєте надати дозвіл на обробку персональних даних."
+    },
     "contact-us-block": {
       "issue": "Проблема",
       "issue_placeholder": "Виберіть проблему",
@@ -25,16 +185,44 @@
       "contact_reason_2": "Мені потрібна додаткова інформація про послуги, що надаються через платформу",
       "contact_reason_3": "Я клієнт(ка), і у мене виникла технічна проблема",
       "contact_reason_4": "Ще дещо.",
-      "contact_reason_1_pl": "Информация о uSupport",
-      "contact_reason_2_pl": "Техническая проблема",
-      "contact_reason_3_pl": "Жалоба",
-      "contact_reason_4_pl": "Прочее",
+      "contact_reason_1_pl": "Інформація про uSupport",
+      "contact_reason_2_pl": "Технічна проблема",
+      "contact_reason_3_pl": "Скарга",
+      "contact_reason_4_pl": "Інше",
       "contact_form": "Контактна форма"
     },
-    "select-provider": {},
-    "notification-preferences": {},
-    "platform-rating": {},
-    "share-platform": {},
+    "select-provider": {
+      "psychologist": "Психолог(иня)",
+      "psychiatrist": "Психіатр(иня)",
+      "psychotherapist": "Психотерапевт(ка)",
+      "no_match": "Немає консультантів(ок), що відповідають Вашим критеріям",
+      "free": "Безкоштовно",
+      "coupon": "Купон",
+      "earliest_available_slot": "Перша доступна консультація:",
+      "sunday": "Нд",
+      "monday": "Пн",
+      "tuesday": "Вт",
+      "wednesday": "Ср",
+      "thursday": "Чт",
+      "friday": "Пт",
+      "saturday": "Сб"
+    },
+    "notification-preferences": {
+      "email": "Сповіщення електронною поштою",
+      "appointment": "Сповіщення про зустрічі",
+      "minutes_before": "за кілька хвилин до того.",
+      "success": "Налаштування сповіщень збережено"
+    },
+    "platform-rating": {
+      "rating_label": "Оцініть нас",
+      "textarea_label": "Ваш коментар",
+      "textarea_placeholder": "Залиште коментар тут",
+      "button_label": "Надішліть оцінку",
+      "success": "Рейтинг відправлено"
+    },
+    "share-platform": {
+      "button_label_share_text": "Поділіться на"
+    },
     "forgot-password": {
       "error_email_message": "Будь ласка, введіть електронну адресу",
       "input_email_label": "Електронна пошта",
@@ -74,8 +262,26 @@
       "free": "Безкоштовно",
       "coupon": "Купон"
     },
-    "login": {},
-    "welcome": {},
+    "login": {
+      "email_label": "Електронна пошта / Токен доступу",
+      "email_placeholder": "Введіть електронну адресу або токен доступу",
+      "password_label": "Пароль",
+      "password_placeholder": "Введіть пароль",
+      "forgot_password_label": "Я забув(ла) пароль",
+      "login_label": "Логін",
+      "paragraph": "Або увійдіть за допомогою:",
+      "register_button_label": "Я не маю облікового запису.",
+      "client": "Клієнт",
+      "heading": "Ласкаво просимо до"
+    },
+    "welcome": {
+      "heading": "Ласкаво просимо до",
+      "country": "Країна",
+      "language": "Мова",
+      "placeholder": "Виберіть",
+      "button": "Продовжити",
+      "client": "Клієнт"
+    },
     "articles": {
       "heading": "Інформаційний портал",
       "no_results": "Не знайдено жодного результату",
@@ -100,19 +306,100 @@
       "error": "Будь ласка, введіть пропозицію",
       "send_success_text": "Ваша пропозиція успішно надіслана"
     },
-    "register-preview": {},
-    "register-email": {},
-    "privacy-policy": {},
+    "register-preview": {
+      "register_email": "Зареєструйтеся за допомогою електронної пошти",
+      "register_anonymously": "Зареєструватися без електронної пошти",
+      "continue_as_guest": "Продовжити без реєстрації",
+      "heading_1": "Про платформу",
+      "text_1": "Платформа, яка поважає Вашу конфіденційність і безпеку. Ваш добробут — наш пріоритет! uSupport надає персоналізовану й ненав'язливу психологічну допомогу.",
+      "heading_2": "Про підтримку",
+      "text_2": "USupport — це платформа з питань психічного здоров'я, психосоціального розвитку та благополуччя, розроблена для молодих людей і їхніх опікунів, для яких конфіденційність і безпека є пріоритетом. ",
+      "heading_3": "Про Вас",
+      "text_3": "Будьте найкращою версією себе! Ментальне здоров'я має значення.",
+      "login": "Увійдіть за допомогою електронної пошти/токена доступу"
+    },
+    "register-email": {
+      "email_error": "Будь ласка, введіть дійсну електронну адресу",
+      "password_error": "Пароль має містити щонайменше 8 символів, 1 велику літеру, 1 малу літеру і 1 цифру",
+      "email_label": "Електронна пошта *",
+      "nickname_label": "Нікнейм *",
+      "nickname_placeholder": "Введіть нікнейм",
+      "nickname_error": "Нікнейм обов'язковий",
+      "password_label": "Пароль *",
+      "terms_agreement_text_1": "Погоджуюся, що",
+      "terms_agreement_text_2": "Політика конфіденційності",
+      "terms_agreement_text_3": "і",
+      "terms_agreement_text_4": "Умови використання",
+      "register_button": "Зареєструватися",
+      "paragraph": "Або зареєструватися на сайті:",
+      "login_button_label": "Вже маю обліковий запис",
+      "confirm_password_label": "Підтвердити пароль",
+      "password_match_error": "Поля «Пароль» і «Підтвердити пароль» не збігаються",
+      "age_terms_agreement_text_1": "Мені більше {{age}} років"
+    },
+    "privacy-policy": {
+      "no_results": "Для обраної країни й мови немає результатів."
+    },
     "faq": {
       "no_results": "Результатів не знайдено.",
       "search": "Пошук"
     },
-    "user-details": {},
-    "reset-password": {},
+    "user-details": {
+      "access_token": "Ваш анонімний код доступу",
+      "change_photo": "Змінити фото",
+      "nickname": "Нікнейм",
+      "nickname_placeholder": "Введіть нікнейм",
+      "nickname_error": "Нікнейм обов'язковий",
+      "email": "Електронна пошта",
+      "email_placeholder": "Введіть електронну адресу",
+      "name": "Ім'я",
+      "name_placeholder": "Введіть ім'я",
+      "surname": "Прізвище",
+      "surname_placeholder": "Введіть прізвище",
+      "email_error": "Будь ласка, введіть дійсну адресу електронної пошти",
+      "sex": "Стать",
+      "year_of_birth": "Рік народження",
+      "country": "Країна",
+      "living_place": "Місце проживання",
+      "button_text": "Зберегти зміни",
+      "button_secondary_text": "Відкинути зміни",
+      "privacy": "Конфіденційність і безпека",
+      "consent": "Згода на використання персональних даних відповідно до <0>Політики конфіденційності</0>.",
+      "change_password": "Змінити пароль",
+      "delete_account": "Видалити обліковий запис",
+      "logout": "Вийти з системи",
+      "delete_chat": "Очистити історію чату",
+
+      "dropdown_sex_label": "Стать",
+      "dropdown_year_label": "Рік народження",
+      "sex_male": "Чоловік",
+      "sex_female": "Жінка",
+      "sex_unspecified": "Не визначено",
+      "sex_none": "Волію не казати",
+      "place_of_living_urban": "Міський",
+      "place_of_living_rural": "Сільський",
+      "data_processing_modal_heading": "Впевнені, що хочете видалити дозвіл на використання персональних даних, як визначено в <0>Політиці конфіденційності</0>?",
+      "data_processing_modal_text": "Ви не зможете запланувати подальші консультації.",
+      "data_processing_modal_confirm_button": "Видалити дозвіл",
+      "data_processing_modal_cancel_button": "Скасувати",
+      "success_message": "Профіль оновлено",
+      "sex_placeholder": "Введіть стать",
+      "year_of_birth_placeholder": "Введіть рік народження",
+      "living_place_placeholder": "Введіть місце проживання",
+      "parent": "Батько"
+    },
+    "reset-password": {
+      "label": "Новий пароль",
+      "placeholder": "Введіть новий пароль",
+      "submit": "Надіслати",
+      "password_error": "Пароль має містити щонайменше 8 символів, 1 велику літеру, 1 малу літеру і 1 цифру"
+    },
     "cookie-policy": {
       "no_results": "Для обраної країни й мови немає результатів."
     },
-    "terms-of-use": {},
+    "terms-of-use": {
+      "no_results": "Для обраної країни й мови немає результатів."
+    },
     "activity-history": {
       "button_label": "Записатися на консультацію",
       "search": "Пошук",
@@ -164,8 +451,50 @@
       "november": "Листопад",
       "december": "Грудень"
     },
-    "mood-tracker": {},
-    "mascot-welcome-header": {},
+    "mood-tracker": {
+      "happy": "Щастя",
+      "good": "Добре",
+      "sad": "Сум",
+      "depressed": "Пригнічення",
+      "worried": "Хвилювання",
+      "heading": "Як Ви почуваєтеся сьогодні?",
+      "mood_tracker": "Відстежувач настрою",
+      "additional_comment_placeholder": "Що змусило Вас відчути це?",
+      "submit_mood_track": "Надіслати",
+      "add_mood_tracker_success": "Щоденний настрій додано"
+    },
+    "mascot-welcome-header": {
+      "welcome": "Вітаємо з поверненням, {{name}}!",
+      "no_registration_heading": "Ви використовуєте додаток без реєстрації",
+      "no_registration_subheading": "Щоб користуватися всіма функціями додатку, потрібно мати анонімний або звичайний обліковий запис.",
+      "create_account_button": "Створити обліковий запис",
+      "next_consultation": "Наступна консультація:",
+      "change_button_label": "Зміна",
+      "accept_button_label": "Погодитися на консультацію",
+      "join_button_label": "Приєднатися",
+      "schedule_button_label": "Розклад",
+      "live_label": "Зараз",
+      "no_consultations": "Наразі найближчих консультацій немає",
+      "free": "Безкоштовно",
+      "ordinal_st": "-ий",
+      "ordinal_nd": "-ий",
+      "ordinal_rd": "-ій",
+      "ordinal_th": "-ий",
+      "january": "Січень",
+      "february": "Лютий",
+      "march": "Березень",
+      "april": "Квітень",
+      "may": "Травень",
+      "june": "Червень",
+      "july": "Липень",
+      "august": "Серпень",
+      "september": "Вересень",
+      "october": "Жовтень",
+      "november": "Листопад",
+      "december": "Грудень",
+      "coupon": "Купон",
+      "explore_button_label": "Дослідити"
+    },
     "activity-log-dashboard": {
       "heading": "Журнал активності",
       "view_all": "Переглянути всі"
@@ -180,9 +509,65 @@
       "by": "Від {{creator}}",
       "number_of_more_options": "ще {{count}} "
     },
-    "mood-tracker-history": {},
-    "notifications": {},
-    "safety-feedback-block": {},
+    "mood-tracker-history": {
+      "heading": "Загалом за останні 30 днів Ви відчували {{feeling}}",
+      "perfect": "Чудово.",
+      "happy": "Щастя",
+      "sad": "Сум",
+      "depressed": "Пригнічення",
+      "worried": "Хвилювання",
+      "last_thirty_days_text": "Протягом останніх 30 днів Ви повідомляли про те, що відчували:",
+      "time": "раз",
+      "times": "разів"
+    },
+    "notifications": {
+      "heading": "Сповіщення",
+      "mark_read": "Позначте все як прочитане",
+      "consultation_booking": "Консультацію з {{providerName}} заплановано на {{date}} з {{startHour}} до {{endHour}}",
+      "consultation_reschedule": "Консультацію на {{date}} з {{startHour}} до {{endHour}} перенесено на {{newDate}} з {{newStartHour}} до {{newEndHour}}",
+      "consultation_cancellation": "Консультацію з {{providerName}}, заплановану на {{date}} з {{startHour}} до {{endHour}}, скасовано",
+      "consultation_cancellation_provider": "Консультант(ка) {{providerName}} скасував(ла) консультацію, заплановану на {{date}} з {{startHour}} на {{endHour}}",
+      "consultation_remind_start": "Наступна консультація за {{minutes}} хвилин",
+      "consultation_suggestion": "{{providerName}} запропонував(ла) консультацію на сайті {{date}} від {{startHour}} до {{endHour}}",
+      "consultation_suggestion_booking": "Ви прийняли запропоновану консультацію від {{providerName}} на {{date}} від {{startHour}} до {{endHour}}",
+      "consultation_suggestion_cancellation": "Ви відхилили запропоновану консультацію з {{providerName}} на {{date}} з {{startHour}} на {{endHour}}",
+      "consultation_started": "Ваша консультація з консультантом(кою)(кою) {{providerName}} розпочалася",
+      "question_answered": "{{providerName}} відповів(ла) на ваше питання",
+      "join": "Приєднатися",
+      "accept": "Прийняти",
+      "accept_consultation_success": "Консультацію прийнято",
+      "reject": "Відхилити",
+      "reject_consultation_success": "Консультацію відхилено",
+      "no_notifications": "Ще немає сповіщень.",
+      "yesterday": "вчора"
+    },
+    "safety-feedback-block": {
+      "heading": "Це важливо. Будь ласка, прочитайте й заповніть",
+      "subheading": "Будь ласка, дайте правдиві відповіді на всі запитання.",
+      "warning": "Відповідаючи, Ви заявляєте, що ця заява є правдивою, і Ви робите її, знаючи, що надання свідомо неправдивої заяви є правопорушенням.",
+      "q0": "Чи був/ла консультант/ка присутня/ій на сеансі?",
+      "q1": "Чи просив(ла) консультант(ка) розкрити адресу й контактні дані? ",
+      "q2": "Чи просив(ла) консультант(ка) зустрітися з ним поза системою (особисто або в іншому додатку)?",
+      "q3": "Чи просив(ла) Вас консультант(ка) надіслати фотографії або увімкнути відео?",
+      "q4": "Чи відчували Ви себе в небезпеці під час сесії? ",
+      "q5": "Які Ваші враження після консультації?",
+      "q6": "Чи був Ваш запит адресований належним чином?",
+      "q7": "Чи розумієте Ви як поліпшити своє самопочуття? 1-10, де 10 - зовсім ні, 1 - так, все дуже чітко)",
+      "q8": "Порівняйте, як Ви почуваєтесь зараз, з тим, як почувались до початку сесії. ",
+      "q9": "Хочете ще щось додати?",
+      "more_details_label": "Якщо так, будь ласка, поясніть чому",
+      "more_details_placeholder": "Більше деталей тут.",
+      "yes": "Так",
+      "no": "Ні",
+      "button": "Надіслати відгук",
+      "continue_button": "Зберігайте відповіді",
+
+      "very_satisfied": "Дуже задоволена/ий",
+      "satisfied": "Задоволена/ий",
+      "neutral": "Нейтрально",
+      "dissatisfied": "Незадоволена/ий",
+      "very_dissatisfied": "Дуже незадоволена/ий"
+    },
     "checkout-form": {
       "payment_succeded": "Платіж пройшов",
       "payment_processing": "Не вдалося зробити платіж",
@@ -196,57 +581,460 @@
       "consultation_timeout": "Бронювання скасовано через неактивність. Будь ласка, запишіться на консультацію ще раз.",
       "continue_button": "Продовжити"
     },
-    "payment-history-block": {},
-    "payment-status-block": {},
-    "mood-track-history": {},
-    "mascot-header-MyQA": {},
-    "my-qa": {},
-    "videos": {},
-    "organizations": {},
-    "organization-overview": {}
+    "payment-history-block": {
+      "service": "Сервіс",
+      "price": "Ціна",
+      "date_of_payment": "Дата платежу",
+      "more_details": "Детальніша інформація",
+      "no_data_found": "Ще немає жодних платежів",
+      "text_audio_video_consultation": "Онлайн-консультація",
+      "export_label": "Експорт"
+    },
+    "payment-status-block": {
+      "payment_succeded_heading": "Платіж пройшов.",
+      "payment_succeded_subheading": "Дякуємо за покупку. Консультацію заплановано на {{consultationDate}} за адресою {{consultationTime}}.",
+
+      "payment_processing_heading": "Платіж обробляється.",
+      "payment_processing_subheading": "Платіж обробляється, будь ласка, зачекайте хвилинку.",
+
+      "payment_requires_payment_method_heading": "Платіж не пройшов, будь ласка, спробуйте ще раз.",
+      "payment_requires_payment_method_subheading": "При спробі обробити платіж виникла проблема. Просимо вибачення за це.",
+
+      "payment_failed_heading": "Платіж не пройшов, будь ласка, спробуйте ще раз.",
+      "payment_failed_subheading": "При спробі обробити платіж виникла проблема. Просимо вибачення за це.",
+
+      "continue_button_label": "Продовжити",
+      "try_again_button_label": "Спробуйте ще раз."
+    },
+    "mood-track-history": {
+      "happy": "Щастя",
+      "good": "Добре",
+      "sad": "Сум",
+      "depressed": "Пригнічення",
+      "worried": "Хвилювання",
+      "you_felt": "Ви відчули",
+      "comment_text": "і прокоментували:",
+      "no_result": "Результатів не знайдено."
+    },
+    "mascot-header-MyQA": {
+      "heading": "Мої запитання й відповіді",
+      "subheading_its": "Це",
+      "subheading_anonymous": "АНОНІМНО",
+      "subheading_text1": "Ваші запитання",
+      "subheading_not": "НЕ",
+      "subheading_text2": "пов'язане з Вами. Відповіді будуть публічними, тож Ви зможете побачити проблеми, з якими стикаються й інші.",
+      "how_it_works": "Подивіться, як це працює"
+    },
+    "my-qa": {
+      "ask_button_label": "Запитати анонімно",
+      "answer_by": "Відповідає",
+      "schedule_consultation": "Записатися на консультацію",
+      "today": "Сьогодні",
+      "archive": "Архів",
+      "respond": "Відгукнутися",
+      "read_more": "Читати далі",
+      "all": "Усі",
+      "all_languages": "Усі мови",
+      "most_popular": "Найпопулярніше",
+      "newest": "Найновіше",
+      "your_questions": "Ваше запитання",
+      "search_placeholder": "Пошук",
+      "filter": "Фільтрувати теґи",
+      "no_answers_found": "Немає відповідей на запитання",
+      "language": "Мова"
+    },
+    "videos": {
+      "view_more": "Переглянути більше",
+      "all": "Усі",
+      "could_not_load_content": "Не вдалося завантажити вміст.",
+      "no_results": "Результатів не знайдено",
+      "number_of_more_options": "ще {{count}}"
+    },
+    "organizations": {
+      "in_person_interaction": "Особисто",
+      "online_interaction": "Онлайн",
+      "phone_interaction": "Телефон",
+      "hybrid_interaction": "Гібридно",
+
+      "free_services": "Безкоштовні послуги",
+      "paid_services": "Платні послуги",
+      "co_payment_services": "Послуги з доплатою",
+      "cnas_reimbursed_services": "Послуги, що відшкодовуються CNAS",
+
+      "violence_victim_helpline": "Гаряча лінія для жертв насильства",
+      "individual_psychotherapy": "Індивідуальна психотерапія",
+      "social_information_counseling": "Соціальна інформація та консультування",
+      "rehab_psycho_neuro_children": "Реабілітація та відновлення для дітей з психоневрологічними розладами",
+      "individual_psychological_counseling": "Індивідуальне психологічне консультування",
+      "personal_development_counseling": "Консультування з особистісного розвитку",
+      "child_helpline": "Гаряча лінія для дітей",
+      "speech_therapy": "Логопедія",
+      "suicide_prevention_helpline": "Гаряча лінія з питань запобігання самогубству",
+      "child_psychiatry": "Дитяча психіатрія",
+      "group_psychological_counseling": "Групове психологічне консультування",
+      "sport_recreational_activities": "Спортивно-розважальні заходи (спорт, ігри, танці)",
+      "rehab_autism_children": "Реабілітація та відновлення для дітей з аутизмом",
+      "art_recreational_activities": "Творчі розважальні заходи (театр, музика, поезія, живопис, розповіді)",
+      "addiction_helpline": "Гаряча лінія з питань залежності",
+      "group_psychotherapy": "Групова психотерапія",
+
+      "sector_1": "Сектор 1",
+      "sector_2": "Сектор 2",
+      "sector_3": "Сектор 3",
+      "sector_4": "Сектор 4",
+      "sector_5": "Сектор 5",
+      "sector_6": "Сектор 6",
+
+      "aggression_violence_victim_or_aggressor": "Агресія/насильство — жертва або агресор",
+      "learning_difficulties_special_educational_needs": "Труднощі навчання / особливі освітні потреби",
+      "behavioral_disorder": "Поведінковий розлад",
+      "eating_disorder": "Розлад харчової поведінки",
+      "suicide_self_harm": "Самогубство / самопошкодження",
+      "addiction": "Залежність",
+      "identity_issues": "Проблеми ідентичності",
+      "illness_oncological_treatment_chronic_diseases": "Хвороба (онкологічне лікування, хронічні захворювання)",
+      "other_situations": "Інші ситуації",
+
+      "public": "Державний",
+      "private": "Приватний",
+      "ong": "Громадська організація",
+      "public_private": "Державно-приватний",
+
+      "work_with_placeholder": "Оберіть категорії роботи",
+      "specialisations_placeholder": "Оберіть запропоновані послуги",
+      "district_placeholder": "Оберіть сектор",
+      "payment_methods_placeholder": "Оберіть способи оплати",
+      "user_interactions_placeholder": "Оберіть режими взаємодії",
+      "property_types_placeholder": "Оберіть типи установ",
+      "search_placeholder": "Пошук за назвою організації",
+
+      "no_data_found": "Дані не знайдені",
+      "reset_filters": "Скинути фільтри",
+
+      "view_organization_details": "Переглянути деталі організації",
+      "address": "Адреса",
+      "phone": "Телефон",
+      "email": "Електронна пошта"
+    },
+    "organization-overview": {
+      "error_loading_data": "Під час завантаження даних організації сталася помилка",
+      "other_services_label": "Інші послуги",
+      "address_label": "Адреса",
+      "sector_label": "Район",
+      "payment_methods_label": "Способи оплати",
+      "user_interactions_label": "Режими взаємодії",
+      "property_types_label": "Тип нерухомості",
+      "work_with_label": "Працюємо з",
+      "offered_services_label": "Пропоновані послуги",
+      "providers_label": "Надійники",
+
+      "violence_victim_helpline": "Телефон довіри для жертв насильства",
+      "individual_psychotherapy": "Індивідуальна психотерапія",
+      "social_information_counseling": "Соціальна інформація та консультування",
+      "rehab_psycho_neuro_children": "Реабілітація та відновлення дітей з психо‑нейро‑руховими розладами",
+      "individual_psychological_counseling": "Індивідуальне психологічне консультування",
+      "personal_development_counseling": "Консультування з особистісного розвитку",
+      "child_helpline": "Дитячий телефон довіри",
+      "speech_therapy": "Логопедична терапія",
+      "suicide_prevention_helpline": "Телефон довіри щодо запобігання суїциду",
+      "child_psychiatry": "Дитяча психіатрія",
+      "group_psychological_counseling": "Групове психологічне консультування",
+      "sport_recreational_activities": "Спортивно‑рекреаційні заходи (спорт, ігри, танці)",
+      "rehab_autism_children": "Реабілітація та відновлення дітей з аутизмом",
+      "art_recreational_activities": "Мистецькі рекреаційні заходи (театр, музика, поезія, живопис, оповідання)",
+      "addiction_helpline": "Телефон довіри для залежностей",
+      "group_psychotherapy": "Групова психотерапія",
+
+      "emergency_situations": "Надзвичайні ситуації",
+      "pediatric_psychiatry": "Дитяча психіатрія",
+      "psychological_evaluation": "Психологічне оцінювання",
+      "psychological_counseling": "Психологічне консультування",
+      "support_groups": "Групи підтримки",
+      "social_assistance_and_counseling": "Соціальна допомога і консультування",
+      "personal_development": "Особистісний розвиток",
+      "vocational_counseling_and_career_guidance": "Професійне консультування та орієнтація у кар’єрі",
+      "occupational_therapy_ergotherapy": "Трудотерапія/ерготерапія",
+      "physiotherapy_physical_recovery": "Фізіотерапія/фізична реабілітація",
+      "autism_spectrum_disorder_therapies": "Терапії при аутистичному спектрі розладів",
+      "disability_assessment": "Оцінка інвалідності",
+      "pediatric_neurology": "Дитяча неврологія",
+      "special_psychopedagogy": "Спеціальна психопедагогіка",
+      "neuropsychomotor_recovery": "Нейропсихомоторна реабілітація",
+
+      "in_person_interaction": "Особисто",
+      "online_interaction": "Онлайн",
+      "phone_interaction": "Телефоном",
+      "hybrid_interaction": "Гібридно",
+
+      "free_services": "Безкоштовні послуги",
+      "paid_services": "Платні послуги",
+      "co_payment_services": "Співоплатні послуги",
+      "cnas_reimbursed_services": "Послуги, компенсовані CNAS",
+
+      "public": "Публічний",
+      "private": "Приватний",
+      "ong": "НУО",
+      "public_private": "Публічно‑приватний",
+
+      "sector_1": "Сектор 1",
+      "sector_2": "Сектор 2",
+      "sector_3": "Сектор 3",
+      "sector_4": "Сектор 4",
+      "sector_5": "Сектор 5",
+      "sector_6": "Сектор 6",
+
+      "aggression_violence_victim_or_aggressor": "Агресія/насильство – жертва чи агресор",
+      "learning_difficulties_special_educational_needs": "Труднощі в навчанні/Спеціальні освітні потреби",
+      "behavioral_disorder": "Поведінковий розлад",
+      "eating_disorder": "Розлад харчової поведінки",
+      "suicide_self_harm": "Самогубство/Самопошкодження",
+      "addiction": "Залежність",
+      "identity_issues": "Проблеми ідентичності",
+      "illness_oncological_treatment_chronic_diseases": "Хвороба (онкологічне лікування, хронічні захворювання)",
+      "other_situations": "Інші ситуації",
+
+      "copy_link_success": "Посилання скопійовано до буфера обміну!"
+    }
   },
   "pages": {
-    "provider-overview-page": {},
-    "user-profile-page": {},
-    "not-found-page": {},
-    "contact-us-page": {},
-    "sos-center-page": {},
-    "select-provider-page": {},
-    "register-about-you-page": {},
-    "platform-rating-page": {},
-    "share-platform-page": {},
-    "register-anonymous-page": {},
-    "register-support-page": {},
-    "notification-preferences-page": {},
-    "forgot-password-page": {},
-    "consultations-page": {},
-    "login-page": {},
-    "articles-page": {},
-    "article-information": {},
-    "information-portal": {},
+    "provider-overview-page": {
+      "heading": "Огляд консультантів(ок)",
+      "subheading": "Детальний огляд профілю обраного(ї) консультанта(ки)",
+      "button_label": "Записатися на консультацію"
+    },
+    "user-profile-page": {
+      "heading": "Ваш профіль",
+      "subheading": "Тут можна знайти всю потрібну інформацію для налаштування профілю й облікового запису.",
+      "button_label": "Вийти з системи"
+    },
+    "not-found-page": {
+      "heading": "Ой! Ми не можемо знайти сторінку, яку шукаєте...",
+      "subheading": "Здається, ця сторінка відсутня або наразі недоступна.",
+      "button": "Перейти на головну сторінку"
+    },
+    "contact-us-page": {
+      "heading": "Зв'яжіться з нами",
+      "subheading": "Тут можна повідомити про технічні проблеми."
+    },
+    "sos-center-page": {
+      "heading": "Надзвичайна ситуація",
+      "subheading": "Терміново потрібна допомога? Будь ласка, прямо зараз зв'яжіться з одним із перелічених центрів."
+    },
+    "select-provider-page": {
+      "heading": "Виберіть консультантів(ок) ",
+      "subheading": "Виберіть бажаного(у) консультанта(ку), з яким(ою) хочете спілкуватися за допомогою відео, аудіо або тексту. Іноді щоб знайти консультанта(ку), який(а) добре відповідає Вашим потребам і бажаному підходу, може знадобитися кілька сеансів.",
+      "button_label": "Фільтр",
+      "button_coupon_label": "Використати купон",
+      "modal_coupon_heading": "Щоб скористатися купоном, введіть його номер",
+      "modal_coupon_button_label": "Надіслати купон",
+      "modal_coupon_input_label": "Номер купона",
+      "modal_coupon_input_placeholder": "КУПОН1",
+      "heading_with_coupon": "Виберіть консультантів(ок) для використання купона: {{coupon}}",
+      "remove_coupon_label": "Видалити купон",
+      "coupon_paragraph": "Купони надають \"безкоштовні\" сеанси та спонсоруються нашими партнерами.",
+      "coupon_paragraph_two": "Якщо Ви отримали код купона від кампанії в соціальних мережах або від партнера, скопіюйте та вставте його нижче. Після введення коду купона Ви побачите всіх консультантів(ок), які його обслуговують, і їхню доступність. Купон може передбачати одну або кілька сесій. Платформа покаже, чи закінчився термін дії купона, чи всі сесії використано.",
+      "max_price": "Максимальна ціна",
+      "providers_free_consultation_label": "Тільки безкоштовна консультація"
+    },
+    "register-about-you-page": {
+      "heading_1": "Розкажіть більше про себе",
+      "heading_2": "Про Вас"
+    },
+    "platform-rating-page": {
+      "heading": "Хочете оцінити нас?",
+      "subheading": "Рахуватимемо зірки. Будьмо чесНі Розкажіть, як ставитеся до цієї платформи. Оцініть нас і залиште коментар."
+    },
+    "share-platform-page": {
+      "heading": "Поділитися додатком",
+      "subheading": "Поділіться додатком у соціальних мережах і дайте можливість більшій кількості людей допомогти їм."
+    },
+    "register-anonymous-page": {
+      "heading": "Зареєструйтесь анонімно",
+      "subheading": "Ви будете зареєстровані анонімно. Ми жодним чином не пов'язуємо цей обліковий запис із фізичною особою."
+    },
+    "register-support-page": {
+      "heading_1": "Потрібна підтримка?",
+      "heading_2": "Вам потрібна підтримка прямо зараз?"
+    },
+    "notification-preferences-page": {
+      "heading": "Налаштування сповіщень",
+      "subheading": "Тут можна керувати типом сповіщень, які Ви хочете отримувати, або Ні"
+    },
+    "forgot-password-page": {
+      "heading": "Щоб скинути пароль, введіть електронну адресу"
+    },
+    "consultations-page": {
+      "header": "Консультації",
+      "button_label": "Записатися на консультацію",
+      "reject_consultation_success": "Консультацію відхилено",
+      "accept_consultation_success": "Консультацію прийнято"
+    },
+    "login-page": {
+      "heading_1": "Вітаємо з поверненням, раді знову Вас бачити",
+      "heading_2": "Вітаємо з поверненням!"
+    },
+    "articles-page": {
+      "heading": "Статті",
+      "heading_default": "Всі статті",
+      "heading_newest": "Найновіші статті",
+      "heading_most_read": "Найпопулярніші статті",
+      "subheading_default": "Всі статті можна знайти тут",
+      "subheading_newest": "Тут можна знайти найновіші статті",
+      "subheading_most_read": "Тут можна знайти найпопулярніші статті з усіх категорій"
+    },
+    "article-information": {
+      "heading": "Більше статей",
+      "no_results": "Для поточної вибраної мови немає схожих статей. ",
+      "read_more_button": "Читати далі",
+      "min_read": "хв читання",
+      "by": "Від {{creator}}",
+      "share_title": "Поділитися цією статтею",
+      "share_success": "Посилання скопійовано в буфер обміну!",
+      "copy_link": "Скопіювати посилання",
+      "export_failed": "Експорт не вдався. Будь ласка, спробуйте ще раз."
+    },
+    "information-portal": {
+      "heading": "Інформаційний портал",
+      "subheading": "Тут можна ознайомитися зі всім, що потрібно для покращення психічного здоров'я",
+      "heading_newest": "Найновіші статті",
+      "heading_popular": "Найпопулярніше",
+      "heading_no_language_results": "Ми не змогли знайти жодної статті вибраною Вами мовою.",
+      "view_all": "Переглянути всі",
+      "read_more_button": "Читати далі",
+      "min_read": "хв читання",
+      "by": "Від {{creator}}",
+      "articles": "Статті",
+      "videos": "Відео",
+      "heading_newest_videos": "Найновіші відео",
+      "heading_popular_videos": "Найпопулярніші відео",
+      "no_results": "Нічого не знайдено",
+      "heading_newest_podcasts": "Найновіші аудіобаки",
+      "heading_popular_podcasts": "Найпопулярніші аудіобаки",
+      "podcasts": "Аудіобаки",
+      "view_more": "Більше переглянути"
+    },
     "register-preview-page": {},
-    "register-email-page": {},
-    "privacy-policy-page": {},
-    "faq-page": {},
-    "user-details-page": {},
-    "reset-password-page": {},
+    "register-email-page": {
+      "heading": "Зареєструйтеся за допомогою електронної пошти в службі підтримки"
+    },
+    "privacy-policy-page": {
+      "heading": "Політика конфіденційності"
+    },
+    "faq-page": {
+      "heading": "Поширені запитання",
+      "subheading": "Тут можна знайти відповіді на поширені запитання. Якщо Ваше запитання не вказане тут, то зв'яжіться з нами напряму."
+    },
+    "user-details-page": {
+      "heading": "Інформація про профіль"
+    },
+    "reset-password-page": {
+      "heading": "Скинути пароль"
+    },
     "activity-history-page": {},
-    "cookie-policy-page": {},
-    "terms-of-use-page": {},
-    "mood-tracker-page": {},
-    "dashboard-page": {},
-    "consultation-page": {},
-    "payment-history-page": {},
-    "checkout-page": {},
-    "payment-status-page": {},
+    "cookie-policy-page": {
+      "heading": "Політика щодо файлів cookie"
+    },
+    "terms-of-use-page": {
+      "heading": "Умови використання"
+    },
+    "mood-tracker-page": {
+      "heading": "Відстежувач настрою",
+      "subheading": "Тут можна відстежувати свій настрій і прогрес "
+    },
+    "dashboard-page": {
+      "accept_success": "Консультацію прийнято"
+    },
+    "consultation-page": {
+      "sunday": "Нд",
+      "monday": "Пн",
+      "tuesday": "Вт",
+      "wednesday": "Ср",
+      "thursday": "Чт",
+      "friday": "Пт",
+      "saturday": "Сб",
+
+      "client_joined": "Клієнт(ка) долучився(лася) до консультації",
+      "client_left": "Клієнт(ка) залишив(ла) консультацію",
+      "client_camera_off": "Клієнт(ка) вимкнув(ла) камеру",
+      "client_camera_on": "Клієнт(ка) увімкнув(ла) камеру",
+      "client_microphone_off": "Клієнт(ка) вимкнув(ла) мікрофон",
+      "client_microphone_on": "Клієнт(ка) увімкнув(ла) мікрофон",
+
+      "provider_joined": "Консультант(ка) долучився(лася) до консультації",
+      "provider_left": "Консультант(ка) залишив(ла) консультацію",
+      "provider_camera_off": "Консультант(ка) вимкнув(ла) камеру",
+      "provider_camera_on": "Консультант(ка) увімкнув(ла) камеру",
+      "provider_microphone_off": "Консультант(ка) вимкнув(ла) мікрофон",
+      "provider_microphone_on": "Консультант(ка) увімкнув(ла) мікрофон",
+      "chat_history_deleted_by_client": "Ви видалили історію чату",
+
+      "show_system_messages": "Показати системні повідомлення",
+      "show_previous_consultations": "Показати попередні консультації",
+      "hide_options": "Приховати параметри",
+      "show_options": "Показати варіанти",
+      "search": "Пошук",
+      "sponsored_by": "Ця сесія відбувається за підтримки ",
+      "consultation_end_reminder": "Консультація завершиться за {{minutes}} хвилин",
+      "textarea_placeholder": "Введіть Ваше повідомлення тут...",
+      "permissions_error": "Ви відхилили дозволи",
+      "allow_permissions": "Дозволи на доступ до камери та/або мікрофона були відхилені. Якщо ви хочете поговорити з провайдером, увімкніть дозволи в налаштуваннях вашого браузера або через значок інформації в адресному рядку."
+    },
+    "payment-history-page": {
+      "heading": "Історія платежів",
+      "subheading": "Тут можете переглянути повну історію платежів"
+    },
+    "checkout-page": {
+      "heading": "Оплата",
+      "subheading": "Щоб оплатити цю сесію, введіть дані картки."
+    },
+    "payment-status-page": {
+      "heading": "Статус платежу"
+    },
     "mood-track-history-page": {},
-    "notifications-page": {},
-    "videos-page": {},
-    "video-information-page": {},
-    "podcast-information-page": {},
-    "podcasts-page": {},
-    "organizations-page": {},
-    "organization-overview-page": {}
+    "notifications-page": {
+      "heading": "Сповіщення",
+      "mark_read": "Позначте все як прочитане",
+      "subheading": "Тут можна знайти всі сповіщення, які Ви отримували в акаунті."
+    },
+    "videos-page": {
+      "heading_default": "Відео",
+      "subheading_default": "Дивіться наші відео, щоб дізнатися більше про наші послуги та як ними користуватися.",
+      "heading_newest": "Нові відео",
+      "subheading_newest": "Дивіться наші нові відео.",
+      "heading_most_viewed": "Найпопулярніші відео",
+      "subheading_most_viewed": "Дивіться наші найпопулярніші відео.",
+      "all": "Усі"
+    },
+    "video-information-page": {
+      "more_videos": "Більше відео",
+      "read_more_button": "Переглянути більше",
+      "not_found": "Відео не знайдено",
+      "share_success": "Посилання на відео скопійовано до буферу обміну",
+      "require_cookies": "Для перегляду цього відео, будь ласка, прийміть всі файли cookie.",
+      "cookie_preferences": "Налаштування файлів cookie"
+    },
+    "podcast-information-page": {
+      "more_podcasts": "Більше підкастів",
+      "view_more": "Переглянути більше",
+      "not_found": "Підкаст не знайдено",
+      "share_success": "Ссилка скопійована в буфер обміну!"
+    },
+    "podcasts-page": {
+      "heading_default": "Подкасти",
+      "subheading_default": "Слухайте наші подкасти, щоб дізнатися більше про наші послуги та як ними користуватися.",
+      "heading_newest": "Найновіші подкасти",
+      "subheading_newest": "Слухайте наші найновіші подкасти.",
+      "heading_most_viewed": "Найпопулярніші подкасти",
+      "subheading_most_viewed": "Слухайте наші найпопулярніші подкасти.",
+      "all": "Усі"
+    },
+    "organizations-page": {
+      "heading": "Організації"
+    },
+    "organization-overview-page": {
+      "heading": "Огляд організації",
+      "subheading": "Детальний огляд профілю вибраної організації"
+    }
   },
   "backdrops": {
     "filter-providers": {

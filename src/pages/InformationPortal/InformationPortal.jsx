@@ -37,7 +37,9 @@ import "./information-portal.scss";
  * @returns {JSX.Element}
  */
 export const InformationPortal = () => {
-  const { t, i18n } = useTranslation("information-portal");
+  const { t, i18n } = useTranslation("page", {
+    keyPrefix: "information-portal",
+  });
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
 

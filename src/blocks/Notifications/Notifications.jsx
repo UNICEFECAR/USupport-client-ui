@@ -47,7 +47,7 @@ export const Notifications = ({
   openRequireDataAgreement,
 }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation("notifications");
+  const { t } = useTranslation("blocks", { keyPrefix: "notifications" });
 
   const queryClient = useQueryClient();
 

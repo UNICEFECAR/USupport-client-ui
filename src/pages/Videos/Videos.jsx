@@ -16,7 +16,7 @@ import "./videos.scss";
  * @returns {JSX.Element}
  */
 export const Videos = () => {
-  const { t } = useTranslation("videos-page");
+  const { t } = useTranslation("pages", { keyPrefix: "videos-page" });
   const location = useLocation();
   const { isVideosActive } = useGetIsPodcastsAndVideosActive();
 

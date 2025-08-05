@@ -24,7 +24,7 @@ import "./platform-rating.scss";
  * @return {jsx}
  */
 export const PlatformRating = () => {
-  const { t } = useTranslation("platform-rating");
+  const { t } = useTranslation("blocks", { keyPrefix: "platform-rating" });
 
   const [data, setData] = useState({
     rating: 5,

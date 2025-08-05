@@ -28,7 +28,7 @@ export const MoodTracker = ({ classes, isTmpUser }) => {
   const { handleRegistrationModalOpen } = useContext(RootContext);
 
   const navigate = useNavigate();
-  const { t } = useTranslation("mood-tracker");
+  const { t } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
 
   const emoticonsArray = [
     { value: "happy", label: t("happy"), isSelected: false },

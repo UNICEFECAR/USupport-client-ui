@@ -21,7 +21,9 @@ export const RegisterAboutYou = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isAnonymous = location?.state?.isAnonymous;
-  const { t } = useTranslation("register-about-you-page");
+  const { t } = useTranslation("pages", {
+    keyPrefix: "register-about-you-page",
+  });
   const { width } = useWindowDimensions();
 
   const handleGoBack = () => {

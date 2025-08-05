@@ -21,7 +21,7 @@ import "./privacy-policy.scss";
  * @return {jsx}
  */
 export const PrivacyPolicy = () => {
-  const { i18n, t } = useTranslation("privacy-policy");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "privacy-policy" });
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(

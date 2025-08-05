@@ -15,7 +15,7 @@ import "./contact-us.scss";
  */
 export const ContactUs = () => {
   const { width } = useWindowDimensions();
-  const { t } = useTranslation("contact-us-page");
+  const { t } = useTranslation("pages", { keyPrefix: "contact-us-page" });
   return (
     <Page
       classes="page__contact-us"

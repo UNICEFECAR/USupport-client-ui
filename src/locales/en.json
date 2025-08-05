@@ -1,12 +1,172 @@
 {
   "blocks": {
-    "page": {},
-    "provider-overview": {},
-    "user-profile": {},
-    "sos-center": {},
-    "register-about-you": {},
-    "register-anonymous": {},
-    "register-support": {},
+    "page": {
+      "page_1": "Home",
+      "page_2": "Consultations",
+      "page_3": "Information portal",
+      "page_4": "My Q&A",
+      "page_5": "Organizations",
+
+      "footer_1": "Home",
+      "footer_2": "Consultations",
+      "footer_3": "Information portal",
+      "footer_4": "Your profile",
+      "footer_5": "Terms of Use",
+      "footer_6": "Privacy Policy",
+      "footer_7": "Cookie Settings",
+      "footer_8": "FAQ",
+
+      "emergency_button": "SOS Center",
+
+      "button_text": "Go to app",
+      "contact_us": "Contact us",
+      "your_profile_text": "Your profile",
+
+      "password_placeholder": "Password",
+      "password": "Please enter your password to access the site",
+      "wrong_password": "Wrong password",
+      "submit": "Submit",
+
+      "dark": "Dark",
+      "light": "Light",
+
+      "cookie_banner_header": "We value your privacy",
+      "cookie_banner_text": "This website uses cookies to enhance and secure your browsing experience. By using our website, you agree to our <0>Cookie Policy</0>.",
+      "accept_all_cookies": "Accept all",
+      "reject_all_cookies": "Reject all",
+      "accept_necessary_cookies": "Accept only necessary",
+      "save": "Save"
+    },
+    "provider-overview": {
+      "earliest_slot_label": "Earliest available slot for consultation",
+      "languages_label": "Languages",
+      "education_label": "Education",
+      "work_with_label": "Specialties",
+      "specializations_label": "Specializations",
+      "done_consultations_label": "Overall done consultations",
+      "description_label": "About me",
+      "edit_details": "Edit details",
+      "change_password": "Change password",
+      "delete_account": "Delete account",
+      "no_available_slot": "There is no available slot",
+      "consultations": "consultations",
+
+      "psychologist": "Psychologist",
+      "psychiatrist": "Psychiatrist",
+      "psychotherapist": "Psychotherapist",
+
+      "addiction": "Addiction and Substance Abuse ",
+      "stress": "Stress Management",
+      "burnout": "Burnout and Academic Stress",
+      "eating_disorder": "Eating disorders",
+      "depression": "Depression and Mood Disorders",
+      "anxiety": "Anxiety",
+      "panic_attack": "Panic attacks",
+      "relationship": "Relationship",
+      "personal_development": "Personal development",
+      "ptsd": "Post-Traumatic Stress Disorder (PTSD)",
+      "phobia": "Phobias",
+      "sexuality": "Sexuality and Intimate Relationship Issues",
+      "lgbtq": "LGBTQ+Concerns",
+      "goal": "Goal Setting and Personal Development",
+      "emotional_intelligence": "Emotional Intelligence and Regulation",
+      "productivity": "Productivity and time management",
+      "self_care": "Self-Care Practices",
+      "insomnia": "Insomnia and Sleep Issues",
+      "motivation": "Motivation and Self-Improvement",
+      "anger": "Anger Management",
+      "bullying": "Bullying and Peer Pressure",
+      "grief": "Grief and Loss",
+      "gender_identity": "Gender identity",
+      "family": "Family and Parental Conflict",
+      "low_mood": "Low Mood and Emotional Well-being",
+      "hiv": "HIV/AIDS",
+      "loneliness": "Loneliness and Social Isolation",
+      "toxic_relationships": "Toxic Relationships",
+      "love": "Love and Romantic Relationships",
+      "social_skills": "Social Skills and Friendship",
+      "body_image": "Body Image and Self-Esteem",
+
+      "video_label": "Video representation",
+      "button_label": "Schedule consultation",
+      "hour_consultation": "for 1 hour consultation",
+      "free": "free of charge"
+    },
+    "user-profile": {
+      "your_profile": "Your profile",
+      "guest": "Guest",
+      "application_settings": "Application settings",
+      "rate_share": "Rate",
+      "other": "Other",
+      "notifications_settings_button_label": "Notification settings",
+      "rate_us_button_label": "Give us a rating",
+      "share_button_label": "Share the application",
+      "contact_us_button_label": "Contact us",
+      "privacy_policy_button_label": "Privacy Policy",
+      "FAQ_button_label": "FAQ",
+      "mood_tracker_button_label": "Mood tracker",
+      "payments_history_button_label": "Payment History",
+      "terms_of_use": "Terms of use",
+      "cookie_policy": "Cookie policy",
+      "user_guide": "Platform usage"
+    },
+    "sos-center": {
+      "button_link": "Visit website",
+      "button_call": "Contact now",
+      "no_results": "There are no results for the current selected country and language."
+    },
+    "register-about-you": {
+      "input_name_label": "Name",
+      "input_name_placeholder": "Enter your name",
+      "input_surname_label": "Surname",
+      "input_surname_placeholder": "Enter your surname",
+      "dropdown_sex_label": "Sex *",
+      "dropdown_year_label": "Year of birth *",
+      "living_place_label": "Place of living *",
+      "button_continue_label": "Continue",
+      "sex_male": "Male",
+      "sex_female": "Female",
+      "sex_unspecified": "Unspecified",
+      "sex_none": "Prefer not to say",
+      "place_of_living_urban": "Urban",
+      "place_of_living_rural": "Rural",
+      "sex_error": "Please enter your sex",
+      "year_of_birth_error": "Please enter your year of birth",
+      "place_of_living_error": "Please enter your place of living",
+      "sex_placeholder": "Enter your sex",
+      "year_of_birth_placeholder": "Enter your year of birth",
+      "living_place_placeholder": "Enter your living place",
+      "parent": "Parent"
+    },
+    "register-anonymous": {
+      "nickname_label": "Nickname *",
+      "nickname_placeholder": "Enter your nickname",
+      "nickname_error": "Nickname is required",
+      "paragraph_1": "Your anonymous access code is",
+      "password_label": "Password *",
+      "terms_agreement_text_1": "I agree with the",
+      "terms_agreement_text_2": "Privacy Policy",
+      "terms_agreement_text_3": "and",
+      "terms_agreement_text_4": "Terms of Use",
+      "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
+      "register_button_label": "Register",
+      "login_button_label": "I already have an account",
+      "copy_text": "Copy and save or write down your anonymous code, if you lose it you cannot get access to your account anymore",
+      "copy_success": "Code copied successfully",
+      "confirm_password_label": "Confirm password",
+      "password_match_error": "The Password and Confirm Password fields do not match",
+      "age_terms_agreement_text_1": "I am over {{age}} years old"
+    },
+    "register-support": {
+      "button_continue_label": "Continue",
+      "answer_yes_label": "Yes, I want a consultation",
+      "answer_no_label": "No",
+      "modal_heading": "Do you give us permission to process your personal data?",
+      "modal_paragraph": "To provide access to the consultations, we need your permission to process your personal data. You can always change the settings from your profile.",
+      "modal_cta_1": "I give permission",
+      "modal_cta_2": "Cancel",
+      "error": "* You have to give us permission to process your personal data in order to have access to the consultations."
+    },
     "contact-us-block": {
       "issue": "Issue",
       "issue_placeholder": "Select an issue",
@@ -31,10 +191,38 @@
       "contact_reason_4_pl": "Something else",
       "contact_form": "Contact form"
     },
-    "select-provider": {},
-    "notification-preferences": {},
-    "platform-rating": {},
-    "share-platform": {},
+    "select-provider": {
+      "psychologist": "Psychologist",
+      "psychiatrist": "Psychiatrist",
+      "psychotherapist": "Psychotherapist",
+      "no_match": "No providers matching your criteria",
+      "free": "Free",
+      "coupon": "Coupon",
+      "earliest_available_slot": "First available consultation:",
+      "sunday": "Sun",
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat"
+    },
+    "notification-preferences": {
+      "email": "Email notifications",
+      "appointment": "Appointment notifications",
+      "minutes_before": "minutes before",
+      "success": "Settings saved successfully"
+    },
+    "platform-rating": {
+      "rating_label": "Rate us",
+      "textarea_label": "Your comment",
+      "textarea_placeholder": "Leave your comment here",
+      "button_label": "Send the rating",
+      "success": "Rating sent successfully"
+    },
+    "share-platform": {
+      "button_label_share_text": "Share on"
+    },
     "forgot-password": {
       "error_email_message": "Please, enter your email",
       "input_email_label": "Email",
@@ -74,8 +262,26 @@
       "free": "Free",
       "coupon": "Coupon"
     },
-    "login": {},
-    "welcome": {},
+    "login": {
+      "email_label": "Email / Access Token",
+      "email_placeholder": "Enter you email or access token",
+      "password_label": "Password",
+      "password_placeholder": "Enter your password",
+      "forgot_password_label": "I forgot my password",
+      "login_label": "Login",
+      "paragraph": "Or login with:",
+      "register_button_label": "I don’t have an account",
+      "client": "Client",
+      "heading": "Welcome to"
+    },
+    "welcome": {
+      "heading": "Welcome to",
+      "country": "Country",
+      "language": "Language",
+      "placeholder": "Select",
+      "button": "Continue",
+      "client": "Client"
+    },
     "articles": {
       "heading": "Information portal",
       "no_results": "No Results Found",
@@ -100,19 +306,100 @@
       "error": "Please enter your suggestion",
       "send_success_text": "Your suggestion has been sent successfully"
     },
-    "register-preview": {},
-    "register-email": {},
-    "privacy-policy": {},
+    "register-preview": {
+      "register_email": "Register with email",
+      "register_anonymously": "Register anonymously",
+      "continue_as_guest": "Continue without registration",
+      "heading_1": "About the platform",
+      "text_1": "A platform that respects your privacy and safety. Your wellbeing is our priority! uSupport provides personalized and discreet psychological care.",
+      "heading_2": "About the support",
+      "text_2": "uSupport is a mental health, psychosocial and wellbeing platform designed for young people and their carers where privacy and safety is a priority.",
+      "heading_3": "About you",
+      "text_3": "Be your best self! Your mental health matters.",
+      "login": "Login with Email/Access Token"
+    },
+    "register-email": {
+      "email_error": "Please enter a valid email",
+      "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
+      "email_label": "Email *",
+      "nickname_label": "Nickname *",
+      "nickname_placeholder": "Enter your nickname",
+      "nickname_error": "Nickname is required",
+      "password_label": "Password *",
+      "terms_agreement_text_1": "I agree with the",
+      "terms_agreement_text_2": "Privacy Policy",
+      "terms_agreement_text_3": "and",
+      "terms_agreement_text_4": "Terms of Use",
+      "register_button": "Register",
+      "paragraph": "Or register with:",
+      "login_button_label": "I already have an account",
+      "confirm_password_label": "Confirm password",
+      "password_match_error": "The Password and Confirm Password fields do not match",
+      "age_terms_agreement_text_1": "I am over {{age}} years old"
+    },
+    "privacy-policy": {
+      "no_results": "There are no results for the selected country and language."
+    },
     "faq": {
       "no_results": "No results found.",
       "search": "Search"
     },
-    "user-details": {},
-    "reset-password": {},
+    "user-details": {
+      "access_token": "Your anonymous access code",
+      "change_photo": "Change Photo",
+      "nickname": "Nickname",
+      "nickname_placeholder": "Enter your nickname",
+      "nickname_error": "Nickname is required",
+      "email": "Email",
+      "email_placeholder": "Enter your email",
+      "name": "Name",
+      "name_placeholder": "Enter your name",
+      "surname": "Surname",
+      "surname_placeholder": "Enter your surname",
+      "email_error": "Please enter a valid email address",
+      "sex": "Sex",
+      "year_of_birth": "Year of Birth",
+      "country": "Country",
+      "living_place": "Living place",
+      "button_text": "Save changes",
+      "button_secondary_text": "Discard changes",
+      "privacy": "Privacy and security",
+      "consent": "Consent for personal data usage as defined by the <0>Privacy Policy</0>",
+      "change_password": "Change password",
+      "delete_account": "Delete account",
+      "logout": "Logout",
+      "delete_chat": "Clear chat history",
+
+      "dropdown_sex_label": "Gender",
+      "dropdown_year_label": "Year of birth",
+      "sex_male": "Male",
+      "sex_female": "Female",
+      "sex_unspecified": "Unspecified",
+      "sex_none": "Prefer not to say",
+      "place_of_living_urban": "Urban",
+      "place_of_living_rural": "Rural",
+      "data_processing_modal_heading": "Are you sure you want to remove the permission to use your personal data as defined by the <0>Privacy Policy</0>?",
+      "data_processing_modal_text": "You will not be able to schedule further consultations.",
+      "data_processing_modal_confirm_button": "Remove permission",
+      "data_processing_modal_cancel_button": "Cancel",
+      "success_message": "Profile updated successfully",
+      "sex_placeholder": "Enter your sex",
+      "year_of_birth_placeholder": "Enter your year of birth",
+      "living_place_placeholder": "Enter your living place",
+      "parent": "Parent"
+    },
+    "reset-password": {
+      "label": "New password",
+      "placeholder": "Enter your new password",
+      "submit": "Submit",
+      "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number"
+    },
     "cookie-policy": {
       "no_results": "There are no results for the selected country and language."
     },
-    "terms-of-use": {},
+    "terms-of-use": {
+      "no_results": "There are no results for the selected country and language."
+    },
     "activity-history": {
       "button_label": "Schedule consultation",
       "search": "Search",
@@ -164,8 +451,50 @@
       "november": "November",
       "december": "December"
     },
-    "mood-tracker": {},
-    "mascot-welcome-header": {},
+    "mood-tracker": {
+      "happy": "Happy",
+      "good": "Good",
+      "sad": "Sad",
+      "depressed": "Depressed",
+      "worried": "Worried",
+      "heading": "How are you feeling today?",
+      "mood_tracker": "Mood Tracker",
+      "additional_comment_placeholder": "What made you feel this way?",
+      "submit_mood_track": "Submit",
+      "add_mood_tracker_success": "Your daily mood was added successfully"
+    },
+    "mascot-welcome-header": {
+      "welcome": "Welcome back {{name}}!",
+      "no_registration_heading": "You are using the app without registration",
+      "no_registration_subheading": "To use all the features of the app you need to have an anonymous or regular account.",
+      "create_account_button": "Create an account",
+      "next_consultation": "Next consultation:",
+      "change_button_label": "Change",
+      "accept_button_label": "Accept consultation",
+      "join_button_label": "Join",
+      "schedule_button_label": "Schedule",
+      "live_label": "Now",
+      "no_consultations": "Currently you do not have upcoming consultations",
+      "free": "Free",
+      "ordinal_st": "st",
+      "ordinal_nd": "nd",
+      "ordinal_rd": "rd",
+      "ordinal_th": "th",
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December",
+      "coupon": "Coupon",
+      "explore_button_label": "Explore"
+    },
     "activity-log-dashboard": {
       "heading": "Activity Log",
       "view_all": "View All"
@@ -180,9 +509,65 @@
       "by": "by {{creator}}",
       "number_of_more_options": "{{count}} more"
     },
-    "mood-tracker-history": {},
-    "notifications": {},
-    "safety-feedback-block": {},
+    "mood-tracker-history": {
+      "heading": "Overall you felt {{feeling}} in the last 30 days",
+      "perfect": "Perfect",
+      "happy": "Happy",
+      "sad": "Sad",
+      "depressed": "Depressed",
+      "worried": "Worried",
+      "last_thirty_days_text": "For the last 30 days you have reported that you felt:",
+      "time": "time",
+      "times": "times"
+    },
+    "notifications": {
+      "heading": "Notifications",
+      "mark_read": "Mark all as read",
+      "consultation_booking": "Your consultation with <0>{{providerName}}</0> was <0>scheduled</0> successfully for <0>{{date}}</0> from <0>{{startHour}}</0> to <0>{{endHour}}</0>",
+      "consultation_reschedule": "You successfully <0>rescheduled</0> your consultation on <0>{{date}}</0> from <0>{{startHour}}</0> to <0>{{endHour}}</0> to <0>{{newDate}}</0> from <0>{{newStartHour}}</0> to <0>{{newEndHour}}</0>",
+      "consultation_cancellation": "You successfully <0>cancelled</0> your consultation with <0>{{providerName}} scheduled</0> on <0>{{date}}</0> from <0>{{startHour}}</0> to <0>{{endHour}}</0>",
+      "consultation_cancellation_provider": "The provider <0>{{providerName}} cancelled</0> the consultation <0>scheduled</0> on <0>{{date}}</0> from <0>{{startHour}}</0> to <0>{{endHour}}</0>",
+      "consultation_remind_start": "<0>Upcoming consultation</0> in <0>{{minutes}} minutes</0>",
+      "consultation_suggestion": "<0>{{providerName}} suggested</0> a consultation on <0>{{date}}</0> from <0>{{startHour}}</0> to <0>{{endHour}}</0>",
+      "consultation_suggestion_booking": "You accepted the <0>suggested</0> consultation from <0>{{providerName}}</0> on <0>{{date}}</0> from <0>{{startHour}}</0> to <0>{{endHour}}</0>",
+      "consultation_suggestion_cancellation": "You rejected the <0>suggested</0> consultation from <0>{{providerName}}</0> on <0>{{date}}</0> from <0>{{startHour}}</0> to <0>{{endHour}}</0>",
+      "consultation_started": "Your consultation with provider <0>{{providerName}} started</0>",
+      "question_answered": "<0>{{providerName}}</0> answered your question",
+      "join": "Join",
+      "accept": "Accept",
+      "accept_consultation_success": "Succesfully accepted consultation",
+      "reject": "Reject",
+      "reject_consultation_success": "Succesfully rejected consultation",
+      "no_notifications": "You have no notifications yet.",
+      "yesterday": "yesterday"
+    },
+    "safety-feedback-block": {
+      "heading": "This is important. Please read and complete",
+      "subheading": "Please answer all questions that apply truthfully.",
+      "warning": "With answering you declare that this declaration is true and you make it knowing that making a declaration that you know is untrue is an offence.",
+      "q0": "Did the provider attend the consultation session?",
+      "q1": "Did the provider ask you to disclose your address and contact details? ",
+      "q2": "Did the provider ask you to meet them outside of the system (in person or in other application)?",
+      "q3": "Did the provider ask you to send them any photos of yourself or turn on your video even if you did not want to?",
+      "q4": "Did you feel unsafe in any way during the session? ",
+      "q5": "How are you feeling about the last consultation session?",
+      "q6": "Have your needs been addressed properly? 1-10 (No, not at all – Yes, all of them)",
+      "q7": "Do you understand how you can improve your wellbeing? 1-10 (No, not at all – Yes, all is clear)",
+      "q8": "Compare your current feeling to how you felt before the session started. How is it? 1-10 (No, it’s much worse – Can’t be better)",
+      "q9": "Any other thing to add? (optional)",
+      "more_details_label": "If so, please explain why",
+      "more_details_placeholder": "Give us more details here.",
+      "yes": "Yes",
+      "no": "No",
+      "button": "Send feedback",
+      "continue_button": "Keep answers",
+
+      "very_satisfied": "Very Satisfied",
+      "satisfied": "Satisfied",
+      "neutral": "Neutral",
+      "dissatisfied": "Dissatisfied",
+      "very_dissatisfied": "Very Dissatisfied"
+    },
     "checkout-form": {
       "payment_succeded": "Payment succeded",
       "payment_processing": "Payment failed",
@@ -196,57 +581,461 @@
       "consultation_timeout": "Your reservation has been cancelled due to inactivity. Please schedule your consultation again.",
       "continue_button": "Continue"
     },
-    "payment-history-block": {},
-    "payment-status-block": {},
-    "mood-track-history": {},
-    "mascot-header-MyQA": {},
-    "my-qa": {},
-    "videos": {},
-    "organizations": {},
-    "organization-overview": {}
+    "payment-history-block": {
+      "service": "Service",
+      "price": "Price",
+      "date_of_payment": "Date of payment",
+      "more_details": "More details",
+      "no_data_found": "You don't have any payments yet",
+      "text_audio_video_consultation": "Online consultation",
+      "export_label": "Export"
+    },
+    "payment-status-block": {
+      "payment_succeded_heading": "Your payment was successful.",
+      "payment_succeded_subheading": "Thank you for your purchase. Your consultation is scheduled for {{consultationDate}} at {{consultationTime}}.",
+
+      "payment_processing_heading": "Your payment is beeing processed.",
+      "payment_processing_subheading": "We are processing your payment, please wait a moment.",
+
+      "payment_requires_payment_method_heading": "Your payment was not successful, please try again.",
+      "payment_requires_payment_method_subheading": "There was a problem while trying to process your payment. We are sorry about that.",
+
+      "payment_failed_heading": "Your payment was not successful, please try again.",
+      "payment_failed_subheading": "There was a problem while trying to process your payment. We are sorry about that.",
+
+      "continue_button_label": "Continue",
+      "try_again_button_label": "Try again"
+    },
+    "mood-track-history": {
+      "happy": "Happy",
+      "good": "Good",
+      "sad": "Sad",
+      "depressed": "Depressed",
+      "worried": "Worried",
+      "you_felt": "You felt",
+      "comment_text": "and you commented:",
+      "no_result": "No results found."
+    },
+    "mascot-header-MyQA": {
+      "heading": "My Q&A",
+      "subheading_its": "It`s",
+      "subheading_anonymous": "ANONYMOUS",
+      "subheading_text1": "Your questions are",
+      "subheading_not": "NOT",
+      "subheading_text2": "linked to you. The answers will be public, so you can see issues that others are facing as well.",
+      "how_it_works": "See how it works"
+    },
+    "my-qa": {
+      "ask_button_label": "Ask anonymously",
+      "answer_by": "Answered by:",
+      "schedule_consultation": "Schedule consultation",
+      "today": "Today",
+      "archive": "Archive",
+      "respond": "Respond",
+      "read_more": "Click to read more",
+      "all": "All",
+      "all_languages": "All languages",
+      "most_popular": "Most Popular",
+      "newest": "Newest",
+      "your_questions": "Your Questions",
+      "search_placeholder": "Search",
+      "filter": "Filter tags",
+      "no_answers_found": "There are no answered questions",
+      "language": "Language"
+    },
+    "videos": {
+      "view_more": "View more",
+      "all": "All",
+      "could_not_load_content": "Could not load content.",
+      "no_results": "No results found",
+      "number_of_more_options": "{{count}} more"
+    },
+    "organizations": {
+      "in_person_interaction": "In person",
+      "online_interaction": "Online",
+      "phone_interaction": "Phone",
+      "hybrid_interaction": "Hybrid",
+
+      "free_services": "Free services",
+      "paid_services": "Paid services",
+      "co_payment_services": "Co-payment services",
+      "cnas_reimbursed_services": "CNAS reimbursed services",
+
+      "violence_victim_helpline": "Violence victims helpline",
+      "individual_psychotherapy": "Individual psychotherapy",
+      "social_information_counseling": "Social information and counseling",
+      "rehab_psycho_neuro_children": "Rehabilitation and recovery services for children with psycho-neuro-motor disorders",
+      "individual_psychological_counseling": "Individual psychological counseling",
+      "personal_development_counseling": "Personal development counseling",
+      "child_helpline": "Child helpline",
+      "speech_therapy": "Speech therapy",
+      "suicide_prevention_helpline": "Suicide prevention helpline",
+      "child_psychiatry": "Child psychiatry",
+      "group_psychological_counseling": "Group psychological counseling",
+      "sport_recreational_activities": "Sports recreational activities (sports, games, dance)",
+      "rehab_autism_children": "Rehabilitation and recovery services for children with autism",
+      "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
+      "addiction_helpline": "Addiction helpline",
+      "group_psychotherapy": "Group psychotherapy",
+
+      "sector_1": "Sector 1",
+      "sector_2": "Sector 2",
+      "sector_3": "Sector 3",
+      "sector_4": "Sector 4",
+      "sector_5": "Sector 5",
+      "sector_6": "Sector 6",
+
+      "aggression_violence_victim_or_aggressor": "Aggression/violence - victim or aggressor",
+      "learning_difficulties_special_educational_needs": "Learning difficulties/Special educational needs",
+      "behavioral_disorder": "Behavioral disorder",
+      "eating_disorder": "Eating disorder",
+      "suicide_self_harm": "Suicide/Self-harm",
+      "addiction": "Addiction",
+      "identity_issues": "Identity issues",
+      "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
+      "other_situations": "Other situations",
+
+      "public": "Public",
+      "private": "Private",
+      "ong": "NGO",
+      "public_private": "Public-private",
+
+      "work_with_placeholder": "Select work with categories",
+      "specialisations_placeholder": "Select offered services",
+      "district_placeholder": "Select sector",
+      "payment_methods_placeholder": "Select payment methods",
+      "user_interactions_placeholder": "Select interaction modes",
+      "property_types_placeholder": "Select property types",
+      "search_placeholder": "Search by organization name",
+
+      "no_data_found": "No data found",
+      "reset_filters": "Reset filters",
+
+      "view_organization_details": "View Organization Details",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "organization-overview": {
+      "error_loading_data": "An error occurred while loading the organization data",
+      "other_services_label": "Other services",
+      "address_label": "Address",
+      "sector_label": "District",
+      "payment_methods_label": "Payment methods",
+      "user_interactions_label": "Interaction modes",
+      "property_types_label": "Property type",
+      "work_with_label": "Work with",
+      "offered_services_label": "Offered services",
+      "providers_label": "Providers",
+
+      "violence_victim_helpline": "Violence victims helpline",
+      "individual_psychotherapy": "Individual psychotherapy",
+      "social_information_counseling": "Social information and counseling",
+      "rehab_psycho_neuro_children": "Rehabilitation and recovery services for children with psycho-neuro-motor disorders",
+      "individual_psychological_counseling": "Individual psychological counseling",
+      "personal_development_counseling": "Personal development counseling",
+      "child_helpline": "Child helpline",
+      "speech_therapy": "Speech therapy",
+      "suicide_prevention_helpline": "Suicide prevention helpline",
+      "child_psychiatry": "Child psychiatry",
+      "group_psychological_counseling": "Group psychological counseling",
+      "sport_recreational_activities": "Sports recreational activities (sports, games, dance)",
+      "rehab_autism_children": "Rehabilitation and recovery services for children with autism",
+      "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
+      "addiction_helpline": "Addiction helpline",
+      "group_psychotherapy": "Group psychotherapy",
+
+      "emergency_situations": "Emergency situations",
+      "pediatric_psychiatry": "Pediatric psychiatry",
+      "psychological_evaluation": "Psychological evaluation",
+      "psychological_counseling": "Psychological counseling",
+      "support_groups": "Support groups",
+      "social_assistance_and_counseling": "Social assistance and counseling",
+      "personal_development": "Personal development",
+      "vocational_counseling_and_career_guidance": "Vocational counseling and career guidance",
+      "occupational_therapy_ergotherapy": "Occupational therapy/Ergotherapy",
+      "physiotherapy_physical_recovery": "Physiotherapy/Physical recovery",
+      "autism_spectrum_disorder_therapies": "Autism spectrum disorder therapies",
+      "disability_assessment": "Disability assessment",
+      "pediatric_neurology": "Pediatric neurology",
+      "special_psychopedagogy": "Special psychopedagogy",
+      "neuropsychomotor_recovery": "Neuropsychomotor recovery",
+
+      "in_person_interaction": "In person",
+      "online_interaction": "Online",
+      "phone_interaction": "Phone",
+      "hybrid_interaction": "Hybrid",
+
+      "free_services": "Free services",
+      "paid_services": "Paid services",
+      "co_payment_services": "Co-payment services",
+      "cnas_reimbursed_services": "CNAS reimbursed services",
+
+      "public": "Public",
+      "private": "Private",
+      "ong": "NGO",
+      "public_private": "Public-private",
+
+      "sector_1": "Sector 1",
+      "sector_2": "Sector 2",
+      "sector_3": "Sector 3",
+      "sector_4": "Sector 4",
+      "sector_5": "Sector 5",
+      "sector_6": "Sector 6",
+
+      "aggression_violence_victim_or_aggressor": "Aggression/violence - victim or aggressor",
+      "learning_difficulties_special_educational_needs": "Learning difficulties/Special educational needs",
+      "behavioral_disorder": "Behavioral disorder",
+      "eating_disorder": "Eating disorder",
+      "suicide_self_harm": "Suicide/Self-harm",
+      "addiction": "Addiction",
+      "identity_issues": "Identity issues",
+      "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
+      "other_situations": "Other situations",
+
+      "copy_link_success": "Link copied to clipboard!"
+    }
   },
   "pages": {
-    "provider-overview-page": {},
-    "user-profile-page": {},
-    "not-found-page": {},
-    "contact-us-page": {},
-    "sos-center-page": {},
-    "select-provider-page": {},
-    "register-about-you-page": {},
-    "platform-rating-page": {},
-    "share-platform-page": {},
-    "register-anonymous-page": {},
-    "register-support-page": {},
-    "notification-preferences-page": {},
-    "forgot-password-page": {},
-    "consultations-page": {},
-    "login-page": {},
-    "articles-page": {},
-    "article-information": {},
-    "information-portal": {},
+    "provider-overview-page": {
+      "heading": "Provider overview",
+      "subheading": "Detailed overview of the profile of the provider you selected",
+      "button_label": "Schedule consultation"
+    },
+    "user-profile-page": {
+      "heading": "Your profile",
+      "subheading": "Here you can find all the information you need for your profile and account settings.",
+      "button_label": "Logout"
+    },
+    "not-found-page": {
+      "heading": "Oops! We can't find the page you are looking for...",
+      "subheading": "It seems this page is missing or is not available at the moment.",
+      "button": "Go to Homepage"
+    },
+    "contact-us-page": {
+      "heading": "Contact us",
+      "subheading": "Here you can report any technical issues."
+    },
+    "sos-center-page": {
+      "heading": "Emergency",
+      "subheading": "Need help urgently? Please, contact some of the listed centers right now."
+    },
+    "select-provider-page": {
+      "heading": "Select a Provider ",
+      "subheading": "Choose the provider you want to talk to using video, audio or text. It may sometimes take a few sesions to find a provider that is a good fit for your needs and your preferred approach.",
+      "button_label": "Filter",
+      "button_coupon_label": "Use coupon",
+      "modal_coupon_heading": "Enter your coupon to use it",
+      "modal_coupon_button_label": "Submit coupon",
+      "modal_coupon_input_label": "Coupon number",
+      "modal_coupon_input_placeholder": "COUPON1",
+      "heading_with_coupon": "Select a  Provider to use Coupon: {{coupon}}",
+      "remove_coupon_label": "Remove coupon",
+      "coupon_paragraph": "Coupons provide “no-cost” sessions and are sponsored by our partners.",
+      "coupon_paragraph_two": "If you received a coupon code from a social media campaign or a partner, please copy and paste that below. After you submit the coupon code, you will see any providers that support it and their availability. A coupon may support one or more sessions. The platform will indicate if the coupon has expired or reached the maximum session usage.",
+      "max_price": "Maximum price",
+      "providers_free_consultation_label": "Only free consultation"
+    },
+    "register-about-you-page": {
+      "heading_1": "Tell us more about yourself",
+      "heading_2": "About you"
+    },
+    "platform-rating-page": {
+      "heading": "Want to rate us?",
+      "subheading": "We’ll be counting stars. Let’s stay honest. Tell us how you feel about this platform. Rate us and leave us your comment."
+    },
+    "share-platform-page": {
+      "heading": "Share the application",
+      "subheading": "Share the application on your social media, and give more people the chance to help them."
+    },
+    "register-anonymous-page": {
+      "heading": "Register anonymously",
+      "subheading": "You will be registered anonymously. We will not link this account to a physical person in any way."
+    },
+    "register-support-page": {
+      "heading_1": "Do you need support?",
+      "heading_2": "Do you need support right now?"
+    },
+    "notification-preferences-page": {
+      "heading": "Notification settings",
+      "subheading": "Here you can manage what type of notification you want to receive or not."
+    },
+    "forgot-password-page": {
+      "heading": "Enter your email to reset your password"
+    },
+    "consultations-page": {
+      "header": "Consultations",
+      "button_label": "Schedule a consultation",
+      "reject_consultation_success": "Consultation rejected successfully",
+      "accept_consultation_success": "Consultation accepted successfully"
+    },
+    "login-page": {
+      "heading_1": "Welcome back, good to see you again",
+      "heading_2": "Welcome back"
+    },
+    "articles-page": {
+      "heading": "Articles",
+      "heading_default": "All Articles",
+      "heading_newest": "Newest Articles",
+      "heading_most_read": "Most read Articles",
+      "subheading_default": "You can find all articles here",
+      "subheading_newest": "Here you can find newest articles",
+      "subheading_most_read": "Here you can find the most read articles from all categories"
+    },
+    "article-information": {
+      "heading": "More Articles",
+      "no_results": "There are no similar articles for the current selected language. ",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}",
+      "share_title": "Share this content",
+      "share_success": "Link copied to clipboard!",
+      "copy_link": "Copy Link",
+      "export_failed": "Export failed. Please try again."
+    },
+    "information-portal": {
+      "heading": "Information portal",
+      "subheading": "Here you can explore everything you need to improve your mental health",
+      "heading_newest": "Newest Articles",
+      "heading_popular": "Most popular",
+      "heading_no_language_results": "We could not find any articles based on your selected language.",
+      "view_all": "View all",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "By {{creator}}",
+      "articles": "Articles",
+      "videos": "Videos",
+      "heading_newest_videos": "Newest Videos",
+      "heading_popular_videos": "Most popular videos",
+      "no_results": "No results found",
+      "heading_newest_podcasts": "Newest podcasts",
+      "heading_popular_podcasts": "Popular podcasts",
+      "podcasts": "Podcasts",
+      "view_more": "View more"
+    },
     "register-preview-page": {},
-    "register-email-page": {},
-    "privacy-policy-page": {},
-    "faq-page": {},
-    "user-details-page": {},
-    "reset-password-page": {},
+    "register-email-page": {
+      "heading": "Register with email in uSupport"
+    },
+    "privacy-policy-page": {
+      "heading": "Privacy Policy"
+    },
+    "faq-page": {
+      "heading": "FAQ",
+      "subheading": "Here you can find answers to frequently asked questions. Contact us directly if your question is not listed here."
+    },
+    "user-details-page": {
+      "heading": "Profile details"
+    },
+    "reset-password-page": {
+      "heading": "Reset your password"
+    },
     "activity-history-page": {},
-    "cookie-policy-page": {},
-    "terms-of-use-page": {},
-    "mood-tracker-page": {},
-    "dashboard-page": {},
-    "consultation-page": {},
-    "payment-history-page": {},
-    "checkout-page": {},
-    "payment-status-page": {},
+    "cookie-policy-page": {
+      "heading": "Cookie Policy"
+    },
+    "terms-of-use-page": {
+      "heading": "Terms of Use"
+    },
+    "mood-tracker-page": {
+      "heading": "Mood tracker",
+      "subheading": "Here you can check your mood tracking and progress "
+    },
+    "dashboard-page": {
+      "accept_success": "Consultation accepted successfully"
+    },
+    "consultation-page": {
+      "sunday": "Sun",
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+
+      "client_joined": "Client joined the consultation",
+      "client_left": "Client left the consultation",
+      "client_camera_off": "The client has turned off the camera",
+      "client_camera_on": "The client has turned on the camera",
+      "client_microphone_off": "The client has turned off the microphone",
+      "client_microphone_on": "The client has turned on the microphone",
+
+      "provider_joined": "Provider joined the consultation",
+      "provider_left": "The provider has left the consultation",
+      "provider_camera_off": "The provider has turned off the camera",
+      "provider_camera_on": "The provider has turned on the camera",
+      "provider_microphone_off": "The provider has turned off the microphone",
+      "provider_microphone_on": "The provider has turned on the microphone",
+      "chat_history_deleted_by_client": "You have deleted the chat history",
+
+      "show_system_messages": "Show system messages",
+      "show_previous_consultations": "Show previous consultations",
+      "hide_options": "Hide settings",
+      "show_options": "Settings",
+      "search": "Search",
+      "sponsored_by": "This session is sponsored by: ",
+      "consultation_end_reminder": "Your consultation will end in {{minutes}} minutes",
+      "textarea_placeholder": "Type your message here...",
+
+      "permissions_error": "You have denied the permissions",
+      "allow_permissions": "The camera and/or microphone permissions have been denied. If you want to talk to the provider, please allow the permissions in your browser settings or from the information icon in the address bar."
+    },
+    "payment-history-page": {
+      "heading": "Payment history",
+      "subheading": "Here you can see your full payment history"
+    },
+    "checkout-page": {
+      "heading": "Payment",
+      "subheading": "Enter your card details to pay for this session."
+    },
+    "payment-status-page": {
+      "heading": "Payment Status"
+    },
     "mood-track-history-page": {},
-    "notifications-page": {},
-    "videos-page": {},
-    "video-information-page": {},
-    "podcast-information-page": {},
-    "podcasts-page": {},
-    "organizations-page": {},
-    "organization-overview-page": {}
+    "notifications-page": {
+      "heading": "Notifications",
+      "mark_read": "Mark all as read",
+      "subheading": "Here you can find all the notifications you ever received in your account."
+    },
+    "videos-page": {
+      "heading_default": "Videos",
+      "subheading_default": "Watch our videos to learn more about our services and how to use them.",
+      "heading_newest": "Newest Videos",
+      "subheading_newest": "Watch our newest videos.",
+      "heading_most_viewed": "Most Viewed Videos",
+      "subheading_most_viewed": "Watch our most viewed videos.",
+      "all": "All"
+    },
+    "video-information-page": {
+      "more_videos": "More videos",
+      "read_more_button": "View more",
+      "not_found": "Video not found",
+      "share_success": "Video link copied to clipboard",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
+    },
+    "podcast-information-page": {
+      "more_podcasts": "More podcasts",
+      "view_more": "View more",
+      "not_found": "Podcast not found",
+      "share_success": "Link copied to clipboard!"
+    },
+    "podcasts-page": {
+      "heading_default": "Podcasts",
+      "subheading_default": "Listen to our podcasts to learn more about our services and how to use them.",
+      "heading_newest": "Newest Podcasts",
+      "subheading_newest": "Listen to our newest podcasts.",
+      "heading_most_viewed": "Most Viewed Podcasts",
+      "subheading_most_viewed": "Listen to our most viewed podcasts.",
+      "all": "All"
+    },
+    "organizations-page": {
+      "heading": "Organizations"
+    },
+    "organization-overview-page": {
+      "heading": "Organization overview",
+      "subheading": "Detailed overview of the profile of the organization you selected"
+    }
   },
   "backdrops": {
     "filter-providers": {

@@ -42,7 +42,7 @@ export const UserDetails = ({
   openDeletePictureBackdrop,
   openDeleteChatHistory,
 }) => {
-  const { t } = useTranslation("user-details");
+  const { t } = useTranslation("blocks", { keyPrefix: "user-details" });
   const IS_RO = localStorage.getItem("country") === "RO";
 
   const navigate = useNavigate();

@@ -12,7 +12,7 @@ import "./payment-history.scss";
  * @returns {JSX.Element}
  */
 export const PaymentHistory = () => {
-  const { t } = useTranslation("payment-history-page");
+  const { t } = useTranslation("pages", { keyPrefix: "payment-history-page" });
   return (
     <Page
       classes="page__payment-history"

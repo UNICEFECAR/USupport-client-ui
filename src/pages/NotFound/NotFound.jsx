@@ -15,7 +15,7 @@ import { useCustomNavigate as useNavigate } from "#hooks";
  */
 export const NotFound = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("not-found-page");
+  const { t } = useTranslation("pages", { keyPrefix: "not-found-page" });
   return (
     <Page classes="page-not-found" showGoBackArrow={false}>
       <NotFoundBlock

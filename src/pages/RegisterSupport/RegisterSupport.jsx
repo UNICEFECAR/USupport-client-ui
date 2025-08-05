@@ -19,7 +19,7 @@ export const RegisterSupport = () => {
   const location = useLocation();
   const showGoBackArrow = location?.state?.hideGoBackArrow ?? true;
   const isAnonymous = location?.state?.isAnonymous;
-  const { t } = useTranslation("register-support-page");
+  const { t } = useTranslation("pages", { keyPrefix: "register-support-page" });
 
   const { width } = useWindowDimensions();
 

@@ -40,7 +40,7 @@ const INITIAL_FILTERS = {
  * @return {jsx}
  */
 export const Organizations = () => {
-  const { t } = useTranslation("organizations");
+  const { t } = useTranslation("blocks", { keyPrefix: "organizations" });
   const navigate = useNavigate();
   const [mapControls, setMapControls] = React.useState(null);
   const [userLocation, setUserLocation] = React.useState(null);

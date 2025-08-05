@@ -36,7 +36,9 @@ export const MascotWelcomeHeader = ({
 }) => {
   const navigate = useNavigate();
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
-  const { t } = useTranslation("mascot-welcome-header");
+  const { t } = useTranslation("blocks", {
+    keyPrefix: "mascot-welcome-header",
+  });
   const { width } = useWindowDimensions();
   const IS_RO = localStorage.getItem("country") === "RO";
 

@@ -89,7 +89,7 @@ export const Page = ({
   } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
   const location = useLocation();
-  const { t, i18n } = useTranslation("page");
+  const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
 

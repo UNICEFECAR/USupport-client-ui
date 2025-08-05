@@ -43,7 +43,7 @@ export const MyQA = ({
   setSelectedLanguage,
   setShouldFetchQuestions,
 }) => {
-  const { t } = useTranslation("my-qa");
+  const { t } = useTranslation("blocks", { keyPrefix: "my-qa" });
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
