@@ -192,7 +192,7 @@ export const MyQA = ({
             </GridItem>
             <GridItem
               md={8}
-              lg={8}
+              lg={12}
               classes="my-qa__tabs-grid__filter-button-item"
             >
               <Tabs
@@ -218,7 +218,7 @@ export const MyQA = ({
                 />
               </div>
             </GridItem>
-            <GridItem md={8} lg={4} classes="my-qa__button-item">
+            <GridItem md={8} lg={12} classes="my-qa__button-item">
               <Button
                 label={t("ask_button_label")}
                 size={width < 980 && width > 768 ? "lg" : "lg"}
