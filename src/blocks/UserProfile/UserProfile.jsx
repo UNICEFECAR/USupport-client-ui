@@ -26,7 +26,7 @@ const GIT_BOOK_URL = `${import.meta.env.VITE_GIT_BOOK_URL}`;
  */
 export const UserProfile = ({ openModal, isTmpUser }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation("user-profile");
+  const { t } = useTranslation("blocks", { keyPrefix: "user-profile" });
 
   const [displayName, setDisplayName] = useState("");
 

@@ -31,7 +31,7 @@ import "./payment-status.scss";
  * @return {jsx}
  */
 export const PaymentStatus = () => {
-  const { t } = useTranslation("payment-status-block");
+  const { t } = useTranslation("blocks", { keyPrefix: "payment-status-block" });
   const stripe = useStripe();
   const navigate = useNavigate();
   const { consultationId } = useParams();

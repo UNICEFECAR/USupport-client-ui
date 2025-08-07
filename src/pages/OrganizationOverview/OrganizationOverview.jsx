@@ -18,7 +18,9 @@ import "./organization-overview.scss";
  * @returns {JSX.Element}
  */
 export const OrganizationOverview = () => {
-  const { t } = useTranslation("organization-overview-page");
+  const { t } = useTranslation("pages", {
+    keyPrefix: "organization-overview-page",
+  });
   const { organizationId } = useParams();
 
   if (!organizationId) {

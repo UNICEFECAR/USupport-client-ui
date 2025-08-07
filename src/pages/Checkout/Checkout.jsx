@@ -23,7 +23,7 @@ import "./checkout.scss";
  */
 export const Checkout = () => {
   const queryClient = useQueryClient();
-  const { t, i18n } = useTranslation("checkout-page");
+  const { t, i18n } = useTranslation("pages", { keyPrefix: "checkout-page" });
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
   const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;

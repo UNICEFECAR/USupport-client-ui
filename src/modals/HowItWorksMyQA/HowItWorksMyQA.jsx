@@ -59,7 +59,9 @@ import "./how-it-works-my-qa.scss";
  * @return {jsx}
  */
 export const HowItWorksMyQA = ({ isOpen, onClose }) => {
-  const { t, i18n } = useTranslation("how-it-works-my-qa");
+  const { t, i18n } = useTranslation("modals", {
+    keyPrefix: "how-it-works-my-qa",
+  });
   const { width } = useWindowDimensions();
 
   const slides = [

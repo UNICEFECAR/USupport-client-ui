@@ -1,6 +1,0 @@
-{
-  "label": "New password",
-  "placeholder": "Enter your new password",
-  "submit": "Submit",
-  "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number"
-}

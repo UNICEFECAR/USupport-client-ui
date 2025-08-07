@@ -5,7 +5,6 @@ import { clientSvc } from "@USupport-components-library/services";
 export default function useGetAllOrganizations(filters) {
   const {
     search,
-    workWith,
     district,
     paymentMethod,
     userInteraction,
@@ -41,7 +40,6 @@ export default function useGetAllOrganizations(filters) {
         id: organization?.user_interaction_id,
         name: organization?.user_interaction,
       },
-      workWith: organization?.work_with || [],
       providers: organization?.providers || [],
       createdBy: organization?.created_by,
       createdAt: organization?.created_at,
@@ -57,7 +55,6 @@ export default function useGetAllOrganizations(filters) {
     queryKey: [
       "organizations",
       search,
-      workWith,
       district,
       paymentMethod,
       userInteraction,

@@ -27,7 +27,7 @@ import "./register-support.scss";
  * @return {jsx}
  */
 export const RegisterSupport = () => {
-  const { t } = useTranslation("register-support");
+  const { t } = useTranslation("blocks", { keyPrefix: "register-support" });
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 

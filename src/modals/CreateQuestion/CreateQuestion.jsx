@@ -19,7 +19,7 @@ import "./create-question.scss";
  * @return {jsx}
  */
 export const CreateQuestion = ({ isOpen, onClose }) => {
-  const { t } = useTranslation("create-question");
+  const { t } = useTranslation("modals", { keyPrefix: "create-question" });
   const queryClient = useQueryClient();
 
   const [data, setData] = useState({ question: "" });

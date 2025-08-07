@@ -37,7 +37,7 @@ const fetchCountry = async () => {
  * @returns {JSX.Element}
  */
 export const SelectProvider = () => {
-  const { t } = useTranslation("select-provider-page");
+  const { t } = useTranslation("pages", { keyPrefix: "select-provider-page" });
   const { width } = useWindowDimensions();
 
   const { isTmpUser, activeCoupon, setActiveCoupon } = useContext(RootContext);

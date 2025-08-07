@@ -16,7 +16,7 @@ import "./select-avatar.scss";
  * @return {jsx}
  */
 export const SelectAvatar = ({ isOpen, onClose }) => {
-  const { t } = useTranslation("select-avatar");
+  const { t } = useTranslation("backdrops", { keyPrefix: "select-avatar" });
 
   const queryClient = useQueryClient();
   const clientData = queryClient.getQueryData(["client-data"]);

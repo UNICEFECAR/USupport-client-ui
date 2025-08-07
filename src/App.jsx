@@ -46,8 +46,32 @@ function App() {
   const [isPodcastsActive, setIsPodcastsActive] = useState(false);
   const [isVideosActive, setIsVideosActive] = useState(false);
 
+  const [cookieState, setCookieState] = useState({
+    hasAcceptedAllCookies: false,
+    hasAcceptedNecessaryCookies: false,
+    hasHandledCookies: false,
+    isBannerOpen: false,
+  });
+
   useEffect(() => {
     const language = localStorage.getItem("language");
+    const hasAcceptedAllCookies = !!Number(
+      localStorage.getItem("hasAcceptedAllCookies")
+    );
+    const hasAcceptedNecessaryCookies = !!Number(
+      localStorage.getItem("hasAcceptedNecessaryCookies")
+    );
+    const hasHandledCookies = !!Number(
+      localStorage.getItem("hasHandledCookies")
+    );
+
+    setCookieState({
+      hasAcceptedAllCookies,
+      hasAcceptedNecessaryCookies,
+      hasHandledCookies,
+      isBannerOpen: hasHandledCookies ? false : true,
+    });
+
     if (language) {
       i18n.changeLanguage(language);
     }
@@ -88,6 +112,8 @@ function App() {
         setIsPodcastsActive,
         isVideosActive,
         setIsVideosActive,
+        cookieState,
+        setCookieState,
       }}
     >
       <div className={`theme-${theme}`}>

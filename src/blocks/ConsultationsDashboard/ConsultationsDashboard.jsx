@@ -31,7 +31,9 @@ export const ConsultationsDashboard = ({
   const navigate = useNavigate();
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
 
-  const { t } = useTranslation("consultations-dashboard");
+  const { t } = useTranslation("blocks", {
+    keyPrefix: "consultations-dashboard",
+  });
 
   const breakpointsItem = {
     desktop: {

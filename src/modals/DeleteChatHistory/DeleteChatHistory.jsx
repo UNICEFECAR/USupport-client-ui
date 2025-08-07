@@ -16,7 +16,7 @@ import { useError } from "#hooks";
  * @return {jsx}
  */
 export const DeleteChatHistory = ({ isOpen, onClose }) => {
-  const { t } = useTranslation("delete-chat-history");
+  const { t } = useTranslation("modals", { keyPrefix: "delete-chat-history" });
 
   const [errors, setErrors] = useState({});
 

@@ -28,7 +28,7 @@ import "./register-about-you.scss";
  */
 export const RegisterAboutYou = ({ isAnonymous }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation("register-about-you");
+  const { t } = useTranslation("blocks", { keyPrefix: "register-about-you" });
   const queryClient = useQueryClient();
   const countriesData = queryClient.getQueryData(["countries"]);
 

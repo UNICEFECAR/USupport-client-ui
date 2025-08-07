@@ -21,7 +21,7 @@ import "./join-consultation.scss";
  */
 export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation("join-consultation");
+  const { t } = useTranslation("backdrops", { keyPrefix: "join-consultation" });
 
   const handleClick = async (redirectTo) => {
     const sytemMessage = {

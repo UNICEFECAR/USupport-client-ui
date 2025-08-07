@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
  * @returns {JSX.Element}
  */
 export const FAQ = () => {
-  const { t } = useTranslation("faq-page");
+  const { t } = useTranslation("pages", { keyPrefix: "faq-page" });
 
   return (
     <Page

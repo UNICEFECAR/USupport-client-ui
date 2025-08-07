@@ -12,7 +12,9 @@ import "./activity-log-dashboard.scss";
  * @return {jsx}
  */
 export const ActivityLogDashboard = () => {
-  const { t } = useTranslation("activity-log-dashboard");
+  const { t } = useTranslation("blocks", {
+    keyPrefix: "activity-log-dashboard",
+  });
 
   const handleViewAll = () => {
     console.log("View all");

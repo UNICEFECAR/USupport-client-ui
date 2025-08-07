@@ -21,7 +21,7 @@ import "./faq.scss";
  * @return {jsx}
  */
 export const FAQ = () => {
-  const { i18n, t } = useTranslation("faq");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "faq" });
   const [searchQuery, setSearchQuery] = useState("");
 
   //--------------------- Country Change Event Listener ----------------------//

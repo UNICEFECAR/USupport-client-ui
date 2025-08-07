@@ -36,7 +36,7 @@ const initialData = {
  * @return {jsx}
  */
 export const ContactUs = () => {
-  const { t } = useTranslation("contact-us-block");
+  const { t } = useTranslation("blocks", { keyPrefix: "contact-us-block" });
 
   const { isTmpUser } = useContext(RootContext);
 
