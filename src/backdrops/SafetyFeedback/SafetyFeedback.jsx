@@ -16,7 +16,7 @@ import "./safety-feedback.scss";
  * @return {jsx}
  */
 export const SafetyFeedback = ({ isOpen, onClose }) => {
-  const { t } = useTranslation("safety-feedback");
+  const { t } = useTranslation("backdrops", { keyPrefix: "safety-feedback" });
 
   const options = [
     { label: t("option_yes_label"), value: "yes" },

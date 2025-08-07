@@ -24,7 +24,7 @@ import "./register-preview.scss";
  * @return {jsx}
  */
 export const RegisterPreview = () => {
-  const { t } = useTranslation("register-preview");
+  const { t } = useTranslation("blocks", { keyPrefix: "register-preview" });
   const navigate = useNavigate();
   const [error, setErrror] = useState();
 

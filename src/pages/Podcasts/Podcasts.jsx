@@ -15,7 +15,7 @@ import "./podcasts.scss";
  * @returns {JSX.Element}
  */
 export const Podcasts = () => {
-  const { t } = useTranslation("podcasts-page");
+  const { t } = useTranslation("pages", { keyPrefix: "podcasts-page" });
   const { isPodcastsActive } = useGetIsPodcastsAndVideosActive();
   const location = useLocation();
 

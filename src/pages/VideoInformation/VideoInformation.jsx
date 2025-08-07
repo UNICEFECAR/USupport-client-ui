@@ -42,7 +42,9 @@ export const VideoInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { isVideosActive } = useContext(ThemeContext);
-  const { i18n, t } = useTranslation("video-information-page");
+  const { i18n, t } = useTranslation("pages", {
+    keyPrefix: "video-information-page",
+  });
 
   const getVideosIds = async () => {
     // Request video ids from the master DB

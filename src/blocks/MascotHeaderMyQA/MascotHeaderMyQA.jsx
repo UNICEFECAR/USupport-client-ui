@@ -20,7 +20,7 @@ import {
  * @return {jsx}
  */
 export const MascotHeaderMyQA = ({ classes, handleSeeHowItWorksClick }) => {
-  const { t } = useTranslation("mascot-header-MyQA");
+  const { t } = useTranslation("blocks", { keyPrefix: "mascot-header-MyQA" });
   const { width } = useWindowDimensions();
 
   return (

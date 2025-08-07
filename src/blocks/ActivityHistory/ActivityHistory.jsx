@@ -81,7 +81,7 @@ export const ActivityHistory = ({
   providerId,
 }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation("activity-history");
+  const { t } = useTranslation("blocks", { keyPrefix: "activity-history" });
 
   const [search, setSearch] = useState("");
   const [showSystemMessages, setShowSystemMessages] = useState(true);

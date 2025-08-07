@@ -33,7 +33,7 @@ import "./articles.scss";
  */
 export const Articles = ({ showSearch, showCategories, sort }) => {
   const navigate = useNavigate();
-  const { i18n, t } = useTranslation("articles");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 

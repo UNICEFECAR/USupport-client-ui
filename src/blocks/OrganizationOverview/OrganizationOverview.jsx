@@ -23,7 +23,9 @@ import "./organization-overview.scss";
  * @return {jsx}
  */
 export const OrganizationOverview = ({ organizationId }) => {
-  const { t } = useTranslation("organization-overview");
+  const { t } = useTranslation("blocks", {
+    keyPrefix: "organization-overview",
+  });
 
   const {
     data: organization,

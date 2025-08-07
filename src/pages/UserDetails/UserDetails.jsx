@@ -19,7 +19,7 @@ import "./user-details.scss";
  * @returns {JSX.Element}
  */
 export const UserDetails = () => {
-  const { t } = useTranslation("user-details-page");
+  const { t } = useTranslation("pages", { keyPrefix: "user-details-page" });
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
   const [isDeleteBackdropShown, setIsDeleteBackdropShown] = useState(false);
   const [isUploadPictureModalOpen, setIsUploadPictureModalOpen] =

@@ -35,7 +35,7 @@ import "./register-anonymous.scss";
  */
 export const RegisterAnonymous = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("register-anonymous");
+  const { t } = useTranslation("blocks", { keyPrefix: "register-anonymous" });
   const queryClient = useQueryClient();
 
   const countriesData = queryClient.getQueryData(["countries"]);

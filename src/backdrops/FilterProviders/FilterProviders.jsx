@@ -27,7 +27,7 @@ export const FilterProviders = ({
   languages,
   initialFilters,
 }) => {
-  const { t } = useTranslation("filter-providers");
+  const { t } = useTranslation("backdrops", { keyPrefix: "filter-providers" });
 
   const [data, setData] = useState({ ...allFilters });
 

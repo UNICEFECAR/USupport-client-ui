@@ -32,7 +32,9 @@ import "./articles-dashboard.scss";
 export const ArticlesDashboard = () => {
   const navigate = useNavigate();
 
-  const { t, i18n } = useTranslation("articles-dashboard");
+  const { t, i18n } = useTranslation("blocks", {
+    keyPrefix: "articles-dashboard",
+  });
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 

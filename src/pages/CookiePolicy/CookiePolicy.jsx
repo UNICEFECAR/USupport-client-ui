@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
  * @returns {JSX.Element}
  */
 export const CookiePolicy = () => {
-  const { t } = useTranslation("cookie-policy-page");
+  const { t } = useTranslation("pages", { keyPrefix: "cookie-policy-page" });
   return (
     <Page classes="page__cookie-policy" heading={t("heading")}>
       <CookiePolicyBlock />

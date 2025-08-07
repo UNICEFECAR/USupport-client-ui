@@ -24,7 +24,9 @@ import "./provider-overview.scss";
  * @returns {JSX.Element}
  */
 export const ProviderOverview = () => {
-  const { t } = useTranslation("provider-overview-page");
+  const { t } = useTranslation("pages", {
+    keyPrefix: "provider-overview-page",
+  });
   const { setActiveCoupon } = useContext(RootContext);
 
   const navigate = useNavigate();

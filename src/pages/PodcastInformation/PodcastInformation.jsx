@@ -43,7 +43,9 @@ export const PodcastInformation = () => {
   const { id } = useParams();
   const { isPodcastsActive } = useContext(ThemeContext);
 
-  const { i18n, t } = useTranslation("podcast-information-page");
+  const { i18n, t } = useTranslation("pages", {
+    keyPrefix: "podcast-information-page",
+  });
 
   const getPodcastsIds = async () => {
     const podcastIds = await adminSvc.getPodcasts();

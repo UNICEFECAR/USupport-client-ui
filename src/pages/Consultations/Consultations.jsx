@@ -42,7 +42,7 @@ import "./consultations.scss";
 export const Consultations = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { t } = useTranslation("consultations-page");
+  const { t } = useTranslation("pages", { keyPrefix: "consultations-page" });
 
   const { isTmpUser } = useContext(RootContext);
 

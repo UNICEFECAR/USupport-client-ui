@@ -59,6 +59,24 @@
       }
     }
   }
+
+  &__cookie-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: $spacing_2_5;
+    border-radius: $border_radius_2_5;
+    margin-top: $spacing_1_2;
+    box-shadow: $shadow_1;
+    padding-block: 18rem;
+
+    & .btn {
+      margin-top: $spacing_1_0;
+    }
+  }
+
   &__embed-container {
     position: relative;
     padding-bottom: 56.25%; // 16:9 aspect ratio

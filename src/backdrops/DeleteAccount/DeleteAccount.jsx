@@ -18,7 +18,7 @@ import "./delete-account.scss";
 export const DeleteAccount = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
 
-  const { t } = useTranslation("delete-account");
+  const { t } = useTranslation("backdrops", { keyPrefix: "delete-account" });
 
   const [data, setData] = useState({ password: "" });
   const [errors, setErrors] = useState({});

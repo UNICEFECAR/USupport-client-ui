@@ -24,7 +24,6 @@ import "./organizations.scss";
 
 const INITIAL_FILTERS = {
   search: "",
-  workWith: "",
   district: "",
   paymentMethod: "",
   userInteraction: "",
@@ -40,7 +39,7 @@ const INITIAL_FILTERS = {
  * @return {jsx}
  */
 export const Organizations = () => {
-  const { t } = useTranslation("organizations");
+  const { t } = useTranslation("blocks", { keyPrefix: "organizations" });
   const navigate = useNavigate();
   const [mapControls, setMapControls] = React.useState(null);
   const [userLocation, setUserLocation] = React.useState(null);
@@ -50,7 +49,6 @@ export const Organizations = () => {
 
   const { data, isLoading } = useGetAllOrganizations({
     search: debouncedSearch,
-    workWith: filters.workWith,
     district: filters.district,
     paymentMethod: filters.paymentMethod,
     userInteraction: filters.userInteraction,
@@ -132,19 +130,6 @@ export const Organizations = () => {
 
     return (
       <div className="organizations__dropdowns-container">
-        {/* {metadata?.workWith && metadata.workWith.length > 0 && (
-          <Dropdown
-            selected={filters.workWith}
-            setSelected={(value) => handleChange("workWith", value)}
-            placeholder={t("work_with_placeholder")}
-            options={metadata.workWith.map((item) => ({
-              label: t(item.topic),
-              value: item.organizationWorkWithId,
-            }))}
-            isSmall
-          />
-        )} */}
-
         {metadata?.districts && metadata.districts.length > 0 && (
           <Dropdown
             selected={filters.district}

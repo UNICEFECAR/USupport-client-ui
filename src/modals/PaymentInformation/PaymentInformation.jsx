@@ -28,7 +28,7 @@ export const PaymentInformation = ({
     address,
     receipt_url,
   } = data;
-  const { t } = useTranslation("payment-information");
+  const { t } = useTranslation("modals", { keyPrefix: "payment-information" });
 
   const handleViewReceiptButtonClick = (receiptUrl) => {
     window.open(receiptUrl, "_blank", "noreferrer");

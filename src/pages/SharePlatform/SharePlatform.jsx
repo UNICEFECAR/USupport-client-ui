@@ -12,7 +12,7 @@ import "./share-platform.scss";
  * @returns {JSX.Element}
  */
 export const SharePlatform = () => {
-  const { t } = useTranslation("share-platform-page");
+  const { t } = useTranslation("pages",{keyPrefix:"share-platform-page"});
 
   return (
     <Page

@@ -17,7 +17,7 @@ import "./filter-questions.scss";
  * @return {jsx}
  */
 export const FilterQuestions = ({ isOpen, onClose, setTag }) => {
-  const { t } = useTranslation("filter-questions");
+  const { t } = useTranslation("backdrops", { keyPrefix: "filter-questions" });
 
   const [tags, setTags] = useState([]);
 

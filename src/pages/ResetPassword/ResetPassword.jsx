@@ -13,7 +13,7 @@ import "./reset-password.scss";
  * @returns {JSX.Element}
  */
 export const ResetPassword = () => {
-  const { t } = useTranslation("reset-password-page");
+  const { t } = useTranslation("pages", { keyPrefix: "reset-password-page" });
   const navigate = useNavigate();
   const handleGoBack = () => {
     navigate("/forgot-password");

@@ -21,7 +21,7 @@ import "./terms-of-use.scss";
  * @return {jsx}
  */
 export const TermsOfUse = () => {
-  const { i18n, t } = useTranslation("terms-of-use");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "terms-of-use" });
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(

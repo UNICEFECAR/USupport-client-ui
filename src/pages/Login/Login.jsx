@@ -16,7 +16,7 @@ import "./login.scss";
  * @returns {JSX.Element}
  */
 export const Login = () => {
-  const { t } = useTranslation("login-page");
+  const { t } = useTranslation("pages", { keyPrefix: "login-page" });
   const { width } = useWindowDimensions();
 
   const isLoggedIn = useIsLoggedIn();

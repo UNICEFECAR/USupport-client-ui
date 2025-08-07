@@ -18,7 +18,7 @@ import "./user-profile.scss";
  */
 export const UserProfile = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("user-profile-page");
+  const { t } = useTranslation("pages", { keyPrefix: "user-profile-page" });
   const { width } = useWindowDimensions();
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";

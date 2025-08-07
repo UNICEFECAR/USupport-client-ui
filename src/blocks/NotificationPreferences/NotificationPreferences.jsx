@@ -29,7 +29,9 @@ import { useGetClientData } from "#hooks";
  * @return {jsx}
  */
 export const NotificationPreferences = () => {
-  const { t } = useTranslation("notification-preferences");
+  const { t } = useTranslation("blocks", {
+    keyPrefix: "notification-preferences",
+  });
 
   const minutes = [15, 30, 45, 60];
   const consultationReminderOptions = minutes.map((x) => ({
