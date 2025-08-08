@@ -57,7 +57,7 @@ export const JitsiRoom = () => {
   const country = localStorage.getItem("country");
   const { theme } = useContext(ThemeContext);
 
-  const { t } = useTranslation("consultation-page");
+  const { t } = useTranslation("pages", { keyPrefix: "consultation-page" });
   const consultationRef = useRef();
   const api = useRef();
   const backdropMessagesContainerRef = useRef();
