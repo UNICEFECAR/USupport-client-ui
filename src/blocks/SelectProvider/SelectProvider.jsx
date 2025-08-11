@@ -25,7 +25,7 @@ export const SelectProvider = ({
   providersQuery,
   isFiltering,
 }) => {
-  const { t } = useTranslation("select-provider");
+  const { t } = useTranslation("blocks", { keyPrefix: "select-provider" });
   const navigate = useNavigate();
 
   const handleProviderClick = (provider) => {

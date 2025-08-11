@@ -35,7 +35,7 @@ import "./register-anonymous.scss";
  */
 export const RegisterAnonymous = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("register-anonymous");
+  const { t } = useTranslation("blocks", { keyPrefix: "register-anonymous" });
   const queryClient = useQueryClient();
 
   const countriesData = queryClient.getQueryData(["countries"]);
@@ -61,7 +61,7 @@ export const RegisterAnonymous = () => {
   });
   const [errors, setErrors] = useState({});
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
-  const [hasCopied, setHasCopied] = useState(true);
+  const [hasCopied, setHasCopied] = useState(false);
 
   const country = localStorage.getItem("country");
   const selectedCountry = countriesData?.find((c) => c.value === country);

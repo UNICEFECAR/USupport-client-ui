@@ -40,7 +40,9 @@ export const SelectConsultation = ({
   campaignId: campaingIdFromProps,
   couponCode,
 }) => {
-  const { t } = useTranslation("select-consultation");
+  const { t } = useTranslation("backdrops", {
+    keyPrefix: "select-consultation",
+  });
   const { activeCoupon } = useContext(RootContext);
   const [startDate, setStartDate] = useState(null);
   const [currentDay, setCurrentDay] = useState(new Date().getTime());

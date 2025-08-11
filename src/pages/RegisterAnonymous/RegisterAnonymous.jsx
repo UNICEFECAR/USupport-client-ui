@@ -18,7 +18,9 @@ import "./register-anonymous.scss";
  * @returns {JSX.Element}
  */
 export const RegisterAnonymous = () => {
-  const { t } = useTranslation("register-anonymous-page");
+  const { t } = useTranslation("pages", {
+    keyPrefix: "register-anonymous-page",
+  });
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
   const isLoggedIn = useIsLoggedIn();

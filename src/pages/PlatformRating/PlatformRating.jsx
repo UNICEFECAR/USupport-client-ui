@@ -14,7 +14,7 @@ import "./platform-rating.scss";
  * @returns {JSX.Element}
  */
 export const PlatformRating = () => {
-  const { t } = useTranslation("platform-rating-page");
+  const { t } = useTranslation("pages", { keyPrefix: "platform-rating-page" });
   const { width } = useWindowDimensions();
 
   return (

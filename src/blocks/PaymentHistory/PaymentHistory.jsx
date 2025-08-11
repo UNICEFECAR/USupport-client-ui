@@ -31,7 +31,9 @@ import "./payment-history.scss";
  */
 export const PaymentHistory = () => {
   const queryClient = useQueryClient();
-  const { t, i18n } = useTranslation("payment-history-block");
+  const { t, i18n } = useTranslation("blocks", {
+    keyPrefix: "payment-history-block",
+  });
   const rows = useMemo(() => {
     return [
       { label: t("service") },

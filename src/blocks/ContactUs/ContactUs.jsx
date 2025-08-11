@@ -36,15 +36,31 @@ const initialData = {
  * @return {jsx}
  */
 export const ContactUs = () => {
-  const { t } = useTranslation("contact-us-block");
+  const { t } = useTranslation("blocks", { keyPrefix: "contact-us-block" });
 
   const { isTmpUser } = useContext(RootContext);
 
+  const country = localStorage.getItem("country");
+
+  const IS_PL = country === "PL";
+
   const initialIssues = [
-    { value: "information", label: "contact_reason_1" },
-    { value: "services-information", label: "contact_reason_2" },
-    { value: "technical-problem", label: "contact_reason_3" },
-    { value: "other", label: "contact_reason_4" },
+    {
+      value: "information",
+      label: IS_PL ? "contact_reason_1_pl" : "contact_reason_1",
+    },
+    {
+      value: "services-information",
+      label: IS_PL ? "contact_reason_2_pl" : "contact_reason_2",
+    },
+    {
+      value: "technical-problem",
+      label: IS_PL ? "contact_reason_3_pl" : "contact_reason_3",
+    },
+    {
+      value: "other",
+      label: IS_PL ? "contact_reason_4_pl" : "contact_reason_4",
+    },
   ];
 
   const navigate = useNavigate();

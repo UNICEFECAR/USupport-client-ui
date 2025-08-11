@@ -43,7 +43,7 @@ import "./dashboard.scss";
  * @returns {JSX.Element}
  */
 export const Dashboard = () => {
-  const { t } = useTranslation("dashboard-page");
+  const { t } = useTranslation("pages", { keyPrefix: "dashboard-page" });
   const navigate = useNavigate();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
   const clientDataQuery = useGetClientData(!isTmpUser)[0];

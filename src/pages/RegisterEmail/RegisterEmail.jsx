@@ -24,7 +24,7 @@ import "./register-email.scss";
  * @returns {JSX.Element}
  */
 export const RegisterEmail = () => {
-  const { t } = useTranslation("register-email-page");
+  const { t } = useTranslation("page", { keyPrefix: "register-email-page" });
   const navigate = useNavigate();
   const isLoggedIn = useIsLoggedIn();
 

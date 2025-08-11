@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
  * @returns {JSX.Element}
  */
 export const Articles = () => {
-  const { t } = useTranslation("articles-page");
+  const { t } = useTranslation("pages", { keyPrefix: "articles-page" });
   const location = useLocation();
 
   const sort =

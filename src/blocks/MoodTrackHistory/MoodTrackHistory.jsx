@@ -22,7 +22,7 @@ import "./mood-track-history.scss";
  * @return {jsx}
  */
 export const MoodTrackHistory = () => {
-  const { t } = useTranslation("mood-track-history");
+  const { t } = useTranslation("blocks", { keyPrefix: "mood-track-history" });
   const { width } = useWindowDimensions();
 
   const [pageNum, setPageNum] = useState(0);

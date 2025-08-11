@@ -17,7 +17,7 @@ import "./mood-tracker-history.scss";
  * @return {jsx}
  */
 export const MoodTrackerHistory = () => {
-  const { t } = useTranslation("mood-tracker-history");
+  const { t } = useTranslation("blocks", { keyPrefix: "mood-tracker-history" });
 
   //TODO - get the Data from the API
   const [emoticons] = useState([

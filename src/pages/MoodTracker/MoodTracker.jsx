@@ -12,7 +12,7 @@ import "./mood-tracker.scss";
  * @returns {JSX.Element}
  */
 export const MoodTracker = () => {
-  const { t } = useTranslation("mood-tracker-page");
+  const { t } = useTranslation("pages", { keyPrefix: "mood-tracker-page" });
 
   return (
     <Page

@@ -31,7 +31,7 @@ const initialData = {
  * @return {jsx}
  */
 export const GiveSuggestion = ({ type = "information-portal" }) => {
-  const { t } = useTranslation("give-suggestion");
+  const { t } = useTranslation("blocks", { keyPrefix: "give-suggestion" });
 
   const navigate = useNavigate();
   const isTmpUser = userSvc.getUserID() === "tmp-user";

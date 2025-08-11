@@ -34,7 +34,9 @@ export const ArticleInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { i18n, t } = useTranslation("article-information");
+  const { i18n, t } = useTranslation("pages", {
+    keyPrefix: "article-information",
+  });
 
   const getArticlesIds = async () => {
     // Request articles ids from the master DB based for website platform

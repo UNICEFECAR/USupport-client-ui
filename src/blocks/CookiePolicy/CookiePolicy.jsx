@@ -24,7 +24,7 @@ import "./cookie-policy.scss";
  * @return {jsx}
  */
 export const CookiePolicy = () => {
-  const { i18n, t } = useTranslation("cookie-policy");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "cookie-policy" });
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState();

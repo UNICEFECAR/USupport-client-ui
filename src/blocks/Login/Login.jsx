@@ -32,7 +32,7 @@ import "./login.scss";
  * @return {jsx}
  */
 export const Login = () => {
-  const { t } = useTranslation("login");
+  const { t } = useTranslation("blocks", { keyPrefix: "login" });
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);

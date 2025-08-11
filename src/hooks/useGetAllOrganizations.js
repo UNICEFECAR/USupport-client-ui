@@ -5,7 +5,6 @@ import { clientSvc } from "@USupport-components-library/services";
 export default function useGetAllOrganizations(filters) {
   const {
     search,
-    workWith,
     district,
     paymentMethod,
     userInteraction,
@@ -20,7 +19,6 @@ export default function useGetAllOrganizations(filters) {
     return data.map((organization) => ({
       organizationId: organization.organization_id,
       name: organization.name,
-      unitName: organization?.unit_name,
       websiteUrl: organization?.website_url,
       address: organization?.address,
       phone: organization?.phone,
@@ -42,11 +40,14 @@ export default function useGetAllOrganizations(filters) {
         id: organization?.user_interaction_id,
         name: organization?.user_interaction,
       },
-      workWith: organization?.work_with || [],
       providers: organization?.providers || [],
       createdBy: organization?.created_by,
       createdAt: organization?.created_at,
       specialisations: organization?.specialisations || [],
+      paymentMethods: organization?.payment_methods || [],
+      userInteractions: organization?.user_interactions || [],
+      propertyTypes: organization?.property_types || [],
+      distanceKm: organization?.distance_km,
     }));
   };
 
@@ -54,7 +55,6 @@ export default function useGetAllOrganizations(filters) {
     queryKey: [
       "organizations",
       search,
-      workWith,
       district,
       paymentMethod,
       userInteraction,

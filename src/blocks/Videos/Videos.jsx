@@ -34,7 +34,7 @@ import "./videos.scss";
  */
 export const Videos = ({ showSearch, showCategories, sort }) => {
   const navigate = useNavigate();
-  const { i18n, t } = useTranslation("videos");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "videos" });
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
   useEffect(() => {

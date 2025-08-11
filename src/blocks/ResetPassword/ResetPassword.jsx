@@ -27,7 +27,7 @@ import "./reset-password.scss";
  */
 export const ResetPassword = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("reset-password");
+  const { t } = useTranslation("blocks", { keyPrefix: "reset-password" });
 
   const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState("");

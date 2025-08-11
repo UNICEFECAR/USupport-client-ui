@@ -39,7 +39,7 @@ export const RegisterEmail = ({
   showCaptcha,
   isCaptchaValid,
 }) => {
-  const { t } = useTranslation("register-email");
+  const { t } = useTranslation("blocks", { keyPrefix: "register-email" });
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const countriesData = queryClient.getQueryData(["countries"]);

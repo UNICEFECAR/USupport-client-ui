@@ -20,7 +20,9 @@ import { useCustomNavigate as useNavigate } from "#hooks";
  */
 export const ConfirmConsultation = ({ isOpen, onClose, consultation }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation("confirm-consultation");
+  const { t } = useTranslation("backdrops", {
+    keyPrefix: "confirm-consultation",
+  });
   const { theme } = useContext(ThemeContext);
 
   const handleContinue = () => {

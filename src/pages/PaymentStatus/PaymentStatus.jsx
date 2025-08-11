@@ -15,7 +15,9 @@ import "./payment-status.scss";
  * @returns {JSX.Element}
  */
 export const PaymentStatus = () => {
-  const { t, i18n } = useTranslation("payment-status-page");
+  const { t, i18n } = useTranslation("pages", {
+    keyPrefix: "payment-status-page",
+  });
   const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
   const stripePromise = loadStripe(stripePublicKey, {
     locale: i18n.language ? "kk" : "ru",

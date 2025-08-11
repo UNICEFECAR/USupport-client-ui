@@ -27,7 +27,7 @@ import "./notifications.scss";
  * @returns {JSX.Element}
  */
 export const Notifications = () => {
-  const { t } = useTranslation("notifications-page");
+  const { t } = useTranslation("pages", { keyPrefix: "notifications-page" });
 
   const [notificationProviders, setNotificationProviders] = useState({});
   const [selectedConsultation, setSelectedConsultation] = useState();

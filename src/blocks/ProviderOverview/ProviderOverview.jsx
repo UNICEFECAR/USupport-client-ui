@@ -23,7 +23,7 @@ import "./provider-overview.scss";
  * @return {jsx}
  */
 export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
-  const { t } = useTranslation("provider-overview");
+  const { t } = useTranslation("blocks", { keyPrefix: "provider-overview" });
   const { activeCoupon } = useContext(RootContext);
 
   const { data: provider } = useGetProviderDataById(
