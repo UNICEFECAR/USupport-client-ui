@@ -23,7 +23,7 @@ import "./sos-center.scss";
  * @return {jsx}
  */
 export const SOSCenter = () => {
-  const { i18n, t } = useTranslation("block", { keyPrefix: "sos-center" });
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "sos-center" });
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
