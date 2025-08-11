@@ -36,7 +36,9 @@ export const BaselineAssesment = ({
   setHasStartedAssessment,
   inProgressSession,
 }) => {
-  const { t } = useTranslation("baseline-assesment");
+  const { t } = useTranslation("blocks", {
+    keyPrefix: "baseline-assesment",
+  });
   const queryClient = useQueryClient();
   const [state, setState] = useState({
     currentStep: "intro", // intro, questions, completed
@@ -302,7 +304,7 @@ export const BaselineAssesment = ({
         {state.currentStep === "questions" && currentQuestion && (
           <>
             <GridItem md={8} lg={12} classes="baseline-assesment__progress">
-              <h4>{t("instructions")}</h4>
+              <h3>{t("instructions")}</h3>
 
               <div className="baseline-assesment__progress__info">
                 <span className="small-text">

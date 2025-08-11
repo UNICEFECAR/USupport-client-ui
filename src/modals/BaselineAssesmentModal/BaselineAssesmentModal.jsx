@@ -22,7 +22,9 @@ import "./baseline-assesment-modal.scss";
  * @return {jsx}
  */
 export const BaselineAssesmentModal = () => {
-  const { t } = useTranslation("baseline-assesment-modal");
+  const { t } = useTranslation("modals", {
+    keyPrefix: "baseline-assesment-modal",
+  });
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const websiteUrl = constructWebsiteUrl("privacy-policy");
