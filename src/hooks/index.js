@@ -39,6 +39,7 @@ export * from "./useGetProviderStatus.js";
 export * from "./useAddQuestion.js";
 export * from "./useGetClientQuestions";
 export * from "./useGetQuestions";
+export * from "./useAddSosCenterClick.js";
 export * from "./useAddVoteQuestion.js";
 export * from "./useGetQuestionsTags.js";
 export * from "./useMarkAllNotificationsAsRead.js";

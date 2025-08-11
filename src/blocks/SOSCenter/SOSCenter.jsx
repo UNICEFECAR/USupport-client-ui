@@ -1,5 +1,9 @@
 import React, { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+
+import { useEventListener, useAddSosCenterClick } from "#hooks";
+
 import {
   Block,
   Grid,
@@ -7,8 +11,6 @@ import {
   EmergencyCenter,
   Loading,
 } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
-import { useEventListener } from "#hooks";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
 import "./sos-center.scss";
@@ -74,6 +76,27 @@ export const SOSCenter = () => {
     }
   );
 
+  const addSosCenterClickMutation = useAddSosCenterClick();
+
+  const handleSosCenterClick = (sosCenter) => {
+    const { attributes } = sosCenter;
+    let id = sosCenter.id;
+    if (attributes.locale !== "en") {
+      const englishLocalization = attributes.localizations.data.find(
+        (x) => x.attributes.locale === "en"
+      );
+      if (englishLocalization) {
+        id = englishLocalization.id;
+      }
+    }
+
+    addSosCenterClickMutation.mutate({
+      sosCenterId: id,
+      isMain: false,
+      platform: "client",
+    });
+  };
+
   return (
     <Block classes="soscenter" animation="fade-right">
       {SOSCentersData && (
@@ -95,6 +118,7 @@ export const SOSCenter = () => {
                       phone={sosCenter.attributes.phone}
                       btnLabelLink={t("button_link")}
                       btnLabelCall={t("button_call")}
+                      onClick={() => handleSosCenterClick(sosCenter)}
                       image={
                         sosCenter.attributes.image?.data?.attributes?.formats
                           ?.medium?.url
