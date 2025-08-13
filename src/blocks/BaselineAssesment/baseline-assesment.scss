@@ -41,20 +41,6 @@
         @include themify($themes, "color", "color_gray_92989b_c1d7e0");
       }
     }
-
-    &__warning {
-      margin-top: $spacing_2_4;
-      padding: $spacing_1_6;
-      background-color: rgba(249, 199, 79, 0.1);
-      border: 1px solid $color_yellow_f9c74f;
-      border-radius: $spacing_1_2;
-      margin-bottom: $spacing_2_4;
-
-      &-text {
-        color: $color_yellow_f9c74f !important;
-        font-weight: 500;
-      }
-    }
   }
 
   // Progress section
