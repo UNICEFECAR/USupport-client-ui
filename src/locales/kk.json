@@ -729,7 +729,8 @@
       "view_organization_details": "Ұйым мәліметтерін көру",
       "address": "Мекенжай",
       "phone": "Телефон",
-      "email": "E-mail"
+      "email": "E-mail",
+      "any": "Барлық"
     },
     "organization-overview": {
       "error_loading_data": "Ұйым деректерін жүктеу кезінде қате орын алды",

@@ -730,7 +730,8 @@
       "view_organization_details": "Read more",
       "address": "Address",
       "phone": "Phone",
-      "email": "Email"
+      "email": "Email",
+      "any": "Any"
     },
     "organization-overview": {
       "error_loading_data": "An error occurred while loading the organization data",

@@ -730,7 +730,8 @@
       "view_organization_details": "Посмотреть детали организации",
       "address": "Адрес",
       "phone": "Телефон",
-      "email": "E-mail"
+      "email": "E-mail",
+      "any": "Любой"
     },
     "organization-overview": {
       "error_loading_data": "При загрузке данных организации возникла ошибка",

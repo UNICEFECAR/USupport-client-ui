@@ -716,7 +716,8 @@
       "view_organization_details": "Zobacz szczegóły organizacji",
       "address": "Adres",
       "phone": "Telefon",
-      "email": "E-mail"
+      "email": "E-mail",
+      "any": "Dowolny"
     },
     "organization-overview": {
       "error_loading_data": "Wystąpił błąd podczas ładowania danych organizacji",
