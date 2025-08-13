@@ -730,7 +730,8 @@
       "view_organization_details": "Переглянути деталі організації",
       "address": "Адреса",
       "phone": "Телефон",
-      "email": "E-mail"
+      "email": "E-mail",
+      "any": "Будь-який"
     },
     "organization-overview": {
       "error_loading_data": "Під час завантаження даних організації сталася помилка",
