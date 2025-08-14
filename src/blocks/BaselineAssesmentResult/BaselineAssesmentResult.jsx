@@ -22,7 +22,9 @@ import "./baseline-assesment-result.scss";
  * @return {jsx}
  */
 export const BaselineAssesmentResult = ({ result }) => {
-  const { t } = useTranslation("baseline-assesment-result");
+  const { t } = useTranslation("blocks", {
+    keyPrefix: "baseline-assesment-result",
+  });
   const navigate = useNavigate();
 
   const { isLoading, data } = useGetAssessmentResult({
