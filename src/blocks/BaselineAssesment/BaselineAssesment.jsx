@@ -85,8 +85,11 @@ export const BaselineAssesment = ({
     ? (Object.keys(state.answers).length / questions.length) * 100
     : 0;
 
-  // Check if user can start a new assessment
   const canStartNewAssessment = !inProgressSession;
+
+  const canContinue =
+    currentQuestion && state.answers[currentQuestion.questionId];
+  const isLastQuestion = state.currentQuestionIndex === questions?.length - 1;
 
   // Start the assessment
   const handleStartAssessment = () => {
@@ -140,8 +143,12 @@ export const BaselineAssesment = ({
     const questionId = currentQuestion.questionId;
     const answerValue = state.answers[questionId];
 
-    if (answers && currentAnswer && currentAnswer === answerValue) {
-      console.log("same answer");
+    if (
+      answers &&
+      currentAnswer &&
+      currentAnswer === answerValue &&
+      !isLastQuestion
+    ) {
       setState((prev) => ({
         ...prev,
         currentQuestionIndex: prev.currentQuestionIndex + 1,
@@ -155,6 +162,7 @@ export const BaselineAssesment = ({
         questionId,
         answerValue,
         screeningSessionId: state.screeningSessionId,
+        currentPosition: state.currentQuestionIndex + 1,
       },
       {
         onSuccess: (data) => {
@@ -209,10 +217,6 @@ export const BaselineAssesment = ({
     }
   };
 
-  const canContinue =
-    currentQuestion && state.answers[currentQuestion.questionId];
-  const isLastQuestion = state.currentQuestionIndex === questions?.length - 1;
-
   // Render rating scale (1-5)
   const renderRatingScale = () => {
     const currentAnswer = currentQuestion
@@ -233,7 +237,7 @@ export const BaselineAssesment = ({
             <RadioButtonSelector
               name={`question-${currentQuestion?.questionId}`}
               isChecked={currentAnswer === value}
-              // setIsChecked={() => handleAnswerSelect(value)}
+              setIsChecked={() => {}}
               disabled={addScreeningAnswerMutation.isLoading}
               label={
                 (value === 1 && "1. Strongly Disagree") ||
