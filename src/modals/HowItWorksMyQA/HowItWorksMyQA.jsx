@@ -138,7 +138,7 @@ export const HowItWorksMyQA = ({ isOpen, onClose }) => {
 
   const renderSlides = () => {
     return slides.map((slide, index) => {
-      const currentSlide = slide[i18n.language];
+      const currentSlide = slide[i18n.language] || slide.en;
       return (
         <div key={index} className="how-it-works-my-qa__slide">
           <p className="text">{slide.text}</p>
