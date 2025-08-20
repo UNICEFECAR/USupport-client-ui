@@ -9,6 +9,8 @@ import {
   TabsUnderlined,
   Loading,
   CardMedia,
+  VideoModal,
+  PodcastModal,
 } from "@USupport-components-library/src";
 
 import { Page, GiveSuggestion } from "#blocks";
@@ -43,7 +45,12 @@ export const InformationPortal = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
 
-  const { isPodcastsActive, isVideosActive } = useContext(ThemeContext);
+  const { isPodcastsActive, isVideosActive, cookieState, setCookieState } =
+    useContext(ThemeContext);
+
+  // Modal states
+  const [videoToPlay, setVideoToPlay] = useState(null);
+  const [podcastToPlay, setPodcastToPlay] = useState(null);
 
   if (
     (tab === "podcasts" && !isPodcastsActive) ||
@@ -140,203 +147,238 @@ export const InformationPortal = () => {
   const selectedContentType =
     contentTabs.find((tab) => tab.isSelected)?.value || "articles";
 
+  const handleVideoPlay = (url) => {
+    setVideoToPlay(url);
+  };
+
+  const handlePodcastPlay = (spotifyId, title) => {
+    setPodcastToPlay({ spotifyId, title });
+  };
+
   return (
-    <Page classes="page__information-portal" showGoBackArrow={false}>
-      <Grid classes="page__information-portal__banner">
-        <GridItem
-          xs={1}
-          md={1}
-          lg={1}
-          classes="page__information-portal__mascot-item"
-        >
-          <img src={mascotHappyPurple} alt="Mascot" />
-        </GridItem>
-        <GridItem
-          xs={3}
-          md={7}
-          lg={11}
-          classes="page__information-portal__headings-item"
-        >
-          <h3>{t("heading")}</h3>
-          <p className="subheading">{t("subheading")}</p>
-        </GridItem>
-      </Grid>
+    <>
+      {videoToPlay && (
+        <VideoModal
+          isOpen={!!videoToPlay}
+          onClose={() => setVideoToPlay(null)}
+          videoUrl={videoToPlay}
+          cookieState={cookieState}
+          setCookieState={setCookieState}
+          t={t}
+        />
+      )}
 
-      <Block classes="page__information-portal__block">
-        {contentTabs.length > 1 && (
-          <Grid classes="page__information-portal__tabs-container">
-            <GridItem md={8} lg={12}>
-              <div className="page__information-portal__tabs-container__inner">
-                <TabsUnderlined
-                  options={contentTabs.map((x) => ({
-                    ...x,
-                    label: t(x.label),
-                  }))}
-                  handleSelect={handleTabSelect}
-                  classes="page__information-portal__tabs"
-                  textType="h2"
-                />
-              </div>
-            </GridItem>
-          </Grid>
-        )}
+      {podcastToPlay && (
+        <PodcastModal
+          isOpen={!!podcastToPlay}
+          onClose={() => setPodcastToPlay(null)}
+          spotifyId={podcastToPlay.spotifyId}
+          title={podcastToPlay.title}
+          t={t}
+        />
+      )}
 
-        <Grid classes="page__information-portal__block__grid">
-          <GridItem md={8} lg={12}>
-            {selectedContentType === "articles" && (
-              <>
-                {articleIdsQuery.isLoading ? (
-                  <Loading />
-                ) : articleIdsQuery.data?.length === 0 ? (
-                  <h4>{t("heading_no_language_results")}</h4>
-                ) : (
-                  <>
-                    <ContentList
-                      heading={t("heading_newest")}
-                      sortBy="createdAt"
-                      contentRatings={contentRatings}
-                      contentIds={articleIdsQuery.data}
-                      limit={2}
-                      navigateToAllPath="/information-portal/articles"
-                      contentType="article"
-                      getContent={cmsSvc.getArticles}
-                      destructureContentData={destructureArticleData}
-                      getImage={(article) => article.imageMedium}
-                      getRoute={(article) =>
-                        `/information-portal/article/${
-                          article.id
-                        }/${createArticleSlug(article.title)}`
-                      }
-                    />
-                    <ContentList
-                      heading={t("heading_popular")}
-                      sortBy="read_count"
-                      contentRatings={contentRatings}
-                      contentIds={articleIdsQuery.data}
-                      limit={2}
-                      navigateToAllPath="/information-portal/articles"
-                      contentType="article"
-                      getContent={cmsSvc.getArticles}
-                      destructureContentData={destructureArticleData}
-                      getImage={(article) => article.imageMedium}
-                      getRoute={(article) =>
-                        `/information-portal/article/${
-                          article.id
-                        }/${createArticleSlug(article.title)}`
-                      }
-                    />
-                  </>
-                )}
-              </>
-            )}
-
-            {selectedContentType === "videos" && (
-              <>
-                {videoIdsQuery.isLoading ? (
-                  <Loading />
-                ) : videoIdsQuery.data?.length === 0 ? (
-                  <h4>{t("heading_no_language_results")}</h4>
-                ) : (
-                  <>
-                    <ContentList
-                      heading={t("heading_newest_videos")}
-                      sortBy="createdAt"
-                      contentRatings={contentRatings}
-                      contentIds={videoIdsQuery.data}
-                      limit={2}
-                      navigateToAllPath="/information-portal/videos"
-                      contentType="video"
-                      getContent={cmsSvc.getVideos}
-                      destructureContentData={destructureVideoData}
-                      getImage={(video) => video.image}
-                      getRoute={(video) =>
-                        `/information-portal/video/${
-                          video.id
-                        }/${createArticleSlug(video.title)}`
-                      }
-                    />
-
-                    <ContentList
-                      heading={t("heading_popular_videos")}
-                      sortBy="view_count"
-                      contentRatings={contentRatings}
-                      contentIds={videoIdsQuery.data}
-                      limit={2}
-                      navigateToAllPath="/information-portal/videos"
-                      contentType="video"
-                      getContent={cmsSvc.getVideos}
-                      destructureContentData={destructureVideoData}
-                      getImage={(video) => video.image}
-                      getRoute={(video) =>
-                        `/information-portal/video/${
-                          video.id
-                        }/${createArticleSlug(video.title)}`
-                      }
-                    />
-                  </>
-                )}
-              </>
-            )}
-
-            {selectedContentType === "podcasts" && (
-              <>
-                {podcastIdsQuery.isLoading ? (
-                  <Loading />
-                ) : podcastIdsQuery.data?.length === 0 ? (
-                  <h4>{t("heading_no_language_results")}</h4>
-                ) : (
-                  <>
-                    <ContentList
-                      heading={t("heading_newest_podcasts")}
-                      sortBy="createdAt"
-                      contentRatings={contentRatings}
-                      contentIds={podcastIdsQuery.data}
-                      limit={2}
-                      navigateToAllPath="/information-portal/podcasts"
-                      contentType="podcast"
-                      getContent={cmsSvc.getPodcasts}
-                      destructureContentData={destructurePodcastData}
-                      getImage={(podcast) => podcast.imageMedium}
-                      getRoute={(podcast) =>
-                        `/information-portal/podcast/${
-                          podcast.id
-                        }/${createArticleSlug(podcast.title)}`
-                      }
-                    />
-
-                    <ContentList
-                      heading={t("heading_popular_podcasts")}
-                      sortBy="view_count"
-                      contentRatings={contentRatings}
-                      contentIds={podcastIdsQuery.data}
-                      limit={2}
-                      navigateToAllPath="/information-portal/podcasts"
-                      contentType="podcast"
-                      getContent={cmsSvc.getPodcasts}
-                      destructureContentData={destructurePodcastData}
-                      getImage={(podcast) => podcast.imageMedium}
-                      getRoute={(podcast) =>
-                        `/information-portal/podcast/${
-                          podcast.id
-                        }/${createArticleSlug(podcast.title)}`
-                      }
-                    />
-                  </>
-                )}
-              </>
-            )}
-          </GridItem>
-
+      <Page classes="page__information-portal" showGoBackArrow={false}>
+        <Grid classes="page__information-portal__banner">
           <GridItem
-            md={8}
-            lg={12}
-            classes="page__information-portal__give-suggestion"
+            xs={1}
+            md={1}
+            lg={1}
+            classes="page__information-portal__mascot-item"
           >
-            <GiveSuggestion />
+            <img src={mascotHappyPurple} alt="Mascot" />
+          </GridItem>
+          <GridItem
+            xs={3}
+            md={7}
+            lg={11}
+            classes="page__information-portal__headings-item"
+          >
+            <h3>{t("heading")}</h3>
+            <p className="subheading">{t("subheading")}</p>
           </GridItem>
         </Grid>
-      </Block>
-    </Page>
+
+        <Block classes="page__information-portal__block">
+          {contentTabs.length > 1 && (
+            <Grid classes="page__information-portal__tabs-container">
+              <GridItem md={8} lg={12}>
+                <div className="page__information-portal__tabs-container__inner">
+                  <TabsUnderlined
+                    options={contentTabs.map((x) => ({
+                      ...x,
+                      label: t(x.label),
+                    }))}
+                    handleSelect={handleTabSelect}
+                    classes="page__information-portal__tabs"
+                    textType="h2"
+                  />
+                </div>
+              </GridItem>
+            </Grid>
+          )}
+
+          <Grid classes="page__information-portal__block__grid">
+            <GridItem md={8} lg={12}>
+              {selectedContentType === "articles" && (
+                <>
+                  {articleIdsQuery.isLoading ? (
+                    <Loading />
+                  ) : articleIdsQuery.data?.length === 0 ? (
+                    <h4>{t("heading_no_language_results")}</h4>
+                  ) : (
+                    <>
+                      <ContentList
+                        heading={t("heading_newest")}
+                        sortBy="createdAt"
+                        contentRatings={contentRatings}
+                        contentIds={articleIdsQuery.data}
+                        limit={2}
+                        navigateToAllPath="/information-portal/articles"
+                        contentType="article"
+                        getContent={cmsSvc.getArticles}
+                        destructureContentData={destructureArticleData}
+                        getImage={(article) => article.imageMedium}
+                        getRoute={(article) =>
+                          `/information-portal/article/${
+                            article.id
+                          }/${createArticleSlug(article.title)}`
+                        }
+                      />
+                      <ContentList
+                        heading={t("heading_popular")}
+                        sortBy="read_count"
+                        contentRatings={contentRatings}
+                        contentIds={articleIdsQuery.data}
+                        limit={2}
+                        navigateToAllPath="/information-portal/articles"
+                        contentType="article"
+                        getContent={cmsSvc.getArticles}
+                        destructureContentData={destructureArticleData}
+                        getImage={(article) => article.imageMedium}
+                        getRoute={(article) =>
+                          `/information-portal/article/${
+                            article.id
+                          }/${createArticleSlug(article.title)}`
+                        }
+                      />
+                    </>
+                  )}
+                </>
+              )}
+
+              {selectedContentType === "videos" && (
+                <>
+                  {videoIdsQuery.isLoading ? (
+                    <Loading />
+                  ) : videoIdsQuery.data?.length === 0 ? (
+                    <h4>{t("heading_no_language_results")}</h4>
+                  ) : (
+                    <>
+                      <ContentList
+                        heading={t("heading_newest_videos")}
+                        sortBy="createdAt"
+                        contentRatings={contentRatings}
+                        contentIds={videoIdsQuery.data}
+                        limit={2}
+                        navigateToAllPath="/information-portal/videos"
+                        contentType="video"
+                        getContent={cmsSvc.getVideos}
+                        destructureContentData={destructureVideoData}
+                        getImage={(video) => video.image}
+                        getRoute={(video) =>
+                          `/information-portal/video/${
+                            video.id
+                          }/${createArticleSlug(video.title)}`
+                        }
+                        onVideoPlay={handleVideoPlay}
+                      />
+
+                      <ContentList
+                        heading={t("heading_popular_videos")}
+                        sortBy="view_count"
+                        contentRatings={contentRatings}
+                        contentIds={videoIdsQuery.data}
+                        limit={2}
+                        navigateToAllPath="/information-portal/videos"
+                        contentType="video"
+                        getContent={cmsSvc.getVideos}
+                        destructureContentData={destructureVideoData}
+                        getImage={(video) => video.image}
+                        getRoute={(video) =>
+                          `/information-portal/video/${
+                            video.id
+                          }/${createArticleSlug(video.title)}`
+                        }
+                        onVideoPlay={handleVideoPlay}
+                      />
+                    </>
+                  )}
+                </>
+              )}
+
+              {selectedContentType === "podcasts" && (
+                <>
+                  {podcastIdsQuery.isLoading ? (
+                    <Loading />
+                  ) : podcastIdsQuery.data?.length === 0 ? (
+                    <h4>{t("heading_no_language_results")}</h4>
+                  ) : (
+                    <>
+                      <ContentList
+                        heading={t("heading_newest_podcasts")}
+                        sortBy="createdAt"
+                        contentRatings={contentRatings}
+                        contentIds={podcastIdsQuery.data}
+                        limit={2}
+                        navigateToAllPath="/information-portal/podcasts"
+                        contentType="podcast"
+                        getContent={cmsSvc.getPodcasts}
+                        destructureContentData={destructurePodcastData}
+                        getImage={(podcast) => podcast.imageMedium}
+                        getRoute={(podcast) =>
+                          `/information-portal/podcast/${
+                            podcast.id
+                          }/${createArticleSlug(podcast.title)}`
+                        }
+                        onPodcastPlay={handlePodcastPlay}
+                      />
+
+                      <ContentList
+                        heading={t("heading_popular_podcasts")}
+                        sortBy="view_count"
+                        contentRatings={contentRatings}
+                        contentIds={podcastIdsQuery.data}
+                        limit={2}
+                        navigateToAllPath="/information-portal/podcasts"
+                        contentType="podcast"
+                        getContent={cmsSvc.getPodcasts}
+                        destructureContentData={destructurePodcastData}
+                        getImage={(podcast) => podcast.imageMedium}
+                        getRoute={(podcast) =>
+                          `/information-portal/podcast/${
+                            podcast.id
+                          }/${createArticleSlug(podcast.title)}`
+                        }
+                        onPodcastPlay={handlePodcastPlay}
+                      />
+                    </>
+                  )}
+                </>
+              )}
+            </GridItem>
+
+            <GridItem
+              md={8}
+              lg={12}
+              classes="page__information-portal__give-suggestion"
+            >
+              <GiveSuggestion />
+            </GridItem>
+          </Grid>
+        </Block>
+      </Page>
+    </>
   );
 };
 
@@ -352,9 +394,13 @@ const ContentList = ({
   destructureContentData, // Function to transform content data
   getImage, // Function to determine image
   getRoute, // Function to get navigation route
+  onVideoPlay, // Function to handle video play
+  onPodcastPlay, // Function to handle podcast play
 }) => {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation("information-portal");
+  const { t, i18n } = useTranslation("pages", {
+    keyPrefix: "information-portal",
+  });
 
   const fetchContent = async () => {
     let { data } = await getContent({
@@ -383,7 +429,6 @@ const ContentList = ({
   );
 
   if (isLoading) return <Loading />;
-  // if (isFetched && (!contentItems || contentItems.length === 0)) return null;
 
   const hasNoData = isFetched && (!contentItems || contentItems.length === 0);
 
@@ -438,6 +483,14 @@ const ContentList = ({
                   rating.positive === false
               );
 
+              let handlePlayFunction;
+              if (contentType === "video" && onVideoPlay) {
+                handlePlayFunction = () => onVideoPlay(item.originalUrl);
+              } else if (contentType === "podcast" && onPodcastPlay) {
+                handlePlayFunction = () =>
+                  onPodcastPlay(item.spotifyId, item.title);
+              }
+
               return (
                 <GridItem md={4} lg={6} key={index}>
                   <CardMedia
@@ -458,6 +511,7 @@ const ContentList = ({
                     dislikes={item.dislikes}
                     t={t}
                     onClick={() => navigate(getRoute(item))}
+                    handlePlay={handlePlayFunction}
                   />
                 </GridItem>
               );

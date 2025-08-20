@@ -914,7 +914,9 @@
       "heading_newest_podcasts": "Najnowsze audiodyski",
       "heading_popular_podcasts": "Najpopularniejsze audiodyski",
       "podcasts": "Audiodyski",
-      "view_more": "Zobacz więcej"
+      "view_more": "Zobacz więcej",
+      "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
+      "cookie_preferences": "Preferencje plików cookie"
     },
     "register-preview-page": {},
     "register-email-page": {
