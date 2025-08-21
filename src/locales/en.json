@@ -928,7 +928,9 @@
       "heading_newest_podcasts": "Newest podcasts",
       "heading_popular_podcasts": "Popular podcasts",
       "podcasts": "Podcasts",
-      "view_more": "View more"
+      "view_more": "View more",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
     },
     "register-preview-page": {},
     "register-email-page": {

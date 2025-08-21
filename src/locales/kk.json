@@ -927,7 +927,9 @@
       "heading_newest_podcasts": "Жаңа Подкасттар",
       "heading_popular_podcasts": "Ең танымал Подкасттар",
       "podcasts": "Подкасттар",
-      "view_more": "Көбірек көру"
+      "view_more": "Көбірек көру",
+      "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері"
     },
     "register-preview-page": {},
     "register-email-page": {

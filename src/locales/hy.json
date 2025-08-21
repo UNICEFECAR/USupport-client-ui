@@ -5,7 +5,6 @@
       "page_2": "Խորհրդատվություններ",
       "page_3": "Տեղեկատվության պորտալ",
       "page_4": "Իմ հարցուպատասխանը",
-
       "footer_1": "Գլխավոր էջ",
       "footer_2": "Խորհրդատվություններ",
       "footer_3": "Տեղեկատվության պորտալ",
@@ -14,20 +13,23 @@
       "footer_6": "Գաղտնիության քաղաքականություն",
       "footer_7": "Cookie-ների քաղաքականությունը",
       "footer_8": "Հաճախակի տրվող հարցեր",
-
       "emergency_button": "SOS կենտրոն",
-
       "button_text": "Մուտք գործել հավելված",
       "contact_us": "Կապվել մեզ հետ",
       "your_profile_text": "Ձեր պրոֆիլը",
-
       "password_placeholder": "Գաղտնաբառը",
       "password": "Խնդրում ենք մուտքագրել ձեր գաղտնաբառը՝ կայքէջին հասանելիություն ստանալու համար",
       "wrong_password": "Սխալ գաղտնաբառ",
       "submit": "Ուղարկել",
-
       "dark": "Մուգ",
-      "light": "Լուսավոր"
+      "light": "Լուսավոր",
+      "page_5": "Organizations",
+      "cookie_banner_header": "We value your privacy",
+      "cookie_banner_text": "This website uses cookies to enhance and secure your browsing experience. By using our website, you agree to our <0>Cookie Policy</0>.",
+      "accept_all_cookies": "Accept all",
+      "reject_all_cookies": "Reject all",
+      "accept_necessary_cookies": "Accept only necessary",
+      "save": "Save"
     },
     "provider-overview": {
       "earliest_slot_label": "Խորհրդատվության ամենամոտ հասանելի ժամանակը",
@@ -42,11 +44,9 @@
       "delete_account": "Ջնջել օգտահաշիվը",
       "no_available_slot": "Ազատ ժամանակ հասանելի չէ",
       "consultations": "խորհրդատվություններ",
-
       "psychologist": "Հոգեբան",
       "psychiatrist": "Հոգեբույժ",
       "psychotherapist": "Հոգեթերապևտ",
-
       "addiction": "Կախվածություն և նյութերի չարաշահում",
       "stress": "Սթրեսի կառավարում",
       "burnout": "Այրում և ուսման հետ կապված սթրես",
@@ -78,7 +78,6 @@
       "love": "Սեր և ռոմանտիկ հարաբերություններ",
       "social_skills": "Սոցիալական հմտություններ և ընկերություն",
       "body_image": "Մարմնակազմություն և ինքնագնահատական",
-
       "video_label": "Տեսաներկայացում",
       "button_label": "Պլանավորել խորհրդատվություն",
       "hour_consultation": "1 ժամանոց խորհրդատվության համար",
@@ -169,7 +168,6 @@
       "message_error": "Խնդրում ենք մուտքագրել ձեր հաղորդագրությունը",
       "email": "Էլեկտրոնային փոստի հացեն",
       "button": "Ուղարկել հաղորդագրությունը",
-
       "modal_title": "Ձեր հաղորդագրությունը բարեհաջող ուղարկվել է",
       "modal_text": "Մենք կկապվենք ձեզ հետ հնարավորինս շուտ",
       "modal_cta_label": "Վերադառնալ գլխավոր էջ",
@@ -177,7 +175,11 @@
       "contact_reason_2": "Ինձ ավելի շատ տեղեկատվություն է հարկավոր հարթակի միջոցով տրամադրված ծառայությունների մասին",
       "contact_reason_3": "Ես հաճախորդ եմ և տեխնիկական խնդիր ունեմ",
       "contact_reason_4": "Այլ",
-      "contact_form": "Կոնտակտային ձևաթուղթ"
+      "contact_form": "Կոնտակտային ձևաթուղթ",
+      "contact_reason_1_pl": "Information about uSupport",
+      "contact_reason_2_pl": "Technical problem",
+      "contact_reason_3_pl": "Complaint",
+      "contact_reason_4_pl": "Something else"
     },
     "select-provider": {
       "psychologist": "Հոգեբան",
@@ -235,7 +237,6 @@
       "no_past_consultations": "Նախկինում խորհրդատվություններ չեք ունեցել",
       "reject_consultation_success": "Խորհրդատվությունը բարեհաջող մերժվել է",
       "accept_consultation_success": "Խորհրդատվությունը բարեհաջող ընդունվել է",
-
       "join": "Միանալ",
       "edit": "Փոփոխել",
       "details": "Տես մանրամասները",
@@ -278,19 +279,19 @@
       "read_more_button": "Կարդալ ավելին",
       "min_read": "րոպե կարդալու համար",
       "by": "ի կողմից {{creator}}",
-      "number_of_more_options": "{{count}} ավելին"
+      "number_of_more_options": "{{count}} ավելին",
+      "read": "Read"
     },
     "give-suggestion": {
       "heading": "Ներկայացրեք մեզ ձեր առաջարկությունները",
       "subheading": "Չեք կարողանում գտնել ձեզ հետաքրքրող տեղեկատվությո՞ւնը։ Առաջարկեք թեման և մենք կփորձենք անդրադառնալ դրան։",
       "submit": "Ուղարկեք ձեր առաջարկությունը։",
       "suggestion_placeholder": "Այստեղ գրի առեք ձեր առաջարկությունը։",
-
       "modal_title": "Առաջարկությունը բարեհաջող ուղարկվել է",
       "modal_text": "Մենք իսկապես ցավում ենք, որ չեք կարողացել գտնել այն, ինչ փնտրում էիք։ Մենք կփորձենք հնարավորինս շուտ անդրադառնալ ձեր առաջարկին։ Շնորհակալ ենք արձագանքի համար։",
       "modal_cta_label": "Ուսումնասիրել ավելի շատ հոդվածներ։",
-
-      "error": "Խնդրում ենք մուտքագրել ձեր առաջարկությունը"
+      "error": "Խնդրում ենք մուտքագրել ձեր առաջարկությունը",
+      "send_success_text": "Your suggestion has been sent successfully"
     },
     "register-preview": {
       "register_email": "Գրանցվել էլեկտրոնային փոստով",
@@ -355,7 +356,6 @@
       "delete_account": "Ջնջել օգտահաշիվը",
       "logout": "Դուրս գալ",
       "delete_chat": "Ջնջել զրուցարանի պատմությունը",
-
       "dropdown_sex_label": "Սեռը",
       "dropdown_year_label": "Ծննդյան տարեթիվը",
       "sex_male": "Արական",
@@ -394,7 +394,6 @@
       "show_previous_consultations": "Ցույց տալ նախորդ խորհրդատվությունները",
       "export_label": "Արտածել",
       "chat_history": "ի հետ խորհրդատվությունների ընթացքում զրույցի պատմությունը",
-
       "client_joined": "Հաճախորդը միացել է խորհրդատվությանը",
       "client_left": "Հաճախորդը դուրս է եկել խորհրդատվությունից",
       "client_camera_off": "Հաճախորդը անջատել է տեսախցիկը",
@@ -402,14 +401,12 @@
       "client_microphone_off": "Հաճախորդը անջատել է բարձրախոսը",
       "client_microphone_on": "Հաճախորդը միացրել է բարձրախոսը",
       "chat_history_deleted_by_client": "Դուք ջնջել եք զրույցի պատմությունը",
-
       "provider_joined": "Խորհրդատվություն տրամադրողը միացել է խորհրդատվությանը",
       "provider_left": "Խորհրդատվություն տրամադրողը դուրս է եկել խորհրդատվությունից",
       "provider_camera_off": "Խորհրդատվություն տրամադրողը անջատել է տեսախցիկը",
       "provider_camera_on": "Խորհրդատվություն տրամադրողը միացրել է տեսախցիկը",
       "provider_microphone_off": "Խորհրդատվություն տրամադրողը անջատել է բարձրախոսը",
       "provider_microphone_on": "Խորհրդատվություն տրամադրողը միացրել է բարձրախոսը",
-
       "exported_at": "Արտածվել է․ {{time}}"
     },
     "consultations-dashboard": {
@@ -478,7 +475,8 @@
       "october": "Հոկտեմբեր",
       "november": "Նոյեմբեր",
       "december": "Դեկտեմբեր",
-      "coupon": "Կտրոնը"
+      "coupon": "Կտրոնը",
+      "explore_button_label": "Explore"
     },
     "activity-log-dashboard": {
       "heading": "Գործողությունների գրանցամատյան",
@@ -546,7 +544,6 @@
       "no": "Ոչ",
       "button": "Ուղարկել կարծիք",
       "continue_button": "Պահպանել պատասխանները",
-
       "very_satisfied": "Շատ գոհ եմ",
       "satisfied": "Գոհ եմ",
       "neutral": "Ոչ գոհ եմ, ոչ՝ դժգոհ",
@@ -578,16 +575,12 @@
     "payment-status-block": {
       "payment_succeded_heading": "Ձեր վճարումը հաջողվել է",
       "payment_succeded_subheading": "Շնորհակալություն գնման համար։ Ձեր խորհրդատվությունը պլանավորված է {{consultationDate}}՝ ժամը {{consultationTime}}",
-
       "payment_processing_heading": "Ձեր վճարումը կատարվում է",
       "payment_processing_subheading": "Մենք մշակում ենք ձեր վճարումը, խնդրում ենք սպասել մի փոքր։",
-
       "payment_requires_payment_method_heading": "Ձեր վճարումը չի հաջողվել, խնդրում ենք փորձել կրկին",
       "payment_requires_payment_method_subheading": "Ցավոք, ձեր վճարումը կատարելիս առաջացել է խնդիր։",
-
       "payment_failed_heading": "Ձեր վճարումը չի հաջողվել, խնդրում ենք փորձել կրկին",
       "payment_failed_subheading": "Ցավոք, ձեր վճարումը կատարելիս առաջացել է խնդիր։",
-
       "continue_button_label": "Շարունակել",
       "try_again_button_label": "Փորձել կրկին"
     },
@@ -625,7 +618,160 @@
       "search_placeholder": "Որոնում",
       "filter": "Ֆիլտրել tag-երը",
       "no_answers_found": "Պատասխանված հարցեր չկան",
-      "language": "Լեզու"
+      "language": "Լեզու",
+      "all_languages": "All languages"
+    },
+    "videos": {
+      "view_more": "View more",
+      "all": "All",
+      "could_not_load_content": "Could not load content.",
+      "no_results": "No results found",
+      "number_of_more_options": "{{count}} more"
+    },
+    "organizations": {
+      "in_person_interaction": "In person",
+      "online_interaction": "Online",
+      "phone_interaction": "Phone",
+      "hybrid_interaction": "Hybrid",
+      "free_services": "Free services",
+      "paid_services": "Paid services",
+      "co_payment_services": "Co-payment services",
+      "cnas_reimbursed_services": "CNAS reimbursed services",
+      "violence_victim_helpline": "Violence victims helpline",
+      "social_information_counseling": "Social information and counseling",
+      "rehab_psycho_neuro_children": "Rehabilitation and recovery services for children with psycho-neuro-motor disorders",
+      "individual_psychological_counseling": "Individual psychological counseling",
+      "personal_development_counseling": "Personal development counseling",
+      "child_helpline": "Child helpline",
+      "suicide_prevention_helpline": "Suicide prevention helpline",
+      "child_psychiatry": "Child psychiatry",
+      "group_psychological_counseling": "Group psychological counseling",
+      "sport_recreational_activities": "Sports recreational activities (sports, games, dance)",
+      "rehab_autism_children": "Rehabilitation and recovery services for children with autism",
+      "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
+      "addiction_helpline": "Addiction helpline",
+      "emergency_situations": "Emergency situations",
+      "pediatric_psychiatry": "Pediatric psychiatry",
+      "psychological_evaluation": "Psychological evaluation",
+      "psychological_counseling": "Psychological counseling",
+      "individual_psychotherapy": "Individual psychotherapy",
+      "group_psychotherapy": "Group psychotherapy",
+      "support_groups": "Support groups",
+      "social_assistance_and_counseling": "Social assistance and counseling",
+      "personal_development": "Personal development",
+      "vocational_counseling_and_career_guidance": "Vocational counseling and career guidance",
+      "speech_therapy": "Speech therapy",
+      "occupational_therapy_ergotherapy": "Occupational therapy/Ergotherapy",
+      "physiotherapy_physical_recovery": "Physiotherapy/Physical recovery",
+      "autism_spectrum_disorder_therapies": "Autism spectrum disorder therapies",
+      "disability_assessment": "Disability assessment",
+      "pediatric_neurology": "Pediatric neurology",
+      "special_psychopedagogy": "Special psychopedagogy",
+      "neuropsychomotor_recovery": "Neuropsychomotor recovery",
+      "sector_1": "Sector 1",
+      "sector_2": "Sector 2",
+      "sector_3": "Sector 3",
+      "sector_4": "Sector 4",
+      "sector_5": "Sector 5",
+      "sector_6": "Sector 6",
+      "aggression_violence_victim_or_aggressor": "Aggression/violence - victim or aggressor",
+      "learning_difficulties_special_educational_needs": "Learning difficulties/Special educational needs",
+      "behavioral_disorder": "Behavioral disorder",
+      "eating_disorder": "Eating disorder",
+      "suicide_self_harm": "Suicide/Self-harm",
+      "addiction": "Addiction",
+      "identity_issues": "Identity issues",
+      "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
+      "other_situations": "Other situations",
+      "public": "Public",
+      "private": "Private",
+      "ong": "NGO",
+      "public_private": "Public-private",
+      "work_with_placeholder": "Select work with categories",
+      "specialisations_placeholder": "Select offered services",
+      "district_placeholder": "Select sector",
+      "payment_methods_placeholder": "Select payment methods",
+      "user_interactions_placeholder": "Select interaction modes",
+      "property_types_placeholder": "Select property types",
+      "search_placeholder": "Search by organization name",
+      "no_data_found": "No data found",
+      "reset_filters": "Reset filters",
+      "view_organization_details": "Read more",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "any": "Any"
+    },
+    "organization-overview": {
+      "error_loading_data": "An error occurred while loading the organization data",
+      "other_services_label": "Other services",
+      "address_label": "Address",
+      "sector_label": "District",
+      "payment_methods_label": "Payment methods",
+      "user_interactions_label": "Interaction modes",
+      "property_types_label": "Property type",
+      "work_with_label": "Work with",
+      "offered_services_label": "Offered services",
+      "providers_label": "Providers",
+      "violence_victim_helpline": "Violence victims helpline",
+      "individual_psychotherapy": "Individual psychotherapy",
+      "social_information_counseling": "Social information and counseling",
+      "rehab_psycho_neuro_children": "Rehabilitation and recovery services for children with psycho-neuro-motor disorders",
+      "individual_psychological_counseling": "Individual psychological counseling",
+      "personal_development_counseling": "Personal development counseling",
+      "child_helpline": "Child helpline",
+      "speech_therapy": "Speech therapy",
+      "suicide_prevention_helpline": "Suicide prevention helpline",
+      "child_psychiatry": "Child psychiatry",
+      "group_psychological_counseling": "Group psychological counseling",
+      "sport_recreational_activities": "Sports recreational activities (sports, games, dance)",
+      "rehab_autism_children": "Rehabilitation and recovery services for children with autism",
+      "art_recreational_activities": "Artistic recreational activities (theatre, music, poetry, painting, storytelling)",
+      "addiction_helpline": "Addiction helpline",
+      "group_psychotherapy": "Group psychotherapy",
+      "emergency_situations": "Emergency situations",
+      "pediatric_psychiatry": "Pediatric psychiatry",
+      "psychological_evaluation": "Psychological evaluation",
+      "psychological_counseling": "Psychological counseling",
+      "support_groups": "Support groups",
+      "social_assistance_and_counseling": "Social assistance and counseling",
+      "personal_development": "Personal development",
+      "vocational_counseling_and_career_guidance": "Vocational counseling and career guidance",
+      "occupational_therapy_ergotherapy": "Occupational therapy/Ergotherapy",
+      "physiotherapy_physical_recovery": "Physiotherapy/Physical recovery",
+      "autism_spectrum_disorder_therapies": "Autism spectrum disorder therapies",
+      "disability_assessment": "Disability assessment",
+      "pediatric_neurology": "Pediatric neurology",
+      "special_psychopedagogy": "Special psychopedagogy",
+      "neuropsychomotor_recovery": "Neuropsychomotor recovery",
+      "in_person_interaction": "In person",
+      "online_interaction": "Online",
+      "phone_interaction": "Phone",
+      "hybrid_interaction": "Hybrid",
+      "free_services": "Free services",
+      "paid_services": "Paid services",
+      "co_payment_services": "Co-payment services",
+      "cnas_reimbursed_services": "CNAS reimbursed services",
+      "public": "Public",
+      "private": "Private",
+      "ong": "NGO",
+      "public_private": "Public-private",
+      "sector_1": "Sector 1",
+      "sector_2": "Sector 2",
+      "sector_3": "Sector 3",
+      "sector_4": "Sector 4",
+      "sector_5": "Sector 5",
+      "sector_6": "Sector 6",
+      "aggression_violence_victim_or_aggressor": "Aggression/violence - victim or aggressor",
+      "learning_difficulties_special_educational_needs": "Learning difficulties/Special educational needs",
+      "behavioral_disorder": "Behavioral disorder",
+      "eating_disorder": "Eating disorder",
+      "suicide_self_harm": "Suicide/Self-harm",
+      "addiction": "Addiction",
+      "identity_issues": "Identity issues",
+      "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
+      "other_situations": "Other situations",
+      "copy_link_success": "Link copied to clipboard!"
     }
   },
   "pages": {
@@ -711,7 +857,8 @@
       "heading_most_read": "Ամենաշատ ընթերցված հոդվածները",
       "subheading_default": "Բոլոր հոդվածները կարող եք գտնել այստեղ",
       "subheading_newest": "Այստեղ կարող եք գտնել ամենաթարմ հոդվածները",
-      "subheading_most_read": "Այստեղ կարող եք գտնել ամենաշատ ընթերցված հոդվածները՝ բոլոր կատեգորիաներում"
+      "subheading_most_read": "Այստեղ կարող եք գտնել ամենաշատ ընթերցված հոդվածները՝ բոլոր կատեգորիաներում",
+      "heading": "Articles"
     },
     "article-information": {
       "heading": "Լրացուցիչ հոդվածներ",
@@ -721,7 +868,8 @@
       "by": "ի կողմից {{creator}}",
       "share_title": "Կիսվել բովանդակությամբ",
       "share_success": "Հղումը պատճենվել է պահոցում։",
-      "copy_link": "Պատճենել հղումը"
+      "copy_link": "Պատճենել հղումը",
+      "export_failed": "Export failed. Please try again."
     },
     "information-portal": {
       "heading": "Տեղեկատվության պորտալ",
@@ -732,7 +880,18 @@
       "view_all": "Դիտել բոլորը",
       "read_more_button": "Կարդալ ավելին",
       "min_read": "րոպե կարդալու համար",
-      "by": "ի կողմից {{creator}}"
+      "by": "ի կողմից {{creator}}",
+      "articles": "Articles",
+      "videos": "Videos",
+      "heading_newest_videos": "Newest Videos",
+      "heading_popular_videos": "Most popular videos",
+      "no_results": "No results found",
+      "heading_newest_podcasts": "Newest podcasts",
+      "heading_popular_podcasts": "Popular podcasts",
+      "podcasts": "Podcasts",
+      "view_more": "View more",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
     },
     "register-preview-page": {},
     "register-email-page": {
@@ -775,14 +934,12 @@
       "thursday": "Հնգշ․",
       "friday": "Ուրբ․",
       "saturday": "Շաբ․",
-
       "client_joined": "Հաճախորդը միացել է խորհրդատվությանը",
       "client_left": "Հաճախորդը միացել է խորհրդատվությանը",
       "client_camera_off": "Հաճախորդը միացել է խորհրդատվությանը",
       "client_camera_on": "Հաճախորդը միացել է խորհրդատվությանը",
       "client_microphone_off": "Հաճախորդը միացել է խորհրդատվությանը",
       "client_microphone_on": "Հաճախորդը միացել է խորհրդատվությանը",
-
       "provider_joined": "Խորհրդատվություն տրամադրողը միացել է խորհրդատվությանը",
       "provider_left": "Խորհրդատվություն տրամադրողը դուրս է եկել խորհրդատվությունից",
       "provider_camera_off": "Խորհրդատվություն տրամադրողը անջատել է տեսախցիկը",
@@ -790,7 +947,6 @@
       "provider_microphone_off": "Խորհրդատվություն տրամադրողը անջատել է բարձրախոսը",
       "provider_microphone_on": "Խորհրդատվություն տրամադրողը միացրել է բարձրախոսը",
       "chat_history_deleted_by_client": "Դուք ջնջել եք զրույցի պատմությունը",
-
       "show_system_messages": "Ցույց տալ համակարգից ուղարկված հաղորդագրությունները",
       "show_previous_consultations": "Ցույց տալ նախորդ խորհրդատվությունները",
       "hide_options": "Թաքցնել կարգավորումները",
@@ -799,8 +955,8 @@
       "sponsored_by": "Այս խորհրդատվական հանդիպումը հովանավորվել է․․․",
       "consultation_end_reminder": "Ձեր խորհրդատվությունը կավարտվի {{minutes}} րոպեից",
       "textarea_placeholder": "Այստեղ մուտքագրեք ձեր հաղորդագրությունը․․․",
-
-      "allow_permissions": "Տեսախցիկի և/կամ միկրոֆոնի օգտագործման թույլտվությունները մերժված են։ Եթե ցանկանում եք կապ հաստատել ծառայություն մատուցողի հետ, խնդրում ենք թույլատրել դրանց օգտագործումը՝ ակտիվացնելով համապատասխան կարգավորումները ձեր բրաուզերում կամ սեղմելով հասցեի տողի մոտ գտնվող տեղեկատվական նշանին։"
+      "allow_permissions": "Տեսախցիկի և/կամ միկրոֆոնի օգտագործման թույլտվությունները մերժված են։ Եթե ցանկանում եք կապ հաստատել ծառայություն մատուցողի հետ, խնդրում ենք թույլատրել դրանց օգտագործումը՝ ակտիվացնելով համապատասխան կարգավորումները ձեր բրաուզերում կամ սեղմելով հասցեի տողի մոտ գտնվող տեղեկատվական նշանին։",
+      "permissions_error": "You have denied the permissions"
     },
     "payment-history-page": {
       "heading": "Վճարման պատմությունը",
@@ -826,6 +982,45 @@
       "heading": "Ծանուցումներ",
       "mark_read": "Բոլորը նշել որպես կարդացված",
       "subheading": "Այստեղ կարող եք տեսնել բոլոր ծանուցումները, որ երբևէ ստացել եք ձեր օգտահաշվին։"
+    },
+    "videos-page": {
+      "heading_default": "Videos",
+      "subheading_default": "Watch our videos to learn more about our services and how to use them.",
+      "heading_newest": "Newest Videos",
+      "subheading_newest": "Watch our newest videos.",
+      "heading_most_viewed": "Most Viewed Videos",
+      "subheading_most_viewed": "Watch our most viewed videos.",
+      "all": "All"
+    },
+    "video-information-page": {
+      "more_videos": "More videos",
+      "read_more_button": "View more",
+      "not_found": "Video not found",
+      "share_success": "Video link copied to clipboard",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
+    },
+    "podcast-information-page": {
+      "more_podcasts": "More podcasts",
+      "view_more": "View more",
+      "not_found": "Podcast not found",
+      "share_success": "Link copied to clipboard!"
+    },
+    "podcasts-page": {
+      "heading_default": "Podcasts",
+      "subheading_default": "Listen to our podcasts to learn more about our services and how to use them.",
+      "heading_newest": "Newest Podcasts",
+      "subheading_newest": "Listen to our newest podcasts.",
+      "heading_most_viewed": "Most Viewed Podcasts",
+      "subheading_most_viewed": "Listen to our most viewed podcasts.",
+      "all": "All"
+    },
+    "organizations-page": {
+      "heading": "Organizations"
+    },
+    "organization-overview-page": {
+      "heading": "Organization overview",
+      "subheading": "Detailed overview of the profile of the organization you selected"
     }
   },
   "backdrops": {
