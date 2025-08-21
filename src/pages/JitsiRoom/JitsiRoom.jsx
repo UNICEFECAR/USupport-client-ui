@@ -28,6 +28,7 @@ import { MessageList } from "./MessageList";
 import "./jitsi-room.scss";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
+const JITSI_API_URL = `${import.meta.env.VITE_JITSI_API_URL}`;
 
 const defaultConfig = {
   disableModeratorIndicator: true,
@@ -369,7 +370,7 @@ export const JitsiRoom = () => {
           </div>
         )}
         <JitsiMeeting
-          domain={"jitsi.usupport.online"}
+          domain={JITSI_API_URL}
           roomName={consultation.consultationId}
           ssl={false}
           spinner={Loading}
