@@ -14,6 +14,7 @@ import {
   PasswordModal,
   Box,
   CookieBanner,
+  AccessibilityController,
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -583,6 +584,7 @@ export const Page = ({
         t={t}
         isInClient
       />
+      <AccessibilityController />
     </>
   );
 };

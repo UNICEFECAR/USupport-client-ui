@@ -115,7 +115,7 @@ export const Login = () => {
               {t("heading")}
             </h2>
             <img
-              src={theme === "dark" ? logoVerticalDarkSvg : logoVerticalSvg}
+              src={theme !== "light" ? logoVerticalDarkSvg : logoVerticalSvg}
               alt="Logo"
               className="welcome__grid__logo-item__logo"
             />

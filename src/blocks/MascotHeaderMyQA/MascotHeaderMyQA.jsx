@@ -35,6 +35,7 @@ export const MascotHeaderMyQA = ({ classes, handleSeeHowItWorksClick }) => {
           <img
             className="mascot-header-my-qa__mascot-item__mascot"
             src={width > 768 ? mascotHappyPurpleFull : mascotHappyPurple}
+            alt={"Mascot"}
           />
         </GridItem>
         <GridItem
