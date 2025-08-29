@@ -837,6 +837,17 @@
       "assessment_completed_description": "Dziękujemy za wypełnienie oceny. Twoje odpowiedzi zostały zapisane i zostaną wykorzystane, aby Ci pomóc.",
       "assessment_completed_button": "Powrót do strony głównej"
     },
+    "baseline-assessment-dashboard": {
+      "heading": "Twoja podstawowa ocena",
+      "no_assessment_text": "Nie ukończyłeś jeszcze podstawowej oceny. Ukończ ją, aby otrzymać spersonalizowane wskazówki dotyczące swojego zdrowia psychicznego.",
+      "start_new_assessment": "Rozpocznij ocenę",
+      "completed": "Ukończono",
+      "in_progress": "W toku",
+      "continue": "Kontynuuj",
+      "view": "Zobacz wyniki",
+      "view_detailed_results": "Zobacz szczegółowe wyniki",
+      "started_at": "Rozpoczęto {{date}}"
+    },
     "baseline-assesment-result": {
       "assessment_completed": "Ocena zakończona",
       "loading_results": "Ładowanie wyników...",

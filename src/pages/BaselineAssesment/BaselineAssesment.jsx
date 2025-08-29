@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 import { Page, BaselineAssesment as BaselineAssesmentBlock } from "#blocks";
-import { useGetScreeningSessions } from "#hooks";
+import { useGetBaselineAssessments } from "#hooks";
 
 import {
   BaselineAssesmentBox,
@@ -21,42 +21,42 @@ import "./baseline-assesment.scss";
  */
 export const BaselineAssesment = () => {
   const { t } = useTranslation("baseline-assesment-page");
-  const { data: screeningSessions, isLoading } = useGetScreeningSessions();
-  const { sessionId } = useParams();
+  const { data: baselineAssessments, isLoading } = useGetBaselineAssessments();
+  const { assessmentId } = useParams();
 
   const [selectedSession, setSelectedSession] = useState(null);
   const [hasStartedAssessment, setHasStartedAssessment] = useState(false);
 
   useEffect(() => {
-    if (sessionId && screeningSessions) {
-      const session = screeningSessions.find(
-        (session) => session.screeningSessionId === sessionId
+    if (assessmentId && baselineAssessments) {
+      const assessment = baselineAssessments.find(
+        (assessment) => assessment.baselineAssessmentId === assessmentId
       );
-      if (session) {
-        setSelectedSession(session);
+      if (assessment) {
+        setSelectedSession(assessment);
         setHasStartedAssessment(true);
       }
     }
-  }, [sessionId, screeningSessions]);
+  }, [assessmentId, baselineAssessments]);
 
-  // Separate sessions by status
+  // Separate assessments by status
   const { inProgressSession, completedSessions } = useMemo(() => {
-    if (!screeningSessions) {
+    if (!baselineAssessments) {
       return { inProgressSession: null, completedSessions: [] };
     }
 
-    const inProgress = screeningSessions.find(
-      (session) => session.status === "in_progress"
+    const inProgress = baselineAssessments.find(
+      (assessment) => assessment.status === "in_progress"
     );
-    const completed = screeningSessions.filter(
-      (session) => session.status === "completed"
+    const completed = baselineAssessments.filter(
+      (assessment) => assessment.status === "completed"
     );
 
     return {
       inProgressSession: inProgress || null,
       completedSessions: completed,
     };
-  }, [screeningSessions]);
+  }, [baselineAssessments]);
 
   return (
     <Page classes="page__baseline-assesment">
@@ -79,13 +79,15 @@ export const BaselineAssesment = () => {
             <div className="page__baseline-assesment__sessions__in-progress">
               <h3>{t("continue_assessment")}</h3>
               <BaselineAssesmentBox
-                key={inProgressSession.screeningSessionId}
+                key={inProgressSession.baselineAssessmentId}
                 progress={inProgressSession.completionPercentage}
                 status={inProgressSession.status}
                 startedAt={inProgressSession.startedAt}
                 currentPosition={inProgressSession.currentPosition - 1}
                 completionPercentage={inProgressSession.completionPercentage}
-                handleViewSession={() => setSelectedSession(inProgressSession)}
+                handleViewAssessment={() =>
+                  setSelectedSession(inProgressSession)
+                }
                 t={t}
               />
             </div>
@@ -97,7 +99,7 @@ export const BaselineAssesment = () => {
               <h3>{t("completed_assessments")}</h3>
               {completedSessions.map((session) => (
                 <BaselineAssesmentBox
-                  key={session.screeningSessionId}
+                  key={session.baselineAssessmentId}
                   progress={
                     session.status === "completed"
                       ? 100
@@ -111,7 +113,7 @@ export const BaselineAssesment = () => {
                       : session.currentPosition - 1
                   }
                   completionPercentage={session.completionPercentage}
-                  handleViewSession={() => setSelectedSession(session)}
+                  handleViewAssessment={() => setSelectedSession(session)}
                   t={t}
                 />
               ))}

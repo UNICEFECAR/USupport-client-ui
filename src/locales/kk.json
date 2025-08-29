@@ -850,6 +850,17 @@
       "assessment_completed_description": "Бағалауды аяқтағаныңызға рахмет. Жауаптарыңыз сақталды және сізге көмектесу үшін пайдаланылады.",
       "assessment_completed_button": "Басты бетке қайту"
     },
+    "baseline-assessment-dashboard": {
+      "heading": "Сіздің базалық бағалауыңыз",
+      "no_assessment_text": "Сіз әлі базалық бағалауды аяқтаған жоқсыз. Психикалық денсаулығыңыз туралы жеке ұсыныстар алу үшін оны аяқтаңыз.",
+      "start_new_assessment": "Бағалауды бастау",
+      "completed": "Аяқталды",
+      "in_progress": "Орындалуда",
+      "continue": "Жалғастыру",
+      "view": "Нәтижелерді көру",
+      "view_detailed_results": "Толық нәтижелерді көру",
+      "started_at": "{{date}} басталды"
+    },
     "baseline-assesment-result": {
       "assessment_completed": "Бағалау аяқталды",
       "loading_results": "Нәтижелеріңіз жүктелуде...",

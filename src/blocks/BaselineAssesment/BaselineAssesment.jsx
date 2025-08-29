@@ -6,17 +6,19 @@ import { useQueryClient } from "@tanstack/react-query";
 import { BaselineAssesmentResult } from "../BaselineAssesmentResult";
 
 import {
-  useGetScreeningQuestions,
-  useAddScreeningAnswer,
-  useCreateScreeningSession,
-  useGetClientAnswersForSessionById,
+  useGetBaselineAssessmentQuestions,
+  useAddBaselineAssessmentAnswer,
+  useCreateBaselineAssessment,
+  useGetClientAnswersForBaselineAssessmentById,
+  useCustomNavigate as useNavigate,
 } from "#hooks";
 
 import {
   Block,
+  Button,
+  ButtonWithIcon,
   Grid,
   GridItem,
-  Button,
   RadioButtonSelector,
   Loading,
   ProgressBar,
@@ -36,6 +38,7 @@ export const BaselineAssesment = ({
   setHasStartedAssessment,
   inProgressSession,
 }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation("blocks", {
     keyPrefix: "baseline-assesment",
   });
@@ -44,18 +47,22 @@ export const BaselineAssesment = ({
     currentStep: "intro", // intro, questions, completed
     currentQuestionIndex: 0,
     answers: {},
-    screeningSessionId: null,
+    baselineAssessmentId: null,
     isNewSession: false,
   });
 
-  const { isLoading, data: questions, error } = useGetScreeningQuestions();
+  const {
+    isLoading,
+    data: questions,
+    error,
+  } = useGetBaselineAssessmentQuestions();
 
   const {
     isFetching: isFetchingAnswers,
     data: answers,
     error: answersError,
-  } = useGetClientAnswersForSessionById(
-    selectedSession?.screeningSessionId,
+  } = useGetClientAnswersForBaselineAssessmentById(
+    selectedSession?.baselineAssessmentId,
     !state.isNewSession
   );
 
@@ -64,7 +71,7 @@ export const BaselineAssesment = ({
       setState((prev) => ({
         ...prev,
         answers,
-        screeningSessionId: selectedSession.screeningSessionId,
+        baselineAssessmentId: selectedSession.baselineAssessmentId,
         currentQuestionIndex: selectedSession.currentPosition - 1,
         currentStep:
           selectedSession.status === "completed" ? "completed" : "questions",
@@ -73,9 +80,9 @@ export const BaselineAssesment = ({
     }
   }, [answers, selectedSession]);
 
-  const addScreeningAnswerMutation = useAddScreeningAnswer();
+  const addBaselineAssessmentAnswerMutation = useAddBaselineAssessmentAnswer();
 
-  const createScreeningSessionMutation = useCreateScreeningSession();
+  const createBaselineAssessmentMutation = useCreateBaselineAssessment();
 
   const currentQuestion = questions?.[state.currentQuestionIndex];
   const progress = questions?.length
@@ -100,19 +107,19 @@ export const BaselineAssesment = ({
       return;
     }
 
-    createScreeningSessionMutation.mutate(undefined, {
-      onSuccess: (sessionData) => {
+    createBaselineAssessmentMutation.mutate(undefined, {
+      onSuccess: (assessmentData) => {
         setState((prev) => ({
           ...prev,
           currentStep: "questions",
-          screeningSessionId: sessionData.screeningSessionId,
+          baselineAssessmentId: assessmentData.baselineAssessmentId,
           isNewSession: true,
         }));
         setHasStartedAssessment(true);
       },
       onError: (error) => {
-        toast.error("Error creating session. Please try again.");
-        console.error("Failed to create screening session:", error);
+        toast.error("Error creating assessment. Please try again.");
+        console.error("Failed to create baseline assessment:", error);
       },
     });
   };
@@ -157,20 +164,20 @@ export const BaselineAssesment = ({
     }
 
     // Submit answer to API first
-    addScreeningAnswerMutation.mutate(
+    addBaselineAssessmentAnswerMutation.mutate(
       {
         questionId,
         answerValue,
-        screeningSessionId: state.screeningSessionId,
+        baselineAssessmentId: state.baselineAssessmentId,
         currentPosition: state.currentQuestionIndex + 1,
       },
       {
         onSuccess: (data) => {
-          // Update session ID if we got one back
-          if (data.screeningSessionId && !state.screeningSessionId) {
+          // Update assessment ID if we got one back
+          if (data.baselineAssessmentId && !state.baselineAssessmentId) {
             setState((prev) => ({
               ...prev,
-              screeningSessionId: data.screeningSessionId,
+              baselineAssessmentId: data.baselineAssessmentId,
             }));
           }
 
@@ -188,11 +195,14 @@ export const BaselineAssesment = ({
               finalResult: data.finalResult,
             }));
             queryClient.invalidateQueries({
-              queryKey: ["screening-sessions"],
+              queryKey: ["baseline-assessments"],
             });
           }
+          queryClient.invalidateQueries({
+            queryKey: ["latest-baseline-assessment"],
+          });
         },
-        onError: (error) => {
+        onError: () => {
           toast.error("Error submitting answer. Please try again.");
           // Remove the answer from local state if submission failed
           setState((prev) => {
@@ -212,8 +222,6 @@ export const BaselineAssesment = ({
         ...prev,
         currentQuestionIndex: prev.currentQuestionIndex - 1,
       }));
-    } else {
-      setState((prev) => ({ ...prev, currentStep: "intro" }));
     }
   };
 
@@ -238,7 +246,7 @@ export const BaselineAssesment = ({
               name={`question-${currentQuestion?.questionId}`}
               isChecked={currentAnswer === value}
               setIsChecked={() => {}}
-              disabled={addScreeningAnswerMutation.isLoading}
+              disabled={addBaselineAssessmentAnswerMutation.isLoading}
               label={
                 (value === 1 && "1. Strongly Disagree") ||
                 (value === 2 && "2. Disagree") ||
@@ -266,7 +274,10 @@ export const BaselineAssesment = ({
       <Block classes="baseline-assesment">
         <div className="baseline-assesment__error">
           <h3>Error Loading Questions</h3>
-          <p>Unable to load screening questions. Please try again later.</p>
+          <p>
+            Unable to load baseline assessment questions. Please try again
+            later.
+          </p>
         </div>
       </Block>
     );
@@ -295,8 +306,8 @@ export const BaselineAssesment = ({
                   label={"Start Assessment"}
                   size="lg"
                   onClick={handleStartAssessment}
-                  loading={createScreeningSessionMutation.isLoading}
-                  disabled={createScreeningSessionMutation.isLoading}
+                  loading={createBaselineAssessmentMutation.isLoading}
+                  disabled={createBaselineAssessmentMutation.isLoading}
                   type="primary"
                 />
               </GridItem>
@@ -346,6 +357,7 @@ export const BaselineAssesment = ({
             <GridItem md={8} lg={12} classes="baseline-assesment__navigation">
               <div className="baseline-assesment__navigation__buttons">
                 <Button
+                  disabled={state.currentQuestionIndex === 0}
                   label={t("back")}
                   type="secondary"
                   size="lg"
@@ -356,9 +368,18 @@ export const BaselineAssesment = ({
                   size="lg"
                   onClick={handleNext}
                   disabled={!canContinue}
-                  loading={addScreeningAnswerMutation.isLoading}
+                  loading={addBaselineAssessmentAnswerMutation.isLoading}
                 />
               </div>
+              <ButtonWithIcon
+                iconName="save"
+                iconColor="#ffffff"
+                size="md"
+                color="purple"
+                label="Save for later"
+                classes="baseline-assesment__navigation__save-for-later"
+                onClick={() => navigate("/dashboard")}
+              />
             </GridItem>
           </>
         )}

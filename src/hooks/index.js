@@ -54,9 +54,11 @@ export * from "./useGetOrganizationMetadata.js";
 export * from "./useGetOrganizationById.js";
 export * from "./useGetIsPodcastsAndVideosActive.js";
 export * from "./useSendPlatformSuggestion.js";
-export * from "./useGetScreeningQuestions.js";
-export * from "./useCreateScreeningSession.js";
-export * from "./useAddScreeningAnswer.js";
-export * from "./useGetScreeningSessions.js";
-export * from "./useGetClientAnswersForSessionById.js";
+// Legacy exports (keeping for backward compatibility)
+export * from "./useGetBaselineAssessmentQuestions.js";
+export * from "./useCreateBaselineAssessment.js";
+export * from "./useAddBaselineAssessmentAnswer.js";
+export * from "./useGetBaselineAssessments.js";
+export * from "./useGetLatestBaselineAssessment.js";
+export * from "./useGetClientAnswersForBaselineAssessmentById.js";
 export * from "./useGetAssessmentResult.js";

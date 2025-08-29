@@ -851,6 +851,17 @@
       "assessment_completed_description": "Thank you for completing the assessment. Your answers have been saved and will be used to help you.",
       "assessment_completed_button": "Back to Home"
     },
+    "baseline-assessment-dashboard": {
+      "heading": "Your Baseline Assessment",
+      "no_assessment_text": "You haven't completed a baseline assessment yet. Complete one to get personalized insights about your mental health.",
+      "start_new_assessment": "Start Assessment",
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "continue": "Continue",
+      "view": "View Results",
+      "view_detailed_results": "View Detailed Results",
+      "started_at": "Started on {{date}}"
+    },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",
       "loading_results": "Loading your results...",

@@ -389,7 +389,7 @@ const LanguageLayout = () => {
         }
       />
       <Route
-        path="baseline-assesment/:sessionId"
+        path="baseline-assesment/:assessmentId"
         element={
           <ProtectedRoute>
             <BaselineAssesment />

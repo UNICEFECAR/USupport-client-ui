@@ -851,6 +851,17 @@
       "assessment_completed_description": "Спасибо за прохождение оценки. Ваши ответы сохранены и будут использованы, чтобы помочь вам.",
       "assessment_completed_button": "Вернуться на главную"
     },
+    "baseline-assessment-dashboard": {
+      "heading": "Ваша базовая оценка",
+      "no_assessment_text": "Вы еще не завершили базовую оценку. Завершите ее, чтобы получить персонализированные рекомендации о вашем психическом здоровье.",
+      "start_new_assessment": "Начать оценку",
+      "completed": "Завершено",
+      "in_progress": "В процессе",
+      "continue": "Продолжить",
+      "view": "Посмотреть результаты",
+      "view_detailed_results": "Посмотреть подробные результаты",
+      "started_at": "Начато {{date}}"
+    },
     "baseline-assesment-result": {
       "assessment_completed": "Оценка завершена",
       "loading_results": "Загрузка результатов...",
