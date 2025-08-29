@@ -10,6 +10,7 @@ import {
   MoodTracker,
   ConsultationsDashboard,
   ArticlesDashboard,
+  BaselineAssessmentDashboard,
 } from "#blocks";
 
 import {
@@ -85,6 +86,8 @@ export const Dashboard = () => {
     useState(false);
   const [redirectToSelectProvider, setRedirectToSelectProvider] =
     useState(true);
+  const [isBaselineAssesmentModalOpen, setIsBaselineAssesmentModalOpen] =
+    useState(false);
 
   const openRequireDataAgreement = (successAction) => {
     if (successAction) {
@@ -250,7 +253,12 @@ export const Dashboard = () => {
       showEmergencyButton
       showGoBackArrow={false}
     >
-      <BaselineAssesmentModal />
+      {IS_RO && (
+        <BaselineAssesmentModal
+          open={isBaselineAssesmentModalOpen}
+          setOpen={setIsBaselineAssesmentModalOpen}
+        />
+      )}
       <div className="page__dashboard__content">
         <MascotWelcomeHeader
           nextConsultation={
@@ -264,6 +272,13 @@ export const Dashboard = () => {
           t={t}
         />
         <MoodTracker isTmpUser={isTmpUser} />
+        {IS_RO && (
+          <BaselineAssessmentDashboard
+            openBaselineAssesmentModal={() =>
+              setIsBaselineAssesmentModalOpen(true)
+            }
+          />
+        )}
         <ArticlesDashboard />
         {!IS_RO && (
           <ConsultationsDashboard

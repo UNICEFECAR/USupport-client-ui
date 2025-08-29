@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import {
   useCustomNavigate as useNavigate,
-  useCreateScreeningSession,
+  useCreateBaselineAssessment,
   useGetClientData,
 } from "#hooks";
 
@@ -21,35 +21,44 @@ import "./baseline-assesment-modal.scss";
  *
  * @return {jsx}
  */
-export const BaselineAssesmentModal = () => {
+export const BaselineAssesmentModal = ({ open, setOpen }) => {
   const { t } = useTranslation("modals", {
     keyPrefix: "baseline-assesment-modal",
   });
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const websiteUrl = constructWebsiteUrl("privacy-policy");
-  const createScreeningSessionMutation = useCreateScreeningSession();
+  const createBaselineAssessmentMutation = useCreateBaselineAssessment();
 
   const clientDataQuery = useGetClientData()[0];
   const clientData = clientDataQuery.data;
 
   const [isOpen, setIsOpen] = useState(false);
   const [dataProcessing, setDataProcessing] = useState(false);
-  const onClose = () => setIsOpen(false);
+  const onClose = () => {
+    setIsOpen(false);
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    setIsOpen(open);
+  }, [open]);
 
   useEffect(() => {
     if (clientData) {
-      console.log(clientData.hasCheckedBaselineAssessment);
       setDataProcessing(clientData.dataProcessing);
-      setIsOpen(clientData.hasCheckedBaselineAssessment);
+      setIsOpen(!clientData.hasCheckedBaselineAssessment);
     }
   }, [clientData]);
 
   const handleCtaClick = () => {
-    createScreeningSessionMutation.mutate(undefined, {
-      onSuccess: (sessionData) => {
+    createBaselineAssessmentMutation.mutate(undefined, {
+      onSuccess: (assessmentData) => {
+        queryClient.invalidateQueries({
+          queryKey: ["latest-baseline-assessment"],
+        });
         onClose();
-        navigate(`/baseline-assesment/${sessionData.screeningSessionId}`);
+        navigate(`/baseline-assesment/${assessmentData.baselineAssessmentId}`);
       },
     });
     updateClientHasCheckedBaselineAssessmentMutation.mutate(true);
@@ -99,7 +108,7 @@ export const BaselineAssesmentModal = () => {
       secondaryCtaLabel={t("secondary_cta_label")}
       secondaryCtaHandleClick={handleSecondaryCtaClick}
       secondaryCtaType="secondary"
-      isCtaLoading={createScreeningSessionMutation.isLoading}
+      isCtaLoading={createBaselineAssessmentMutation.isLoading}
       isCtaDisabled={!dataProcessing || clientDataQuery.isLoading}
     >
       <div className="baseline-assesment-modal__content">
