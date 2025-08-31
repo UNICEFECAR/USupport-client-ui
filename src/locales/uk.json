@@ -730,7 +730,8 @@
       "view_organization_details": "Переглянути деталі організації",
       "address": "Адреса",
       "phone": "Телефон",
-      "email": "E-mail"
+      "email": "E-mail",
+      "any": "Будь-який"
     },
     "organization-overview": {
       "error_loading_data": "Під час завантаження даних організації сталася помилка",
@@ -988,7 +989,9 @@
       "heading_newest_podcasts": "Найновіші аудіобаки",
       "heading_popular_podcasts": "Найпопулярніші аудіобаки",
       "podcasts": "Аудіобаки",
-      "view_more": "Більше переглянути"
+      "view_more": "Більше переглянути",
+      "require_cookies": "Щоб переглянути це відео, прийміть усі файли cookie.",
+      "cookie_preferences": "Налаштування файлів cookie"
     },
     "register-preview-page": {},
     "register-email-page": {

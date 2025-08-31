@@ -14,6 +14,7 @@ import {
   PasswordModal,
   Box,
   CookieBanner,
+  AccessibilityController,
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -34,6 +35,7 @@ import {
   useEventListener,
   useCheckHasUnreadNotifications,
   useError,
+  useAddSosCenterClick,
 } from "#hooks";
 
 import "./page.scss";
@@ -377,6 +379,8 @@ export const Page = ({
     }
   );
 
+  const addSosCenterClickMutation = useAddSosCenterClick();
+
   const handlePasswordCheck = (value) => {
     validatePlatformPasswordMutation.mutate(value);
   };
@@ -540,9 +544,13 @@ export const Page = ({
         <CircleIconButton
           iconName="phone-emergency"
           classes="page__emergency-button"
-          onClick={() =>
-            navigateTo(`/client/${localStorageLanguage}/sos-center`)
-          }
+          onClick={() => {
+            addSosCenterClickMutation.mutate({
+              isMain: true,
+              platform: "client",
+            });
+            navigateTo(`/client/${localStorageLanguage}/sos-center`);
+          }}
           label={t("emergency_button")}
         />
       )}
@@ -576,6 +584,7 @@ export const Page = ({
         t={t}
         isInClient
       />
+      <AccessibilityController />
     </>
   );
 };

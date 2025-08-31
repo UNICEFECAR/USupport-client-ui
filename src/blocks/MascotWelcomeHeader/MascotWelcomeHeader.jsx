@@ -54,6 +54,7 @@ export const MascotWelcomeHeader = ({
           <img
             className="mascot-welcome-header__mascot-item__mascot"
             src={width > 768 ? mascotHappyPurpleFull : mascotHappyPurple}
+            alt="Mascot"
           />
         </GridItem>
         <GridItem

@@ -271,7 +271,11 @@ export const Dashboard = () => {
           name={clientName}
           t={t}
         />
-        <MoodTracker isTmpUser={isTmpUser} />
+        <MoodTracker
+          isTmpUser={isTmpUser}
+          clientData={clientData}
+          openRequireDataAgreement={openRequireDataAgreement}
+        />
         {IS_RO && (
           <BaselineAssessmentDashboard
             openBaselineAssesmentModal={() =>

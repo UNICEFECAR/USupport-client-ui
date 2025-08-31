@@ -729,7 +729,8 @@
       "view_organization_details": "Ұйым мәліметтерін көру",
       "address": "Мекенжай",
       "phone": "Телефон",
-      "email": "E-mail"
+      "email": "E-mail",
+      "any": "Барлық"
     },
     "organization-overview": {
       "error_loading_data": "Ұйым деректерін жүктеу кезінде қате орын алды",
@@ -987,7 +988,9 @@
       "heading_newest_podcasts": "Жаңа Подкасттар",
       "heading_popular_podcasts": "Ең танымал Подкасттар",
       "podcasts": "Подкасттар",
-      "view_more": "Көбірек көру"
+      "view_more": "Көбірек көру",
+      "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері"
     },
     "register-preview-page": {},
     "register-email-page": {

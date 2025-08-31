@@ -18,10 +18,13 @@
 
   &__image-item {
     width: 100%;
-    height: 40rem;
+    height: auto;
+    max-height: 40rem;
     border-radius: $border_radius_1_2;
+    object-fit: cover;
+
     @media screen and (min-width: $screen-md) {
-      height: 80rem;
+      max-height: 60rem;
     }
   }
 
@@ -62,7 +65,8 @@
         $themes,
         "background-color",
         "color_blue_20809E_0_3",
-        "color_gray_66768d"
+        "color_gray_66768d",
+        "color_blue_20809E_0_3"
       );
       border-radius: $border_radius_2_5;
       padding: 0 $spacing_1_2 0 $spacing_1_2;
@@ -89,6 +93,7 @@
     &__download {
       border-radius: 25px;
       border: 1px solid $color_blue_3d527b;
+
       padding: 4px 12px;
       margin-left: $spacing_1_0;
       display: flex;
