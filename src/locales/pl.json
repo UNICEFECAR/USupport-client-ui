@@ -797,6 +797,67 @@
       "other_situations": "Inne sytuacje",
 
       "copy_link_success": "Link został skopiowany do schowka!"
+    },
+    "baseline-assesment": {
+      "instructions": "Instrukcje: Myśląc o ostatnich dwóch tygodniach, wybierz opcję, która według Ciebie najlepiej Cię opisuje w odniesieniu do poniższych stwierdzeń.",
+      "stress_level": "Jestem bardzo zestresowany(a).",
+      "sadness_anxiety": "Często czuję smutek lub niepokój.",
+      "fear_frequency": "Często się boję.",
+      "emotion_control": "Bardzo trudno jest mi kontrolować swoje emocje.",
+      "worry_anxiety": "Często się martwię i odczuwam lęk.",
+      "nervousness": "Często się denerwuję.",
+      "sensitivity_agitation": "Jestem bardziej drażliwy(a) i wrażliwy(a) niż inni.",
+      "physical_weakness": "Czuję się fizycznie słaby(a) lub często mam bóle.",
+      "tired_waking": "Budzę się zmęczony(a).",
+      "body_health_concerns": "Myślę, że coś poważnego jest nie tak z moim ciałem.",
+      "slow_movements": "Poruszam się i reaguję wolniej niż inni.",
+      "friendship_difficulty": "Trudno mi zaprzyjaźnić się z innymi dziećmi. Wolę być sam(a).",
+      "communication_difficulty": "Trudno mi rozmawiać z przyjaciółmi lub rodziną.",
+      "emotional_expression": "Nie potrafię otwarcie mówić o tym, co czuję.",
+      "parental_overwhelm": "Czuję się przytłoczony(a) przez rodziców.",
+      "school_helplessness": "Czuję się bezradny(a) w szkole przy innych.",
+      "difficult_parents": "Moi rodzice są bardzo trudni.",
+      "concentration_problems": "Mam trudności z koncentracją.",
+      "lack_happiness": "Niewiele rzeczy naprawdę mnie uszczęśliwia.",
+      "maturity_pressure": "Czuję, że powinienem(am) szybciej dorosnąć.",
+      "internet_dependency": "Czuł(a)bym się samotny(a) bez internetu.",
+      "economic_bullying": "Byłem(am) prześladowany(a) lub wykluczany(a), ponieważ nie mogę sobie pozwolić na to samo, co moi znajomi lub koledzy (np. ubrania, telefon itp.).",
+      "few_friends": "Nie mam wielu przyjaciół.",
+      "nightmares": "Często miewam koszmary.",
+      "appetite_loss": "Nie mam apetytu.",
+      "substance_use": "Kilka razy próbowałem(am) palić lub używać nielegalnych substancji (alkohol, narkotyki itp.).",
+      "frequent_headaches": "Często mam bóle głowy bez powodu.",
+
+      "question": "Pytanie {{number}} z {{total}}",
+      "completed": "{{percentage}}% ukończono",
+      "back": "Wstecz",
+      "next": "Dalej",
+      "start_assessment": "Rozpocznij ocenę",
+      "finish_assessment": "Zakończ ocenę",
+      "assessment_completed": "Ocena zakończona",
+      "assessment_completed_description": "Dziękujemy za wypełnienie oceny. Twoje odpowiedzi zostały zapisane i zostaną wykorzystane, aby Ci pomóc.",
+      "assessment_completed_button": "Powrót do strony głównej"
+    },
+    "baseline-assessment-dashboard": {
+      "heading": "Twoja podstawowa ocena",
+      "no_assessment_text": "Nie ukończyłeś jeszcze podstawowej oceny. Ukończ ją, aby otrzymać spersonalizowane wskazówki dotyczące swojego zdrowia psychicznego.",
+      "start_new_assessment": "Rozpocznij ocenę",
+      "completed": "Ukończono",
+      "in_progress": "W toku",
+      "continue": "Kontynuuj",
+      "view": "Zobacz wyniki",
+      "view_detailed_results": "Zobacz szczegółowe wyniki",
+      "started_at": "Rozpoczęto {{date}}"
+    },
+    "baseline-assesment-result": {
+      "assessment_completed": "Ocena zakończona",
+      "loading_results": "Ładowanie wyników...",
+      "recommended_articles": "Polecane artykuły",
+      "recommended_videos": "Polecane filmy",
+      "recommended_podcasts": "Polecane podcasty",
+      "read_more_button": "Czytaj więcej",
+      "by": "autor: {{creator}}",
+      "min_read": "min czytania"
     }
   },
   "pages": {
@@ -1287,6 +1348,17 @@
       "confirm": "Tak, usuń wszystkie moje dane z czatu",
       "cancel": "Nie, zachowaj moje dane z czatu",
       "success": "Twoje dane z czatu zostały pomyślnie usunięte."
+    },
+    "baseline-assesment-modal": {
+      "heading": "Ocena bazowa",
+      "paragraph_1": "Poniższe pytania pomogą Ci lepiej zrozumieć, jak się czujesz, i ustalić, czy potrzebujesz pomocy, aby poczuć się lepiej. Pytania dotyczą Twojego nastroju, myśli i uczuć z ostatnich dwóch tygodni. Nie ma dobrych ani złych odpowiedzi – są tylko te, które Cię opisują. Ważne jest, aby odpowiadać jak najbardziej szczerze, abyśmy mogli zrozumieć, co czujesz, i zobaczyć, jak możemy Ci pomóc.",
+      "paragraph_2": "Na końcu otrzymasz odpowiedź, która pokaże, jak się czujesz i czy ważne byłoby porozmawianie z kimś o tym, co się z Tobą dzieje. W razie potrzeby powiemy Ci, do kogo możesz się zwrócić po pomoc – może to być szkolny pedagog, psycholog lub inny specjalista.",
+      "paragraph_3": "Wszystko, co tu odpowiesz, jest poufne. Nikt nie pyta o Twoje imię ani inne dane, które mogłyby Cię zidentyfikować. Jesteś więc bezpieczny(a) i możesz być otwarty(a) i szczery(a). Ankieta zajmie tylko kilka minut i może być pierwszym krokiem do lepszego samopoczucia.",
+      "paragraph_4": "Jesteś gotowy(a)? Zaczynajmy! 😊",
+      "privacy": "Prywatność i bezpieczeństwo",
+      "consent": "Aby kontynuować, prosimy o zgodę na naszą <0>Politykę prywatności</0>",
+      "cta_label": "Zgadzam się wypełnić ankietę.",
+      "secondary_cta_label": "Nie chcę wypełniać ankiety"
     }
   },
   "routes": {

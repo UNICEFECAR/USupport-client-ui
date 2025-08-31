@@ -295,7 +295,7 @@ export const ArticleView = ({ articleData, t, language, navigate }) => {
           {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
 
           <Icon
-            color={theme === "dark" ? "#ffffff" : "#66768d"}
+            color={theme === "light" ? "#66768d" : "#ffffff"}
             name={"time"}
             size="sm"
           />
@@ -312,7 +312,7 @@ export const ArticleView = ({ articleData, t, language, navigate }) => {
               <Loading padding="0px" size="sm" />
             ) : (
               <Icon
-                color={theme === "dark" ? "#ffffff" : "#66768d"}
+                color={theme === "light" ? "#66768d" : "#ffffff"}
                 name="download"
                 size="sm"
               />
@@ -323,7 +323,7 @@ export const ArticleView = ({ articleData, t, language, navigate }) => {
             className="article-view__details-item__download"
           >
             <Icon
-              color={theme === "dark" ? "#ffffff" : "#66768d"}
+              color={theme === "light" ? "#66768d" : "#ffffff"}
               name="share"
               size="sm"
             />

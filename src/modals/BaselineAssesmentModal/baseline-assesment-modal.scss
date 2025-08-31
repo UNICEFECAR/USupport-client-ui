@@ -1,0 +1,27 @@
+@import "@USupport-components-library/styles";
+
+.baseline-assesment-modal {
+  &__content {
+    p {
+      font-size: 15px;
+    }
+  }
+  &__privacy-content {
+    margin-top: $spacing_2_0;
+
+    &-heading {
+      font-weight: $font_bold;
+    }
+    &-consent {
+      font-size: 14px;
+    }
+    &-link {
+      color: $color_primary_20809e;
+      cursor: pointer;
+    }
+
+    & .toggle {
+      margin-top: $spacing_1_0;
+    }
+  }
+}

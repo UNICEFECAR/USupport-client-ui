@@ -58,6 +58,7 @@ import {
   JitsiRoom,
   Organizations,
   OrganizationOverview,
+  BaselineAssesment,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData } from "#hooks";
@@ -384,6 +385,14 @@ const LanguageLayout = () => {
         element={
           <ProtectedRoute>
             <OrganizationOverview />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="baseline-assesment/:assessmentId"
+        element={
+          <ProtectedRoute>
+            <BaselineAssesment />
           </ProtectedRoute>
         }
       />
