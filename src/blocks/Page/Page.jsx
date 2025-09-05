@@ -286,15 +286,20 @@ export const Page = ({
   }, [clientData]);
 
   const pages = [
-    { name: t("page_1"), url: "/dashboard", exact: true },
+    { name: t("page_1"), url: "/dashboard", exact: true, icon: "home" },
     {
       name: t(IS_RO ? "page_5" : "page_2"),
       url: IS_RO ? "/organizations" : "/consultations",
+      icon: IS_RO ? "three-people" : "two-people",
     },
-    { name: t("page_3"), url: "/information-portal?tab=articles" },
+    {
+      name: t("page_3"),
+      url: "/information-portal?tab=articles",
+      icon: "activities",
+    },
   ];
   if (!IS_RO) {
-    pages.push({ name: t("page_4"), url: "/my-qa" });
+    pages.push({ name: t("page_4"), url: "/my-qa", icon: "document" });
   }
 
   const footerLists = {
@@ -584,7 +589,6 @@ export const Page = ({
         t={t}
         isInClient
       />
-      <AccessibilityController />
     </>
   );
 };
