@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { userSvc } from "@USupport-components-library/services";
 import { IdleTimer } from "@USupport-components-library/src";
+import { getCountryDefaultLanguage } from "@USupport-components-library/utils";
 
 import { RequireRegistration } from "#modals";
 import { useEventListener } from "#hooks";
@@ -66,11 +67,15 @@ import { useGetClientData } from "#hooks";
 const RootContext = React.createContext();
 
 const LanguageLayout = () => {
-  const { language } = useParams();
+  let { language } = useParams();
   const allLangs = ["en", "ru", "kk", "pl", "uk", "hy"];
 
+  if (!language) {
+    language = getCountryDefaultLanguage();
+  }
+
   if (!allLangs.includes(language) || !language) {
-    return <Navigate to="/client/en" />;
+    return <Navigate to={`/client/${language}`} />;
   }
   return (
     <Routes>
@@ -405,7 +410,11 @@ const LanguageLayout = () => {
 export default function Root() {
   const { t } = useTranslation("routes", { keyPrefix: "root" });
 
-  const language = localStorage.getItem("language");
+  let language = localStorage.getItem("language");
+  if (!language) {
+    language = getCountryDefaultLanguage();
+  }
+
   const token = localStorage.getItem("token");
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
@@ -507,7 +516,7 @@ export default function Root() {
       <Routes>
         <Route
           path="/client"
-          element={<Navigate to={`/client/${language || "en"}`} replace />}
+          element={<Navigate to={`/client/${language}`} replace />}
         />
         <Route path="/client/:language/*" element={<LanguageLayout />} />
         <Route path="*" element={<NotFound />} />
