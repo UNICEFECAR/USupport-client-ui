@@ -102,7 +102,7 @@ export const RegisterPreview = () => {
     <Block classes="register-preview">
       <Grid md={8} lg={12} classes="register-preview__grid">
         <GridItem md={4} lg={6} classes="register-preview__grid__mascot-item">
-          <img src={mascotHappyBlue} />
+          <img src={mascotHappyBlue} alt="Happy mascot" />
         </GridItem>
         <GridItem md={4} lg={6} classes="register-preview__grid__content-item">
           <div className="register-preview__grid__content-item__carousel-container">

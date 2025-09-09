@@ -1,0 +1,42 @@
+@import "@USupport-components-library/styles";
+
+.baseline-assesment-result {
+  text-align: center;
+  margin-bottom: $spacing_3_2;
+
+  h1 {
+    margin-bottom: $spacing_2_4;
+    color: $color_green_7ec680;
+  }
+
+  p.text {
+    margin-bottom: $spacing_2_4;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__stats {
+    margin-top: $spacing_2_4;
+
+    p {
+      margin-top: $spacing_1_6;
+      color: $color_gray_92989b;
+      @include themify($themes, "color", "color_gray_92989b_c1d7e0");
+    }
+  }
+
+  &__content-grid {
+    justify-content: center;
+  }
+
+  &__articles,
+  &__podcasts,
+  &__videos {
+    margin-top: $spacing_3_2;
+
+    h4 {
+      margin-bottom: $spacing_2_4;
+    }
+  }
+}

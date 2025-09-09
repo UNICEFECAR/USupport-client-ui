@@ -135,10 +135,15 @@ export const Organizations = () => {
             selected={filters.district}
             setSelected={(value) => handleChange("district", value)}
             placeholder={t("district_placeholder")}
-            options={metadata.districts.map((district) => ({
-              label: t(district.name),
-              value: district.districtId,
-            }))}
+            options={[
+              { label: t("any"), value: null },
+              ...metadata.districts
+                .map((district) => ({
+                  label: t(district.name),
+                  value: district.districtId,
+                }))
+                .sort((a, b) => a.label.localeCompare(b.label)),
+            ]}
             isSmall
           />
         )}
@@ -148,10 +153,15 @@ export const Organizations = () => {
             selected={filters.paymentMethod}
             setSelected={(value) => handleChange("paymentMethod", value)}
             placeholder={t("payment_methods_placeholder")}
-            options={metadata.paymentMethods.map((method) => ({
-              label: t(method.name),
-              value: method.paymentMethodId,
-            }))}
+            options={[
+              { label: t("any"), value: null },
+              ...metadata.paymentMethods
+                .map((method) => ({
+                  label: t(method.name),
+                  value: method.paymentMethodId,
+                }))
+                .sort((a, b) => a.label.localeCompare(b.label)),
+            ]}
             isSmall
           />
         )}
@@ -161,10 +171,15 @@ export const Organizations = () => {
             selected={filters.userInteraction}
             setSelected={(value) => handleChange("userInteraction", value)}
             placeholder={t("user_interactions_placeholder")}
-            options={metadata.userInteractions.map((interaction) => ({
-              label: t(interaction.name + "_interaction"),
-              value: interaction.userInteractionId,
-            }))}
+            options={[
+              { label: t("any"), value: null },
+              ...metadata.userInteractions
+                .map((interaction) => ({
+                  label: t(interaction.name + "_interaction"),
+                  value: interaction.userInteractionId,
+                }))
+                .sort((a, b) => a.label.localeCompare(b.label)),
+            ]}
             isSmall
           />
         )}
@@ -174,10 +189,15 @@ export const Organizations = () => {
             selected={filters.specialisation}
             setSelected={(value) => handleChange("specialisation", value)}
             placeholder={t("specialisations_placeholder")}
-            options={metadata.specialisations.map((spec) => ({
-              label: t(spec.name),
-              value: spec.organizationSpecialisationId,
-            }))}
+            options={[
+              { label: t("any"), value: null },
+              ...metadata.specialisations
+                .map((spec) => ({
+                  label: t(spec.name),
+                  value: spec.organizationSpecialisationId,
+                }))
+                .sort((a, b) => a.label.localeCompare(b.label)),
+            ]}
             isSmall
           />
         )}
@@ -187,10 +207,15 @@ export const Organizations = () => {
             selected={filters.propertyType}
             setSelected={(value) => handleChange("propertyType", value)}
             placeholder={t("property_types_placeholder")}
-            options={metadata.propertyTypes.map((propertyType) => ({
-              label: t(propertyType.name),
-              value: propertyType.organizationPropertyTypeId,
-            }))}
+            options={[
+              { label: t("any"), value: null },
+              ...metadata.propertyTypes
+                .map((propertyType) => ({
+                  label: t(propertyType.name),
+                  value: propertyType.organizationPropertyTypeId,
+                }))
+                .sort((a, b) => a.label.localeCompare(b.label)),
+            ]}
             isSmall
           />
         )}

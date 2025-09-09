@@ -18,13 +18,18 @@ import {
   Toggle,
   ProfilePicturePreview,
 } from "@USupport-components-library/src";
-import { validateProperty, validate } from "@USupport-components-library/utils";
+import {
+  validateProperty,
+  validate,
+  ThemeContext,
+} from "@USupport-components-library/utils";
 import { userSvc, clientSvc } from "@USupport-components-library/services";
 import { useGetClientData, useUpdateClientData } from "#hooks";
 
 import Joi from "joi";
 
 import "./user-details.scss";
+import { useContext } from "react";
 
 const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
 
@@ -42,6 +47,7 @@ export const UserDetails = ({
   openDeletePictureBackdrop,
   openDeleteChatHistory,
 }) => {
+  const { theme } = useContext(ThemeContext);
   const { t } = useTranslation("blocks", { keyPrefix: "user-details" });
   const IS_RO = localStorage.getItem("country") === "RO";
 
@@ -377,7 +383,12 @@ export const UserDetails = ({
                             )
                             .focus()
                         }
-                        className="user-details__modal-heading"
+                        className={[
+                          "user-details__modal-heading",
+                          theme === "highContrast"
+                            ? "user-details__modal-heading--hc"
+                            : "",
+                        ].join(" ")}
                       />,
                     ]}
                   >

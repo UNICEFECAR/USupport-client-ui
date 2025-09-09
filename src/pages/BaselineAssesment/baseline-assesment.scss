@@ -1,0 +1,35 @@
+/* BaselineAssesment styles */
+@import "@USupport-components-library/styles";
+
+.page__baseline-assesment {
+  &__sessions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    &__in-progress,
+    &__completed {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+
+      h3 {
+        color: $color_blue_3d527b;
+        @include themify($themes, "color", "color_white_ff");
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+    }
+
+    &__completed {
+      h3 {
+        color: $color_green_7ec680;
+      }
+    }
+  }
+}

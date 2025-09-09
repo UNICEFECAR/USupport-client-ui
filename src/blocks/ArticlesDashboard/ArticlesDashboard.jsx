@@ -276,7 +276,7 @@ export const ArticlesDashboard = () => {
                             navigate(
                               `/information-portal/article/${
                                 article.id
-                              }/${createArticleSlug(article.name)}`
+                              }/${createArticleSlug(article.attributes.title)}`
                             );
                           }}
                         />

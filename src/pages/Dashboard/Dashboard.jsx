@@ -10,6 +10,7 @@ import {
   MoodTracker,
   ConsultationsDashboard,
   ArticlesDashboard,
+  BaselineAssessmentDashboard,
 } from "#blocks";
 
 import {
@@ -29,7 +30,7 @@ import {
   useGetClientData,
 } from "#hooks";
 
-import { RequireDataAgreement } from "#modals";
+import { BaselineAssesmentModal, RequireDataAgreement } from "#modals";
 
 import { userSvc } from "@USupport-components-library/services";
 import { ONE_HOUR } from "@USupport-components-library/utils";
@@ -85,6 +86,8 @@ export const Dashboard = () => {
     useState(false);
   const [redirectToSelectProvider, setRedirectToSelectProvider] =
     useState(true);
+  const [isBaselineAssesmentModalOpen, setIsBaselineAssesmentModalOpen] =
+    useState(false);
 
   const openRequireDataAgreement = (successAction) => {
     if (successAction) {
@@ -242,7 +245,6 @@ export const Dashboard = () => {
       navigate(`/select-provider`);
     }
   };
-
   return (
     <Page
       classes="page__dashboard"
@@ -251,6 +253,12 @@ export const Dashboard = () => {
       showEmergencyButton
       showGoBackArrow={false}
     >
+      {IS_RO && (
+        <BaselineAssesmentModal
+          open={isBaselineAssesmentModalOpen}
+          setOpen={setIsBaselineAssesmentModalOpen}
+        />
+      )}
       <div className="page__dashboard__content">
         <MascotWelcomeHeader
           nextConsultation={
@@ -263,7 +271,18 @@ export const Dashboard = () => {
           name={clientName}
           t={t}
         />
-        <MoodTracker isTmpUser={isTmpUser} />
+        <MoodTracker
+          isTmpUser={isTmpUser}
+          clientData={clientData}
+          openRequireDataAgreement={openRequireDataAgreement}
+        />
+        {IS_RO && (
+          <BaselineAssessmentDashboard
+            openBaselineAssesmentModal={() =>
+              setIsBaselineAssesmentModalOpen(true)
+            }
+          />
+        )}
         <ArticlesDashboard />
         {!IS_RO && (
           <ConsultationsDashboard

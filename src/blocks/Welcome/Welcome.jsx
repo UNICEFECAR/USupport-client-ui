@@ -184,7 +184,7 @@ export const Welcome = () => {
         <GridItem md={8} lg={12} classes="welcome__grid__logo-item">
           <h2 className="welcome__grid__logo-item__heading">{t("heading")}</h2>
           <img
-            src={theme === "dark" ? logoVerticalDarkSvg : logoVerticalSvg}
+            src={theme !== "light" ? logoVerticalDarkSvg : logoVerticalSvg}
             alt="Logo"
             className="welcome__grid__logo-item__logo"
           />{" "}
