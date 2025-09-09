@@ -11,7 +11,10 @@ import { useQuery } from "@tanstack/react-query";
 
 import { userSvc } from "@USupport-components-library/services";
 import { IdleTimer } from "@USupport-components-library/src";
-import { getCountryDefaultLanguage } from "@USupport-components-library/utils";
+import {
+  getCountryDefaultLanguage,
+  getLanguageFromUrl,
+} from "@USupport-components-library/utils";
 
 import { RequireRegistration } from "#modals";
 import { useEventListener } from "#hooks";
@@ -66,9 +69,10 @@ import { useGetClientData } from "#hooks";
 
 const RootContext = React.createContext();
 
+const allLangs = ["en", "ru", "kk", "pl", "uk", "hy"];
+
 const LanguageLayout = () => {
   let { language } = useParams();
-  const allLangs = ["en", "ru", "kk", "pl", "uk", "hy"];
 
   if (!language) {
     language = getCountryDefaultLanguage();
@@ -411,8 +415,14 @@ export default function Root() {
   const { t } = useTranslation("routes", { keyPrefix: "root" });
 
   let language = localStorage.getItem("language");
+
   if (!language) {
-    language = getCountryDefaultLanguage();
+    const languageFromUrl = getLanguageFromUrl();
+    if (allLangs.includes(languageFromUrl)) {
+      language = languageFromUrl;
+    } else {
+      language = getCountryDefaultLanguage();
+    }
   }
 
   const token = localStorage.getItem("token");
