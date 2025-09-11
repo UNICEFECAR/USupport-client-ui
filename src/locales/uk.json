@@ -186,10 +186,10 @@
       "contact_reason_2": "Мені потрібна додаткова інформація про послуги, що надаються через платформу",
       "contact_reason_3": "Я клієнт/ка, і у мене виникла технічна проблема",
       "contact_reason_4": "Щось інше.",
-      "contact_reason_1_pl": "Інформація про uSupport",
+      "contact_reason_1_pl": "Інформація про службу підтримки",
       "contact_reason_2_pl": "Технічна проблема",
       "contact_reason_3_pl": "Скарга",
-      "contact_reason_4_pl": "Інше",
+      "contact_reason_4_pl": "Ще дещо",
       "contact_form": "Контактна форма"
     },
     "select-provider": {
