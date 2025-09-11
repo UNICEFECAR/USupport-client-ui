@@ -24,7 +24,7 @@ const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL;
  * @return {jsx}
  */
 export const SharePlatform = ({ shareUrl = WEBSITE_URL }) => {
-  const { t } = useTranslation("block", { keyPrefix: "share-platform" });
+  const { t } = useTranslation("blocks", { keyPrefix: "share-platform" });
 
   return (
     <Block classes="share-platform">
