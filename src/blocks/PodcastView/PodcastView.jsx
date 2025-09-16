@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import propTypes from "prop-types";
@@ -12,6 +13,7 @@ import {
   ActionButton,
 } from "@USupport-components-library/src";
 import { cmsSvc } from "@USupport-components-library/services";
+import { createArticleSlug } from "@USupport-components-library/utils";
 
 import { useAddContentRating } from "#hooks";
 
@@ -53,7 +55,7 @@ const constructShareUrl = ({ contentType, id, name }) => {
  *
  * @return {jsx}
  */
-export const PodcastView = ({ podcastData, t, language }) => {
+export const PodcastView = ({ podcastData, t, language, isTmpUser }) => {
   const queryClient = useQueryClient();
   const creator = podcastData.creator ? podcastData.creator : null;
 
@@ -191,6 +193,7 @@ export const PodcastView = ({ podcastData, t, language }) => {
   );
 
   const handleAddRating = (action) => {
+    if (isTmpUser) return;
     addContentRatingMutation({
       contentId: podcastData.id,
       positive:
@@ -243,6 +246,7 @@ export const PodcastView = ({ podcastData, t, language }) => {
             dislikes={contentRating?.dislikes || 0}
             isDisliked={contentRating?.isDislikedByUser || false}
             answerId={podcastData.id}
+            isTmpUser={isTmpUser}
           />
         </GridItem>
 

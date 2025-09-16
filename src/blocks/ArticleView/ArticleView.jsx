@@ -62,7 +62,7 @@ const constructShareUrl = ({ contentType, id, name }) => {
  *
  * @return {jsx}
  */
-export const ArticleView = ({ articleData, t, language, navigate }) => {
+export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
   const queryClient = useQueryClient();
   const creator = articleData.creator ? articleData.creator : null;
 
@@ -203,6 +203,7 @@ export const ArticleView = ({ articleData, t, language, navigate }) => {
   );
 
   const handleAddRating = (action) => {
+    if (isTmpUser) return;
     addContentRatingMutation({
       contentId: articleData.id,
       positive:
@@ -351,6 +352,7 @@ export const ArticleView = ({ articleData, t, language, navigate }) => {
             dislikes={ratings.dislikes || 0}
             isDisliked={ratings.isDislikedByUser || false}
             answerId={articleData.id}
+            isTmpUser={isTmpUser}
           />
         </GridItem>
 

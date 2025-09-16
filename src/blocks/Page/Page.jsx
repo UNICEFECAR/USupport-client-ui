@@ -99,7 +99,9 @@ export const Page = ({
 
   const token = localStorage.getItem("token");
 
-  const unreadNotificationsQuery = useCheckHasUnreadNotifications(!!token);
+  const unreadNotificationsQuery = useCheckHasUnreadNotifications(
+    !!token && !isTmpUser
+  );
 
   let localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language") || "en";

@@ -471,7 +471,7 @@ export default function Root() {
       return true;
     },
     staleTime: Infinity,
-    enabled: !!country && !hasAddedPlatformAccess,
+    enabled: !!country && !hasAddedPlatformAccess && !isTmpUser,
   });
 
   const location = useLocation();
