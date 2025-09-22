@@ -8,7 +8,7 @@ export default function useGetAllOrganizations(filters) {
     district,
     paymentMethod,
     userInteraction,
-    specialisation,
+    specialisations,
     userLocation,
     propertyType,
   } = filters;
@@ -58,7 +58,7 @@ export default function useGetAllOrganizations(filters) {
       district,
       paymentMethod,
       userInteraction,
-      specialisation,
+      specialisations,
       userLocation,
       propertyType,
     ],

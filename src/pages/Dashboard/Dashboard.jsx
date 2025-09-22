@@ -278,6 +278,7 @@ export const Dashboard = () => {
         />
         {IS_RO && (
           <BaselineAssessmentDashboard
+            isTmpUser={isTmpUser}
             openBaselineAssesmentModal={() =>
               setIsBaselineAssesmentModalOpen(true)
             }

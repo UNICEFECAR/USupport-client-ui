@@ -20,14 +20,18 @@ import "./baseline-assessment-dashboard.scss";
  *
  * @return {jsx}
  */
-export const BaselineAssessmentDashboard = ({ openBaselineAssesmentModal }) => {
+export const BaselineAssessmentDashboard = ({
+  openBaselineAssesmentModal,
+  isTmpUser,
+}) => {
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", {
     keyPrefix: "baseline-assessment-dashboard",
   });
 
-  const { data: latestAssessment, isLoading } =
-    useGetLatestBaselineAssessment();
+  const { data: latestAssessment, isLoading } = useGetLatestBaselineAssessment(
+    !isTmpUser
+  );
 
   const handleViewAssessment = () => {
     console.log(latestAssessment);
