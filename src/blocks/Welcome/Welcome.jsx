@@ -189,6 +189,11 @@ export const Welcome = () => {
             className="welcome__grid__logo-item__logo"
           />{" "}
           <h2 className="welcome__grid__logo-item__heading">{t("client")}</h2>
+          {selectedCountry === "PL" && (
+            <h4 className="welcome__grid__logo-item__pl-description">
+              {t("poland_description")}
+            </h4>
+          )}
         </GridItem>
         <GridItem md={8} lg={12} classes="welcome__grid__content-item">
           {!languagesQuery.isFetching && countries ? (
