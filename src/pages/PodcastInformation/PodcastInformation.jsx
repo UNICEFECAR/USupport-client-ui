@@ -8,6 +8,7 @@ import {
   useGetUserContentRatings,
 } from "#hooks";
 import { Page, PodcastView } from "#blocks";
+import { RootContext } from "#routes";
 
 import {
   destructurePodcastData,
@@ -42,7 +43,7 @@ export const PodcastInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { isPodcastsActive } = useContext(ThemeContext);
-
+  const { isTmpUser } = useContext(RootContext);
   const { i18n, t } = useTranslation("pages", {
     keyPrefix: "podcast-information-page",
   });
@@ -52,13 +53,14 @@ export const PodcastInformation = () => {
     return podcastIds;
   };
 
-  const { data: contentRatings } = useGetUserContentRatings();
+  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
   const podcastIdsQuery = useQuery(["podcastIds"], getPodcastsIds);
 
   const getPodcastData = async () => {
     const contentRatings = await userSvc.getRatingsForContent({
       contentType: "podcast",
       contentId: id,
+      isTmpUser,
     });
 
     const { data } = await cmsSvc.getPodcastById(id, i18n.language);
@@ -74,7 +76,7 @@ export const PodcastInformation = () => {
   } = useQuery(["podcast", i18n.language, id], getPodcastData, {
     enabled: !!id,
     onSuccess: (data) => {
-      if (data && data.categoryId) {
+      if (data && data.categoryId && !isTmpUser) {
         clientSvc
           .addClientCategoryInteraction({
             categoryId: data.categoryId,
@@ -145,7 +147,12 @@ export const PodcastInformation = () => {
   return (
     <Page classes="page__podcast-information" showGoBackArrow={true}>
       {podcastData ? (
-        <PodcastView podcastData={podcastData} t={t} language={i18n.language} />
+        <PodcastView
+          podcastData={podcastData}
+          t={t}
+          language={i18n.language}
+          isTmpUser={isTmpUser}
+        />
       ) : isFetched ? (
         <h3 className="page__podcast-information__no-results">
           {t("not_found")}

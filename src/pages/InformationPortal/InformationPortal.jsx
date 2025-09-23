@@ -2,6 +2,16 @@ import { useState, useCallback, useEffect, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+
+import { Page, GiveSuggestion } from "#blocks";
+import {
+  useCustomNavigate as useNavigate,
+  useEventListener,
+  useGetUserContentRatings,
+} from "#hooks";
+
+import { RootContext } from "#routes";
+
 import {
   Grid,
   GridItem,
@@ -13,13 +23,8 @@ import {
   PodcastModal,
 } from "@USupport-components-library/src";
 
-import { Page, GiveSuggestion } from "#blocks";
-import {
-  useCustomNavigate as useNavigate,
-  useEventListener,
-  useGetUserContentRatings,
-} from "#hooks";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+
 import {
   destructureArticleData,
   destructureVideoData,
@@ -27,6 +32,7 @@ import {
   ThemeContext,
   createArticleSlug,
 } from "@USupport-components-library/utils";
+
 import { mascotHappyPurple } from "@USupport-components-library/assets";
 
 import "./information-portal.scss";
@@ -42,6 +48,7 @@ export const InformationPortal = () => {
   const { t, i18n } = useTranslation("pages", {
     keyPrefix: "information-portal",
   });
+  const { isTmpUser } = useContext(RootContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
 
@@ -110,7 +117,7 @@ export const InformationPortal = () => {
   // Add event listener
   useEventListener("countryChanged", handler);
 
-  const contentRatingsQuery = useGetUserContentRatings();
+  const contentRatingsQuery = useGetUserContentRatings(!isTmpUser);
   const { data: contentRatings } = contentRatingsQuery;
 
   //--------------------- Articles IDs ----------------------//

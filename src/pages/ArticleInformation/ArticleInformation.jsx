@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,7 @@ import {
   useGetUserContentRatings,
 } from "#hooks";
 import { Page, ArticleView } from "#blocks";
+import { RootContext } from "#routes";
 
 import {
   destructureArticleData,
@@ -33,6 +34,7 @@ import "./article-information.scss";
 export const ArticleInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { isTmpUser } = useContext(RootContext);
 
   const { i18n, t } = useTranslation("pages", {
     keyPrefix: "article-information",
@@ -45,7 +47,7 @@ export const ArticleInformation = () => {
     return articlesIds;
   };
 
-  const { data: contentRatings } = useGetUserContentRatings();
+  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
   const articleIdsQuerry = useQuery(["articleIds"], getArticlesIds);
 
   const getArticleData = async () => {
@@ -54,6 +56,7 @@ export const ArticleInformation = () => {
     const contentRatings = await userSvc.getRatingsForContent({
       contentType: "article",
       contentId: articleIdToFetch,
+      isTmpUser,
     });
 
     const { data } = await cmsSvc.getArticleById(
@@ -72,7 +75,7 @@ export const ArticleInformation = () => {
       enabled: !!id,
       onSuccess: (data) => {
         // Add category interaction when article is successfully fetched
-        if (data && data.categoryId) {
+        if (data && data.categoryId && !isTmpUser) {
           clientSvc
             .addClientCategoryInteraction({
               categoryId: data.categoryId,
@@ -91,13 +94,16 @@ export const ArticleInformation = () => {
     if (!articleData?.categoryId) return [];
 
     try {
+      let readArticleIds = [];
       // If no results in current category, get category interactions to try other categories
-      const { data: categoryInteractions } =
-        await clientSvc.getCategoryInteractions();
-      const readArticleIds = [
-        ...categoryInteractions.map((x) => Number(x.article_id)),
-        Number(id),
-      ];
+      if (!isTmpUser) {
+        const { data: categoryInteractions } =
+          await clientSvc.getCategoryInteractions();
+        readArticleIds = [
+          ...categoryInteractions.map((x) => Number(x.article_id)),
+          Number(id),
+        ];
+      }
 
       const articles = [];
 
@@ -234,6 +240,7 @@ export const ArticleInformation = () => {
           t={t}
           language={i18n.language}
           navigate={navigate}
+          isTmpUser={isTmpUser}
         />
       ) : (
         <Loading size="lg" />

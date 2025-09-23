@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -16,9 +16,10 @@ import {
   destructureArticleData,
   createArticleSlug,
 } from "@USupport-components-library/utils";
-import { cmsSvc } from "@USupport-components-library/services";
+import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
 import { useGetUserContentRatings, useRecommendedArticles } from "#hooks";
+import { RootContext } from "#routes";
 
 import "./articles-dashboard.scss";
 
@@ -31,6 +32,12 @@ import "./articles-dashboard.scss";
  */
 export const ArticlesDashboard = () => {
   const navigate = useNavigate();
+
+  const { isTmpUser } = useContext(RootContext);
+  // const country = localStorage.getItem("country");
+
+  const showAgreGroups = true;
+  // const showAgreGroups = country !== "PL";
 
   const { t, i18n } = useTranslation("blocks", {
     keyPrefix: "articles-dashboard",
@@ -48,7 +55,7 @@ export const ArticlesDashboard = () => {
   const [categories, setCategories] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
 
-  const { data: contentRatings } = useGetUserContentRatings();
+  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
 
   //--------------------- Age Groups ----------------------//
   const [ageGroups, setAgeGroups] = useState();
@@ -113,12 +120,16 @@ export const ArticlesDashboard = () => {
     }
   };
 
-  useQuery(["articles-categories", usersLanguage], getCategories, {
-    refetchOnWindowFocus: false,
-    onSuccess: (data) => {
-      setCategories([...data]);
-    },
-  });
+  const categoriesQuery = useQuery(
+    ["articles-categories", usersLanguage],
+    getCategories,
+    {
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        setCategories([...data]);
+      },
+    }
+  );
 
   const handleCategoryOnPress = (index) => {
     const categoriesCopy = [...categories];
@@ -136,38 +147,92 @@ export const ArticlesDashboard = () => {
 
   //--------------------- Articles ----------------------//
 
+  const getArticlesIds = async () => {
+    // Request articles ids from the master DB based for website platform
+    const articlesIds = await adminSvc.getArticles();
+
+    return articlesIds;
+  };
+
+  const articleIdsQuerry = useQuery(["articleIds"], getArticlesIds);
+
+  //--------------------- Newest Article ----------------------//
+
+  const getNewestArticle = async () => {
+    let categoryId = "";
+    if (selectedCategory?.value !== "all") {
+      categoryId = selectedCategory.id;
+    }
+
+    let { data } = await cmsSvc.getArticles({
+      limit: 2, // Only get the newest article
+      sortBy: "createdAt", // Sort by created date
+      categoryId: categoryId,
+      sortOrder: "desc", // Sort in descending order
+      locale: usersLanguage,
+      populate: true,
+      ageGroupId: selectedAgeGroup.id,
+      ids: articleIdsQuerry.data,
+    });
+    for (let i = 0; i < data.data.length; i++) {
+      data.data[i] = destructureArticleData(data.data[i]);
+    }
+
+    return data.data;
+  };
+
+  const {
+    data: newestArticles,
+    isLoading: newestArticlesLoading,
+    isFetched: isNewestArticlesFetched,
+  } = useQuery(
+    [
+      "newestArticle",
+      usersLanguage,
+      selectedCategory,
+      selectedAgeGroup?.id,
+      articleIdsQuerry.data,
+    ],
+    getNewestArticle,
+    {
+      onError: (error) => console.log(error),
+      enabled:
+        !articleIdsQuerry.isLoading &&
+        articleIdsQuerry.data?.length > 0 &&
+        !categoriesQuery.isLoading &&
+        categoriesQuery.data?.length > 0 &&
+        isTmpUser,
+
+      refetchOnWindowFocus: false,
+    }
+  );
+
   const {
     articles,
     loading: isArticlesLoading,
-    hasMore,
-    totalCount,
-    categoriesData,
-    remainingArticlesCount,
-    readArticlesCount,
-    categoryArticlesCount,
-    loadMore,
-    error,
     isReady,
-    fetchingCategories,
-    fetchingRemaining,
-    hasMoreRemaining,
-    hasMoreRead,
     readArticleIds,
   } = useRecommendedArticles({
     limit: 6, // Only show 2 articles
     ageGroupId: selectedAgeGroup?.id,
-    enabled: selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
+    enabled: isTmpUser
+      ? false
+      : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
     categoryIdFilter: selectedCategory?.id || null,
     sortFilter: "read_count",
   });
 
-  // Transform articles data to match expected format
-  const transformedArticles = articles?.slice(0, 2)?.map((article) => {
-    // If article already has direct properties, use them, otherwise use article.data
-    return article.data ? article.data : article;
-  });
+  const articlesToTransform = isTmpUser ? newestArticles : articles;
 
-  console.log("readArticleIds", readArticleIds);
+  // Transform articles data to match expected format
+  const transformedArticles = articlesToTransform
+    ?.slice(0, 2)
+    ?.map((article) => {
+      // If article already has direct properties, use them, otherwise use article.data
+      return article.data ? article.data : article;
+    });
+
+  const showLoading = isTmpUser ? newestArticlesLoading : isArticlesLoading;
 
   return (
     <>
@@ -196,16 +261,18 @@ export const ArticlesDashboard = () => {
                 {t("view_all")}
               </p>
             </GridItem>
-            <GridItem
-              md={8}
-              lg={12}
-              classes="articles-dashboard__age-group-item"
-            >
-              <TabsUnderlined
-                options={ageGroups}
-                handleSelect={handleAgeGroupOnPress}
-              />
-            </GridItem>
+            {showAgreGroups && (
+              <GridItem
+                md={8}
+                lg={12}
+                classes="articles-dashboard__age-group-item"
+              >
+                <TabsUnderlined
+                  options={ageGroups}
+                  handleSelect={handleAgeGroupOnPress}
+                />
+              </GridItem>
+            )}
             <GridItem
               md={8}
               lg={12}
@@ -225,17 +292,19 @@ export const ArticlesDashboard = () => {
                     />
                   )}
                 </GridItem>
-                {isArticlesLoading && (
+                {showLoading && (
                   <GridItem md={8} lg={12}>
                     <Loading />
                   </GridItem>
                 )}
 
-                {!isArticlesLoading &&
+                {!showLoading &&
                   transformedArticles?.length > 0 &&
                   categories.length > 1 &&
                   transformedArticles?.map((article, index) => {
-                    const articleData = destructureArticleData(article);
+                    const articleData = article.attributes
+                      ? destructureArticleData(article)
+                      : article;
                     const isLikedByUser = contentRatings?.some(
                       (rating) =>
                         rating.content_id === article.id &&
@@ -285,11 +354,16 @@ export const ArticlesDashboard = () => {
                   })}
               </Grid>
             </GridItem>
-            {isReady && transformedArticles?.length === 0 && (
-              <GridItem md={8} lg={12} classes="articles-dashboard__no_results">
-                <h4>{t("heading_no_results")}</h4>{" "}
-              </GridItem>
-            )}
+            {(isReady || isNewestArticlesFetched) &&
+              transformedArticles?.length === 0 && (
+                <GridItem
+                  md={8}
+                  lg={12}
+                  classes="articles-dashboard__no_results"
+                >
+                  <h4>{t("heading_no_results")}</h4>{" "}
+                </GridItem>
+              )}
           </Grid>
         </Block>
       )}
