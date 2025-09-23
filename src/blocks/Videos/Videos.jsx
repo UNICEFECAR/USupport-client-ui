@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
@@ -22,6 +22,7 @@ import {
   useDebounce,
   useGetUserContentRatings,
 } from "#hooks";
+import { RootContext } from "#routes";
 
 import "./videos.scss";
 
@@ -34,6 +35,8 @@ import "./videos.scss";
  */
 export const Videos = ({ showSearch, showCategories, sort }) => {
   const navigate = useNavigate();
+  const { isTmpUser } = useContext(RootContext);
+
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "videos" });
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
@@ -43,7 +46,7 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
     }
   }, [i18n.language]);
 
-  const { data: contentRatings } = useGetUserContentRatings();
+  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
 
   //--------------------- Categories ----------------------//
   const [categories, setCategories] = useState();

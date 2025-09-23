@@ -8,6 +8,7 @@ import {
   useGetUserContentRatings,
 } from "#hooks";
 import { Page, VideoView } from "#blocks";
+import { RootContext } from "#routes";
 
 import {
   destructureVideoData,
@@ -42,6 +43,7 @@ export const VideoInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { isVideosActive } = useContext(ThemeContext);
+  const { isTmpUser } = useContext(RootContext);
   const { i18n, t } = useTranslation("pages", {
     keyPrefix: "video-information-page",
   });
@@ -52,13 +54,14 @@ export const VideoInformation = () => {
     return videoIds;
   };
 
-  const { data: contentRatings } = useGetUserContentRatings();
+  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
   const videoIdsQuery = useQuery(["videoIds"], getVideosIds);
 
   const getVideoData = async () => {
     const contentRatings = await userSvc.getRatingsForContent({
       contentType: "video",
       contentId: id,
+      isTmpUser,
     });
 
     const { data } = await cmsSvc.getVideoById(id, i18n.language);
@@ -75,7 +78,7 @@ export const VideoInformation = () => {
   } = useQuery(["video", i18n.language, id], getVideoData, {
     enabled: !!id,
     onSuccess: (data) => {
-      if (data && data.categoryId) {
+      if (data && data.categoryId && !isTmpUser) {
         clientSvc
           .addClientCategoryInteraction({
             categoryId: data.categoryId,
@@ -147,7 +150,12 @@ export const VideoInformation = () => {
   return (
     <Page classes="page__video-information" showGoBackArrow={true}>
       {videoData ? (
-        <VideoView videoData={videoData} t={t} lanugage={i18n.language} />
+        <VideoView
+          videoData={videoData}
+          t={t}
+          lanugage={i18n.language}
+          isTmpUser={isTmpUser}
+        />
       ) : isFetched ? (
         <h3 className="page__video-information__no-results">
           {t("not_found")}

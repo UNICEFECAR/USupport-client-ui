@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -14,13 +14,14 @@ import {
   ArticlesGrid,
 } from "@USupport-components-library/src";
 import { createArticleSlug } from "@USupport-components-library/utils";
-import { cmsSvc } from "@USupport-components-library/services";
+import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import {
   useDebounce,
   useEventListener,
   useGetUserContentRatings,
   useRecommendedArticles,
 } from "#hooks";
+import { RootContext } from "#routes";
 
 import "./articles.scss";
 
@@ -34,6 +35,7 @@ import "./articles.scss";
 export const Articles = ({ showSearch, showCategories, sort }) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
+  const { isTmpUser } = useContext(RootContext);
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
@@ -48,14 +50,14 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
   const [selectedAgeGroup, setSelectedAgeGroup] = useState();
   const [showAgeGroups, setShowAgeGroups] = useState(true);
 
-  useEffect(() => {
-    const country = localStorage.getItem("country");
-    if (country === "PL") {
-      setShowAgeGroups(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const country = localStorage.getItem("country");
+  //   if (country === "PL") {
+  //     setShowAgeGroups(false);
+  //   }
+  // }, []);
 
-  const { data: contentRatings } = useGetUserContentRatings();
+  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
 
   const getAgeGroups = async () => {
     try {
@@ -164,40 +166,151 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     if (country !== currentCountry) {
       setCurrentCountry(country);
     }
-    setShowAgeGroups(country !== "PL");
+    // setShowAgeGroups(country !== "PL");
   }, []);
 
   // Add event listener
   useEventListener("countryChanged", handler);
 
   //--------------------- Articles ----------------------//
+
+  // -------------------- Guests ------------------------//
+
+  const getArticlesIds = async () => {
+    const articlesIds = await adminSvc.getArticles();
+
+    return articlesIds;
+  };
+
+  const articleIdsQuery = useQuery(
+    ["articleIds", currentCountry],
+    getArticlesIds
+  );
+
+  const [hasMoreGuest, setHasMoreGuest] = useState(true);
+
+  const getArticlesData = async () => {
+    const ageGroupId = ageGroupsQuery.data.find((x) => x.isSelected).id;
+
+    let categoryId = "";
+    if (selectedCategory.value !== "all") {
+      categoryId = selectedCategory.id;
+    }
+
+    let { data } = await cmsSvc.getArticles({
+      limit: 6,
+      contains: debouncedSearchValue,
+      ageGroupId,
+      categoryId,
+      // sortBy: sort ? sort : "createdAt",
+      // sortOrder: sort ? "desc" : "desc",
+      locale: usersLanguage,
+      populate: true,
+      ids: articleIdsQuery.data,
+    });
+
+    const articles = data.data;
+    const numberOfArticles = data.meta.pagination.total;
+
+    return { articles, numberOfArticles };
+  };
+
+  const [guestArticles, setArticles] = useState();
+  const [numberOfArticles, setNumberOfArticles] = useState();
+  const {
+    isLoading: isGuestArticlesLoading,
+    isFetching: isArticlesFetching,
+    isFetched: isArticlesFetched,
+    fetchStatus: articlesFetchStatus,
+    data: articlesQueryData,
+  } = useQuery(
+    [
+      "articles",
+      debouncedSearchValue,
+      selectedAgeGroup,
+      selectedCategory,
+      articleIdsQuery.data,
+      usersLanguage,
+    ],
+    getArticlesData,
+    {
+      enabled:
+        !articleIdsQuery.isLoading &&
+        !ageGroupsQuery.isLoading &&
+        !categoriesQuery.isLoading &&
+        categoriesQuery.data?.length > 0 &&
+        ageGroupsQuery.data?.length > 0 &&
+        articleIdsQuery.data?.length > 0 &&
+        selectedCategory !== null &&
+        selectedAgeGroup !== null,
+      refetchOnWindowFocus: false,
+      onSuccess: (data) => {
+        setArticles([...data.articles]);
+        setNumberOfArticles(data.numberOfArticles);
+      },
+    }
+  );
+
+  useEffect(() => {
+    if (guestArticles) {
+      setHasMoreGuest(numberOfArticles > guestArticles.length);
+    }
+  }, [guestArticles]);
+
+  const getMoreArticles = async () => {
+    let ageGroupId = "";
+    if (ageGroups) {
+      let selectedAgeGroup = ageGroups.find((o) => o.isSelected === true);
+      ageGroupId = selectedAgeGroup.id;
+    }
+
+    let categoryId = null;
+    if (categories) {
+      let selectedCategory = categories.find((o) => o.isSelected === true);
+      categoryId = selectedCategory.id;
+    }
+
+    const { data } = await cmsSvc.getArticles({
+      startFrom: guestArticles?.length,
+      limit: 6,
+      contains: searchValue,
+      ageGroupId: ageGroupId,
+      categoryId,
+      locale: usersLanguage,
+      sortBy: sort,
+      sortOrder: sort ? "desc" : null,
+      populate: true,
+      ids: articleIdsQuery.data,
+    });
+
+    const newArticles = data.data;
+
+    setArticles((prevArticles) => [...(prevArticles || []), ...newArticles]);
+  };
+
+  // -------------------- Normal clients ---------------//
   const {
     articles,
     loading: isArticlesLoading,
     hasMore,
-    totalCount,
-    categoriesData,
-    remainingArticlesCount,
-    readArticlesCount,
-    categoryArticlesCount,
     loadMore,
     error,
     isReady,
-    fetchingCategories,
-    fetchingRemaining,
-    hasMoreRemaining,
-    hasMoreRead,
     readArticleIds,
   } = useRecommendedArticles({
     limit: 16,
     ageGroupId: selectedAgeGroup?.id,
-    enabled: selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
+    enabled: isTmpUser
+      ? false
+      : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
     categoryIdFilter: selectedCategory?.id || null,
     searchValue: debouncedSearchValue,
   });
 
+  const articlesToTransform = isTmpUser ? guestArticles : articles;
+
   // Transform articles data to match expected format and add user interaction data
-  const transformedArticles = articles?.map((article) => {
+  const transformedArticles = articlesToTransform?.map((article) => {
     // Get the base article data
     const baseArticle = article.data ? article.data : article;
 
@@ -236,8 +349,8 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       {ageGroups?.length > 0 && categories?.length > 0 && (
         <InfiniteScroll
           dataLength={transformedArticles?.length || 0}
-          next={loadMore}
-          hasMore={hasMore}
+          next={isTmpUser ? getMoreArticles : loadMore}
+          hasMore={isTmpUser ? hasMoreGuest : hasMore}
           loader={<Loading />}
           // endMessage={} // Add end message here if required
         >
@@ -286,8 +399,8 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
               )}
 
             {!transformedArticles?.length &&
-              isReady &&
-              !isArticlesLoading &&
+              (isTmpUser ? isArticlesFetched : isReady) &&
+              (isTmpUser ? !isGuestArticlesLoading : !isArticlesLoading) &&
               categoriesQuery?.data?.length > 0 &&
               ageGroupsQuery?.data?.length > 0 && (
                 <GridItem md={8} lg={12} classes="articles__articles-item">
@@ -301,7 +414,8 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       )}
 
       {/* Only show loading on initial load when no articles exist */}
-      {isArticlesLoading && !transformedArticles?.length && <Loading />}
+      {(isTmpUser ? isGuestArticlesLoading : isArticlesLoading) &&
+        !transformedArticles?.length && <Loading />}
 
       {error && (
         <div className="articles__no-results-container">

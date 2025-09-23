@@ -46,7 +46,7 @@ export default function useGetClientData(
       const dataCopy = JSON.parse(JSON.stringify(data));
       setClientData({ ...dataCopy });
     },
-    staleTime: Infinity,
+    // staleTime: Infinity,
   });
 
   const update = (data) => {

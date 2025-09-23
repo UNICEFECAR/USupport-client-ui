@@ -60,7 +60,7 @@ const constructShareUrl = ({ contentType, id, name }) => {
  *
  * @return {jsx}
  */
-export const VideoView = ({ videoData, t, language }) => {
+export const VideoView = ({ videoData, t, language, isTmpUser }) => {
   const { cookieState, setCookieState } = useContext(ThemeContext);
   const queryClient = useQueryClient();
   const creator = videoData.creator ? videoData.creator : null;
@@ -186,6 +186,7 @@ export const VideoView = ({ videoData, t, language }) => {
   );
 
   const handleAddRating = (action) => {
+    if (isTmpUser) return;
     addContentRatingMutation({
       contentId: videoData.id,
       positive:
@@ -297,6 +298,7 @@ export const VideoView = ({ videoData, t, language }) => {
             dislikes={contentRating?.dislikes || 0}
             isDisliked={contentRating?.isDislikedByUser || false}
             answerId={videoData.id}
+            isTmpUser={isTmpUser}
           />
         </GridItem>
 

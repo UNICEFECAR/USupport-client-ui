@@ -281,7 +281,8 @@
       "language": "Language",
       "placeholder": "Select",
       "button": "Continue",
-      "client": "Client"
+      "client": "Client",
+      "poland_description": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "articles": {
       "heading": "Information portal",
@@ -732,7 +733,11 @@
       "address": "Address",
       "phone": "Phone",
       "email": "Email",
-      "any": "Any"
+      "any": "Any",
+      "personalize": "Personalize",
+      "personalization": "Personalization",
+      "personalization_modal_text": "To receive personalized organization recommendations tailored to your needs, please complete our quick baseline assessment first. This helps us understand your preferences and goals to provide the most relevant suggestions.",
+      "personalization_modal_cta_label": "Complete assessment"
     },
     "organization-overview": {
       "error_loading_data": "An error occurred while loading the organization data",
@@ -1257,7 +1262,9 @@
       "button_label_1": "Video/audio consultation",
       "button_label_2": "Text consultation",
       "client_joined": "Client joined the consultation",
-      "error": "An error occured. Please try again"
+      "error": "An error occured. Please try again",
+      "permissions_error": "Allow camera and microphone permissions",
+      "allow_permissions": "If you want to talk to the client, please allow the permissions in your browser settings or from the information icon in the address bar."
     },
     "select-avatar": {
       "heading": "Change profile picture",
