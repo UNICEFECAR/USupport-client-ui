@@ -46,6 +46,7 @@ export const UserDetails = ({
   openUploadPictureModal,
   openDeletePictureBackdrop,
   openDeleteChatHistory,
+  openDeleteMoodTrackerHistory,
 }) => {
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation("blocks", { keyPrefix: "user-details" });
@@ -429,6 +430,17 @@ export const UserDetails = ({
                 type={"ghost"}
                 classes="user-details__grid__delete-account-button"
                 onClick={openDeleteAccountBackdrop}
+              />
+              <ButtonWithIcon
+                iconName={"circle-close"}
+                iconSize={"md"}
+                size="lg"
+                iconColor={"#eb5757"}
+                color={"red"}
+                label={t("delete_mood_tracker")}
+                type={"ghost"}
+                classes="user-details__grid__delete-account-button"
+                onClick={openDeleteMoodTrackerHistory}
               />
               {!IS_RO && (
                 <ButtonWithIcon
