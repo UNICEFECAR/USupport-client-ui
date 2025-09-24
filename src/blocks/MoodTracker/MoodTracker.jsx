@@ -122,7 +122,7 @@ export const MoodTracker = ({
     addMoodTrackMutation.mutate({
       comment,
       mood: selectedMood.value,
-      emergency: isEmergency,
+      emergency: country === "RO" ? isEmergency : false,
     });
   };
 
