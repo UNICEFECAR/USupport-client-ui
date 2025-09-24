@@ -462,7 +462,8 @@
       "mood_tracker": "Трекер настроения",
       "additional_comment_placeholder": "Что заставило Вас так себя чувствовать?",
       "submit_mood_track": "Отправить",
-      "add_mood_tracker_success": "Ваше настроение было успешно добавлено "
+      "add_mood_tracker_success": "Ваше настроение было успешно добавлено ",
+      "emergency_label": "Это относится к жизненному событию или критической ситуации?"
     },
     "mascot-welcome-header": {
       "welcome": "С возвращением, {{name}}!",
@@ -616,7 +617,8 @@
       "worried": "Взволнованно",
       "last_thirty_days_text": "За последние 30 дней Вы сообщили, что чувствовали:",
       "time": "раз",
-      "times": "раз/раза"
+      "times": "раз/раза",
+      "critical_text": "Связано с жизненным событием или критической ситуацией"
     },
     "mascot-header-MyQA": {
       "heading": "Мой Q&A (Вопрос/Ответ)",

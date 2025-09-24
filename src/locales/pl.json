@@ -463,7 +463,8 @@
       "mood_tracker": "Monitor nastroju",
       "additional_comment_placeholder": "Co sprawiło, że tak się poczułeś/aś?",
       "submit_mood_track": "Prześlij",
-      "add_mood_tracker_success": "Twój dzisiejszy nastrój został pomyślnie dodany"
+      "add_mood_tracker_success": "Twój dzisiejszy nastrój został pomyślnie dodany",
+      "emergency_label": "Czy to dotyczy wydarzenia życiowego lub sytuacji krytycznej?"
     },
     "mascot-welcome-header": {
       "welcome": "Witamy z powrotem {{name}}!",
@@ -616,7 +617,8 @@
       "worried": "Zmartwiony/a",
       "you_felt": "Poczułeś/aś",
       "comment_text": "i skomentowałeś/aś:",
-      "no_result": "Nie znaleziono żadnych wyników."
+      "no_result": "Nie znaleziono żadnych wyników.",
+      "critical_text": "Związane z wydarzeniem życiowym lub sytuacją krytyczną"
     },
     "mascot-header-MyQA": {
       "heading": "Moje Pytania i odpowiedzi",

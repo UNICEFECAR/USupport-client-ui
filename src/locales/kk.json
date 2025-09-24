@@ -462,7 +462,8 @@
       "mood_tracker": "Көңіл-күй трекері",
       "additional_comment_placeholder": "Сізді осылай сезінуге не себеп болды?",
       "submit_mood_track": "Жіберу",
-      "add_mood_tracker_success": "Сіздің көңіл-күйіңіз сәтті қосылды"
+      "add_mood_tracker_success": "Сіздің көңіл-күйіңіз сәтті қосылды",
+      "emergency_label": "Бұл өмірлік оқиғаға немесе маңызды жағдайға қатысты ма?"
     },
     "mascot-welcome-header": {
       "welcome": "Қайта оралуыңызбен, {{name}}!",
@@ -615,7 +616,8 @@
       "worried": "Қобалжыған",
       "you_felt": "Сіз сездіңіз",
       "comment_text": "және Сіз түсініктеме бердіңіз:",
-      "no_result": "Ештеңе табылмады"
+      "no_result": "Ештеңе табылмады",
+      "critical_text": "Өмірлік оқиғаға немесе маңызды жағдайға байланысты"
     },
     "mascot-header-MyQA": {
       "heading": "Менің Q&A (Сұрақ/Жауап)",
