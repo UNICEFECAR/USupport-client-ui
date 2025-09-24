@@ -21,6 +21,18 @@
     align-items: center;
     margin: $spacing_1_8 0;
 
+    &__toggle-container {
+      display: flex;
+      flex-direction: row;
+      gap: $spacing_1_6;
+      padding-top: $spacing_1_6;
+      align-items: center;
+
+      &__text {
+        text-align: left;
+      }
+    }
+
     &__button-container {
       margin-top: $spacing_1_6;
     }

@@ -8,6 +8,7 @@ import {
   Button,
   Emoticon,
   Textarea,
+  Toggle,
 } from "@USupport-components-library/src";
 import { useAddMoodTrack } from "#hooks";
 import { ThemeContext } from "@USupport-components-library/utils";
@@ -31,6 +32,7 @@ export const MoodTracker = ({
 }) => {
   const { theme } = useContext(ThemeContext);
   const { handleRegistrationModalOpen } = useContext(RootContext);
+  const country = localStorage.getItem("country");
 
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
@@ -45,6 +47,7 @@ export const MoodTracker = ({
 
   const [comment, setComment] = useState("");
   const [emoticons, setEmoticons] = useState(emoticonsArray);
+  const [isEmergency, setIsEmergency] = useState(false);
 
   const hasSelectedMoodtracker = useCallback(() => {
     return emoticons.some((emoticon) => emoticon.isSelected);
@@ -53,6 +56,7 @@ export const MoodTracker = ({
   const onSuccess = () => {
     setComment("");
     setEmoticons(emoticonsArray);
+    setIsEmergency(false);
     toast(t("add_mood_tracker_success"));
   };
   const onError = (error) => {
@@ -118,6 +122,7 @@ export const MoodTracker = ({
     addMoodTrackMutation.mutate({
       comment,
       mood: selectedMood.value,
+      emergency: isEmergency,
     });
   };
 
@@ -152,6 +157,17 @@ export const MoodTracker = ({
               placeholder={t("additional_comment_placeholder")}
               size="md"
             />
+            {country === "RO" && (
+              <div className="mood-tracker__additional-comment__toggle-container">
+                <p className="mood-tracker__additional-comment__toggle-container__text">
+                  {t("emergency_label")}
+                </p>
+                <Toggle
+                  isToggled={isEmergency}
+                  setParentState={(toggled) => setIsEmergency(toggled)}
+                />
+              </div>
+            )}
             <div className="mood-tracker__additional-comment__button-container">
               <Button
                 label={t("submit_mood_track")}
