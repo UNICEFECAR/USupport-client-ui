@@ -523,6 +523,8 @@
       "consultation_cancellation": "Դուք բարեհաջող<0>չեղարկել եք</0> -ի հետ<0>{{p8oviderName}} ձեր խորհրդատվությունը, որը պլանավորված էր </0>-ից {{date}}</0> ժամը <0>{startHour}}</0> մինչև <0>{{endHour}}</0>",
       "consultation_cancellation_provider": "Խորհրդատվություն տրամադրողը<0>{{p8oviderName}} չեղարկել է</0> խորհրդատվությունը<0>, որը պլանավորված էր -ին <0>{{date}}՝</0> -ից <0>{{startHour}}</0> մինչև <0>{{endHour}}</0>",
       "consultation_remind_start": "<0>Գալիք խորհրդատվությունը</0>՝ {{minutes}} րոպեից</0>",
+      "consultation_remind_start_24_hours_before": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ կսկսվի <0>24 ժամից</0>",
+      "consultation_remind_start_48_hours_before": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ կսկսվի <0>48 ժամից</0>",
       "consultation_suggestion": "<0>{{providerName}} առաջարկել է</0> խորհրդատվություն՝ <0>{{date}}՝</0> -ից <0>{{startHour}}</0> մինչև <0>{{endHour}}</0>",
       "consultation_suggestion_booking": "Դուք ընդունել եք <0>առաջարկված</0> խորհրդատվությունը<0>-ից{{providerName}}</0> <0>{{date}}</0> -ից <0>{{startHour}}</0> մինչև <0>{{endHour}}</0>",
       "consultation_suggestion_cancellation": "Դուք մերժել եք <0>առաջարկված</0> խորհրդատվությունը<0>-ից{{providerName}}</0> <0>{{date}}</0> -ից <0>{{startHour}}</0> մինչև <0>{{endHour}}</0>",

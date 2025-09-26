@@ -514,6 +514,8 @@
       "consultation_cancellation": "Pomyślnie anulowałeś konsultację z {{providerName}} zaplanowaną na {{date}} od {{startHour}} do {{endHour}}",
       "consultation_cancellation_provider": "Konsultant {{providerName}} anulował konsultację zaplanowaną w dniu {{date}} od {{startHour}} do {{endHour}}",
       "consultation_remind_start": "Nadchodząca konsultacja za {{minutes}} minut",
+      "consultation_remind_start_24_hours_before": "Twoja konsultacja z <0>{{providerName}} rozpocznie się za 24 godziny</0>",
+      "consultation_remind_start_48_hours_before": "Twoja konsultacja z <0>{{providerName}} rozpocznie się za 48 godzin</0>",
       "consultation_suggestion": "{{providerName}} sugerował konsultację w dniu {{date}} od {{startHour}} do {{endHour}}",
       "consultation_suggestion_booking": "Zaakceptowałeś sugerowaną konsultację z {{providerName}} na {{date}} od {{startHour}} do {{endHour}}",
       "consultation_suggestion_cancellation": "Odrzuciłeś sugerowaną konsultację z {{providerName}} na {{date}} od {{startHour}} do {{endHour}}",

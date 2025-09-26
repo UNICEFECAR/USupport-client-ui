@@ -514,6 +514,8 @@
       "consultation_cancellation": "Консультацію з {{providerName}}, заплановану на {{date}} з {{startHour}} до {{endHour}}, скасовано",
       "consultation_cancellation_provider": "Консультант/ка {{providerName}} скасував/ла консультацію, заплановану на {{date}} з {{startHour}} на {{endHour}}",
       "consultation_remind_start": "Наступна консультація за {{minutes}} хвилин",
+      "consultation_remind_start_24_hours_before": "Консультація з {{providerName}} почнеться за 24 години",
+      "consultation_remind_start_48_hours_before": "Консультація з {{providerName}} почнеться за 48 годин",
       "consultation_suggestion": "{{providerName}} запропонував/ла консультацію на {{date}} від {{startHour}} до {{endHour}}",
       "consultation_suggestion_booking": "Ти прийняв/ла запропоновану консультацію від {{providerName}} на {{date}} від {{startHour}} до {{endHour}}",
       "consultation_suggestion_cancellation": "Ти відхилив/ла запропоновану консультацію з {{providerName}} на {{date}} з {{startHour}} на {{endHour}}",

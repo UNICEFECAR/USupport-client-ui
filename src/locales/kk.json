@@ -531,6 +531,8 @@
       "consultation_cancellation": "Сіз <0>{{providerName}}</0> консультантімен <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін жоспарланған консультациядан сәтті бас тарттыңыз",
       "consultation_cancellation_provider": "<0>{{providerName}}</0> консультанті <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін жоспарланған консультациядан бас тартты",
       "consultation_remind_start": "Алдағы консультация <0>{{minutes}} минуттан</0> кейін басталады",
+      "consultation_remind_start_24_hours_before": "<0>{{providerName}}</0> консультантімен консультацияңыз <0>24 сағаттан</0> кейін басталады",
+      "consultation_remind_start_48_hours_before": "<0>{{providerName}}</0> консультантімен консультацияңыз <0>48 сағаттан</0> кейін басталады",
       "consultation_suggestion": "<0>{{providerName}}</0> <0>{{date}}</0> күні <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін консультация беруді ұсынды",
       "consultation_suggestion_booking": "Сіз <0>{{providerName}}</0> ұсынған <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін берілетін консультацияны қабылдадыңыз",
       "consultation_suggestion_cancellation": "Сіз <0>{{providerName}}</0> ұсынған <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін берілетін консультациядан бас тарттыңыз.",
