@@ -370,6 +370,7 @@
       "delete_account": "Удалить аккаунт",
       "logout": "Выйти",
       "delete_chat": "Очистить историю чата",
+      "delete_mood_tracker": "Очистить историю трекера настроения",
 
       "dropdown_sex_label": "Пол",
       "dropdown_year_label": "Год рождения",
@@ -462,7 +463,8 @@
       "mood_tracker": "Трекер настроения",
       "additional_comment_placeholder": "Что заставило Вас так себя чувствовать?",
       "submit_mood_track": "Отправить",
-      "add_mood_tracker_success": "Ваше настроение было успешно добавлено "
+      "add_mood_tracker_success": "Ваше настроение было успешно добавлено ",
+      "emergency_label": "Это относится к жизненному событию или критической ситуации?"
     },
     "mascot-welcome-header": {
       "welcome": "С возвращением, {{name}}!",
@@ -529,6 +531,8 @@
       "consultation_cancellation": "Вы успешно <0>отменили</0> консультацию с <0>{{providerName}}</0>, <0>запланированную</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
       "consultation_cancellation_provider": "Консультант <0>{{providerName}} отменил</0> консультацию, <0>запланированную</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
       "consultation_remind_start": "<0>Предстоящая консультация</0> начнется через <0>{{minutes}} минут</0>",
+      "consultation_remind_start_24_hours_before": "<0>Ваша консультация с {{providerName}}</0> начнется через <0>24 часа</0>",
+      "consultation_remind_start_48_hours_before": "<0>Ваша консультация с {{providerName}}</0> начнется через <0>48 часов</0>",
       "consultation_suggestion": "<0>{{providerName}}</0> предложил консультацию на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
       "consultation_suggestion_booking": "Вы приняли предложенную консультацию от <0>{{providerName}}</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
       "consultation_suggestion_cancellation": "Вы отклонили предложенную консультацию от <0>{{providerName}}</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
@@ -616,7 +620,8 @@
       "worried": "Взволнованно",
       "last_thirty_days_text": "За последние 30 дней Вы сообщили, что чувствовали:",
       "time": "раз",
-      "times": "раз/раза"
+      "times": "раз/раза",
+      "critical_text": "Связано с жизненным событием или критической ситуацией"
     },
     "mascot-header-MyQA": {
       "heading": "Мой Q&A (Вопрос/Ответ)",
@@ -1371,6 +1376,13 @@
       "confirm": "Да, удалить всю мою историю чата",
       "cancel": "Нет, сохранить мою историю чата",
       "success": "Ваша история чата была успешно удалена."
+    },
+    "delete-mood-tracker-history": {
+      "heading": "Вы уверены, что хотите удалить все данные трекера настроения?",
+      "subheading": "Это действие необратимо.",
+      "confirm": "Да, удалить все мои данные трекера настроения",
+      "cancel": "Нет, оставить мои данные трекера настроения",
+      "success": "Ваши данные трекера настроения были успешно удалены."
     },
     "baseline-assesment-modal": {
       "heading": "Базовая оценка",

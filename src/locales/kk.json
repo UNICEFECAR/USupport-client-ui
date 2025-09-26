@@ -370,6 +370,7 @@
       "delete_account": "Аккаунтты жою",
       "logout": "Шығу",
       "delete_chat": "Чат тарихын тазалау",
+      "delete_mood_tracker": "Көңіл-күй трекерінің тарихын тазалау",
 
       "dropdown_sex_label": "Жынысы",
       "dropdown_year_label": "Туған жылы",
@@ -462,7 +463,8 @@
       "mood_tracker": "Көңіл-күй трекері",
       "additional_comment_placeholder": "Сізді осылай сезінуге не себеп болды?",
       "submit_mood_track": "Жіберу",
-      "add_mood_tracker_success": "Сіздің көңіл-күйіңіз сәтті қосылды"
+      "add_mood_tracker_success": "Сіздің көңіл-күйіңіз сәтті қосылды",
+      "emergency_label": "Бұл өмірлік оқиғаға немесе маңызды жағдайға қатысты ма?"
     },
     "mascot-welcome-header": {
       "welcome": "Қайта оралуыңызбен, {{name}}!",
@@ -529,6 +531,8 @@
       "consultation_cancellation": "Сіз <0>{{providerName}}</0> консультантімен <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін жоспарланған консультациядан сәтті бас тарттыңыз",
       "consultation_cancellation_provider": "<0>{{providerName}}</0> консультанті <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін жоспарланған консультациядан бас тартты",
       "consultation_remind_start": "Алдағы консультация <0>{{minutes}} минуттан</0> кейін басталады",
+      "consultation_remind_start_24_hours_before": "<0>{{providerName}}</0> консультантімен консультацияңыз <0>24 сағаттан</0> кейін басталады",
+      "consultation_remind_start_48_hours_before": "<0>{{providerName}}</0> консультантімен консультацияңыз <0>48 сағаттан</0> кейін басталады",
       "consultation_suggestion": "<0>{{providerName}}</0> <0>{{date}}</0> күні <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін консультация беруді ұсынды",
       "consultation_suggestion_booking": "Сіз <0>{{providerName}}</0> ұсынған <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін берілетін консультацияны қабылдадыңыз",
       "consultation_suggestion_cancellation": "Сіз <0>{{providerName}}</0> ұсынған <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін берілетін консультациядан бас тарттыңыз.",
@@ -615,7 +619,8 @@
       "worried": "Қобалжыған",
       "you_felt": "Сіз сездіңіз",
       "comment_text": "және Сіз түсініктеме бердіңіз:",
-      "no_result": "Ештеңе табылмады"
+      "no_result": "Ештеңе табылмады",
+      "critical_text": "Өмірлік оқиғаға немесе маңызды жағдайға байланысты"
     },
     "mascot-header-MyQA": {
       "heading": "Менің Q&A (Сұрақ/Жауап)",
@@ -1370,6 +1375,13 @@
       "confirm": "Иә, чат деректерімді бәрін жою",
       "cancel": "Жоқ, чат деректерімді сақтау",
       "success": "Сіздің чат тарихы сәтті жойылды."
+    },
+    "delete-mood-tracker-history": {
+      "heading": "Барлық көңіл-күй трекері деректерін жойғыңыз келетініне сенімдісіз бе?",
+      "subheading": "Бұл әрекетті болдырмау мүмкін емес.",
+      "confirm": "Иә, барлық көңіл-күй трекері деректерімді жой",
+      "cancel": "Жоқ, көңіл-күй трекері деректерімді сақта",
+      "success": "Көңіл-күй трекері деректеріңіз сәтті жойылды."
     },
     "baseline-assesment-modal": {
       "heading": "Бастапқы бағалау",

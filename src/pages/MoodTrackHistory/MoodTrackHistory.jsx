@@ -19,7 +19,7 @@ import "./mood-track-history.scss";
  * @returns {JSX.Element}
  */
 export const MoodTrackHistory = () => {
-  const { t } = useTranslation("mood-track-history-page");
+  const { t } = useTranslation("pages", { keyPrefix: "mood-tracker-page" });
   const { isTmpUser } = useContext(RootContext);
   if (isTmpUser)
     return (
@@ -27,7 +27,11 @@ export const MoodTrackHistory = () => {
     );
 
   return (
-    <Page classes="page__mood-track-history" heading={t("heading")}>
+    <Page
+      classes="page__mood-track-history"
+      heading={t("heading")}
+      subheading={t("subheading")}
+    >
       <MoodTrackHistoryBlock />
       <GiveSuggestion type="mood-tracker" />
     </Page>

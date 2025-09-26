@@ -454,6 +454,52 @@ export const Notifications = ({
             }
           />
         );
+      case "consultation_remind_start_24_hours_before":
+        return (
+          <Notification
+            t={t}
+            date={notification.createdAt}
+            isRead={notification.isRead}
+            title="uSupport"
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName:
+                    notificationProviders[
+                      notification.content.providerDetailId ||
+                        notification.content.provider_detail_id
+                    ] || notification.content.providerName,
+                })}
+              </Trans>
+            }
+            handleClick={() =>
+              handleNotificationClick(notification.notificationId)
+            }
+          />
+        );
+      case "consultation_remind_start_48_hours_before":
+        return (
+          <Notification
+            t={t}
+            date={notification.createdAt}
+            isRead={notification.isRead}
+            title="uSupport"
+            text={
+              <Trans components={[<b></b>]}>
+                {t(notification.type, {
+                  providerName:
+                    notificationProviders[
+                      notification.content.providerDetailId ||
+                        notification.content.provider_detail_id
+                    ] || notification.content.providerName,
+                })}
+              </Trans>
+            }
+            handleClick={() =>
+              handleNotificationClick(notification.notificationId)
+            }
+          />
+        );
       default:
         return null;
     }
