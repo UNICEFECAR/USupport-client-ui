@@ -371,6 +371,7 @@
       "delete_account": "Delete account",
       "logout": "Logout",
       "delete_chat": "Clear chat history",
+      "delete_mood_tracker": "Clear mood tracker data",
 
       "dropdown_sex_label": "Gender",
       "dropdown_year_label": "Year of birth",
@@ -463,7 +464,8 @@
       "mood_tracker": "Mood Tracker",
       "additional_comment_placeholder": "What made you feel this way?",
       "submit_mood_track": "Submit",
-      "add_mood_tracker_success": "Your daily mood was added successfully"
+      "add_mood_tracker_success": "Your daily mood was added successfully",
+      "emergency_label": "Does this relate to a life event or critical situation?"
     },
     "mascot-welcome-header": {
       "welcome": "Welcome back {{name}}!",
@@ -534,6 +536,8 @@
       "consultation_suggestion_booking": "You accepted the <0>suggested</0> consultation from <0>{{providerName}}</0> on <0>{{date}}</0> from <0>{{startHour}}</0> to <0>{{endHour}}</0>",
       "consultation_suggestion_cancellation": "You rejected the <0>suggested</0> consultation from <0>{{providerName}}</0> on <0>{{date}}</0> from <0>{{startHour}}</0> to <0>{{endHour}}</0>",
       "consultation_started": "Your consultation with provider <0>{{providerName}} started</0>",
+      "consultation_remind_start_24_hours_before": "Your consultation with provider <0>{{providerName}} starts in 24 hours</0>",
+      "consultation_remind_start_48_hours_before": "Your consultation with provider <0>{{providerName}} starts in 48 hours</0>",
       "question_answered": "<0>{{providerName}}</0> answered your question",
       "join": "Join",
       "accept": "Accept",
@@ -616,7 +620,8 @@
       "worried": "Worried",
       "you_felt": "You felt",
       "comment_text": "and you commented:",
-      "no_result": "No results found."
+      "no_result": "No results found.",
+      "critical_text": "Related to a life event or critical situation"
     },
     "mascot-header-MyQA": {
       "heading": "My Q&A",
@@ -1372,6 +1377,13 @@
       "confirm": "Yes, delete all my chat data",
       "cancel": "No, keep my chat data",
       "success": "Your chat data has been deleted successfully."
+    },
+    "delete-mood-tracker-history": {
+      "heading": "Are you sure you want to delete all your mood tracker data?",
+      "subheading": "This action is irreversible.",
+      "confirm": "Yes, delete all my mood tracker data",
+      "cancel": "No, keep my mood tracker data",
+      "success": "Your mood tracker data has been deleted successfully."
     },
     "baseline-assesment-modal": {
       "heading": "Baseline Assesment",

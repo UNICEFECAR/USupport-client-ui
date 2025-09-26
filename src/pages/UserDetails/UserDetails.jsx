@@ -7,7 +7,7 @@ import {
   SelectAvatar,
   DeleteProfilePicture,
 } from "#backdrops";
-import { DeleteChatHistory } from "#modals";
+import { DeleteMoodTrackerHistory, DeleteChatHistory } from "#modals";
 
 import "./user-details.scss";
 
@@ -27,12 +27,16 @@ export const UserDetails = () => {
   const [isDeletePictureBackdropShown, setIsDeletePictureBackdropShown] =
     useState(false);
   const [isDeleteChatHistoryOpen, setIsDeleteChatHistoryOpen] = useState(false);
+  const [isDeleteMoodTrackerHistoryOpen, setIsDeleteMoodTrackerHistoryOpen] =
+    useState(false);
 
   const openChangePasswordBackdrop = () => setIsChangePasswordOpen(true);
   const openDeleteAccountBackdrop = () => setIsDeleteBackdropShown(true);
   const openUploadPictureModal = () => setIsUploadPictureModalOpen(true);
   const openDeletePictureBackdrop = () => setIsDeletePictureBackdropShown(true);
   const openDeleteChatHistory = () => setIsDeleteChatHistoryOpen(true);
+  const openDeleteMoodTrackerHistory = () =>
+    setIsDeleteMoodTrackerHistoryOpen(true);
 
   const closeChangePasswordBackdrop = () => setIsChangePasswordOpen(false);
   const closeDeleteAccountBackdrop = () => setIsDeleteBackdropShown(false);
@@ -40,6 +44,8 @@ export const UserDetails = () => {
   const closeDeletePictureBackdrop = () =>
     setIsDeletePictureBackdropShown(false);
   const closeDeleteChatHistory = () => setIsDeleteChatHistoryOpen(false);
+  const closeDeleteMoodTrackerHistory = () =>
+    setIsDeleteMoodTrackerHistoryOpen(false);
 
   return (
     <Page heading={t("heading")} classes="page__user-details">
@@ -50,6 +56,7 @@ export const UserDetails = () => {
           openDeletePictureBackdrop,
           openChangePasswordBackdrop,
           openDeleteChatHistory,
+          openDeleteMoodTrackerHistory,
         }}
       />
       <ChangePassword
@@ -71,6 +78,10 @@ export const UserDetails = () => {
       <DeleteChatHistory
         isOpen={isDeleteChatHistoryOpen}
         onClose={closeDeleteChatHistory}
+      />
+      <DeleteMoodTrackerHistory
+        isOpen={isDeleteMoodTrackerHistoryOpen}
+        onClose={closeDeleteMoodTrackerHistory}
       />
     </Page>
   );
