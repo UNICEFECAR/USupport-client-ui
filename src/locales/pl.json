@@ -270,7 +270,8 @@
       "language": "Język",
       "placeholder": "Wybierz",
       "button": "Kontynuuj",
-      "client": "Klient"
+      "client": "Klient",
+      "poland_description": "uSupport to platforma zdrowia psychicznego i dobrego samopoczucia przeznaczona dla młodych osób (16-24)"
     },
     "articles": {
       "heading": "Portal informacyjny",
@@ -1256,6 +1257,15 @@
       "didnt_get_code": "Nie otrzymałeś kodu?",
       "resend_code_button_label": "Wyślij ponownie wiadomość email",
       "seconds": "za {{seconds}} sekund"
+    },
+    "mood-track-report": {
+      "heading": "Your mood tracking report",
+      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
+      "export_button": "Export report",
+      "cancel_button": "Cancel",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "end_date_before_start_error": "End date must be after start date"
     }
   },
   "modals": {
