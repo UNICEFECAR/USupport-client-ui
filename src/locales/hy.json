@@ -1207,6 +1207,15 @@
       "didnt_get_code": "Չե՞ք ստացել կոդը?",
       "resend_code_button_label": "Վերաուղարկել էլեկտրոնային նամակը",
       "seconds": "{{seconds}} վայրկյանից"
+    },
+    "mood-track-report": {
+      "heading": "Your mood tracking report",
+      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
+      "export_button": "Export report",
+      "cancel_button": "Cancel",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "end_date_before_start_error": "End date must be after start date"
     }
   },
   "modals": {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router-dom";
 
@@ -8,6 +8,8 @@ import {
   GiveSuggestion,
 } from "#blocks";
 import { RootContext } from "#routes";
+import { MoodTrackReport } from "#backdrops";
+import { ButtonWithIcon } from "@USupport-components-library/src";
 
 import "./mood-track-history.scss";
 
@@ -21,6 +23,12 @@ import "./mood-track-history.scss";
 export const MoodTrackHistory = () => {
   const { t } = useTranslation("pages", { keyPrefix: "mood-tracker-page" });
   const { isTmpUser } = useContext(RootContext);
+  const country = localStorage.getItem("country");
+
+  const IS_RO = country === "RO";
+
+  const [isReportOpen, setIsReportOpen] = useState(false);
+
   if (isTmpUser)
     return (
       <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
@@ -31,7 +39,24 @@ export const MoodTrackHistory = () => {
       classes="page__mood-track-history"
       heading={t("heading")}
       subheading={t("subheading")}
+      headingButton={
+        IS_RO ? (
+          <ButtonWithIcon
+            label={t("export_report")}
+            iconName="document"
+            iconColor="#ffffff"
+            size="sm"
+            circleSize="sm"
+            color="purple"
+            onClick={() => setIsReportOpen(true)}
+          />
+        ) : undefined
+      }
     >
+      <MoodTrackReport
+        isOpen={isReportOpen}
+        onClose={() => setIsReportOpen(false)}
+      />
       <MoodTrackHistoryBlock />
       <GiveSuggestion type="mood-tracker" />
     </Page>
