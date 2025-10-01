@@ -451,7 +451,9 @@
       "september": "сентября",
       "october": "октября",
       "november": "ноября",
-      "december": "декабря"
+      "december": "декабря",
+      "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
+      "cookie_preferences": "Настройки cookie"
     },
     "mood-tracker": {
       "happy": "Счастливый",

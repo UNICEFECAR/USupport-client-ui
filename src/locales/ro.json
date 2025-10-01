@@ -452,7 +452,9 @@
       "september": "septembrie",
       "october": "octombrie",
       "november": "noiembrie",
-      "december": "decembrie"
+      "december": "decembrie",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
     },
     "mood-tracker": {
       "happy": "Fericit",

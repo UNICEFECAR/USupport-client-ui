@@ -436,7 +436,9 @@
       "september": "Wrzesień",
       "october": "Październik",
       "november": "Listopad",
-      "december": "Grudzień"
+      "december": "Grudzień",
+      "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
+      "cookie_preferences": "Preferencje plików cookie"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",

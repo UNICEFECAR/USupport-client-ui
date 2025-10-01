@@ -443,7 +443,9 @@
       "september": "Սեպտեմբեր",
       "october": "Հոկտեմբեր",
       "november": "Նոյեմբեր",
-      "december": "Դեկտեմբեր"
+      "december": "Դեկտեմբեր",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
     },
     "mood-tracker": {
       "happy": "Ուրախ եմ",

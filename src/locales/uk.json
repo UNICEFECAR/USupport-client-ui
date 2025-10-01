@@ -436,7 +436,9 @@
       "september": "Вересень",
       "october": "Жовтень",
       "november": "Листопад",
-      "december": "Грудень"
+      "december": "Грудень",
+      "require_cookies": "Щоб переглянути це відео, прийміть усі файли cookie.",
+      "cookie_preferences": "Налаштування файлів cookie"
     },
     "mood-tracker": {
       "happy": "Щасливим/ою",
