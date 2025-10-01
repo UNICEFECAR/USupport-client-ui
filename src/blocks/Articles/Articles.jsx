@@ -25,6 +25,11 @@ import { RootContext } from "#routes";
 
 import "./articles.scss";
 
+const PL_LANGUAGE_AGE_GROUP_IDS = {
+  pl: 13,
+  uk: 11,
+};
+
 /**
  * Articles
  *
@@ -59,7 +64,25 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
 
+  const country = localStorage.getItem("country");
+  const isPLCountry = country === "PL";
+  const hardcodedAgeGroupId = isPLCountry
+    ? PL_LANGUAGE_AGE_GROUP_IDS[usersLanguage]
+    : null;
+  const shouldUseHardcodedAgeGroup = typeof hardcodedAgeGroupId === "number";
+
   const getAgeGroups = async () => {
+    if (shouldUseHardcodedAgeGroup) {
+      const hardcodedAgeGroup = {
+        label: "",
+        id: hardcodedAgeGroupId,
+        isSelected: true,
+      };
+      setSelectedAgeGroup(hardcodedAgeGroup);
+      setAgeGroups([hardcodedAgeGroup]);
+      setShowAgeGroups(false);
+      return [hardcodedAgeGroup];
+    }
     try {
       const res = await cmsSvc.getAgeGroups(usersLanguage);
       const ageGroupsData = res.data.map((age, index) => ({
@@ -74,13 +97,18 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     }
   };
 
-  const ageGroupsQuery = useQuery(["ageGroups", usersLanguage], getAgeGroups, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: true,
-    onSuccess: (data) => {
-      setAgeGroups([...data]);
-    },
-  });
+  const ageGroupsQuery = useQuery(
+    ["ageGroups", usersLanguage, hardcodedAgeGroupId],
+    getAgeGroups,
+    {
+      enabled: showAgeGroups || shouldUseHardcodedAgeGroup,
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      onSuccess: (data) => {
+        setAgeGroups([...data]);
+      },
+    }
+  );
 
   const handleAgeGroupOnPress = (index) => {
     const ageGroupsCopy = [...ageGroups];
@@ -166,7 +194,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     if (country !== currentCountry) {
       setCurrentCountry(country);
     }
-    // setShowAgeGroups(country !== "PL");
+    setShowAgeGroups(country !== "PL");
   }, []);
 
   // Add event listener
@@ -217,39 +245,34 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   const [guestArticles, setArticles] = useState();
   const [numberOfArticles, setNumberOfArticles] = useState();
-  const {
-    isLoading: isGuestArticlesLoading,
-    isFetching: isArticlesFetching,
-    isFetched: isArticlesFetched,
-    fetchStatus: articlesFetchStatus,
-    data: articlesQueryData,
-  } = useQuery(
-    [
-      "articles",
-      debouncedSearchValue,
-      selectedAgeGroup,
-      selectedCategory,
-      articleIdsQuery.data,
-      usersLanguage,
-    ],
-    getArticlesData,
-    {
-      enabled:
-        !articleIdsQuery.isLoading &&
-        !ageGroupsQuery.isLoading &&
-        !categoriesQuery.isLoading &&
-        categoriesQuery.data?.length > 0 &&
-        ageGroupsQuery.data?.length > 0 &&
-        articleIdsQuery.data?.length > 0 &&
-        selectedCategory !== null &&
-        selectedAgeGroup !== null,
-      refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        setArticles([...data.articles]);
-        setNumberOfArticles(data.numberOfArticles);
-      },
-    }
-  );
+  const { isLoading: isGuestArticlesLoading, isFetched: isArticlesFetched } =
+    useQuery(
+      [
+        "articles",
+        debouncedSearchValue,
+        selectedAgeGroup,
+        selectedCategory,
+        articleIdsQuery.data,
+        usersLanguage,
+      ],
+      getArticlesData,
+      {
+        enabled:
+          !articleIdsQuery.isLoading &&
+          !ageGroupsQuery.isLoading &&
+          !categoriesQuery.isLoading &&
+          categoriesQuery.data?.length > 0 &&
+          ageGroupsQuery.data?.length > 0 &&
+          articleIdsQuery.data?.length > 0 &&
+          selectedCategory !== null &&
+          selectedAgeGroup !== null,
+        refetchOnWindowFocus: false,
+        onSuccess: (data) => {
+          setArticles([...data.articles]);
+          setNumberOfArticles(data.numberOfArticles);
+        },
+      }
+    );
 
   useEffect(() => {
     if (guestArticles) {
