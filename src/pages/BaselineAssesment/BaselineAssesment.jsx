@@ -39,7 +39,6 @@ export const BaselineAssesment = () => {
     }
   }, [assessmentId, baselineAssessments]);
 
-  // Separate assessments by status
   const { inProgressSession, completedSessions } = useMemo(() => {
     if (!baselineAssessments) {
       return { inProgressSession: null, completedSessions: [] };

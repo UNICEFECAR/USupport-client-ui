@@ -43,6 +43,7 @@ export const BaselineAssesment = ({
     keyPrefix: "baseline-assesment",
   });
   const queryClient = useQueryClient();
+  const [hasSetInitially, setHasSetInitially] = useState(false);
   const [state, setState] = useState({
     currentStep: "intro", // intro, questions, completed
     currentQuestionIndex: 0,
@@ -67,7 +68,7 @@ export const BaselineAssesment = ({
   );
 
   useEffect(() => {
-    if (answers && selectedSession) {
+    if (answers && selectedSession && !hasSetInitially) {
       setState((prev) => ({
         ...prev,
         answers,
@@ -77,8 +78,9 @@ export const BaselineAssesment = ({
           selectedSession.status === "completed" ? "completed" : "questions",
         finalResult: selectedSession.finalResult,
       }));
+      setHasSetInitially(true);
     }
-  }, [answers, selectedSession]);
+  }, [answers, selectedSession, hasSetInitially]);
 
   const addBaselineAssessmentAnswerMutation = useAddBaselineAssessmentAnswer();
 
