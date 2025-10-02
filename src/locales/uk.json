@@ -270,7 +270,8 @@
       "language": "Мова",
       "placeholder": "Обрати",
       "button": "Продовжити",
-      "client": "Клієнт/ка"
+      "client": "Клієнт/ка",
+      "poland_description": "uSupport — це платформа психічного здоров’я та добробуту, призначена для молодих людей (16–24)"
     },
     "articles": {
       "heading": "Інформаційний портал",
@@ -435,7 +436,9 @@
       "september": "Вересень",
       "october": "Жовтень",
       "november": "Листопад",
-      "december": "Грудень"
+      "december": "Грудень",
+      "require_cookies": "Щоб переглянути це відео, прийміть усі файли cookie.",
+      "cookie_preferences": "Налаштування файлів cookie"
     },
     "mood-tracker": {
       "happy": "Щасливим/ою",
@@ -447,7 +450,8 @@
       "mood_tracker": "Монітор настрою",
       "additional_comment_placeholder": "Що є причиною того, що ти себе так почуваєш?",
       "submit_mood_track": "Надішли",
-      "add_mood_tracker_success": "Сьогоднішній настрій додано"
+      "add_mood_tracker_success": "Сьогоднішній настрій додано",
+      "emergency_label": "Це стосується життєвої події чи критичної ситуації?"
     },
     "mascot-welcome-header": {
       "welcome": "З поверненням, {{name}}!",
@@ -710,7 +714,11 @@
       "address": "Адреса",
       "phone": "Телефон",
       "email": "E-mail",
-      "any": "Будь-який"
+      "any": "Будь-який",
+      "personalize": "Персоналізувати",
+      "personalization": "Персоналізація",
+      "personalization_modal_text": "Щоб отримати персоналізовані рекомендації з організації, адаптовані до ваших потреб, будь ласка, спочатку пройдіть нашу швидку базову оцінку. Це допоможе нам зрозуміти ваші вподобання та цілі, щоб надати найбільш відповідні пропозиції.",
+      "personalization_modal_cta_label": "Пройти оцінку"
     },
     "organization-overview": {
       "error_loading_data": "Під час завантаження даних організації сталася помилка",
@@ -1232,7 +1240,9 @@
       "button_label_1": "Відео/аудіо консультація",
       "button_label_2": "Текстова консультація",
       "client_joined": "Клієнт/ка долучився/лася до консультації",
-      "error": "Виникла помилка. Спробуй ще раз"
+      "error": "Виникла помилка. Спробуй ще раз",
+      "permissions_error": "Надайте дозволи на камеру та мікрофон",
+      "allow_permissions": "Якщо ви хочете поговорити з клієнтом, надайте ці дозволи в налаштуваннях браузера або через значок інформації на адресному рядку."
     },
     "select-avatar": {
       "heading": "Зміни фото профілю",
@@ -1256,6 +1266,15 @@
       "didnt_get_code": "Не отримав/ла коду?",
       "resend_code_button_label": "Повторно надіслати листа",
       "seconds": "за {{seconds}} секунд"
+    },
+    "mood-track-report": {
+      "heading": "Your mood tracking report",
+      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
+      "export_button": "Export report",
+      "cancel_button": "Cancel",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "end_date_before_start_error": "End date must be after start date"
     }
   },
   "modals": {

@@ -30,6 +30,12 @@
     padding-bottom: $spacing_1_6;
   }
 
+  &__video-container {
+    margin: $spacing_2_0 auto;
+    width: 100%;
+    max-width: $screen-md;
+  }
+
   &__carousel-container {
     margin-top: $spacing_2_0;
   }

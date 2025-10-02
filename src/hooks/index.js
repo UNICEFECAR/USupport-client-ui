@@ -63,3 +63,4 @@ export * from "./useGetBaselineAssessments.js";
 export * from "./useGetLatestBaselineAssessment.js";
 export * from "./useGetClientAnswersForBaselineAssessmentById.js";
 export * from "./useGetAssessmentResult.js";
+export * from "./useGenerateMoodTrackReport.js";
