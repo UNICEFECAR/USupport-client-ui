@@ -358,8 +358,6 @@
       "delete_account": "Видалити обліковий запис",
       "logout": "Вийти",
       "delete_chat": "Очистити історію чату",
-      "delete_mood_tracker": "Очистити історію монітора настрою",
-
       "dropdown_sex_label": "Стать",
       "dropdown_year_label": "Рік народження",
       "sex_male": "Чоловік",
@@ -376,7 +374,8 @@
       "sex_placeholder": "Профіль оновлено",
       "year_of_birth_placeholder": "Введіть свій рік народження",
       "living_place_placeholder": "Введіть своє місце проживання",
-      "parent": "Мати/Батько/Опікун"
+      "parent": "Мати/Батько/Опікун",
+      "delete_mood_tracker": "Очистити історію монітора настрою"
     },
     "reset-password": {
       "label": "Новий пароль",
@@ -518,8 +517,6 @@
       "consultation_cancellation": "Консультацію з {{providerName}}, заплановану на {{date}} з {{startHour}} до {{endHour}}, скасовано",
       "consultation_cancellation_provider": "Консультант/ка {{providerName}} скасував/ла консультацію, заплановану на {{date}} з {{startHour}} на {{endHour}}",
       "consultation_remind_start": "Наступна консультація за {{minutes}} хвилин",
-      "consultation_remind_start_24_hours_before": "Консультація з {{providerName}} почнеться за 24 години",
-      "consultation_remind_start_48_hours_before": "Консультація з {{providerName}} почнеться за 48 годин",
       "consultation_suggestion": "{{providerName}} запропонував/ла консультацію на {{date}} від {{startHour}} до {{endHour}}",
       "consultation_suggestion_booking": "Ти прийняв/ла запропоновану консультацію від {{providerName}} на {{date}} від {{startHour}} до {{endHour}}",
       "consultation_suggestion_cancellation": "Ти відхилив/ла запропоновану консультацію з {{providerName}} на {{date}} з {{startHour}} на {{endHour}}",
@@ -531,7 +528,9 @@
       "reject": "Відхилити",
       "reject_consultation_success": "Консультацію відхилено",
       "no_notifications": "Ще немає жодних сповіщень.",
-      "yesterday": "вчора"
+      "yesterday": "вчора",
+      "consultation_remind_start_24_hours_before": "Консультація з {{providerName}} почнеться за 24 години",
+      "consultation_remind_start_48_hours_before": "Консультація з {{providerName}} почнеться за 48 годин"
     },
     "safety-feedback-block": {
       "heading": "Це важливо. Прочитай й заповни",
@@ -606,7 +605,8 @@
       "perfect": "",
       "last_thirty_days_text": "",
       "time": "",
-      "times": ""
+      "times": "",
+      "critical_text": "Related to a life event or critical situation"
     },
     "mascot-header-MyQA": {
       "heading": "Мої запитання й відповіді",
@@ -879,12 +879,12 @@
     },
     "select-provider-page": {
       "heading": "Вибери консультанта/ку",
-      "subheading": "Вибери консультанта/ку, з яким ти хочеш поспілкуватися за допомогою відео, аудіо або тексту. Пошук консультанта/ки, який добре відповідає твоїм потребам і бажаному підходу, іноді може зайняти кілька сеансів.",
+      "subheading": "Введіть код купону з соціальних мереж. Вибери консультанта/ку, з яким ти хочеш поспілкуватися за допомогою відео, аудіо або тексту. Пошук консультанта/ки, який добре відповідає твоїм потребам і бажаному підходу, іноді може зайняти кілька сеансів.",
       "button_label": "Фільтр",
       "button_coupon_label": "Використай купон",
       "modal_coupon_heading": "Щоб скористатися купоном, введи його номер",
       "modal_coupon_button_label": "Надіслати купон",
-      "modal_coupon_input_label": "Номер купона",
+      "modal_coupon_input_label": "Код купону",
       "modal_coupon_input_placeholder": "КУПОН1",
       "heading_with_coupon": "Виберіть консультанта/ку для використання купона: {{coupon}}",
       "remove_coupon_label": "Видалити купон",
@@ -999,7 +999,8 @@
     },
     "mood-tracker-page": {
       "heading": "Монітор настрою",
-      "subheading": "Тут можеш відстежувати свій настрій і прогрес"
+      "subheading": "Тут можеш відстежувати свій настрій і прогрес",
+      "export_report": "Export report"
     },
     "dashboard-page": {
       "accept_success": "Консультацію прийнято"
@@ -1099,6 +1100,9 @@
     "organization-overview-page": {
       "heading": "Огляд організації",
       "subheading": "Детальний огляд профілю вибраної організації"
+    },
+    "register-preview-page": {
+      "login": ""
     }
   },
   "backdrops": {
@@ -1360,13 +1364,6 @@
       "cancel": "Ні, збережи мої дані з чату",
       "success": "Твої дані з чату видалено."
     },
-    "delete-mood-tracker-history": {
-      "heading": "Ви впевнені, що хочете видалити всі дані трекера настрою?",
-      "subheading": "Цю дію неможливо скасувати.",
-      "confirm": "Так, видалити всі мої дані трекера настрою",
-      "cancel": "Ні, залишити мої дані трекера настрою",
-      "success": "Ваші дані трекера настрою було успішно видалено."
-    },
     "baseline-assesment-modal": {
       "heading": "Базове оцінювання",
       "paragraph_1": "Наступні запитання допоможуть вам краще зрозуміти, як ви себе почуваєте, і визначити, чи потрібна вам допомога, щоб почуватися краще. Запитання стосуються вашого настрою, думок та почуттів за останні два тижні. Немає правильних чи неправильних відповідей – є лише ті, що відображають вас. Важливо відповідати якомога чесніше, щоб ми могли зрозуміти, що ви відчуваєте, і побачити, як можемо допомогти.",
@@ -1377,6 +1374,13 @@
       "consent": "Щоб продовжити, будь ласка, погодьтеся з нашою <0>Політикою конфіденційності</0>",
       "cta_label": "Я погоджуюсь пройти опитування.",
       "secondary_cta_label": "Я не хочу проходити опитування"
+    },
+    "delete-mood-tracker-history": {
+      "heading": "Ви впевнені, що хочете видалити всі дані трекера настрою?",
+      "subheading": "Цю дію неможливо скасувати.",
+      "confirm": "Так, видалити всі мої дані трекера настрою",
+      "cancel": "Ні, залишити мої дані трекера настрою",
+      "success": "Ваші дані трекера настрою було успішно видалено."
     }
   },
   "routes": {
