@@ -452,7 +452,9 @@
       "september": "September",
       "october": "October",
       "november": "November",
-      "december": "December"
+      "december": "December",
+      "require_cookies": "To view this video, please accept all cookies.",
+      "cookie_preferences": "Cookie preferences"
     },
     "mood-tracker": {
       "happy": "Happy",
@@ -1030,7 +1032,8 @@
     },
     "mood-tracker-page": {
       "heading": "Mood tracker",
-      "subheading": "Here you can check your mood tracking and progress "
+      "subheading": "Here you can check your mood tracking and progress ",
+      "export_report": "Export report"
     },
     "dashboard-page": {
       "accept_success": "Consultation accepted successfully"
@@ -1293,6 +1296,15 @@
       "didnt_get_code": "Didn’t get code?",
       "resend_code_button_label": "Resend email",
       "seconds": " in {{seconds}} seconds"
+    },
+    "mood-track-report": {
+      "heading": "Your mood tracking report",
+      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
+      "export_button": "Export report",
+      "cancel_button": "Cancel",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "end_date_before_start_error": "End date must be after start date"
     }
   },
   "modals": {

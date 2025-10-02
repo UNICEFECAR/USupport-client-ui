@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { RootContext } from "#routes";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import {
   Block,
@@ -9,6 +10,7 @@ import {
   Loading,
   CustomCarousel,
   ConsultationBig,
+  VideoPlayer,
 } from "@USupport-components-library/src";
 
 import "./consultations-dashboard.scss";
@@ -30,10 +32,21 @@ export const ConsultationsDashboard = ({
 }) => {
   const navigate = useNavigate();
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
+  const { cookieState, setCookieState } = useContext(ThemeContext);
 
   const { t } = useTranslation("blocks", {
     keyPrefix: "consultations-dashboard",
   });
+
+  // Get country and language from localStorage
+  const country = localStorage.getItem("country");
+  const language = localStorage.getItem("language");
+
+  // Check if video should be displayed (KZ country, kk or ru language, and no consultations)
+  const shouldShowVideo =
+    country === "KZ" &&
+    (language === "kk" || language === "ru") &&
+    (!upcomingConsultations || upcomingConsultations.length === 0);
 
   const breakpointsItem = {
     desktop: {
@@ -98,6 +111,21 @@ export const ConsultationsDashboard = ({
           {t("view_all")}
         </p>
       </div>
+      {shouldShowVideo && (
+        <div className="consultations-dashboard__video-container">
+          <VideoPlayer
+            url={
+              language === "kk"
+                ? "https://youtu.be/UvC8GaOb0SY"
+                : "https://youtu.be/RlRj_-HeH0s"
+            }
+            title="Consultation Information Video"
+            cookieState={cookieState}
+            setCookieState={setCookieState}
+            t={t}
+          />
+        </div>
+      )}
       {isLoading ? (
         <Loading size="lg" />
       ) : !upcomingConsultations || upcomingConsultations.length === 0 ? (

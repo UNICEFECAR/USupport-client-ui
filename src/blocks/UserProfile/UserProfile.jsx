@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
 import {
   Block,
   Grid,
@@ -9,7 +8,6 @@ import {
   ButtonSelector,
 } from "@USupport-components-library/src";
 
-import { countrySvc } from "@USupport-components-library/services";
 import { useGetClientData } from "#hooks";
 
 import "./user-profile.scss";
@@ -35,7 +33,10 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
 
   const country = localStorage.getItem("country");
   const hidePaymentHistory =
-    country === "KZ" || country === "PL" || country === "RO";
+    country === "KZ" ||
+    country === "PL" ||
+    country === "RO" ||
+    country === "AM";
 
   useEffect(() => {
     if (clientData) {
@@ -123,25 +124,25 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
             label={t("contact_us_button_label")}
             iconName="comment"
             classes="user-profile__grid__item__button"
-            onClick={() => handleRedirect(`/contact-us`)}
+            onClick={() => handleRedirect("/contact-us")}
           />
           <ButtonSelector
             label={t("privacy_policy_button_label")}
             iconName="document"
             classes="user-profile__grid__item__button"
-            onClick={() => handleRedirect(`/privacy-policy`)}
+            onClick={() => handleRedirect("/privacy-policy")}
           />
           <ButtonSelector
             label={t("terms_of_use")}
             iconName="document"
             classes="user-profile__grid__item__button"
-            onClick={() => handleRedirect(`/terms-of-use`)}
+            onClick={() => handleRedirect("/terms-of-use")}
           />
           <ButtonSelector
             label={t("cookie_policy")}
             iconName="document"
             classes="user-profile__grid__item__button"
-            onClick={() => handleRedirect(`/cookie-policy`)}
+            onClick={() => handleRedirect("/cookie-policy")}
           />
           <ButtonSelector
             label={t("user_guide")}
@@ -153,7 +154,7 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
             label={t("FAQ_button_label")}
             iconName="info"
             classes="user-profile__grid__item__button"
-            onClick={() => handleRedirect(`/faq`)}
+            onClick={() => handleRedirect("/faq")}
           />
         </GridItem>
       </Grid>

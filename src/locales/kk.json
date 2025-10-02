@@ -451,7 +451,9 @@
       "september": "қыркүйек",
       "october": "қазан",
       "november": "қараша",
-      "december": "желтоқсан"
+      "december": "желтоқсан",
+      "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
+      "cookie_preferences": "Cookie параметрлері"
     },
     "mood-tracker": {
       "happy": "Бақытты",
@@ -1291,6 +1293,15 @@
       "didnt_get_code": "Кодты алған жоқсыз ба?",
       "resend_code_button_label": "Хатты қайта жіберу",
       "seconds": " {{seconds}} секундтан кейін"
+    },
+    "mood-track-report": {
+      "heading": "Your mood tracking report",
+      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
+      "export_button": "Export report",
+      "cancel_button": "Cancel",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "end_date_before_start_error": "End date must be after start date"
     }
   },
   "modals": {

@@ -270,7 +270,8 @@
       "language": "Język",
       "placeholder": "Wybierz",
       "button": "Kontynuuj",
-      "client": "Klient"
+      "client": "Klient",
+      "poland_description": "uSupport to platforma zdrowia psychicznego i dobrego samopoczucia przeznaczona dla młodych osób (16-24)"
     },
     "articles": {
       "heading": "Portal informacyjny",
@@ -435,7 +436,9 @@
       "september": "Wrzesień",
       "october": "Październik",
       "november": "Listopad",
-      "december": "Grudzień"
+      "december": "Grudzień",
+      "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
+      "cookie_preferences": "Preferencje plików cookie"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",
@@ -447,7 +450,8 @@
       "mood_tracker": "Monitor nastroju",
       "additional_comment_placeholder": "Co sprawiło, że tak się poczułeś/aś?",
       "submit_mood_track": "Prześlij",
-      "add_mood_tracker_success": "Twój dzisiejszy nastrój został pomyślnie dodany"
+      "add_mood_tracker_success": "Twój dzisiejszy nastrój został pomyślnie dodany",
+      "emergency_label": "Czy to dotyczy wydarzenia życiowego lub sytuacji krytycznej?"
     },
     "mascot-welcome-header": {
       "welcome": "Witamy z powrotem {{name}}!",
@@ -710,7 +714,11 @@
       "address": "Adres",
       "phone": "Telefon",
       "email": "E-mail",
-      "any": "Dowolny"
+      "any": "Dowolny",
+      "personalize": "Personalizuj",
+      "personalization": "Personalizacja",
+      "personalization_modal_text": "Aby otrzymać spersonalizowane rekomendacje organizacyjne dostosowane do Twoich potrzeb, najpierw wypełnij naszą szybką ocenę bazową. Pomoże nam to zrozumieć Twoje preferencje i cele, aby zapewnić najbardziej odpowiednie sugestie.",
+      "personalization_modal_cta_label": "Wypełnij ocenę"
     },
     "organization-overview": {
       "error_loading_data": "Wystąpił błąd podczas ładowania danych organizacji",
@@ -923,13 +931,13 @@
       "heading_2": "Witamy z powrotem"
     },
     "articles-page": {
+      "heading": "Artykuły",
       "heading_default": "Wszystkie artykuły",
       "heading_newest": "Najnowsze artykuły",
       "heading_most_read": "Najczęściej czytane artykuły",
       "subheading_default": "Wszystkie artykuły można znaleźć tutaj",
       "subheading_newest": "Tutaj możesz znaleźć najnowsze artykuły",
-      "subheading_most_read": "Tutaj możesz znaleźć najczęściej czytane artykuły ze wszystkich kategorii",
-      "heading": "Artykuły"
+      "subheading_most_read": "Tutaj możesz znaleźć najczęściej czytane artykuły ze wszystkich kategorii"
     },
     "article-information": {
       "heading": "Więcej artykułów",
@@ -1232,7 +1240,9 @@
       "button_label_1": "Konsultacja wideo/audio",
       "button_label_2": "Konsultacja tekstowa",
       "client_joined": "Klient/ka dołączył/a do konsultacji",
-      "error": "Wystąpił błąd. Spróbuj ponownie"
+      "error": "Wystąpił błąd. Spróbuj ponownie",
+      "permissions_error": "Zezwól na dostęp do kamery i mikrofonu",
+      "allow_permissions": "Jeśli chcesz porozmawiać z klientem, włącz te uprawnienia w ustawieniach przeglądarki lub z ikony informacji na pasku adresu."
     },
     "select-avatar": {
       "heading": "Zmień zdjęcie profilowe",
@@ -1256,6 +1266,15 @@
       "didnt_get_code": "Nie otrzymałeś kodu?",
       "resend_code_button_label": "Wyślij ponownie wiadomość email",
       "seconds": "za {{seconds}} sekund"
+    },
+    "mood-track-report": {
+      "heading": "Your mood tracking report",
+      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
+      "export_button": "Export report",
+      "cancel_button": "Cancel",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "end_date_before_start_error": "End date must be after start date"
     }
   },
   "modals": {

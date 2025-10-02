@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -23,6 +23,11 @@ import { RootContext } from "#routes";
 
 import "./articles-dashboard.scss";
 
+const PL_LANGUAGE_AGE_GROUP_IDS = {
+  pl: 13,
+  uk: 11,
+};
+
 /**
  * ArticlesDashboard
  *
@@ -34,10 +39,10 @@ export const ArticlesDashboard = () => {
   const navigate = useNavigate();
 
   const { isTmpUser } = useContext(RootContext);
-  // const country = localStorage.getItem("country");
+  const country = localStorage.getItem("country");
 
-  const showAgreGroups = true;
-  // const showAgreGroups = country !== "PL";
+  // const showAgreGroups = true;
+  const showAgreGroups = country !== "PL";
 
   const { t, i18n } = useTranslation("blocks", {
     keyPrefix: "articles-dashboard",
@@ -61,9 +66,29 @@ export const ArticlesDashboard = () => {
   const [ageGroups, setAgeGroups] = useState();
   const [selectedAgeGroup, setSelectedAgeGroup] = useState();
 
+  const selectedAgeGroupId = selectedAgeGroup?.id;
+
+  const isPLCountry = country === "PL";
+  const hardcodedAgeGroupId = isPLCountry
+    ? PL_LANGUAGE_AGE_GROUP_IDS[usersLanguage]
+    : null;
+  const shouldUseHardcodedAgeGroup = typeof hardcodedAgeGroupId === "number";
+
   const getAgeGroups = async () => {
+    if (shouldUseHardcodedAgeGroup) {
+      const hardcodedAgeGroup = {
+        label: "",
+        id: hardcodedAgeGroupId,
+        isSelected: true,
+      };
+      setSelectedAgeGroup(hardcodedAgeGroup);
+      setAgeGroups([hardcodedAgeGroup]);
+      return [hardcodedAgeGroup];
+    }
+
     try {
       const res = await cmsSvc.getAgeGroups(usersLanguage);
+      console.log("Age groups:");
       console.log(res.data);
       const ageGroupsData = res.data.map((age, index) => ({
         label: age.attributes.name,
@@ -72,16 +97,23 @@ export const ArticlesDashboard = () => {
       }));
       setSelectedAgeGroup(ageGroupsData[1]);
       return ageGroupsData;
-    } catch {}
+    } catch {
+      console.log("Error when calling getAgeGroups");
+    }
   };
 
-  const ageGroupsQuery = useQuery(["ageGroups", usersLanguage], getAgeGroups, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: true,
-    onSuccess: (data) => {
-      setAgeGroups([...data]);
-    },
-  });
+  const ageGroupsQuery = useQuery(
+    ["ageGroups", usersLanguage, hardcodedAgeGroupId],
+    getAgeGroups,
+    {
+      enabled: showAgreGroups || shouldUseHardcodedAgeGroup,
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      onSuccess: (data) => {
+        setAgeGroups([...data]);
+      },
+    }
+  );
 
   const handleAgeGroupOnPress = (index) => {
     const ageGroupsCopy = [...ageGroups];
@@ -164,16 +196,26 @@ export const ArticlesDashboard = () => {
       categoryId = selectedCategory.id;
     }
 
-    let { data } = await cmsSvc.getArticles({
+    const requestParams = {
       limit: 2, // Only get the newest article
       sortBy: "createdAt", // Sort by created date
-      categoryId: categoryId,
       sortOrder: "desc", // Sort in descending order
       locale: usersLanguage,
       populate: true,
-      ageGroupId: selectedAgeGroup.id,
       ids: articleIdsQuerry.data,
-    });
+    };
+
+    if (categoryId) {
+      requestParams.categoryId = categoryId;
+    }
+
+    if (shouldUseHardcodedAgeGroup) {
+      requestParams.ageGroupId = hardcodedAgeGroupId;
+    } else if (showAgreGroups && selectedAgeGroupId) {
+      requestParams.ageGroupId = selectedAgeGroupId;
+    }
+
+    let { data } = await cmsSvc.getArticles(requestParams);
     for (let i = 0; i < data.data.length; i++) {
       data.data[i] = destructureArticleData(data.data[i]);
     }
@@ -201,7 +243,7 @@ export const ArticlesDashboard = () => {
         articleIdsQuerry.data?.length > 0 &&
         !categoriesQuery.isLoading &&
         categoriesQuery.data?.length > 0 &&
-        isTmpUser,
+        (isTmpUser || shouldUseHardcodedAgeGroup),
 
       refetchOnWindowFocus: false,
     }
