@@ -606,7 +606,14 @@
       "last_thirty_days_text": "",
       "time": "",
       "times": "",
-      "critical_text": "Related to a life event or critical situation"
+      "critical_text": "Related to a life event or critical situation",
+      "recommendations": "Rekomendacje w zależności od nastroju",
+      "articles": "Artykuły",
+      "videos": "Filmy",
+      "podcasts": "Podcasty",
+      "read_more_button": "Czytaj więcej",
+      "by": "autor: {{creator}}",
+      "min_read": "min czytania"
     },
     "mascot-header-MyQA": {
       "heading": "Moje Pytania i odpowiedzi",
