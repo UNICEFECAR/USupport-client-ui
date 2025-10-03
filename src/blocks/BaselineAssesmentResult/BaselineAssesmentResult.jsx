@@ -2,10 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import {
+  Box,
   Grid,
   GridItem,
   ProgressBar,
   Loading,
+  Icon,
 } from "@USupport-components-library/src";
 import { createArticleSlug } from "@USupport-components-library/utils";
 import { CardMedia } from "@USupport-components-library/src";
@@ -32,6 +34,33 @@ export const BaselineAssesmentResult = ({ result }) => {
     language: "en",
   });
 
+  const renderIcon = (result) => {
+    const color =
+      result === "higher" ? "#eb5757" : result === "lower" ? "#7ec680" : "";
+    const name =
+      result === "higher" ? "arrow-up" : result === "lower" ? "arrow-down" : "";
+    return <Icon color={color} name={name} />;
+  };
+
+  function generateKey(result) {
+    const map = {
+      higher: "inc",
+      lower: "dec",
+      equal: "same",
+    };
+
+    return [
+      map[result.psychological],
+      map[result.biological],
+      map[result.social],
+    ].join("_");
+  }
+
+  let resultText = "";
+  if (result?.comparePrevious) {
+    resultText = t(generateKey(result.comparePrevious));
+  }
+
   return (
     <>
       <GridItem md={8} lg={12} classes="baseline-assesment-result">
@@ -40,6 +69,40 @@ export const BaselineAssesmentResult = ({ result }) => {
           <ProgressBar progress={100} height="lg" showPercentage />
         </div>
       </GridItem>
+      {result?.comparePrevious && (
+        <GridItem md={8} lg={12}>
+          <Grid classes="baseline-assesment-result__compare-grid">
+            <GridItem md={8} lg={12}>
+              <h4>{resultText}</h4>
+            </GridItem>
+            <GridItem md={8} lg={4}>
+              <Box classes="baseline-assesment-result__compare-grid__item">
+                <p>
+                  {t("psychological")}: {result.psychologicalScore}
+                </p>
+                {renderIcon(result.comparePrevious.psychological)}
+              </Box>
+            </GridItem>
+            <GridItem md={8} lg={4}>
+              <Box classes="baseline-assesment-result__compare-grid__item">
+                <p>
+                  {t("biological")}: {result.biologicalScore}
+                </p>
+                {renderIcon(result.comparePrevious.biological)}
+              </Box>
+            </GridItem>
+            <GridItem md={8} lg={4}>
+              <Box classes="baseline-assesment-result__compare-grid__item">
+                <p>
+                  {t("social")}: {result.socialScore}
+                </p>
+                {renderIcon(result.comparePrevious.social)}
+              </Box>
+            </GridItem>
+          </Grid>
+        </GridItem>
+      )}
+
       {isLoading && (
         <GridItem md={8} lg={12}>
           <p>{t("loading_results")}</p>
@@ -47,13 +110,14 @@ export const BaselineAssesmentResult = ({ result }) => {
         </GridItem>
       )}
       {data && (
-        <GridItem md={8} lg={12}>
-          <p>{data.summary}</p>
+        <GridItem md={8} lg={12} classes="baseline-assesment-result__summary">
+          <h4>{data.summary}</h4>
         </GridItem>
       )}
+
       {data?.articles.length > 0 && (
         <GridItem md={8} lg={12} classes="baseline-assesment-result__articles">
-          <h4>{t("recommended_articles")}</h4>
+          <h5>{t("recommended_articles")}</h5>
           <Grid classes="baseline-assesment-result__content-grid">
             {data.articles.map((articleData) => (
               <GridItem md={4} lg={4} key={articleData.id}>

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useContext } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -54,6 +55,11 @@ export const Organizations = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { isTmpUser } = useContext(RootContext);
+  const [searchParams] = useSearchParams();
+  const specialisations = searchParams.get("specialisations");
+  const specialisationsArray = specialisations
+    ? specialisations?.replace(/^\[|\]$/g, "").split(",")
+    : [];
 
   const [mapControls, setMapControls] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
@@ -63,6 +69,8 @@ export const Organizations = () => {
   const [filters, setFilters] = useState(INITIAL_FILTERS);
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
   const [isBaselineAssesmentModalOpen, setIsBaselineAssesmentModalOpen] =
+    useState(false);
+  const [hasAppliedSpecialisations, setHasAppliedSpecialisations] =
     useState(false);
 
   const debouncedSearch = useDebounce(filters.search, 500);
@@ -104,6 +112,18 @@ export const Organizations = () => {
       }
     },
   });
+
+  useEffect(() => {
+    if (
+      specialisationsArray.length > 0 &&
+      data &&
+      data.length > 0 &&
+      !hasAppliedSpecialisations
+    ) {
+      setHasAppliedSpecialisations(true);
+      handleChange("specialisations", specialisationsArray);
+    }
+  }, [specialisationsArray, data, hasAppliedSpecialisations]);
 
   useEffect(() => {
     if (data && data.length && startPersonalization) {
