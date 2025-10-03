@@ -380,6 +380,9 @@ export const JitsiRoom = () => {
             showJitsiBranding: false,
             showJitsiWatermark: false,
             SETTINGS_SECTIONS: ["language", "devices", "background", "profile"],
+            buttonsWithNotifyClick: [
+              { key: "settings", preventExecution: false },
+            ],
           }}
           interfaceConfigOverwrite={{
             HIDE_CONFERENCE_SUBJECT: true,
@@ -447,8 +450,8 @@ export const JitsiRoom = () => {
             );
             externalApi.addListener("toolbarButtonClicked", (event) => {
               if (event.key === "settings") {
+                console.log("settings open");
                 setHideControls(true);
-                event.preventExecution = false;
               }
             });
           }}
