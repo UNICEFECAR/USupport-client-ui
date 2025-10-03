@@ -358,8 +358,6 @@
       "delete_account": "Usuń konto",
       "logout": "Wylogowanie",
       "delete_chat": "Wyczyść historię czatów",
-      "delete_mood_tracker": "Wyczyść historię monitora nastroju",
-
       "dropdown_sex_label": "Płeć",
       "dropdown_year_label": "Rok urodzenia",
       "sex_male": "Mężczyzna",
@@ -376,7 +374,8 @@
       "sex_placeholder": "Wprowadź swoją płeć",
       "year_of_birth_placeholder": "Wprowadź swój rok urodzenia",
       "living_place_placeholder": "Wprowadź swoje miejsce zamieszkania",
-      "parent": "Rodzic"
+      "parent": "Rodzic",
+      "delete_mood_tracker": "Wyczyść historię monitora nastroju"
     },
     "reset-password": {
       "label": "Nowe hasło",
@@ -518,8 +517,6 @@
       "consultation_cancellation": "Pomyślnie anulowałeś konsultację z {{providerName}} zaplanowaną na {{date}} od {{startHour}} do {{endHour}}",
       "consultation_cancellation_provider": "Konsultant {{providerName}} anulował konsultację zaplanowaną w dniu {{date}} od {{startHour}} do {{endHour}}",
       "consultation_remind_start": "Nadchodząca konsultacja za {{minutes}} minut",
-      "consultation_remind_start_24_hours_before": "Twoja konsultacja z <0>{{providerName}} rozpocznie się za 24 godziny</0>",
-      "consultation_remind_start_48_hours_before": "Twoja konsultacja z <0>{{providerName}} rozpocznie się za 48 godzin</0>",
       "consultation_suggestion": "{{providerName}} sugerował konsultację w dniu {{date}} od {{startHour}} do {{endHour}}",
       "consultation_suggestion_booking": "Zaakceptowałeś sugerowaną konsultację z {{providerName}} na {{date}} od {{startHour}} do {{endHour}}",
       "consultation_suggestion_cancellation": "Odrzuciłeś sugerowaną konsultację z {{providerName}} na {{date}} od {{startHour}} do {{endHour}}",
@@ -531,7 +528,9 @@
       "reject": "Odrzuć ",
       "reject_consultation_success": "Konsultacja została pomyślnie odrzucona",
       "no_notifications": "Nie masz jeszcze żadnych powiadomień.",
-      "yesterday": "wczoraj"
+      "yesterday": "wczoraj",
+      "consultation_remind_start_24_hours_before": "Twoja konsultacja z <0>{{providerName}} rozpocznie się za 24 godziny</0>",
+      "consultation_remind_start_48_hours_before": "Twoja konsultacja z <0>{{providerName}} rozpocznie się za 48 godzin</0>"
     },
     "safety-feedback-block": {
       "heading": "To ważne. Przeczytaj i wypełnij",
@@ -606,7 +605,15 @@
       "perfect": "",
       "last_thirty_days_text": "",
       "time": "",
-      "times": ""
+      "times": "",
+      "critical_text": "Related to a life event or critical situation",
+      "recommendations": "Rekomendacje w zależności od nastroju",
+      "articles": "Artykuły",
+      "videos": "Filmy",
+      "podcasts": "Podcasty",
+      "read_more_button": "Czytaj więcej",
+      "by": "autor: {{creator}}",
+      "min_read": "min czytania"
     },
     "mascot-header-MyQA": {
       "heading": "Moje Pytania i odpowiedzi",
@@ -879,12 +886,12 @@
     },
     "select-provider-page": {
       "heading": "Wybierz konsultanta/kę",
-      "subheading": "Wybierz konsultanta/kę, z którym chcesz rozmawiać za pomocą wideo, audio lub tekstu. Znalezienie konsultanta/ki, który dobrze odpowiada Twoim potrzebom i preferowanemu podejściu, może czasami zająć kilka sesji.",
+      "subheading": "Wpisz kod kuponu z mediów społecznościowych. Wybierz konsultanta/kę, z którym chcesz rozmawiać za pomocą wideo, audio lub tekstu. Znalezienie konsultanta/ki, który dobrze odpowiada Twoim potrzebom i preferowanemu podejściu, może czasami zająć kilka sesji.",
       "button_label": "Filtr",
       "button_coupon_label": "Użyj kuponu",
       "modal_coupon_heading": "Wprowadź kupon, aby z niego skorzystać",
       "modal_coupon_button_label": "Prześlij kupon",
-      "modal_coupon_input_label": "Numer kuponu",
+      "modal_coupon_input_label": "Kod kuponu",
       "modal_coupon_input_placeholder": "KUPON1",
       "heading_with_coupon": "Wybierz konsultanta/kę, aby użyć kupon: {{coupon}}",
       "remove_coupon_label": "Usuń kupon",
@@ -931,13 +938,13 @@
       "heading_2": "Witamy z powrotem"
     },
     "articles-page": {
-      "heading": "Artykuły",
       "heading_default": "Wszystkie artykuły",
       "heading_newest": "Najnowsze artykuły",
       "heading_most_read": "Najczęściej czytane artykuły",
       "subheading_default": "Wszystkie artykuły można znaleźć tutaj",
       "subheading_newest": "Tutaj możesz znaleźć najnowsze artykuły",
-      "subheading_most_read": "Tutaj możesz znaleźć najczęściej czytane artykuły ze wszystkich kategorii"
+      "subheading_most_read": "Tutaj możesz znaleźć najczęściej czytane artykuły ze wszystkich kategorii",
+      "heading": "Artykuły"
     },
     "article-information": {
       "heading": "Więcej artykułów",
@@ -999,7 +1006,8 @@
     },
     "mood-tracker-page": {
       "heading": "Monitor nastroju",
-      "subheading": "Tutaj możesz sprawdzić swój monitor nastroju i postępy"
+      "subheading": "Tutaj możesz sprawdzić swój monitor nastroju i postępy",
+      "export_report": "Export report"
     },
     "dashboard-page": {
       "accept_success": "Konsultacja została pomyślnie zaakceptowana"
@@ -1099,6 +1107,9 @@
     "organization-overview-page": {
       "heading": "Przegląd organizacji",
       "subheading": "Szczegółowy przegląd profilu wybranej organizacji"
+    },
+    "register-preview-page": {
+      "login": ""
     }
   },
   "backdrops": {
@@ -1121,7 +1132,7 @@
       "providers_free_consultation_label": "Tylko bezpłatna konsultacja",
       "button_label": "Zapisz",
       "reset_filter": "Zresetuj filtry",
-      "available_before": "Dostępne wcześniej ",
+      "available_before": "Dostępne przed",
       "available_after": "Dostępne po"
     },
     "confirm-consultation": {
@@ -1360,13 +1371,6 @@
       "cancel": "Nie, zachowaj moje dane z czatu",
       "success": "Twoje dane z czatu zostały pomyślnie usunięte."
     },
-    "delete-mood-tracker-history": {
-      "heading": "Czy na pewno chcesz usunąć wszystkie dane swojego dziennika nastroju?",
-      "subheading": "Tej operacji nie można cofnąć.",
-      "confirm": "Tak, usuń wszystkie moje dane dziennika nastroju",
-      "cancel": "Nie, zachowaj moje dane dziennika nastroju",
-      "success": "Twoje dane dziennika nastroju zostały pomyślnie usunięte."
-    },
     "baseline-assesment-modal": {
       "heading": "Ocena bazowa",
       "paragraph_1": "Poniższe pytania pomogą Ci lepiej zrozumieć, jak się czujesz, i ustalić, czy potrzebujesz pomocy, aby poczuć się lepiej. Pytania dotyczą Twojego nastroju, myśli i uczuć z ostatnich dwóch tygodni. Nie ma dobrych ani złych odpowiedzi – są tylko te, które Cię opisują. Ważne jest, aby odpowiadać jak najbardziej szczerze, abyśmy mogli zrozumieć, co czujesz, i zobaczyć, jak możemy Ci pomóc.",
@@ -1377,6 +1381,13 @@
       "consent": "Aby kontynuować, prosimy o zgodę na naszą <0>Politykę prywatności</0>",
       "cta_label": "Zgadzam się wypełnić ankietę.",
       "secondary_cta_label": "Nie chcę wypełniać ankiety"
+    },
+    "delete-mood-tracker-history": {
+      "heading": "Czy na pewno chcesz usunąć wszystkie dane swojego dziennika nastroju?",
+      "subheading": "Tej operacji nie można cofnąć.",
+      "confirm": "Tak, usuń wszystkie moje dane dziennika nastroju",
+      "cancel": "Nie, zachowaj moje dane dziennika nastroju",
+      "success": "Twoje dane dziennika nastroju zostały pomyślnie usunięte."
     }
   },
   "routes": {

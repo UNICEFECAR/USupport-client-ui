@@ -2,7 +2,11 @@ import React, { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
-import { useEventListener, useAddSosCenterClick } from "#hooks";
+import {
+  useEventListener,
+  useAddSosCenterClick,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 
 import {
   Block,
@@ -11,7 +15,11 @@ import {
   EmergencyCenter,
   Loading,
 } from "@USupport-components-library/src";
-import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+import {
+  cmsSvc,
+  adminSvc,
+  clientSvc,
+} from "@USupport-components-library/services";
 
 import "./sos-center.scss";
 
@@ -24,6 +32,9 @@ import "./sos-center.scss";
  */
 export const SOSCenter = () => {
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "sos-center" });
+  const navigate = useNavigate();
+
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
@@ -49,6 +60,23 @@ export const SOSCenter = () => {
   const sosCenterIdsQuerry = useQuery(
     ["sosCenterIds", currentCountry],
     getSOSCenterIds
+  );
+
+  const getOrganizationSpecializations = async () => {
+    const { data } = await clientSvc.getOrganizationSpecializations();
+    return data;
+  };
+
+  const { data: specializationsData } = useQuery(
+    ["organizationSpecializations", currentCountry],
+    getOrganizationSpecializations,
+    {
+      staleTime: 10 * 60 * 1000, // 10 minutes
+    }
+  );
+
+  const emergencyServiceSpecialization = specializationsData?.find(
+    (specialization) => specialization.name === "emergency_situations"
   );
 
   const getSOSCenters = async () => {
@@ -103,6 +131,25 @@ export const SOSCenter = () => {
         <Grid classes="soscenter__grid">
           <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">
             <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
+              {IS_RO && emergencyServiceSpecialization && (
+                <GridItem
+                  classes="soscenter__secondary-grid__item"
+                  md={4}
+                  lg={12}
+                >
+                  <EmergencyCenter
+                    title={t("other_emergency_services")}
+                    text={emergencyServiceSpecialization.description}
+                    showCustomButton
+                    btnLabelCustom={t("browse")}
+                    onClick={() =>
+                      navigate(
+                        `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`
+                      )
+                    }
+                  />
+                </GridItem>
+              )}
               {SOSCentersData.map((sosCenter, index) => {
                 return (
                   <GridItem

@@ -26,6 +26,26 @@
     }
   }
 
+  &__compare-grid {
+    align-items: center;
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $spacing_0_4;
+      padding: $spacing_1_6;
+      margin-top: $spacing_1_2;
+    }
+  }
+
+  &__summary {
+    padding-top: $spacing_3_2;
+
+    @media screen and (min-width: $screen-md) {
+      padding-top: $spacing_4_8;
+    }
+  }
+
   &__content-grid {
     justify-content: center;
   }

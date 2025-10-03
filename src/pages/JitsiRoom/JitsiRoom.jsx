@@ -20,7 +20,6 @@ import {
   useSendMessage,
   useGetSecurityCheckAnswersByConsultationId,
   useLeaveConsultation,
-  useCustomNavigate as useNavigate,
 } from "#hooks";
 
 import { MessageList } from "./MessageList";
@@ -64,7 +63,6 @@ export const JitsiRoom = () => {
   const api = useRef();
   const backdropMessagesContainerRef = useRef();
 
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const location = useLocation();
   const { width } = useWindowDimensions();
@@ -119,7 +117,6 @@ export const JitsiRoom = () => {
   const socketRef = useConsultationSocket({
     isProviderTyping: interfaces.isProviderTyping,
     chatId: consultation.chatId,
-    receiveMessage: () => {},
     setInterfaceData,
     receiveMessage,
   });
@@ -335,34 +332,34 @@ export const JitsiRoom = () => {
               left: "20px",
             }}
           >
-            {!hideControls && (
-              <Controls
-                t={t}
-                consultation={consultation}
-                handleSendMessage={handleSendMessage}
-                hasUnreadMessages={interfaces.hasUnreadMessages}
-                toggleCamera={() => {
-                  api.current.executeCommand("toggleVideo");
-                  setInterfaceData({
-                    ...interfaces,
-                    videoOn: !interfaces.videoOn,
-                  });
-                }}
-                toggleMicrophone={() => {
-                  api.current.executeCommand("toggleAudio");
-                  setInterfaceData({
-                    ...interfaces,
-                    microphoneOn: !interfaces.microphoneOn,
-                  });
-                }}
-                toggleChat={toggleChat}
-                leaveConsultation={leaveConsultation}
-                isCameraOn={interfaces.videoOn}
-                isMicrophoneOn={interfaces.microphoneOn}
-                renderIn="client"
-                isInSession={interfaces.isProviderInSession}
-              />
-            )}
+            <Controls
+              t={t}
+              consultation={consultation}
+              handleSendMessage={handleSendMessage}
+              hasUnreadMessages={interfaces.hasUnreadMessages}
+              toggleCamera={() => {
+                api.current.executeCommand("toggleVideo");
+                setInterfaceData({
+                  ...interfaces,
+                  videoOn: !interfaces.videoOn,
+                });
+              }}
+              toggleMicrophone={() => {
+                api.current.executeCommand("toggleAudio");
+                setInterfaceData({
+                  ...interfaces,
+                  microphoneOn: !interfaces.microphoneOn,
+                });
+              }}
+              toggleChat={toggleChat}
+              leaveConsultation={leaveConsultation}
+              isCameraOn={interfaces.videoOn}
+              isMicrophoneOn={interfaces.microphoneOn}
+              renderIn="client"
+              isInSession={interfaces.isProviderInSession}
+              isHidden={hideControls}
+              toggleControlsVisibility={() => setHideControls(false)}
+            />
           </div>
         </div>
         {isLoading && (
@@ -383,6 +380,9 @@ export const JitsiRoom = () => {
             showJitsiBranding: false,
             showJitsiWatermark: false,
             SETTINGS_SECTIONS: ["language", "devices", "background", "profile"],
+            buttonsWithNotifyClick: [
+              { key: "settings", preventExecution: false },
+            ],
           }}
           interfaceConfigOverwrite={{
             HIDE_CONFERENCE_SUBJECT: true,
@@ -413,6 +413,25 @@ export const JitsiRoom = () => {
               "avatarUrl",
               `${AMAZON_S3_BUCKET}/${clientData.image || "default"}`
             );
+
+            externalApi.addListener("cameraError", (error) => {
+              if (error.type === "gum.permission_denied") {
+                setInterfaceData({
+                  ...interfaces,
+                  videoOn: false,
+                });
+              }
+            });
+
+            externalApi.addListener("micError", (error) => {
+              if (error.type === "gum.permission_denied") {
+                setInterfaceData({
+                  ...interfaces,
+                  microphoneOn: false,
+                });
+              }
+            });
+
             externalApi.addListener(
               "participantJoined",
               ({ id, displayName }) => {
@@ -429,8 +448,11 @@ export const JitsiRoom = () => {
                 }
               }
             );
-            externalApi.addListener("videoConferenceJoined", () => {
-              setIsLoading(false);
+            externalApi.addListener("toolbarButtonClicked", (event) => {
+              if (event.key === "settings") {
+                console.log("settings open");
+                setHideControls(true);
+              }
             });
           }}
           getIFrameRef={(iframeRef) => {
