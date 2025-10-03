@@ -20,7 +20,6 @@ import {
   useSendMessage,
   useGetSecurityCheckAnswersByConsultationId,
   useLeaveConsultation,
-  useCustomNavigate as useNavigate,
 } from "#hooks";
 
 import { MessageList } from "./MessageList";
@@ -64,7 +63,6 @@ export const JitsiRoom = () => {
   const api = useRef();
   const backdropMessagesContainerRef = useRef();
 
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const location = useLocation();
   const { width } = useWindowDimensions();
@@ -119,7 +117,6 @@ export const JitsiRoom = () => {
   const socketRef = useConsultationSocket({
     isProviderTyping: interfaces.isProviderTyping,
     chatId: consultation.chatId,
-    receiveMessage: () => {},
     setInterfaceData,
     receiveMessage,
   });
@@ -335,34 +332,34 @@ export const JitsiRoom = () => {
               left: "20px",
             }}
           >
-            {!hideControls && (
-              <Controls
-                t={t}
-                consultation={consultation}
-                handleSendMessage={handleSendMessage}
-                hasUnreadMessages={interfaces.hasUnreadMessages}
-                toggleCamera={() => {
-                  api.current.executeCommand("toggleVideo");
-                  setInterfaceData({
-                    ...interfaces,
-                    videoOn: !interfaces.videoOn,
-                  });
-                }}
-                toggleMicrophone={() => {
-                  api.current.executeCommand("toggleAudio");
-                  setInterfaceData({
-                    ...interfaces,
-                    microphoneOn: !interfaces.microphoneOn,
-                  });
-                }}
-                toggleChat={toggleChat}
-                leaveConsultation={leaveConsultation}
-                isCameraOn={interfaces.videoOn}
-                isMicrophoneOn={interfaces.microphoneOn}
-                renderIn="client"
-                isInSession={interfaces.isProviderInSession}
-              />
-            )}
+            <Controls
+              t={t}
+              consultation={consultation}
+              handleSendMessage={handleSendMessage}
+              hasUnreadMessages={interfaces.hasUnreadMessages}
+              toggleCamera={() => {
+                api.current.executeCommand("toggleVideo");
+                setInterfaceData({
+                  ...interfaces,
+                  videoOn: !interfaces.videoOn,
+                });
+              }}
+              toggleMicrophone={() => {
+                api.current.executeCommand("toggleAudio");
+                setInterfaceData({
+                  ...interfaces,
+                  microphoneOn: !interfaces.microphoneOn,
+                });
+              }}
+              toggleChat={toggleChat}
+              leaveConsultation={leaveConsultation}
+              isCameraOn={interfaces.videoOn}
+              isMicrophoneOn={interfaces.microphoneOn}
+              renderIn="client"
+              isInSession={interfaces.isProviderInSession}
+              isHidden={hideControls}
+              toggleControlsVisibility={() => setHideControls(false)}
+            />
           </div>
         </div>
         {isLoading && (
@@ -448,8 +445,11 @@ export const JitsiRoom = () => {
                 }
               }
             );
-            externalApi.addListener("videoConferenceJoined", () => {
-              setIsLoading(false);
+            externalApi.addListener("toolbarButtonClicked", (event) => {
+              if (event.key === "settings") {
+                setHideControls(true);
+                event.preventExecution = false;
+              }
             });
           }}
           getIFrameRef={(iframeRef) => {
