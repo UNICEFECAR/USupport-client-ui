@@ -410,6 +410,25 @@ export const JitsiRoom = () => {
               "avatarUrl",
               `${AMAZON_S3_BUCKET}/${clientData.image || "default"}`
             );
+
+            externalApi.addListener("cameraError", (error) => {
+              if (error.type === "gum.permission_denied") {
+                setInterfaceData({
+                  ...interfaces,
+                  videoOn: false,
+                });
+              }
+            });
+
+            externalApi.addListener("micError", (error) => {
+              if (error.type === "gum.permission_denied") {
+                setInterfaceData({
+                  ...interfaces,
+                  microphoneOn: false,
+                });
+              }
+            });
+
             externalApi.addListener(
               "participantJoined",
               ({ id, displayName }) => {

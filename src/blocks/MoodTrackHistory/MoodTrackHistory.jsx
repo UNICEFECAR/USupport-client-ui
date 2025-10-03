@@ -8,9 +8,18 @@ import {
   MoodTrackDetails,
   Loading,
   LineChart,
+  CardMedia,
 } from "@USupport-components-library/src";
-import { useWindowDimensions } from "@USupport-components-library/utils";
-import { useGetMoodTrackEntries } from "#hooks";
+import {
+  useWindowDimensions,
+  createArticleSlug,
+} from "@USupport-components-library/utils";
+
+import {
+  useGetMoodTrackEntries,
+  useGetMoodTrackerRecommendations,
+  useCustomNavigate as useNavigate,
+} from "#hooks";
 
 import "./mood-track-history.scss";
 
@@ -24,6 +33,7 @@ import "./mood-track-history.scss";
 export const MoodTrackHistory = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "mood-track-history" });
   const { width } = useWindowDimensions();
+  const navigate = useNavigate();
 
   const [pageNum, setPageNum] = useState(0);
   const [loadedPages, setLoadedPages] = useState([]);
@@ -31,6 +41,7 @@ export const MoodTrackHistory = () => {
   const limit = `pageNum_${pageNum}_limitToLoad_${limitToLoad}`;
   const [moodTrackerData, setMoodTrackerData] = useState({});
   const [selectedItemId, setSelectedItemId] = React.useState(null);
+  const [lastMood, setLastMood] = useState(null);
 
   const onSuccess = (data) => {
     const { curEntries, prevEntries, hasMore } = data;
@@ -56,8 +67,15 @@ export const MoodTrackHistory = () => {
     loadedPagesCopy.push(pageNum);
     setLoadedPages(loadedPagesCopy);
 
+    if (curEntries.length > 0 && !lastMood) {
+      setLastMood(curEntries[curEntries.length - 1].mood);
+    }
+
     setMoodTrackerData(dataCopy);
   };
+
+  const { data: moodTrackerRecommendations } =
+    useGetMoodTrackerRecommendations(lastMood);
 
   const enabled = useMemo(() => {
     return !loadedPages.includes(pageNum);
@@ -203,6 +221,118 @@ export const MoodTrackHistory = () => {
             </div>
           )}
         </>
+      )}
+
+      {moodTrackerRecommendations?.hasRecommendations && (
+        <div className="mood-track-history__recommendations-heading">
+          <h3>{t("recommendations")}</h3>
+        </div>
+      )}
+
+      {moodTrackerRecommendations?.articles?.length > 0 && (
+        <div className="mood-track-history__recommendations-container">
+          <h4 className="mood-track-history__recommendations-container__articles-heading">
+            {t("articles")}
+          </h4>
+          <div className="mood-track-history__recommendations-container__articles">
+            {moodTrackerRecommendations.articles.map((article) => (
+              <CardMedia
+                type="portrait"
+                size="md"
+                title={article.title}
+                image={article.imageMedium || article.imageSmall}
+                description={article.description}
+                labels={article.labels}
+                creator={article.creator}
+                readingTime={article.readingTime}
+                categoryName={article.categoryName}
+                // isLikedByUser={isLikedByUser}
+                // isDislikedByUser={isDislikedByUser}
+                likes={article.likes}
+                dislikes={article.dislikes}
+                // isRead={readArticleIds.includes(article.id)}
+                t={t}
+                onClick={() => {
+                  navigate(
+                    `/information-portal/article/${
+                      article.id
+                    }/${createArticleSlug(article.title)}`
+                  );
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+      {moodTrackerRecommendations?.videos?.length > 0 && (
+        <div className="mood-track-history__recommendations-container">
+          <h4 className="mood-track-history__recommendations-container__videos-heading">
+            {t("videos")}
+          </h4>
+          <div className="mood-track-history__recommendations-container__videos">
+            {moodTrackerRecommendations.videos.map((videoData) => (
+              <CardMedia
+                type="portrait"
+                size="md"
+                title={videoData.title}
+                image={videoData.imageMedium || videoData.imageSmall}
+                description={videoData.description}
+                labels={videoData.labels}
+                creator={videoData.creator}
+                readingTime={videoData.readingTime}
+                categoryName={videoData.categoryName}
+                // isLikedByUser={isLikedByUser}
+                // isDislikedByUser={isDislikedByUser}
+                likes={videoData.likes}
+                dislikes={videoData.dislikes}
+                // isRead={readArticleIds.includes(videoData.id)}
+                t={t}
+                onClick={() => {
+                  navigate(
+                    `/information-portal/video/${
+                      videoData.id
+                    }/${createArticleSlug(videoData.title)}`
+                  );
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+      {moodTrackerRecommendations?.podcasts?.length > 0 && (
+        <div className="mood-track-history__recommendations-container">
+          <h4 className="mood-track-history__recommendations-container__podcasts-heading">
+            {t("podcasts")}
+          </h4>
+          <div className="mood-track-history__recommendations-container__podcasts">
+            {moodTrackerRecommendations.podcasts.map((podcastData) => (
+              <CardMedia
+                type="portrait"
+                size="md"
+                title={podcastData.title}
+                image={podcastData.imageMedium || podcastData.imageSmall}
+                description={podcastData.description}
+                labels={podcastData.labels}
+                creator={podcastData.creator}
+                readingTime={podcastData.readingTime}
+                categoryName={podcastData.categoryName}
+                // isLikedByUser={isLikedByUser}
+                // isDislikedByUser={isDislikedByUser}
+                likes={podcastData.likes}
+                dislikes={podcastData.dislikes}
+                // isRead={readArticleIds.includes(podcastData.id)}
+                t={t}
+                onClick={() => {
+                  navigate(
+                    `/information-portal/podcast/${
+                      podcastData.id
+                    }/${createArticleSlug(podcastData.title)}`
+                  );
+                }}
+              />
+            ))}
+          </div>
+        </div>
       )}
     </Block>
   );
