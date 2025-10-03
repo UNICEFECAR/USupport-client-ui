@@ -8,7 +8,6 @@ import {
 } from "@USupport-components-library/utils";
 
 export const useGetMoodTrackerRecommendations = (moodType) => {
-  console.log(moodType, "moodType");
   const getMoodTrackerRecommendations = async () => {
     const { data } = await cmsSvc.getMoodTrackerRecommendations(moodType);
     const innerData = data.data;
