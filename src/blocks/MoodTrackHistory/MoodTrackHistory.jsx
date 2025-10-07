@@ -31,9 +31,12 @@ import "./mood-track-history.scss";
  * @return {jsx}
  */
 export const MoodTrackHistory = () => {
-  const { t } = useTranslation("blocks", { keyPrefix: "mood-track-history" });
+  const { t, i18n } = useTranslation("blocks", {
+    keyPrefix: "mood-track-history",
+  });
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
+  const language = i18n.language;
 
   const [pageNum, setPageNum] = useState(0);
   const [loadedPages, setLoadedPages] = useState([]);
@@ -74,8 +77,10 @@ export const MoodTrackHistory = () => {
     setMoodTrackerData(dataCopy);
   };
 
-  const { data: moodTrackerRecommendations } =
-    useGetMoodTrackerRecommendations(lastMood);
+  const {
+    data: moodTrackerRecommendations,
+    isLoading: moodTrackerRecommendationsIsLoading,
+  } = useGetMoodTrackerRecommendations(lastMood, language);
 
   const enabled = useMemo(() => {
     return !loadedPages.includes(pageNum);
@@ -223,10 +228,18 @@ export const MoodTrackHistory = () => {
         </>
       )}
 
-      {moodTrackerRecommendations?.hasRecommendations && (
+      {lastMood && (
         <div className="mood-track-history__recommendations-heading">
           <h3>{t("recommendations")}</h3>
         </div>
+      )}
+
+      {moodTrackerRecommendationsIsLoading ? (
+        <Loading />
+      ) : moodTrackerRecommendations?.hasRecommendations ? null : (
+        <h5 className="mood-track-history__recommendations-no-results">
+          {t("no_recommendations")}
+        </h5>
       )}
 
       {moodTrackerRecommendations?.articles?.length > 0 && (

@@ -469,7 +469,10 @@
       "additional_comment_placeholder": "Ce v-a făcut să vă simțiți așa?",
       "submit_mood_track": "Trimiteți",
       "add_mood_tracker_success": "Starea dvs. de spirit zilnică a fost adăugată ",
-      "emergency_label": "Does this relate to a life event or critical situation?"
+      "emergency_label": "Does this relate to a life event or critical situation?",
+      "recommendations": "Recomandări",
+      "recommendations_text": "Vrei să vezi graficul stării tale și conținutul recomandat?",
+      "check_out": "Vezi detalii"
     },
     "mascot-welcome-header": {
       "welcome": "Bine ați revenit {{name}}!",
@@ -630,7 +633,8 @@
       "podcasts": "Podcasturi",
       "read_more_button": "Citește mai mult",
       "by": "de {{creator}}",
-      "min_read": "min de citit"
+      "min_read": "min de citit",
+      "no_recommendations": "Nu s-au găsit recomandări"
     },
     "mascot-header-MyQA": {
       "heading": "My Q&A",
