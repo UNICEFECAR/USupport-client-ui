@@ -469,7 +469,10 @@
       "additional_comment_placeholder": "What made you feel this way?",
       "submit_mood_track": "Submit",
       "add_mood_tracker_success": "Your daily mood was added successfully",
-      "emergency_label": "Does this relate to a life event or critical situation?"
+      "emergency_label": "Does this relate to a life event or critical situation?",
+      "recommendations": "Recommendations",
+      "recommendations_text": "Do you want to check out your mood graph and see recommended content?",
+      "check_out": "Check out"
     },
     "mascot-welcome-header": {
       "welcome": "Welcome back {{name}}!",
@@ -632,7 +635,8 @@
       "podcasts": "Podcasts",
       "read_more_button": "Read more",
       "by": "by {{creator}}",
-      "min_read": "min read"
+      "min_read": "min read",
+      "no_recommendations": "No recommendations found"
     },
     "mascot-header-MyQA": {
       "heading": "My Q&A",
