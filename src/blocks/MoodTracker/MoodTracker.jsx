@@ -34,6 +34,7 @@ export const MoodTracker = ({
   const { theme } = useContext(ThemeContext);
   const { handleRegistrationModalOpen } = useContext(RootContext);
   const country = localStorage.getItem("country");
+  const IS_RO = country === "RO";
 
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
@@ -60,7 +61,9 @@ export const MoodTracker = ({
     setEmoticons(emoticonsArray);
     setIsEmergency(false);
     toast(t("add_mood_tracker_success"));
-    setIsSuccessModalOpen(true);
+    if (IS_RO) {
+      setIsSuccessModalOpen(true);
+    }
   };
   const onError = (error) => {
     toast(error, { type: "error" });
@@ -125,7 +128,7 @@ export const MoodTracker = ({
     addMoodTrackMutation.mutate({
       comment,
       mood: selectedMood.value,
-      emergency: country === "RO" ? isEmergency : false,
+      emergency: IS_RO ? isEmergency : false,
     });
   };
 
