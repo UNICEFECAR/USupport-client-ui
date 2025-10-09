@@ -466,7 +466,10 @@
       "additional_comment_placeholder": "Сізді осылай сезінуге не себеп болды?",
       "submit_mood_track": "Жіберу",
       "add_mood_tracker_success": "Сіздің көңіл-күйіңіз сәтті қосылды",
-      "emergency_label": "Бұл өмірлік оқиғаға немесе маңызды жағдайға қатысты ма?"
+      "emergency_label": "Бұл өмірлік оқиғаға немесе маңызды жағдайға қатысты ма?",
+      "recommendations": "Ұсыныстар",
+      "recommendations_text": "Көңіл-күй графигіңізді қарап, ұсынылған мазмұнды көргіңіз келе ме?",
+      "check_out": "Қарап шығу"
     },
     "mascot-welcome-header": {
       "welcome": "Қайта оралуыңызбен, {{name}}!",
@@ -629,7 +632,8 @@
       "podcasts": "Подкасттар",
       "read_more_button": "Толығырақ оқу",
       "by": "{{creator}} авторынан",
-      "min_read": "мин оқу"
+      "min_read": "мин оқу",
+      "no_recommendations": "Ұсыныстар табылмады"
     },
     "mascot-header-MyQA": {
       "heading": "Менің Q&A (Сұрақ/Жауап)",

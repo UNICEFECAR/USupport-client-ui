@@ -450,7 +450,10 @@
       "additional_comment_placeholder": "Co sprawiło, że tak się poczułeś/aś?",
       "submit_mood_track": "Prześlij",
       "add_mood_tracker_success": "Twój dzisiejszy nastrój został pomyślnie dodany",
-      "emergency_label": "Czy to dotyczy wydarzenia życiowego lub sytuacji krytycznej?"
+      "emergency_label": "Czy to dotyczy wydarzenia życiowego lub sytuacji krytycznej?",
+      "recommendations": "Rekomendacje",
+      "recommendations_text": "Chcesz zobaczyć wykres swojego nastroju i polecane treści?",
+      "check_out": "Zobacz"
     },
     "mascot-welcome-header": {
       "welcome": "Witamy z powrotem {{name}}!",
@@ -613,7 +616,8 @@
       "podcasts": "Podcasty",
       "read_more_button": "Czytaj więcej",
       "by": "autor: {{creator}}",
-      "min_read": "min czytania"
+      "min_read": "min czytania",
+      "no_recommendations": "Nie znaleziono rekomendacji"
     },
     "mascot-header-MyQA": {
       "heading": "Moje Pytania i odpowiedzi",

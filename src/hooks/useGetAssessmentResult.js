@@ -34,6 +34,7 @@ export function useGetAssessmentResult(queryObj, enabled = true) {
       psychological: queryObj.psychological,
       social: queryObj.social,
       biological: queryObj.biological,
+      language: queryObj.language,
     });
 
     if (data.data) {

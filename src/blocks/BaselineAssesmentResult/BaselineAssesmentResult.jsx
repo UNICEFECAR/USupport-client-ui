@@ -24,17 +24,19 @@ import "./baseline-assesment-result.scss";
  * @return {jsx}
  */
 export const BaselineAssesmentResult = ({ result }) => {
-  const { t } = useTranslation("blocks", {
+  const { t, i18n } = useTranslation("blocks", {
     keyPrefix: "baseline-assesment-result",
   });
+  const language = i18n.language;
   const navigate = useNavigate();
 
   const { isLoading, data } = useGetAssessmentResult({
     ...result,
-    language: "en",
+    language,
   });
 
   const renderIcon = (result) => {
+    if (!result) return null;
     const color =
       result === "higher" ? "#eb5757" : result === "lower" ? "#7ec680" : "";
     const name =
@@ -69,18 +71,18 @@ export const BaselineAssesmentResult = ({ result }) => {
           <ProgressBar progress={100} height="lg" showPercentage />
         </div>
       </GridItem>
-      {result?.comparePrevious && (
+      {result && (
         <GridItem md={8} lg={12}>
           <Grid classes="baseline-assesment-result__compare-grid">
             <GridItem md={8} lg={12}>
-              <h4>{resultText}</h4>
+              {result?.comparePrevious && <h4>{resultText}</h4>}
             </GridItem>
             <GridItem md={8} lg={4}>
               <Box classes="baseline-assesment-result__compare-grid__item">
                 <p>
                   {t("psychological")}: {result.psychologicalScore}
                 </p>
-                {renderIcon(result.comparePrevious.psychological)}
+                {renderIcon(result.comparePrevious?.psychological)}
               </Box>
             </GridItem>
             <GridItem md={8} lg={4}>
@@ -88,7 +90,7 @@ export const BaselineAssesmentResult = ({ result }) => {
                 <p>
                   {t("biological")}: {result.biologicalScore}
                 </p>
-                {renderIcon(result.comparePrevious.biological)}
+                {renderIcon(result.comparePrevious?.biological)}
               </Box>
             </GridItem>
             <GridItem md={8} lg={4}>
@@ -96,7 +98,7 @@ export const BaselineAssesmentResult = ({ result }) => {
                 <p>
                   {t("social")}: {result.socialScore}
                 </p>
-                {renderIcon(result.comparePrevious.social)}
+                {renderIcon(result.comparePrevious?.social)}
               </Box>
             </GridItem>
           </Grid>
