@@ -466,7 +466,10 @@
       "additional_comment_placeholder": "Что заставило Вас так себя чувствовать?",
       "submit_mood_track": "Отправить",
       "add_mood_tracker_success": "Ваше настроение было успешно добавлено ",
-      "emergency_label": "Это относится к жизненному событию или критической ситуации?"
+      "emergency_label": "Это относится к жизненному событию или критической ситуации?",
+      "recommendations": "Рекомендации",
+      "recommendations_text": "Хотите посмотреть график настроения и увидеть рекомендованный контент?",
+      "check_out": "Посмотреть"
     },
     "mascot-welcome-header": {
       "welcome": "С возвращением, {{name}}!",
@@ -630,7 +633,8 @@
       "podcasts": "Подкасты",
       "read_more_button": "Читать далее",
       "by": "от {{creator}}",
-      "min_read": "мин чтения"
+      "min_read": "мин чтения",
+      "no_recommendations": "Рекомендации не найдены"
     },
     "mascot-header-MyQA": {
       "heading": "Мой Q&A (Вопрос/Ответ)",

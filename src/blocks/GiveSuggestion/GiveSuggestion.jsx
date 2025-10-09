@@ -122,7 +122,7 @@ export const GiveSuggestion = ({ type = "information-portal" }) => {
 
           <GridItem md={8} lg={12} classes="">
             <Button
-              type="link"
+              color="purple"
               label={t("submit")}
               onClick={handleSubmit}
               disabled={!canSubmit}

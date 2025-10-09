@@ -91,12 +91,15 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
     ) {
       years.push({ label: year.toString(), value: year.toString() });
     }
-    years.push({
-      label: t("parent"),
-      value: "parent",
-    });
+    // Only add parent option if country is not PL
+    if (country !== "PL") {
+      years.push({
+        label: t("parent"),
+        value: "parent",
+      });
+    }
     return years.reverse();
-  }, [countriesData]);
+  }, [countriesData, country]);
   const onMutateSuccess = () => {
     navigate("/dashboard");
   };

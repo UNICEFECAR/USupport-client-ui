@@ -9,6 +9,7 @@ import {
   Emoticon,
   Textarea,
   Toggle,
+  Modal,
 } from "@USupport-components-library/src";
 import { useAddMoodTrack } from "#hooks";
 import { ThemeContext } from "@USupport-components-library/utils";
@@ -33,6 +34,7 @@ export const MoodTracker = ({
   const { theme } = useContext(ThemeContext);
   const { handleRegistrationModalOpen } = useContext(RootContext);
   const country = localStorage.getItem("country");
+  const IS_RO = country === "RO";
 
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
@@ -48,6 +50,7 @@ export const MoodTracker = ({
   const [comment, setComment] = useState("");
   const [emoticons, setEmoticons] = useState(emoticonsArray);
   const [isEmergency, setIsEmergency] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const hasSelectedMoodtracker = useCallback(() => {
     return emoticons.some((emoticon) => emoticon.isSelected);
@@ -58,6 +61,9 @@ export const MoodTracker = ({
     setEmoticons(emoticonsArray);
     setIsEmergency(false);
     toast(t("add_mood_tracker_success"));
+    if (IS_RO) {
+      setIsSuccessModalOpen(true);
+    }
   };
   const onError = (error) => {
     toast(error, { type: "error" });
@@ -122,7 +128,7 @@ export const MoodTracker = ({
     addMoodTrackMutation.mutate({
       comment,
       mood: selectedMood.value,
-      emergency: country === "RO" ? isEmergency : false,
+      emergency: IS_RO ? isEmergency : false,
     });
   };
 
@@ -137,48 +143,60 @@ export const MoodTracker = ({
   };
 
   return (
-    <Block classes={["mood-tracker", classNames(classes)].join(" ")}>
-      <div className="mood-tracker__heading">
-        <h4>{t("heading")}</h4>
-        <p
-          className="small-text mood-tracker-button"
-          onClick={handleMoodtrackClick}
-        >
-          {t("mood_tracker")}
-        </p>
-      </div>
-      <>
-        <div className="mood-tracker__rating">{renderEmoticons()}</div>
-        {hasSelectedMoodtracker() && (
-          <div className="mood-tracker__additional-comment">
-            <Textarea
-              value={comment}
-              onChange={(value) => setComment(value)}
-              placeholder={t("additional_comment_placeholder")}
-              size="md"
-            />
-            {country === "RO" && (
-              <div className="mood-tracker__additional-comment__toggle-container">
-                <p className="mood-tracker__additional-comment__toggle-container__text">
-                  {t("emergency_label")}
-                </p>
-                <Toggle
-                  isToggled={isEmergency}
-                  setParentState={(toggled) => setIsEmergency(toggled)}
+    <React.Fragment>
+      <Modal
+        isOpen={isSuccessModalOpen}
+        closeModal={() => setIsSuccessModalOpen(false)}
+        heading={t("recommendations")}
+        text={t("recommendations_text")}
+        ctaLabel={t("check_out")}
+        ctaHandleClick={() => {
+          navigate("/mood-tracker");
+        }}
+      />
+      <Block classes={["mood-tracker", classNames(classes)].join(" ")}>
+        <div className="mood-tracker__heading">
+          <h4>{t("heading")}</h4>
+          <p
+            className="small-text mood-tracker-button"
+            onClick={handleMoodtrackClick}
+          >
+            {t("mood_tracker")}
+          </p>
+        </div>
+        <>
+          <div className="mood-tracker__rating">{renderEmoticons()}</div>
+          {hasSelectedMoodtracker() && (
+            <div className="mood-tracker__additional-comment">
+              <Textarea
+                value={comment}
+                onChange={(value) => setComment(value)}
+                placeholder={t("additional_comment_placeholder")}
+                size="md"
+              />
+              {country === "RO" && (
+                <div className="mood-tracker__additional-comment__toggle-container">
+                  <p className="mood-tracker__additional-comment__toggle-container__text">
+                    {t("emergency_label")}
+                  </p>
+                  <Toggle
+                    isToggled={isEmergency}
+                    setParentState={(toggled) => setIsEmergency(toggled)}
+                  />
+                </div>
+              )}
+              <div className="mood-tracker__additional-comment__button-container">
+                <Button
+                  label={t("submit_mood_track")}
+                  size="lg"
+                  onClick={handleSubmit}
+                  loading={addMoodTrackMutation.isLoading}
                 />
               </div>
-            )}
-            <div className="mood-tracker__additional-comment__button-container">
-              <Button
-                label={t("submit_mood_track")}
-                size="lg"
-                onClick={handleSubmit}
-                loading={addMoodTrackMutation.isLoading}
-              />
             </div>
-          </div>
-        )}
-      </>
-    </Block>
+          )}
+        </>
+      </Block>
+    </React.Fragment>
   );
 };

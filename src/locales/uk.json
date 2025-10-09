@@ -452,7 +452,10 @@
       "additional_comment_placeholder": "Що є причиною того, що ти себе так почуваєш?",
       "submit_mood_track": "Надішли",
       "add_mood_tracker_success": "Сьогоднішній настрій додано",
-      "emergency_label": "Це стосується життєвої події чи критичної ситуації?"
+      "emergency_label": "Це стосується життєвої події чи критичної ситуації?",
+      "recommendations": "Рекомендації",
+      "recommendations_text": "Хочете переглянути графік настрою та побачити рекомендований контент?",
+      "check_out": "Переглянути"
     },
     "mascot-welcome-header": {
       "welcome": "З поверненням, {{name}}!",
@@ -615,7 +618,8 @@
       "podcasts": "Подкасти",
       "read_more_button": "Читати більше",
       "by": "від {{creator}}",
-      "min_read": "хв читання"
+      "min_read": "хв читання",
+      "no_recommendations": "Рекомендацій не знайдено"
     },
     "mascot-header-MyQA": {
       "heading": "Мої запитання й відповіді",
