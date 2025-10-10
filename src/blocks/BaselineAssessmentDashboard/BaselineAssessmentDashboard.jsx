@@ -3,10 +3,13 @@ import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
 
 import {
-  Block,
-  Button,
-  Loading,
   BaselineAssesmentBox,
+  Button,
+  Box,
+  Block,
+  Grid,
+  GridItem,
+  Loading,
 } from "@USupport-components-library/src";
 
 import { useGetLatestBaselineAssessment } from "#hooks";
@@ -32,7 +35,6 @@ export const BaselineAssessmentDashboard = ({
   const { data: latestAssessment, isLoading } = useGetLatestBaselineAssessment(
     !isTmpUser
   );
-
   const handleViewAssessment = () => {
     console.log(latestAssessment);
     if (latestAssessment) {
@@ -50,10 +52,42 @@ export const BaselineAssessmentDashboard = ({
         <div className="baseline-assessment-dashboard__assessment">
           {isLoading ? (
             <Loading />
-          ) : !latestAssessment || latestAssessment.status === "completed" ? (
+          ) : !latestAssessment ? (
             <Button size="lg" onClick={openBaselineAssesmentModal}>
               {t("start_new_assessment")}
             </Button>
+          ) : latestAssessment.status === "completed" ? (
+            <div className="baseline-assessment-dashboard__results">
+              <h5 className="baseline-assessment-dashboard__results__heading">
+                {t("latest_results")}
+              </h5>
+              <div className="baseline-assessment-dashboard__results__items">
+                <Box classes="baseline-assesment-result__compare-grid__item">
+                  <p>
+                    {t("psychological")}:{" "}
+                    {latestAssessment.finalResult.psychologicalScore}
+                  </p>
+                </Box>
+                <Box classes="baseline-assesment-result__compare-grid__item">
+                  <p>
+                    {t("social")}: {latestAssessment.finalResult.socialScore}
+                  </p>
+                </Box>
+                <Box classes="baseline-assesment-result__compare-grid__item">
+                  <p>
+                    {t("biological")}:{" "}
+                    {latestAssessment.finalResult.biologicalScore}
+                  </p>
+                </Box>
+              </div>
+              <Button
+                classes="baseline-assessment-dashboard__results__button"
+                size="lg"
+                onClick={openBaselineAssesmentModal}
+              >
+                {t("start_new_assessment")}
+              </Button>
+            </div>
           ) : (
             <BaselineAssesmentBox
               progress={latestAssessment.completionPercentage}
