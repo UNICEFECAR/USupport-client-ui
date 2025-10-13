@@ -471,7 +471,8 @@ export default function Root() {
       return true;
     },
     staleTime: Infinity,
-    enabled: !!country && !hasAddedPlatformAccess && !isTmpUser,
+    // enabled: !!country && !hasAddedPlatformAccess && !isTmpUser,
+    enabled: false,
   });
 
   const location = useLocation();
@@ -512,6 +513,7 @@ export default function Root() {
         activeCoupon,
         setActiveCoupon,
         leaveConsultationFn,
+        loggedIn,
       }}
     >
       {loggedIn && !hideIdleTimer && (
