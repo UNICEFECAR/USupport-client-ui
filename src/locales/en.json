@@ -263,7 +263,8 @@
       "conducted": "Consultation ended",
       "not_conducted": "Not conducted",
       "free": "Free",
-      "coupon": "Coupon"
+      "coupon": "Coupon",
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
     },
     "login": {
       "email_label": "Email / Access Token",
@@ -456,7 +457,8 @@
       "november": "November",
       "december": "December",
       "require_cookies": "To view this video, please accept all cookies.",
-      "cookie_preferences": "Cookie preferences"
+      "cookie_preferences": "Cookie preferences",
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
     },
     "mood-tracker": {
       "happy": "Happy",
@@ -504,7 +506,8 @@
       "november": "November",
       "december": "December",
       "coupon": "Coupon",
-      "explore_button_label": "Explore"
+      "explore_button_label": "Explore",
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
     },
     "activity-log-dashboard": {
       "heading": "Activity Log",

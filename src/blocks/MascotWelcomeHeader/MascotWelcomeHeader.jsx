@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import classNames from "classnames";
+import { toast } from "react-toastify";
+
 import {
   Grid,
   GridItem,
@@ -108,6 +110,7 @@ export const MascotWelcomeHeader = ({
                   handleSchedule={handleSchedule}
                   handleAcceptSuggestion={handleAcceptSuggestion}
                   t={t}
+                  toast={toast}
                 />
               )}
             </>
