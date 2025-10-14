@@ -32,7 +32,7 @@ export const BaselineAssessmentDashboard = ({
     keyPrefix: "baseline-assessment-dashboard",
   });
 
-  const { data: latestAssessment, isLoading } = useGetLatestBaselineAssessment(
+  const { data: latestAssessment, isFetching } = useGetLatestBaselineAssessment(
     !isTmpUser
   );
   const handleViewAssessment = () => {
@@ -50,7 +50,7 @@ export const BaselineAssessmentDashboard = ({
         </h4>
 
         <div className="baseline-assessment-dashboard__assessment">
-          {isLoading ? (
+          {isFetching ? (
             <Loading />
           ) : !latestAssessment ? (
             <Button size="lg" onClick={openBaselineAssesmentModal}>
