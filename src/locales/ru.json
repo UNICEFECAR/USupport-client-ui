@@ -260,7 +260,8 @@
       "conducted": "Консультация завершена",
       "not_conducted": "Не проводилась",
       "free": "Бесплатно",
-      "coupon": "Купон"
+      "coupon": "Купон",
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
     },
     "login": {
       "email_label": "Электронная почта / токен доступа",
@@ -435,6 +436,7 @@
       "live_text": "Сейчас",
       "accept_button_label": "Принять консультацию",
       "join_button_label": "Присоединиться",
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала",
       "change_button_label": "Изменить",
       "ordinal_st": "",
       "ordinal_nd": "",
@@ -480,6 +482,7 @@
       "change_button_label": "Изменить",
       "accept_button_label": "Принять консультацию",
       "join_button_label": "Присоединиться",
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала",
       "schedule_button_label": "Запланировать",
       "live_label": "Сейчас",
       "no_consultations": "В настоящее время у Вас нет предстоящих консультаций",

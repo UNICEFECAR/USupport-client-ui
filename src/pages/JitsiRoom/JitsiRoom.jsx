@@ -71,7 +71,7 @@ export const JitsiRoom = () => {
   if (!location?.state) {
     return <Navigate to={`/client/${language}/consultations`} />;
   }
-  const { consultation, videoOn, microphoneOn, token } = location?.state;
+  const { consultation, videoOn, microphoneOn } = location?.state;
 
   const [isLoading, setIsLoading] = useState(true);
   const [showSafetyFeedback, setShowSafetyFeedback] = useState(false);
@@ -177,7 +177,7 @@ export const JitsiRoom = () => {
     return (
       <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
     );
-  if (!clientData || !consultation || !token)
+  if (!clientData || !consultation)
     return (
       <Navigate
         to={`/client/${localStorage.getItem("language")}/consultations`}

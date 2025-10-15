@@ -21,7 +21,7 @@ import "./baseline-assesment-modal.scss";
  *
  * @return {jsx}
  */
-export const BaselineAssesmentModal = ({ open, setOpen }) => {
+export const BaselineAssesmentModal = ({ open, setOpen, isTmpUser }) => {
   const { t } = useTranslation("modals", {
     keyPrefix: "baseline-assesment-modal",
   });
@@ -30,7 +30,7 @@ export const BaselineAssesmentModal = ({ open, setOpen }) => {
   const websiteUrl = constructWebsiteUrl("privacy-policy");
   const createBaselineAssessmentMutation = useCreateBaselineAssessment();
 
-  const clientDataQuery = useGetClientData()[0];
+  const clientDataQuery = useGetClientData(!isTmpUser)[0];
   const clientData = clientDataQuery.data;
 
   const [isOpen, setIsOpen] = useState(false);

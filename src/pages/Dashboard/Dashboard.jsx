@@ -28,6 +28,7 @@ import {
   useGetAllConsultations,
   useScheduleConsultation,
   useGetClientData,
+  useAddCountryEvent,
 } from "#hooks";
 
 import { BaselineAssesmentModal, RequireDataAgreement } from "#modals";
@@ -47,6 +48,7 @@ export const Dashboard = () => {
   const { t } = useTranslation("pages", { keyPrefix: "dashboard-page" });
   const navigate = useNavigate();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
+
   const clientDataQuery = useGetClientData(!isTmpUser)[0];
   const clientData = clientDataQuery?.data;
 
@@ -222,6 +224,8 @@ export const Dashboard = () => {
   };
   const blockSlotMutation = useBlockSlot(onBlockSlotSuccess, onBlockSlotError);
 
+  const addCountryEventMutation = useAddCountryEvent();
+
   const handleBlockSlot = (slot, price) => {
     setIsBlockSlotSubmitting(true);
     setSelectedSlot(slot);
@@ -236,12 +240,18 @@ export const Dashboard = () => {
     if (!clientData.dataProcessing) {
       openRequireDataAgreement();
     } else {
+      addCountryEventMutation.mutate({
+        eventType: "web_schedule_button_click",
+      });
       navigate(`/select-provider`);
     }
   };
 
   const handleDataAgreementSucess = () => {
     if (redirectToSelectProvider) {
+      addCountryEventMutation.mutate({
+        eventType: "web_schedule_button_click",
+      });
       navigate(`/select-provider`);
     }
   };
@@ -255,6 +265,7 @@ export const Dashboard = () => {
     >
       {IS_RO && (
         <BaselineAssesmentModal
+          isTmpUser={isTmpUser}
           open={isBaselineAssesmentModalOpen}
           setOpen={setIsBaselineAssesmentModalOpen}
         />

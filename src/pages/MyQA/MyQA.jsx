@@ -8,15 +8,20 @@ import {
   MyQA as MyQABlock,
   GiveSuggestion,
 } from "#blocks";
+
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
+
 import { ScheduleConsultationGroup, FilterQuestions } from "#backdrops";
+
 import {
   useGetClientQuestions,
   useGetQuestions,
   useAddVoteQuestion,
   useGetClientData,
   useCustomNavigate as useNavigate,
+  useAddCountryEvent,
 } from "#hooks";
+
 import { RootContext } from "#routes";
 
 import "./my-qa.scss";
@@ -58,6 +63,7 @@ export const MyQA = () => {
   const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
 
   const clientData = useGetClientData()[1];
+  const addCountryEventMutation = useAddCountryEvent();
 
   const isUserQuestionsEnabled =
     tabs.filter((tab) => tab.value === "your_questions" && tab.isSelected)
@@ -126,6 +132,9 @@ export const MyQA = () => {
       if (!clientData.dataProcessing) {
         openRequireDataAgreement();
       } else {
+        addCountryEventMutation.mutate({
+          eventType: "web_schedule_button_click",
+        });
         setIsSelectConsultationOpen(true);
       }
     }

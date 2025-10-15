@@ -142,7 +142,16 @@ export const FilterProviders = ({
               ...x,
               label: t(x.label),
             }))}
-            setOptions={setProviderSex}
+            selectValue={(value) => {
+              let newOptions = [...providerSex];
+              newOptions = newOptions.map((x) => {
+                if (x.value === value) {
+                  x.isSelected = !x.isSelected;
+                }
+                return x;
+              });
+              setProviderSex([...newOptions]);
+            }}
           />
           {/* <div>
             <Toggle
