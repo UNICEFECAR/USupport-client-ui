@@ -8,10 +8,15 @@ import {
   useBlockSlot,
   useScheduleConsultation,
   useGetClientData,
+  useAddCountryEvent,
 } from "#hooks";
+
 import { Page, ProviderOverview as ProviderOverviewBlock } from "#blocks";
+
 import { SelectConsultation, ConfirmConsultation } from "#backdrops";
+
 import { RequireDataAgreement } from "#modals";
+
 import { RootContext } from "#routes";
 
 import "./provider-overview.scss";
@@ -55,11 +60,16 @@ export const ProviderOverview = () => {
   const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
     useState(false);
 
+  const addCountryEventMutation = useAddCountryEvent();
+
   // Open modals
   const openScheduleBackdrop = () => {
     if (!clientData.dataProcessing) {
       openRequireDataAgreement();
     } else {
+      addCountryEventMutation.mutate({
+        eventType: "web_schedule_button_click",
+      });
       setIsScheduleBackdropOpen(true);
     }
   };

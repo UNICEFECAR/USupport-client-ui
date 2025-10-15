@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { useLocation, Navigate } from "react-router-dom";
+
 import { RadialCircle } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import { useCustomNavigate as useNavigate, useGetClientData } from "#hooks";
+import {
+  useCustomNavigate as useNavigate,
+  useGetClientData,
+  useAddCountryEvent,
+} from "#hooks";
 import { ScheduleConsultationGroup } from "#backdrops";
 import { Page, ActivityHistory as ActivityHistoryBlock } from "#blocks";
 
@@ -39,11 +44,16 @@ export const ActivityHistory = () => {
   const [isRequireDataAgreementOpen, setIsRequireDataAgreementOpen] =
     useState(false);
 
+  const addCountryEventMutation = useAddCountryEvent();
+
   // Open modals
   const openSelectConsultation = () => {
     if (!clientData.dataProcessing) {
       openRequireDataAgreement();
     } else {
+      addCountryEventMutation.mutate({
+        eventType: "web_schedule_button_click",
+      });
       setIsSelectConsultationOpen(true);
     }
   };
