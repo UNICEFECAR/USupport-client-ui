@@ -81,7 +81,7 @@ export const MoodTrackHistory = () => {
 
   const {
     data: moodTrackerRecommendations,
-    isLoading: moodTrackerRecommendationsIsLoading,
+    isFetching: moodTrackerRecommendationsIsLoading,
   } = useGetMoodTrackerRecommendations(lastMood, language);
 
   const enabled = useMemo(() => {

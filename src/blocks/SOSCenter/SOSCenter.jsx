@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
@@ -10,6 +10,7 @@ import {
 
 import {
   Block,
+  Button,
   Grid,
   GridItem,
   EmergencyCenter,
@@ -20,6 +21,8 @@ import {
   adminSvc,
   clientSvc,
 } from "@USupport-components-library/services";
+
+import { RootContext } from "#routes";
 
 import "./sos-center.scss";
 
@@ -32,6 +35,7 @@ import "./sos-center.scss";
  */
 export const SOSCenter = () => {
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "sos-center" });
+  const { loggedIn } = useContext(RootContext);
   const navigate = useNavigate();
 
   const IS_RO = localStorage.getItem("country") === "RO";
@@ -131,23 +135,23 @@ export const SOSCenter = () => {
         <Grid classes="soscenter__grid">
           <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">
             <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
-              {IS_RO && emergencyServiceSpecialization && (
+              {IS_RO && emergencyServiceSpecialization && loggedIn && (
                 <GridItem
-                  classes="soscenter__secondary-grid__item"
-                  md={4}
+                  classes="soscenter__secondary-grid__item soscenter__secondary-grid__item--romania-button"
+                  md={8}
                   lg={12}
                 >
-                  <EmergencyCenter
-                    title={t("other_emergency_services")}
-                    text={emergencyServiceSpecialization.description}
-                    showCustomButton
-                    btnLabelCustom={t("browse")}
+                  <p>{t("other_emergency_services")}</p>
+                  <Button
+                    color="purple"
                     onClick={() =>
                       navigate(
                         `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`
                       )
                     }
-                  />
+                  >
+                    {t("browse")}
+                  </Button>
                 </GridItem>
               )}
               {SOSCentersData.map((sosCenter, index) => {

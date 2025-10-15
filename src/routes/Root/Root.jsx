@@ -14,6 +14,7 @@ import { IdleTimer } from "@USupport-components-library/src";
 import {
   getCountryDefaultLanguage,
   getLanguageFromUrl,
+  generateVisitorId,
 } from "@USupport-components-library/utils";
 
 import { RequireRegistration } from "#modals";
@@ -466,6 +467,11 @@ export default function Root() {
   useQuery({
     queryKey: ["addPlatformAccess", loggedIn, country],
     queryFn: async () => {
+      let visitorId = localStorage.getItem("visitorId");
+      if (!visitorId) {
+        visitorId = generateVisitorId();
+        localStorage.setItem("visitorId", visitorId);
+      }
       await userSvc.addPlatformAccess("client");
       setHasAddedPlatformAccess(true);
       return true;
@@ -512,6 +518,7 @@ export default function Root() {
         activeCoupon,
         setActiveCoupon,
         leaveConsultationFn,
+        loggedIn,
       }}
     >
       {loggedIn && !hideIdleTimer && (

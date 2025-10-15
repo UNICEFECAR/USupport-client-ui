@@ -12,7 +12,11 @@ import {
 import { userSvc } from "@USupport-components-library/services";
 import { mascotHappyBlue } from "@USupport-components-library/assets";
 
-import { useError, useCustomNavigate as useNavigate } from "#hooks";
+import {
+  useError,
+  useCustomNavigate as useNavigate,
+  useAddCountryEvent,
+} from "#hooks";
 
 import "./register-preview.scss";
 
@@ -27,6 +31,12 @@ export const RegisterPreview = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "register-preview" });
   const navigate = useNavigate();
   const [error, setErrror] = useState();
+
+  const addCountryEventMutation = useAddCountryEvent();
+
+  const handleAddCountryEvent = (eventType) => {
+    addCountryEventMutation.mutate({ eventType });
+  };
 
   const carouselItems = [
     {
@@ -60,6 +70,7 @@ export const RegisterPreview = () => {
   };
 
   const tmpLogin = async () => {
+    handleAddCountryEvent("web_guest_register_click");
     const res = await userSvc.tmpLogin();
     return res.data;
   };
@@ -82,12 +93,14 @@ export const RegisterPreview = () => {
 
   const handleRedirect = (redirectTo) => {
     if (redirectTo === "email") {
+      handleAddCountryEvent("web_email_register_click");
       navigate("/register", {
         state: {
           flow: "email",
         },
       });
     } else if (redirectTo === "anonymously") {
+      handleAddCountryEvent("web_anonymous_register_click");
       navigate("/register-anonymous", {
         state: {
           flow: "anonymous",

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { useCustomNavigate as useNavigate } from "#hooks";
+
+import { useCustomNavigate as useNavigate, useAddCountryEvent } from "#hooks";
 
 import {
   Backdrop,
@@ -26,6 +27,8 @@ import "./join-consultation.scss";
 export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("backdrops", { keyPrefix: "join-consultation" });
+
+  const addCountryEventMutation = useAddCountryEvent();
 
   const [showPermissionsModal, setShowPermissionsModal] = useState(false);
   const [micEnabled, setMicEnabled] = useState(false);
@@ -88,14 +91,14 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
       time: JSON.stringify(new Date().getTime()),
     };
 
+    addCountryEventMutation.mutate({
+      eventType: "web_join_consultation_click",
+    });
+
     const systemMessagePromise = messageSvc.sendMessage({
       message: sytemMessage,
       chatId: consultation.chatId,
     });
-
-    const getConsultationTokenPromise = videoSvc.getTwilioToken(
-      consultation.consultationId
-    );
 
     const joinConsultationPromise = providerSvc.joinConsultation({
       consultationId: consultation.consultationId,
@@ -105,17 +108,14 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
     try {
       const result = await Promise.all([
         systemMessagePromise,
-        getConsultationTokenPromise,
         joinConsultationPromise,
       ]);
-      const token = result[1].data.token;
 
       navigate("/consultation", {
         state: {
           consultation,
           videoOn: redirectTo === "video" && camEnabled && micEnabled,
           microphoneOn: redirectTo === "video" && camEnabled && micEnabled,
-          token,
         },
       });
     } catch (err) {

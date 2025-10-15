@@ -60,6 +60,17 @@
     row-gap: 2rem;
     &__item {
       justify-self: center;
+
+      &--romania-button {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2rem;
+        text-align: left;
+
+        & .btn {
+          margin-left: 2rem;
+        }
+      }
     }
   }
 

@@ -250,7 +250,8 @@
       "conducted": "Խորհրդատվությունը ավարտված է",
       "not_conducted": "Չի իրականացվել",
       "free": "Անվճար",
-      "coupon": "Կտրոնը"
+      "coupon": "Կտրոնը",
+      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ"
     },
     "login": {
       "email_label": "Էլեկտրոնային փոստի հասցե / մուտքի սարք",
@@ -263,14 +264,6 @@
       "register_button_label": "Ես օգտահաշիվ չունեմ",
       "client": "Հաճախորդ",
       "heading": "Բարի գալուստ․․․"
-    },
-    "welcome": {
-      "heading": "Բարի գալուստ",
-      "country": "Երկիրը",
-      "language": "Լեզուն",
-      "placeholder": "Ընտրել",
-      "button": "Շարունակել",
-      "client": "Հաճախորդ"
     },
     "articles": {
       "heading": "Տեղեկատվության պորտալ",
@@ -427,6 +420,7 @@
       "live_text": "Հիմա",
       "accept_button_label": "Ընդունել խորհրդատվությունը",
       "join_button_label": "Միանալ",
+      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ",
       "change_button_label": "Փոխել",
       "ordinal_st": "ին",
       "ordinal_nd": "րդ",
@@ -472,6 +466,7 @@
       "change_button_label": "Փոփոխել",
       "accept_button_label": "Ընդունել խորհրդատվությունը",
       "join_button_label": "Միանալ",
+      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ",
       "schedule_button_label": "Պլանավորել",
       "live_label": "Հիմա",
       "no_consultations": "Ներկա պահին դուք չունեք առաջիկայում պլանավորված խորհրդատվություններ։",

@@ -25,6 +25,7 @@ import {
   useRescheduleConsultation,
   useGetClientData,
   useAcceptConsultation,
+  useAddCountryEvent,
 } from "#hooks";
 import { RootContext } from "#routes";
 
@@ -52,6 +53,7 @@ export const Consultations = () => {
     );
 
   const clientDataQuery = useGetClientData()[0];
+  const addCountryEventMutation = useAddCountryEvent();
 
   const [selectedConsultation, setSelectedConsultation] = useState();
   const [selectedConsultationProviderId, setSelectedConsultationProviderId] =
@@ -185,12 +187,18 @@ export const Consultations = () => {
     if (!clientDataQuery.data?.dataProcessing) {
       openRequireDataAgreement();
     } else {
+      addCountryEventMutation.mutate({
+        eventType: "web_schedule_button_click",
+      });
       navigate("/select-provider");
     }
   };
 
   const handleDataAgreementSuccess = () => {
     if (redirectToSelectProvider) {
+      addCountryEventMutation.mutate({
+        eventType: "web_schedule_button_click",
+      });
       navigate("/select-provider");
     }
   };

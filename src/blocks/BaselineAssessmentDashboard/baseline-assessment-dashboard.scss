@@ -34,6 +34,40 @@
     }
   }
 
+  &__results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__heading {
+      text-align: center;
+      display: block;
+      padding-bottom: 1.2rem;
+      margin: unset;
+    }
+
+    &__items {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      @media screen and (min-width: 1024px) {
+        flex-direction: row;
+      }
+
+      & .box {
+        min-width: 20rem;
+        margin-inline: 1rem;
+      }
+    }
+
+    &__button {
+      margin-top: 3rem;
+    }
+  }
+
   &__start-button {
     background: var(--primary-color);
     color: white;

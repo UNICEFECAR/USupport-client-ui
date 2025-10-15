@@ -158,6 +158,7 @@ export const Consultations = ({
             sponsorImage={consultation.sponsorImage}
             withOrganization={!!consultation.organizationId}
             t={t}
+            toast={toast}
           />
         </GridItem>
       );

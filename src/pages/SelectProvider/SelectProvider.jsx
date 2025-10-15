@@ -29,6 +29,11 @@ const fetchCountry = async () => {
   return currentCountry?.alpha2 === "KZ" ? true : false;
 };
 
+const POLAND_COUPON = {
+  couponValue: "UNICEF2025",
+  campaignId: "f035657b-daa7-417a-9784-959b042473e7",
+};
+
 /**
  * SelectProvider
  *
@@ -41,6 +46,9 @@ export const SelectProvider = () => {
   const { width } = useWindowDimensions();
 
   const { isTmpUser, activeCoupon, setActiveCoupon } = useContext(RootContext);
+
+  const country = localStorage.getItem("country");
+  const IS_PL = country === "PL";
 
   const { data: isKzCountry } = useQuery(["country-min-price"], fetchCountry);
 
@@ -70,6 +78,15 @@ export const SelectProvider = () => {
   const [allFilters, setAllFilters] = useState({
     ...initialFilters,
   });
+
+  useEffect(() => {
+    const isStaging = window.location.hostname.includes("staging");
+    // || window.location.hostname.includes("localhost");
+    if (IS_PL && !isStaging) {
+      setCouponValue("UNICEF2025");
+      setActiveCoupon(POLAND_COUPON);
+    }
+  }, [IS_PL]);
 
   useEffect(() => {
     if (isKzCountry) {
@@ -186,6 +203,7 @@ export const SelectProvider = () => {
         setAllFilters={setAllFilters}
         isFiltering={isFiltering}
         isToggleDisabled={isKzCountry}
+        IS_PL={IS_PL}
       />
 
       <SelectProviderBlock
@@ -238,6 +256,7 @@ const FiltersBlock = ({
   allFilters,
   setAllFilters,
   isToggleDisabled = false,
+  IS_PL,
   t,
 }) => {
   const localStorageCountry = localStorage.getItem("country");
@@ -266,14 +285,17 @@ const FiltersBlock = ({
         isDisabled={isToggleDisabled}
       /> */}
       {SHOW_COUPON && (
-        <Button
-          label={
-            activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
-          }
-          size="sm"
-          color="green"
-          onClick={activeCoupon ? removeCoupon : openCouponModal}
-        />
+        <div className="page__select-provider__filters-block__coupon-note">
+          <Button
+            label={
+              activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
+            }
+            size="sm"
+            color="green"
+            onClick={activeCoupon ? removeCoupon : openCouponModal}
+          />
+          {IS_PL && <p className="">*{t("coupon_note")}</p>}
+        </div>
       )}
     </Block>
   );

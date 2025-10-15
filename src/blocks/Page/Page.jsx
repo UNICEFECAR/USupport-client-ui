@@ -167,6 +167,7 @@ export const Page = ({
           ?.alpha2 || localStorageCountry;
       if (localStorageCountry) {
         localStorage.setItem("country", localStorageCountry);
+        window.dispatchEvent(new Event("countryChanged"));
       }
     }
 
