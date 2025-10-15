@@ -30,6 +30,29 @@
     width: 100%;
   }
 
+  &__filters-block__coupon-note {
+    padding-top: $spacing_1_2;
+    padding-bottom: $spacing_1_2;
+    width: 100%;
+    padding-left: $spacing_2_4;
+    text-align: left;
+
+    & .btn {
+      margin-bottom: $spacing_1_6;
+      margin-inline: auto;
+    }
+
+    @media screen and (min-width: $screen-md) {
+      padding-left: calc($spacing_7_0);
+      padding-right: calc($spacing_2_6 + $spacing_8_0);
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      padding-left: calc($spacing_23_0 + $spacing_5_6);
+      padding-right: calc($spacing_23_0 + $spacing_5_6);
+    }
+  }
+
   &__filters-block .container {
     display: flex;
     flex-direction: column;
