@@ -227,6 +227,13 @@ export const BaselineAssesment = ({
     }
   };
 
+  const handleRedirectToDashboard = () => {
+    queryClient.invalidateQueries({
+      queryKey: ["latest-baseline-assessment"],
+    });
+    navigate("/dashboard");
+  };
+
   // Render rating scale (1-5)
   const renderRatingScale = () => {
     const currentAnswer = currentQuestion
@@ -380,7 +387,7 @@ export const BaselineAssesment = ({
                 color="purple"
                 label="Save for later"
                 classes="baseline-assesment__navigation__save-for-later"
-                onClick={() => navigate("/dashboard")}
+                onClick={handleRedirectToDashboard}
               />
             </GridItem>
           </>
