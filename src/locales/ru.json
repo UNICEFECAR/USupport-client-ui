@@ -465,6 +465,7 @@
       "worried": "Взволнованный",
       "heading": "Как самочувствие сегодня?",
       "mood_tracker": "Трекер настроения",
+      "how_it_works": "Как это работает",
       "additional_comment_placeholder": "Что заставило Вас так себя чувствовать?",
       "submit_mood_track": "Отправить",
       "add_mood_tracker_success": "Ваше настроение было успешно добавлено ",
@@ -1310,13 +1311,13 @@
       "seconds": " через {{seconds}} секунд"
     },
     "mood-track-report": {
-      "heading": "Your mood tracking report",
-      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
-      "export_button": "Export report",
-      "cancel_button": "Cancel",
-      "start_date": "Start date",
-      "end_date": "End date",
-      "end_date_before_start_error": "End date must be after start date"
+      "heading": "Ваш отчет об отслеживании настроения",
+      "subheading": "Экспортируйте историю отслеживания настроения в файл CSV за выбранный период. Еженедельные отчеты будут отправляться на ваш адрес электронной почты.",
+      "export_button": "Экспортировать отчет",
+      "cancel_button": "Отмена",
+      "start_date": "Дата начала",
+      "end_date": "Дата окончания",
+      "end_date_before_start_error": "Дата окончания должна быть позже даты начала"
     }
   },
   "modals": {

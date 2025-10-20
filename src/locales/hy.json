@@ -449,6 +449,7 @@
       "worried": "Մտահոգ եմ",
       "heading": "Ինչպե՞ս եք զգում այսօր։",
       "mood_tracker": "Տրամադրության ստուգիչ",
+      "how_it_works": "Ինչպես է գործում",
       "additional_comment_placeholder": "Ի՞նչն ստիպեց այդպես զգալ։",
       "submit_mood_track": "Ուղարկել",
       "add_mood_tracker_success": "Ձեր օրվա տրամադրությունը բարեհաջող ավելացվել է։",
@@ -1217,13 +1218,13 @@
       "seconds": "{{seconds}} վայրկյանից"
     },
     "mood-track-report": {
-      "heading": "Your mood tracking report",
-      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
-      "export_button": "Export report",
-      "cancel_button": "Cancel",
-      "start_date": "Start date",
-      "end_date": "End date",
-      "end_date_before_start_error": "End date must be after start date"
+      "heading": "Ձեր տրամադրության հետևման հաշվետվությունը",
+      "subheading": "Արտահանիր տրամադրության հետևման պատմությունը CSV ֆայլի ձևաչափով ընտրված ժամանակահատվածի համար։ Շաբաթական հաշվետվությունները կուղարկվեն ձեր էլ․ փոստին։",
+      "export_button": "Արտահանել հաշվետվությունը",
+      "cancel_button": "Չեղարկել",
+      "start_date": "Սկզբի ամսաթիվ",
+      "end_date": "Ավարտի ամսաթիվ",
+      "end_date_before_start_error": "Ավարտի ամսաթիվը պետք է լինի ավելի ուշ, քան սկզբի ամսաթիվը"
     }
   },
   "modals": {

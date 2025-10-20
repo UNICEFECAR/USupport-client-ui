@@ -465,6 +465,7 @@
       "worried": "Қобалжыған",
       "heading": "Бүгін хал-жағдайыңыз қалай?",
       "mood_tracker": "Көңіл-күй трекері",
+      "how_it_works": "Қалай жұмыс істейді",
       "additional_comment_placeholder": "Сізді осылай сезінуге не себеп болды?",
       "submit_mood_track": "Жіберу",
       "add_mood_tracker_success": "Сіздің көңіл-күйіңіз сәтті қосылды",
@@ -1309,13 +1310,13 @@
       "seconds": " {{seconds}} секундтан кейін"
     },
     "mood-track-report": {
-      "heading": "Your mood tracking report",
-      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
-      "export_button": "Export report",
-      "cancel_button": "Cancel",
-      "start_date": "Start date",
-      "end_date": "End date",
-      "end_date_before_start_error": "End date must be after start date"
+      "heading": "Көңіл-күйді бақылау есебіңіз",
+      "subheading": "Таңдалған кезең үшін көңіл-күй тарихыңызды CSV файл ретінде экспорттаңыз. Апталық есептер электрондық поштаңызға жіберіледі.",
+      "export_button": "Есепті экспорттау",
+      "cancel_button": "Бас тарту",
+      "start_date": "Басталу күні",
+      "end_date": "Аяқталу күні",
+      "end_date_before_start_error": "Аяқталу күні басталу күнінен кейін болуы керек"
     }
   },
   "modals": {

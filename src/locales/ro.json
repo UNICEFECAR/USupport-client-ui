@@ -468,6 +468,7 @@
       "worried": "Îngrijorat",
       "heading": "Cum vă simțiți astăzi?",
       "mood_tracker": "Urmărirea stării de spirit",
+      "how_it_works": "Cum funcționează",
       "additional_comment_placeholder": "Ce v-a făcut să vă simțiți așa?",
       "submit_mood_track": "Trimiteți",
       "add_mood_tracker_success": "Starea dvs. de spirit zilnică a fost adăugată ",
@@ -1360,13 +1361,13 @@
       "seconds": " în {{seconds}} secunde"
     },
     "mood-track-report": {
-      "heading": "Your mood tracking report",
-      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
-      "export_button": "Export report",
-      "cancel_button": "Cancel",
-      "start_date": "Start date",
-      "end_date": "End date",
-      "end_date_before_start_error": "End date must be after start date"
+      "heading": "Raportul tău de monitorizare a dispoziției",
+      "subheading": "Exportă istoricul monitorizării dispoziției tale ca fișier CSV pentru perioada selectată. Rapoartele săptămânale vor fi trimise pe adresa ta de e-mail.",
+      "export_button": "Exportă raportul",
+      "cancel_button": "Anulează",
+      "start_date": "Data de început",
+      "end_date": "Data de sfârșit",
+      "end_date_before_start_error": "Data de sfârșit trebuie să fie după data de început"
     }
   },
   "modals": {

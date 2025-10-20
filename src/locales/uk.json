@@ -451,6 +451,7 @@
       "worried": "Схвильованим/ою",
       "heading": "Як ти почуваєшся сьогодні?",
       "mood_tracker": "Монітор настрою",
+      "how_it_works": "Як це працює",
       "additional_comment_placeholder": "Що є причиною того, що ти себе так почуваєш?",
       "submit_mood_track": "Надішли",
       "add_mood_tracker_success": "Сьогоднішній настрій додано",
@@ -1326,13 +1327,13 @@
       "seconds": "за {{seconds}} секунд"
     },
     "mood-track-report": {
-      "heading": "Your mood tracking report",
-      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
-      "export_button": "Export report",
-      "cancel_button": "Cancel",
-      "start_date": "Start date",
-      "end_date": "End date",
-      "end_date_before_start_error": "End date must be after start date"
+      "heading": "Ваш звіт про відстеження настрою",
+      "subheading": "Експортуйте історію відстеження настрою у форматі CSV за вибраний період. Щотижневі звіти будуть надсилатися на вашу електронну адресу.",
+      "export_button": "Експортувати звіт",
+      "cancel_button": "Скасувати",
+      "start_date": "Дата початку",
+      "end_date": "Дата завершення",
+      "end_date_before_start_error": "Дата завершення має бути пізніше дати початку"
     }
   },
   "modals": {

@@ -449,6 +449,7 @@
       "worried": "Zmartwiony/a",
       "heading": "Jak się dziś czujesz?",
       "mood_tracker": "Monitor nastroju",
+      "how_it_works": "Jak to działa",
       "additional_comment_placeholder": "Co sprawiło, że tak się poczułeś/aś?",
       "submit_mood_track": "Prześlij",
       "add_mood_tracker_success": "Twój dzisiejszy nastrój został pomyślnie dodany",
@@ -1287,13 +1288,13 @@
       "seconds": "za {{seconds}} sekund"
     },
     "mood-track-report": {
-      "heading": "Your mood tracking report",
-      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
-      "export_button": "Export report",
-      "cancel_button": "Cancel",
-      "start_date": "Start date",
-      "end_date": "End date",
-      "end_date_before_start_error": "End date must be after start date"
+      "heading": "Twój raport śledzenia nastroju",
+      "subheading": "Eksportuj historię śledzenia nastroju jako plik CSV dla wybranego okresu. Cotygodniowe raporty będą wysyłane na Twój adres e-mail.",
+      "export_button": "Eksportuj raport",
+      "cancel_button": "Anuluj",
+      "start_date": "Data rozpoczęcia",
+      "end_date": "Data zakończenia",
+      "end_date_before_start_error": "Data zakończenia musi być po dacie rozpoczęcia"
     }
   },
   "modals": {
