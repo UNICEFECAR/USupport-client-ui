@@ -1016,7 +1016,8 @@
     "mood-tracker-page": {
       "heading": "Monitor nastroju",
       "subheading": "Tutaj możesz sprawdzić swój monitor nastroju i postępy",
-      "export_report": "Export report"
+      "export_report": "Eksportuj raport",
+      "how_it_works": "Jak to działa"
     },
     "dashboard-page": {
       "accept_success": "Konsultacja została pomyślnie zaakceptowana"

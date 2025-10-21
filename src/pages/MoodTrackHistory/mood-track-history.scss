@@ -9,4 +9,10 @@
       place-self: center;
     }
   }
+
+  &__heading-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_8;
+  }
 }
