@@ -449,6 +449,7 @@
       "worried": "Zmartwiony/a",
       "heading": "Jak się dziś czujesz?",
       "mood_tracker": "Monitor nastroju",
+      "how_it_works": "Jak to działa",
       "additional_comment_placeholder": "Co sprawiło, że tak się poczułeś/aś?",
       "submit_mood_track": "Prześlij",
       "add_mood_tracker_success": "Twój dzisiejszy nastrój został pomyślnie dodany",
@@ -1287,13 +1288,13 @@
       "seconds": "za {{seconds}} sekund"
     },
     "mood-track-report": {
-      "heading": "Your mood tracking report",
-      "subheading": "Export your mood tracking history as a CSV file for the selected period. Weekly reports will be sent to your email address.",
-      "export_button": "Export report",
-      "cancel_button": "Cancel",
-      "start_date": "Start date",
-      "end_date": "End date",
-      "end_date_before_start_error": "End date must be after start date"
+      "heading": "Twój raport śledzenia nastroju",
+      "subheading": "Eksportuj historię śledzenia nastroju jako plik CSV dla wybranego okresu. Cotygodniowe raporty będą wysyłane na Twój adres e-mail.",
+      "export_button": "Eksportuj raport",
+      "cancel_button": "Anuluj",
+      "start_date": "Data rozpoczęcia",
+      "end_date": "Data zakończenia",
+      "end_date_before_start_error": "Data zakończenia musi być po dacie rozpoczęcia"
     }
   },
   "modals": {
@@ -1396,6 +1397,14 @@
       "confirm": "Tak, usuń wszystkie moje dane dziennika nastroju",
       "cancel": "Nie, zachowaj moje dane dziennika nastroju",
       "success": "Twoje dane dziennika nastroju zostały pomyślnie usunięte."
+    },
+    "how-it-works-mood-track": {
+      "heading": "Jak działa rejestrator nastroju",
+      "subheading_1": "Możesz łatwo zapisywać swoje nastroje w ciągu dnia lub w dowolnych, wybranych przez siebie odstępach czasu. Każdy wpis pomaga stworzyć osobistą historię nastroju, co pozwala śledzić zmiany i wzorce w czasie. To szybkie, prywatne i dopasowane do Twojej codziennej rutyny.",
+      "subheading_2": "Podczas zapisywania nastroju możesz opcjonalnie oznaczyć go jako szczególne lub ważne wydarzenie życiowe. Możesz też dodać komentarze, aby uchwycić myśli lub szczegóły związane z daną chwilą. To pomaga nadać więcej kontekstu historii Twojego nastroju.",
+      "subheading_3": "Wykres pokaże Twoje zarejestrowane nastroje według daty i godziny, pomagając wizualizować Twoje emocjonalne trendy. Poniżej znajdziesz polecane treści dopasowane do Twojego ostatniego wpisu nastroju – dla wsparcia i lepszego zrozumienia.",
+      "subheading_4": "Klikając konkretne wydarzenie, możesz zobaczyć wszystkie komentarze i notatki zarejestrowane w tym momencie, aby lepiej zrozumieć, co wpłynęło na Twój nastrój.",
+      "subheading_5": "Możesz wygenerować raport dla dowolnego zakresu dat i wyeksportować go jako plik CSV, aby łatwo przeglądać lub udostępniać dane o nastroju, gdy zajdzie taka potrzeba."
     }
   },
   "routes": {

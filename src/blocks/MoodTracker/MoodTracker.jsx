@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { toast } from "react-toastify";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
+
 import {
   Block,
   Button,
@@ -11,8 +12,9 @@ import {
   Toggle,
   Modal,
 } from "@USupport-components-library/src";
-import { useAddMoodTrack } from "#hooks";
+import { useAddMoodTrack, useGetHasCompletedMoodTrackerEver } from "#hooks";
 import { ThemeContext } from "@USupport-components-library/utils";
+import { HowItWorksMoodTrack } from "#modals";
 
 import { RootContext } from "#routes";
 
@@ -51,6 +53,11 @@ export const MoodTracker = ({
   const [emoticons, setEmoticons] = useState(emoticonsArray);
   const [isEmergency, setIsEmergency] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [isHowItWorksMoodTrackOpen, setIsHowItWorksMoodTrackOpen] =
+    useState(false);
+
+  const { data: hasCompletedMoodTrackerEver } =
+    useGetHasCompletedMoodTrackerEver(IS_RO);
 
   const hasSelectedMoodtracker = useCallback(() => {
     return emoticons.some((emoticon) => emoticon.isSelected);
@@ -144,6 +151,12 @@ export const MoodTracker = ({
 
   return (
     <React.Fragment>
+      {IS_RO && (
+        <HowItWorksMoodTrack
+          isOpen={isHowItWorksMoodTrackOpen}
+          onClose={() => setIsHowItWorksMoodTrackOpen(false)}
+        />
+      )}
       <Modal
         isOpen={isSuccessModalOpen}
         closeModal={() => setIsSuccessModalOpen(false)}
@@ -157,12 +170,21 @@ export const MoodTracker = ({
       <Block classes={["mood-tracker", classNames(classes)].join(" ")}>
         <div className="mood-tracker__heading">
           <h4>{t("heading")}</h4>
-          <p
-            className="small-text mood-tracker-button"
-            onClick={handleMoodtrackClick}
-          >
-            {t("mood_tracker")}
-          </p>
+          {!(IS_RO && !hasCompletedMoodTrackerEver) ? (
+            <p
+              className="small-text mood-tracker-button"
+              onClick={handleMoodtrackClick}
+            >
+              {t("mood_tracker")}
+            </p>
+          ) : (
+            <Button
+              label={t("how_it_works")}
+              type="secondary"
+              onClick={() => setIsHowItWorksMoodTrackOpen(true)}
+              classes="mood-tracker__how-it-works-btn"
+            />
+          )}
         </div>
         <>
           <div className="mood-tracker__rating">{renderEmoticons()}</div>
