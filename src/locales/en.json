@@ -1093,7 +1093,8 @@
     "mood-tracker-page": {
       "heading": "Mood tracker",
       "subheading": "Here you can check your mood tracking and progress ",
-      "export_report": "Export report"
+      "export_report": "Export report",
+      "how_it_works": "See how it works"
     },
     "dashboard-page": {
       "accept_success": "Consultation accepted successfully"

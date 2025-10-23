@@ -1090,7 +1090,9 @@
     },
     "mood-tracker-page": {
       "heading": "Urmărirea stării de spirit",
-      "subheading": "Aici puteți verifica și urmări progresul stării dvs. de spirit "
+      "subheading": "Aici puteți verifica și urmări progresul stării dvs. de spirit ",
+      "export_report": "Exportați raportul",
+      "how_it_works": "Cum funcționează"
     },
     "dashboard-page": {
       "accept_success": "Consultație acceptată "

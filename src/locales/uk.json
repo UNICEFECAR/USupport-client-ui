@@ -1055,7 +1055,8 @@
     "mood-tracker-page": {
       "heading": "Монітор настрою",
       "subheading": "Тут можеш відстежувати свій настрій і прогрес",
-      "export_report": "Export report"
+      "export_report": "Export report",
+      "how_it_works": "Як це працює"
     },
     "dashboard-page": {
       "accept_success": "Консультацію прийнято"
