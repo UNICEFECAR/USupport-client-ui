@@ -1,0 +1,15 @@
+@import "@USupport-components-library/styles";
+
+.how-it-works-mood-track {
+  &__slide {
+    > img {
+      width: 100%;
+      resize: contain;
+      margin: 0 auto;
+    }
+  }
+
+  &__slide .text {
+    padding-bottom: $spacing_1_2;
+  }
+}

@@ -1,8 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { clientSvc } from "@USupport-components-library/services";
 import useError from "./useError";
 
 export default function useAddMoodTrack(onSuccess, onError, onMutate) {
+  const queryClient = useQueryClient();
   /**
    *
    * @param {Object} data - containing the "mood" and "comment" fields
@@ -19,7 +20,14 @@ export default function useAddMoodTrack(onSuccess, onError, onMutate) {
 
   const addMoodTrackMutation = useMutation(addMoodTrack, {
     onMutate: onMutate,
-    onSuccess: onSuccess,
+    onSuccess: (data, variables, context) => {
+      queryClient.invalidateQueries({
+        queryKey: ["getHasCompletedMoodTrackerEver"],
+      });
+      if (onSuccess) {
+        onSuccess(data, variables, context);
+      }
+    },
     onError: (error, variables, rollback) => {
       const { message: errorMessage } = useError(error);
       onError(errorMessage, variables, rollback);

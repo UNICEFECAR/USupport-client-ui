@@ -10,3 +10,4 @@ export * from "./DeleteChatHistory";
 export * from "./ShareModal";
 export * from "./BaselineAssesmentModal";
 export * from "./DeleteMoodTrackerHistory";
+export * from "./HowItWorksMoodTrack";
