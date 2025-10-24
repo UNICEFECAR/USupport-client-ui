@@ -35,6 +35,15 @@
           transform: translateX(12.5rem);
         }
       }
+
+      &__pl-description {
+        display: none;
+
+        @media screen and (min-width: $screen_md) {
+          display: block;
+          margin-bottom: $spacing_5_0;
+        }
+      }
     }
 
     &__content-item {
@@ -73,6 +82,14 @@
           &:first-of-type {
             margin-top: $spacing_9_6;
           }
+        }
+      }
+
+      &__pl-description {
+        margin: $spacing_1_6 auto;
+
+        @media screen and (min-width: $screen_md) {
+          display: none;
         }
       }
     }

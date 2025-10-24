@@ -321,7 +321,8 @@
       "text_2": "uSupport is a mental health, psychosocial and wellbeing platform designed for young people and their carers where privacy and safety is a priority.",
       "heading_3": "About you",
       "text_3": "Be your best self! Your mental health matters.",
-      "login": "Login with Email/Access Token"
+      "login": "Login with Email/Access Token",
+      "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
       "email_error": "Please enter a valid email",
