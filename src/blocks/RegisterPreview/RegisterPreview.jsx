@@ -29,6 +29,7 @@ import "./register-preview.scss";
  */
 export const RegisterPreview = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "register-preview" });
+  const country = localStorage.getItem("country");
   const navigate = useNavigate();
   const [error, setErrror] = useState();
 
@@ -115,6 +116,11 @@ export const RegisterPreview = () => {
     <Block classes="register-preview">
       <Grid md={8} lg={12} classes="register-preview__grid">
         <GridItem md={4} lg={6} classes="register-preview__grid__mascot-item">
+          {country === "PL" && (
+            <h4 className="register-preview__grid__mascot-item__pl-description">
+              {t("pl_text")}
+            </h4>
+          )}
           <img src={mascotHappyBlue} alt="Happy mascot" />
         </GridItem>
         <GridItem md={4} lg={6} classes="register-preview__grid__content-item">
@@ -124,6 +130,11 @@ export const RegisterPreview = () => {
             </CustomCarousel>
           </div>
           <div className="register-preview__grid__content-item__btns-container">
+            {country === "PL" && (
+              <h4 className="register-preview__grid__content-item__pl-description">
+                {t("pl_text")}
+              </h4>
+            )}
             <Button
               size="lg"
               label={t("login")}
