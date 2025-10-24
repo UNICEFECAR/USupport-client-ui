@@ -306,7 +306,8 @@
       "text_2": "uSupport to platforma poświęcona zdrowiu psychicznemu, dobrostanowi psychospołecznemu i dobremu samopoczuciu, przeznaczona dla młodych ludzi, gdzie prywatność i bezpieczeństwo są priorytetem.",
       "heading_3": "O Tobie",
       "text_3": "Bądź najlepszą wersją siebie! Twoje zdrowie psychiczne ma znaczenie.",
-      "login": "Logowanie za pomocą adresu e-mail/tokenu dostępu"
+      "login": "Logowanie za pomocą adresu e-mail/tokenu dostępu",
+      "pl_text": "uSupport to platforma zdrowia psychicznego i dobrego samopoczucia przeznaczona dla młodych osób (16-24)"
     },
     "register-email": {
       "email_error": "Wprowadź poprawny adres email",
