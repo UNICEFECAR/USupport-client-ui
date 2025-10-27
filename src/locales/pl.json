@@ -1053,7 +1053,8 @@
       "consultation_end_reminder": "Konsultacja zakończy się w ciągu {{minutes}} minut",
       "textarea_placeholder": "Wpisz swoją wiadomość tutaj",
       "allow_permissions": "Odmówiono dostępu do kamery i/lub mikrofonu. Jeśli chcesz porozmawiać ze specjalistą/ką, zezwól na dostęp w ustawieniach przeglądarki lub klikając ikonę informacji w pasku adresu",
-      "permissions_error": "Nie wyraziłeś/aś zgody"
+      "permissions_error": "Nie wyraziłeś/aś zgody",
+      "typing": "Pisze..."
     },
     "payment-history-page": {
       "heading": "Historia płatności",
