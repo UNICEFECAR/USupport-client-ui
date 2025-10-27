@@ -1131,7 +1131,8 @@
       "textarea_placeholder": "Introduceți mesajul dvs. aici...",
 
       "permissions_error": "Ați refuzat permisiunile",
-      "allow_permissions": "Accesul la cameră și/sau microfon a fost refuzat. Dacă doriți să vorbiți cu furnizorul, activați permisiunile din setările browserului sau din pictograma de informații din bara de adrese."
+      "allow_permissions": "Accesul la cameră și/sau microfon a fost refuzat. Dacă doriți să vorbiți cu furnizorul, activați permisiunile din setările browserului sau din pictograma de informații din bara de adrese.",
+      "typing": "Tastează..."
     },
     "payment-history-page": {
       "heading": "Istoricul plăților",
