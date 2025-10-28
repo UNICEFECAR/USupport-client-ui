@@ -1478,6 +1478,11 @@
       "subheading_3": "A chart will display your recorded moods by date and time, helping you visualize your emotional trends. Below it, you’ll find recommended content tailored to your most recent mood entry for support and insight.",
       "subheading_4": "By clicking on a specific event, you can view all comments and notes recorded for that moment, giving you deeper insight into what influenced your mood.",
       "subheading_5": "You can generate a report for any selected date range and export it as a CSV file, making it easy to review or share your mood data when needed."
+    },
+    "leave-consultation": {
+      "heading": "Are you sure you want to leave the consultation?",
+      "confirm": "Leave",
+      "cancel": "Stay"
     }
   },
   "routes": {
