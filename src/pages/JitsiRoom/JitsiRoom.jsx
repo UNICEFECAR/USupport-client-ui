@@ -14,6 +14,7 @@ import {
 } from "@USupport-components-library/utils";
 
 import { Page, SafetyFeedback } from "#blocks";
+import { LeaveConsultation } from "#modals";
 import { RootContext } from "#routes";
 import {
   useConsultationSocket,
@@ -75,6 +76,7 @@ export const JitsiRoom = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [showSafetyFeedback, setShowSafetyFeedback] = useState(false);
+  const [isLeaveConsultationOpen, setIsLeaveConsultationOpen] = useState(false);
   const [hideControls, setHideControls] = useState(false);
   const [interfaces, setInterfaceData] = useState({
     videoOn,
@@ -292,6 +294,10 @@ export const JitsiRoom = () => {
     });
   };
 
+  const requestLeaveConsultation = () => {
+    setIsLeaveConsultationOpen(true);
+  };
+
   useEffect(() => {
     if (leaveConsultation) {
       leaveConsultationFn.current = leaveConsultation;
@@ -352,7 +358,7 @@ export const JitsiRoom = () => {
                 });
               }}
               toggleChat={toggleChat}
-              leaveConsultation={leaveConsultation}
+              leaveConsultation={requestLeaveConsultation}
               isCameraOn={interfaces.videoOn}
               isMicrophoneOn={interfaces.microphoneOn}
               renderIn="client"
@@ -454,6 +460,10 @@ export const JitsiRoom = () => {
                 setHideControls(true);
               }
             });
+
+            externalApi.addListener("videoConferenceJoined", () => {
+              setIsLoading(false);
+            });
           }}
           getIFrameRef={(iframeRef) => {
             iframeRef.style.height = "100vh";
@@ -484,6 +494,13 @@ export const JitsiRoom = () => {
           backdropMessagesContainerRef={backdropMessagesContainerRef}
         />
       </div>
+      <LeaveConsultation
+        isOpen={isLeaveConsultationOpen}
+        onCancel={() => {
+          setIsLeaveConsultationOpen(false);
+        }}
+        onConfirm={leaveConsultation}
+      />
     </Page>
   );
 };
