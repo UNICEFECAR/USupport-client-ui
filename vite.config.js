@@ -23,5 +23,15 @@ export default defineConfig(() => {
         "#modals": path.resolve(__dirname, "./src/modals"),
       },
     },
+    build: {
+      sourcemap: true,
+    },
+    server: {
+      allowedHosts: [
+        "romania.staging.usupport.georgiganchev",
+        "poland.staging.usupport.georgiganchev",
+        "kazakhstan.staging.usupport.georgiganchev",
+      ],
+    },
   };
 });
