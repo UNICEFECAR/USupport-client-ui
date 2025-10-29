@@ -23,5 +23,8 @@ export default defineConfig(() => {
         "#modals": path.resolve(__dirname, "./src/modals"),
       },
     },
+    build: {
+      sourcemap: true,
+    },
   };
 });
