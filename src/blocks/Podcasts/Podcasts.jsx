@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -83,17 +83,17 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
   );
 
   const handleCategoryOnPress = (index) => {
-    const categoriesCopy = [...categories];
+    const selectedCategoryFromFiltered = categoriesToShow[index];
+    if (!selectedCategoryFromFiltered) return;
 
+    // Update all categories to set the selected one
+    const categoriesCopy = [...categories];
     for (let i = 0; i < categoriesCopy.length; i++) {
-      if (i === index) {
-        categoriesCopy[i].isSelected = true;
-        setSelectedCategory(categoriesCopy[i]);
-      } else {
-        categoriesCopy[i].isSelected = false;
-      }
+      categoriesCopy[i].isSelected =
+        categoriesCopy[i].id === selectedCategoryFromFiltered.id;
     }
     setCategories(categoriesCopy);
+    setSelectedCategory(selectedCategoryFromFiltered);
   };
 
   //--------------------- Search Input ----------------------//
@@ -111,6 +111,28 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
   };
 
   const podcastIdsQuery = useQuery(["podcastIds"], getPodcastsIds);
+
+  const { data: podcastCategoryIdsToShow } = useQuery(
+    ["podcasts-category-ids", usersLanguage, podcastIdsQuery.data],
+    () =>
+      cmsSvc.getPodcastCategoryIds(
+        usersLanguage,
+        podcastIdsQuery.data?.length > 0 ? podcastIdsQuery.data : undefined
+      ),
+    {
+      enabled: !!podcastIdsQuery.data?.length,
+    }
+  );
+
+  const categoriesToShow = useMemo(() => {
+    if (!categories || !podcastCategoryIdsToShow) return [];
+
+    return categories.filter(
+      (category) =>
+        podcastCategoryIdsToShow.includes(category.id) ||
+        category.value === "all"
+    );
+  }, [categories, podcastCategoryIdsToShow]);
 
   const getPodcastsData = async () => {
     let categoryId = "";
@@ -158,12 +180,13 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
         !categoriesQuery.isLoading &&
         categoriesQuery.data?.length > 0 &&
         podcastIdsQuery.data?.length > 0 &&
-        selectedCategory !== null,
+        selectedCategory !== null &&
+        categoriesToShow?.length > 0,
       refetchOnWindowFocus: false,
     }
   );
 
-  let areCategoriesReady = categoriesQuery?.data?.length > 1;
+  let areCategoriesReady = categoriesToShow?.length > 1;
 
   return (
     <Block classes="podcasts">
@@ -176,9 +199,9 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
 
         {showCategories && areCategoriesReady && (
           <GridItem md={8} lg={12} classes="podcasts__categories-item">
-            {categories && (
+            {categoriesToShow && (
               <Tabs
-                options={categories}
+                options={categoriesToShow}
                 handleSelect={handleCategoryOnPress}
                 t={t}
               />
