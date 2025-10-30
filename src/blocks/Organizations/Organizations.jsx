@@ -11,6 +11,7 @@ import {
   useGetLatestBaselineAssessment,
   useGetClientData,
   useCreateBaselineAssessment,
+  useGetOrganizationKey,
 } from "#hooks";
 
 import { RootContext } from "#routes";
@@ -93,6 +94,8 @@ export const Organizations = () => {
   const { data: latestAssessment } = useGetLatestBaselineAssessment(!isTmpUser);
   const { data: metadata, isLoading: isMetadataLoading } =
     useGetOrganizationMetadata();
+  const { data: organizationsKey, isLoading: isOrganizationsKeyLoading } =
+    useGetOrganizationKey("web");
   const createBaselineAssessmentMutation = useCreateBaselineAssessment();
 
   const personalizationMutation = useMutation({
@@ -140,6 +143,11 @@ export const Organizations = () => {
   };
 
   const handleOrganizationClick = (organization) => {
+    // Scroll to map when organization is clicked
+    interactiveMapRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+
     if (
       mapControls &&
       organization.location.latitude &&
@@ -380,14 +388,17 @@ export const Organizations = () => {
           loading={personalizationMutation.isLoading}
           label={t("personalize")}
         />
-        <InteractiveMap
-          data={data}
-          userLocation={userLocation}
-          setUserLocation={setUserLocation}
-          onMapReady={handleMapReady}
-          t={t}
-          navigate={navigate}
-        />
+        {!isOrganizationsKeyLoading && (
+          <InteractiveMap
+            data={data}
+            userLocation={userLocation}
+            setUserLocation={setUserLocation}
+            onMapReady={handleMapReady}
+            t={t}
+            navigate={navigate}
+            organizationsKey={organizationsKey}
+          />
+        )}
         <Grid md={8} lg={12} classes="organizations__grid">
           {isLoading ? <Loading /> : renderOrganizations()}
         </Grid>
