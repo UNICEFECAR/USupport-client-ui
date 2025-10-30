@@ -30,7 +30,7 @@ import "./podcasts.scss";
  */
 export const Podcasts = ({ showSearch, showCategories, sort }) => {
   const navigate = useNavigate();
-  const { i18n, t } = useTranslation("videos");
+  const { i18n, t } = useTranslation("blocks", { keyPrefix: "videos" });
 
   const { isTmpUser } = useContext(RootContext);
 
@@ -129,7 +129,12 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
       ids: podcastIdsQuery.data,
     });
 
-    return data.data || [];
+    const podcastsData = data.data || [];
+    // Process podcasts with async destructurePodcastData
+    const processedPodcasts = await Promise.all(
+      podcastsData.map((podcast) => destructurePodcastData(podcast))
+    );
+    return processedPodcasts;
   };
 
   const {
@@ -200,7 +205,8 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
                       rating.content_type === "podcast" &&
                       rating.positive === false
                   );
-                  const podcastData = destructurePodcastData(podcast);
+                  // Podcast data is already processed in getPodcastsData
+                  const podcastData = podcast;
                   return (
                     <GridItem lg={6} key={index}>
                       <CardMedia

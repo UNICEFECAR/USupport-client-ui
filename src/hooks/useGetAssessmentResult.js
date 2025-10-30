@@ -41,8 +41,13 @@ export function useGetAssessmentResult(queryObj, enabled = true) {
       const attributes = data.data[0].attributes;
       const articles =
         attributes?.articles?.data?.map(destructureArticleData) || [];
-      const podcasts =
-        attributes?.podcasts?.data?.map(destructurePodcastData) || [];
+      const podcasts = attributes?.podcasts?.data
+        ? await Promise.all(
+            attributes.podcasts.data.map((podcast) =>
+              destructurePodcastData(podcast)
+            )
+          )
+        : [];
       const videos = attributes?.videos?.data?.map(destructureVideoData) || [];
 
       return {
