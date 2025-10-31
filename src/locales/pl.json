@@ -1408,6 +1408,11 @@
       "subheading_3": "Wykres pokaże Twoje zarejestrowane nastroje według daty i godziny, pomagając wizualizować Twoje emocjonalne trendy. Poniżej znajdziesz polecane treści dopasowane do Twojego ostatniego wpisu nastroju – dla wsparcia i lepszego zrozumienia.",
       "subheading_4": "Klikając konkretne wydarzenie, możesz zobaczyć wszystkie komentarze i notatki zarejestrowane w tym momencie, aby lepiej zrozumieć, co wpłynęło na Twój nastrój.",
       "subheading_5": "Możesz wygenerować raport dla dowolnego zakresu dat i wyeksportować go jako plik CSV, aby łatwo przeglądać lub udostępniać dane o nastroju, gdy zajdzie taka potrzeba."
+    },
+    "leave-consultation": {
+      "heading": "Czy na pewno chcesz opuścić konsultację?",
+      "confirm": "Opuść",
+      "cancel": "Anuluj"
     }
   },
   "routes": {

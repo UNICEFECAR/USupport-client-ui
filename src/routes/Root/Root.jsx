@@ -478,6 +478,7 @@ export default function Root() {
     },
     staleTime: Infinity,
     enabled: !!country && !hasAddedPlatformAccess && !isTmpUser,
+    refetchInterval: false,
   });
 
   const location = useLocation();
@@ -491,10 +492,10 @@ export default function Root() {
   // This is done by placing the leaveConsultationFn ref in the RootContext so it can be accessible everywhere
   // and then setting it to the "leaveConsultation" function in the "Consultation" page
   useEffect(() => {
-    const currentUrl = location.pathname;
+    const currentUrl = location.pathname.split("/").pop();
     if (
-      previousLocation.current === "/consultation" &&
-      currentUrl !== "/consultation"
+      previousLocation.current === "consultation" &&
+      currentUrl !== "consultation"
     ) {
       if (leaveConsultationFn.current) {
         leaveConsultationFn.current();
@@ -503,7 +504,7 @@ export default function Root() {
 
     previousLocation.current = currentUrl;
 
-    if (currentUrl === "/consultation") {
+    if (currentUrl === "consultation") {
       setHideIdleTimer(true);
     } else if (hideIdleTimer) {
       setHideIdleTimer(false);
