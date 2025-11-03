@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+  useMemo,
+} from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -115,6 +121,9 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
     for (let i = 0; i < ageGroupsCopy.length; i++) {
       if (i === index) {
+        if (!ageGroupsCopy[i].isSelected) {
+          handleCategoryOnPress(0);
+        }
         ageGroupsCopy[i].isSelected = true;
         setSelectedAgeGroup(ageGroupsCopy[i]);
       } else {
@@ -163,17 +172,17 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
   );
 
   const handleCategoryOnPress = (index) => {
-    const categoriesCopy = [...categories];
+    const selectedCategoryFromFiltered = categoriesToShow[index];
+    if (!selectedCategoryFromFiltered) return;
 
+    // Update all categories to set the selected one
+    const categoriesCopy = [...categories];
     for (let i = 0; i < categoriesCopy.length; i++) {
-      if (i === index) {
-        categoriesCopy[i].isSelected = true;
-        setSelectedCategory(categoriesCopy[i]);
-      } else {
-        categoriesCopy[i].isSelected = false;
-      }
+      categoriesCopy[i].isSelected =
+        categoriesCopy[i].id === selectedCategoryFromFiltered.id;
     }
     setCategories(categoriesCopy);
+    setSelectedCategory(selectedCategoryFromFiltered);
   };
 
   //--------------------- Search Input ----------------------//
@@ -214,6 +223,39 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     ["articleIds", currentCountry],
     getArticlesIds
   );
+
+  const { data: articleCategoryIdsToShow } = useQuery(
+    [
+      "articles-category-ids",
+      usersLanguage,
+      selectedAgeGroup?.id,
+      articleIdsQuery.data,
+    ],
+    () => {
+      if (!selectedAgeGroup?.id) return [];
+      return cmsSvc.getArticleCategoryIds(
+        usersLanguage,
+        selectedAgeGroup.id,
+        articleIdsQuery.data?.length > 0 ? articleIdsQuery.data : undefined
+      );
+    },
+    {
+      enabled:
+        !!selectedAgeGroup?.id &&
+        !articleIdsQuery.isLoading &&
+        !!articleIdsQuery.data?.length,
+    }
+  );
+
+  const categoriesToShow = useMemo(() => {
+    if (!categories || !articleCategoryIdsToShow) return [];
+
+    return categories.filter(
+      (category) =>
+        articleCategoryIdsToShow.includes(category.id) ||
+        category.value === "all"
+    );
+  }, [categories, articleCategoryIdsToShow]);
 
   const [hasMoreGuest, setHasMoreGuest] = useState(true);
 
@@ -312,6 +354,10 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
   };
 
   // -------------------- Normal clients ---------------//
+  const availableCategories = useMemo(() => {
+    return categoriesToShow.map((category) => category.id).filter((id) => !!id);
+  }, [categoriesToShow]);
+
   const {
     articles,
     loading: isArticlesLoading,
@@ -328,6 +374,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
     categoryIdFilter: selectedCategory?.id || null,
     searchValue: debouncedSearchValue,
+    availableCategories,
   });
 
   const articlesToTransform = isTmpUser ? guestArticles : articles;
@@ -365,7 +412,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
   };
 
   let areCategoriesAndAgeGroupsReady =
-    categoriesQuery?.data?.length > 1 && ageGroupsQuery?.data?.length > 0;
+    categoriesToShow?.length > 1 && ageGroupsQuery?.data?.length > 0;
 
   return (
     <Block classes="articles">
@@ -379,7 +426,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
         >
           <Grid classes="articles__main-grid">
             {showAgeGroups &&
-              categoriesQuery?.data?.length > 1 &&
+              categoriesToShow?.length > 1 &&
               ageGroupsQuery?.data?.length > 0 && (
                 <GridItem md={4} lg={6} classes="articles__age-groups-item">
                   {ageGroups && (
@@ -401,9 +448,9 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
             {showCategories && areCategoriesAndAgeGroupsReady && (
               <GridItem md={8} lg={12} classes="articles__categories-item">
-                {categories && (
+                {categoriesToShow && (
                   <Tabs
-                    options={categories}
+                    options={categoriesToShow}
                     handleSelect={handleCategoryOnPress}
                     t={t}
                   />

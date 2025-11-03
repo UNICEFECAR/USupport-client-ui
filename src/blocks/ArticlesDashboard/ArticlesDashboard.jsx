@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -88,8 +88,6 @@ export const ArticlesDashboard = () => {
 
     try {
       const res = await cmsSvc.getAgeGroups(usersLanguage);
-      console.log("Age groups:");
-      console.log(res.data);
       const ageGroupsData = res.data.map((age, index) => ({
         label: age.attributes.name,
         id: age.id,
@@ -120,6 +118,9 @@ export const ArticlesDashboard = () => {
 
     for (let i = 0; i < ageGroupsCopy.length; i++) {
       if (i === index) {
+        if (!ageGroupsCopy[i].isSelected) {
+          handleCategoryOnPress(0);
+        }
         ageGroupsCopy[i].isSelected = true;
         setSelectedAgeGroup(ageGroupsCopy[i]);
       } else {
@@ -163,20 +164,6 @@ export const ArticlesDashboard = () => {
     }
   );
 
-  const handleCategoryOnPress = (index) => {
-    const categoriesCopy = [...categories];
-
-    for (let i = 0; i < categoriesCopy.length; i++) {
-      if (i === index) {
-        categoriesCopy[i].isSelected = true;
-        setSelectedCategory(categoriesCopy[i]);
-      } else {
-        categoriesCopy[i].isSelected = false;
-      }
-    }
-    setCategories(categoriesCopy);
-  };
-
   //--------------------- Articles ----------------------//
 
   const getArticlesIds = async () => {
@@ -186,7 +173,57 @@ export const ArticlesDashboard = () => {
     return articlesIds;
   };
 
-  const articleIdsQuerry = useQuery(["articleIds"], getArticlesIds);
+  const articleIdsQuerry = useQuery(
+    ["articleIds", selectedAgeGroupId],
+    getArticlesIds
+  );
+
+  const { data: articleCategoryIdsToShow } = useQuery(
+    [
+      "articles-category-ids",
+      usersLanguage,
+      articleIdsQuerry.data,
+      selectedAgeGroupId,
+    ],
+    () =>
+      cmsSvc.getArticleCategoryIds(
+        usersLanguage,
+        selectedAgeGroupId,
+        articleIdsQuerry.data
+      ),
+    {
+      enabled: !!articleIdsQuerry.data,
+    }
+  );
+
+  const categoriesToShow = useMemo(() => {
+    if (!categories || !articleCategoryIdsToShow) return [];
+
+    const filtered = categories.filter(
+      (category) =>
+        articleCategoryIdsToShow.includes(category.id) ||
+        category.value === "all"
+    );
+
+    return filtered;
+  }, [categories, articleCategoryIdsToShow]);
+
+  const handleCategoryOnPress = (index) => {
+    const categoriesCopy = [...categories];
+
+    const clicked = categoriesToShow[index];
+
+    for (let i = 0; i < categoriesCopy.length; i++) {
+      const cat = categoriesCopy[i];
+      if (cat.id === clicked.id) {
+        cat.isSelected = true;
+        setSelectedCategory(cat);
+      } else {
+        cat.isSelected = false;
+      }
+    }
+    setCategories(categoriesCopy);
+  };
 
   //--------------------- Newest Article ----------------------//
 
@@ -249,19 +286,24 @@ export const ArticlesDashboard = () => {
     }
   );
 
+  const availableCategories = useMemo(() => {
+    return categoriesToShow.map((category) => category.id).filter((id) => !!id);
+  }, [categoriesToShow]);
+
   const {
     articles,
     loading: isArticlesLoading,
     isReady,
     readArticleIds,
   } = useRecommendedArticles({
-    limit: 6, // Only show 2 articles
+    limit: 2, // Only show 2 articles
     ageGroupId: selectedAgeGroup?.id,
     enabled: isTmpUser
       ? false
       : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
     categoryIdFilter: selectedCategory?.id || null,
     sortFilter: "read_count",
+    availableCategories,
   });
 
   const articlesToTransform = isTmpUser ? newestArticles : articles;
@@ -276,136 +318,155 @@ export const ArticlesDashboard = () => {
 
   const showLoading = isTmpUser ? newestArticlesLoading : isArticlesLoading;
 
+  // Loading states
+  const isInitialLoading =
+    ageGroupsQuery.isLoading ||
+    categoriesQuery.isLoading ||
+    articleIdsQuerry.isLoading;
+  const isContentLoading = showLoading;
+  const isAnyLoading = isInitialLoading || isContentLoading;
+
+  // Data availability
+  const hasCategoriesData = categoriesToShow?.length > 1;
+  const hasAgeGroupsData = ageGroups?.length > 0;
+  const hasArticlesData = transformedArticles?.length > 0;
+  const hasIdsData = articleIdsQuerry.data?.length > 0;
+
+  // UI conditions
+  const shouldShowDashboard = hasCategoriesData;
+  const shouldShowAgeGroups = showAgreGroups && hasAgeGroupsData;
+  const shouldShowNoResults =
+    (isReady || isNewestArticlesFetched) && !hasArticlesData;
+  const shouldShowArticles =
+    hasArticlesData && hasCategoriesData && !isContentLoading;
+
+  // Render helpers
+  const renderHeading = () => (
+    <GridItem xs={2} md={4} lg={6} classes="articles-dashboard__heading-item">
+      <h4>{t("heading")}</h4>
+    </GridItem>
+  );
+
+  const renderViewMore = () => (
+    <GridItem xs={2} md={4} lg={6} classes="articles-dashboard__view-more-item">
+      <p
+        className="small-text view-all-button"
+        onClick={() => navigate("/information-portal/articles")}
+      >
+        {t("view_all")}
+      </p>
+    </GridItem>
+  );
+
+  const renderAgeGroups = () =>
+    shouldShowAgeGroups && (
+      <GridItem md={8} lg={12} classes="articles-dashboard__age-group-item">
+        <TabsUnderlined
+          options={ageGroups}
+          handleSelect={handleAgeGroupOnPress}
+        />
+      </GridItem>
+    );
+
+  const renderCategories = () => (
+    <GridItem md={8} lg={12} classes="articles-dashboard__categories-item">
+      {hasCategoriesData && (
+        <Tabs
+          options={categoriesToShow}
+          handleSelect={handleCategoryOnPress}
+          t={t}
+        />
+      )}
+    </GridItem>
+  );
+
+  const renderLoading = () =>
+    isContentLoading && (
+      <GridItem md={8} lg={12}>
+        <Loading />
+      </GridItem>
+    );
+
+  const renderArticles = () =>
+    transformedArticles?.map((article, index) => {
+      const articleData = article.attributes
+        ? destructureArticleData(article)
+        : article;
+      const isLikedByUser = contentRatings?.some(
+        (rating) =>
+          rating.content_id === article.id &&
+          rating.content_type === "article" &&
+          rating.positive === true
+      );
+      const isDislikedByUser = contentRatings?.some(
+        (rating) =>
+          rating.content_id === article.id &&
+          rating.content_type === "article" &&
+          rating.positive === false
+      );
+      return (
+        <GridItem
+          md={4}
+          lg={6}
+          key={index}
+          classes="articles-dashboard__article-item"
+        >
+          <CardMedia
+            type="portrait"
+            size="lg"
+            style={{ gridColumn: "span 4" }}
+            title={articleData.title}
+            image={articleData.imageMedium}
+            description={articleData.description}
+            labels={articleData.labels}
+            creator={articleData.creator}
+            readingTime={articleData.readingTime}
+            categoryName={articleData.categoryName}
+            isLikedByUser={isLikedByUser}
+            isDislikedByUser={isDislikedByUser}
+            likes={articleData.likes}
+            dislikes={articleData.dislikes}
+            isRead={readArticleIds.includes(article.id)}
+            t={t}
+            onClick={() => {
+              navigate(
+                `/information-portal/article/${article.id}/${createArticleSlug(
+                  article.attributes.title
+                )}`
+              );
+            }}
+          />
+        </GridItem>
+      );
+    });
+
+  const renderNoResults = () =>
+    shouldShowNoResults && (
+      <GridItem md={8} lg={12} classes="articles-dashboard__no_results">
+        <h4>{t("heading_no_results")}</h4>{" "}
+      </GridItem>
+    );
+
   return (
     <>
-      {categories?.length > 1 && (
+      {shouldShowDashboard && (
         <Block classes="articles-dashboard">
           <Grid classes="articles-dashboard__block__grid">
-            <GridItem
-              xs={2}
-              md={4}
-              lg={6}
-              classes="articles-dashboard__heading-item"
-            >
-              <h4>{t("heading")}</h4>
-            </GridItem>
-
-            <GridItem
-              xs={2}
-              md={4}
-              lg={6}
-              classes="articles-dashboard__view-more-item"
-            >
-              <p
-                className="small-text view-all-button"
-                onClick={() => navigate("/information-portal/articles")}
-              >
-                {t("view_all")}
-              </p>
-            </GridItem>
-            {showAgreGroups && (
-              <GridItem
-                md={8}
-                lg={12}
-                classes="articles-dashboard__age-group-item"
-              >
-                <TabsUnderlined
-                  options={ageGroups}
-                  handleSelect={handleAgeGroupOnPress}
-                />
-              </GridItem>
-            )}
+            {renderHeading()}
+            {renderViewMore()}
+            {renderAgeGroups()}
             <GridItem
               md={8}
               lg={12}
               classes="articles-dashboard__articles-item"
             >
               <Grid>
-                <GridItem
-                  md={8}
-                  lg={12}
-                  classes="articles-dashboard__categories-item"
-                >
-                  {categories?.length > 1 && (
-                    <Tabs
-                      options={categories}
-                      handleSelect={handleCategoryOnPress}
-                      t={t}
-                    />
-                  )}
-                </GridItem>
-                {showLoading && (
-                  <GridItem md={8} lg={12}>
-                    <Loading />
-                  </GridItem>
-                )}
-
-                {!showLoading &&
-                  transformedArticles?.length > 0 &&
-                  categories.length > 1 &&
-                  transformedArticles?.map((article, index) => {
-                    const articleData = article.attributes
-                      ? destructureArticleData(article)
-                      : article;
-                    const isLikedByUser = contentRatings?.some(
-                      (rating) =>
-                        rating.content_id === article.id &&
-                        rating.content_type === "article" &&
-                        rating.positive === true
-                    );
-                    const isDislikedByUser = contentRatings?.some(
-                      (rating) =>
-                        rating.content_id === article.id &&
-                        rating.content_type === "article" &&
-                        rating.positive === false
-                    );
-                    return (
-                      <GridItem
-                        md={4}
-                        lg={6}
-                        key={index}
-                        classes="articles-dashboard__article-item"
-                      >
-                        <CardMedia
-                          type="portrait"
-                          size="lg"
-                          style={{ gridColumn: "span 4" }}
-                          title={articleData.title}
-                          image={articleData.imageMedium}
-                          description={articleData.description}
-                          labels={articleData.labels}
-                          creator={articleData.creator}
-                          readingTime={articleData.readingTime}
-                          categoryName={articleData.categoryName}
-                          isLikedByUser={isLikedByUser}
-                          isDislikedByUser={isDislikedByUser}
-                          likes={articleData.likes}
-                          dislikes={articleData.dislikes}
-                          isRead={readArticleIds.includes(article.id)}
-                          t={t}
-                          onClick={() => {
-                            navigate(
-                              `/information-portal/article/${
-                                article.id
-                              }/${createArticleSlug(article.attributes.title)}`
-                            );
-                          }}
-                        />
-                      </GridItem>
-                    );
-                  })}
+                {renderCategories()}
+                {renderLoading()}
+                {renderArticles()}
               </Grid>
             </GridItem>
-            {(isReady || isNewestArticlesFetched) &&
-              transformedArticles?.length === 0 && (
-                <GridItem
-                  md={8}
-                  lg={12}
-                  classes="articles-dashboard__no_results"
-                >
-                  <h4>{t("heading_no_results")}</h4>{" "}
-                </GridItem>
-              )}
+            {renderNoResults()}
           </Grid>
         </Block>
       )}

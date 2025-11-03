@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
@@ -87,17 +87,17 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
   );
 
   const handleCategoryOnPress = (index) => {
-    const categoriesCopy = [...categories];
+    const selectedCategoryFromFiltered = categoriesToShow[index];
+    if (!selectedCategoryFromFiltered) return;
 
+    // Update all categories to set the selected one
+    const categoriesCopy = [...categories];
     for (let i = 0; i < categoriesCopy.length; i++) {
-      if (i === index) {
-        categoriesCopy[i].isSelected = true;
-        setSelectedCategory(categoriesCopy[i]);
-      } else {
-        categoriesCopy[i].isSelected = false;
-      }
+      categoriesCopy[i].isSelected =
+        categoriesCopy[i].id === selectedCategoryFromFiltered.id;
     }
     setCategories(categoriesCopy);
+    setSelectedCategory(selectedCategoryFromFiltered);
   };
 
   //--------------------- Search Input ----------------------//
@@ -115,6 +115,27 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
   };
 
   const videoIdsQuery = useQuery(["videoIds"], getVideosIds);
+
+  const { data: videoCategoryIdsToShow } = useQuery(
+    ["videos-category-ids", usersLanguage, videoIdsQuery.data],
+    () =>
+      cmsSvc.getVideoCategoryIds(
+        usersLanguage,
+        videoIdsQuery.data?.length > 0 ? videoIdsQuery.data : undefined
+      ),
+    {
+      enabled: !!videoIdsQuery.data?.length,
+    }
+  );
+
+  const categoriesToShow = useMemo(() => {
+    if (!categories || !videoCategoryIdsToShow) return [];
+
+    return categories.filter(
+      (category) =>
+        videoCategoryIdsToShow.includes(category.id) || category.value === "all"
+    );
+  }, [categories, videoCategoryIdsToShow]);
 
   const getVideosData = async () => {
     let categoryId = "";
@@ -158,12 +179,13 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
         !categoriesQuery.isLoading &&
         categoriesQuery.data?.length > 0 &&
         videoIdsQuery.data?.length > 0 &&
-        selectedCategory !== null,
+        selectedCategory !== null &&
+        categoriesToShow?.length > 0,
       refetchOnWindowFocus: false,
     }
   );
 
-  let areCategoriesReady = categoriesQuery?.data?.length > 1;
+  let areCategoriesReady = categoriesToShow?.length > 1;
 
   return (
     <Block classes="videos">
@@ -176,9 +198,9 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
 
         {showCategories && areCategoriesReady && (
           <GridItem md={8} lg={12} classes="videos__categories-item">
-            {categories && (
+            {categoriesToShow && (
               <Tabs
-                options={categories}
+                options={categoriesToShow}
                 handleSelect={handleCategoryOnPress}
                 t={t}
               />

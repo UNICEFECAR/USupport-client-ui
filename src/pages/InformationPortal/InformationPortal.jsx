@@ -419,7 +419,14 @@ const ContentList = ({
       ids: contentIds,
     });
 
-    return data?.data?.map(destructureContentData) || [];
+    const contentData = data?.data || [];
+    // Handle async destructureContentData (for podcasts) or sync (for articles/videos)
+    if (contentType === "podcast") {
+      return await Promise.all(
+        contentData.map((item) => destructureContentData(item))
+      );
+    }
+    return contentData.map(destructureContentData);
   };
 
   const {
