@@ -31,13 +31,8 @@
 
   &__categories-item {
     padding-top: $spacing_3_0;
-    overflow-x: auto;
-    width: 35rem;
-
-    @media screen and (min-width: $screen-md) {
-      width: auto;
-      margin: auto;
-    }
+    width: 100%;
+    justify-self: stretch;
 
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_5_4;
@@ -64,11 +59,6 @@
 
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_15_3;
-    }
-
-    h3,
-    p {
-      color: $color_white_ff !important;
     }
   }
 }
