@@ -7,6 +7,7 @@ import {
   ProviderDetails,
   Loading,
 } from "@USupport-components-library/src";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import { useGetProviderDataById } from "#hooks";
 import { RootContext } from "#routes";
@@ -25,6 +26,7 @@ import "./provider-overview.scss";
 export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "provider-overview" });
   const { activeCoupon } = useContext(RootContext);
+  const { cookieState, setCookieState } = useContext(ThemeContext);
 
   const { data: provider } = useGetProviderDataById(
     providerId,
@@ -43,6 +45,8 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
           t={t}
           image={image}
           renderIn="client"
+          cookieState={cookieState}
+          setCookieState={setCookieState}
         />
       )}
       <div className="provider-profile__button-container">
