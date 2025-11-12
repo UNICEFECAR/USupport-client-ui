@@ -2,6 +2,7 @@
 @import "@USupport-components-library/styles";
 
 .page__dashboard {
+  min-height: 80vh;
   &__content {
     @include full-height-page-navbar;
   }
