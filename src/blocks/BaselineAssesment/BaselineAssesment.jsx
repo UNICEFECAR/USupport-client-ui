@@ -231,6 +231,9 @@ export const BaselineAssesment = ({
     queryClient.invalidateQueries({
       queryKey: ["latest-baseline-assessment"],
     });
+    queryClient.invalidateQueries({
+      queryKey: ["baseline-assessments"],
+    });
     navigate("/dashboard");
   };
 
