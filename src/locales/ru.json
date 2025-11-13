@@ -5,8 +5,6 @@
       "page_2": "Консультации",
       "page_3": "Информационный портал",
       "page_4": "Q&A",
-      "page_5": "Организации",
-
       "footer_1": "Главная страница",
       "footer_2": "Консультации",
       "footer_3": "Информационный портал",
@@ -15,9 +13,7 @@
       "footer_6": "Политика конфиденциальности",
       "footer_7": "Настройки файлов cookie",
       "footer_8": "Часто задаваемые вопросы",
-
       "emergency_button": "Экстренная помощь",
-
       "button_text": "Перейти к приложению",
       "contact_us": "Свяжитесь с нами",
       "your_profile_text": "Ваш профиль",
@@ -25,17 +21,16 @@
       "password": "Пожалуйста, введите пароль для доступа к сайту",
       "wrong_password": "Неверный пароль",
       "submit": "Отправить",
-
       "dark": "Темный",
       "light": "Светлый",
-      "high_contrast": "Высокая контрастность",
-
+      "page_5": "Организации",
       "cookie_banner_header": "Мы ценим вашу конфиденциальность",
       "cookie_banner_text": "Этот веб-сайт использует файлы cookie для улучшения и обеспечения безопасности вашего просмотра. Используя наш веб-сайт, вы соглашаетесь с нашей <0>Политикой использования файлов cookie.</0>",
       "accept_all_cookies": "Принять все",
       "reject_all_cookies": "Отклонить все",
       "accept_necessary_cookies": "Принять только необходимые",
-      "save": "Сохранить"
+      "save": "Сохранить",
+      "high_contrast": "Высокая контрастность"
     },
     "provider-overview": {
       "earliest_slot_label": "Самый ранний доступный слот свободного времени для консультации",
@@ -50,11 +45,9 @@
       "delete_account": "Удалить аккаунт",
       "no_available_slot": "Нет свободного слота",
       "consultations": "консультации",
-
       "psychologist": "Психолог",
       "psychiatrist": "Психиатр",
       "psychotherapist": "Психотерапевт",
-
       "addiction": "Зависимости и токсикомании",
       "stress": "Управление стрессом",
       "burnout": "Выгорание и академический стресс",
@@ -86,7 +79,6 @@
       "love": "Любовь и романтические отношения",
       "social_skills": "Социальные навыки и дружба",
       "body_image": "Самооценка и образ тела",
-
       "video_label": "Видео-представление",
       "button_label": "Запланировать консультацию",
       "hour_consultation": "за 1 часовую консультацию",
@@ -113,7 +105,9 @@
     "sos-center": {
       "button_link": "Посетить веб-сайт",
       "button_call": "Связаться сейчас",
-      "no_results": "Для выбранной страны и языка ничего не нашлось."
+      "no_results": "Для выбранной страны и языка ничего не нашлось.",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "register-about-you": {
       "input_name_label": "Имя",
@@ -177,7 +171,6 @@
       "message_error": "Пожалуйста, введите свое сообщение",
       "email": "Электронная почта",
       "button": "Отправить сообщение",
-
       "modal_title": "Ваше сообщение было успешно отправлено",
       "modal_text": "Мы свяжемся с Вами в самое ближайшее время",
       "modal_cta_label": "Вернуться на главную страницу",
@@ -185,11 +178,11 @@
       "contact_reason_2": "Мне нужно больше информации об услугах, предоставляемых через эту платформу",
       "contact_reason_3": "Я клиент, и у меня возникла техническая проблема",
       "contact_reason_4": "Прочее",
+      "contact_form": "Контактная форма",
       "contact_reason_1_pl": "Информация о uSupport",
       "contact_reason_2_pl": "Техническая проблема",
       "contact_reason_3_pl": "Жалоба",
-      "contact_reason_4_pl": "Прочее",
-      "contact_form": "Контактная форма"
+      "contact_reason_4_pl": "Прочее"
     },
     "select-provider": {
       "psychologist": "Психолог",
@@ -230,8 +223,8 @@
       "register_redirect_button_label": "У меня нет аккаунта",
       "modal_heading": "Проверьте свою электронную почту",
       "modal_text": "Если Вы зарегистрированы на платформе, Вы получите ссылку для сброса Вашего пароля.",
-      "heading": "Добро пожаловать в",
-      "client": "Клиент"
+      "client": "Клиент",
+      "heading": "Добро пожаловать в"
     },
     "consultations": {
       "upcoming_tab_label": "Предстоящие",
@@ -247,7 +240,6 @@
       "no_past_consultations": "У Вас нет прошлых консультаций",
       "reject_consultation_success": "Консультация успешно отклонена",
       "accept_consultation_success": "Консультация успешно принята",
-
       "join": "Присоединиться",
       "edit": "Редактировать",
       "details": "Смотреть подробности",
@@ -272,8 +264,8 @@
       "login_label": "Авторизация",
       "paragraph": "Или войдите с помощью:",
       "register_button_label": "У меня нет аккаунта",
-      "heading": "Добро пожаловать в",
-      "client": "Клиент"
+      "client": "Клиент",
+      "heading": "Добро пожаловать в"
     },
     "welcome": {
       "heading": "Добро пожаловать в",
@@ -300,11 +292,9 @@
       "subheading": "Не можете найти интересующую Вас информацию? Предложите тему, и мы постараемся ее разобрать.",
       "submit": "Отправьте свое предложение",
       "suggestion_placeholder": "Напишите свое предложение здесь",
-
       "modal_title": "Предложение отправлено успешно",
       "modal_text": "Нам очень жаль, что Вы не смогли найти то, что искали. Мы постараемся рассмотреть Ваше предложение как можно скорее. Спасибо за обратную связь.",
       "modal_cta_label": "Ознакомьтесь с другими статьями",
-
       "error": "Пожалуйста, введите Ваше предложение",
       "send_success_text": "Ваше предложение успешно отправлено"
     },
@@ -318,7 +308,8 @@
       "text_2": "uSupport - это платформа по поддержке ментального здоровья и консультированию молодых людей, их родителей/опекунов, где конфиденциальность и безопасность в приоритете.",
       "heading_3": "О Вас",
       "text_3": "Станьте лучшей версией себя! Ваше ментальное здоровье имеет значение.",
-      "login": "Войти с помощью электронной почты/Токена доступа "
+      "login": "Войти с помощью электронной почты/Токена доступа ",
+      "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
       "email_error": "Пожалуйста, введите действительный адрес электронной почты",
@@ -371,8 +362,6 @@
       "delete_account": "Удалить аккаунт",
       "logout": "Выйти",
       "delete_chat": "Очистить историю чата",
-      "delete_mood_tracker": "Очистить историю трекера настроения",
-
       "dropdown_sex_label": "Пол",
       "dropdown_year_label": "Год рождения",
       "sex_male": "Мужчина",
@@ -389,7 +378,8 @@
       "sex_placeholder": "Введите свой пол",
       "year_of_birth_placeholder": "Введите свой год рождения",
       "living_place_placeholder": "Введите место вашего жительства",
-      "parent": "Родитель"
+      "parent": "Родитель",
+      "delete_mood_tracker": "Очистить историю трекера настроения"
     },
     "reset-password": {
       "label": "Новый пароль",
@@ -411,7 +401,6 @@
       "show_previous_consultations": "Показать предыдущие консультации",
       "export_label": "Экспорт",
       "chat_history": "История чата консультаций с",
-
       "client_joined": "Клиент присоединился к консультации",
       "client_left": "Клиент покинул консультацию",
       "client_camera_off": "Клиент выключил камеру",
@@ -419,14 +408,12 @@
       "client_microphone_off": "Клиент выключил микрофон",
       "client_microphone_on": "Клиент включил микрофон",
       "chat_history_deleted_by_client": "Вы удалили историю чата",
-
       "provider_joined": "Консультант присоединился к консультации",
       "provider_left": "Консультант покинул консультацию",
       "provider_camera_off": "Консультант отключил камеру",
       "provider_camera_on": "Консультант включил камеру",
       "provider_microphone_off": "Консультант отключил микрофон",
       "provider_microphone_on": "Консультант включил микрофон",
-
       "exported_at": "Экспортировано в: {{time}}"
     },
     "consultations-dashboard": {
@@ -436,12 +423,11 @@
       "live_text": "Сейчас",
       "accept_button_label": "Принять консультацию",
       "join_button_label": "Присоединиться",
-      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала",
       "change_button_label": "Изменить",
-      "ordinal_st": "",
-      "ordinal_nd": "",
-      "ordinal_rd": "",
-      "ordinal_th": "",
+      "ordinal_st": "st",
+      "ordinal_nd": "nd",
+      "ordinal_rd": "rd",
+      "ordinal_th": "th",
       "january": "января",
       "february": "февраля",
       "march": "марта",
@@ -455,7 +441,8 @@
       "november": "ноября",
       "december": "декабря",
       "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
-      "cookie_preferences": "Настройки cookie"
+      "cookie_preferences": "Настройки cookie",
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
     },
     "mood-tracker": {
       "happy": "Счастливый",
@@ -465,11 +452,11 @@
       "worried": "Взволнованный",
       "heading": "Как самочувствие сегодня?",
       "mood_tracker": "Трекер настроения",
-      "how_it_works": "Как это работает",
       "additional_comment_placeholder": "Что заставило Вас так себя чувствовать?",
       "submit_mood_track": "Отправить",
       "add_mood_tracker_success": "Ваше настроение было успешно добавлено ",
       "emergency_label": "Это относится к жизненному событию или критической ситуации?",
+      "how_it_works": "Как это работает",
       "recommendations": "Рекомендации",
       "recommendations_text": "Хотите посмотреть график настроения и увидеть рекомендованный контент?",
       "check_out": "Посмотреть"
@@ -483,15 +470,14 @@
       "change_button_label": "Изменить",
       "accept_button_label": "Принять консультацию",
       "join_button_label": "Присоединиться",
-      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала",
       "schedule_button_label": "Запланировать",
       "live_label": "Сейчас",
       "no_consultations": "В настоящее время у Вас нет предстоящих консультаций",
       "free": "Свободно",
-      "ordinal_st": "",
-      "ordinal_nd": "",
-      "ordinal_rd": "",
-      "ordinal_th": "",
+      "ordinal_st": "st",
+      "ordinal_nd": "nd",
+      "ordinal_rd": "rd",
+      "ordinal_th": "th",
       "january": "января",
       "february": "февраля",
       "march": "марта",
@@ -505,7 +491,8 @@
       "november": "ноября",
       "december": "декабря",
       "coupon": "Купон",
-      "explore_button_label": "Исследовать"
+      "explore_button_label": "Исследовать",
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
     },
     "activity-log-dashboard": {
       "heading": "Журнал активности",
@@ -540,8 +527,6 @@
       "consultation_cancellation": "Вы успешно <0>отменили</0> консультацию с <0>{{providerName}}</0>, <0>запланированную</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
       "consultation_cancellation_provider": "Консультант <0>{{providerName}} отменил</0> консультацию, <0>запланированную</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
       "consultation_remind_start": "<0>Предстоящая консультация</0> начнется через <0>{{minutes}} минут</0>",
-      "consultation_remind_start_24_hours_before": "<0>Ваша консультация с {{providerName}}</0> начнется через <0>24 часа</0>",
-      "consultation_remind_start_48_hours_before": "<0>Ваша консультация с {{providerName}}</0> начнется через <0>48 часов</0>",
       "consultation_suggestion": "<0>{{providerName}}</0> предложил консультацию на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
       "consultation_suggestion_booking": "Вы приняли предложенную консультацию от <0>{{providerName}}</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
       "consultation_suggestion_cancellation": "Вы отклонили предложенную консультацию от <0>{{providerName}}</0> на <0>{{date}}</0> с <0>{{startHour}}</0> до <0>{{endHour}}</0>",
@@ -553,7 +538,9 @@
       "reject": "Отклонить",
       "reject_consultation_success": "Консультация успешно отклонена",
       "no_notifications": "У вас пока нет уведомлений.",
-      "yesterday": "вчера"
+      "yesterday": "вчера",
+      "consultation_remind_start_24_hours_before": "<0>Ваша консультация с {{providerName}}</0> начнется через <0>24 часа</0>",
+      "consultation_remind_start_48_hours_before": "<0>Ваша консультация с {{providerName}}</0> начнется через <0>48 часов</0>"
     },
     "safety-feedback-block": {
       "heading": "Это важно. Пожалуйста, прочитайте и заполните",
@@ -575,7 +562,6 @@
       "no": "Нет",
       "button": "Отправить отзыв",
       "continue_button": "Сохранить ответы",
-
       "very_satisfied": "Очень доволен(а)",
       "satisfied": "Доволен(а)",
       "neutral": "Нейтрален(а)",
@@ -607,26 +593,26 @@
     "payment-status-block": {
       "payment_succeded_heading": "Ваш платеж прошел успешно.",
       "payment_succeded_subheading": "Благодарим Вас за покупку. Ваша консультация запланирована на {{consultationDate}} в {{consultationTime}}.",
-
       "payment_processing_heading": "Ваш платеж обрабатывается.",
       "payment_processing_subheading": "Мы обрабатываем Ваш платеж, пожалуйста, немного подождите.",
-
       "payment_requires_payment_method_heading": "Ваш платеж не прошел, пожалуйста, попробуйте еще раз.",
       "payment_requires_payment_method_subheading": "При попытке обработать Ваш платеж возникла проблема. Мы сожалеем об этом.",
-
       "payment_failed_heading": "Ваш платеж не прошел успешно, пожалуйста, попробуйте еще раз.",
       "payment_failed_subheading": "При попытке обработать Ваш платеж возникла проблема. Мы сожалеем об этом.",
-
       "continue_button_label": "Продолжить",
       "try_again_button_label": "Пробовать снова"
     },
     "mood-track-history": {
-      "heading": "В целом вы чувствовали {{feeling}}  в течение последних 30 дней",
-      "perfect": "Отлично",
       "happy": "Счастливо",
+      "good": "Good",
       "sad": "Грустно",
       "depressed": "В депрессии",
       "worried": "Взволнованно",
+      "you_felt": "You felt",
+      "comment_text": "and you commented:",
+      "no_result": "No results found.",
+      "heading": "В целом вы чувствовали {{feeling}}  в течение последних 30 дней",
+      "perfect": "Отлично",
       "last_thirty_days_text": "За последние 30 дней Вы сообщили, что чувствовали:",
       "time": "раз",
       "times": "раз/раза",
@@ -658,14 +644,14 @@
       "respond": "Ответить",
       "read_more": "Узнать больше",
       "all": "Все",
-      "all_languages": "Все языки",
       "most_popular": "Самые популярные",
       "newest": "Новые",
       "your_questions": "Ваш вопрос",
       "search_placeholder": "Поиск",
       "filter": "Фильтровать теги",
       "no_answers_found": "Нет ответов на вопросы",
-      "language": "Язык"
+      "language": "Язык",
+      "all_languages": "Все языки"
     },
     "videos": {
       "view_more": "Посмотреть больше",
@@ -679,12 +665,10 @@
       "online_interaction": "Онлайн",
       "phone_interaction": "По телефону",
       "hybrid_interaction": "Гибридный формат",
-
       "free_services": "Бесплатные услуги",
       "paid_services": "Платные услуги",
       "co_payment_services": "Услуги с сооплатой",
       "cnas_reimbursed_services": "Услуги, возмещаемые CNAS",
-
       "violence_victim_helpline": "Телефон доверия для жертв насилия",
       "social_information_counseling": "Социальная информация и консультирование",
       "rehab_psycho_neuro_children": "Реабилитация и восстановление детей с психоневромоторными нарушениями",
@@ -698,7 +682,6 @@
       "rehab_autism_children": "Реабилитация и восстановление детей с аутизмом",
       "art_recreational_activities": "Творческие досуговые мероприятия (театр, музыка, поэзия, живопись, рассказывание историй)",
       "addiction_helpline": "Телефон доверия по вопросам зависимостей",
-
       "emergency_situations": "Чрезвычайные ситуации",
       "pediatric_psychiatry": "Детская психиатрия",
       "psychological_evaluation": "Психологическая оценка",
@@ -717,14 +700,12 @@
       "pediatric_neurology": "Детская неврология",
       "special_psychopedagogy": "Специальная психопедагогика",
       "neuropsychomotor_recovery": "Нейропсихомоторное восстановление",
-
       "sector_1": "Сектор 1",
       "sector_2": "Сектор 2",
       "sector_3": "Сектор 3",
       "sector_4": "Сектор 4",
       "sector_5": "Сектор 5",
       "sector_6": "Сектор 6",
-
       "aggression_violence_victim_or_aggressor": "Агрессия/насилие — жертва или агрессор",
       "learning_difficulties_special_educational_needs": "Трудности в обучении/Особые образовательные потребности",
       "behavioral_disorder": "Поведенческие расстройства",
@@ -734,12 +715,10 @@
       "identity_issues": "Проблемы идентичности",
       "illness_oncological_treatment_chronic_diseases": "Заболевание (онкологическое лечение, хронические болезни)",
       "other_situations": "Другие ситуации",
-
       "public": "Государственная",
       "private": "Частная",
       "ong": "НПО",
       "public_private": "Государственно-частная",
-
       "work_with_placeholder": "Выберите категории целевой работы",
       "specialisations_placeholder": "Выберите предлагаемые услуги",
       "district_placeholder": "Выберите сектор",
@@ -747,10 +726,8 @@
       "user_interactions_placeholder": "Выберите форматы взаимодействия",
       "property_types_placeholder": "Выберите типы учреждений",
       "search_placeholder": "Поиск по названию организации",
-
       "no_data_found": "Данные не найдены",
       "reset_filters": "Сбросить фильтры",
-
       "view_organization_details": "Посмотреть детали организации",
       "address": "Адрес",
       "phone": "Телефон",
@@ -772,7 +749,6 @@
       "work_with_label": "С кем работаем",
       "offered_services_label": "Предлагаемые услуги",
       "providers_label": "Поставщики",
-
       "violence_victim_helpline": "Горячая линия для жертв насилия",
       "individual_psychotherapy": "Индивидуальная психотерапия",
       "social_information_counseling": "Социальная информация и консультирование",
@@ -789,7 +765,6 @@
       "art_recreational_activities": "Художественно‑рекреационные мероприятия (театр, музыка, поэзия, живопись, рассказы)",
       "addiction_helpline": "Горячая линия зависимости",
       "group_psychotherapy": "Групповая психотерапия",
-
       "emergency_situations": "Чрезвычайные ситуации",
       "pediatric_psychiatry": "Детская психиатрия",
       "psychological_evaluation": "Психологическое оценивание",
@@ -805,29 +780,24 @@
       "pediatric_neurology": "Детская неврология",
       "special_psychopedagogy": "Специальная психопедагогика",
       "neuropsychomotor_recovery": "Нейропсихомоторная реабилитация",
-
       "in_person_interaction": "Лично",
       "online_interaction": "Онлайн",
       "phone_interaction": "По телефону",
       "hybrid_interaction": "Гибрид",
-
       "free_services": "Бесплатные услуги",
       "paid_services": "Платные услуги",
       "co_payment_services": "Услуги с сооплатой",
       "cnas_reimbursed_services": "Услуги, компенсируемые CNAS",
-
       "public": "Публичный",
       "private": "Частный",
       "ong": "НПО",
       "public_private": "Госсударственно‑частный",
-
       "sector_1": "Сектор 1",
       "sector_2": "Сектор 2",
       "sector_3": "Сектор 3",
       "sector_4": "Сектор 4",
       "sector_5": "Сектор 5",
       "sector_6": "Сектор 6",
-
       "aggression_violence_victim_or_aggressor": "Агрессия/насилие – жертва или агрессор",
       "learning_difficulties_special_educational_needs": "Трудности в обучении/Специальные образовательные потребности",
       "behavioral_disorder": "Поведенческое расстройство",
@@ -837,8 +807,8 @@
       "identity_issues": "Проблемы идентичности",
       "illness_oncological_treatment_chronic_diseases": "Заболевание (онкологическое лечение, хронические болезни)",
       "other_situations": "Другие ситуации",
-
-      "copy_link_success": "Ссылка скопирована в буфер!"
+      "copy_link_success": "Ссылка скопирована в буфер!",
+      "description_label": ""
     },
     "baseline-assesment": {
       "instructions": "Инструкции: Вспомните последние две недели и выберите вариант, который, по вашему мнению, больше всего вам подходит для следующих утверждений.",
@@ -869,7 +839,6 @@
       "appetite_loss": "У меня нет аппетита.",
       "substance_use": "Я несколько раз пробовал(а) курить или употреблять запрещённые вещества (алкоголь, наркотики и т. д.).",
       "frequent_headaches": "У меня часто болит голова без причины.",
-
       "question": "Вопрос {{number}} из {{total}}",
       "completed": "{{percentage}}% завершено",
       "back": "Назад",
@@ -889,7 +858,11 @@
       "continue": "Продолжить",
       "view": "Посмотреть результаты",
       "view_detailed_results": "Посмотреть подробные результаты",
-      "started_at": "Начато {{date}}"
+      "started_at": "Начато {{date}}",
+      "psychological": "Psychological",
+      "biological": "Biological",
+      "social": "Social",
+      "latest_results": "Latest Results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Оценка завершена",
@@ -899,7 +872,36 @@
       "recommended_podcasts": "Рекомендованные подкасты",
       "read_more_button": "Читать далее",
       "by": "от {{creator}}",
-      "min_read": "мин чтения"
+      "min_read": "мин чтения",
+      "psychological": "Psychological",
+      "biological": "Biological",
+      "social": "Social",
+      "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
+      "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
+      "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
+      "inc_same_inc": "We noticed some challenges: psychological and social increased, while biological stayed the same.",
+      "inc_same_same": "We noticed some challenges: psychological increased, while biological and social stayed the same.",
+      "inc_same_dec": "Good job! Social decreased, though psychological increased and biological stayed the same.",
+      "inc_dec_inc": "Good job! Biological decreased, though psychological and social increased.",
+      "inc_dec_same": "Good job! Biological decreased, though psychological increased and social stayed the same.",
+      "inc_dec_dec": "Great progress! Biological and social decreased, though psychological increased.",
+      "same_inc_inc": "We noticed some challenges: biological and social increased, while psychological stayed the same.",
+      "same_inc_same": "We noticed some challenges: biological increased, while psychological and social stayed the same.",
+      "same_inc_dec": "Good job! Social decreased, though biological increased and psychological stayed the same.",
+      "same_same_inc": "We noticed some challenges: social increased, while psychological and biological stayed the same.",
+      "same_same_dec": "Good job! Social decreased, while psychological and biological stayed the same.",
+      "same_dec_inc": "Good job! Biological decreased, though social increased and psychological stayed the same.",
+      "same_dec_same": "Good job! Biological decreased, while psychological and social stayed the same.",
+      "same_dec_dec": "Great progress! Biological and social decreased, while psychological stayed the same.",
+      "dec_inc_inc": "Good job! Psychological decreased, though biological and social increased.",
+      "dec_inc_same": "Good job! Psychological decreased, though biological increased and social stayed the same.",
+      "dec_inc_dec": "Great progress! Psychological and social decreased, though biological increased.",
+      "dec_same_inc": "Good job! Psychological decreased, though social increased and biological stayed the same.",
+      "dec_same_same": "Good job! Psychological decreased, while biological and social stayed the same.",
+      "dec_same_dec": "Great progress! Psychological and social decreased, while biological stayed the same.",
+      "dec_dec_inc": "Great progress! Psychological and biological decreased, though social increased.",
+      "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
+      "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased."
     }
   },
   "pages": {
@@ -940,7 +942,8 @@
       "coupon_paragraph": "Купоны предоставляют \"бесплатные\" сессии и спонсируются нашими партнерами.",
       "coupon_paragraph_two": "Если Вы получили код купона через социальные сети или от нашего партнера, пожалуйста, скопируйте и вставьте его ниже. После того, как Вы отправите код купона, Вы увидите всех консультантов, которые его поддерживают, и их доступность. Купон может предоставлять один или несколько сеансов. Платформа укажет, истек ли срок действия купона или все сеансы использованы.",
       "max_price": "Максимальная цена",
-      "providers_free_consultation_label": "Только бесплатная консультация"
+      "providers_free_consultation_label": "Только бесплатная консультация",
+      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being."
     },
     "register-about-you-page": {
       "heading_1": "Расскажите нам о себе побольше",
@@ -980,13 +983,13 @@
       "heading_2": "С возвращением"
     },
     "articles-page": {
-      "heading": "Статьи",
       "heading_default": "Все статьи",
       "heading_newest": "Новые статьи",
       "heading_most_read": "Наиболее читаемые статьи",
       "subheading_default": "Вы можете найти все статьи здесь",
       "subheading_newest": "Здесь Вы можете найти новые статьи",
-      "subheading_most_read": "Здесь Вы можете найти наиболее читаемые статьи из всех категорий"
+      "subheading_most_read": "Здесь Вы можете найти наиболее читаемые статьи из всех категорий",
+      "heading": "Статьи"
     },
     "article-information": {
       "heading": "Больше статей",
@@ -1021,7 +1024,6 @@
       "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
       "cookie_preferences": "Настройки cookie"
     },
-    "register-preview-page": {},
     "register-email-page": {
       "heading": "Зарегистрируйтесь с помощью электронной почты в uSupport"
     },
@@ -1038,7 +1040,9 @@
     "reset-password-page": {
       "heading": "Сбросить пароль"
     },
-    "activity-history-page": {},
+    "activity-history-page": {
+      "button_label": ""
+    },
     "cookie-policy-page": {
       "heading": "Политика Cookie"
     },
@@ -1062,14 +1066,12 @@
       "thursday": "Чт",
       "friday": "Пт",
       "saturday": "Сб",
-
       "client_joined": "Клиент присоединился к консультации",
       "client_left": "Клиент покинул консультацию",
       "client_camera_off": "Клиент выключил камеру",
       "client_camera_on": "Клиент включил камеру",
       "client_microphone_off": "Клиент выключил микрофон",
       "client_microphone_on": "Клиент включил микрофон",
-
       "provider_joined": "Консультант присоединился к консультации",
       "provider_left": "Консультант покинул консультацию",
       "provider_camera_off": "Консультант отключил камеру",
@@ -1077,7 +1079,6 @@
       "provider_microphone_off": "Консультант отключил микрофон",
       "provider_microphone_on": "Консультант включил микрофон",
       "chat_history_deleted_by_client": "Вы удалили историю чата",
-
       "show_system_messages": "Показать системные сообщения",
       "show_previous_consultations": "Показать предыдущие консультации",
       "hide_options": "Скрыть настройки",
@@ -1086,8 +1087,8 @@
       "sponsored_by": "Эта сессия спонсируется: ",
       "consultation_end_reminder": "Ваша консультация завершится через {{minutes}} минут",
       "textarea_placeholder": "Введите Ваше сообщение здесь...",
-      "permissions_error": "Вы отклонили разрешения",
       "allow_permissions": "Разрешения на доступ к камере и/или микрофону были отклонены. Если вы хотите поговорить с провайдером, включите разрешения в настройках вашего браузера или через значок информации в адресной строке.",
+      "permissions_error": "Вы отклонили разрешения",
       "typing": "Печатает..."
     },
     "payment-history-page": {
@@ -1101,7 +1102,15 @@
     "payment-status-page": {
       "heading": "Статус платежа"
     },
-    "mood-track-history-page": {},
+    "mood-track-history-page": {
+      "heading": ""
+    },
+    "my-qa-page": {
+      "all": "",
+      "most_popular": "",
+      "newest": "",
+      "your_questions": ""
+    },
     "notifications-page": {
       "heading": "Уведомления",
       "mark_read": "Отметить все как прочитанное",
@@ -1145,6 +1154,9 @@
     "organization-overview-page": {
       "heading": "Обзор организации",
       "subheading": "Подробный обзор профиля выбранной организации"
+    },
+    "register-preview-page": {
+      "login": ""
     }
   },
   "backdrops": {
@@ -1334,8 +1346,8 @@
       "text": "Ваша личная информация не будет раскрыта, это разрешение будет использоваться только для обработки и хранения на платформе клинических данных и истории чатов.",
       "text2": "Если Вы хотите узнать больше о том, как мы обрабатываем персональные данные, ознакомтесь с нашей",
       "terms": "Условия и положения",
-      "give_permission": "Дать разрешение",
       "privacy_policy": "Политика конфиденциальности",
+      "give_permission": "Дать разрешение",
       "cancel": "Отмена"
     },
     "save-access-code-confirmation": {
@@ -1362,10 +1374,10 @@
     "mood-track-more-information": {
       "you_felt": "Вы почувствовали",
       "comment_text": "и Вы прокомментировали",
-      "ordinal_st": "",
-      "ordinal_nd": "",
-      "ordinal_rd": "",
-      "ordinal_th": "",
+      "ordinal_st": "st",
+      "ordinal_nd": "nd",
+      "ordinal_rd": "rd",
+      "ordinal_th": "th",
       "january": "января",
       "february": "февраля",
       "march": "марта",
@@ -1406,13 +1418,6 @@
       "cancel": "Нет, сохранить мою историю чата",
       "success": "Ваша история чата была успешно удалена."
     },
-    "delete-mood-tracker-history": {
-      "heading": "Вы уверены, что хотите удалить все данные трекера настроения?",
-      "subheading": "Это действие необратимо.",
-      "confirm": "Да, удалить все мои данные трекера настроения",
-      "cancel": "Нет, оставить мои данные трекера настроения",
-      "success": "Ваши данные трекера настроения были успешно удалены."
-    },
     "baseline-assesment-modal": {
       "heading": "Базовая оценка",
       "paragraph_1": "Следующие вопросы помогут вам лучше понять, как вы себя чувствуете, и определить, нужна ли вам помощь, чтобы почувствовать себя лучше. Вопросы касаются вашего настроения, мыслей и чувств за последние две недели. Нет правильных или неправильных ответов, есть только те, которые отражают вас. Важно отвечать максимально честно, чтобы мы могли понять, что вы чувствуете, и увидеть, как можем помочь.",
@@ -1423,6 +1428,13 @@
       "consent": "Чтобы продолжить, пожалуйста, согласитесь с нашей <0>Политикой конфиденциальности</0>",
       "cta_label": "Я согласен(а) пройти опрос.",
       "secondary_cta_label": "Я не хочу проходить опрос"
+    },
+    "delete-mood-tracker-history": {
+      "heading": "Вы уверены, что хотите удалить все данные трекера настроения?",
+      "subheading": "Это действие необратимо.",
+      "confirm": "Да, удалить все мои данные трекера настроения",
+      "cancel": "Нет, оставить мои данные трекера настроения",
+      "success": "Ваши данные трекера настроения были успешно удалены."
     },
     "how-it-works-mood-track": {
       "heading": "Как работает трекер настроения",
