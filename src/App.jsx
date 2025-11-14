@@ -36,6 +36,10 @@ function App() {
     once: false,
   });
 
+  useEffect(() => {
+    AOS.refresh();
+  }, [i18n.language]);
+
   const getDefaultTheme = () => {
     const localStorageTheme = localStorage.getItem("default-theme");
     return localStorageTheme || "light";
