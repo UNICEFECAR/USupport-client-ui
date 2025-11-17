@@ -36,6 +36,10 @@ function App() {
     once: false,
   });
 
+  useEffect(() => {
+    AOS.refresh();
+  }, [i18n.language]);
+
   const getDefaultTheme = () => {
     const localStorageTheme = localStorage.getItem("default-theme");
     return localStorageTheme || "light";
@@ -56,7 +60,7 @@ function App() {
   useEffect(() => {
     const language = localStorage.getItem("language");
     const hasAcceptedAllCookies = !!Number(
-      localStorage.getItem("hasAcceptedAllCookies")
+      localStorage.getItem("acceptAllCookies")
     );
     const hasAcceptedNecessaryCookies = !!Number(
       localStorage.getItem("hasAcceptedNecessaryCookies")

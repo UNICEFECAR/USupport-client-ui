@@ -106,7 +106,7 @@
       "button_link": "Відвідай сайт",
       "button_call": "Зв'яжися з нами зараз",
       "no_results": "Для обраної країни й мови немає результатів.",
-      "other_emergency_services": "„Інші постачальники екстрених служб”",
+      "other_emergency_services": "Інші служби екстреної допомоги",
       "browse": "Огляд"
     },
     "register-about-you": {
@@ -246,7 +246,7 @@
       "active": "Зараз",
       "reject": "Відхилити пропозицію",
       "accept": "Погодитись на консультацію",
-      "cancel_consultation": "Скасувати консультаціюa",
+      "cancel_consultation": "Скасувати консультацію",
       "suggested": "Запропоновані",
       "view_profile": "Переглянути особистий профіль",
       "conducted": "Консультацію завершено",
@@ -285,7 +285,7 @@
       "min_read": "хв. читання",
       "by": "Від {{creator}}",
       "number_of_more_options": "ще {{count}}",
-      "read": "Прочитано"
+      "read": "Читати"
     },
     "give-suggestion": {
       "heading": "Надішли нам свої пропозиції",
@@ -375,7 +375,7 @@
       "data_processing_modal_confirm_button": "Видалити дозвіл",
       "data_processing_modal_cancel_button": "Скасувати",
       "success_message": "Профіль оновлено",
-      "sex_placeholder": "Профіль оновлено",
+      "sex_placeholder": "Вкажіть свою стать",
       "year_of_birth_placeholder": "Введіть свій рік народження",
       "living_place_placeholder": "Введіть своє місце проживання",
       "parent": "Мати/Батько/Опікун",
@@ -400,7 +400,7 @@
       "show_system_messages": "Показати системні повідомлення",
       "show_previous_consultations": "Показати попередні консультації",
       "export_label": "Експорт",
-      "chat_history": "Історія консультацийних чатів з",
+      "chat_history": "Історія консультаційних чатів з",
       "client_joined": "Клієнт/ка долучився/лася до консультації",
       "client_left": "Клієнт/ка залишив/ла консультацію",
       "client_camera_off": "Клієнт/ка вимкнув/ла камеру",
@@ -414,7 +414,7 @@
       "provider_camera_on": "Консультант/ка увімкнув/ла камеру",
       "provider_microphone_off": "Консультант/ка вимкнув/ла мікрофон",
       "provider_microphone_on": "Консультант/ка увімкнув/ла мікрофон",
-      "exported_at": "Експортновано о {{time}}"
+      "exported_at": "Експортовано о {{time}}"
     },
     "consultations-dashboard": {
       "heading": "Мої консультації",
@@ -611,12 +611,12 @@
       "you_felt": "Ти відчув/ла себе",
       "comment_text": "і прокоментував/ла:",
       "no_result": "Жодних результатів не знайдено.",
-      "heading": "",
-      "perfect": "",
-      "last_thirty_days_text": "",
-      "time": "",
-      "times": "",
-      "critical_text": "Related to a life event or critical situation",
+      "heading": "Загалом протягом останніх 30 днів ти почував/ла себе {{feeling}}",
+      "perfect": "Чудово.",
+      "last_thirty_days_text": "Протягом останніх 30 днів ти повідомляв/ла, що відчував/ла себе:",
+      "time": "раз",
+      "times": "разів",
+      "critical_text": "Пов’язано з життєвою подією або критичною ситуацією",
       "recommendations": "Рекомендації відповідно до вашого настрою",
       "articles": "Статті",
       "videos": "Відео",
@@ -748,7 +748,7 @@
       "property_types_label": "Тип нерухомості",
       "work_with_label": "Працюємо з",
       "offered_services_label": "Пропоновані послуги",
-      "providers_label": "Надійники",
+      "providers_label": "Постачальники",
       "violence_victim_helpline": "Телефон довіри для жертв насильства",
       "individual_psychotherapy": "Індивідуальна психотерапія",
       "social_information_counseling": "Соціальна інформація та консультування",
@@ -808,7 +808,7 @@
       "illness_oncological_treatment_chronic_diseases": "Хвороба (онкологічне лікування, хронічні захворювання)",
       "other_situations": "Інші ситуації",
       "copy_link_success": "Посилання скопійовано до буфера обміну!",
-      "description_label": ""
+      "description_label": "Опис"
     },
     "baseline-assesment": {
       "instructions": "Інструкції: Згадайте останні два тижні та виберіть варіант, який, на вашу думку, найкраще вам підходить щодо наведених нижче тверджень.",
@@ -998,8 +998,8 @@
       "min_read": "хв. читання",
       "by": "Від {{creator}}",
       "share_title": "Поділися",
-      "share_success": "Посилання скопійовано до сховка!",
-      "copy_link": "Скопіюй посилання",
+      "share_success": "Посилання скопійовано до буфера обміну!",
+      "copy_link": "Скопіювати посилання",
       "export_failed": "Експорт не вдався. Будь ласка, спробуйте ще раз."
     },
     "information-portal": {
@@ -1008,7 +1008,7 @@
       "heading_newest": "Найновіші статті",
       "heading_popular": "Найпопулярніші",
       "heading_no_language_results": "Не знайдено жодної статті вибраною тобою мовою.",
-      "view_all": "Переглянь всі",
+      "view_all": "Переглянути всі",
       "read_more_button": "Читай далі",
       "min_read": "хв. читання",
       "by": "Від {{creator}}",
@@ -1017,10 +1017,10 @@
       "heading_newest_videos": "Найновіші відео",
       "heading_popular_videos": "Найпопулярніші відео",
       "no_results": "Нічого не знайдено",
-      "heading_newest_podcasts": "Найновіші аудіобаки",
-      "heading_popular_podcasts": "Найпопулярніші аудіобаки",
-      "podcasts": "Аудіобаки",
-      "view_more": "Більше переглянути",
+      "heading_newest_podcasts": "Найновіші подкасти",
+      "heading_popular_podcasts": "Найпопулярніші подкасти",
+      "podcasts": "Подкасти",
+      "view_more": "Переглянути більше",
       "require_cookies": "Щоб переглянути це відео, прийміть усі файли cookie.",
       "cookie_preferences": "Налаштування файлів cookie"
     },
@@ -1052,7 +1052,7 @@
     "mood-tracker-page": {
       "heading": "Монітор настрою",
       "subheading": "Тут можеш відстежувати свій настрій і прогрес",
-      "export_report": "Export report",
+      "export_report": "Експортувати звіт",
       "how_it_works": "Як це працює"
     },
     "dashboard-page": {
@@ -1106,10 +1106,10 @@
       "heading": "Монітор настрою"
     },
     "my-qa-page": {
-      "all": "",
-      "most_popular": "",
-      "newest": "",
-      "your_questions": ""
+      "all": "Усі",
+      "most_popular": "Найпопулярніші",
+      "newest": "Найновіші",
+      "your_questions": "Твої запитання"
     },
     "notifications-page": {
       "heading": "Повідомлення",
@@ -1156,7 +1156,7 @@
       "subheading": "Детальний огляд профілю вибраної організації"
     },
     "register-preview-page": {
-      "login": ""
+      "login": "Увійти до додатку"
     }
   },
   "backdrops": {
@@ -1177,10 +1177,10 @@
       "language": "Мова",
       "language_placeholder": "Вибери мову",
       "providers_free_consultation_label": "Тільки безкоштовна консультація",
-      "button_label": "Збережи",
-      "reset_filter": "Скинь фільтри",
-      "available_before": "Доступне перед",
-      "available_after": "Доступне після"
+      "button_label": "Застосувати фільтри",
+      "reset_filter": "Скинути фільтри",
+      "available_before": "Доступно до",
+      "available_after": "Доступно після"
     },
     "confirm-consultation": {
       "heading": "Твою консультацію заброньовано",
@@ -1200,7 +1200,7 @@
       "december": "Грудень"
     },
     "cancel-consultation": {
-      "heading": "Ви впевнені, що хочетп скасувати консультацію?",
+      "heading": "Ви впевнені, що хочете скасувати консультацію?",
       "paid_heading": "Ви впевнені, що хочете скасувати консультацію і втратити оплату в розмірі ${{price}}?",
       "paid_cancel_subheading": "Скасовуєш консультацію менш ніж за 24 години до її початку. Купон, який ти витратив на консультацію, буде втрачено.",
       "cancel_button_label": "Скасувати консультацію",
@@ -1219,7 +1219,7 @@
     "edit-consultation": {
       "heading": "Зміни консультацію",
       "subheading": "Обери форму зв'язку, яка найкраще відповідає твоїм потребам, і отримай необхідну допомогу.",
-      "specialist_button_label": "Змінити дату й час",
+      "specialist_button_label": "Змінити консультанта/ку",
       "date_button_label": "Зміни дату й час",
       "cancel_button_label": "Скасувати консультацію",
       "sunday": "Нд",
@@ -1236,7 +1236,7 @@
       "option_yes_label": "Так",
       "option_no_label": "Ні",
       "cta_button_label": "Надішли відгук",
-      "textarea_placeholder": "Місце для інформації",
+      "textarea_placeholder": "Введи текст тут",
       "textarea_label": "Розкажи, що тебе турбувало (необов'язково)"
     },
     "select-consultation": {
@@ -1293,7 +1293,7 @@
       "cancel_button": "Скасувати"
     },
     "join-consultation": {
-      "heading": "Вибери спосіб комунікаціЇ",
+      "heading": "Вибери спосіб комунікації",
       "subheading": "Вибери тип консультації, який тобі найбільше підходить.",
       "button_label_1": "Відео/аудіо консультація",
       "button_label_2": "Текстова консультація",
@@ -1347,8 +1347,8 @@
       "text2": "Якщо ти хочеш дізнатися більше про те, як ми обробляємо персональні дані, відвідай",
       "terms": "Умови використання",
       "privacy_policy": "Політика конфіденційності",
-      "give_permission": "Дай дозвіл",
-      "cancel": "Скасуй"
+      "give_permission": "Надати дозвіл",
+      "cancel": "Скасувати"
     },
     "save-access-code-confirmation": {
       "heading": "Підтвердь, що зберіг/егла токен доступу",
@@ -1368,7 +1368,7 @@
       "address": "Адреса компанії: ",
       "email_address": "Адреса електронної пошти: ",
       "price": "Ціна: ",
-      "view_receipt": "Переглянь підтвердження плетежу",
+      "view_receipt": "Переглянути квитанцію",
       "text_audio_video_consultation": "Онлайн-консультація"
     },
     "mood-track-more-information": {

@@ -36,7 +36,6 @@ export const BaselineAssessmentDashboard = ({
     !isTmpUser
   );
   const handleViewAssessment = () => {
-    console.log(latestAssessment);
     if (latestAssessment) {
       navigate(`/baseline-assesment/${latestAssessment.baselineAssessmentId}`);
     }

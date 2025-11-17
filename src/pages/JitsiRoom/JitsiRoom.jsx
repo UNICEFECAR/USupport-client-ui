@@ -21,6 +21,7 @@ import {
   useSendMessage,
   useGetSecurityCheckAnswersByConsultationId,
   useLeaveConsultation,
+  useGetClientData,
 } from "#hooks";
 
 import { MessageList } from "./MessageList";
@@ -68,6 +69,8 @@ export const JitsiRoom = () => {
   const location = useLocation();
   const { width } = useWindowDimensions();
   const { isTmpUser, leaveConsultationFn } = useContext(RootContext);
+  const [clientDataQuery] = useGetClientData();
+  const clientData = clientDataQuery?.data;
 
   if (!location?.state) {
     return <Navigate to={`/client/${language}/consultations`} />;
@@ -173,13 +176,12 @@ export const JitsiRoom = () => {
     }
   }, [width, interfaces.isChatShownOnMobile, consultationRef]);
 
-  const clientData = queryClient.getQueryData({ queryKey: ["client-data"] });
-
   if (isTmpUser)
     return (
       <Navigate to={`/${localStorage.getItem("language")}/client/dashboard`} />
     );
-  if (!clientData || !consultation)
+
+  if (!consultation)
     return (
       <Navigate
         to={`/client/${localStorage.getItem("language")}/consultations`}
@@ -329,171 +331,186 @@ export const JitsiRoom = () => {
       showGoBackArrow={false}
       classes="page__jitsi-room"
     >
-      <div style={{ display: "flex" }}>
-        <div style={{ position: "relative" }}>
-          <div
-            style={{
-              position: "absolute",
-              top: "20px",
-              left: "20px",
+      {clientDataQuery.isLoading ? (
+        <Loading />
+      ) : (
+        <div style={{ display: "flex" }}>
+          <div style={{ position: "relative" }}>
+            <div
+              style={{
+                position: "absolute",
+                top: "20px",
+                left: "20px",
+              }}
+            >
+              <Controls
+                t={t}
+                consultation={consultation}
+                handleSendMessage={handleSendMessage}
+                hasUnreadMessages={interfaces.hasUnreadMessages}
+                toggleCamera={() => {
+                  api.current.executeCommand("toggleVideo");
+                  setInterfaceData({
+                    ...interfaces,
+                    videoOn: !interfaces.videoOn,
+                  });
+                }}
+                toggleMicrophone={() => {
+                  api.current.executeCommand("toggleAudio");
+                  setInterfaceData({
+                    ...interfaces,
+                    microphoneOn: !interfaces.microphoneOn,
+                  });
+                }}
+                toggleChat={toggleChat}
+                leaveConsultation={requestLeaveConsultation}
+                isCameraOn={interfaces.videoOn}
+                isMicrophoneOn={interfaces.microphoneOn}
+                renderIn="client"
+                isInSession={interfaces.isProviderInSession}
+                isHidden={hideControls}
+                toggleControlsVisibility={() => setHideControls(false)}
+              />
+            </div>
+          </div>
+          {isLoading ||
+            (clientDataQuery?.isLoading && (
+              <div className="loading-spinner">
+                <Loading />
+              </div>
+            ))}
+          <JitsiMeeting
+            domain={JITSI_API_URL}
+            roomName={consultation.consultationId}
+            ssl={false}
+            spinner={Loading}
+            configOverwrite={{
+              ...defaultConfig,
+              startWithAudioMuted: !microphoneOn,
+              startWithVideoMuted: !videoOn,
+              hideConferenceSubject: true,
+              showJitsiBranding: false,
+              showJitsiWatermark: false,
+              SETTINGS_SECTIONS: [
+                "language",
+                "devices",
+                "background",
+                "profile",
+              ],
+              buttonsWithNotifyClick: [
+                { key: "settings", preventExecution: false },
+              ],
             }}
-          >
-            <Controls
-              t={t}
-              consultation={consultation}
-              handleSendMessage={handleSendMessage}
-              hasUnreadMessages={interfaces.hasUnreadMessages}
-              toggleCamera={() => {
-                api.current.executeCommand("toggleVideo");
+            interfaceConfigOverwrite={{
+              HIDE_CONFERENCE_SUBJECT: true,
+              SHOW_JITSI_WATERMARK: false,
+              DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
+              TOOLBAR_BUTTONS: ["raisehand", "settings", "fullscreen"],
+              SETTINGS_SECTIONS: [
+                "language",
+                "devices",
+                "background",
+                "profile",
+              ],
+              SHOW_ROOM_NAME: false,
+            }}
+            userInfo={userInfo}
+            onApiReady={async (externalApi) => {
+              const rooms = await externalApi.getRoomsInfo();
+
+              const roomInfo = rooms[0] || rooms?.rooms[0];
+              const participants = roomInfo?.participants?.filter(
+                (x) => !!x && x.id !== userInfo.id && x.id !== "local"
+              );
+              if (roomInfo) {
                 setInterfaceData({
                   ...interfaces,
-                  videoOn: !interfaces.videoOn,
-                });
-              }}
-              toggleMicrophone={() => {
-                api.current.executeCommand("toggleAudio");
-                setInterfaceData({
-                  ...interfaces,
-                  microphoneOn: !interfaces.microphoneOn,
-                });
-              }}
-              toggleChat={toggleChat}
-              leaveConsultation={requestLeaveConsultation}
-              isCameraOn={interfaces.videoOn}
-              isMicrophoneOn={interfaces.microphoneOn}
-              renderIn="client"
-              isInSession={interfaces.isProviderInSession}
-              isHidden={hideControls}
-              toggleControlsVisibility={() => setHideControls(false)}
-            />
-          </div>
-        </div>
-        {isLoading && (
-          <div className="loading-spinner">
-            <Loading />
-          </div>
-        )}
-        <JitsiMeeting
-          domain={JITSI_API_URL}
-          roomName={consultation.consultationId}
-          ssl={false}
-          spinner={Loading}
-          configOverwrite={{
-            ...defaultConfig,
-            startWithAudioMuted: !microphoneOn,
-            startWithVideoMuted: !videoOn,
-            hideConferenceSubject: true,
-            showJitsiBranding: false,
-            showJitsiWatermark: false,
-            SETTINGS_SECTIONS: ["language", "devices", "background", "profile"],
-            buttonsWithNotifyClick: [
-              { key: "settings", preventExecution: false },
-            ],
-          }}
-          interfaceConfigOverwrite={{
-            HIDE_CONFERENCE_SUBJECT: true,
-            SHOW_JITSI_WATERMARK: false,
-            DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
-            TOOLBAR_BUTTONS: ["raisehand", "settings", "fullscreen"],
-            SETTINGS_SECTIONS: ["language", "devices", "background", "profile"],
-            SHOW_ROOM_NAME: false,
-          }}
-          userInfo={userInfo}
-          onApiReady={async (externalApi) => {
-            const rooms = await externalApi.getRoomsInfo();
-
-            const roomInfo = rooms[0] || rooms?.rooms[0];
-            const participants = roomInfo?.participants?.filter(
-              (x) => !!x && x.id !== userInfo.id && x.id !== "local"
-            );
-            if (roomInfo) {
-              setInterfaceData({
-                ...interfaces,
-                isProviderInSession: participants.length > 0,
-              });
-            }
-
-            api.current = externalApi;
-            externalApi.executeCommand("joinConference");
-            externalApi.executeCommand(
-              "avatarUrl",
-              `${AMAZON_S3_BUCKET}/${clientData.image || "default"}`
-            );
-
-            externalApi.addListener("cameraError", (error) => {
-              if (error.type === "gum.permission_denied") {
-                setInterfaceData({
-                  ...interfaces,
-                  videoOn: false,
+                  isProviderInSession: participants.length > 0,
                 });
               }
-            });
 
-            externalApi.addListener("micError", (error) => {
-              if (error.type === "gum.permission_denied") {
-                setInterfaceData({
-                  ...interfaces,
-                  microphoneOn: false,
-                });
-              }
-            });
+              api.current = externalApi;
+              externalApi.executeCommand("joinConference");
+              externalApi.executeCommand(
+                "avatarUrl",
+                `${AMAZON_S3_BUCKET}/${clientData.image || "default"}`
+              );
 
-            externalApi.addListener(
-              "participantJoined",
-              ({ id, displayName }) => {
-                console.log("Participant joined: ", displayName);
-                if (
-                  !interfaces.isProviderInSession &&
-                  id !== userInfo.id &&
-                  id !== "local"
-                ) {
-                  setInterfaceData((prev) => ({
-                    ...prev,
-                    isProviderInSession: true,
-                  }));
+              externalApi.addListener("cameraError", (error) => {
+                if (error.type === "gum.permission_denied") {
+                  setInterfaceData({
+                    ...interfaces,
+                    videoOn: false,
+                  });
                 }
-              }
-            );
-            externalApi.addListener("toolbarButtonClicked", (event) => {
-              if (event.key === "settings") {
-                console.log("settings open");
-                setHideControls(true);
-              }
-            });
+              });
 
-            externalApi.addListener("videoConferenceJoined", () => {
-              setIsLoading(false);
-            });
-          }}
-          getIFrameRef={(iframeRef) => {
-            iframeRef.style.height = "100vh";
-            iframeRef.style.width = "100vw";
-            consultationRef.current = iframeRef;
-          }}
-        />
-        <Chat
-          t={t}
-          interfaces={interfaces}
-          setInterfaceData={setInterfaceData}
-          theme={theme}
-          messages={messages}
-          setMessages={setMessages}
-          consultation={consultation}
-          clientId={clientData.clientID}
-          handleSendMessage={handleSendMessage}
-          isChatShownOnMobile={interfaces.isChatShownOnMobile}
-          isChatShownOnTablet={interfaces.isChatShownOnTablet}
-          setIsChatShownOnMobile={(value) => {
-            setInterfaceData({ ...interfaces, isChatShownOnMobile: value });
-          }}
-          hasUnreadMessages={interfaces.hasUnreadMessages}
-          socketRef={socketRef}
-          setHasUnreadMessages={(value) => {
-            setInterfaceData({ ...interfaces, hasUnreadMessages: value });
-          }}
-          backdropMessagesContainerRef={backdropMessagesContainerRef}
-        />
-      </div>
+              externalApi.addListener("micError", (error) => {
+                if (error.type === "gum.permission_denied") {
+                  setInterfaceData({
+                    ...interfaces,
+                    microphoneOn: false,
+                  });
+                }
+              });
+
+              externalApi.addListener(
+                "participantJoined",
+                ({ id, displayName }) => {
+                  console.log("Participant joined: ", displayName);
+                  if (
+                    !interfaces.isProviderInSession &&
+                    id !== userInfo.id &&
+                    id !== "local"
+                  ) {
+                    setInterfaceData((prev) => ({
+                      ...prev,
+                      isProviderInSession: true,
+                    }));
+                  }
+                }
+              );
+              externalApi.addListener("toolbarButtonClicked", (event) => {
+                if (event.key === "settings") {
+                  console.log("settings open");
+                  setHideControls(true);
+                }
+              });
+
+              externalApi.addListener("videoConferenceJoined", () => {
+                setIsLoading(false);
+              });
+            }}
+            getIFrameRef={(iframeRef) => {
+              iframeRef.style.height = "100vh";
+              iframeRef.style.width = "100vw";
+              consultationRef.current = iframeRef;
+            }}
+          />
+          <Chat
+            t={t}
+            interfaces={interfaces}
+            setInterfaceData={setInterfaceData}
+            theme={theme}
+            messages={messages}
+            setMessages={setMessages}
+            consultation={consultation}
+            clientId={clientData.clientID}
+            handleSendMessage={handleSendMessage}
+            isChatShownOnMobile={interfaces.isChatShownOnMobile}
+            isChatShownOnTablet={interfaces.isChatShownOnTablet}
+            setIsChatShownOnMobile={(value) => {
+              setInterfaceData({ ...interfaces, isChatShownOnMobile: value });
+            }}
+            hasUnreadMessages={interfaces.hasUnreadMessages}
+            socketRef={socketRef}
+            setHasUnreadMessages={(value) => {
+              setInterfaceData({ ...interfaces, hasUnreadMessages: value });
+            }}
+            backdropMessagesContainerRef={backdropMessagesContainerRef}
+          />
+        </div>
+      )}
       <LeaveConsultation
         isOpen={isLeaveConsultationOpen}
         onCancel={() => {
