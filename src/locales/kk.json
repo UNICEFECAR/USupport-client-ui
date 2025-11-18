@@ -847,7 +847,8 @@
       "finish_assessment": "Бағалауды аяқтау",
       "assessment_completed": "Бағалау аяқталды",
       "assessment_completed_description": "Бағалауды аяқтағаныңызға рахмет. Жауаптарыңыз сақталды және сізге көмектесу үшін пайдаланылады.",
-      "assessment_completed_button": "Басты бетке қайту"
+      "assessment_completed_button": "Басты бетке қайту",
+      "save_button_label": "Save for later"
     },
     "baseline-assessment-dashboard": {
       "heading": "Сіздің базалық бағалауыңыз",

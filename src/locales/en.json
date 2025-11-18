@@ -847,7 +847,8 @@
       "finish_assessment": "Finish Assessment",
       "assessment_completed": "Assessment Completed",
       "assessment_completed_description": "Thank you for completing the assessment. Your answers have been saved and will be used to help you.",
-      "assessment_completed_button": "Back to Home"
+      "assessment_completed_button": "Back to Home",
+      "save_button_label": "Save for later"
     },
     "baseline-assessment-dashboard": {
       "heading": "Your Baseline Assessment",

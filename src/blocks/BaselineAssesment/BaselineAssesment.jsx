@@ -388,7 +388,7 @@ export const BaselineAssesment = ({
                 iconColor="#ffffff"
                 size="md"
                 color="purple"
-                label="Save for later"
+                label={t("save_button_label")}
                 classes="baseline-assesment__navigation__save-for-later"
                 onClick={handleRedirectToDashboard}
               />

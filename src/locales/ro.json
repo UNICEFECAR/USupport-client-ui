@@ -866,7 +866,8 @@
       "finish_assessment": "Finalizați evaluarea",
       "assessment_completed": "Evaluare finalizată",
       "assessment_completed_description": "Vă mulțumim pentru completare. Răspunsurile au fost salvate și vor fi folosite pentru a vă ajuta.",
-      "assessment_completed_button": "Înapoi la Acasă"
+      "assessment_completed_button": "Înapoi la Acasă",
+      "save_button_label": "Save for later"
     },
     "baseline-assessment-dashboard": {
       "heading": "Evaluarea dvs. inițială",

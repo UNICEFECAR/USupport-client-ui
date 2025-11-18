@@ -847,7 +847,8 @@
       "finish_assessment": "Завершити оцінювання",
       "assessment_completed": "Оцінювання завершено",
       "assessment_completed_description": "Дякуємо за проходження оцінювання. Ваші відповіді збережено та буде використано, щоб допомогти вам.",
-      "assessment_completed_button": "Повернутися на головну"
+      "assessment_completed_button": "Повернутися на головну",
+      "save_button_label": "Save for later"
     },
     "baseline-assessment-dashboard": {
       "heading": "Ваша базова оцінка",
