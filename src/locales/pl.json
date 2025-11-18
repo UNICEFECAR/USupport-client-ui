@@ -3,11 +3,11 @@
     "page": {
       "page_1": "Strona główna",
       "page_2": "Konsultacje",
-      "page_3": "Portal informacyjny",
-      "page_4": "Q&A",
+      "page_3": "Wiedza",
+      "page_4": "Zapytaj psychologa",
       "footer_1": "Strona główna",
       "footer_2": "Konsultacje",
-      "footer_3": "Portal informacyjny",
+      "footer_3": "Wiedza",
       "footer_4": "Twój profil",
       "footer_5": "Regulamin",
       "footer_6": "Polityka prywatności",
@@ -105,7 +105,9 @@
     "sos-center": {
       "button_link": "Odwiedź stronę",
       "button_call": "Skontaktuj się teraz",
-      "no_results": "Brak wyników dla aktualnie wybranego kraju i języka."
+      "no_results": "Brak wyników dla aktualnie wybranego kraju i języka.",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "register-about-you": {
       "input_name_label": "Imię",
@@ -134,7 +136,7 @@
       "nickname_label": "Nick *",
       "nickname_placeholder": "Wprowadź swój nick",
       "nickname_error": "Nick jest wymagany",
-      "paragraph_1": "Twój anonimowy kod dostępu to",
+      "paragraph_1": "Twój anonimowy token dostępu to",
       "password_label": "Hasło *",
       "terms_agreement_text_1": "Zgadzam się z",
       "terms_agreement_text_2": "Polityką prywatności",
@@ -143,8 +145,8 @@
       "password_error": "Hasło powinno zawierać co najmniej 8 znaków, 1 wielką literę, 1 małą literę i 1 cyfrę.",
       "register_button_label": "Rejestracja",
       "login_button_label": "Już posiadam konto",
-      "copy_text": "Skopiuj i zapisz lub zanotuj swój anonimowy kod. Jeśli go zgubisz, nie będziesz mieć dostępu do swojego konta.",
-      "copy_success": "Kod został pomyślnie skopiowany",
+      "copy_text": "Skopiuj i zapisz lub zanotuj swój anonimowy token. Jeśli go zgubisz, nie zalogujesz się na swoje konto i nie połączysz się na konsultację z psychologiem! Do odbycia sesji z psychologiem potrzebujesz tokenu dostępu i hasła do konta.",
+      "copy_success": "Token został pomyślnie skopiowany",
       "confirm_password_label": "Potwierdź hasło",
       "password_match_error": "Pola Hasło i Potwierdź hasło nie są zgodne",
       "age_terms_agreement_text_1": "Mam ponad {{age}} lat"
@@ -275,7 +277,7 @@
       "poland_description": "uSupport to platforma zdrowia psychicznego i dobrego samopoczucia przeznaczona dla młodych osób (16-24)"
     },
     "articles": {
-      "heading": "Portal informacyjny",
+      "heading": "Wiedza",
       "no_results": "Nie znaleziono wyników",
       "could_not_load_content": "Brak wyników dla aktualnie wybranego kraju i języka.",
       "all": "Wszystkie",
@@ -300,12 +302,12 @@
       "register_email": "Zarejestruj się za pomocą adresu e-mail",
       "register_anonymously": "Rejestracja anonimowa",
       "continue_as_guest": "Kontynuuj bez rejestracji",
-      "heading_1": "Informacje o platformie",
-      "text_1": "Platforma, która szanuje Twoją prywatność i bezpieczeństwo. Twoje dobro jest dla nas najważniejsze! uSupport oferuje spersonalizowaną i dyskretną opiekę psychologiczną.",
-      "heading_2": "Informacje o wsparciu",
-      "text_2": "uSupport to platforma poświęcona zdrowiu psychicznemu, dobrostanowi psychospołecznemu i dobremu samopoczuciu, przeznaczona dla młodych ludzi, gdzie prywatność i bezpieczeństwo są priorytetem.",
-      "heading_3": "O Tobie",
-      "text_3": "Bądź najlepszą wersją siebie! Twoje zdrowie psychiczne ma znaczenie.",
+      "heading_1": "Umawianie konsultacji",
+      "text_1": "1. Zarejestruj się anonimowo lub za pomocą adresu e-mail.\n2. Wybierz konsultanta i odpowiadający Ci termin spotkania.\n3. W dniu konsultacji zaloguj się na swoje konto za pomocą adresu e-mail lub tokenu dostępu i hasła.\n4. Porozmawiaj z psychologiem.",
+      "heading_2": "Konsultacje po polsku i ukraińsku",
+      "text_2": "Na uSupport możesz umówić się na konsultację z psychologiem w języku polskim, ale także w języku ukraińskim! Wybierając konsultanta, sprawdź w jakich językach prowadzi sesje.",
+      "heading_3": "Nie czekaj! Umów się na konsultację z psychologiem",
+      "text_3": "Potrzebujesz rozmowy z psychologiem? Już dziś umów się na indywidualną konsultację na platformie uSupport. Twoje zdrowie psychiczne jest ważne!",
       "login": "Logowanie za pomocą adresu e-mail/tokenu dostępu",
       "pl_text": "uSupport to platforma zdrowia psychicznego i dobrego samopoczucia przeznaczona dla młodych osób (16-24)"
     },
@@ -336,7 +338,7 @@
       "search": "Szukaj"
     },
     "user-details": {
-      "access_token": "Twój anonimowy kod dostępu",
+      "access_token": "Twój anonimowy token dostępu",
       "change_photo": "Zmień zdjęcie",
       "nickname": "Nick",
       "nickname_placeholder": "Wprowadź swój nick",
@@ -421,7 +423,6 @@
       "live_text": "Teraz",
       "accept_button_label": "Zaakceptuj konsulatcję",
       "join_button_label": "Dołącz",
-      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem",
       "change_button_label": "Zmiana",
       "ordinal_st": ".",
       "ordinal_nd": ".",
@@ -440,7 +441,8 @@
       "november": "Listopad",
       "december": "Grudzień",
       "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
-      "cookie_preferences": "Preferencje plików cookie"
+      "cookie_preferences": "Preferencje plików cookie",
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",
@@ -450,11 +452,11 @@
       "worried": "Zmartwiony/a",
       "heading": "Jak się dziś czujesz?",
       "mood_tracker": "Monitor nastroju",
-      "how_it_works": "Jak to działa",
       "additional_comment_placeholder": "Co sprawiło, że tak się poczułeś/aś?",
       "submit_mood_track": "Prześlij",
       "add_mood_tracker_success": "Twój dzisiejszy nastrój został pomyślnie dodany",
       "emergency_label": "Czy to dotyczy wydarzenia życiowego lub sytuacji krytycznej?",
+      "how_it_works": "Jak to działa",
       "recommendations": "Rekomendacje",
       "recommendations_text": "Chcesz zobaczyć wykres swojego nastroju i polecane treści?",
       "check_out": "Zobacz"
@@ -468,7 +470,6 @@
       "change_button_label": "Zmiana",
       "accept_button_label": "Zaakceptuj konsulatcję",
       "join_button_label": "Dołącz",
-      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem",
       "schedule_button_label": "Kalendarz",
       "live_label": "Teraz",
       "no_consultations": "Obecnie nie masz nadchodzących konsultacji",
@@ -490,7 +491,8 @@
       "november": "Listopad",
       "december": "Grudzień",
       "coupon": "Kupon",
-      "explore_button_label": "Odkryj"
+      "explore_button_label": "Odkryj",
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
     },
     "activity-log-dashboard": {
       "heading": "Rejestr aktywności",
@@ -634,7 +636,7 @@
       "how_it_works": "Zobacz, jak to działa"
     },
     "my-qa": {
-      "ask_button_label": "Zadaj pytanie anonimowo",
+      "ask_button_label": "Zapytaj psychologa",
       "answer_by": "Odpowiedź udzielona przez:",
       "schedule_consultation": "Zaplanuj konsultację",
       "today": "Dzisiaj",
@@ -845,7 +847,8 @@
       "finish_assessment": "Zakończ ocenę",
       "assessment_completed": "Ocena zakończona",
       "assessment_completed_description": "Dziękujemy za wypełnienie oceny. Twoje odpowiedzi zostały zapisane i zostaną wykorzystane, aby Ci pomóc.",
-      "assessment_completed_button": "Powrót do strony głównej"
+      "assessment_completed_button": "Powrót do strony głównej",
+      "save_button_label": "Save for later"
     },
     "baseline-assessment-dashboard": {
       "heading": "Twoja podstawowa ocena",
@@ -856,7 +859,11 @@
       "continue": "Kontynuuj",
       "view": "Zobacz wyniki",
       "view_detailed_results": "Zobacz szczegółowe wyniki",
-      "started_at": "Rozpoczęto {{date}}"
+      "started_at": "Rozpoczęto {{date}}",
+      "psychological": "Psychological",
+      "biological": "Biological",
+      "social": "Social",
+      "latest_results": "Latest Results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Ocena zakończona",
@@ -866,7 +873,36 @@
       "recommended_podcasts": "Polecane podcasty",
       "read_more_button": "Czytaj więcej",
       "by": "autor: {{creator}}",
-      "min_read": "min czytania"
+      "min_read": "min czytania",
+      "psychological": "Psychological",
+      "biological": "Biological",
+      "social": "Social",
+      "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
+      "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
+      "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
+      "inc_same_inc": "We noticed some challenges: psychological and social increased, while biological stayed the same.",
+      "inc_same_same": "We noticed some challenges: psychological increased, while biological and social stayed the same.",
+      "inc_same_dec": "Good job! Social decreased, though psychological increased and biological stayed the same.",
+      "inc_dec_inc": "Good job! Biological decreased, though psychological and social increased.",
+      "inc_dec_same": "Good job! Biological decreased, though psychological increased and social stayed the same.",
+      "inc_dec_dec": "Great progress! Biological and social decreased, though psychological increased.",
+      "same_inc_inc": "We noticed some challenges: biological and social increased, while psychological stayed the same.",
+      "same_inc_same": "We noticed some challenges: biological increased, while psychological and social stayed the same.",
+      "same_inc_dec": "Good job! Social decreased, though biological increased and psychological stayed the same.",
+      "same_same_inc": "We noticed some challenges: social increased, while psychological and biological stayed the same.",
+      "same_same_dec": "Good job! Social decreased, while psychological and biological stayed the same.",
+      "same_dec_inc": "Good job! Biological decreased, though social increased and psychological stayed the same.",
+      "same_dec_same": "Good job! Biological decreased, while psychological and social stayed the same.",
+      "same_dec_dec": "Great progress! Biological and social decreased, while psychological stayed the same.",
+      "dec_inc_inc": "Good job! Psychological decreased, though biological and social increased.",
+      "dec_inc_same": "Good job! Psychological decreased, though biological increased and social stayed the same.",
+      "dec_inc_dec": "Great progress! Psychological and social decreased, though biological increased.",
+      "dec_same_inc": "Good job! Psychological decreased, though social increased and biological stayed the same.",
+      "dec_same_same": "Good job! Psychological decreased, while biological and social stayed the same.",
+      "dec_same_dec": "Great progress! Psychological and social decreased, while biological stayed the same.",
+      "dec_dec_inc": "Great progress! Psychological and biological decreased, though social increased.",
+      "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
+      "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased."
     }
   },
   "pages": {
@@ -968,7 +1004,7 @@
       "export_failed": "Eksportowanie nie powiodło się. Proszę spróbować ponownie."
     },
     "information-portal": {
-      "heading": "Portal informacyjny",
+      "heading": "Wiedza",
       "subheading": "Tutaj możesz odkryć wszystko, czego potrzebujesz, aby poprawić swoje zdrowie psychiczne",
       "heading_newest": "Najnowsze artykuły",
       "heading_popular": "Najpopularniejsze",
@@ -1316,10 +1352,10 @@
       "cancel": "Anuluj"
     },
     "save-access-code-confirmation": {
-      "heading": "Potwierdź zapisanie kodu dostępu",
-      "text": "Upewnij się, że zapisałeś/aś lub zanotowałeś/aś swój kod dostępu. W przeciwnym razie utracisz dostęp do swojego anonimowego konta i postępu w aplikacji.",
-      "button": "Zapisałem/am kod dostępu",
-      "warning": "Rozumiem, że nie będę mieć dostępu do konta, jeśli zgubię ten kod.",
+      "heading": "Potwierdź zapisanie token dostępu",
+      "text": "Upewnij się, że zapisałeś/aś lub zanotowałeś/aś swój token dostępu. W przeciwnym razie utracisz dostęp do swojego anonimowego konta i postępu w aplikacji.",
+      "button": "Zapisałem/am token dostępu",
+      "warning": "Rozumiem, że nie będę mieć dostępu do konta, jeśli zgubię ten token.",
       "click_to_copy": "Kliknij, aby skopiować"
     },
     "payment-information": {
