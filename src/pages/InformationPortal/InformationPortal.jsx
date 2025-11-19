@@ -8,6 +8,7 @@ import {
   useCustomNavigate as useNavigate,
   useEventListener,
   useGetUserContentRatings,
+  useGetUserContentEngagements,
 } from "#hooks";
 
 import { RootContext } from "#routes";
@@ -31,6 +32,8 @@ import {
   destructurePodcastData,
   ThemeContext,
   createArticleSlug,
+  getLikesAndDislikesForContent,
+  isLikedOrDislikedByUser,
 } from "@USupport-components-library/utils";
 
 import { mascotHappyPurple } from "@USupport-components-library/assets";
@@ -409,6 +412,11 @@ const ContentList = ({
     keyPrefix: "information-portal",
   });
 
+  const { isTmpUser } = useContext(RootContext);
+  const { data: userContentEngagements } = useGetUserContentEngagements(
+    !isTmpUser
+  );
+
   const fetchContent = async () => {
     let { data } = await getContent({
       limit,
@@ -438,6 +446,24 @@ const ContentList = ({
     fetchContent,
     {
       enabled: contentIds?.length > 0,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  // Get likes and dislikes for content items
+  const { data: contentLikesAndDislikes } = useQuery(
+    [
+      `${contentType}-likes-dislikes-${sortBy}`,
+      contentItems?.map((item) => item.id),
+    ],
+    async () => {
+      if (!contentItems?.length)
+        return { likes: new Map(), dislikes: new Map() };
+      const ids = contentItems.map((item) => item.id);
+      return await getLikesAndDislikesForContent(ids, contentType);
+    },
+    {
+      enabled: !!contentItems?.length,
       refetchOnWindowFocus: false,
     }
   );
@@ -484,18 +510,11 @@ const ContentList = ({
             </GridItem>
           ) : (
             contentItems.map((item, index) => {
-              const isLikedByUser = contentRatings?.some(
-                (rating) =>
-                  rating.content_id === item.id &&
-                  rating.content_type === contentType &&
-                  rating.positive === true
-              );
-              const isDislikedByUser = contentRatings?.some(
-                (rating) =>
-                  rating.content_id === item.id &&
-                  rating.content_type === contentType &&
-                  rating.positive === false
-              );
+              const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+                contentType,
+                contentData: item,
+                userEngagements: userContentEngagements,
+              });
 
               let handlePlayFunction;
               if (contentType === "video" && onVideoPlay) {
@@ -519,10 +538,12 @@ const ContentList = ({
                     readingTime={item.readingTime}
                     categoryName={item.categoryName}
                     contentType={contentType}
-                    isLikedByUser={isLikedByUser}
-                    isDislikedByUser={isDislikedByUser}
-                    likes={item.likes}
-                    dislikes={item.dislikes}
+                    isLikedByUser={isLiked}
+                    isDislikedByUser={isDisliked}
+                    likes={contentLikesAndDislikes?.likes.get(item.id) || 0}
+                    dislikes={
+                      contentLikesAndDislikes?.dislikes.get(item.id) || 0
+                    }
                     t={t}
                     onClick={() => navigate(getRoute(item))}
                     handlePlay={handlePlayFunction}

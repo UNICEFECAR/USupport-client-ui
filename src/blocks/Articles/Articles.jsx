@@ -5,10 +5,11 @@ import React, {
   useContext,
   useMemo,
 } from "react";
-import { useCustomNavigate as useNavigate } from "#hooks";
+
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
+
 import {
   Grid,
   GridItem,
@@ -19,13 +20,19 @@ import {
   Loading,
   ArticlesGrid,
 } from "@USupport-components-library/src";
-import { createArticleSlug } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+import {
+  createArticleSlug,
+  isLikedOrDislikedByUser,
+  getLikesAndDislikesForContent,
+} from "@USupport-components-library/utils";
+
 import {
   useDebounce,
   useEventListener,
-  useGetUserContentRatings,
+  useGetUserContentEngagements,
   useRecommendedArticles,
+  useCustomNavigate as useNavigate,
 } from "#hooks";
 import { RootContext } from "#routes";
 
@@ -50,6 +57,9 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
+  const [articlesLikes, setArticlesLikes] = useState(new Map());
+  const [articlesDislikes, setArticlesDislikes] = useState(new Map());
+
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
       setUsersLanguage(i18n.language);
@@ -61,14 +71,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
   const [selectedAgeGroup, setSelectedAgeGroup] = useState();
   const [showAgeGroups, setShowAgeGroups] = useState(true);
 
-  // useEffect(() => {
-  //   const country = localStorage.getItem("country");
-  //   if (country === "PL") {
-  //     setShowAgeGroups(false);
-  //   }
-  // }, []);
-
-  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
+  const { data: contentEngagements } = useGetUserContentEngagements(!isTmpUser);
 
   const country = localStorage.getItem("country");
   const isPLCountry = country === "PL";
@@ -215,6 +218,16 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   const getArticlesIds = async () => {
     const articlesIds = await adminSvc.getArticles();
+
+    if (usersLanguage === "en") {
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        articlesIds,
+        "article"
+      );
+
+      setArticlesLikes(likes);
+      setArticlesDislikes(dislikes);
+    }
 
     return articlesIds;
   };
@@ -377,6 +390,36 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     availableCategories,
   });
 
+  useEffect(() => {
+    async function getArticlesRatings() {
+      if (usersLanguage !== "en") {
+        const articleIds = articles.reduce((acc, article) => {
+          if (
+            !articlesLikes.has(article.id) &&
+            !articlesDislikes.has(article.id)
+          ) {
+            acc.push(article.id);
+          }
+          return acc;
+        }, []);
+
+        const { likes, dislikes } = await getLikesAndDislikesForContent(
+          articleIds,
+          "article"
+        );
+
+        setArticlesLikes((prevArticlesLikes) => {
+          return new Map([...prevArticlesLikes, ...likes]);
+        });
+        setArticlesDislikes((prevArticlesDislikes) => {
+          return new Map([...prevArticlesDislikes, ...dislikes]);
+        });
+      }
+    }
+
+    getArticlesRatings();
+  }, [articles, usersLanguage, setArticlesDislikes, setArticlesDislikes]);
+
   const articlesToTransform = isTmpUser ? guestArticles : articles;
 
   // Transform articles data to match expected format and add user interaction data
@@ -384,29 +427,21 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     // Get the base article data
     const baseArticle = article.data ? article.data : article;
 
-    // Add user interaction data
-    const isLikedByUser = contentRatings?.some(
-      (rating) =>
-        rating.content_id === baseArticle.id &&
-        rating.content_type === "article" &&
-        rating.positive === true
-    );
-
-    const isDislikedByUser = contentRatings?.some(
-      (rating) =>
-        rating.content_id === baseArticle.id &&
-        rating.content_type === "article" &&
-        rating.positive === false
-    );
+    const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+      contentType: "article",
+      contentData: baseArticle,
+      userEngagements: contentEngagements,
+    });
 
     return {
       ...baseArticle,
-      isLikedByUser,
-      isDislikedByUser,
+      isLikedByUser: isLiked,
+      isDislikedByUser: isDisliked,
       isRead: readArticleIds.includes(baseArticle.id),
+      likes: articlesLikes.get(baseArticle.id) || 0,
+      dislikes: articlesDislikes.get(baseArticle.id) || 0,
     };
   });
-
   const handleArticleClick = (id, title) => {
     navigate(`/information-portal/article/${id}/${createArticleSlug(title)}`);
   };

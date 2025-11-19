@@ -14,13 +14,15 @@ import {
 import {
   destructureVideoData,
   createArticleSlug,
+  getLikesAndDislikesForContent,
+  isLikedOrDislikedByUser,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
 import {
   useCustomNavigate as useNavigate,
   useDebounce,
-  useGetUserContentRatings,
+  useGetUserContentEngagements,
 } from "#hooks";
 import { RootContext } from "#routes";
 
@@ -40,13 +42,16 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "videos" });
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
+  const [videosLikes, setVideosLikes] = useState(new Map());
+  const [videosDislikes, setVideosDislikes] = useState(new Map());
+
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
       setUsersLanguage(i18n.language);
     }
   }, [i18n.language]);
 
-  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
+  const { data: contentEngagements } = useGetUserContentEngagements(!isTmpUser);
 
   //--------------------- Categories ----------------------//
   const [categories, setCategories] = useState();
@@ -111,6 +116,17 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
   //--------------------- Videos ----------------------//
   const getVideosIds = async () => {
     const videosIds = await adminSvc.getVideos();
+
+    if (usersLanguage === "en") {
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        videosIds,
+        "video"
+      );
+
+      setVideosLikes(likes);
+      setVideosDislikes(dislikes);
+    }
+
     return videosIds;
   };
 
@@ -154,7 +170,23 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
       ids: videoIdsQuery.data,
     });
 
-    return data.data || [];
+    const videos = data.data || [];
+
+    if (videos.length > 0) {
+      const videoIds = videos.map((video) => video.id);
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        videoIds,
+        "video"
+      );
+
+      return videos.map((video) => ({
+        ...video,
+        likes: likes.get(video.id) || 0,
+        dislikes: dislikes.get(video.id) || 0,
+      }));
+    }
+
+    return videos;
   };
 
   const {
@@ -185,6 +217,43 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
     }
   );
 
+  useEffect(() => {
+    async function getVideosRatings() {
+      if (usersLanguage !== "en") {
+        const videoIds = videos.reduce((acc, video) => {
+          if (!videosLikes.has(video.id) && !videosDislikes.has(video.id)) {
+            acc.push(video.id);
+          }
+          return acc;
+        }, []);
+
+        const { likes, dislikes } = await getLikesAndDislikesForContent(
+          videoIds,
+          "video"
+        );
+
+        setVideosLikes((prevVideosLikes) => {
+          return new Map([...prevVideosLikes, ...likes]);
+        });
+        setVideosDislikes((prevVideosDislikes) => {
+          return new Map([...prevVideosDislikes, ...dislikes]);
+        });
+      }
+    }
+
+    getVideosRatings();
+  }, [videos, usersLanguage]);
+
+  // Transform videos data to use state likes/dislikes
+  const transformedVideos = videos?.map((video) => {
+    const baseVideo = video.data ? video.data : video;
+    return {
+      ...baseVideo,
+      likes: videosLikes.get(baseVideo.id) || 0,
+      dislikes: videosDislikes.get(baseVideo.id) || 0,
+    };
+  });
+
   let areCategoriesReady = categoriesToShow?.length > 1;
 
   return (
@@ -209,24 +278,17 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
         )}
 
         <GridItem md={8} lg={12} classes="videos__videos-item">
-          {videos?.length > 0 &&
+          {transformedVideos?.length > 0 &&
             areCategoriesReady &&
             !isVideosLoading &&
             !isVideosFetching && (
               <Grid>
-                {videos?.map((video, index) => {
-                  const isLikedByUser = contentRatings?.some(
-                    (rating) =>
-                      rating.content_id === video.id &&
-                      rating.content_type === "video" &&
-                      rating.positive === true
-                  );
-                  const isDislikedByUser = contentRatings?.some(
-                    (rating) =>
-                      rating.content_id === video.id &&
-                      rating.content_type === "video" &&
-                      rating.positive === false
-                  );
+                {transformedVideos?.map((video, index) => {
+                  const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+                    contentType: "video",
+                    contentData: video,
+                    userEngagements: contentEngagements,
+                  });
                   const videoData = destructureVideoData(video);
                   return (
                     <GridItem lg={6} key={index}>
@@ -240,8 +302,8 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
                         labels={videoData.labels}
                         categoryName={videoData.categoryName}
                         contentType="videos"
-                        isLikedByUser={isLikedByUser}
-                        isDislikedByUser={isDislikedByUser}
+                        isLikedByUser={isLiked}
+                        isDislikedByUser={isDisliked}
                         likes={videoData.likes}
                         dislikes={videoData.dislikes}
                         t={t}
@@ -258,7 +320,7 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
                 })}
               </Grid>
             )}
-          {!videos?.length &&
+          {!transformedVideos?.length &&
             !isVideosLoading &&
             !isVideosFetching &&
             categoriesQuery?.data?.length > 0 && (
@@ -277,7 +339,7 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
 
       {videoIdsQuery.isFetched &&
       (isVideosFetched || videosFetchStatus === "idle") &&
-      !videos ? (
+      !transformedVideos ? (
         <div className="videos__no-results-container">
           <h3>{t("could_not_load_content")}</h3>
         </div>

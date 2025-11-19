@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import propTypes from "prop-types";
 
 import {
@@ -13,7 +13,11 @@ import {
   Like,
   Loading,
 } from "@USupport-components-library/src";
-import { useAddContentRating } from "#hooks";
+import {
+  useAddContentRating,
+  useAddContentEngagement,
+  useRemoveContentEngagement,
+} from "#hooks";
 import { createArticleSlug } from "@USupport-components-library/utils";
 // import { ShareModal } from "#modals";
 
@@ -94,7 +98,7 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
       const urlSlug = articleData.name;
 
       if (currentSlug !== urlSlug) {
-        const newUrl = `/${language}/information-portal/article/${articleData.id}/${currentSlug}`;
+        const newUrl = `/client/${language}/information-portal/article/${articleData.id}/${currentSlug}`;
 
         // Just replace the URL in browser history without navigation
         window.history.replaceState(null, "", newUrl);
@@ -102,15 +106,6 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
       }
     }
   }, [language]);
-
-  useEffect(() => {
-    setRatings({
-      likes: articleData.likes || 0,
-      dislikes: articleData.dislikes || 0,
-      isLikedByUser: articleData.contentRating?.isLikedByUser || false,
-      isDislikedByUser: articleData.contentRating?.isDislikedByUser || false,
-    });
-  }, [articleData, articleData.contentRating]);
 
   const onMutate = (data) => {
     const prevData = JSON.parse(JSON.stringify(ratings));
@@ -194,6 +189,7 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
 
   const onSuccess = () => {
     queryClient.invalidateQueries({ queryKey: ["userContentRatings"] });
+    queryClient.invalidateQueries({ queryKey: ["userContentEngagements"] });
   };
 
   const addContentRatingMutation = useAddContentRating(
@@ -202,16 +198,51 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
     onSuccess
   );
 
+  const addContentEngagementMutation = useAddContentEngagement();
+  const removeContentEngagementMutation = useRemoveContentEngagement();
+
+  // Track view when article is loaded using useQuery
+  useQuery(
+    ["article-view-tracking", articleData.id],
+    async () => {
+      addContentEngagementMutation({
+        contentId: articleData.id,
+        contentType: "article",
+        action: "view",
+      });
+      return true;
+    },
+    {
+      enabled: !!articleData?.id && !isTmpUser,
+    }
+  );
+
   const handleAddRating = (action) => {
     if (isTmpUser) return;
+
+    const isRemovingReaction =
+      action === "remove-like" || action === "remove-dislike";
+
+    // Track engagement
+    if (isRemovingReaction) {
+      // Remove like/dislike from engagement tracking
+      removeContentEngagementMutation({
+        contentId: articleData.id,
+        contentType: "article",
+      });
+    } else {
+      // Add like/dislike to engagement tracking
+      addContentEngagementMutation({
+        contentId: articleData.id,
+        contentType: "article",
+        action: action === "like" ? "like" : "dislike",
+      });
+    }
+
+    // Update rating in the rating system
     addContentRatingMutation({
       contentId: articleData.id,
-      positive:
-        action === "like"
-          ? true
-          : action === "remove-like" || action === "remove-dislike"
-          ? null
-          : false,
+      positive: action === "like" ? true : isRemovingReaction ? null : false,
       contentType: "article",
     });
   };
@@ -258,6 +289,15 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
       // Clean up
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
+
+      // Track download engagement
+      if (!isTmpUser) {
+        addContentEngagementMutation({
+          contentId: articleData.id,
+          contentType: "article",
+          action: "download",
+        });
+      }
     } catch (error) {
       console.log(error);
       toast.error(t("export_failed"));
@@ -271,10 +311,18 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
   const handleCopyLink = () => {
     navigator?.clipboard?.writeText(url);
     toast(t("share_success"));
-    if (!isShared)
+    if (!isShared) {
       cmsSvc.addArticleShareCount(articleData.id).then(() => {
         setIsShare(true);
       });
+    } // Track share engagement
+    if (!isTmpUser) {
+      addContentEngagementMutation({
+        contentId: articleData.id,
+        contentType: "article",
+        action: "share",
+      });
+    }
   };
 
   return (

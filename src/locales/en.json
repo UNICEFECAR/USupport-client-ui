@@ -506,7 +506,8 @@
       "read_more_button": "Click to read more",
       "min_read": "min read",
       "by": "by {{creator}}",
-      "number_of_more_options": "{{count}} more"
+      "number_of_more_options": "{{count}} more",
+      "read": "Read"
     },
     "mood-tracker-history": {
       "heading": "Overall you felt {{feeling}} in the last 30 days",

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import {
   useCustomNavigate as useNavigate,
-  useGetUserContentRatings,
+  useGetUserContentEngagements,
 } from "#hooks";
 import { Page, ArticleView } from "#blocks";
 import { RootContext } from "#routes";
@@ -13,6 +13,8 @@ import { RootContext } from "#routes";
 import {
   destructureArticleData,
   createArticleSlug,
+  isLikedOrDislikedByUser,
+  getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 import {
   Block,
@@ -47,48 +49,66 @@ export const ArticleInformation = () => {
     return articlesIds;
   };
 
-  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
-  const articleIdsQuerry = useQuery(["articleIds"], getArticlesIds);
+  const { data: userContentEngagements } = useGetUserContentEngagements(
+    !isTmpUser
+  );
+  const {
+    data: articleContentEngagements,
+    isLoading: isArticleContentEngagementsLoading,
+  } = useQuery(["articleContentEngagements", id], async () => {
+    const { data } = await userSvc.getContentEngagementsById({
+      contentType: "article",
+      ids: [id],
+    });
+
+    const { likes, dislikes } = data.reduce(
+      (acc, engagement) => {
+        if (engagement.action === "like") {
+          acc.likes += 1;
+        } else if (engagement.action === "dislike") {
+          acc.dislikes += 1;
+        }
+        return acc;
+      },
+      { likes: 0, dislikes: 0 }
+    );
+    return { likes, dislikes };
+  });
 
   const getArticleData = async () => {
     let articleIdToFetch = id;
-
-    const contentRatings = await userSvc.getRatingsForContent({
-      contentType: "article",
-      contentId: articleIdToFetch,
-      isTmpUser,
-    });
 
     const { data } = await cmsSvc.getArticleById(
       articleIdToFetch,
       i18n.language
     );
     const finalData = destructureArticleData(data);
-    finalData.contentRating = contentRatings.data;
     return finalData;
   };
 
-  const { data: articleData, isFetching: isFetchingArticleData } = useQuery(
-    ["article", i18n.language, id],
-    getArticleData,
-    {
-      enabled: !!id,
-      onSuccess: (data) => {
-        // Add category interaction when article is successfully fetched
-        if (data && data.categoryId && !isTmpUser) {
-          clientSvc
-            .addClientCategoryInteraction({
-              categoryId: data.categoryId,
-              articleId: data.id,
-              tagIds: data.labels.map((label) => label.id),
-            })
-            .catch((error) => {
-              console.error("Failed to track category interaction:", error);
-            });
-        }
-      },
-    }
-  );
+  const {
+    data: articleData,
+    isFetching: isFetchingArticleData,
+    isFetched,
+  } = useQuery(["article", i18n.language, id], getArticleData, {
+    enabled: !!id,
+    onSuccess: (data) => {
+      // Add category interaction when article is successfully fetched
+      if (data && data.categoryId && !isTmpUser) {
+        clientSvc
+          .addClientCategoryInteraction({
+            categoryId: data.categoryId,
+            articleId: data.id,
+            tagIds: data.labels.map((label) => label.id),
+          })
+          .catch((error) => {
+            console.error("Failed to track category interaction:", error);
+          });
+      }
+    },
+  });
+
+  const articleIdsQuerry = useQuery(["articleIds"], getArticlesIds);
 
   const getSimilarArticles = async () => {
     if (!articleData?.categoryId) return [];
@@ -96,9 +116,10 @@ export const ArticleInformation = () => {
     try {
       let readArticleIds = [];
       // If no results in current category, get category interactions to try other categories
+      let categoryInteractions = [];
       if (!isTmpUser) {
-        const { data: categoryInteractions } =
-          await clientSvc.getCategoryInteractions();
+        const { data } = await clientSvc.getCategoryInteractions();
+        categoryInteractions = data;
         readArticleIds = [
           ...categoryInteractions.map((x) => Number(x.article_id)),
           Number(id),
@@ -127,15 +148,23 @@ export const ArticleInformation = () => {
       ) {
         articles.push(...currentCategoryResult.data);
       }
-
       if (articles.length >= 3) {
-        return articles;
+        const ids = articles.map((article) => article.id);
+        const { likes, dislikes } = await getLikesAndDislikesForContent(
+          ids,
+          "article"
+        );
+        return articles.map((article) => ({
+          ...article,
+          likes: likes.get(article.id),
+          dislikes: dislikes.get(article.id),
+        }));
       }
 
-      if (categoryInteractions?.data?.length > 0) {
+      if (categoryInteractions?.length > 0) {
         // Build category interaction map and sort by weight
         const categoryInteractionMap = new Map();
-        categoryInteractions.data.forEach((interaction) => {
+        categoryInteractions.forEach((interaction) => {
           const {
             category_id: categoryId,
             count,
@@ -186,7 +215,6 @@ export const ArticleInformation = () => {
           if (result.success && result.data?.length > 0) {
             articles.push(...result.data);
             readArticleIds.push(...result.data.map((x) => x.id));
-            console.log(readArticleIds, "READ");
             if (articles.length >= 3) {
               return articles;
             }
@@ -205,7 +233,18 @@ export const ArticleInformation = () => {
         ids: articleIdsQuerry.data,
         ageGroupId: articleData.ageGroupId,
       });
-      return [...articles, ...newest.data];
+      const combinedArticles = [...articles, ...newest.data];
+      const combinedArticlesIds = combinedArticles.map((article) => article.id);
+      const {
+        articleLikes: combinedArticlesLikes,
+        articleDislikes: combinedArticlesDislikes,
+      } = await getLikesAndDislikesForContent(combinedArticlesIds, "article");
+
+      return combinedArticles.map((article) => ({
+        ...article,
+        likes: combinedArticlesLikes.get(article.id),
+        dislikes: combinedArticlesDislikes.get(article.id),
+      }));
     } catch (error) {
       console.error("Error fetching similar articles:", error);
       return [];
@@ -232,16 +271,36 @@ export const ArticleInformation = () => {
     window.scrollTo(0, 0);
   };
 
+  const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+    contentType: "article",
+    contentData: articleData,
+    userEngagements: userContentEngagements,
+  });
+
+  const isLoading = isFetchingArticleData || isArticleContentEngagementsLoading;
+
   return (
     <Page classes="page__article-information">
-      {articleData ? (
+      {articleData && !isLoading ? (
         <ArticleView
-          articleData={articleData}
+          articleData={{
+            ...articleData,
+            likes: articleContentEngagements?.likes || 0,
+            dislikes: articleContentEngagements?.dislikes || 0,
+            contentRating: {
+              isLikedByUser: isLiked,
+              isDislikedByUser: isDisliked,
+            },
+          }}
           t={t}
           language={i18n.language}
           navigate={navigate}
           isTmpUser={isTmpUser}
         />
+      ) : isFetched && !isLoading ? (
+        <h3 className="page__article-information__no-results">
+          {t("not_found")}
+        </h3>
       ) : (
         <Loading size="lg" />
       )}
@@ -253,18 +312,11 @@ export const ArticleInformation = () => {
               <h4>{t("heading")}</h4>
             </GridItem>
             {moreArticles.map((article, index) => {
-              const isLikedByUser = contentRatings?.some(
-                (rating) =>
-                  rating.content_id === article.id &&
-                  rating.content_type === "article" &&
-                  rating.positive === true
-              );
-              const isDislikedByUser = contentRatings?.some(
-                (rating) =>
-                  rating.content_id === article.id &&
-                  rating.content_type === "article" &&
-                  rating.positive === false
-              );
+              const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+                contentType: "article",
+                contentData: article,
+                userEngagements: userContentEngagements,
+              });
               const articleData = destructureArticleData(
                 article.data ? article.data : article
               );
@@ -287,8 +339,8 @@ export const ArticleInformation = () => {
                     categoryName={articleData.categoryName}
                     likes={articleData.likes}
                     dislikes={articleData.dislikes}
-                    isLikedByUser={isLikedByUser}
-                    isDislikedByUser={isDislikedByUser}
+                    isLikedByUser={isLiked}
+                    isDislikedByUser={isDisliked}
                     t={t}
                     onClick={() => {
                       navigate(

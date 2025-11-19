@@ -68,3 +68,6 @@ export * from "./useGetMoodTrackerRecommendations.js";
 export * from "./useAddCountryEvent.js";
 export * from "./useGetHasCompletedMoodTrackerEver.js";
 export * from "./useGetOrganizationKey.js";
+export * from "./useAddContentEngagement.js";
+export * from "./useRemoveContentEngagement.js";
+export * from "./useGetUserContentEngagements.js";
