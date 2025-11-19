@@ -522,7 +522,8 @@
       "read_more_button": "Citește mai mult",
       "min_read": "durata lecturii",
       "by": "de {{creator}}",
-      "number_of_more_options": "încă {{count}}"
+      "number_of_more_options": "încă {{count}}",
+      "read": "Citire"
     },
     "mood-tracker-history": {
       "heading": "În ansamblu, v-ați simțit {{feeling}} în ultimele 30 de zile",

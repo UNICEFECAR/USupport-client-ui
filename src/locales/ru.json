@@ -519,7 +519,8 @@
       "read_more_button": "Узнать больше",
       "min_read": "минут на прочтение",
       "by": "От {{creator}}",
-      "number_of_more_options": "еще {{count}}"
+      "number_of_more_options": "еще {{count}}",
+      "read": "Читать"
     },
     "mood-tracker-history": {
       "heading": "В целом вы чувствовали {{feeling}}  в течение последних 30 дней",

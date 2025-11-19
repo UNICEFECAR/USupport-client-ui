@@ -504,7 +504,8 @@
       "read_more_button": "Czytaj więcej",
       "min_read": "min. czytania",
       "by": "Przez {{creator}}",
-      "number_of_more_options": "jeszcze {{count}}"
+      "number_of_more_options": "jeszcze {{count}}",
+      "read": "Czytać"
     },
     "mood-tracker-history": {
       "heading": "Ogólnie rzecz biorąc, czułeś się/aś się {{feeling}} w ciągu ostatnich 30 dni",

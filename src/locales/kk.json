@@ -519,7 +519,8 @@
       "read_more_button": "Ары қарай оқу",
       "min_read": "минут оқуға",
       "by": "Дайындаушы {{creator}}",
-      "number_of_more_options": "тағы {{count}}"
+      "number_of_more_options": "тағы {{count}}",
+      "read": "Оқу"
     },
     "mood-tracker-history": {
       "heading": "Жалпы сіз соңғы 30 күнде {{feeling}} сезіндіңіз",
