@@ -506,7 +506,8 @@
       "read_more_button": "Читати далі",
       "min_read": "хв. читання",
       "by": "Від {{creator}}",
-      "number_of_more_options": "ще {{count}}"
+      "number_of_more_options": "ще {{count}}",
+      "read": "Читати"
     },
     "mood-tracker-history": {
       "heading": "Загалом протягом останніх 30 днів ти почував/ла себе {{feeling}}",
