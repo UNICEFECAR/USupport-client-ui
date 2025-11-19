@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import {
   useCustomNavigate as useNavigate,
-  useGetUserContentRatings,
+  useGetUserContentEngagements,
 } from "#hooks";
 import { Page, VideoView } from "#blocks";
 import { RootContext } from "#routes";
@@ -14,6 +14,8 @@ import {
   destructureVideoData,
   ThemeContext,
   createArticleSlug,
+  getLikesAndDislikesForContent,
+  isLikedOrDislikedByUser,
 } from "@USupport-components-library/utils";
 import {
   Block,
@@ -48,26 +50,45 @@ export const VideoInformation = () => {
     keyPrefix: "video-information-page",
   });
 
+  const { data: userContentEngagements } = useGetUserContentEngagements(
+    !isTmpUser
+  );
+
   const getVideosIds = async () => {
     // Request video ids from the master DB
     const videoIds = await adminSvc.getVideos();
     return videoIds;
   };
 
-  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
+  const {
+    data: videoContentEngagements,
+    isLoading: isLoadingVideoContentEngagements,
+  } = useQuery(["videoContentEngagements", id], async () => {
+    console.log("Execute videoContentEngagements with id: ", id);
+    const { data } = await userSvc.getContentEngagementsById({
+      contentType: "video",
+      ids: [id],
+    });
+
+    const { likes, dislikes } = data.reduce(
+      (acc, engagement) => {
+        if (engagement.action === "like") {
+          acc.likes += 1;
+        } else if (engagement.action === "dislike") {
+          acc.dislikes += 1;
+        }
+        return acc;
+      },
+      { likes: 0, dislikes: 0 }
+    );
+    return { likes, dislikes };
+  });
   const videoIdsQuery = useQuery(["videoIds"], getVideosIds);
 
   const getVideoData = async () => {
-    const contentRatings = await userSvc.getRatingsForContent({
-      contentType: "video",
-      contentId: id,
-      isTmpUser,
-    });
-
     const { data } = await cmsSvc.getVideoById(id, i18n.language);
 
     const finalData = destructureVideoData(data);
-    finalData.contentRating = contentRatings.data;
     return finalData;
   };
 
@@ -102,7 +123,9 @@ export const VideoInformation = () => {
       ids: videoIdsQuery.data,
     });
 
-    if (data.length === 0) {
+    let videos = data.data;
+
+    if (videos.length === 0) {
       let { data: newest } = await cmsSvc.getVideos({
         limit: 3,
         sortBy: "createdAt",
@@ -112,9 +135,20 @@ export const VideoInformation = () => {
         populate: true,
         ids: videoIdsQuery.data,
       });
-      return newest.data;
+      videos = newest.data;
     }
-    return data.data;
+
+    const videoIds = videos.map((video) => video.id);
+    const { likes, dislikes } = await getLikesAndDislikesForContent(
+      videoIds,
+      "video"
+    );
+
+    return videos.map((video) => ({
+      ...video,
+      likes: likes.get(video.id) || 0,
+      dislikes: dislikes.get(video.id) || 0,
+    }));
   };
 
   const {
@@ -122,6 +156,7 @@ export const VideoInformation = () => {
     isLoading: isMoreVideosLoading,
     isFetched: isMoreVideosFetched,
     isFetching: isMoreVideosFetching,
+    error,
   } = useQuery(["more-videos", id, i18n.language], getSimilarVideos, {
     enabled:
       !isFetchingVideoData &&
@@ -132,31 +167,50 @@ export const VideoInformation = () => {
         ? true
         : false,
   });
+  if (error) {
+    console.log(error);
+  }
 
   const onVideoClick = () => {
     window.scrollTo(0, 0);
   };
 
-  if (!isVideosActive) {
-    return (
-      <Navigate
-        to={`/client/${localStorage.getItem(
-          "language"
-        )}/information-portal?tab=articles`}
-      />
-    );
-  }
+  const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+    contentType: "video",
+    contentData: videoData,
+    userEngagements: userContentEngagements,
+  });
+
+  // if (!isVideosActive) {
+  //   return (
+  //     <Navigate
+  //       to={`/client/${localStorage.getItem(
+  //         "language"
+  //       )}/information-portal?tab=articles`}
+  //     />
+  //   );
+  // }
+
+  const isLoading = isLoadingVideoContentEngagements || isFetchingVideoData;
 
   return (
     <Page classes="page__video-information" showGoBackArrow={true}>
-      {videoData ? (
+      {!isLoading && videoData ? (
         <VideoView
-          videoData={videoData}
+          videoData={{
+            ...videoData,
+            likes: videoContentEngagements?.likes || 0,
+            dislikes: videoContentEngagements?.dislikes || 0,
+            contentRating: {
+              isLikedByUser: isLiked,
+              isDislikedByUser: isDisliked,
+            },
+          }}
           t={t}
           lanugage={i18n.language}
           isTmpUser={isTmpUser}
         />
-      ) : isFetched ? (
+      ) : isFetched && !isLoading ? (
         <h3 className="page__video-information__no-results">
           {t("not_found")}
         </h3>
@@ -171,20 +225,12 @@ export const VideoInformation = () => {
               <h4>{t("more_videos")}</h4>
             </GridItem>
             {moreVideos.map((video, index) => {
-              const isLikedByUser = contentRatings?.some(
-                (rating) =>
-                  rating.content_id === video.id &&
-                  rating.content_type === "video" &&
-                  rating.positive === true
-              );
-              const isDislikedByUser = contentRatings?.some(
-                (rating) =>
-                  rating.content_id === video.id &&
-                  rating.content_type === "video" &&
-                  rating.positive === false
-              );
+              const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+                contentType: "video",
+                contentData: video,
+                userEngagements: userContentEngagements,
+              });
               const videoData = destructureVideoData(video);
-
               return (
                 <GridItem
                   classes="page__video-information__more-videos-card"
@@ -202,8 +248,8 @@ export const VideoInformation = () => {
                     categoryName={videoData.categoryName}
                     likes={videoData.likes}
                     dislikes={videoData.dislikes}
-                    isLikedByUser={isLikedByUser}
-                    isDislikedByUser={isDislikedByUser}
+                    isLikedByUser={isLiked}
+                    isDislikedByUser={isDisliked}
                     t={t}
                     onClick={() => {
                       navigate(
