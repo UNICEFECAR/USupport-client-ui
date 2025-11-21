@@ -260,11 +260,11 @@ export const BaselineAssesment = ({
               setIsChecked={() => {}}
               disabled={addBaselineAssessmentAnswerMutation.isLoading}
               label={
-                (value === 1 && "1. Strongly Disagree") ||
-                (value === 2 && "2. Disagree") ||
-                (value === 3 && "3. Neutral") ||
-                (value === 4 && "4. Agree") ||
-                (value === 5 && "5. Strongly Agree")
+                (value === 1 && "1. " + t("sontrgly_disagree")) ||
+                (value === 2 && "2. " + t("disagree")) ||
+                (value === 3 && "3. " + t("neutral")) ||
+                (value === 4 && "4. " + t("agree")) ||
+                (value === 5 && "5. " + t("strongly_agree"))
               }
             />
           </div>
