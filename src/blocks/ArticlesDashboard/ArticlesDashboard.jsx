@@ -15,6 +15,8 @@ import {
 import {
   destructureArticleData,
   createArticleSlug,
+  getLikesAndDislikesForContent,
+  isLikedOrDislikedByUser,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
@@ -427,18 +429,13 @@ export const ArticlesDashboard = () => {
       const articleData = article.attributes
         ? destructureArticleData(article)
         : article;
-      const isLikedByUser = contentEngagements?.some(
-        (engagement) =>
-          engagement.content_id === article.id &&
-          engagement.content_type === "article" &&
-          engagement.action === "like"
-      );
-      const isDislikedByUser = contentEngagements?.some(
-        (engagement) =>
-          engagement.content_id === article.id &&
-          engagement.content_type === "article" &&
-          engagement.action === "dislike"
-      );
+
+      const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+        contentType: "article",
+        contentData: articleData,
+        userEngagements: contentEngagements,
+      });
+
       return (
         <GridItem
           md={4}
@@ -457,8 +454,8 @@ export const ArticlesDashboard = () => {
             creator={articleData.creator}
             readingTime={articleData.readingTime}
             categoryName={articleData.categoryName}
-            isLikedByUser={isLikedByUser}
-            isDislikedByUser={isDislikedByUser}
+            isLikedByUser={isLiked}
+            isDislikedByUser={isDisliked}
             likes={articleData.likes}
             dislikes={articleData.dislikes}
             isRead={readArticleIds.includes(article.id)}
