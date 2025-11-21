@@ -456,8 +456,8 @@ export const ArticlesDashboard = () => {
             categoryName={articleData.categoryName}
             isLikedByUser={isLiked}
             isDislikedByUser={isDisliked}
-            likes={articleData.likes}
-            dislikes={articleData.dislikes}
+            likes={articlesLikes.get(article.id) || 0}
+            dislikes={articlesDislikes.get(article.id) || 0}
             isRead={readArticleIds.includes(article.id)}
             t={t}
             onClick={() => {
