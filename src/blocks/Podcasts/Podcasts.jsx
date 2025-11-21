@@ -111,17 +111,6 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
   const getPodcastsIds = async () => {
     const podcastsIds = await adminSvc.getPodcasts();
 
-    // Preload likes/dislikes for English from engagements service
-    if (usersLanguage === "en") {
-      const { likes, dislikes } = await getLikesAndDislikesForContent(
-        podcastsIds,
-        "podcast"
-      );
-
-      setPodcastsLikes(likes);
-      setPodcastsDislikes(dislikes);
-    }
-
     return podcastsIds;
   };
 
@@ -201,34 +190,31 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
     }
   );
 
-  // Fetch likes/dislikes for non-English languages (or missing entries)
   useEffect(() => {
     async function getPodcastsRatings() {
-      if (usersLanguage !== "en" && podcasts?.length) {
-        const podcastIds = podcasts.reduce((acc, podcast) => {
-          if (
-            !podcastsLikes.has(podcast.id) &&
-            !podcastsDislikes.has(podcast.id)
-          ) {
-            acc.push(podcast.id);
-          }
-          return acc;
-        }, []);
+      const podcastIds = podcasts.reduce((acc, podcast) => {
+        if (
+          !podcastsLikes.has(podcast.id) &&
+          !podcastsDislikes.has(podcast.id)
+        ) {
+          acc.push(podcast.id);
+        }
+        return acc;
+      }, []);
 
-        if (!podcastIds.length) return;
+      if (!podcastIds.length) return;
 
-        const { likes, dislikes } = await getLikesAndDislikesForContent(
-          podcastIds,
-          "podcast"
-        );
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        podcastIds,
+        "podcast"
+      );
 
-        setPodcastsLikes((prevLikes) => {
-          return new Map([...prevLikes, ...likes]);
-        });
-        setPodcastsDislikes((prevDislikes) => {
-          return new Map([...prevDislikes, ...dislikes]);
-        });
-      }
+      setPodcastsLikes((prevLikes) => {
+        return new Map([...prevLikes, ...likes]);
+      });
+      setPodcastsDislikes((prevDislikes) => {
+        return new Map([...prevDislikes, ...dislikes]);
+      });
     }
 
     getPodcastsRatings();
@@ -264,18 +250,12 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
             !isPodcastsFetching && (
               <Grid>
                 {podcasts?.map((podcast, index) => {
-                  const isLikedByUser = contentEngagements?.some(
-                    (engagement) =>
-                      engagement.content_id === podcast.id &&
-                      engagement.content_type === "podcast" &&
-                      engagement.action === "like"
-                  );
-                  const isDislikedByUser = contentEngagements?.some(
-                    (engagement) =>
-                      engagement.content_id === podcast.id &&
-                      engagement.content_type === "podcast" &&
-                      engagement.action === "dislike"
-                  );
+                  const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+                    contentType: "podcast",
+                    contentData: podcast,
+                    userEngagements: contentEngagements,
+                  });
+
                   // Podcast data is already processed in getPodcastsData
                   const podcastData = podcast;
                   return (
@@ -294,8 +274,8 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
                         contentType="podcasts"
                         likes={podcastsLikes.get(podcastData.id) || 0}
                         dislikes={podcastsDislikes.get(podcastData.id) || 0}
-                        isLikedByUser={isLikedByUser}
-                        isDislikedByUser={isDislikedByUser}
+                        isLikedByUser={isLiked}
+                        isDislikedByUser={isDisliked}
                         t={t}
                         onClick={() =>
                           navigate(

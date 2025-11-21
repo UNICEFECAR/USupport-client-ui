@@ -219,16 +219,6 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
   const getArticlesIds = async () => {
     const articlesIds = await adminSvc.getArticles();
 
-    if (usersLanguage === "en") {
-      const { likes, dislikes } = await getLikesAndDislikesForContent(
-        articlesIds,
-        "article"
-      );
-
-      setArticlesLikes(likes);
-      setArticlesDislikes(dislikes);
-    }
-
     return articlesIds;
   };
 
@@ -276,7 +266,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     const ageGroupId = ageGroupsQuery.data.find((x) => x.isSelected).id;
 
     let categoryId = "";
-    if (selectedCategory.value !== "all") {
+    if (selectedCategory && selectedCategory.value !== "all") {
       categoryId = selectedCategory.id;
     }
 
@@ -320,7 +310,8 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
           ageGroupsQuery.data?.length > 0 &&
           articleIdsQuery.data?.length > 0 &&
           selectedCategory !== null &&
-          selectedAgeGroup !== null,
+          selectedAgeGroup !== null &&
+          isTmpUser,
         refetchOnWindowFocus: false,
         onSuccess: (data) => {
           setArticles([...data.articles]);
@@ -392,33 +383,31 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   useEffect(() => {
     async function getArticlesRatings() {
-      if (usersLanguage !== "en") {
-        const articleIds = articles.reduce((acc, article) => {
-          if (
-            !articlesLikes.has(article.id) &&
-            !articlesDislikes.has(article.id)
-          ) {
-            acc.push(article.id);
-          }
-          return acc;
-        }, []);
+      const articleIds = articles.reduce((acc, article) => {
+        const id = article.data ? article.data.id : article.id;
+        if (!articlesLikes.has(id) && !articlesDislikes.has(id)) {
+          acc.push(id);
+        }
+        return acc;
+      }, []);
 
-        const { likes, dislikes } = await getLikesAndDislikesForContent(
-          articleIds,
-          "article"
-        );
+      if (!articleIds.length) return;
 
-        setArticlesLikes((prevArticlesLikes) => {
-          return new Map([...prevArticlesLikes, ...likes]);
-        });
-        setArticlesDislikes((prevArticlesDislikes) => {
-          return new Map([...prevArticlesDislikes, ...dislikes]);
-        });
-      }
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        articleIds,
+        "article"
+      );
+
+      setArticlesLikes((prevArticlesLikes) => {
+        return new Map([...prevArticlesLikes, ...likes]);
+      });
+      setArticlesDislikes((prevArticlesDislikes) => {
+        return new Map([...prevArticlesDislikes, ...dislikes]);
+      });
     }
 
     getArticlesRatings();
-  }, [articles, usersLanguage, setArticlesDislikes, setArticlesDislikes]);
+  }, [articles]);
 
   const articlesToTransform = isTmpUser ? guestArticles : articles;
 
