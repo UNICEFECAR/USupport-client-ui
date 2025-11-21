@@ -849,7 +849,12 @@
       "assessment_completed": "Assessment Completed",
       "assessment_completed_description": "Thank you for completing the assessment. Your answers have been saved and will be used to help you.",
       "assessment_completed_button": "Back to Home",
-      "save_button_label": "Save for later"
+      "save_button_label": "Save for later",
+      "sontrgly_disagree": "Strongly Disagree",
+      "disagree": "Disagree",
+      "neutral": "Neutral",
+      "agree": "Agree",
+      "strongly_agree": "Strongly Agree"
     },
     "baseline-assessment-dashboard": {
       "heading": "Your Baseline Assessment",
