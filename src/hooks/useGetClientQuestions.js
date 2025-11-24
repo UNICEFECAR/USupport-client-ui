@@ -14,6 +14,7 @@ export function useGetClientQuestions(enabled, languageId) {
         answerId: question.answer_id,
         answerText: question.answer_text,
         answerTitle: question.answer_title,
+        answerCreatedAt: question.answer_created_at,
         dislikes: question.dislikes,
         likes: question.likes,
         providerData: {
