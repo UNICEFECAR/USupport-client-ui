@@ -18,46 +18,16 @@ import {
   useAddContentEngagement,
   useRemoveContentEngagement,
 } from "#hooks";
-import { createArticleSlug } from "@USupport-components-library/utils";
-// import { ShareModal } from "#modals";
+import {
+  createArticleSlug,
+  constructShareUrl,
+} from "@USupport-components-library/utils";
 
 import { cmsSvc, userSvc } from "@USupport-components-library/services";
 
-import {
-  // constructShareUrl,
-  ThemeContext,
-} from "@USupport-components-library/utils";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./article-view.scss";
-
-const countriesMap = {
-  global: "global",
-  kz: "kazakhstan",
-  pl: "poland",
-  ro: "romania",
-};
-
-const constructShareUrl = ({ contentType, id, name }) => {
-  const country = localStorage.getItem("country");
-  const language = localStorage.getItem("language");
-  const subdomain = window.location.hostname.split(".")[0];
-  const nameSlug = createArticleSlug(name);
-
-  if (subdomain === "staging") {
-    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  }
-
-  if (country === "global") {
-    return `https://usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  }
-  const countryName = countriesMap[country.toLocaleLowerCase()];
-
-  if (window.location.hostname.includes("staging")) {
-    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  }
-  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  return url;
-};
 
 /**
  * ArticleView
