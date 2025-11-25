@@ -5,8 +5,6 @@
       "page_2": "Консультациялар",
       "page_3": "Ақпараттық портал",
       "page_4": "Менің Q&A",
-      "page_5": "Ұйымдар",
-
       "footer_1": "Бас бет",
       "footer_2": "Консультациялар",
       "footer_3": "Ақпараттық портал",
@@ -15,9 +13,7 @@
       "footer_6": "Құпиялық саясаты",
       "footer_7": "Cookie файлдарының баптаулары",
       "footer_8": "Жиі қойылатын сұрақтар",
-
       "emergency_button": "SOS-орталық",
-
       "button_text": "Қосымшаға өту",
       "contact_us": "Бізге хабарласыңыз",
       "your_profile_text": "Сіздің парақшаңыз",
@@ -25,17 +21,16 @@
       "password": "Сайтқа кіру үшін құпия сөзіңізді енгізіңіз",
       "wrong_password": "Құпия сөз дұрыс емес",
       "submit": "Жіберу",
-
       "dark": "Қараңғы",
       "light": "Жарық",
-      "high_contrast": "Жоғары контраст",
-
+      "page_5": "Ұйымдар",
       "cookie_banner_header": "Біз сіздің құпиялылығыңызды бағалаймыз",
       "cookie_banner_text": "Бұл веб-сайт сіздің шолу тәжірибеңізді жақсарту және қорғау үшін cookie файлдарын пайдаланады. Біздің веб-сайтты пайдалану арқылы сіз біздің <0>Cookie саясатына</0> келісесіз.",
       "accept_all_cookies": "Барлығын қабылдау",
       "reject_all_cookies": "Барлығын қабылдамау",
       "accept_necessary_cookies": "Тек қажеттілерін қабылдау",
-      "save": "Сақтау"
+      "save": "Сақтау",
+      "high_contrast": "Жоғары контраст"
     },
     "provider-overview": {
       "earliest_slot_label": "Консультация алу үшін жақын арадағы бос уақыт",
@@ -50,11 +45,9 @@
       "delete_account": "Аккаунтты жою",
       "no_available_slot": "Бос слот жоқ",
       "consultations": "Консультациялар",
-
       "psychologist": "Психолог",
       "psychiatrist": "Психиатр",
       "psychotherapist": "Психотерапевт",
-
       "addiction": "Тәуелділік пен токсикомания",
       "stress": "Стрессті басқару",
       "burnout": "Эмоционалды жану, академиялық стресс",
@@ -86,7 +79,6 @@
       "love": "Махаббат және романтикалық қатынастар",
       "social_skills": "Әлеуметтік дағдылар және достық",
       "body_image": "Өзін-өзі бағалау және келбет бейнесі",
-
       "video_label": "Бейне-таныстырылым",
       "button_label": "Консультацияны жоспарлау",
       "hour_consultation": "1 сағаттық консультация үшін",
@@ -113,7 +105,9 @@
     "sos-center": {
       "button_link": "Веб-сайтқа кіру",
       "button_call": "Қазір хабарласу",
-      "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады."
+      "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "register-about-you": {
       "input_name_label": "Аты",
@@ -177,7 +171,6 @@
       "message_error": "Өтінеміз, хабарламаңызды енгізіңіз",
       "email": "Электронды пошта",
       "button": "Хабарламаны жіберу",
-
       "modal_title": "Хабарлама сәтті жіберілді",
       "modal_text": "Біз Сізге жақын арада хабарласамыз",
       "modal_cta_label": "Бас бетке оралу",
@@ -185,11 +178,11 @@
       "contact_reason_2": "Маған бұл платформа арқылы көрсетілетін қызметтер туралы көбірек ақпарат қажет",
       "contact_reason_3": "Мен клиентпін және техникалық мәселе туындады",
       "contact_reason_4": "Басқа",
+      "contact_form": "Байланыс формасы",
       "contact_reason_1_pl": "Usupport туралы ақпарат",
       "contact_reason_2_pl": "Техникалық мәселе",
       "contact_reason_3_pl": "Шағым",
-      "contact_reason_4_pl": "Басқа",
-      "contact_form": "Байланыс формасы"
+      "contact_reason_4_pl": "Басқа"
     },
     "select-provider": {
       "psychologist": "Психолог",
@@ -230,8 +223,8 @@
       "register_redirect_button_label": "Менде аккаунт жоқ",
       "modal_heading": "Электронды поштаңызды тексеріңіз",
       "modal_text": "Егер Сіз платформада тіркелген болсаңыз, құпия сөзді қалпына келтіруге сілтеме аласыз.",
-      "heading": "Қош келдіңіз, бұл - ",
-      "client": "Клиент"
+      "client": "Клиент",
+      "heading": "Қош келдіңіз, бұл - "
     },
     "consultations": {
       "upcoming_tab_label": "Алдағы",
@@ -247,7 +240,6 @@
       "no_past_consultations": "Сізде брынғы консультациялар жоқ",
       "reject_consultation_success": "Консультациядан сәтті бас тарттыңыз",
       "accept_consultation_success": "Консультация сәтті қабылданды",
-
       "join": "Қосылу",
       "edit": "Өзгерту",
       "details": "Мәліметтерді қарау",
@@ -272,8 +264,8 @@
       "login_label": "Авторизация",
       "paragraph": "Немесе келесінің көмегімен кіріңіз:",
       "register_button_label": "Менде аккаунт жоқ",
-      "heading": "Қош келдіңіз, бұл - ",
-      "client": "Клиент"
+      "client": "Клиент",
+      "heading": "Қош келдіңіз, бұл - "
     },
     "welcome": {
       "heading": "Қош келдіңіз, бұл - ",
@@ -300,11 +292,9 @@
       "subheading": "Іздеген ақпаратты таба алмай жатырсыз ба? Тақырып ұсыныңыз, біз оны түсіндіріп беруге тырысамыз.",
       "submit": "Ұсыныс жіберу",
       "suggestion_placeholder": "Ұсынысыңызды осында жазыңыз",
-
       "modal_title": "Ұсыныс сәтті жіберілді",
       "modal_text": "Іздегеніңізді таба алмағаныңызға қатты өкінеміз. Біз Сіздің ұсынысыңызды мүмкіндігінше тезірек қарастыруға тырысамыз. Пікіріңізге рахмет.",
       "modal_cta_label": "Басқа мақалалармен танысып шығыңыз",
-
       "error": "Өтінеміз, ұсынысыңызды енгізіңіз",
       "send_success_text": "Ұсынысыңыз сәтті жіберілді"
     },
@@ -318,7 +308,8 @@
       "text_2": "uSupport – жастар мен олардың ата-аналарына/қамқоршыларына арналған ментал денсаулық тұрғысынан қолдау көрсетілетін және консультация берілетін платформа, мұнда құпиялық пен қауіпсіздік басты басымдық болып табылады.",
       "heading_3": "Сіз жайлы",
       "text_3": "Өзіңіздің үздік нұсқасыңыз болыңыз! Сіздің ментал денсаулығыңыз маңызды.",
-      "login": "Электрондық пошта/токен белгісі көмегімен кіру"
+      "login": "Электрондық пошта/токен белгісі көмегімен кіру",
+      "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
       "email_error": "Өтінеміз қолданыстағы электронды поштаңызды енгізіңіз",
@@ -371,8 +362,6 @@
       "delete_account": "Аккаунтты жою",
       "logout": "Шығу",
       "delete_chat": "Чат тарихын тазалау",
-      "delete_mood_tracker": "Көңіл-күй трекерінің тарихын тазалау",
-
       "dropdown_sex_label": "Жынысы",
       "dropdown_year_label": "Туған жылы",
       "sex_male": "Ер",
@@ -389,7 +378,8 @@
       "sex_placeholder": "Жынысыңызды енгізіңіз",
       "year_of_birth_placeholder": "Туған жылыңызды енгізіңіз",
       "living_place_placeholder": "Тұрғылықты жеріңізді енгізіңіз",
-      "parent": "Ата-ана"
+      "parent": "Ата-ана",
+      "delete_mood_tracker": "Көңіл-күй трекерінің тарихын тазалау"
     },
     "reset-password": {
       "label": "Жаңа құпия сөз",
@@ -411,7 +401,6 @@
       "show_previous_consultations": "Алдыңғы кеңестерді көрсетіңіз",
       "export_label": "Экспорт",
       "chat_history": "Чат тарихы - консультант: ",
-
       "client_joined": "Клиент консультацияға қосылды",
       "client_left": "Клиент консультациядан шығып кетті",
       "client_camera_off": "Клиент камераны өшірді",
@@ -419,14 +408,12 @@
       "client_microphone_off": "Клиент микрофонды өшірді",
       "client_microphone_on": "Клиент микрофонды қосты",
       "chat_history_deleted_by_client": "Сіз чат тарихын жойдыңыз",
-
       "provider_joined": "Консультант консультацияға қосылды",
       "provider_left": "Консультант консультациядан шықты",
       "provider_camera_off": "Консультант камераны өшірді",
       "provider_camera_on": "Консультант камераны қосты",
       "provider_microphone_off": "Консультант микрофонды өшірді",
       "provider_microphone_on": "Консультант микрофонды қосты",
-
       "exported_at": "Экспортталған уақыты: {{time}}"
     },
     "consultations-dashboard": {
@@ -436,7 +423,6 @@
       "live_text": "Қазір",
       "accept_button_label": "Консультацияны қабылдау",
       "join_button_label": "Қосылу",
-      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз",
       "change_button_label": "Құпия сөзді өзгерту",
       "ordinal_st": "-ші",
       "ordinal_nd": "-ші",
@@ -455,7 +441,8 @@
       "november": "қараша",
       "december": "желтоқсан",
       "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
-      "cookie_preferences": "Cookie параметрлері"
+      "cookie_preferences": "Cookie параметрлері",
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
     },
     "mood-tracker": {
       "happy": "Бақытты",
@@ -465,11 +452,11 @@
       "worried": "Қобалжыған",
       "heading": "Бүгін хал-жағдайыңыз қалай?",
       "mood_tracker": "Көңіл-күй трекері",
-      "how_it_works": "Қалай жұмыс істейді",
       "additional_comment_placeholder": "Сізді осылай сезінуге не себеп болды?",
       "submit_mood_track": "Жіберу",
       "add_mood_tracker_success": "Сіздің көңіл-күйіңіз сәтті қосылды",
       "emergency_label": "Бұл өмірлік оқиғаға немесе маңызды жағдайға қатысты ма?",
+      "how_it_works": "Қалай жұмыс істейді",
       "recommendations": "Ұсыныстар",
       "recommendations_text": "Көңіл-күй графигіңізді қарап, ұсынылған мазмұнды көргіңіз келе ме?",
       "check_out": "Қарап шығу"
@@ -483,7 +470,6 @@
       "change_button_label": "Құпия сөзді өзгерту",
       "accept_button_label": "Консультацияны қабылдау",
       "join_button_label": "Қосылу",
-      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз",
       "schedule_button_label": "Жоспарлау",
       "live_label": "Қазір",
       "no_consultations": "Қазіргі Сізде алдағы консультациялар жоқ",
@@ -505,7 +491,8 @@
       "november": "қараша",
       "december": "желтоқсан",
       "coupon": "Купон",
-      "explore_button_label": "Зерттеу"
+      "explore_button_label": "Зерттеу",
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
     },
     "activity-log-dashboard": {
       "heading": "Әрекеттер журналы",
@@ -519,7 +506,8 @@
       "read_more_button": "Ары қарай оқу",
       "min_read": "минут оқуға",
       "by": "Дайындаушы {{creator}}",
-      "number_of_more_options": "тағы {{count}}"
+      "number_of_more_options": "тағы {{count}}",
+      "read": "Оқу"
     },
     "mood-tracker-history": {
       "heading": "Жалпы сіз соңғы 30 күнде {{feeling}} сезіндіңіз",
@@ -540,8 +528,6 @@
       "consultation_cancellation": "Сіз <0>{{providerName}}</0> консультантімен <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін жоспарланған консультациядан сәтті бас тарттыңыз",
       "consultation_cancellation_provider": "<0>{{providerName}}</0> консультанті <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін жоспарланған консультациядан бас тартты",
       "consultation_remind_start": "Алдағы консультация <0>{{minutes}} минуттан</0> кейін басталады",
-      "consultation_remind_start_24_hours_before": "<0>{{providerName}}</0> консультантімен консультацияңыз <0>24 сағаттан</0> кейін басталады",
-      "consultation_remind_start_48_hours_before": "<0>{{providerName}}</0> консультантімен консультацияңыз <0>48 сағаттан</0> кейін басталады",
       "consultation_suggestion": "<0>{{providerName}}</0> <0>{{date}}</0> күні <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін консультация беруді ұсынды",
       "consultation_suggestion_booking": "Сіз <0>{{providerName}}</0> ұсынған <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін берілетін консультацияны қабылдадыңыз",
       "consultation_suggestion_cancellation": "Сіз <0>{{providerName}}</0> ұсынған <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін берілетін консультациядан бас тарттыңыз.",
@@ -553,7 +539,9 @@
       "reject": "Бас тарту",
       "reject_consultation_success": "Консультациядан сәтті бас тарттыңыз",
       "no_notifications": "Сізде әлі хабарландырулар жоқ.",
-      "yesterday": "кеше"
+      "yesterday": "кеше",
+      "consultation_remind_start_24_hours_before": "<0>{{providerName}}</0> консультантімен консультацияңыз <0>24 сағаттан</0> кейін басталады",
+      "consultation_remind_start_48_hours_before": "<0>{{providerName}}</0> консультантімен консультацияңыз <0>48 сағаттан</0> кейін басталады"
     },
     "safety-feedback-block": {
       "heading": "Бұл маңызды. Өтінеміз, оқып шығып, толтырыңыз",
@@ -575,7 +563,6 @@
       "no": "Жоқ",
       "button": "Пікір жіберу",
       "continue_button": "Жауаптарды сақтау",
-
       "very_satisfied": "Өте көңілім толды",
       "satisfied": "Көңілім толды",
       "neutral": "Бейтарап",
@@ -607,16 +594,12 @@
     "payment-status-block": {
       "payment_succeded_heading": "Сіздің төлеміңіз сәтті өтті.",
       "payment_succeded_subheading": "Сатып алғаныңыз үшін рахмет. Сіздің консультацияңыз {{consultationDate}} {{consultationTime}} жоспарланған.",
-
       "payment_processing_heading": "Сіздің төлеміңіз өңделуде",
       "payment_processing_subheading": "Біз Сіздің төлеміңізді өңделуде, кішкене күте тұрыңыз.",
-
       "payment_requires_payment_method_heading": "Сіздің төлеміңіз сәтті орындалмады, қайталап көріңіз.",
       "payment_requires_payment_method_subheading": "Төлеміңізді өңдеуге тырысқанда мәселе туындады. Біз өкінеміз.",
-
       "payment_failed_heading": "Сіздің төлеміңіз сәтті орындалмады, қайталап көріңіз.",
       "payment_failed_subheading": "Төлеміңізді өңдеуге тырысқанда мәселе туындады. Біз өкінеміз.",
-
       "continue_button_label": "Жалғастыру",
       "try_again_button_label": "Қайталап көріңіз"
     },
@@ -629,6 +612,11 @@
       "you_felt": "Сіз сездіңіз",
       "comment_text": "және Сіз түсініктеме бердіңіз:",
       "no_result": "Ештеңе табылмады",
+      "heading": "",
+      "perfect": "",
+      "last_thirty_days_text": "",
+      "time": "",
+      "times": "",
       "critical_text": "Өмірлік оқиғаға немесе маңызды жағдайға байланысты",
       "recommendations": "Көңіл-күйіңізге сәйкес ұсыныстар",
       "articles": "Мақалалар",
@@ -657,14 +645,15 @@
       "respond": "Жауап беру",
       "read_more": "Ары қарай оқу",
       "all": "Барлығы",
-      "all_languages": "Барлық тілдер",
       "most_popular": "Ең танымал",
       "newest": "Жаңа",
       "your_questions": "Сіздің сұрағыңыз",
       "search_placeholder": "Іздеу",
       "filter": "Тегтерді сүзгілеу",
       "no_answers_found": "Сұрақтарға жауап жоқ",
-      "language": "Тіл"
+      "language": "Тіл",
+      "all_languages": "Барлық тілдер",
+      "date_answered": "{{date}} күні"
     },
     "videos": {
       "view_more": "Көбірек көру",
@@ -678,12 +667,10 @@
       "online_interaction": "Онлайн",
       "phone_interaction": "Телефон арқылы",
       "hybrid_interaction": "Аралас формат",
-
       "free_services": "Тегін қызметтер",
       "paid_services": "Ақылы қызметтер",
       "co_payment_services": "Бірлесіп төленетін қызметтер",
       "cnas_reimbursed_services": "CNAS өтейтін қызметтер",
-
       "violence_victim_helpline": "Зорлық-зомбылық құрбандарына арналған сенім телефоны",
       "social_information_counseling": "Әлеуметтік ақпарат және кеңес беру",
       "rehab_psycho_neuro_children": "Психо-невро-моторлық бұзылыстары бар балаларға арналған оңалту және қалпына келтіру қызметтері",
@@ -697,7 +684,6 @@
       "rehab_autism_children": "Аутизмі бар балаларға арналған оңалту және қалпына келтіру қызметтері",
       "art_recreational_activities": "Шығармашылық-ойын-сауық іс-шаралары (театр, музыка, поэзия, сурет салу, әңгімелеу)",
       "addiction_helpline": "Тәуелділік мәселелері бойынша сенім телефоны",
-
       "emergency_situations": "Төтенше жағдайлар",
       "pediatric_psychiatry": "Педиатриялық психиатрия",
       "psychological_evaluation": "Психологиялық бағалау",
@@ -716,14 +702,12 @@
       "pediatric_neurology": "Балалар неврологиясы",
       "special_psychopedagogy": "Арнайы психопедагогика",
       "neuropsychomotor_recovery": "Нейропсихомоторлық қалпына келтіру",
-
       "sector_1": "1-сектор",
       "sector_2": "2-сектор",
       "sector_3": "3-сектор",
       "sector_4": "4-сектор",
       "sector_5": "5-сектор",
       "sector_6": "6-сектор",
-
       "aggression_violence_victim_or_aggressor": "Агрессия/зорлық-зомбылық – құрбан немесе агрессор",
       "learning_difficulties_special_educational_needs": "Оқу қиындықтары/Арнайы білім беру қажеттіліктері",
       "behavioral_disorder": "Мінез-құлық бұзылыстары",
@@ -733,12 +717,10 @@
       "identity_issues": "Жеке тұлға мәселелері",
       "illness_oncological_treatment_chronic_diseases": "Ауру (онкологиялық ем, созылмалы аурулар)",
       "other_situations": "Басқа жағдайлар",
-
       "public": "Мемлекеттік",
       "private": "Жеке",
       "ong": "ҮЕҰ",
       "public_private": "Мемлекеттік-жеке",
-
       "work_with_placeholder": "Мақсатты санаттарды таңдаңыз",
       "specialisations_placeholder": "Көрсетілетін қызметтерді таңдаңыз",
       "district_placeholder": "Секторды таңдаңыз",
@@ -746,10 +728,8 @@
       "user_interactions_placeholder": "Өзара әрекет форматын таңдаңыз",
       "property_types_placeholder": "Мекеме түрлерін таңдаңыз",
       "search_placeholder": "Ұйым атауы бойынша іздеу",
-
       "no_data_found": "Деректер табылмады",
       "reset_filters": "Сүзгілерді қалпына келтіру",
-
       "view_organization_details": "Ұйым мәліметтерін көру",
       "address": "Мекенжай",
       "phone": "Телефон",
@@ -771,7 +751,6 @@
       "work_with_label": "Кіммен жұмыс істейді",
       "offered_services_label": "Ұсынылатын қызметтер",
       "providers_label": "Ұйымдар",
-
       "violence_victim_helpline": "Зорлық-зомбылық құрбандарына арналған сенім телефоны",
       "individual_psychotherapy": "Жеке психотерапия",
       "social_information_counseling": "Әлеуметтік ақпарат және кеңес беру",
@@ -788,7 +767,6 @@
       "art_recreational_activities": "Шығармашылық демалыс шаралары (театр, музыка, поэзия, сурет салу, ертегі айту)",
       "addiction_helpline": "Тәуелділік бойынша сенім телефоны",
       "group_psychotherapy": "Топтық психотерапия",
-
       "emergency_situations": "Төтенше жағдайлар",
       "pediatric_psychiatry": "Педиатриялық психиатрия",
       "psychological_evaluation": "Психологиялық бағалау",
@@ -804,29 +782,24 @@
       "pediatric_neurology": "Балалар неврологиясы",
       "special_psychopedagogy": "Арнайы психопедагогика",
       "neuropsychomotor_recovery": "Нейропсихомоторлық қалпына келтіру",
-
       "in_person_interaction": "Жеке кездесуде",
       "online_interaction": "Онлайн",
       "phone_interaction": "Телефон арқылы",
       "hybrid_interaction": "Аралас",
-
       "free_services": "Тегін қызметтер",
       "paid_services": "Ақылы қызметтер",
       "co_payment_services": "Қосымша төлемі бар қызметтер",
       "cnas_reimbursed_services": "CNAS өтейтін қызметтер",
-
       "public": "Мемлекеттік",
       "private": "Жеке",
       "ong": "ҮЕҰ",
       "public_private": "Мемлекеттік-жеке",
-
       "sector_1": "1-сектор",
       "sector_2": "2-сектор",
       "sector_3": "3-сектор",
       "sector_4": "4-сектор",
       "sector_5": "5-сектор",
       "sector_6": "6-сектор",
-
       "aggression_violence_victim_or_aggressor": "Агрессия/зорлық-зомбылық – жәбірленуші немесе агрессор",
       "learning_difficulties_special_educational_needs": "Оқу қиындықтары/Арнайы білім беру қажеттіліктері",
       "behavioral_disorder": "Мінез-құлық бұзылысы",
@@ -836,8 +809,8 @@
       "identity_issues": "Сәйкестік мәселелері",
       "illness_oncological_treatment_chronic_diseases": "Ауру (онкологиялық емдеу, созылмалы аурулар)",
       "other_situations": "Басқа жағдайлар",
-
-      "copy_link_success": "Сілтеме алмасу буферіне көшірілді!"
+      "copy_link_success": "Сілтеме алмасу буферіне көшірілді!",
+      "description_label": ""
     },
     "baseline-assesment": {
       "instructions": "Нұсқаулар: Соңғы екі аптадағы жағдайыңызды еске түсіріп, төмендегі мәлімдемелерге сізге ең сәйкес келетін нұсқаны таңдаңыз.",
@@ -868,7 +841,6 @@
       "appetite_loss": "Менің тәбетім жоқ.",
       "substance_use": "Мен бірнеше рет темекі шегіп немесе заңсыз заттар (алкоголь, есірткі және т.б.) қолданып көрдім.",
       "frequent_headaches": "Мен жиі себепсіз басым ауырады.",
-
       "question": "Сұрақ {{number}} / {{total}}",
       "completed": "{{percentage}}% аяқталды",
       "back": "Артқа",
@@ -877,7 +849,8 @@
       "finish_assessment": "Бағалауды аяқтау",
       "assessment_completed": "Бағалау аяқталды",
       "assessment_completed_description": "Бағалауды аяқтағаныңызға рахмет. Жауаптарыңыз сақталды және сізге көмектесу үшін пайдаланылады.",
-      "assessment_completed_button": "Басты бетке қайту"
+      "assessment_completed_button": "Басты бетке қайту",
+      "save_button_label": "Save for later"
     },
     "baseline-assessment-dashboard": {
       "heading": "Сіздің базалық бағалауыңыз",
@@ -888,7 +861,11 @@
       "continue": "Жалғастыру",
       "view": "Нәтижелерді көру",
       "view_detailed_results": "Толық нәтижелерді көру",
-      "started_at": "{{date}} басталды"
+      "started_at": "{{date}} басталды",
+      "psychological": "Psychological",
+      "biological": "Biological",
+      "social": "Social",
+      "latest_results": "Latest Results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Бағалау аяқталды",
@@ -898,7 +875,36 @@
       "recommended_podcasts": "Ұсынылған подкасттар",
       "read_more_button": "Толығырақ",
       "by": "{{creator}} авторы",
-      "min_read": "мин оқу"
+      "min_read": "мин оқу",
+      "psychological": "Psychological",
+      "biological": "Biological",
+      "social": "Social",
+      "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
+      "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
+      "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
+      "inc_same_inc": "We noticed some challenges: psychological and social increased, while biological stayed the same.",
+      "inc_same_same": "We noticed some challenges: psychological increased, while biological and social stayed the same.",
+      "inc_same_dec": "Good job! Social decreased, though psychological increased and biological stayed the same.",
+      "inc_dec_inc": "Good job! Biological decreased, though psychological and social increased.",
+      "inc_dec_same": "Good job! Biological decreased, though psychological increased and social stayed the same.",
+      "inc_dec_dec": "Great progress! Biological and social decreased, though psychological increased.",
+      "same_inc_inc": "We noticed some challenges: biological and social increased, while psychological stayed the same.",
+      "same_inc_same": "We noticed some challenges: biological increased, while psychological and social stayed the same.",
+      "same_inc_dec": "Good job! Social decreased, though biological increased and psychological stayed the same.",
+      "same_same_inc": "We noticed some challenges: social increased, while psychological and biological stayed the same.",
+      "same_same_dec": "Good job! Social decreased, while psychological and biological stayed the same.",
+      "same_dec_inc": "Good job! Biological decreased, though social increased and psychological stayed the same.",
+      "same_dec_same": "Good job! Biological decreased, while psychological and social stayed the same.",
+      "same_dec_dec": "Great progress! Biological and social decreased, while psychological stayed the same.",
+      "dec_inc_inc": "Good job! Psychological decreased, though biological and social increased.",
+      "dec_inc_same": "Good job! Psychological decreased, though biological increased and social stayed the same.",
+      "dec_inc_dec": "Great progress! Psychological and social decreased, though biological increased.",
+      "dec_same_inc": "Good job! Psychological decreased, though social increased and biological stayed the same.",
+      "dec_same_same": "Good job! Psychological decreased, while biological and social stayed the same.",
+      "dec_same_dec": "Great progress! Psychological and social decreased, while biological stayed the same.",
+      "dec_dec_inc": "Great progress! Psychological and biological decreased, though social increased.",
+      "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
+      "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased."
     }
   },
   "pages": {
@@ -939,7 +945,8 @@
       "coupon_paragraph": "Купондар «тегін» сессияларды қамтамасыз етеді және серіктестеріміздің демеушілігімен жүзеге асырылады.",
       "coupon_paragraph_two": "Егер Сіз әлеуметтік желілер арқылы немесе серіктесімізден купон кодын алсаңыз, кодты көшіріп, төменде қойыңыз. Купон кодын жібергеннен кейін Сіз оны қолдайтын барлық консультанттарды және олардың қолжетімділігін көресіз. Купон бір немесе бірнеше сеансты қамтамасыз ете алады. Платформа купонның мерзімі өткенін немесе барлық сеанстардың қолданылғанын көрсетеді.",
       "max_price": "Ең жоғары баға",
-      "providers_free_consultation_label": "Тек тегін консультация"
+      "providers_free_consultation_label": "Тек тегін консультация",
+      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being."
     },
     "register-about-you-page": {
       "heading_1": "Өзіңіз туралы бізге көбірек айтып беріңізші",
@@ -979,13 +986,13 @@
       "heading_2": "Қайта оралуыңызбен"
     },
     "articles-page": {
-      "heading": "Мақалалар",
       "heading_default": "Барлық мақалалар",
       "heading_newest": "Соңғы мақалалар",
       "heading_most_read": "Ең көп оқылатын мақалалар",
       "subheading_default": "Барлық мақалаларды осы жерден таба аласыз",
       "subheading_newest": "Мұнда Сіз жаңа мақалаларды таба аласыз",
-      "subheading_most_read": "Мұнда Сіз барлық категориялардағы ең көп оқылатын мақалаларды таба аласыз"
+      "subheading_most_read": "Мұнда Сіз барлық категориялардағы ең көп оқылатын мақалаларды таба аласыз",
+      "heading": "Мақалалар"
     },
     "article-information": {
       "heading": "Көбірек мақалалар",
@@ -1020,7 +1027,6 @@
       "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
       "cookie_preferences": "Cookie параметрлері"
     },
-    "register-preview-page": {},
     "register-email-page": {
       "heading": "uSupport сайтында электронды пошта арқылы тіркеліңіз"
     },
@@ -1037,7 +1043,9 @@
     "reset-password-page": {
       "heading": "Құпия сөзді өзгерту"
     },
-    "activity-history-page": {},
+    "activity-history-page": {
+      "button_label": ""
+    },
     "cookie-policy-page": {
       "heading": "Cookie саясаты"
     },
@@ -1061,14 +1069,12 @@
       "thursday": "Бс",
       "friday": "Жм",
       "saturday": "Сб",
-
       "client_joined": "Клиент консультацияға қосылды",
       "client_left": "Клиент консультациядан шығып кетті",
       "client_camera_off": "Клиент камераны өшірді",
       "client_camera_on": "Клиент камераны қосты",
       "client_microphone_off": "Клиент микрофонды өшірді",
       "client_microphone_on": "Клиент микрофонды қосты",
-
       "provider_joined": "Консультант консультацияға қосылды",
       "provider_left": "Консультант консультациядан шықты",
       "provider_camera_off": "Консультант камераны өшірді",
@@ -1076,7 +1082,6 @@
       "provider_microphone_off": "Консультант микрофонды өшірді",
       "provider_microphone_on": "Консультант микрофонды қосты",
       "chat_history_deleted_by_client": "Сіз чат тарихын жойдыңыз",
-
       "show_system_messages": "Жүйелік хабарламаларды көрсету",
       "show_previous_consultations": "Алдыңғы кеңестерді көрсетіңіз",
       "hide_options": "Баптаулар жасыру",
@@ -1085,8 +1090,8 @@
       "sponsored_by": "Бұл сессияның демеушісі: ",
       "consultation_end_reminder": "Ваша консультация закончится через {{minutes}} минут",
       "textarea_placeholder": "Хабарламаңызды осы жерге енгізіңіз...",
-      "permissions_error": "Сіз рұқсаттарды қабылдамадыңыз",
       "allow_permissions": "Камера және/немесе микрофонға рұқсаттар қабылданбады. Егер сіз провайдермен сөйлескіңіз келсе, шолғыштың параметрлерінде немесе мекенжай жолындағы ақпарат белгішесінде рұқсаттарды қосыңыз.",
+      "permissions_error": "Сіз рұқсаттарды қабылдамадыңыз",
       "typing": "Жазып жатыр..."
     },
     "payment-history-page": {
@@ -1100,7 +1105,15 @@
     "payment-status-page": {
       "heading": "Төлем мәртебесі"
     },
-    "mood-track-history-page": {},
+    "mood-track-history-page": {
+      "heading": ""
+    },
+    "my-qa-page": {
+      "all": "",
+      "most_popular": "",
+      "newest": "",
+      "your_questions": ""
+    },
     "notifications-page": {
       "heading": "Хабарландырулар",
       "mark_read": "Барлығын оқылған деп белгілеу",
@@ -1144,6 +1157,9 @@
     "organization-overview-page": {
       "heading": "Ұйымға шолу",
       "subheading": "Сіз таңдаған ұйымның профиліне толық шолу"
+    },
+    "register-preview-page": {
+      "login": ""
     }
   },
   "backdrops": {
@@ -1405,13 +1421,6 @@
       "cancel": "Жоқ, чат деректерімді сақтау",
       "success": "Сіздің чат тарихы сәтті жойылды."
     },
-    "delete-mood-tracker-history": {
-      "heading": "Барлық көңіл-күй трекері деректерін жойғыңыз келетініне сенімдісіз бе?",
-      "subheading": "Бұл әрекетті болдырмау мүмкін емес.",
-      "confirm": "Иә, барлық көңіл-күй трекері деректерімді жой",
-      "cancel": "Жоқ, көңіл-күй трекері деректерімді сақта",
-      "success": "Көңіл-күй трекері деректеріңіз сәтті жойылды."
-    },
     "baseline-assesment-modal": {
       "heading": "Бастапқы бағалау",
       "paragraph_1": "Төмендегі сұрақтар сіздің жағдайыңызды жақсырақ түсінуге және өзіңізді жақсы сезіну үшін көмек қажет пе екенін анықтауға көмектеседі. Сұрақтар соңғы екі аптадағы көңіл-күйіңіз, ойларыңыз және сезімдеріңіз туралы. Дұрыс немесе қате жауап жоқ, тек сізді сипаттайтын жауаптар бар. Не сезініп жүргеніңізді түсіну және көмектесу үшін мүмкіндігінше шынайы жауап беру маңызды.",
@@ -1422,6 +1431,13 @@
       "consent": "Жалғастыру үшін, біздің <0>Құпиялылық саясатымызға</0> келісіңіз",
       "cta_label": "Мен сауалнаманы толтыруға келісемін.",
       "secondary_cta_label": "Мен сауалнаманы толтырғым келмейді"
+    },
+    "delete-mood-tracker-history": {
+      "heading": "Барлық көңіл-күй трекері деректерін жойғыңыз келетініне сенімдісіз бе?",
+      "subheading": "Бұл әрекетті болдырмау мүмкін емес.",
+      "confirm": "Иә, барлық көңіл-күй трекері деректерімді жой",
+      "cancel": "Жоқ, көңіл-күй трекері деректерімді сақта",
+      "success": "Көңіл-күй трекері деректеріңіз сәтті жойылды."
     },
     "how-it-works-mood-track": {
       "heading": "Көңіл күй трекері қалай жұмыс істейді",

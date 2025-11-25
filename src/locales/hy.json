@@ -23,14 +23,14 @@
       "submit": "Ուղարկել",
       "dark": "Մուգ",
       "light": "Լուսավոր",
-      "high_contrast": "Բարձր հակադրություն",
       "page_5": "Organizations",
       "cookie_banner_header": "We value your privacy",
       "cookie_banner_text": "This website uses cookies to enhance and secure your browsing experience. By using our website, you agree to our <0>Cookie Policy</0>.",
       "accept_all_cookies": "Accept all",
       "reject_all_cookies": "Reject all",
       "accept_necessary_cookies": "Accept only necessary",
-      "save": "Save"
+      "save": "Save",
+      "high_contrast": "Բարձր հակադրություն"
     },
     "provider-overview": {
       "earliest_slot_label": "Խորհրդատվության ամենամոտ հասանելի ժամանակը",
@@ -105,7 +105,9 @@
     "sos-center": {
       "button_link": "Այցելել կայքէջ",
       "button_call": "Կապվել հիմա",
-      "no_results": "Ընտրված երկրի և լեզվի վերաբերյալ արդյունքներ չեն գտնվել"
+      "no_results": "Ընտրված երկրի և լեզվի վերաբերյալ արդյունքներ չեն գտնվել",
+      "other_emergency_services": "Other emergency service providers",
+      "browse": "Browse"
     },
     "register-about-you": {
       "input_name_label": "Անունը",
@@ -265,6 +267,15 @@
       "client": "Հաճախորդ",
       "heading": "Բարի գալուստ․․․"
     },
+    "welcome": {
+      "heading": "Բարի գալուստ",
+      "country": "Երկիր",
+      "language": "Լեզու",
+      "placeholder": "Ընտրել",
+      "button": "Շարունակել",
+      "client": "Հաճախորդ",
+      "poland_description": "uSupport-ը մտավոր առողջության և բարեկեցության հարթակ է, որը նախատեսված է երիտասարդների համար (16-24 տարեկան):"
+    },
     "articles": {
       "heading": "Տեղեկատվության պորտալ",
       "no_results": "Արդյունքներ չեն գտնվել",
@@ -275,15 +286,6 @@
       "by": "ի կողմից {{creator}}",
       "number_of_more_options": "{{count}} ավելին",
       "read": "Read"
-    },
-    "welcome": {
-      "heading": "Բարի գալուստ",
-      "country": "Երկիր",
-      "language": "Լեզու",
-      "placeholder": "Ընտրել",
-      "button": "Շարունակել",
-      "client": "Հաճախորդ",
-      "poland_description": "uSupport-ը մտավոր առողջության և բարեկեցության հարթակ է, որը նախատեսված է երիտասարդների համար (16-24 տարեկան):"
     },
     "give-suggestion": {
       "heading": "Ներկայացրեք մեզ ձեր առաջարկությունները",
@@ -306,7 +308,8 @@
       "text_2": "uSupport-ը հոգեկան առողջության և բարօրության հարթակ է՝ նախատեսված երիտասարդների և նրանց խնամակալների համար․ հարթակ, որտեղ գաղտնիությունը և անվտանգությունը առաջնահերթություն են։",
       "heading_3": "Ձեր մասին",
       "text_3": "Եղեք ճիշտ այնպիսին, ինչպիսին կաք։ Ձեր հոգեկան առողջությունը կարևոր է։",
-      "login": "Մուտք գործել էլեկտրոնային փոստով/Մուտքի սարքի օգնությամբ"
+      "login": "Մուտք գործել էլեկտրոնային փոստով/Մուտքի սարքի օգնությամբ",
+      "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
       "email_error": "Խնդրում ենք մուտքագրել էլեկտրոնային փոստի գործող հասցե։",
@@ -359,7 +362,6 @@
       "delete_account": "Ջնջել օգտահաշիվը",
       "logout": "Դուրս գալ",
       "delete_chat": "Ջնջել զրուցարանի պատմությունը",
-      "delete_mood_tracker": "Ջնջել տրամադրության ստուգիչի պատմությունը",
       "dropdown_sex_label": "Սեռը",
       "dropdown_year_label": "Ծննդյան տարեթիվը",
       "sex_male": "Արական",
@@ -376,7 +378,8 @@
       "sex_placeholder": "Նշեք ձեր սեռը",
       "year_of_birth_placeholder": "Նշեք ձեր ծննդյան տարեթիվը",
       "living_place_placeholder": "Նշեք ձեր բնակության վայրը",
-      "parent": "Ծնող"
+      "parent": "Ծնող",
+      "delete_mood_tracker": "Ջնջել տրամադրության ստուգիչի պատմությունը"
     },
     "reset-password": {
       "label": "Նոր գաղտնաբառ",
@@ -420,7 +423,6 @@
       "live_text": "Հիմա",
       "accept_button_label": "Ընդունել խորհրդատվությունը",
       "join_button_label": "Միանալ",
-      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ",
       "change_button_label": "Փոխել",
       "ordinal_st": "ին",
       "ordinal_nd": "րդ",
@@ -439,7 +441,8 @@
       "november": "Նոյեմբեր",
       "december": "Դեկտեմբեր",
       "require_cookies": "To view this video, please accept all cookies.",
-      "cookie_preferences": "Cookie preferences"
+      "cookie_preferences": "Cookie preferences",
+      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ"
     },
     "mood-tracker": {
       "happy": "Ուրախ եմ",
@@ -449,11 +452,11 @@
       "worried": "Մտահոգ եմ",
       "heading": "Ինչպե՞ս եք զգում այսօր։",
       "mood_tracker": "Տրամադրության ստուգիչ",
-      "how_it_works": "Ինչպես է գործում",
       "additional_comment_placeholder": "Ի՞նչն ստիպեց այդպես զգալ։",
       "submit_mood_track": "Ուղարկել",
       "add_mood_tracker_success": "Ձեր օրվա տրամադրությունը բարեհաջող ավելացվել է։",
       "emergency_label": "Սա վերաբերում է կյանքի իրադարձության կամ կրիտիկական իրավիճակի՞։",
+      "how_it_works": "Ինչպես է գործում",
       "recommendations": "Առաջարկություններ",
       "recommendations_text": "Ցանկանու՞մ եք դիտել ձեր տրամադրության գրաֆիկը և տեսնել առաջարկված բովանդակությունը:",
       "check_out": "Դիտել"
@@ -467,7 +470,6 @@
       "change_button_label": "Փոփոխել",
       "accept_button_label": "Ընդունել խորհրդատվությունը",
       "join_button_label": "Միանալ",
-      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ",
       "schedule_button_label": "Պլանավորել",
       "live_label": "Հիմա",
       "no_consultations": "Ներկա պահին դուք չունեք առաջիկայում պլանավորված խորհրդատվություններ։",
@@ -489,7 +491,8 @@
       "november": "Նոյեմբեր",
       "december": "Դեկտեմբեր",
       "coupon": "Կտրոնը",
-      "explore_button_label": "Explore"
+      "explore_button_label": "Explore",
+      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ"
     },
     "activity-log-dashboard": {
       "heading": "Գործողությունների գրանցամատյան",
@@ -503,7 +506,8 @@
       "read_more_button": "Կարդալ ավելին",
       "min_read": "րոպե կարդալու համար",
       "by": "{{creator}}-ի կողմից",
-      "number_of_more_options": "{{count}} ավելին"
+      "number_of_more_options": "{{count}} ավելին",
+      "read": "Կարդալ"
     },
     "mood-tracker-history": {
       "heading": "Ընդհանուր առամբ, դուք վերջին 30 օրվա ընթացքում զգացել եք {{feeling}} ",
@@ -524,8 +528,6 @@
       "consultation_cancellation": "Դուք բարեհաջող<0>չեղարկել եք</0> -ի հետ<0>{{p8oviderName}} ձեր խորհրդատվությունը, որը պլանավորված էր </0>-ից {{date}}</0> ժամը <0>{startHour}}</0> մինչև <0>{{endHour}}</0>",
       "consultation_cancellation_provider": "Խորհրդատվություն տրամադրողը<0>{{p8oviderName}} չեղարկել է</0> խորհրդատվությունը<0>, որը պլանավորված էր -ին <0>{{date}}՝</0> -ից <0>{{startHour}}</0> մինչև <0>{{endHour}}</0>",
       "consultation_remind_start": "<0>Գալիք խորհրդատվությունը</0>՝ {{minutes}} րոպեից</0>",
-      "consultation_remind_start_24_hours_before": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ կսկսվի <0>24 ժամից</0>",
-      "consultation_remind_start_48_hours_before": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ կսկսվի <0>48 ժամից</0>",
       "consultation_suggestion": "<0>{{providerName}} առաջարկել է</0> խորհրդատվություն՝ <0>{{date}}՝</0> -ից <0>{{startHour}}</0> մինչև <0>{{endHour}}</0>",
       "consultation_suggestion_booking": "Դուք ընդունել եք <0>առաջարկված</0> խորհրդատվությունը<0>-ից{{providerName}}</0> <0>{{date}}</0> -ից <0>{{startHour}}</0> մինչև <0>{{endHour}}</0>",
       "consultation_suggestion_cancellation": "Դուք մերժել եք <0>առաջարկված</0> խորհրդատվությունը<0>-ից{{providerName}}</0> <0>{{date}}</0> -ից <0>{{startHour}}</0> մինչև <0>{{endHour}}</0>",
@@ -537,7 +539,9 @@
       "reject": "Մերժել առաջարկությունը",
       "reject_consultation_success": "Խորհրդատվությունը բարեհաջող մերժված է",
       "no_notifications": "Դուք առայժմ ծանուցում չունեք",
-      "yesterday": "Երեկ"
+      "yesterday": "Երեկ",
+      "consultation_remind_start_24_hours_before": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ կսկսվի <0>24 ժամից</0>",
+      "consultation_remind_start_48_hours_before": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ կսկսվի <0>48 ժամից</0>"
     },
     "safety-feedback-block": {
       "heading": "Սա կարևոր է։ Խնդրում ենք կարդալ և լրացնել։",
@@ -608,6 +612,11 @@
       "you_felt": "Դուք զգացել եք",
       "comment_text": "և մեկնաբանել եք․:",
       "no_result": "Արդյունքներ չեն գտնվել",
+      "heading": "",
+      "perfect": "",
+      "last_thirty_days_text": "",
+      "time": "",
+      "times": "",
       "critical_text": "Կապված է կյանքի իրադարձության կամ կրիտիկական իրավիճակի հետ",
       "recommendations": "Առաջարկություններ ըստ ձեր տրամադրության",
       "articles": "Հոդվածներ",
@@ -643,7 +652,8 @@
       "filter": "Ֆիլտրել tag-երը",
       "no_answers_found": "Պատասխանված հարցեր չկան",
       "language": "Լեզու",
-      "all_languages": "All languages"
+      "all_languages": "All languages",
+      "date_answered": "ըստ {{date}}"
     },
     "videos": {
       "view_more": "View more",
@@ -799,7 +809,102 @@
       "identity_issues": "Identity issues",
       "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
       "other_situations": "Other situations",
-      "copy_link_success": "Link copied to clipboard!"
+      "copy_link_success": "Link copied to clipboard!",
+      "description_label": ""
+    },
+    "baseline-assesment": {
+      "instructions": "Instructions: Thinking about the last two weeks, please choose the option that you think fits you best for the following statements.",
+      "stress_level": "I am very stressed.",
+      "sadness_anxiety": "I often feel sad or anxious.",
+      "fear_frequency": "I feel afraid(s) often.",
+      "emotion_control": "I find it very difficult to control my emotions.",
+      "worry_anxiety": "I often worry and feel anxious.",
+      "nervousness": "I often get nervous.",
+      "sensitivity_agitation": "I am more agitated and sensitive than others.",
+      "physical_weakness": "I feel physically weak or have frequent aches and pains.",
+      "tired_waking": "I wake up tired.",
+      "body_health_concerns": "I think there is something seriously wrong with my body.",
+      "slow_movements": "I am slower in my movements and reactions compared to others.",
+      "friendship_difficulty": "I find it difficult to make friends with other children. I prefer to be alone.",
+      "communication_difficulty": "I find it difficult to communicate with friends or family.",
+      "emotional_expression": "I cannot talk openly about how I feel.",
+      "parental_overwhelm": "I feel overwhelmed by my parents.",
+      "school_helplessness": "I feel helpless in school in front of others.",
+      "difficult_parents": "My parents are very difficult.",
+      "concentration_problems": "I have a hard time concentrating.",
+      "lack_happiness": "There are few things that really make me happy.",
+      "maturity_pressure": "I feel like I should have matured faster.",
+      "internet_dependency": "I would feel lonely without the internet.",
+      "economic_bullying": "I have been bullied or marginalized because I can't afford the same things as my friends or colleagues (for example: clothes, phone, etc.).",
+      "few_friends": "I don't have many friends.",
+      "nightmares": "I often have nightmares when I sleep.",
+      "appetite_loss": "I have no appetite.",
+      "substance_use": "I have tried smoking or using illegal substances (alcohol, drugs, etc.) several times.",
+      "frequent_headaches": "I have frequent headaches for no reason.",
+      "question": "Question {{number}} of {{total}}",
+      "completed": "{{percentage}}% completed",
+      "back": "Back",
+      "next": "Next",
+      "start_assessment": "Start Assessment",
+      "finish_assessment": "Finish Assessment",
+      "assessment_completed": "Assessment Completed",
+      "assessment_completed_description": "Thank you for completing the assessment. Your answers have been saved and will be used to help you.",
+      "assessment_completed_button": "Back to Home",
+      "save_button_label": "Save for later"
+    },
+    "baseline-assessment-dashboard": {
+      "heading": "Your Baseline Assessment",
+      "no_assessment_text": "You haven't completed a baseline assessment yet. Complete one to get personalized insights about your mental health.",
+      "start_new_assessment": "Start Assessment",
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "continue": "Continue",
+      "view": "View Results",
+      "view_detailed_results": "View Detailed Results",
+      "started_at": "Started on {{date}}",
+      "psychological": "Psychological",
+      "biological": "Biological",
+      "social": "Social",
+      "latest_results": "Latest Results"
+    },
+    "baseline-assesment-result": {
+      "assessment_completed": "Assessment completed",
+      "loading_results": "Loading your results...",
+      "recommended_articles": "Recommended articles",
+      "recommended_videos": "Recommended videos",
+      "recommended_podcasts": "Recommended podcasts",
+      "read_more_button": "Read more",
+      "by": "by {{creator}}",
+      "min_read": "min read",
+      "psychological": "Psychological",
+      "biological": "Biological",
+      "social": "Social",
+      "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
+      "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
+      "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
+      "inc_same_inc": "We noticed some challenges: psychological and social increased, while biological stayed the same.",
+      "inc_same_same": "We noticed some challenges: psychological increased, while biological and social stayed the same.",
+      "inc_same_dec": "Good job! Social decreased, though psychological increased and biological stayed the same.",
+      "inc_dec_inc": "Good job! Biological decreased, though psychological and social increased.",
+      "inc_dec_same": "Good job! Biological decreased, though psychological increased and social stayed the same.",
+      "inc_dec_dec": "Great progress! Biological and social decreased, though psychological increased.",
+      "same_inc_inc": "We noticed some challenges: biological and social increased, while psychological stayed the same.",
+      "same_inc_same": "We noticed some challenges: biological increased, while psychological and social stayed the same.",
+      "same_inc_dec": "Good job! Social decreased, though biological increased and psychological stayed the same.",
+      "same_same_inc": "We noticed some challenges: social increased, while psychological and biological stayed the same.",
+      "same_same_dec": "Good job! Social decreased, while psychological and biological stayed the same.",
+      "same_dec_inc": "Good job! Biological decreased, though social increased and psychological stayed the same.",
+      "same_dec_same": "Good job! Biological decreased, while psychological and social stayed the same.",
+      "same_dec_dec": "Great progress! Biological and social decreased, while psychological stayed the same.",
+      "dec_inc_inc": "Good job! Psychological decreased, though biological and social increased.",
+      "dec_inc_same": "Good job! Psychological decreased, though biological increased and social stayed the same.",
+      "dec_inc_dec": "Great progress! Psychological and social decreased, though biological increased.",
+      "dec_same_inc": "Good job! Psychological decreased, though social increased and biological stayed the same.",
+      "dec_same_same": "Good job! Psychological decreased, while biological and social stayed the same.",
+      "dec_same_dec": "Great progress! Psychological and social decreased, while biological stayed the same.",
+      "dec_dec_inc": "Great progress! Psychological and biological decreased, though social increased.",
+      "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
+      "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased."
     }
   },
   "pages": {
@@ -840,7 +945,8 @@
       "coupon_paragraph": "Կտրոններով կարող եք օգտվել «անվճար» խորհրդատվությունից, և դրանց հովանավորը մեր գործընկերներն են",
       "coupon_paragraph_two": "Եթե դուք կտրոնի կոդն ստացել եք սոցիալական ցանցերով անցկացվող արշավների շրջանակներում կամ գործընկերոջից, ապա խնդրում ենք պատճենել այն և տեղադրել ստորև։ Կտրոնի կոդը ուղարկելուց հետո կտեսնեք բոլոր այն խորհրդատվություն տրամադրողներին, որոնք աշխատում են այդ կտրոններով, ինչպես նաև նրանց հասանելիությունը։ Կտրոնով կարող եք օգտվել մեկ կամ ավելի խորհրդատվությունից։ Հարթակը կհուշի, եթե կտրոնի ժամկետը լրացել է կամ եթե արդեն օգտվել եք դրանով հասանելի թվով խորհրդատվություններից։",
       "max_price": "Առավելագույն գինը",
-      "providers_free_consultation_label": "Միայն անվճար խորհրդատվություն"
+      "providers_free_consultation_label": "Միայն անվճար խորհրդատվություն",
+      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being."
     },
     "register-about-you-page": {
       "heading_1": "Մեզ ավելին պատմեք ձեր մասին",
@@ -921,7 +1027,6 @@
       "require_cookies": "To view this video, please accept all cookies.",
       "cookie_preferences": "Cookie preferences"
     },
-    "register-preview-page": {},
     "register-email-page": {
       "heading": "Գրանցվել uSupport-ում՝ էլեկտրոնային փոստի միջոցով"
     },
@@ -1052,6 +1157,9 @@
     "organization-overview-page": {
       "heading": "Organization overview",
       "subheading": "Detailed overview of the profile of the organization you selected"
+    },
+    "register-preview-page": {
+      "login": ""
     }
   },
   "backdrops": {
@@ -1312,6 +1420,17 @@
       "confirm": "Այո, ջնջեք իմ զրույցի բոլոր տվյալները",
       "cancel": "Ոչ, պահպանեք իմ զրույցի տվյալները",
       "success": "Ձեր զրույցի տվյալները բարեհաջող ջնջված են"
+    },
+    "baseline-assesment-modal": {
+      "heading": "Baseline Assesment",
+      "paragraph_1": "The following questions will help you better understand how you are feeling and find out if you need help to feel better. The questions are about your mood, thoughts and feelings over the last two weeks. There are no right or wrong answers, just answers that represent you. It is important to answer as honestly as possible, so that we can understand what you are feeling and see how we can help you.",
+      "paragraph_2": "At the end, you will receive an answer that will show you how you are feeling and whether it would be important to talk to someone about what is happening to you. If necessary, we will tell you who you can go to for help – it could be a school counselor, a psychologist or another specialist.",
+      "paragraph_3": "Everything you answer here is confidential, no one asks for your name or other information that could indicate who you are. So you are safe, you can be open and honest. The questionnaire only takes a few minutes and can be a first step to feeling better.",
+      "paragraph_4": "Are you ready? Let's get started! 😊",
+      "privacy": "Privacy and security",
+      "consent": "To proceed, please consent to our <0>Privacy Policy</0>",
+      "cta_label": "I agree to complete the questionnaire.",
+      "secondary_cta_label": "I do not want to complete the questionnaire"
     },
     "delete-mood-tracker-history": {
       "heading": "Վստահ ե՞ք, որ ցանկանում եք ջնջել ձեր տրամադրության հետևողի բոլոր տվյալները։",

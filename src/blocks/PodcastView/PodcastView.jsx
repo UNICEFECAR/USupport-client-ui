@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import propTypes from "prop-types";
 
 import {
@@ -15,7 +15,11 @@ import {
 import { cmsSvc } from "@USupport-components-library/services";
 import { createArticleSlug } from "@USupport-components-library/utils";
 
-import { useAddContentRating } from "#hooks";
+import {
+  useAddContentRating,
+  useAddContentEngagement,
+  useRemoveContentEngagement,
+} from "#hooks";
 
 import "./podcast-view.scss";
 
@@ -62,7 +66,12 @@ export const PodcastView = ({ podcastData, t, language, isTmpUser }) => {
   const { name } = useParams();
 
   const [isShared, setIsShared] = useState(false);
-  const [contentRating, setContentRating] = useState(podcastData.contentRating);
+  const [contentRating, setContentRating] = useState({
+    likes: podcastData.likes,
+    dislikes: podcastData.dislikes,
+    isLikedByUser: podcastData.contentRating?.isLikedByUser || false,
+    isDislikedByUser: podcastData.contentRating?.isDislikedByUser || false,
+  });
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
 
   useEffect(() => {
@@ -75,13 +84,34 @@ export const PodcastView = ({ podcastData, t, language, isTmpUser }) => {
       const urlSlug = name;
 
       if (currentSlug !== urlSlug) {
-        const newUrl = `/${language}/information-portal/article/${videoData.id}/${currentSlug}`;
+        const newUrl = `/client/${language}/information-portal/podcast/${podcastData.id}/${currentSlug}`;
 
         window.history.replaceState(null, "", newUrl);
         setHasUpdatedUrl(true);
       }
     }
   }, [podcastData?.title, name, language, hasUpdatedUrl]);
+
+  const addContentEngagementMutation = useAddContentEngagement();
+  const removeContentEngagementMutation = useRemoveContentEngagement();
+
+  // Track view when podcast is loaded using useQuery
+  useQuery(
+    ["podcast-view-tracking", podcastData.id],
+    async () => {
+      addContentEngagementMutation({
+        contentId: podcastData.id,
+        contentType: "podcast",
+        action: "view",
+      });
+      return true;
+    },
+    {
+      enabled: !!podcastData?.id && !isTmpUser,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    }
+  );
 
   const url = constructShareUrl({
     contentType: "podcast",
@@ -92,15 +122,21 @@ export const PodcastView = ({ podcastData, t, language, isTmpUser }) => {
   const handleCopyLink = () => {
     navigator?.clipboard?.writeText(url);
     toast(t("share_success"));
-    if (!isShared)
+    if (!isShared) {
       cmsSvc.addPodcastShareCount(podcastData.id).then(() => {
         setIsShared(true);
       });
-  };
 
-  useEffect(() => {
-    setContentRating(podcastData.contentRating);
-  }, [podcastData.contentRating]);
+      // Track share engagement
+      if (!isTmpUser) {
+        addContentEngagementMutation({
+          contentId: podcastData.id,
+          contentType: "podcast",
+          action: "share",
+        });
+      }
+    }
+  };
 
   const onMutate = (data) => {
     const prevData = JSON.parse(JSON.stringify(contentRating));
@@ -184,6 +220,7 @@ export const PodcastView = ({ podcastData, t, language, isTmpUser }) => {
 
   const onSuccess = () => {
     queryClient.invalidateQueries({ queryKey: ["userContentRatings"] });
+    queryClient.invalidateQueries({ queryKey: ["userContentEngagements"] });
   };
 
   const addContentRatingMutation = useAddContentRating(
@@ -194,14 +231,29 @@ export const PodcastView = ({ podcastData, t, language, isTmpUser }) => {
 
   const handleAddRating = (action) => {
     if (isTmpUser) return;
+
+    const isRemovingReaction =
+      action === "remove-like" || action === "remove-dislike";
+
+    if (isRemovingReaction) {
+      // Remove like/dislike from engagement tracking
+      removeContentEngagementMutation({
+        contentId: podcastData.id,
+        contentType: "podcast",
+      });
+    } else {
+      // Add like/dislike to engagement tracking
+      addContentEngagementMutation({
+        contentId: podcastData.id,
+        contentType: "podcast",
+        action: action === "like" ? "like" : "dislike",
+      });
+    }
+
     addContentRatingMutation({
       contentId: podcastData.id,
-      positive:
-        action === "like"
-          ? true
-          : action === "remove-like" || action === "remove-dislike"
-          ? null
-          : false,
+      positive: action === "like" ? true : isRemovingReaction ? null : false,
+
       contentType: "podcast",
     });
   };

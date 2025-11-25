@@ -14,9 +14,10 @@ import {
 import {
   destructurePodcastData,
   createArticleSlug,
+  getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useDebounce, useGetUserContentRatings } from "#hooks";
+import { useDebounce, useGetUserContentEngagements } from "#hooks";
 import { RootContext } from "#routes";
 
 import "./podcasts.scss";
@@ -35,6 +36,8 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
   const { isTmpUser } = useContext(RootContext);
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
+  const [podcastsLikes, setPodcastsLikes] = useState(new Map());
+  const [podcastsDislikes, setPodcastsDislikes] = useState(new Map());
 
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
@@ -42,7 +45,7 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
     }
   }, [i18n.language]);
 
-  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
+  const { data: contentEngagements } = useGetUserContentEngagements(!isTmpUser);
 
   //--------------------- Categories ----------------------//
   const [categories, setCategories] = useState();
@@ -107,6 +110,7 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
   //--------------------- Podcasts ----------------------//
   const getPodcastsIds = async () => {
     const podcastsIds = await adminSvc.getPodcasts();
+
     return podcastsIds;
   };
 
@@ -186,6 +190,36 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
     }
   );
 
+  useEffect(() => {
+    async function getPodcastsRatings() {
+      const podcastIds = podcasts.reduce((acc, podcast) => {
+        if (
+          !podcastsLikes.has(podcast.id) &&
+          !podcastsDislikes.has(podcast.id)
+        ) {
+          acc.push(podcast.id);
+        }
+        return acc;
+      }, []);
+
+      if (!podcastIds.length) return;
+
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        podcastIds,
+        "podcast"
+      );
+
+      setPodcastsLikes((prevLikes) => {
+        return new Map([...prevLikes, ...likes]);
+      });
+      setPodcastsDislikes((prevDislikes) => {
+        return new Map([...prevDislikes, ...dislikes]);
+      });
+    }
+
+    getPodcastsRatings();
+  }, [podcasts, usersLanguage]);
+
   let areCategoriesReady = categoriesToShow?.length > 1;
 
   return (
@@ -216,18 +250,12 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
             !isPodcastsFetching && (
               <Grid>
                 {podcasts?.map((podcast, index) => {
-                  const isLikedByUser = contentRatings?.some(
-                    (rating) =>
-                      rating.content_id === podcast.id &&
-                      rating.content_type === "podcast" &&
-                      rating.positive === true
-                  );
-                  const isDislikedByUser = contentRatings?.some(
-                    (rating) =>
-                      rating.content_id === podcast.id &&
-                      rating.content_type === "podcast" &&
-                      rating.positive === false
-                  );
+                  const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+                    contentType: "podcast",
+                    contentData: podcast,
+                    userEngagements: contentEngagements,
+                  });
+
                   // Podcast data is already processed in getPodcastsData
                   const podcastData = podcast;
                   return (
@@ -244,10 +272,10 @@ export const Podcasts = ({ showSearch, showCategories, sort }) => {
                         creator={podcastData.creator}
                         categoryName={podcastData.categoryName}
                         contentType="podcasts"
-                        likes={podcastData.likes}
-                        dislikes={podcastData.dislikes}
-                        isLikedByUser={isLikedByUser}
-                        isDislikedByUser={isDislikedByUser}
+                        likes={podcastsLikes.get(podcastData.id) || 0}
+                        dislikes={podcastsDislikes.get(podcastData.id) || 0}
+                        isLikedByUser={isLiked}
+                        isDislikedByUser={isDisliked}
                         t={t}
                         onClick={() =>
                           navigate(

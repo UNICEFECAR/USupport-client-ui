@@ -231,6 +231,9 @@ export const BaselineAssesment = ({
     queryClient.invalidateQueries({
       queryKey: ["latest-baseline-assessment"],
     });
+    queryClient.invalidateQueries({
+      queryKey: ["baseline-assessments"],
+    });
     navigate("/dashboard");
   };
 
@@ -257,11 +260,11 @@ export const BaselineAssesment = ({
               setIsChecked={() => {}}
               disabled={addBaselineAssessmentAnswerMutation.isLoading}
               label={
-                (value === 1 && "1. Strongly Disagree") ||
-                (value === 2 && "2. Disagree") ||
-                (value === 3 && "3. Neutral") ||
-                (value === 4 && "4. Agree") ||
-                (value === 5 && "5. Strongly Agree")
+                (value === 1 && "1. " + t("sontrgly_disagree")) ||
+                (value === 2 && "2. " + t("disagree")) ||
+                (value === 3 && "3. " + t("neutral")) ||
+                (value === 4 && "4. " + t("agree")) ||
+                (value === 5 && "5. " + t("strongly_agree"))
               }
             />
           </div>
@@ -385,7 +388,7 @@ export const BaselineAssesment = ({
                 iconColor="#ffffff"
                 size="md"
                 color="purple"
-                label="Save for later"
+                label={t("save_button_label")}
                 classes="baseline-assesment__navigation__save-for-later"
                 onClick={handleRedirectToDashboard}
               />
