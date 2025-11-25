@@ -652,7 +652,8 @@
       "filter": "Фільтруй теги",
       "no_answers_found": "Немає відповідей на запитання",
       "language": "Мова",
-      "all_languages": "Усі мови"
+      "all_languages": "Усі мови",
+      "date_answered": "від {{date}}"
     },
     "videos": {
       "view_more": "Переглянути більше",

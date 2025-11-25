@@ -654,7 +654,8 @@
       "search_placeholder": "Căutare",
       "filter": "Filtrați etichetele",
       "no_answers_found": "Nu există întrebări cu răspuns",
-      "language": "Limba"
+      "language": "Limba",
+      "date_answered": "la {{date}}"
     },
     "videos": {
       "view_more": "Vezi mai mult",

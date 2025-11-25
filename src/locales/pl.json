@@ -652,7 +652,8 @@
       "filter": "Filtruj tagi",
       "no_answers_found": "Brak odpowiedzi",
       "language": "Język",
-      "all_languages": "Wszystkie języki"
+      "all_languages": "Wszystkie języki",
+      "date_answered": "dnia {{date}}"
     },
     "videos": {
       "view_more": "Zobacz więcej",
