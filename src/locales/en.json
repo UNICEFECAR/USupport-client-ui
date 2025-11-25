@@ -652,7 +652,8 @@
       "filter": "Filter tags",
       "no_answers_found": "There are no answered questions",
       "language": "Language",
-      "all_languages": "All languages"
+      "all_languages": "All languages",
+      "date_answered": "on {{date}}"
     },
     "videos": {
       "view_more": "View more",

@@ -652,7 +652,8 @@
       "filter": "Ֆիլտրել tag-երը",
       "no_answers_found": "Պատասխանված հարցեր չկան",
       "language": "Լեզու",
-      "all_languages": "All languages"
+      "all_languages": "All languages",
+      "date_answered": "ըստ {{date}}"
     },
     "videos": {
       "view_more": "View more",

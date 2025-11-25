@@ -652,7 +652,8 @@
       "filter": "Тегтерді сүзгілеу",
       "no_answers_found": "Сұрақтарға жауап жоқ",
       "language": "Тіл",
-      "all_languages": "Барлық тілдер"
+      "all_languages": "Барлық тілдер",
+      "date_answered": "{{date}} күні"
     },
     "videos": {
       "view_more": "Көбірек көру",
