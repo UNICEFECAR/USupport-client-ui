@@ -508,7 +508,8 @@
       "read_more_button": "Citește mai mult",
       "min_read": "durata lecturii",
       "by": "de {{creator}}",
-      "number_of_more_options": "încă {{count}}"
+      "number_of_more_options": "încă {{count}}",
+      "read": "Citire"
     },
     "mood-tracker-history": {
       "heading": "În ansamblu, v-ați simțit {{feeling}} în ultimele 30 de zile",
@@ -653,7 +654,8 @@
       "search_placeholder": "Căutare",
       "filter": "Filtrați etichetele",
       "no_answers_found": "Nu există întrebări cu răspuns",
-      "language": "Limba"
+      "language": "Limba",
+      "date_answered": "la {{date}}"
     },
     "videos": {
       "view_more": "Vezi mai mult",
@@ -866,7 +868,13 @@
       "finish_assessment": "Finalizați evaluarea",
       "assessment_completed": "Evaluare finalizată",
       "assessment_completed_description": "Vă mulțumim pentru completare. Răspunsurile au fost salvate și vor fi folosite pentru a vă ajuta.",
-      "assessment_completed_button": "Înapoi la Acasă"
+      "assessment_completed_button": "Înapoi la Acasă",
+      "save_button_label": "Salvați pentru mai târziu",
+      "sontrgly_disagree": "Total dezacord",
+      "disagree": "Dezacord",
+      "neutral": "Neutru",
+      "agree": "Acord",
+      "strongly_agree": "Acord total"
     },
     "baseline-assessment-dashboard": {
       "heading": "Evaluarea dvs. inițială",

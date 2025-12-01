@@ -506,7 +506,8 @@
       "read_more_button": "Ары қарай оқу",
       "min_read": "минут оқуға",
       "by": "Дайындаушы {{creator}}",
-      "number_of_more_options": "тағы {{count}}"
+      "number_of_more_options": "тағы {{count}}",
+      "read": "Оқу"
     },
     "mood-tracker-history": {
       "heading": "Жалпы сіз соңғы 30 күнде {{feeling}} сезіндіңіз",
@@ -651,7 +652,8 @@
       "filter": "Тегтерді сүзгілеу",
       "no_answers_found": "Сұрақтарға жауап жоқ",
       "language": "Тіл",
-      "all_languages": "Барлық тілдер"
+      "all_languages": "Барлық тілдер",
+      "date_answered": "{{date}} күні"
     },
     "videos": {
       "view_more": "Көбірек көру",
@@ -847,7 +849,8 @@
       "finish_assessment": "Бағалауды аяқтау",
       "assessment_completed": "Бағалау аяқталды",
       "assessment_completed_description": "Бағалауды аяқтағаныңызға рахмет. Жауаптарыңыз сақталды және сізге көмектесу үшін пайдаланылады.",
-      "assessment_completed_button": "Басты бетке қайту"
+      "assessment_completed_button": "Басты бетке қайту",
+      "save_button_label": "Save for later"
     },
     "baseline-assessment-dashboard": {
       "heading": "Сіздің базалық бағалауыңыз",

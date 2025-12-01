@@ -15,10 +15,12 @@ import {
 import {
   destructureArticleData,
   createArticleSlug,
+  getLikesAndDislikesForContent,
+  isLikedOrDislikedByUser,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
-import { useGetUserContentRatings, useRecommendedArticles } from "#hooks";
+import { useGetUserContentEngagements, useRecommendedArticles } from "#hooks";
 import { RootContext } from "#routes";
 
 import "./articles-dashboard.scss";
@@ -49,6 +51,9 @@ export const ArticlesDashboard = () => {
   });
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
+  const [articlesLikes, setArticlesLikes] = useState(new Map());
+  const [articlesDislikes, setArticlesDislikes] = useState(new Map());
+  const [articleIdsForRatings, setArticleIdsForRatings] = useState([]);
 
   useEffect(() => {
     if (i18n.language !== usersLanguage) {
@@ -60,7 +65,7 @@ export const ArticlesDashboard = () => {
   const [categories, setCategories] = useState();
   const [selectedCategory, setSelectedCategory] = useState();
 
-  const { data: contentRatings } = useGetUserContentRatings(!isTmpUser);
+  const { data: contentEngagements } = useGetUserContentEngagements(!isTmpUser);
 
   //--------------------- Age Groups ----------------------//
   const [ageGroups, setAgeGroups] = useState();
@@ -166,9 +171,28 @@ export const ArticlesDashboard = () => {
 
   //--------------------- Articles ----------------------//
 
+  useQuery({
+    queryKey: ["articles-ratings", usersLanguage, articleIdsForRatings],
+    queryFn: async () => {
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        articleIdsForRatings,
+        "article"
+      );
+
+      setArticlesLikes(likes);
+      setArticlesDislikes(dislikes);
+
+      return true;
+    },
+    enabled: articleIdsForRatings.length > 0,
+  });
+
   const getArticlesIds = async () => {
     // Request articles ids from the master DB based for website platform
     const articlesIds = await adminSvc.getArticles();
+    if (usersLanguage === "en") {
+      setArticleIdsForRatings(articlesIds);
+    }
 
     return articlesIds;
   };
@@ -256,7 +280,8 @@ export const ArticlesDashboard = () => {
     for (let i = 0; i < data.data.length; i++) {
       data.data[i] = destructureArticleData(data.data[i]);
     }
-
+    const ids = data.data.map((article) => article.id);
+    setArticleIdsForRatings((prev) => [...prev, ...ids]);
     return data.data;
   };
 
@@ -305,6 +330,18 @@ export const ArticlesDashboard = () => {
     sortFilter: "read_count",
     availableCategories,
   });
+
+  useEffect(() => {
+    if (usersLanguage !== "en") {
+      const articleIds = articles.map((article) => {
+        const articleData = article.data ? article.data : article;
+        return articleData.id;
+      });
+      if (articleIds.length > 0) {
+        setArticleIdsForRatings((prev) => [...prev, ...articleIds]);
+      }
+    }
+  }, [usersLanguage, articles]);
 
   const articlesToTransform = isTmpUser ? newestArticles : articles;
 
@@ -392,18 +429,13 @@ export const ArticlesDashboard = () => {
       const articleData = article.attributes
         ? destructureArticleData(article)
         : article;
-      const isLikedByUser = contentRatings?.some(
-        (rating) =>
-          rating.content_id === article.id &&
-          rating.content_type === "article" &&
-          rating.positive === true
-      );
-      const isDislikedByUser = contentRatings?.some(
-        (rating) =>
-          rating.content_id === article.id &&
-          rating.content_type === "article" &&
-          rating.positive === false
-      );
+
+      const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+        contentType: "article",
+        contentData: articleData,
+        userEngagements: contentEngagements,
+      });
+
       return (
         <GridItem
           md={4}
@@ -422,10 +454,10 @@ export const ArticlesDashboard = () => {
             creator={articleData.creator}
             readingTime={articleData.readingTime}
             categoryName={articleData.categoryName}
-            isLikedByUser={isLikedByUser}
-            isDislikedByUser={isDislikedByUser}
-            likes={articleData.likes}
-            dislikes={articleData.dislikes}
+            isLikedByUser={isLiked}
+            isDislikedByUser={isDisliked}
+            likes={articlesLikes.get(article.id) || 0}
+            dislikes={articlesDislikes.get(article.id) || 0}
             isRead={readArticleIds.includes(article.id)}
             t={t}
             onClick={() => {

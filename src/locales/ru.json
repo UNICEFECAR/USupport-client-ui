@@ -506,7 +506,8 @@
       "read_more_button": "Узнать больше",
       "min_read": "минут на прочтение",
       "by": "От {{creator}}",
-      "number_of_more_options": "еще {{count}}"
+      "number_of_more_options": "еще {{count}}",
+      "read": "Читать"
     },
     "mood-tracker-history": {
       "heading": "В целом вы чувствовали {{feeling}}  в течение последних 30 дней",
@@ -651,7 +652,8 @@
       "filter": "Фильтровать теги",
       "no_answers_found": "Нет ответов на вопросы",
       "language": "Язык",
-      "all_languages": "Все языки"
+      "all_languages": "Все языки",
+      "date_answered": "от {{date}}"
     },
     "videos": {
       "view_more": "Посмотреть больше",
@@ -847,7 +849,8 @@
       "finish_assessment": "Завершить оценку",
       "assessment_completed": "Оценка завершена",
       "assessment_completed_description": "Спасибо за прохождение оценки. Ваши ответы сохранены и будут использованы, чтобы помочь вам.",
-      "assessment_completed_button": "Вернуться на главную"
+      "assessment_completed_button": "Вернуться на главную",
+      "save_button_label": "Save for later"
     },
     "baseline-assessment-dashboard": {
       "heading": "Ваша базовая оценка",

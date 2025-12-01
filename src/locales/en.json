@@ -506,7 +506,8 @@
       "read_more_button": "Click to read more",
       "min_read": "min read",
       "by": "by {{creator}}",
-      "number_of_more_options": "{{count}} more"
+      "number_of_more_options": "{{count}} more",
+      "read": "Read"
     },
     "mood-tracker-history": {
       "heading": "Overall you felt {{feeling}} in the last 30 days",
@@ -651,7 +652,8 @@
       "filter": "Filter tags",
       "no_answers_found": "There are no answered questions",
       "language": "Language",
-      "all_languages": "All languages"
+      "all_languages": "All languages",
+      "date_answered": "on {{date}}"
     },
     "videos": {
       "view_more": "View more",
@@ -847,7 +849,13 @@
       "finish_assessment": "Finish Assessment",
       "assessment_completed": "Assessment Completed",
       "assessment_completed_description": "Thank you for completing the assessment. Your answers have been saved and will be used to help you.",
-      "assessment_completed_button": "Back to Home"
+      "assessment_completed_button": "Back to Home",
+      "save_button_label": "Save for later",
+      "sontrgly_disagree": "Strongly Disagree",
+      "disagree": "Disagree",
+      "neutral": "Neutral",
+      "agree": "Agree",
+      "strongly_agree": "Strongly Agree"
     },
     "baseline-assessment-dashboard": {
       "heading": "Your Baseline Assessment",

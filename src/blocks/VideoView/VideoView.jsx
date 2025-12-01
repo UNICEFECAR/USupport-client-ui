@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import propTypes from "prop-types";
 
 import {
@@ -21,7 +21,11 @@ import {
   createArticleSlug,
 } from "@USupport-components-library/utils";
 
-import { useAddContentRating } from "#hooks";
+import {
+  useAddContentRating,
+  useAddContentEngagement,
+  useRemoveContentEngagement,
+} from "#hooks";
 
 import "./video-view.scss";
 
@@ -67,9 +71,14 @@ export const VideoView = ({ videoData, t, language, isTmpUser }) => {
   const creator = videoData.creator ? videoData.creator : null;
 
   const { name } = useParams();
-
   const [isShared, setIsShared] = useState(false);
-  const [contentRating, setContentRating] = useState(videoData.contentRating);
+
+  const [contentRating, setContentRating] = useState({
+    likes: videoData.likes || 0,
+    dislikes: videoData.dislikes || 0,
+    isLikedByUser: videoData.contentRating?.isLikedByUser || false,
+    isDislikedByUser: videoData.contentRating?.isDislikedByUser || false,
+  });
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
 
   const DISPLAY_VIDEO = cookieState.hasAcceptedAllCookies;
@@ -84,7 +93,7 @@ export const VideoView = ({ videoData, t, language, isTmpUser }) => {
       const urlSlug = name;
 
       if (currentSlug !== urlSlug) {
-        const newUrl = `/${language}/information-portal/article/${videoData.id}/${currentSlug}`;
+        const newUrl = `/client/${language}/information-portal/article/${videoData.id}/${currentSlug}`;
 
         window.history.replaceState(null, "", newUrl);
         setHasUpdatedUrl(true);
@@ -92,9 +101,25 @@ export const VideoView = ({ videoData, t, language, isTmpUser }) => {
     }
   }, [videoData?.title, name, language, hasUpdatedUrl]);
 
-  useEffect(() => {
-    setContentRating(videoData.contentRating);
-  }, [videoData.contentRating]);
+  const addContentEngagementMutation = useAddContentEngagement();
+  const removeContentEngagementMutation = useRemoveContentEngagement();
+
+  useQuery(
+    ["video-view-tracking", videoData.id],
+    async () => {
+      addContentEngagementMutation({
+        contentId: videoData.id,
+        contentType: "video",
+        action: "view",
+      });
+      return true;
+    },
+    {
+      enabled: !!videoData?.id && !isTmpUser,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    }
+  );
 
   const onMutate = (data) => {
     const prevData = JSON.parse(JSON.stringify(contentRating));
@@ -178,6 +203,7 @@ export const VideoView = ({ videoData, t, language, isTmpUser }) => {
 
   const onSuccess = () => {
     queryClient.invalidateQueries({ queryKey: ["userContentRatings"] });
+    queryClient.invalidateQueries({ queryKey: ["userContentEngagements"] });
   };
 
   const addContentRatingMutation = useAddContentRating(
@@ -188,14 +214,30 @@ export const VideoView = ({ videoData, t, language, isTmpUser }) => {
 
   const handleAddRating = (action) => {
     if (isTmpUser) return;
+
+    const isRemovingReaction =
+      action === "remove-like" || action === "remove-dislike";
+
+    // Track engagement
+    if (isRemovingReaction) {
+      // Remove like/dislike from engagement tracking
+      removeContentEngagementMutation({
+        contentId: videoData.id,
+        contentType: "video",
+      });
+    } else {
+      // Add like/dislike to engagement tracking
+      addContentEngagementMutation({
+        contentId: videoData.id,
+        contentType: "video",
+        action: action === "like" ? "like" : "dislike",
+      });
+    }
+
+    // Update rating in the rating system
     addContentRatingMutation({
       contentId: videoData.id,
-      positive:
-        action === "like"
-          ? true
-          : action === "remove-like" || action === "remove-dislike"
-          ? null
-          : false,
+      positive: action === "like" ? true : isRemovingReaction ? null : false,
       contentType: "video",
     });
   };
@@ -256,6 +298,15 @@ export const VideoView = ({ videoData, t, language, isTmpUser }) => {
       cmsSvc.addVideoShareCount(videoData.id).then(() => {
         setIsShared(true);
       });
+
+      // Track share engagement
+      if (!isTmpUser) {
+        addContentEngagementMutation({
+          contentId: videoData.id,
+          contentType: "video",
+          action: "share",
+        });
+      }
     }
   };
 

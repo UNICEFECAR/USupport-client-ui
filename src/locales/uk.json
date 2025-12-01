@@ -506,7 +506,8 @@
       "read_more_button": "Читати далі",
       "min_read": "хв. читання",
       "by": "Від {{creator}}",
-      "number_of_more_options": "ще {{count}}"
+      "number_of_more_options": "ще {{count}}",
+      "read": "Читати"
     },
     "mood-tracker-history": {
       "heading": "Загалом протягом останніх 30 днів ти почував/ла себе {{feeling}}",
@@ -651,7 +652,8 @@
       "filter": "Фільтруй теги",
       "no_answers_found": "Немає відповідей на запитання",
       "language": "Мова",
-      "all_languages": "Усі мови"
+      "all_languages": "Усі мови",
+      "date_answered": "від {{date}}"
     },
     "videos": {
       "view_more": "Переглянути більше",
@@ -847,7 +849,13 @@
       "finish_assessment": "Завершити оцінювання",
       "assessment_completed": "Оцінювання завершено",
       "assessment_completed_description": "Дякуємо за проходження оцінювання. Ваші відповіді збережено та буде використано, щоб допомогти вам.",
-      "assessment_completed_button": "Повернутися на головну"
+      "assessment_completed_button": "Повернутися на головну",
+      "save_button_label": "Зберегти на потім",
+      "sontrgly_disagree": "Повністю не згоден/не згодна",
+      "disagree": "Не згоден/не згодна",
+      "neutral": "Нейтрально",
+      "agree": "Згоден/згодна",
+      "strongly_agree": "Повністю згоден/згодна"
     },
     "baseline-assessment-dashboard": {
       "heading": "Ваша базова оцінка",
