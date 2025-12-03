@@ -220,6 +220,8 @@ export const RegisterAnonymous = () => {
                 isLoading={userAccessTokenIsLoading}
                 accessTokenLabel={t("paragraph_1")}
                 handleCopy={handleCopy}
+                name="username"
+                autoComplete="username"
               />
 
               <div className="register-anonymous__grid__content-item__main-component__copy-container">
@@ -227,28 +229,9 @@ export const RegisterAnonymous = () => {
                 <p className="small-text">{t("copy_text")}</p>
               </div>
 
-              {/* Hidden username input for browser password manager */}
-              {userAccessToken && (
-                <input
-                  type="text"
-                  name="username"
-                  autoComplete="username"
-                  value={userAccessToken}
-                  readOnly
-                  style={{
-                    position: "absolute",
-                    opacity: 0,
-                    pointerEvents: "none",
-                    height: 0,
-                    width: 0,
-                  }}
-                  tabIndex={-1}
-                  aria-hidden="true"
-                />
-              )}
-
               <Input
                 label={t("nickname_label")}
+                autoComplete="off"
                 placeholder={t("nickname_placeholder")}
                 value={data.nickname}
                 onChange={(e) => handleChange("nickname", e.target.value)}
