@@ -208,12 +208,20 @@ export const RegisterAnonymous = () => {
             lg={12}
             classes="register-anonymous__grid__content-item"
           >
-            <div className="register-anonymous__grid__content-item__main-component">
+            <form
+              className="register-anonymous__grid__content-item__main-component"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleRegisterButtonClick();
+              }}
+            >
               <AccessToken
                 accessToken={userAccessToken}
                 isLoading={userAccessTokenIsLoading}
                 accessTokenLabel={t("paragraph_1")}
                 handleCopy={handleCopy}
+                name="username"
+                autoComplete="username"
               />
 
               <div className="register-anonymous__grid__content-item__main-component__copy-container">
@@ -223,6 +231,7 @@ export const RegisterAnonymous = () => {
 
               <Input
                 label={t("nickname_label")}
+                autoComplete="off"
                 placeholder={t("nickname_placeholder")}
                 value={data.nickname}
                 onChange={(e) => handleChange("nickname", e.target.value)}
@@ -234,6 +243,8 @@ export const RegisterAnonymous = () => {
                 label={t("password_label")}
                 classes="register-anonymous__grid__content-item__main-component__input-password"
                 value={data.password}
+                name="new-password"
+                autoComplete="new-password"
                 onChange={(e) =>
                   handleChange("password", e.currentTarget.value)
                 }
@@ -246,6 +257,8 @@ export const RegisterAnonymous = () => {
                 classes="register-email__grid__password-input"
                 label={t("confirm_password_label")}
                 value={data.confirmPassword}
+                name="new-password-confirm"
+                autoComplete="new-password"
                 onChange={(e) =>
                   handleChange("confirmPassword", e.currentTarget.value)
                 }
@@ -274,6 +287,7 @@ export const RegisterAnonymous = () => {
                 onClick={handleRegisterButtonClick}
                 disabled={!canContinue}
                 loading={registerMutation.isLoading}
+                isSubmit
               />
 
               <Button
@@ -282,7 +296,7 @@ export const RegisterAnonymous = () => {
                 onClick={() => handleLoginRedirect()}
                 classes="register-anonymous__grid__login-button"
               />
-            </div>
+            </form>
             {errors.submit ? <Error message={errors.submit} /> : null}
           </GridItem>
         </Grid>

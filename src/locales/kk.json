@@ -14,7 +14,7 @@
       "footer_7": "Cookie файлдарының баптаулары",
       "footer_8": "Жиі қойылатын сұрақтар",
       "emergency_button": "SOS-орталық",
-      "button_text": "Қосымшаға өту",
+      "button_text": "Tiркелу",
       "contact_us": "Бізге хабарласыңыз",
       "your_profile_text": "Сіздің парақшаңыз",
       "password_placeholder": "Құпия сөз",
@@ -445,12 +445,12 @@
       "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
     },
     "mood-tracker": {
-      "happy": "Бақытты",
+      "happy": "Керемет",
       "good": "Жақсы",
-      "sad": "Қайғылы",
-      "depressed": "Депрессияда",
-      "worried": "Қобалжыған",
-      "heading": "Бүгін хал-жағдайыңыз қалай?",
+      "sad": "Көңілсіз",
+      "depressed": "Депрессия",
+      "worried": "Беймаза",
+      "heading": "Бүгін жағдайыңыз қалай?",
       "mood_tracker": "Көңіл-күй трекері",
       "additional_comment_placeholder": "Сізді осылай сезінуге не себеп болды?",
       "submit_mood_track": "Жіберу",
@@ -512,16 +512,16 @@
     "mood-tracker-history": {
       "heading": "Жалпы сіз соңғы 30 күнде {{feeling}} сезіндіңіз",
       "perfect": "Керемет",
-      "happy": "Бақытты",
-      "sad": "Қайғылы",
-      "depressed": "Депрессияда",
-      "worried": "Қобалжыған болып",
+      "happy": "Керемет",
+      "sad": "Көңілсіз",
+      "depressed": "Депрессия",
+      "worried": "Беймаза",
       "last_thirty_days_text": "Соңғы 30 күнде Сіз келесіні сезіндіңіз:",
       "time": "рет",
       "times": "рет/рет"
     },
     "notifications": {
-      "heading": "Хабарландырулар",
+      "heading": "Хабарлама",
       "mark_read": "Барлығын оқылған деп белгілеу",
       "consultation_booking": "<0>{{providerName}}</0> консультантімен консультацияңыз <0>{{date}}</0> <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейін сәтті жоспарланған.",
       "consultation_reschedule": "Сіз <0>{{date}}</0> күнгі <0>{{startHour}}</0> бастап <0>{{endHour}}</0> дейінгі консультацияны <0>{{newDate}}</0> күніне <0>{{newStartHour}}</0> бастап <0>{{newEndHour}}</0> дейін ауыстырдыңыз.",
@@ -604,11 +604,11 @@
       "try_again_button_label": "Қайталап көріңіз"
     },
     "mood-track-history": {
-      "happy": "Бақытты",
+      "happy": "Керемет",
       "good": "Жақсы",
-      "sad": "Қайғылы",
-      "depressed": "Депрессияда",
-      "worried": "Қобалжыған",
+      "sad": "Көңілсіз",
+      "depressed": "Депрессия",
+      "worried": "Беймаза",
       "you_felt": "Сіз сездіңіз",
       "comment_text": "және Сіз түсініктеме бердіңіз:",
       "no_result": "Ештеңе табылмады",
@@ -1115,7 +1115,7 @@
       "your_questions": ""
     },
     "notifications-page": {
-      "heading": "Хабарландырулар",
+      "heading": "Хабарлама",
       "mark_read": "Барлығын оқылған деп белгілеу",
       "subheading": "Мұнда Сіз аккаунтыңызда алған барлық хабарландыруларды таба аласыз."
     },

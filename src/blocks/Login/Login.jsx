@@ -126,6 +126,8 @@ export const Login = () => {
           <form onSubmit={handleLogin}>
             <Input
               label={t("email_label")}
+              name="username"
+              autoComplete="username"
               onChange={(value) =>
                 handleChange("email", value.currentTarget.value)
               }
@@ -135,6 +137,8 @@ export const Login = () => {
             <InputPassword
               classes="login__grid__inputs-item__input--password"
               label={t("password_label")}
+              name="current-password"
+              autoComplete="current-password"
               onChange={(value) =>
                 handleChange("password", value.currentTarget.value)
               }
