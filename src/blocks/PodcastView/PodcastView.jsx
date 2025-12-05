@@ -13,7 +13,10 @@ import {
   ActionButton,
 } from "@USupport-components-library/src";
 import { cmsSvc } from "@USupport-components-library/services";
-import { createArticleSlug } from "@USupport-components-library/utils";
+import {
+  createArticleSlug,
+  constructShareUrl,
+} from "@USupport-components-library/utils";
 
 import {
   useAddContentRating,
@@ -22,35 +25,6 @@ import {
 } from "#hooks";
 
 import "./podcast-view.scss";
-
-const countriesMap = {
-  global: "global",
-  kz: "kazakhstan",
-  pl: "poland",
-  ro: "romania",
-};
-
-const constructShareUrl = ({ contentType, id, name }) => {
-  const country = localStorage.getItem("country");
-  const language = localStorage.getItem("language");
-  const subdomain = window.location.hostname.split(".")[0];
-  const nameSlug = createArticleSlug(name);
-
-  if (subdomain === "staging") {
-    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  }
-
-  if (country === "global") {
-    return `https://usupport.online/${language}/information-portal/${contentType}/${id}`;
-  }
-  const countryName = countriesMap[country.toLocaleLowerCase()];
-
-  if (window.location.hostname.includes("staging")) {
-    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
-  }
-  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}`;
-  return url;
-};
 
 /**
  * PodcastView

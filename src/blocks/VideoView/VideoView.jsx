@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
@@ -19,6 +19,7 @@ import { cmsSvc } from "@USupport-components-library/services";
 import {
   ThemeContext,
   createArticleSlug,
+  constructShareUrl,
 } from "@USupport-components-library/utils";
 
 import {
@@ -28,35 +29,6 @@ import {
 } from "#hooks";
 
 import "./video-view.scss";
-
-const countriesMap = {
-  global: "global",
-  kz: "kazakhstan",
-  pl: "poland",
-  ro: "romania",
-};
-
-const constructShareUrl = ({ contentType, id, name }) => {
-  const country = localStorage.getItem("country");
-  const language = localStorage.getItem("language");
-  const subdomain = window.location.hostname.split(".")[0];
-  const nameSlug = createArticleSlug(name);
-
-  if (subdomain === "staging") {
-    return `https://staging.usupport.online/${language}/information-portal/${contentType}/${id}/${nameSlug}`;
-  }
-
-  if (country === "global") {
-    return `https://usupport.online/${language}/information-portal/${contentType}/${id}`;
-  }
-  const countryName = countriesMap[country.toLocaleLowerCase()];
-
-  if (window.location.hostname.includes("staging")) {
-    return `https://${countryName}.staging.usupport.online/${language}/information-portal/${contentType}/${id}`;
-  }
-  const url = `https://${countryName}.usupport.online/${language}/information-portal/${contentType}/${id}`;
-  return url;
-};
 
 /**
  * VideoView
@@ -290,8 +262,6 @@ export const VideoView = ({ videoData, t, language, isTmpUser }) => {
   });
 
   const handleCopyLink = () => {
-    console.log(url);
-
     navigator?.clipboard?.writeText(url);
     toast(t("share_success"));
     if (!isShared) {

@@ -15,6 +15,7 @@ import { languageSvc } from "@USupport-components-library/services";
 import {
   logoVerticalSvg,
   logoVerticalDarkSvg,
+  logoVerticalRomaniaPng,
 } from "@USupport-components-library/assets";
 import {
   ThemeContext,
@@ -40,6 +41,7 @@ export const Welcome = () => {
   const { theme, setIsInWelcome } = useContext(ThemeContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   const localStorageLanguage = localStorage.getItem("language");
 
@@ -184,7 +186,13 @@ export const Welcome = () => {
         <GridItem md={8} lg={12} classes="welcome__grid__logo-item">
           <h2 className="welcome__grid__logo-item__heading">{t("heading")}</h2>
           <img
-            src={theme !== "light" ? logoVerticalDarkSvg : logoVerticalSvg}
+            src={
+              IS_RO
+                ? logoVerticalRomaniaPng
+                : theme !== "light"
+                ? logoVerticalDarkSvg
+                : logoVerticalSvg
+            }
             alt="Logo"
             className="welcome__grid__logo-item__logo"
           />{" "}
