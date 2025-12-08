@@ -1464,5 +1464,9 @@
       "text": "You've been inactive for a while. For your security, we'll automatically log you out in {{seconds}} seconds.",
       "cta": "I'm still here"
     }
+  },
+  "meta": {
+    "title": "uSupport Client",
+    "description": "The first platform created to make your mental health a priority. uSupport provides personalized, discreet and fast psychological care for your overall well-being."
   }
 }
