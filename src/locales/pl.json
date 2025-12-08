@@ -1459,5 +1459,9 @@
       "text": "Byłeś nieaktywny przez jakiś czas. Dla Twojego bezpieczeństwa automatycznie wylogujemy Cię za {{seconds}} sekund.",
       "cta": "Nadal tu jestem"
     }
+  },
+  "meta": {
+    "title": "uSupport Klient",
+    "description": "Pierwsza platforma stworzona po to, aby Twoje zdrowie psychiczne było priorytetem. uSupport zapewnia spersonalizowaną, dyskretną i szybką opiekę psychologiczną dla Twojego ogólnego dobrostanu."
   }
 }

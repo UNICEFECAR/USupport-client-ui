@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 5173",
-    "staging": "vite build --mode staging",
-    "build": "vite build",
+    "staging": "vite build --mode staging && node scripts/generate-lang-indexes.mjs",
+    "build": "vite build && node scripts/generate-lang-indexes.mjs",
     "preview": "vite preview",
     "lint": "eslint --ext .js,.jsx src",
     "lint-fix": "eslint --ext .js,.jsx src --fix"

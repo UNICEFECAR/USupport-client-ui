@@ -1484,5 +1484,9 @@
       "text": "Ați fost inactiv pentru o perioadă. Pentru siguranța dumneavoastră, vă vom deconecta automat în {{seconds}} secunde..",
       "cta": "Sunt încă aici"
     }
+  },
+  "meta": {
+    "title": "uSupport Client",
+    "description": "Prima platformă creată pentru a face din sănătatea ta mintală o prioritate. uSupport oferă îngrijire psihologică personalizată, discretă și rapidă pentru bunăstarea ta generală."
   }
 }
