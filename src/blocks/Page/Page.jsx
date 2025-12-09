@@ -365,9 +365,11 @@ export const Page = ({
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
+  const IS_RO_SUBDOMAIN =
+    window.location.hostname === "romania.usupport.online";
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    IS_DEV ? false : !hasPassedValidation
+    !hasPassedValidation && IS_RO_SUBDOMAIN
   );
   const [passwordError, setPasswordError] = useState("");
 
