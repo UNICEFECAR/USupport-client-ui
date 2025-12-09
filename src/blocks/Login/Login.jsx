@@ -20,6 +20,7 @@ import {
 import {
   logoVerticalSvg,
   logoVerticalDarkSvg,
+  logoVerticalRomaniaPng,
 } from "@USupport-components-library/assets";
 
 import "./login.scss";
@@ -36,6 +37,7 @@ export const Login = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
+  const IS_RO = localStorage.getItem("country") === "RO";
 
   const [data, setData] = useState({
     email: "",
@@ -115,7 +117,13 @@ export const Login = () => {
               {t("heading")}
             </h2>
             <img
-              src={theme !== "light" ? logoVerticalDarkSvg : logoVerticalSvg}
+              src={
+                IS_RO
+                  ? logoVerticalRomaniaPng
+                  : theme !== "light"
+                  ? logoVerticalDarkSvg
+                  : logoVerticalSvg
+              }
               alt="Logo"
               className="welcome__grid__logo-item__logo"
             />
