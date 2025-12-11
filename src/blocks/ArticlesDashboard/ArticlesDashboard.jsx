@@ -221,7 +221,18 @@ export const ArticlesDashboard = () => {
   );
 
   const categoriesToShow = useMemo(() => {
-    if (!categories || !articleCategoryIdsToShow) return [];
+    if (
+      !categories ||
+      !articleCategoryIdsToShow ||
+      !articleIdsQuerry.data?.length
+    )
+      return [
+        {
+          label: t("all"),
+          value: "all",
+          isSelected: true,
+        },
+      ];
 
     const filtered = categories.filter(
       (category) =>
@@ -230,7 +241,7 @@ export const ArticlesDashboard = () => {
     );
 
     return filtered;
-  }, [categories, articleCategoryIdsToShow]);
+  }, [categories, articleCategoryIdsToShow, articleIdsQuerry.data]);
 
   const handleCategoryOnPress = (index) => {
     const categoriesCopy = [...categories];
@@ -364,7 +375,7 @@ export const ArticlesDashboard = () => {
   const isAnyLoading = isInitialLoading || isContentLoading;
 
   // Data availability
-  const hasCategoriesData = categoriesToShow?.length > 1;
+  const hasCategoriesData = categoriesToShow?.length >= 1;
   const hasAgeGroupsData = ageGroups?.length > 0;
   const hasArticlesData = transformedArticles?.length > 0;
   const hasIdsData = articleIdsQuerry.data?.length > 0;
