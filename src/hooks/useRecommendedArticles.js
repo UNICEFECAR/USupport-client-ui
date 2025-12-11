@@ -126,7 +126,6 @@ export const useRecommendedArticles = ({
   // ----------------------------------
   // MAIN PIPELINE
   // ----------------------------------
-
   useEffect(() => {
     if (loadingCountry || loadingInteractions) return;
     if (!countryArticles) return;
@@ -139,24 +138,31 @@ export const useRecommendedArticles = ({
     if (categoryIdFilter) {
       (async () => {
         try {
-          const { data } = await cmsSvc.getArticles({
-            ids: countryArticles,
-            locale: i18n.language,
-            populate: true,
-            categoryId: categoryIdFilter,
-            ...(ageGroupId && { ageGroupId }),
-            ...(searchValue && { contains: searchValue }),
-            limit: 5000,
-          });
+          if (!countryArticles.length) {
+            setStage1([]);
+          } else {
+            const { data } = await cmsSvc.getArticles({
+              ids: countryArticles,
+              locale: i18n.language,
+              populate: true,
+              categoryId: categoryIdFilter,
+              ...(ageGroupId && { ageGroupId }),
+              ...(searchValue && { contains: searchValue }),
+              limit: 5000,
+            });
 
-          const mapped = data.data.map((article) => ({
-            data: { ...article, id: article.id },
-            recommendationScore: interactedIds.includes(article.id) ? 0.1 : 1,
-            categoryWeight: 1,
-          }));
+            const mapped = data.data.map((article) => ({
+              data: { ...article, id: article.id },
+              recommendationScore: interactedIds.includes(article.id) ? 0.1 : 1,
+              categoryWeight: 1,
+            }));
 
-          mapped.sort((a, b) => b.recommendationScore - a.recommendationScore);
-          setStage1(mapped);
+            mapped.sort(
+              (a, b) => b.recommendationScore - a.recommendationScore
+            );
+
+            setStage1(mapped);
+          }
         } catch (e) {
           console.warn("Specific category fetch failed:", e);
           setStage1([]);

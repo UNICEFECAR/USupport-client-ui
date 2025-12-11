@@ -193,7 +193,7 @@ export const ArticlesDashboard = () => {
     if (usersLanguage === "en") {
       setArticleIdsForRatings(articlesIds);
     }
-
+    console.log(articlesIds, "articlesIds");
     return articlesIds;
   };
 
