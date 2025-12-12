@@ -178,12 +178,12 @@ export const MoodTracker = ({
               {t("mood_tracker")}
             </p>
           ) : (
-            <Button
-              label={t("how_it_works")}
-              type="secondary"
+            <p
+              className="small-text mood-tracker-button"
               onClick={() => setIsHowItWorksMoodTrackOpen(true)}
-              classes="mood-tracker__how-it-works-btn"
-            />
+            >
+              {t("how_it_works")}
+            </p>
           )}
         </div>
         <>
