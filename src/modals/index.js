@@ -12,3 +12,4 @@ export * from "./BaselineAssesmentModal";
 export * from "./DeleteMoodTrackerHistory";
 export * from "./HowItWorksMoodTrack";
 export * from "./LeaveConsultation";
+export * from "./HowItWorksBA";
