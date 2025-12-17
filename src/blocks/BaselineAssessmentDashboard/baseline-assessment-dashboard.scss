@@ -10,6 +10,12 @@
     text-align: left;
   }
 
+  & .mood-tracker-button {
+    color: $color_secondary_9749fa;
+    cursor: pointer;
+    padding: $spacing_1_6 0;
+  }
+
   &__assessment {
     display: flex;
     flex-direction: column;

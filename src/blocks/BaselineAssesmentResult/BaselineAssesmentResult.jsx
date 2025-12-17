@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -30,11 +31,10 @@ export const BaselineAssesmentResult = ({ result }) => {
   const language = i18n.language;
   const navigate = useNavigate();
 
-  const { isLoading, data } = useGetAssessmentResult({
+  const { isFetching, data } = useGetAssessmentResult({
     ...result,
     language,
   });
-
   const renderIcon = (result) => {
     if (!result) return null;
     const color =
@@ -105,7 +105,7 @@ export const BaselineAssesmentResult = ({ result }) => {
         </GridItem>
       )}
 
-      {isLoading && (
+      {isFetching && (
         <GridItem md={8} lg={12}>
           <p>{t("loading_results")}</p>
           <Loading size="lg" />
