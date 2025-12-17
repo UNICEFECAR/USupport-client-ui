@@ -70,7 +70,7 @@ import { useGetClientData } from "#hooks";
 
 const RootContext = React.createContext();
 
-const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro"];
+const allLangs = ["en", "ru", "kk", "pl", "uk", "hy", "ro", "el"];
 
 const LanguageLayout = () => {
   let { language } = useParams();
