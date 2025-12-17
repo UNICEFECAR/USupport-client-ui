@@ -1,0 +1,18 @@
+@import "@USupport-components-library/styles";
+
+.how-it-works-ba {
+  &__slide {
+    > img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      max-height: 40rem;
+      object-fit: contain;
+    }
+  }
+
+  &__slide .text {
+    padding-bottom: $spacing_1_2;
+  }
+}
