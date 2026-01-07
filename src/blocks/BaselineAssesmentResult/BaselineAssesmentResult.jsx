@@ -11,7 +11,7 @@ import {
   Icon,
 } from "@USupport-components-library/src";
 import { createArticleSlug } from "@USupport-components-library/utils";
-import { CardMedia } from "@USupport-components-library/src";
+import { CardMedia, Markdown } from "@USupport-components-library/src";
 
 import { useGetAssessmentResult } from "#hooks";
 
@@ -112,9 +112,15 @@ export const BaselineAssesmentResult = ({ result }) => {
         </GridItem>
       )}
       {data && (
-        <GridItem md={8} lg={12} classes="baseline-assesment-result__summary">
-          <h4>{data.summary}</h4>
-        </GridItem>
+        <>
+          <GridItem md={8} lg={12} classes="baseline-assesment-result__summary">
+            <h4>{data.summary}</h4>
+          </GridItem>
+          <p>Summary 2</p>
+          <GridItem md={8} lg={12} classes="baseline-assesment-result__summary">
+            <Markdown markDownText={data.summaryCK} className={"text"} />
+          </GridItem>
+        </>
       )}
 
       {data?.articles.length > 0 && (
