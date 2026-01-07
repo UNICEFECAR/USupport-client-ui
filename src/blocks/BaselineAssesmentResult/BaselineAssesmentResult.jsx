@@ -114,10 +114,6 @@ export const BaselineAssesmentResult = ({ result }) => {
       {data && (
         <>
           <GridItem md={8} lg={12} classes="baseline-assesment-result__summary">
-            <h4>{data.summary}</h4>
-          </GridItem>
-          <p>Summary 2</p>
-          <GridItem md={8} lg={12} classes="baseline-assesment-result__summary">
             <Markdown markDownText={data.summaryCK} className={"text"} />
           </GridItem>
         </>
