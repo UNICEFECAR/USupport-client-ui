@@ -456,7 +456,7 @@
       "submit_mood_track": "Submit",
       "add_mood_tracker_success": "Your daily mood was added successfully",
       "emergency_label": "Does this relate to a life event or critical situation?",
-      "how_it_works": "See how it works",
+      "how_it_works": "How it works",
       "recommendations": "Recommendations",
       "recommendations_text": "Do you want to check out your mood graph and see recommended content?",
       "check_out": "Check out"
@@ -910,7 +910,8 @@
       "dec_same_dec": "Great progress! Psychological and social decreased, while biological stayed the same.",
       "dec_dec_inc": "Great progress! Psychological and biological decreased, though social increased.",
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
-      "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased."
+      "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
+      "summary_heading": "Recommendations generated based on the score obtained"
     }
   },
   "pages": {
