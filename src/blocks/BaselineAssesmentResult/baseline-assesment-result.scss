@@ -44,6 +44,11 @@
     @media screen and (min-width: $screen-md) {
       padding-top: $spacing_4_8;
     }
+
+    &__heading {
+      text-align: left;
+      margin-bottom: $spacing_1_6;
+    }
   }
 
   &__content-grid {
