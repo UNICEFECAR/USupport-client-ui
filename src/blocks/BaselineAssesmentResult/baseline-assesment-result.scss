@@ -49,6 +49,10 @@
       text-align: left;
       margin-bottom: $spacing_1_6;
     }
+
+    &__interactive-map-button {
+      margin: $spacing_1_6 auto;
+    }
   }
 
   &__content-grid {

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -51,7 +51,7 @@ const INITIAL_FILTERS = {
  *
  * @return {jsx}
  */
-export const Organizations = () => {
+export const Organizations = ({ personalizeFromAssessment = false }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "organizations" });
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -72,6 +72,8 @@ export const Organizations = () => {
   const [isBaselineAssesmentModalOpen, setIsBaselineAssesmentModalOpen] =
     useState(false);
   const [hasAppliedSpecialisations, setHasAppliedSpecialisations] =
+    useState(false);
+  const [hasTriggeredAutoPersonalization, setHasTriggeredAutoPersonalization] =
     useState(false);
 
   const debouncedSearch = useDebounce(filters.search, 500);
@@ -134,6 +136,26 @@ export const Organizations = () => {
       setStartPersonalization(false);
     }
   }, [startPersonalization, data]);
+
+  useEffect(() => {
+    if (
+      personalizeFromAssessment &&
+      !isTmpUser &&
+      latestAssessment?.status === "completed" &&
+      !hasTriggeredAutoPersonalization &&
+      !personalizationMutation.isLoading
+    ) {
+      setHasTriggeredAutoPersonalization(true);
+      personalizationMutation.mutate();
+    }
+  }, [
+    personalizeFromAssessment,
+    isTmpUser,
+    latestAssessment?.status,
+    hasTriggeredAutoPersonalization,
+    personalizationMutation.isLoading,
+    personalizationMutation.mutate,
+  ]);
 
   const handleChange = (field, value) => {
     setFilters({
