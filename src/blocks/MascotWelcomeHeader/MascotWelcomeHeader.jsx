@@ -8,6 +8,7 @@ import {
   GridItem,
   Button,
   ConsultationDashboard,
+  ButtonWithIcon,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useCustomNavigate as useNavigate } from "#hooks";
@@ -91,14 +92,19 @@ export const MascotWelcomeHeader = ({
               {IS_RO ? (
                 <div className="mascot-welcome-header__map-container">
                   <div className="mascot-welcome-header__map-container__overlay">
-                    <Button
-                      size="sm"
-                      label={t("explore_button_label")}
-                      color="purple"
-                      onClick={() => {
-                        navigate("/organizations");
-                      }}
-                    />
+                    <div className="mascot-welcome-header__map-container__overlay__button">
+                      <ButtonWithIcon
+                        size="sm"
+                        label={t("explore_button_label")}
+                        color="purple"
+                        onClick={() => {
+                          navigate("/organizations");
+                        }}
+                        iconName="search"
+                        iconColor="#fff"
+                        iconSize="sm"
+                      />
+                    </div>
                   </div>
                 </div>
               ) : (
