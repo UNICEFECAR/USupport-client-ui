@@ -871,7 +871,8 @@
       "biological": "Biological",
       "social": "Social",
       "latest_results": "Latest Results",
-      "how_it_works": "How it works"
+      "how_it_works": "How it works",
+      "see_last_result": "Baseline Assessment Results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",

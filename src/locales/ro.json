@@ -890,7 +890,8 @@
       "biological": "Biologic",
       "social": "Social",
       "latest_results": "Ultimele rezultate",
-      "how_it_works": "Cum funcționează"
+      "how_it_works": "Cum funcționează",
+      "see_last_result": "Rezultatele evaluării inițiale"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Evaluare finalizată",
