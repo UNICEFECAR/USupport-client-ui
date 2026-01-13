@@ -36,6 +36,7 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
     country === "KZ" ||
     country === "PL" ||
     country === "RO" ||
+    country === "CY" ||
     country === "AM";
 
   useEffect(() => {

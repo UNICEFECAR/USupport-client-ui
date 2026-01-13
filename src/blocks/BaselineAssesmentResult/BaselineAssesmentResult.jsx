@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -9,11 +8,15 @@ import {
   ProgressBar,
   Loading,
   Icon,
+  Button,
 } from "@USupport-components-library/src";
 import { createArticleSlug } from "@USupport-components-library/utils";
 import { CardMedia, Markdown } from "@USupport-components-library/src";
 
-import { useGetAssessmentResult } from "#hooks";
+import {
+  useCustomNavigate as useNavigate,
+  useGetAssessmentResult,
+} from "#hooks";
 
 import "./baseline-assesment-result.scss";
 
@@ -118,6 +121,16 @@ export const BaselineAssesmentResult = ({ result }) => {
               {t("summary_heading")}
             </h4>
             <Markdown markDownText={data.summaryCK} className={"text"} />
+            <Button
+              onClick={() =>
+                navigate("/organizations", {
+                  state: { personalizeFromAssessment: true },
+                })
+              }
+              classes="baseline-assesment-result__summary__interactive-map-button"
+            >
+              {t("organizations")}
+            </Button>
           </GridItem>
         </>
       )}

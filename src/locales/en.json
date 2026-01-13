@@ -491,7 +491,7 @@
       "november": "November",
       "december": "December",
       "coupon": "Coupon",
-      "explore_button_label": "Explore",
+      "explore_button_label": "Explore map",
       "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
     },
     "activity-log-dashboard": {
@@ -871,7 +871,8 @@
       "biological": "Biological",
       "social": "Social",
       "latest_results": "Latest Results",
-      "how_it_works": "How it works"
+      "how_it_works": "How it works",
+      "see_last_result": "Latest results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",
@@ -911,7 +912,8 @@
       "dec_dec_inc": "Great progress! Psychological and biological decreased, though social increased.",
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
       "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
-      "summary_heading": "Recommendations generated based on the score obtained"
+      "summary_heading": "Recommendations generated based on the score obtained",
+      "organizations": "Recommended organizations"
     }
   },
   "pages": {
