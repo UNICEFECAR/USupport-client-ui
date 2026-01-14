@@ -127,6 +127,8 @@ export const BaselineAssesmentResult = ({ result }) => {
                   state: { personalizeFromAssessment: true },
                 })
               }
+              size="lg"
+              color="purple"
               classes="baseline-assesment-result__summary__interactive-map-button"
             >
               {t("organizations")}
