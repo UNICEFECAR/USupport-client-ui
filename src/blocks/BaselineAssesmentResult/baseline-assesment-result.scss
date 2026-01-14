@@ -62,10 +62,10 @@
   &__articles,
   &__podcasts,
   &__videos {
-    margin-top: $spacing_3_2;
+    padding-bottom: $spacing_3_6;
 
     h4 {
-      margin-bottom: $spacing_2_4;
+      margin-bottom: $spacing_2_0;
     }
   }
 }
