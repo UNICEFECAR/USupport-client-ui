@@ -34,6 +34,7 @@ import {
   createArticleSlug,
   getLikesAndDislikesForContent,
   isLikedOrDislikedByUser,
+  useWindowDimensions,
 } from "@USupport-components-library/utils";
 
 import { mascotHappyPurple } from "@USupport-components-library/assets";
@@ -48,9 +49,10 @@ import "./information-portal.scss";
  * @returns {JSX.Element}
  */
 export const InformationPortal = () => {
-  const { t, i18n } = useTranslation("pages", {
+  const { t } = useTranslation("pages", {
     keyPrefix: "information-portal",
   });
+  const { width } = useWindowDimensions();
   const { isTmpUser } = useContext(RootContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
@@ -221,7 +223,7 @@ export const InformationPortal = () => {
                     }))}
                     handleSelect={handleTabSelect}
                     classes="page__information-portal__tabs"
-                    textType="h2"
+                    textType={width < 768 ? "h3" : "h2"}
                   />
                 </div>
               </GridItem>
