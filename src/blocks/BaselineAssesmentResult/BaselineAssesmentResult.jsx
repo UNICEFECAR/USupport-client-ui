@@ -79,31 +79,30 @@ export const BaselineAssesmentResult = ({ result }) => {
           <GridItem md={8} lg={12}>
             <Grid classes="baseline-assesment-result__compare-grid">
               <GridItem md={8} lg={12}>
+                <h4>Some text to show</h4>
                 {result?.comparePrevious && <h4>{resultText}</h4>}
               </GridItem>
-              <GridItem md={8} lg={4}>
-                <Box classes="baseline-assesment-result__compare-grid__item">
-                  <p>
-                    {t("psychological")}: {result.psychologicalScore}
-                  </p>
-                  {renderIcon(result.comparePrevious?.psychological)}
-                </Box>
-              </GridItem>
-              <GridItem md={8} lg={4}>
-                <Box classes="baseline-assesment-result__compare-grid__item">
-                  <p>
-                    {t("biological")}: {result.biologicalScore}
-                  </p>
-                  {renderIcon(result.comparePrevious?.biological)}
-                </Box>
-              </GridItem>
-              <GridItem md={8} lg={4}>
-                <Box classes="baseline-assesment-result__compare-grid__item">
-                  <p>
-                    {t("social")}: {result.socialScore}
-                  </p>
-                  {renderIcon(result.comparePrevious?.social)}
-                </Box>
+              <GridItem md={8} lg={12}>
+                <div className="baseline-assesment-result__compare-grid__stats-container">
+                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
+                    <p>
+                      {t("psychological")}: {result.psychologicalScore}
+                    </p>
+                    {renderIcon(result.comparePrevious?.psychological)}
+                  </Box>
+                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
+                    <p>
+                      {t("biological")}: {result.biologicalScore}
+                    </p>
+                    {renderIcon(result.comparePrevious?.biological)}
+                  </Box>
+                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
+                    <p>
+                      {t("social")}: {result.socialScore}
+                    </p>
+                    {renderIcon(result.comparePrevious?.social)}
+                  </Box>
+                </div>
               </GridItem>
             </Grid>
           </GridItem>
