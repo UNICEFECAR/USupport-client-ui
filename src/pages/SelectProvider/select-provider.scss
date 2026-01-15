@@ -8,9 +8,13 @@
     display: flex;
     padding-right: $spacing_1_2;
     padding-top: $spacing_2_0;
+    width: 100%;
 
     & .btn:first-of-type {
-      margin-right: $spacing_1_2;
+      margin-inline: auto;
+      @media screen and (min-width: $screen_md) {
+        margin-right: $spacing_1_2;
+      }
     }
   }
 
@@ -31,11 +35,10 @@
   }
 
   &__filters-block__coupon-note {
-    padding-top: $spacing_1_2;
-    padding-bottom: $spacing_1_2;
-    width: 100%;
-    padding-left: $spacing_2_4;
+    // padding-top: $spacing_1_2;
+    // padding-bottom: $spacing_1_2;
     text-align: left;
+    width: 100%;
 
     & .btn {
       margin-bottom: $spacing_1_6;
