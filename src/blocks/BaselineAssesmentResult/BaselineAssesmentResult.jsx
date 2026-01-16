@@ -156,7 +156,11 @@ export const BaselineAssesmentResult = ({ result }) => {
                     size="lg"
                     contentType="articles"
                     title={articleData.title}
-                    image={articleData.imageMedium || articleData.imageSmall}
+                    image={
+                      articleData.imageMedium ||
+                      articleData.imageThumbnail ||
+                      articleData.imageSmall
+                    }
                     description={articleData.description}
                     labels={articleData.labels}
                     creator={articleData.creator}
