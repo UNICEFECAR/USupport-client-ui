@@ -85,18 +85,18 @@ export const BaselineAssessmentDashboard = ({
                   {t("latest_results")}
                 </h5>
                 <div className="baseline-assessment-dashboard__results__items">
-                  <Box classes="baseline-assesment-result__compare-grid__item">
+                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
                     <p>
                       {t("psychological")}:{" "}
                       {latestAssessment.finalResult.psychologicalScore}
                     </p>
                   </Box>
-                  <Box classes="baseline-assesment-result__compare-grid__item">
+                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
                     <p>
                       {t("social")}: {latestAssessment.finalResult.socialScore}
                     </p>
                   </Box>
-                  <Box classes="baseline-assesment-result__compare-grid__item">
+                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
                     <p>
                       {t("biological")}:{" "}
                       {latestAssessment.finalResult.biologicalScore}

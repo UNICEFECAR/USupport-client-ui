@@ -10,7 +10,6 @@ import {
   Button,
   Modal,
   Input,
-  Toggle,
   Block,
 } from "@USupport-components-library/src";
 import { clientSvc, countrySvc } from "@USupport-components-library/services";
@@ -187,7 +186,7 @@ export const SelectProvider = () => {
             iconColor="#ffffff"
             iconSize="sm"
             color="purple"
-            size="xs"
+            size="sm"
             onClick={handleFilterClick}
           />
         </div>
