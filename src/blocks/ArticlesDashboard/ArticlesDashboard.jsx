@@ -459,7 +459,11 @@ export const ArticlesDashboard = () => {
             size="lg"
             style={{ gridColumn: "span 4" }}
             title={articleData.title}
-            image={articleData.imageMedium}
+            image={
+              articleData.imageMedium ||
+              articleData.imageThumbnail ||
+              articleData.imageSmall
+            }
             description={articleData.description}
             labels={articleData.labels}
             creator={articleData.creator}

@@ -250,7 +250,11 @@ export const InformationPortal = () => {
                         contentType="article"
                         getContent={cmsSvc.getArticles}
                         destructureContentData={destructureArticleData}
-                        getImage={(article) => article.imageMedium}
+                        getImage={(article) =>
+                          article.imageMedium ||
+                          article.imageThumbnail ||
+                          article.imageSmall
+                        }
                         getRoute={(article) =>
                           `/information-portal/article/${
                             article.id
@@ -267,7 +271,11 @@ export const InformationPortal = () => {
                         contentType="article"
                         getContent={cmsSvc.getArticles}
                         destructureContentData={destructureArticleData}
-                        getImage={(article) => article.imageMedium}
+                        getImage={(article) =>
+                          article.imageMedium ||
+                          article.imageThumbnail ||
+                          article.imageSmall
+                        }
                         getRoute={(article) =>
                           `/information-portal/article/${
                             article.id
