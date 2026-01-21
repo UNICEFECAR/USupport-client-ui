@@ -14,12 +14,15 @@
     }
 
     @media screen and (min-width: $screen_md) {
+
       &__provider {
         justify-self: start;
+        height: 100%;
       }
 
       &__provider:nth-child(odd) {
         justify-self: end;
+        height: 100%;
       }
     }
   }
