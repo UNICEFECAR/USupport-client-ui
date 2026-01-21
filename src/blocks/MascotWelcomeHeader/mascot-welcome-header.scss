@@ -2,7 +2,7 @@
 
 .mascot-welcome-header {
   padding: 0;
-  min-width: 38.1rem;
+  min-width: calc(34rem - 2 * $spacing_1_6);
 
   &__banner {
     text-align: left;
