@@ -850,7 +850,12 @@
       "assessment_completed": "Ocena zakończona",
       "assessment_completed_description": "Dziękujemy za wypełnienie oceny. Twoje odpowiedzi zostały zapisane i zostaną wykorzystane, aby Ci pomóc.",
       "assessment_completed_button": "Powrót do strony głównej",
-      "save_button_label": "Save for later"
+      "save_button_label": "Save for later",
+      "sontrgly_disagree": "Strongly Disagree",
+      "disagree": "Disagree",
+      "neutral": "Neutral",
+      "agree": "Agree",
+      "strongly_agree": "Strongly Agree"
     },
     "baseline-assessment-dashboard": {
       "heading": "Twoja podstawowa ocena",
@@ -865,7 +870,8 @@
       "psychological": "Psychological",
       "biological": "Biological",
       "social": "Social",
-      "latest_results": "Latest Results"
+      "latest_results": "Latest Results",
+      "how_it_works": "How it works"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Ocena zakończona",
@@ -1223,7 +1229,7 @@
     },
     "edit-consultation": {
       "heading": "Zmień konsultację",
-      "subheading": "Wybierz formę komunikacji, która najlepiej odpowiada Twoim potrzebom i uzyskaj pomoc, której potrzebujesz.",
+      "subheading": "Zmień termin lub odwołaj konsultację.",
       "specialist_button_label": "Zmień specjalistę/kę",
       "date_button_label": "Zmień datę i godzinę",
       "cancel_button_label": "Anulowanie konsultacji",
@@ -1453,6 +1459,16 @@
       "heading": "Czy na pewno chcesz opuścić konsultację?",
       "confirm": "Opuść",
       "cancel": "Anuluj"
+    },
+    "how-it-works-ba": {
+      "heading": "How baseline assessment works",
+      "subheading_1": "Before accessing your baseline assessment, please review and accept the Privacy Policy. You must accept it to continue.",
+      "subheading_2": "You can also start the assessment anytime from your dashboard.",
+      "subheading_3": "The assessment is divided into multiple questions with a progress bar, and you can save your progress and continue later.",
+      "subheading_4": "When you continue your assessment, you’ll see the start date and your saved progress, and you’ll pick up right where you left off.",
+      "subheading_5": "When you complete the assessment, you’ll see your psychological, biological, and social results. You can retake it later to compare changes in your well-being, and related content based on your results will appear below.",
+      "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
+      "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
     }
   },
   "routes": {

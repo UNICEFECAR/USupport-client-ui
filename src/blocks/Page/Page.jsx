@@ -14,7 +14,8 @@ import {
   PasswordModal,
   Box,
   CookieBanner,
-  AccessibilityController,
+  WysaButton,
+  Wysa
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -27,7 +28,6 @@ import {
   ThemeContext,
   replaceLanguageInUrl,
   getLanguageFromUrl,
-  redirectToLocalStorageCountry,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
 import {
@@ -80,6 +80,7 @@ export const Page = ({
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_DEV = process.env.NODE_ENV === "development";
   const IS_RO = localStorage.getItem("country") === "RO";
+  const IS_CY = localStorage.getItem("country") === "CY";
 
   const {
     theme,
@@ -94,6 +95,7 @@ export const Page = ({
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+  const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
@@ -551,6 +553,13 @@ export const Page = ({
       </div>
       {themeButton()}
       {showEmergencyButton && (
+        <>
+        {IS_CY && 
+          <>
+            <WysaButton onClick={() => setIsWysaModalOpen(true)}/>
+            <Wysa isOpen={isWysaModalOpen} onClose={() => setIsWysaModalOpen(false)} />
+          </>
+        }
         <CircleIconButton
           iconName="phone-emergency"
           classes="page__emergency-button"
@@ -563,6 +572,7 @@ export const Page = ({
           }}
           label={t("emergency_button")}
         />
+        </>
       )}
       {isFooterShown && (
         <Footer

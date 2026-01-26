@@ -7,18 +7,22 @@
     place-items: center;
     padding-top: $spacing_3_0;
     padding-bottom: $spacing_4_0;
+    gap: $spacing_2_0;
 
     &__item-no-match {
       padding-top: $spacing_2_4;
     }
 
     @media screen and (min-width: $screen_md) {
+
       &__provider {
         justify-self: start;
+        height: 100%;
       }
 
       &__provider:nth-child(odd) {
         justify-self: end;
+        height: 100%;
       }
     }
   }
