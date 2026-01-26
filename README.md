@@ -2,7 +2,6 @@
 
 uSupport Client User Interface
 
-
 # Contribute
 
 ## Installation
