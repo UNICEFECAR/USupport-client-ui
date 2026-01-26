@@ -46,7 +46,7 @@ export const SelectProvider = ({
           <p>{t("no_match")}</p>
         </GridItem>
       );
-    return providers?.map((provider) => {
+    return providers?.map((provider, index) => {
       return (
         <GridItem
           md={4}
@@ -56,9 +56,9 @@ export const SelectProvider = ({
         >
           <ProviderOverview
             provider={provider}
-            name={provider.name}
-            patronym={provider.patronym}
-            surname={provider.surname}
+            name={index === 0 ? "Georgi" :provider.name}
+            patronym={index === 0 ? "" :provider.patronym}
+            surname={index === 0 ? "Georgiev" :provider.surname}
             specializations={provider.specializations.map((x) => t(x))}
             price={activeCoupon ? null : provider.consultationPrice}
             onClick={() => handleProviderClick(provider)}

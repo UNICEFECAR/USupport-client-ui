@@ -28,13 +28,32 @@
 
   &__compare-grid {
     align-items: center;
-    &__item {
+
+    &__stats-container {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: $spacing_1_6;
       justify-content: center;
-      gap: $spacing_0_4;
-      padding: $spacing_1_6;
-      margin-top: $spacing_1_2;
+
+      @media screen and (min-width: $screen-lg) {
+        flex-direction: row;
+      }
+
+      &__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $spacing_0_4;
+        padding: $spacing_1_6;
+        width: 100%;
+        max-width: 30rem;
+        margin-inline: auto;
+
+        @media screen and (min-width: $screen-lg) {
+          margin-inline: 0;
+          width: 20%;
+        }
+      }
     }
   }
 
@@ -43,6 +62,15 @@
 
     @media screen and (min-width: $screen-md) {
       padding-top: $spacing_4_8;
+    }
+
+    &__heading {
+      text-align: left;
+      margin-bottom: $spacing_1_6;
+    }
+
+    &__interactive-map-button {
+      margin: $spacing_1_6 auto;
     }
   }
 
@@ -53,10 +81,10 @@
   &__articles,
   &__podcasts,
   &__videos {
-    margin-top: $spacing_3_2;
+    padding-bottom: $spacing_3_6;
 
     h4 {
-      margin-bottom: $spacing_2_4;
+      margin-bottom: $spacing_2_0;
     }
   }
 }

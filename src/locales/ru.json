@@ -850,7 +850,7 @@
       "assessment_completed": "Оценка завершена",
       "assessment_completed_description": "Спасибо за прохождение оценки. Ваши ответы сохранены и будут использованы, чтобы помочь вам.",
       "assessment_completed_button": "Вернуться на главную",
-      "save_button_label": "Save for later"
+      "save_button_label": "Сохранить для позже"
     },
     "baseline-assessment-dashboard": {
       "heading": "Ваша базовая оценка",
@@ -862,10 +862,12 @@
       "view": "Посмотреть результаты",
       "view_detailed_results": "Посмотреть подробные результаты",
       "started_at": "Начато {{date}}",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
-      "latest_results": "Latest Results"
+      "psychological": "Психологические",
+      "biological": "Биологические",
+      "social": "Социальные",
+      "latest_results": "Последние результаты",
+      "how_it_works": "Как это работает",
+      "see_last_result": "Базовая оценка результатов"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Оценка завершена",
@@ -904,7 +906,9 @@
       "dec_same_dec": "Great progress! Psychological and social decreased, while biological stayed the same.",
       "dec_dec_inc": "Great progress! Psychological and biological decreased, though social increased.",
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
-      "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased."
+      "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
+      "same_same_same": "Ваши результаты такие же, как и в предыдущей оценке.",
+      "organizations": "Рекомендованные организации"
     }
   },
   "pages": {

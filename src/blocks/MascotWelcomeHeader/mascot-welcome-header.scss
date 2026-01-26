@@ -2,7 +2,7 @@
 
 .mascot-welcome-header {
   padding: 0;
-  min-width: 38.1rem;
+  min-width: calc(34rem - 2 * $spacing_1_6);
 
   &__banner {
     text-align: left;
@@ -50,6 +50,17 @@
       align-items: center;
       background-color: rgba(102, 118, 141, 0.5);
       border-radius: $border_radius_1_6;
+
+      &__button {
+        padding: 1px;
+        background-color: $color_white_ff;
+        border-radius: $border_radius_2_4;
+        margin-top: $spacing_2_4;
+
+        @media screen and (min-width: $screen-md) {
+          margin-top: $spacing_6_0;
+        }
+      }
     }
   }
 

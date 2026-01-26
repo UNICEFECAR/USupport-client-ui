@@ -36,6 +36,7 @@ export const BaselineAssessmentDashboard = ({
   const { data: latestAssessment, isFetching } = useGetLatestBaselineAssessment(
     !isTmpUser
   );
+  const hasCompletedAssessment = latestAssessment?.status === "completed";
   const handleViewAssessment = () => {
     if (latestAssessment) {
       navigate(`/baseline-assesment/${latestAssessment.baselineAssessmentId}`);
@@ -54,12 +55,21 @@ export const BaselineAssessmentDashboard = ({
             <h4 className="baseline-assessment-dashboard__heading">
               {t("heading")}
             </h4>
-            <p
-              className="small-text mood-tracker-button"
-              onClick={() => setIsHowItWorksBAOpen(true)}
-            >
-              {t("how_it_works")}
-            </p>
+            {hasCompletedAssessment ? (
+              <p
+                onClick={handleViewAssessment}
+                className="small-text mood-tracker-button"
+              >
+                {t("see_last_result")}
+              </p>
+            ) : (
+              <p
+                className="small-text mood-tracker-button"
+                onClick={() => setIsHowItWorksBAOpen(true)}
+              >
+                {t("how_it_works")}
+              </p>
+            )}
           </div>
 
           <div className="baseline-assessment-dashboard__assessment">
@@ -75,18 +85,18 @@ export const BaselineAssessmentDashboard = ({
                   {t("latest_results")}
                 </h5>
                 <div className="baseline-assessment-dashboard__results__items">
-                  <Box classes="baseline-assesment-result__compare-grid__item">
+                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
                     <p>
                       {t("psychological")}:{" "}
                       {latestAssessment.finalResult.psychologicalScore}
                     </p>
                   </Box>
-                  <Box classes="baseline-assesment-result__compare-grid__item">
+                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
                     <p>
                       {t("social")}: {latestAssessment.finalResult.socialScore}
                     </p>
                   </Box>
-                  <Box classes="baseline-assesment-result__compare-grid__item">
+                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
                     <p>
                       {t("biological")}:{" "}
                       {latestAssessment.finalResult.biologicalScore}

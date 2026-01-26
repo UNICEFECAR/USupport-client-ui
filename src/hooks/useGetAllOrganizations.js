@@ -24,6 +24,8 @@ export default function useGetAllOrganizations(filters) {
       phone: organization?.phone,
       email: organization?.email,
       description: organization?.description,
+      descriptionRO: organization?.description_ro,
+      descriptionUK: organization?.description_uk,
       location: {
         longitude: organization?.longitude,
         latitude: organization?.latitude,

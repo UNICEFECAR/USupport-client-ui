@@ -890,7 +890,8 @@
       "biological": "Biologic",
       "social": "Social",
       "latest_results": "Ultimele rezultate",
-      "how_it_works": "Cum funcționează"
+      "how_it_works": "Cum funcționează",
+      "see_last_result": "Ultimele rezultate"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Evaluare finalizată",
@@ -930,7 +931,11 @@
       "dec_same_dec": "Progres grozav! Psihologic și social au scăzut, în timp ce biologic a rămas la fel.",
       "dec_dec_inc": "Progres grozav! Psihologic și biologic au scăzut, deși social a crescut.",
       "dec_dec_same": "Progres grozav! Psihologic și biologic au scăzut, în timp ce social a rămas la fel.",
-      "dec_dec_dec": "Progres excelent! Psihologic, biologic și social au scăzut toți."
+      "dec_dec_dec": "Progres excelent! Psihologic, biologic și social au scăzut toți.",
+      "same_same_same": "Rezultatele dvs. sunt aceleași ca la evaluarea anterioară.",
+      "summary_heading": "Recomandări generate în funcție de scorul obținut",
+      "organizations": "Organizații recomandate",
+      "view_more": "Vezi mai mult"
     }
   },
   "pages": {
