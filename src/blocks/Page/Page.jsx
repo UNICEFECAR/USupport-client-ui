@@ -15,7 +15,7 @@ import {
   Box,
   CookieBanner,
   WysaButton,
-  Wysa
+  Wysa,
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -78,9 +78,11 @@ export const Page = ({
   const isLoggedIn = useIsLoggedIn();
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
-  const IS_DEV = process.env.NODE_ENV === "development";
+  const IS_DEV = import.meta.env.MODE === "development";
+  const IS_STAGING = window.location.href.includes("staging");
   const IS_RO = localStorage.getItem("country") === "RO";
   const IS_CY = localStorage.getItem("country") === "CY";
+  const SHOW_WYSA = IS_STAGING || IS_DEV;
 
   const {
     theme,
@@ -102,7 +104,7 @@ export const Page = ({
   const token = localStorage.getItem("token");
 
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(
-    !!token && !isTmpUser
+    !!token && !isTmpUser,
   );
 
   let localStorageCountry = localStorage.getItem("country");
@@ -110,7 +112,7 @@ export const Page = ({
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorageLanguage
       ? { value: localStorageLanguage.toUpperCase() }
-      : { value: "EN" }
+      : { value: "EN" },
   );
   const [selectedCountry, setSelectedCountry] = useState();
 
@@ -220,7 +222,7 @@ export const Page = ({
     });
 
     const foundLanguageFromUrl = languages.find(
-      (x) => x.value === languageFromUrl
+      (x) => x.value === languageFromUrl,
     );
     if (foundLanguageFromUrl) {
       localStorage.setItem("language", languageFromUrl);
@@ -243,7 +245,7 @@ export const Page = ({
       staleTime: Infinity,
       cacheTime: 1000 * 60 * 60 * 24, // Keep cached for 24 hours
       enabled: !!selectedCountry,
-    }
+    },
   );
 
   useEffect(() => {
@@ -371,7 +373,7 @@ export const Page = ({
     window.location.hostname === "romania.usupport.online";
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation && IS_RO_SUBDOMAIN
+    !hasPassedValidation && IS_RO_SUBDOMAIN,
   );
   const [passwordError, setPasswordError] = useState("");
 
@@ -388,7 +390,7 @@ export const Page = ({
         queryClient.setQueryData(["hasPassedValidation"], true);
         setIsPasswordModalOpen(false);
       },
-    }
+    },
   );
 
   const addSosCenterClickMutation = useAddSosCenterClick();
@@ -554,24 +556,27 @@ export const Page = ({
       {themeButton()}
       {showEmergencyButton && (
         <>
-        {IS_CY && 
-          <>
-            <WysaButton onClick={() => setIsWysaModalOpen(true)}/>
-            <Wysa isOpen={isWysaModalOpen} onClose={() => setIsWysaModalOpen(false)} />
-          </>
-        }
-        <CircleIconButton
-          iconName="phone-emergency"
-          classes="page__emergency-button"
-          onClick={() => {
-            addSosCenterClickMutation.mutate({
-              isMain: true,
-              platform: "client",
-            });
-            navigateTo(`/client/${localStorageLanguage}/sos-center`);
-          }}
-          label={t("emergency_button")}
-        />
+          {IS_CY && SHOW_WYSA && (
+            <>
+              <WysaButton onClick={() => setIsWysaModalOpen(true)} />
+              <Wysa
+                isOpen={isWysaModalOpen}
+                onClose={() => setIsWysaModalOpen(false)}
+              />
+            </>
+          )}
+          <CircleIconButton
+            iconName="phone-emergency"
+            classes="page__emergency-button"
+            onClick={() => {
+              addSosCenterClickMutation.mutate({
+                isMain: true,
+                platform: "client",
+              });
+              navigateTo(`/client/${localStorageLanguage}/sos-center`);
+            }}
+            label={t("emergency_button")}
+          />
         </>
       )}
       {isFooterShown && (
