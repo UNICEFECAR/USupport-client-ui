@@ -57,8 +57,8 @@ export const SelectProvider = ({
           <ProviderOverview
             provider={provider}
             name={index === 0 ? "Georgi" :provider.name}
-            patronym={index === 0 ? "" :provider.patronym}
-            surname={index === 0 ? "Georgiev" :provider.surname}
+            patronym={provider.patronym}
+            surname={provider.surname}
             specializations={provider.specializations.map((x) => t(x))}
             price={activeCoupon ? null : provider.consultationPrice}
             onClick={() => handleProviderClick(provider)}
