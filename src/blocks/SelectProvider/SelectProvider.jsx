@@ -56,7 +56,7 @@ export const SelectProvider = ({
         >
           <ProviderOverview
             provider={provider}
-            name={index === 0 ? "Georgi" :provider.name}
+            name={provider.name}
             patronym={provider.patronym}
             surname={provider.surname}
             specializations={provider.specializations.map((x) => t(x))}
