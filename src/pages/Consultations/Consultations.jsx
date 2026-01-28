@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import {
   Page,
   Consultations as ConsultationsBlock,
-  GiveSuggestion,
+  DownloadApp,
 } from "#blocks";
 import {
   CancelConsultation,
@@ -29,7 +29,7 @@ import {
 } from "#hooks";
 import { RootContext } from "#routes";
 
-import { Button, Loading } from "@USupport-components-library/src";
+import { NewButton, Loading } from "@USupport-components-library/src";
 
 import "./consultations.scss";
 
@@ -208,10 +208,12 @@ export const Consultations = () => {
       heading={t("header")}
       classes="page__consultations"
       headingButton={
-        <Button
+        <NewButton
           label={t("button_label")}
           onClick={handleScheduleConsultationClick}
+          iconName="calendar"
           size="lg"
+          classes="page__consultations__button"
         />
       }
     >
@@ -279,7 +281,7 @@ export const Consultations = () => {
         onClose={closeRequireDataAgreement}
         onSuccess={handleDataAgreementSuccess}
       />
-      <GiveSuggestion type="consultations" />
+      <DownloadApp />
     </Page>
   );
 };

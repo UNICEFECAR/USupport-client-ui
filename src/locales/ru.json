@@ -30,7 +30,24 @@
       "reject_all_cookies": "Отклонить все",
       "accept_necessary_cookies": "Принять только необходимые",
       "save": "Сохранить",
-      "high_contrast": "Высокая контрастность"
+      "high_contrast": "Высокая контрастность",
+      "your_profile": "Ваш профиль",
+      "guest": "Гость",
+      "application_settings": "Настройки",
+      "rate_share": "Оценить",
+      "other": "Другое",
+      "notifications_settings_button_label": "Настройки уведомлений",
+      "rate_us_button_label": "Дайте нам оценку",
+      "share_button_label": "Поделиться приложением",
+      "contact_us_button_label": "Свяжитесь с нами",
+      "privacy_policy_button_label": "Политика конфиденциальности",
+      "FAQ_button_label": "Часто задаваемые вопросы",
+      "mood_tracker_button_label": "Трекер настроения",
+      "payments_history_button_label": "История платежей",
+      "terms_of_use": "Условия использования",
+      "cookie_policy": "Политика Cookie",
+      "user_guide": "Руководство по платформе",
+      "edit_profile": "Edit profile"
     },
     "provider-overview": {
       "earliest_slot_label": "Самый ранний доступный слот свободного времени для консультации",
@@ -149,7 +166,8 @@
       "copy_success": "Успешно скопированный код",
       "confirm_password_label": "Подтвердите пароль",
       "password_match_error": "Поля Пароль и Подтвердите пароль не совпадают",
-      "age_terms_agreement_text_1": "Мне больше {{age}} лет"
+      "age_terms_agreement_text_1": "Мне больше {{age}} лет",
+      "heading": "Register anonymously"
     },
     "register-support": {
       "button_continue_label": "Продолжить",
@@ -224,7 +242,9 @@
       "modal_heading": "Проверьте свою электронную почту",
       "modal_text": "Если Вы зарегистрированы на платформе, Вы получите ссылку для сброса Вашего пароля.",
       "client": "Клиент",
-      "heading": "Добро пожаловать в"
+      "heading": "Добро пожаловать в",
+      "heading_modal": "Forgot password",
+      "go_back_to_login": "Go back to login"
     },
     "consultations": {
       "upcoming_tab_label": "Предстоящие",
@@ -328,7 +348,8 @@
       "login_button_label": "У меня уже есть аккаунт",
       "confirm_password_label": "Подтвердите пароль",
       "password_match_error": "Поля Пароль и Подтвердите пароль не совпадают",
-      "age_terms_agreement_text_1": "Мне больше {{age}} лет"
+      "age_terms_agreement_text_1": "Мне больше {{age}} лет",
+      "heading": "Register with email"
     },
     "privacy-policy": {
       "no_results": "Для выбранной страны и языка ничего не найдено"
@@ -442,7 +463,33 @@
       "december": "декабря",
       "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
       "cookie_preferences": "Настройки cookie",
-      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала",
+      "upcoming_tab_label": "Предстоящие",
+      "past_tab_label": "Прошлые",
+      "sunday": "Вс",
+      "monday": "Пн",
+      "tuesday": "Вт",
+      "wednesday": "Ср",
+      "thursday": "Чт",
+      "friday": "Пт",
+      "saturday": "Сб",
+      "no_upcoming_consultations": "У Вас нет предстоящих консультаций",
+      "no_past_consultations": "У Вас нет прошлых консультаций",
+      "reject_consultation_success": "Консультация успешно отклонена",
+      "accept_consultation_success": "Консультация успешно принята",
+      "join": "Присоединиться",
+      "edit": "Редактировать",
+      "details": "Смотреть подробности",
+      "active": "Сейчас",
+      "reject": "Reject suggestion",
+      "accept": "Accept consultation",
+      "cancel_consultation": "Отменить консультацию",
+      "suggested": "Предложено",
+      "view_profile": "Просмотреть личный профиль",
+      "conducted": "Консультация завершена",
+      "not_conducted": "Не проводилась",
+      "free": "Free",
+      "coupon": "Купон"
     },
     "mood-tracker": {
       "happy": "Отлично",
@@ -459,7 +506,8 @@
       "how_it_works": "Как это работает",
       "recommendations": "Рекомендации",
       "recommendations_text": "Хотите посмотреть график настроения и увидеть рекомендованный контент?",
-      "check_out": "Посмотреть"
+      "check_out": "Посмотреть",
+      "mood_tracker_long": "Study your mood tracker"
     },
     "mascot-welcome-header": {
       "welcome": "С возвращением, {{name}}!",
@@ -507,7 +555,8 @@
       "min_read": "минут на прочтение",
       "by": "От {{creator}}",
       "number_of_more_options": "еще {{count}}",
-      "read": "Читать"
+      "read": "Читать",
+      "show_more": "Show more"
     },
     "mood-tracker-history": {
       "heading": "В целом вы чувствовали {{feeling}}  в течение последних 30 дней",
@@ -850,7 +899,12 @@
       "assessment_completed": "Оценка завершена",
       "assessment_completed_description": "Спасибо за прохождение оценки. Ваши ответы сохранены и будут использованы, чтобы помочь вам.",
       "assessment_completed_button": "Вернуться на главную",
-      "save_button_label": "Сохранить для позже"
+      "save_button_label": "Сохранить для позже",
+      "sontrgly_disagree": "Strongly Disagree",
+      "disagree": "Disagree",
+      "neutral": "Нейтрален(а)",
+      "agree": "Agree",
+      "strongly_agree": "Strongly Agree"
     },
     "baseline-assessment-dashboard": {
       "heading": "Ваша базовая оценка",
@@ -908,7 +962,17 @@
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
       "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
       "same_same_same": "Ваши результаты такие же, как и в предыдущей оценке.",
-      "organizations": "Рекомендованные организации"
+      "organizations": "Рекомендованные организации",
+      "summary_heading": "Recommendations generated based on the score obtained",
+      "view_more": "View more"
+    },
+    "dashboard-hero": {
+      "heading": "Welcome back"
+    },
+    "download-app": {
+      "heading": "Download our mobile app",
+      "paragraph": "Now available for iOS and Android",
+      "download_text": "Download from"
     }
   },
   "pages": {
@@ -1340,6 +1404,15 @@
       "start_date": "Дата начала",
       "end_date": "Дата окончания",
       "end_date_before_start_error": "Дата окончания должна быть позже даты начала"
+    },
+    "welcome": {
+      "heading": "Welcome to",
+      "country": "Страна",
+      "language": "Язык",
+      "placeholder": "Select",
+      "register_email": "Зарегистрируйтесь с помощью электронной почты",
+      "register_anonymously": "Зарегистрироваться без электронной почты",
+      "continue_as_guest": "Продолжить без регистрации"
     }
   },
   "modals": {
@@ -1455,6 +1528,16 @@
       "heading": "Вы уверены, что хотите покинуть консультацию?",
       "confirm": "Покинуть",
       "cancel": "Отмена"
+    },
+    "how-it-works-ba": {
+      "heading": "How baseline assessment works",
+      "subheading_1": "Before accessing your baseline assessment, please review and accept the Privacy Policy. You must accept it to continue.",
+      "subheading_2": "You can also start the assessment anytime from your dashboard.",
+      "subheading_3": "The assessment is divided into multiple questions with a progress bar, and you can save your progress and continue later.",
+      "subheading_4": "Нажав на конкретное событие, вы можете просмотреть все комментарии и заметки, сделанные в этот момент, чтобы глубже понять, что повлияло на ваше настроение.",
+      "subheading_5": "Вы можете создать отчет за любой выбранный период и экспортировать его в формате CSV, чтобы легко просматривать или делиться своими данными о настроении при необходимости.",
+      "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
+      "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
     }
   },
   "routes": {

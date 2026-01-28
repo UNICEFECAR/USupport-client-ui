@@ -30,7 +30,24 @@
       "reject_all_cookies": "Відхилити всі",
       "accept_necessary_cookies": "Прийняти лише необхідні",
       "save": "Зберегти",
-      "high_contrast": "Висока контрастність"
+      "high_contrast": "Висока контрастність",
+      "your_profile": "Твій профіль",
+      "guest": "Гість/гостя",
+      "application_settings": "Налаштування додатку",
+      "rate_share": "Оціни",
+      "other": "Інше",
+      "notifications_settings_button_label": "Налаштування сповіщень",
+      "rate_us_button_label": "Оціни нас",
+      "share_button_label": "Поділися додатком",
+      "contact_us_button_label": "Зв'яжися з нами",
+      "privacy_policy_button_label": "Політика конфіденційності",
+      "FAQ_button_label": "Поширені запитання",
+      "mood_tracker_button_label": "Монітор настрою",
+      "payments_history_button_label": "Історія платежів",
+      "terms_of_use": "Умови використання",
+      "cookie_policy": "Політика щодо файлів cookie",
+      "user_guide": "Інструкція використання платформи",
+      "edit_profile": "Edit profile"
     },
     "provider-overview": {
       "earliest_slot_label": "Найближчий вільний часовий слот для консультації",
@@ -149,7 +166,8 @@
       "copy_success": "токен скопійовано",
       "confirm_password_label": "Підтвердіть пароль",
       "password_match_error": "Поля «Пароль» і «Підтвердити пароль» не збігаються",
-      "age_terms_agreement_text_1": "Мені більше 16 років"
+      "age_terms_agreement_text_1": "Мені більше 16 років",
+      "heading": "Register anonymously"
     },
     "register-support": {
       "button_continue_label": "Продовжити",
@@ -224,7 +242,9 @@
       "modal_heading": "Перевірте електронну пошту",
       "modal_text": "Якщо ти зареєстрований/а на платформі, то отримаєш посилання для відновлення паролю.",
       "client": "Клієнт/ка",
-      "heading": "Вітаємо в"
+      "heading": "Вітаємо в",
+      "heading_modal": "Forgot password",
+      "go_back_to_login": "Go back to login"
     },
     "consultations": {
       "upcoming_tab_label": "Майбутні",
@@ -328,7 +348,8 @@
       "login_button_label": "Вже маю обліковий запис",
       "confirm_password_label": "Підтвердити пароль",
       "password_match_error": "Поля «Пароль» і «Підтверити пароль» не збігаються",
-      "age_terms_agreement_text_1": "Мені більше {{age}} років"
+      "age_terms_agreement_text_1": "Мені більше {{age}} років",
+      "heading": "Register with email"
     },
     "privacy-policy": {
       "no_results": "Для обраної країни й мови немає результатів."
@@ -442,7 +463,33 @@
       "december": "Грудень",
       "require_cookies": "Щоб переглянути це відео, прийміть усі файли cookie.",
       "cookie_preferences": "Налаштування файлів cookie",
-      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
+      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку",
+      "upcoming_tab_label": "Майбутні",
+      "past_tab_label": "Попередні",
+      "sunday": "Нд",
+      "monday": "Пн",
+      "tuesday": "Вт",
+      "wednesday": "Ср",
+      "thursday": "Чт",
+      "friday": "Пт",
+      "saturday": "Сб",
+      "no_upcoming_consultations": "У тебе немає майбутніх консультацій",
+      "no_past_consultations": "Попередніх консультацій немає",
+      "reject_consultation_success": "Консультацію відхилено",
+      "accept_consultation_success": "Консультацію прийнято",
+      "join": "Приєднатися",
+      "edit": "Редагувати",
+      "details": "Дивитися деталі",
+      "active": "Зараз",
+      "reject": "Reject suggestion",
+      "accept": "Accept consultation",
+      "cancel_consultation": "Скасувати консультацію",
+      "suggested": "Запропоновані",
+      "view_profile": "Переглянути особистий профіль",
+      "conducted": "Консультацію завершено",
+      "not_conducted": "Не відбулася",
+      "free": "Free",
+      "coupon": "Купон"
     },
     "mood-tracker": {
       "happy": "Щасливим/ою",
@@ -459,7 +506,8 @@
       "how_it_works": "Як це працює",
       "recommendations": "Рекомендації",
       "recommendations_text": "Хочете переглянути графік настрою та побачити рекомендований контент?",
-      "check_out": "Переглянути"
+      "check_out": "Переглянути",
+      "mood_tracker_long": "Study your mood tracker"
     },
     "mascot-welcome-header": {
       "welcome": "З поверненням, {{name}}!",
@@ -507,7 +555,8 @@
       "min_read": "хв. читання",
       "by": "Від {{creator}}",
       "number_of_more_options": "ще {{count}}",
-      "read": "Читати"
+      "read": "Читати",
+      "show_more": "Show more"
     },
     "mood-tracker-history": {
       "heading": "Загалом протягом останніх 30 днів ти почував/ла себе {{feeling}}",
@@ -916,6 +965,14 @@
       "summary_heading": "Рекомендації, сформовані на основі отриманого балу",
       "organizations": "Рекомендовані організації",
       "view_more": "Переглянути більше"
+    },
+    "dashboard-hero": {
+      "heading": "Welcome back"
+    },
+    "download-app": {
+      "heading": "Download our mobile app",
+      "paragraph": "Now available for iOS and Android",
+      "download_text": "Download from"
     }
   },
   "pages": {
@@ -1347,6 +1404,15 @@
       "start_date": "Дата початку",
       "end_date": "Дата завершення",
       "end_date_before_start_error": "Дата завершення має бути пізніше дати початку"
+    },
+    "welcome": {
+      "heading": "Welcome to",
+      "country": "Країна",
+      "language": "Мова",
+      "placeholder": "Select",
+      "register_email": "Зареєструйтеся за допомогою електронної пошти",
+      "register_anonymously": "Анонімна реєстрація",
+      "continue_as_guest": "Продовжити без реєстрації"
     }
   },
   "modals": {

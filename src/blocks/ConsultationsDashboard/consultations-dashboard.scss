@@ -14,8 +14,12 @@
       text-align: left;
     }
 
+    > h5 {
+      font-weight: 500;
+    }
+
     .view-all-button {
-      color: $color_secondary_9749fa;
+      @include themify($themes, "color", "color_6a4ffb_8c90eb");
       cursor: pointer;
       padding: $spacing_1_6 0;
     }
@@ -36,14 +40,19 @@
     max-width: $screen-md;
   }
 
-  &__carousel-container {
-    margin-top: $spacing_2_0;
-  }
-
   &__consultation-container {
     display: flex;
     flex-grow: 1;
     align-items: center;
     justify-content: center;
+
+    &__consultation-card {
+      margin-left: 0;
+      margin-right: auto;
+    }
+  }
+
+  &__schedule-consultation-button {
+    margin: $spacing_2_0 auto 0;
   }
 }

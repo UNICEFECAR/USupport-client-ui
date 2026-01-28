@@ -30,7 +30,24 @@
       "reject_all_cookies": "Reject all",
       "accept_necessary_cookies": "Accept only necessary",
       "save": "Save",
-      "high_contrast": "High Contrast"
+      "high_contrast": "High Contrast",
+      "your_profile": "Your profile",
+      "guest": "Guest",
+      "application_settings": "Application settings",
+      "rate_share": "Rate",
+      "other": "Other",
+      "notifications_settings_button_label": "Notification settings",
+      "rate_us_button_label": "Give us a rating",
+      "share_button_label": "Share the application",
+      "contact_us_button_label": "Contact us",
+      "privacy_policy_button_label": "Privacy Policy",
+      "FAQ_button_label": "FAQ",
+      "mood_tracker_button_label": "Mood tracker",
+      "payments_history_button_label": "Payment History",
+      "terms_of_use": "Terms of use",
+      "cookie_policy": "Cookie policy",
+      "user_guide": "Platform usage",
+      "edit_profile": "Edit profile"
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
@@ -149,7 +166,8 @@
       "copy_success": "Code copied successfully",
       "confirm_password_label": "Confirm password",
       "password_match_error": "The Password and Confirm Password fields do not match",
-      "age_terms_agreement_text_1": "I am over {{age}} years old"
+      "age_terms_agreement_text_1": "I am over {{age}} years old",
+      "heading": "Register anonymously"
     },
     "register-support": {
       "button_continue_label": "Continue",
@@ -224,18 +242,20 @@
       "modal_heading": "Check your email",
       "modal_text": "If you are registered in the platform you will receive a link to reset your password.",
       "client": "Client",
-      "heading": "Welcome to"
+      "heading": "Welcome to",
+      "heading_modal": "Forgot password",
+      "go_back_to_login": "Go back to login"
     },
     "consultations": {
       "upcoming_tab_label": "Upcoming",
       "past_tab_label": "Past",
-      "sunday": "Sun",
-      "monday": "Mon",
-      "tuesday": "Tue",
-      "wednesday": "Wed",
-      "thursday": "Thu",
-      "friday": "Fri",
-      "saturday": "Sat",
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
       "no_upcoming_consultations": "You have no upcoming consultations",
       "no_past_consultations": "You have no past consultations",
       "reject_consultation_success": "Consultation rejected successfully",
@@ -312,6 +332,7 @@
       "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
+      "heading": "Register with email",
       "email_error": "Please enter a valid email",
       "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
       "email_label": "Email *",
@@ -442,6 +463,32 @@
       "december": "December",
       "require_cookies": "To view this video, please accept all cookies.",
       "cookie_preferences": "Cookie preferences",
+      "upcoming_tab_label": "Upcoming",
+      "past_tab_label": "Past",
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "no_upcoming_consultations": "You have no upcoming consultations",
+      "no_past_consultations": "You have no past consultations",
+      "reject_consultation_success": "Consultation rejected successfully",
+      "accept_consultation_success": "Consultation accepted successfully",
+      "join": "Join",
+      "edit": "Edit",
+      "details": "See details",
+      "active": "Now",
+      "reject": "Reject suggestion",
+      "accept": "Accept consultation",
+      "cancel_consultation": "Cancel consultation",
+      "suggested": "Suggested",
+      "view_profile": "View personal profile",
+      "conducted": "Consultation ended",
+      "not_conducted": "Not conducted",
+      "free": "Free",
+      "coupon": "Coupon",
       "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
     },
     "mood-tracker": {
@@ -452,6 +499,7 @@
       "worried": "Worried",
       "heading": "How are you feeling today?",
       "mood_tracker": "Mood Tracker",
+      "mood_tracker_long": "Study your mood tracker",
       "additional_comment_placeholder": "What made you feel this way?",
       "submit_mood_track": "Submit",
       "add_mood_tracker_success": "Your daily mood was added successfully",
@@ -507,7 +555,8 @@
       "min_read": "min read",
       "by": "by {{creator}}",
       "number_of_more_options": "{{count}} more",
-      "read": "Read"
+      "read": "Read",
+      "show_more": "Show more"
     },
     "mood-tracker-history": {
       "heading": "Overall you felt {{feeling}} in the last 30 days",
@@ -912,10 +961,18 @@
       "dec_dec_inc": "Great progress! Psychological and biological decreased, though social increased.",
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
       "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
-      "same_same_same":"Your results are the same as the previous assessment.",
+      "same_same_same": "Your results are the same as the previous assessment.",
       "summary_heading": "Recommendations generated based on the score obtained",
       "organizations": "Recommended organizations",
       "view_more": "View more"
+    },
+    "dashboard-hero": {
+      "heading": "Welcome back"
+    },
+    "download-app": {
+      "heading": "Download our mobile app",
+      "paragraph": "Now available for iOS and Android",
+      "download_text": "Download from"
     }
   },
   "pages": {
@@ -1174,6 +1231,15 @@
     }
   },
   "backdrops": {
+    "welcome": {
+      "heading": "Welcome to",
+      "country": "Country",
+      "language": "Language",
+      "placeholder": "Select",
+      "register_email": "Register with email",
+      "register_anonymously": "Register anonymously",
+      "continue_as_guest": "Continue without registration"
+    },
     "filter-providers": {
       "heading": "Filter providers",
       "subheading": "Choose the provider you want to talk to in an audio/video/text consultation",

@@ -1,0 +1,104 @@
+@import "@USupport-components-library/styles";
+
+.download-app {
+  padding-top: 46.5rem;
+  background-image: url("./assets/background-mobile.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @media screen and (min-width: $screen-md) {
+    padding-top: 6rem;
+
+    background-image: url("./assets/background-tablet.png");
+
+    &__content-item {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    background-image: url("./assets/background-desktop.png");
+  }
+
+  &--dark {
+    background-image: url("./assets/background-mobile-dark.png");
+
+    @media screen and (max-width: $screen-md) {
+      & .download-app__heading-item,
+      & .download-app__sub-heading {
+        & h3,
+        & p {
+          color: $color_blue_3d527b;
+        }
+      }
+    }
+
+    @media screen and (min-width: $screen-md) {
+      background-image: url("./assets/background-tablet-dark.png");
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      background-image: url("./assets/background-desktop-dark.png");
+    }
+  }
+
+  &__content-grid {
+    justify-items: center;
+  }
+
+  &__heading-item {
+    @media screen and (min-width: $screen-md) {
+      place-self: start;
+    }
+
+    & > h1 {
+      text-align: left;
+    }
+  }
+
+  &__sub-heading {
+    @media screen and (min-width: $screen-md) {
+      place-self: start;
+    }
+  }
+
+  &__buttons-item {
+    margin-top: $spacing_2_4;
+
+    .btn--store:nth-of-type(2) {
+      margin-top: $spacing_1_6;
+    }
+
+    @media screen and (min-width: $screen-md) {
+      place-self: start;
+    }
+  }
+
+  &__image-item {
+    justify-self: center;
+
+    @media screen and (min-width: $screen-md) {
+      place-self: end;
+    }
+  }
+
+  &__image {
+    margin: 0 auto;
+    margin-top: $spacing_4_8;
+    width: 27.2rem;
+    margin-bottom: -$spacing_0_8;
+
+    @media screen and (min-width: $screen-md) {
+      margin-top: 0;
+      width: auto;
+      height: 30rem;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      height: 36rem;
+      margin-left: -50%;
+    }
+  }
+}

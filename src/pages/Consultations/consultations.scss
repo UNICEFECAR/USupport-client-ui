@@ -4,6 +4,14 @@
 .page__consultations {
   @include full-height-page-navbar;
 
+  &__button {
+    width: 100%;
+
+    @media screen and (min-width: $screen-lg) {
+      width: auto;
+    }
+  }
+
   & .give-suggestion__grid {
     & .give-suggestion__heading-item {
       place-self: center;

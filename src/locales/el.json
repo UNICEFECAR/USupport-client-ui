@@ -30,7 +30,24 @@
       "reject_all_cookies": "Απόρριψη όλων",
       "accept_necessary_cookies": "Αποδοχή μόνο των απαραίτητων",
       "save": "Αποθήκευση",
-      "high_contrast": "Υψηλή αντίθεση"
+      "high_contrast": "Υψηλή αντίθεση",
+      "your_profile": "Το προφίλ σας",
+      "guest": "Επισκέπτης",
+      "application_settings": "Ρυθμίσεις εφαρμογής",
+      "rate_share": "Αξιολόγηση",
+      "other": "Άλλο",
+      "notifications_settings_button_label": "Ρυθμίσεις ειδοποιήσεων",
+      "rate_us_button_label": "Αξιολογήστε μας",
+      "share_button_label": "Κοινοποιήστε την εφαρμογή",
+      "contact_us_button_label": "Επικοινωνία",
+      "privacy_policy_button_label": "Πολιτική απορρήτου",
+      "FAQ_button_label": "Συχνές ερωτήσεις",
+      "mood_tracker_button_label": "Καταγραφή διάθεσης",
+      "payments_history_button_label": "Ιστορικό πληρωμών",
+      "terms_of_use": "Όροι χρήσης",
+      "cookie_policy": "Πολιτική cookies",
+      "user_guide": "Χρήση πλατφόρμας",
+      "edit_profile": "Edit profile"
     },
     "provider-overview": {
       "earliest_slot_label": "Συντομότερο διαθέσιμο ραντεβού για συνεδρία",
@@ -149,7 +166,8 @@
       "copy_success": "Ο κωδικός αντιγράφηκε με επιτυχία",
       "confirm_password_label": "Επιβεβαίωση κωδικού πρόσβασης",
       "password_match_error": "Ο κωδικός πρόσβασης και η επιβεβαίωση δεν ταιριάζουν",
-      "age_terms_agreement_text_1": "Είμαι πάνω από {{age}} ετών."
+      "age_terms_agreement_text_1": "Είμαι πάνω από {{age}} ετών.",
+      "heading": "Register anonymously"
     },
     "register-support": {
       "button_continue_label": "Συνέχεια",
@@ -224,7 +242,9 @@
       "modal_heading": "Ελέγξτε το email σας",
       "modal_text": "Εάν είστε εγγεγραμμένοι στην πλατφόρμα, θα λάβετε έναν σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασής σας.",
       "client": "Πελάτης",
-      "heading": "Καλωσορίσατε στο"
+      "heading": "Καλωσορίσατε στο",
+      "heading_modal": "Forgot password",
+      "go_back_to_login": "Go back to login"
     },
     "consultations": {
       "upcoming_tab_label": "Επερχόμενες",
@@ -328,7 +348,8 @@
       "login_button_label": "Έχω ήδη λογαριασμό",
       "confirm_password_label": "Επιβεβαίωση κωδικού πρόσβασης",
       "password_match_error": "Ο κωδικός πρόσβασης και η επιβεβαίωση δεν ταιριάζουν",
-      "age_terms_agreement_text_1": "Είμαι πάνω από {{age}} ετών"
+      "age_terms_agreement_text_1": "Είμαι πάνω από {{age}} ετών",
+      "heading": "Register with email"
     },
     "privacy-policy": {
       "no_results": "Δεν υπάρχουν αποτελέσματα για την επιλεγμένη χώρα και γλώσσα."
@@ -442,7 +463,33 @@
       "december": "Δεκέμβριος",
       "require_cookies": "Για να δείτε αυτό το βίντεο, αποδεχτείτε όλα τα cookies.",
       "cookie_preferences": "Προτιμήσεις cookies",
-      "join_button_label_tooltip": "Μπορείτε να συνδεθείτε στη συνεδρία 5 λεπτά πριν από την ώρα έναρξης"
+      "join_button_label_tooltip": "Μπορείτε να συνδεθείτε στη συνεδρία 5 λεπτά πριν από την ώρα έναρξης",
+      "upcoming_tab_label": "Επερχόμενες",
+      "past_tab_label": "Προηγούμενες",
+      "sunday": "Κυρ",
+      "monday": "Δευ",
+      "tuesday": "Τρ",
+      "wednesday": "Τετ",
+      "thursday": "Πεμ",
+      "friday": "Παρ",
+      "saturday": "Σαβ",
+      "no_upcoming_consultations": "Δεν έχετε προγραμματισμένες συνεδρίες",
+      "no_past_consultations": "Δεν έχετε προηγούμενες συνεδρίες",
+      "reject_consultation_success": "Η συνεδρία απορρίφθηκε με επιτυχία",
+      "accept_consultation_success": "Η συνεδρία έγινε δεκτή με επιτυχία",
+      "join": "Είσοδος",
+      "edit": "Επεξεργασία",
+      "details": "Δείτε λεπτομέρειες",
+      "active": "Τώρα",
+      "reject": "Reject suggestion",
+      "accept": "Accept consultation",
+      "cancel_consultation": "Ακύρωση συνεδρίας",
+      "suggested": "Προτεινόμενες",
+      "view_profile": "Προβολή προσωπικού προφίλ",
+      "conducted": "Η συνεδρία έληξε",
+      "not_conducted": "Δεν πραγματοποιήθηκε",
+      "free": "Free",
+      "coupon": "Κουπόνι"
     },
     "mood-tracker": {
       "happy": "Χαρούμενος/η",
@@ -459,7 +506,8 @@
       "how_it_works": "Δείτε πώς λειτουργεί",
       "recommendations": "Συστάσεις",
       "recommendations_text": "Θέλετε να δείτε το γράφημα της διάθεσής σας και το προτεινόμενο περιεχόμενο;",
-      "check_out": "Έλεγχος"
+      "check_out": "Έλεγχος",
+      "mood_tracker_long": "Study your mood tracker"
     },
     "mascot-welcome-header": {
       "welcome": "Καλωσόρισες πίσω, {{name}}!",
@@ -507,7 +555,8 @@
       "min_read": "λεπτά ανάγνωσης",
       "by": "από {{creator}}",
       "number_of_more_options": "{{count}} περισσότερα",
-      "read": "Ανάγνωση"
+      "read": "Ανάγνωση",
+      "show_more": "Show more"
     },
     "mood-tracker-history": {
       "heading": "Συνολικά, τις τελευταίες 30 ημέρες νιώθατε {{feeling}}.",
@@ -870,7 +919,9 @@
       "psychological": "Ψυχολογικές",
       "biological": "Βιολογικές",
       "social": "Κοινωνικές",
-      "latest_results": "Τα πιο πρόσφατα αποτελέσματα"
+      "latest_results": "Τα πιο πρόσφατα αποτελέσματα",
+      "how_it_works": "Δείτε πώς λειτουργεί",
+      "see_last_result": "Latest results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Η αξιολόγηση ολοκληρώθηκε",
@@ -911,7 +962,17 @@
       "dec_dec_same": "Μεγάλη πρόοδος! Οι ψυχολογικές και βιολογικές προκλήσεις μειώθηκαν, ενώ οι κοινωνικές παρέμειναν στα ίδια επίπεδα.",
       "dec_dec_dec": "Εξαιρετική πρόοδος! Οι ψυχολογικές, βιολογικές και κοινωνικές προκλήσεις παρουσίασαν μείωση.",
       "same_same_same": "Τα αποτελέσματά σας είναι τα ίδια με την προηγούμενη αξιολόγηση.",
-      "organizations": "Προτεινόμενοι οργανισμοί"
+      "organizations": "Προτεινόμενοι οργανισμοί",
+      "summary_heading": "Recommendations generated based on the score obtained",
+      "view_more": "Δείτε περισσότερα"
+    },
+    "dashboard-hero": {
+      "heading": "Welcome back"
+    },
+    "download-app": {
+      "heading": "Download our mobile app",
+      "paragraph": "Now available for iOS and Android",
+      "download_text": "Download from"
     }
   },
   "pages": {
@@ -1343,6 +1404,15 @@
       "start_date": "Ημερομηνία έναρξης",
       "end_date": "Ημερομηνία λήξης",
       "end_date_before_start_error": "Η ημερομηνία λήξης πρέπει να είναι μετά την ημερομηνία έναρξης"
+    },
+    "welcome": {
+      "heading": "Welcome to",
+      "country": "Χώρα",
+      "language": "Γλώσσα",
+      "placeholder": "Select",
+      "register_email": "Εγγραφή μέσω email",
+      "register_anonymously": "Ανώνυμη εγγραφή",
+      "continue_as_guest": "Συνέχεια χωρίς εγγραφή"
     }
   },
   "modals": {
@@ -1458,6 +1528,16 @@
       "heading": "Είστε σίγουροι ότι θέλετε να αποχωρήσετε από τη συνεδρία;",
       "confirm": "Αποχώρηση",
       "cancel": "Παραμονή"
+    },
+    "how-it-works-ba": {
+      "heading": "How baseline assessment works",
+      "subheading_1": "Before accessing your baseline assessment, please review and accept the Privacy Policy. You must accept it to continue.",
+      "subheading_2": "You can also start the assessment anytime from your dashboard.",
+      "subheading_3": "The assessment is divided into multiple questions with a progress bar, and you can save your progress and continue later.",
+      "subheading_4": "Κάνοντας κλικ σε ένα συγκεκριμένο γεγονός, μπορείτε να δείτε όλα τα σχόλια και τις σημειώσεις που έχουν καταγραφεί για εκείνη τη στιγμή, αποκτώντας έτσι μια βαθύτερη εικόνα των παραγόντων που επηρέασαν τη διάθεσή σας.",
+      "subheading_5": "Μπορείτε να δημιουργήσετε αναφορά για οποιοδήποτε επιλεγμένο χρονικό διάστημα και να την εξαγάγετε ως αρχείο CSV, ώστε να ελέγχετε ή να μοιράζεστε εύκολα τα δεδομένα που αφορούν τη διάθεσή σας όποτε το χρειάζεστε.",
+      "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
+      "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
     }
   },
   "routes": {
@@ -1466,5 +1546,9 @@
       "text": "Είστε ανενεργοί για αρκετή ώρα. Για την ασφάλειά σας, θα σας αποσυνδέσουμε αυτόματα σε {{seconds}} δευτερόλεπτα.",
       "cta": "Είμαι ακόμη εδώ"
     }
+  },
+  "meta": {
+    "title": "uSupport Client",
+    "description": "The first platform created to make your mental health a priority. uSupport provides personalized, discreet and fast psychological care for your overall well-being."
   }
 }

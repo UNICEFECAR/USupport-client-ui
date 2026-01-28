@@ -1,0 +1,21 @@
+@import "@USupport-components-library/styles";
+
+.welcome-modal {
+  &__content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: $spacing_4_0;
+    gap: $spacing_2_4;
+
+    &__logo {
+      width: 16rem;
+      margin-inline: auto;
+    }
+
+    &__dropdown {
+      width: 100%;
+    }
+  }
+}

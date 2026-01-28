@@ -4,10 +4,9 @@
   &__grid {
     padding-top: $spacing_2_4;
     padding-bottom: $spacing_6_4;
-    place-items: center;
 
     &__tabs-item {
-      justify-self: center;
+      justify-self: flex-start;
     }
 
     &__consultations-item {
@@ -16,13 +15,9 @@
       &__grid {
         place-items: center;
 
-        @media screen and (min-width: $screen_md) {
-          &__consultation {
-            justify-self: start;
-          }
-
-          &__consultation:nth-child(odd) {
-            justify-self: end;
+        &__consultation {
+          &__item {
+            width: calc(100% - 2 * $spacing_1_6);
           }
         }
       }

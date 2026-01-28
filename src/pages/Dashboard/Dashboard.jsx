@@ -6,11 +6,12 @@ import { useTranslation } from "react-i18next";
 
 import {
   Page,
-  MascotWelcomeHeader,
   MoodTracker,
   ConsultationsDashboard,
   ArticlesDashboard,
   BaselineAssessmentDashboard,
+  DashboardHero,
+  DownloadApp,
 } from "#blocks";
 
 import {
@@ -54,11 +55,11 @@ export const Dashboard = () => {
 
   const IS_RO = localStorage.getItem("country") === "RO";
 
-  const clientName = clientData
-    ? clientData.name
-      ? `${clientData.name} ${clientData.surname || ""}`
-      : clientData.nickname
-    : "";
+  // const clientName = clientData
+  //   ? clientData.name
+  //     ? `${clientData.name} ${clientData.surname || ""}`
+  //     : clientData.nickname
+  //   : "";
 
   const queryClient = useQueryClient();
 
@@ -271,7 +272,8 @@ export const Dashboard = () => {
         />
       )}
       <div className="page__dashboard__content">
-        <MascotWelcomeHeader
+        <DashboardHero />
+        {/* <MascotWelcomeHeader
           nextConsultation={
             upcomingConsultations ? upcomingConsultations[0] : null
           }
@@ -281,7 +283,7 @@ export const Dashboard = () => {
           handleAcceptSuggestion={handleAcceptSuggestion}
           name={clientName}
           t={t}
-        />
+        /> */}
         <MoodTracker
           isTmpUser={isTmpUser}
           clientData={clientData}
@@ -295,7 +297,6 @@ export const Dashboard = () => {
             }
           />
         )}
-        <ArticlesDashboard />
         {!IS_RO && (
           <ConsultationsDashboard
             openJoinConsultation={openJoinConsultation}
@@ -307,6 +308,8 @@ export const Dashboard = () => {
             t={t}
           />
         )}
+        <ArticlesDashboard />
+        <DownloadApp />
         {/* <ActivityLogDashboard /> */}
         {selectedConsultation && (
           <>

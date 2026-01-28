@@ -16,9 +16,19 @@
     }
   }
 
-  &__mobile-button-container .btn {
-    margin: 0 auto;
-    margin-top: $spacing_2_4;
+  &__mobile-button-container {
+    padding-inline: $spacing_1_6;
+
+    & .btn {
+      margin: 0 auto;
+      margin-top: $spacing_2_4;
+    }
+  }
+
+  &__header-icon {
+    @media screen and (min-width: $screen-lg) {
+      display: none;
+    }
   }
 
   &__header {
@@ -26,18 +36,18 @@
     justify-content: space-between;
     display: flex;
     flex: 1;
-    padding: $spacing_3_2 $spacing_1_6 $spacing_1_6 $spacing_2_4;
-    min-width: calc(38rem - ($spacing_1_6 + $spacing_2_4));
+    padding: $spacing_3_2 $spacing_1_6 $spacing_1_6 $spacing_1_6;
+    min-width: calc(38rem - ($spacing_1_6 + $spacing_1_6));
 
     @media screen and (min-width: $screen-md) {
       padding-top: $spacing_5_0;
-      padding-left: $spacing_5_0;
-      padding-right: $spacing_5_0;
+      padding-left: $spacing_3_6;
+      padding-right: $spacing_3_6;
     }
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_5_0;
-      padding-left: $spacing_23_0;
-      padding-right: $spacing_23_0;
+      padding-left: $spacing_11_5;
+      padding-right: $spacing_11_5;
     }
 
     &__text-container {
@@ -80,7 +90,6 @@
         &__text {
           text-transform: uppercase;
           font-weight: $font_bold;
-          @include themify($themes, "color", "color_primary_20809e");
         }
 
         &__icon {
@@ -150,7 +159,6 @@
       max-width: 75rem;
       word-break: break-word;
       text-align: left;
-      @include themify($themes, "color", "color_3d527b_white");
     }
 
     &-button-container {

@@ -11,6 +11,7 @@ import {
   Loading,
   Tabs,
   TabsUnderlined,
+  NewButton,
 } from "@USupport-components-library/src";
 import {
   destructureArticleData,
@@ -391,18 +392,7 @@ export const ArticlesDashboard = () => {
   // Render helpers
   const renderHeading = () => (
     <GridItem xs={2} md={4} lg={6} classes="articles-dashboard__heading-item">
-      <h4>{t("heading")}</h4>
-    </GridItem>
-  );
-
-  const renderViewMore = () => (
-    <GridItem xs={2} md={4} lg={6} classes="articles-dashboard__view-more-item">
-      <p
-        className="small-text view-all-button"
-        onClick={() => navigate("/information-portal/articles")}
-      >
-        {t("view_all")}
-      </p>
+      <h1>{t("heading")}</h1>
     </GridItem>
   );
 
@@ -482,6 +472,7 @@ export const ArticlesDashboard = () => {
                 )}`
               );
             }}
+            classes="articles-dashboard__article-item__card-media"
           />
         </GridItem>
       );
@@ -500,17 +491,29 @@ export const ArticlesDashboard = () => {
         <Block classes="articles-dashboard">
           <Grid classes="articles-dashboard__block__grid">
             {renderHeading()}
-            {renderViewMore()}
-            {renderAgeGroups()}
+            {/* {renderAgeGroups()} */}
             <GridItem
               md={8}
               lg={12}
               classes="articles-dashboard__articles-item"
             >
               <Grid>
-                {renderCategories()}
+                {/* {renderCategories()} */}
                 {renderLoading()}
                 {renderArticles()}
+                <GridItem
+                  md={8}
+                  lg={12}
+                  classes="articles-dashboard__show-more-item"
+                >
+                  <NewButton
+                    classes="articles-dashboard__show-more-button"
+                    type="white"
+                    onClick={() => navigate("/information-portal/articles")}
+                  >
+                    {t("show_more")}
+                  </NewButton>
+                </GridItem>
               </Grid>
             </GridItem>
             {renderNoResults()}

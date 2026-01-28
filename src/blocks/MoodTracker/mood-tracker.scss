@@ -1,8 +1,6 @@
 @import "@USupport-components-library/styles";
 
 .mood-tracker {
-  padding-top: $spacing_4_8;
-
   &__heading {
     display: flex;
     flex-direction: row;
@@ -18,7 +16,6 @@
   &__additional-comment {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin: $spacing_1_8 0;
 
     &__toggle-container {
@@ -39,9 +36,13 @@
   }
 
   & .mood-tracker-button {
-    color: $color_secondary_9749fa;
+    @include themify($themes, "color", "color_6a4ffb_8c90eb");
     cursor: pointer;
     padding: $spacing_1_6 0;
+  }
+
+  & h5.mood-tracker-button {
+    font-weight: 500;
   }
 
   &__rating {
@@ -49,26 +50,33 @@
     flex-direction: row;
     justify-content: space-between;
     max-width: 35rem;
-    margin: 0 auto;
-    margin-top: $spacing_2_4;
-    width: 100%;
-    max-width: 42rem;
+    margin-top: $spacing_1_2;
 
     @media screen and (min-width: $screen_md) {
-      max-width: 48rem;
+      max-width: 60rem;
     }
 
     &__emoticon-container {
-      width: 6rem;
+      width: 100%;
       height: 9rem;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
 
       @media screen and (min-width: $screen_md) {
-        width: 10rem;
+        width: 12rem;
       }
 
       &--not-selected {
         opacity: 0.5;
+      }
+
+      & .emoticon {
+        display: inline-block;
+        line-height: 1;
+        user-select: none;
       }
 
       & p {
@@ -80,6 +88,12 @@
         &.small-text {
           color: $color_black_37;
         }
+      }
+
+      &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
     }
   }

@@ -30,6 +30,7 @@ import {
   getLanguageFromUrl,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
+import { Authentication } from "#backdrops";
 import {
   useIsLoggedIn,
   useEventListener,
@@ -39,12 +40,6 @@ import {
 } from "#hooks";
 
 import "./page.scss";
-
-const kazakhstanCountry = {
-  value: "KZ",
-  label: "Kazakhstan",
-  iconName: "KZ",
-};
 
 /**
  * Page
@@ -273,6 +268,11 @@ export const Page = ({
 
   const clientData = queryClient.getQueryData(["client-data"]);
   const image = clientData?.image;
+  const clientName = clientData
+    ? clientData.name && clientData.surname
+      ? `${clientData.name} ${clientData.surname}`
+      : clientData.nickname || clientData.name || ""
+    : "";
 
   useEffect(() => {
     if (clientData) {
@@ -292,6 +292,72 @@ export const Page = ({
     }
   }, [clientData]);
 
+  const menuPages = [
+    {
+      name: null,
+      pages: [
+        { name: t("page_1"), url: "/dashboard", exact: true, icon: "home" },
+        {
+          name: t(IS_RO ? "page_5" : "page_2"),
+          url: IS_RO ? "/organizations" : "/consultations",
+          icon: IS_RO ? "three-people" : "two-people",
+        },
+        {
+          name: t("page_3"),
+          url: "/information-portal?tab=articles",
+          icon: "activities",
+        },
+        {
+          name: t("mood_tracker_button_label"),
+          url: "/mood-tracker",
+          icon: "mood",
+        },
+      ],
+    },
+    {
+      name: t("application_settings"),
+      pages: [
+        {
+          name: t("notifications_settings_button_label"),
+          url: "/notification-preferences",
+          icon: "notifications",
+        },
+      ],
+      hasLanguageSelector: true,
+      hasDarkModeSeletor: true,
+      hasAccessibilityController: true,
+    },
+    {
+      name: t("rate_share"),
+      pages: [
+        {
+          name: t("rate_us_button_label"),
+          url: "/platform-rating",
+          icon: "star",
+        },
+      ],
+    },
+    {
+      name: t("other"),
+      pages: [
+        {
+          name: t("contact_us_button_label"),
+          url: "/contact-us",
+          icon: "comment",
+        },
+        {
+          name: t("privacy_policy_button_label"),
+          url: "/privacy-policy",
+          icon: "document",
+        },
+        { name: t("terms_of_use"), url: "/terms-of-use", icon: "document" },
+        { name: t("cookie_policy"), url: "/cookie-policy", icon: "document" },
+        { name: t("user_guide"), url: "/user-guide", icon: "document" },
+        { name: t("FAQ_button_label"), url: "/faq", icon: "info" },
+      ],
+    },
+  ];
+
   const pages = [
     { name: t("page_1"), url: "/dashboard", exact: true, icon: "home" },
     {
@@ -305,6 +371,7 @@ export const Page = ({
       icon: "activities",
     },
   ];
+
   if (!IS_RO) {
     pages.push({ name: t("page_4"), url: "/my-qa", icon: "document" });
   }
@@ -404,8 +471,15 @@ export const Page = ({
     setLanguagesShown(!languagesShown);
   };
 
+  const handleLogout = () => {
+    userSvc.logout();
+
+    navigateTo(`/client/${localStorageLanguage}`);
+  };
+
   return (
     <>
+      <Authentication />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -424,6 +498,7 @@ export const Page = ({
           navigate={navigateTo}
           NavLink={NavLink}
           pages={pages}
+          menuPages={menuPages}
           showProfile
           yourProfileText={t("your_profile_text")}
           languages={languages}
@@ -434,6 +509,9 @@ export const Page = ({
           renderIn="client"
           hasThemeButton
           t={t}
+          clientName={clientName}
+          handleLogout={handleLogout}
+          openRegistrationModal={() => setIsRegistrationModalOpen(true)}
         />
       )}
       <div
@@ -456,7 +534,7 @@ export const Page = ({
                     onClick={handleGoBackArrowClick}
                   />
                 )}
-                {heading && <h3 className="page__header-heading">{heading}</h3>}
+                {heading && <h1 className="page__header-heading">{heading}</h1>}
               </div>
               {headingButton &&
                 (width >= 768 || showHeadingButtonInline) &&
@@ -556,7 +634,7 @@ export const Page = ({
       {themeButton()}
       {showEmergencyButton && (
         <>
-          {IS_CY && SHOW_WYSA && (
+          {SHOW_WYSA && IS_CY && (
             <>
               <WysaButton onClick={() => setIsWysaModalOpen(true)} />
               <Wysa

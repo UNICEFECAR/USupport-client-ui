@@ -11,6 +11,7 @@ import {
   Button,
   Error,
   PinInput,
+  NewButton,
 } from "@USupport-components-library/src";
 
 import { userSvc } from "@USupport-components-library/services";
@@ -75,7 +76,7 @@ export const CodeVerification = ({
 
       queryClient.setQueryData(
         ["client-data"],
-        userSvc.transformUserData(userData)
+        userSvc.transformUserData(userData),
       );
 
       window.dispatchEvent(new Event("login"));
@@ -125,7 +126,7 @@ export const CodeVerification = ({
             }
             onClick={() => setIsCodeHidden(!isCodeHidden)}
           />
-          <Button
+          <NewButton
             label={t("send_button_label")}
             size="lg"
             classes="code-verification__send-button"

@@ -6,12 +6,12 @@ import { useTranslation } from "react-i18next";
 
 import {
   Block,
-  Button,
-  Emoticon,
+  NewButton,
   Textarea,
   Toggle,
   Modal,
 } from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useAddMoodTrack, useGetHasCompletedMoodTrackerEver } from "#hooks";
 import { ThemeContext } from "@USupport-components-library/utils";
 import { HowItWorksMoodTrack } from "#modals";
@@ -35,6 +35,7 @@ export const MoodTracker = ({
 }) => {
   const { theme } = useContext(ThemeContext);
   const { handleRegistrationModalOpen } = useContext(RootContext);
+  const { width } = useWindowDimensions();
   const country = localStorage.getItem("country");
   const IS_RO = country === "RO";
 
@@ -42,11 +43,16 @@ export const MoodTracker = ({
   const { t } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
 
   const emoticonsArray = [
-    { value: "happy", label: t("happy"), isSelected: false },
-    { value: "good", label: t("good"), isSelected: false },
-    { value: "sad", label: t("sad"), isSelected: false },
-    { value: "depressed", label: t("depressed"), isSelected: false },
-    { value: "worried", label: t("worried"), isSelected: false },
+    { value: "happy", label: t("happy"), isSelected: false, emoji: "😍" },
+    { value: "good", label: t("good"), isSelected: false, emoji: "😀" },
+    { value: "sad", label: t("sad"), isSelected: false, emoji: "😔" },
+    {
+      value: "depressed",
+      label: t("depressed"),
+      isSelected: false,
+      emoji: "☹️",
+    },
+    { value: "worried", label: t("worried"), isSelected: false, emoji: "😣" },
   ];
 
   const [comment, setComment] = useState("");
@@ -88,20 +94,31 @@ export const MoodTracker = ({
           key={index}
           onClick={() => handleEmoticonClick(emoticon.value)}
         >
-          <Emoticon
-            name={`emoticon-${emoticon.value}`}
-            size={emoticon.isSelected ? "lg" : "sm"}
-          />
-          <p
-            className={[
-              "small-text",
-              emoticon.isSelected &&
-                theme !== "dark" &&
-                "mood-tracker__rating__emoticon-container__text--selected",
-            ].join(" ")}
-          >
-            {t(emoticon.value)}
-          </p>
+          <div className="mood-tracker__rating__emoticon-container__content">
+            <span
+              className={[
+                "emoticon",
+                `emoticon--${emoticon.isSelected ? "lg" : "sm"}`,
+              ].join(" ")}
+              style={{
+                fontSize: emoticon.isSelected ? "6.4rem" : "4.8rem",
+                display: "inline-block",
+                lineHeight: "1",
+              }}
+            >
+              {emoticon.emoji}
+            </span>
+            <p
+              className={[
+                "small-text",
+                emoticon.isSelected &&
+                  theme !== "dark" &&
+                  "mood-tracker__rating__emoticon-container__text--selected",
+              ].join(" ")}
+            >
+              {t(emoticon.value)}
+            </p>
+          </div>
         </div>
       );
     });
@@ -171,12 +188,21 @@ export const MoodTracker = ({
         <div className="mood-tracker__heading">
           <h4>{t("heading")}</h4>
           {!(IS_RO && !hasCompletedMoodTrackerEver) ? (
-            <p
-              className="small-text mood-tracker-button"
-              onClick={handleMoodtrackClick}
-            >
-              {t("mood_tracker")}
-            </p>
+            width < 768 ? (
+              <p
+                className="small-text mood-tracker-button"
+                onClick={handleMoodtrackClick}
+              >
+                {t("mood_tracker")}
+              </p>
+            ) : (
+              <h5
+                className="mood-tracker-button"
+                onClick={handleMoodtrackClick}
+              >
+                {t("mood_tracker_long")}
+              </h5>
+            )
           ) : (
             <p
               className="small-text mood-tracker-button"
@@ -208,7 +234,7 @@ export const MoodTracker = ({
                 </div>
               )}
               <div className="mood-tracker__additional-comment__button-container">
-                <Button
+                <NewButton
                   label={t("submit_mood_track")}
                   size="lg"
                   onClick={handleSubmit}

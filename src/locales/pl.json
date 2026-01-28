@@ -30,7 +30,24 @@
       "reject_all_cookies": "Odrzuć wszystkie",
       "accept_necessary_cookies": "Akceptuj tylko wymagane",
       "save": "Zapisz",
-      "high_contrast": "Wysoki kontrast"
+      "high_contrast": "Wysoki kontrast",
+      "your_profile": "Twój profil",
+      "guest": "Gość",
+      "application_settings": "Ustawienia aplikacji",
+      "rate_share": "Oceń",
+      "other": "Inne",
+      "notifications_settings_button_label": "Ustawienia powiadomień",
+      "rate_us_button_label": "Wystaw nam ocenę",
+      "share_button_label": "Udostępnianie aplikacji",
+      "contact_us_button_label": "Skontaktuj się z nami",
+      "privacy_policy_button_label": "Polityką prywatności",
+      "FAQ_button_label": "Najczęściej zadawane pytania",
+      "mood_tracker_button_label": "Monitor nastroju",
+      "payments_history_button_label": "Historia płatności",
+      "terms_of_use": "Regulaminem",
+      "cookie_policy": "Polityka plików cookies",
+      "user_guide": "Wykorzystanie platformy",
+      "edit_profile": "Edit profile"
     },
     "provider-overview": {
       "earliest_slot_label": "Najwcześniejszy dostępny termin konsultacji",
@@ -149,7 +166,8 @@
       "copy_success": "Token został pomyślnie skopiowany",
       "confirm_password_label": "Potwierdź hasło",
       "password_match_error": "Pola Hasło i Potwierdź hasło nie są zgodne",
-      "age_terms_agreement_text_1": "Mam ponad {{age}} lat"
+      "age_terms_agreement_text_1": "Mam ponad {{age}} lat",
+      "heading": "Register anonymously"
     },
     "register-support": {
       "button_continue_label": "Kontynuuj",
@@ -224,7 +242,9 @@
       "modal_heading": "Sprawdź swoją skrzynkę email",
       "modal_text": "Jeśli jesteś zarejestrowany na platformie, otrzymasz link do zresetowania hasła.",
       "client": "Klient/ka",
-      "heading": "Witamy w"
+      "heading": "Witamy w",
+      "heading_modal": "Forgot password",
+      "go_back_to_login": "Go back to login"
     },
     "consultations": {
       "upcoming_tab_label": "Nadchodzące",
@@ -328,7 +348,8 @@
       "login_button_label": "Już posiadam konto",
       "confirm_password_label": "Potwierdź hasło",
       "password_match_error": "Pola Hasło i Potwierdź hasło nie są zgodne",
-      "age_terms_agreement_text_1": "Mam ponad {{age}} lat"
+      "age_terms_agreement_text_1": "Mam ponad {{age}} lat",
+      "heading": "Register with email"
     },
     "privacy-policy": {
       "no_results": "Brak wyników dla wybranego kraju i języka."
@@ -442,7 +463,33 @@
       "december": "Grudzień",
       "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
       "cookie_preferences": "Preferencje plików cookie",
-      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem",
+      "upcoming_tab_label": "Nadchodzące",
+      "past_tab_label": "Wcześniejsze",
+      "sunday": "Niedz.",
+      "monday": "Pon.",
+      "tuesday": "Wt.",
+      "wednesday": "Śr.",
+      "thursday": "Czw.",
+      "friday": "Pt.",
+      "saturday": "Sob.",
+      "no_upcoming_consultations": "Nie masz żadnych nadchodzących konsultacji",
+      "no_past_consultations": "Nie masz żadnych wcześniejszych konsultacji",
+      "reject_consultation_success": "Konsultacja została pomyślnie odrzucona",
+      "accept_consultation_success": "Konsultacja została pomyślnie zaakceptowana",
+      "join": "Dołącz",
+      "edit": "Edytuj",
+      "details": "Zobacz szczegóły",
+      "active": "Teraz",
+      "reject": "Reject suggestion",
+      "accept": "Accept consultation",
+      "cancel_consultation": "Anuluj konsultację",
+      "suggested": "Sugerowane",
+      "view_profile": "Wyświetl profil osobisty",
+      "conducted": "Konsultacja zakończona",
+      "not_conducted": "Nie przeprowadzono",
+      "free": "Bezpłatne",
+      "coupon": "Kupon"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",
@@ -459,7 +506,8 @@
       "how_it_works": "Jak to działa",
       "recommendations": "Rekomendacje",
       "recommendations_text": "Chcesz zobaczyć wykres swojego nastroju i polecane treści?",
-      "check_out": "Zobacz"
+      "check_out": "Zobacz",
+      "mood_tracker_long": "Study your mood tracker"
     },
     "mascot-welcome-header": {
       "welcome": "Witamy z powrotem {{name}}!",
@@ -507,7 +555,8 @@
       "min_read": "min. czytania",
       "by": "Przez {{creator}}",
       "number_of_more_options": "jeszcze {{count}}",
-      "read": "Czytać"
+      "read": "Czytać",
+      "show_more": "Show more"
     },
     "mood-tracker-history": {
       "heading": "Ogólnie rzecz biorąc, czułeś się/aś się {{feeling}} w ciągu ostatnich 30 dni",
@@ -871,7 +920,8 @@
       "biological": "Biological",
       "social": "Social",
       "latest_results": "Latest Results",
-      "how_it_works": "How it works"
+      "how_it_works": "How it works",
+      "see_last_result": "Latest results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Ocena zakończona",
@@ -912,7 +962,17 @@
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
       "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
       "same_same_same": "Twoje wyniki są takie same jak w poprzedniej ocenie.",
-      "organizations": "Organizacje zalecane"
+      "organizations": "Organizacje zalecane",
+      "summary_heading": "Recommendations generated based on the score obtained",
+      "view_more": "Zobacz więcej"
+    },
+    "dashboard-hero": {
+      "heading": "Welcome back"
+    },
+    "download-app": {
+      "heading": "Download our mobile app",
+      "paragraph": "Now available for iOS and Android",
+      "download_text": "Download from"
     }
   },
   "pages": {
@@ -1344,6 +1404,15 @@
       "start_date": "Data rozpoczęcia",
       "end_date": "Data zakończenia",
       "end_date_before_start_error": "Data zakończenia musi być po dacie rozpoczęcia"
+    },
+    "welcome": {
+      "heading": "Welcome to",
+      "country": "Kraj",
+      "language": "Język",
+      "placeholder": "Select",
+      "register_email": "Zarejestruj się za pomocą adresu e-mail",
+      "register_anonymously": "Rejestracja anonimowa",
+      "continue_as_guest": "Kontynuuj bez rejestracji"
     }
   },
   "modals": {

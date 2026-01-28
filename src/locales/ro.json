@@ -6,7 +6,6 @@
       "page_3": "Portal de informații",
       "page_4": "Întrebările mele",
       "page_5": "Organizații",
-
       "footer_1": "Acasă",
       "footer_2": "Consultații",
       "footer_3": "Portal de informații",
@@ -26,13 +25,29 @@
       "dark": "Întunecat",
       "light": "Luminos",
       "high_contrast": "Contrast ridicat",
-
       "cookie_banner_header": "Apreciem confidențialitatea dvs.",
       "cookie_banner_text": "Acest site folosește cookie-uri pentru a vă îmbunătăți și securiza experiența de navigare. Prin utilizarea site-ului nostru, sunteți de acord cu <0>Politica privind cookie-urile</0>.",
       "accept_all_cookies": "Acceptați toate",
       "reject_all_cookies": "Respingeți toate",
       "accept_necessary_cookies": "Acceptați doar pe cele necesare",
-      "save": "Salvați"
+      "save": "Salvați",
+      "your_profile": "Profilul dvs.",
+      "guest": "Invitat",
+      "application_settings": "Setări aplicație",
+      "rate_share": "Evaluare",
+      "other": "Altele",
+      "notifications_settings_button_label": "Setări notificări",
+      "rate_us_button_label": "Evaluați-ne",
+      "share_button_label": "Partajați aplicația",
+      "contact_us_button_label": "Contactați-ne",
+      "privacy_policy_button_label": "Politica de confidențialitate",
+      "FAQ_button_label": "ÎNTREBĂRI FRECVENTE",
+      "mood_tracker_button_label": "Urmărirea stării de spirit",
+      "payments_history_button_label": "Istoricul plăților",
+      "terms_of_use": "Condiții de utilizare",
+      "cookie_policy": "Politica privind cookie-urile",
+      "user_guide": "Utilizarea platformei",
+      "edit_profile": "Edit profile"
     },
     "provider-overview": {
       "earliest_slot_label": "Primul interval disponibil pentru consultație",
@@ -151,7 +166,8 @@
       "copy_success": "Codul a fost copiat",
       "confirm_password_label": "Confirmați parola",
       "password_match_error": "Câmpurile Parolă nouă și Confirmare parolă nu corespund",
-      "age_terms_agreement_text_1": "Am peste 10 ani"
+      "age_terms_agreement_text_1": "Am peste 10 ani",
+      "heading": "Register anonymously"
     },
     "register-support": {
       "button_continue_label": "Continuați",
@@ -226,7 +242,9 @@
       "modal_heading": "Verificați e-mailul",
       "modal_text": "Dacă sunteți înregistrat în platformă, veți primi un link pentru a vă reseta parola.",
       "client": "Client",
-      "heading": "Bine ați venit la"
+      "heading": "Bine ați venit la",
+      "heading_modal": "Forgot password",
+      "go_back_to_login": "Go back to login"
     },
     "consultations": {
       "upcoming_tab_label": "Urmează",
@@ -330,7 +348,8 @@
       "login_button_label": "Am deja un cont",
       "confirm_password_label": "Confirmați parola",
       "password_match_error": "Câmpurile Parolă nouă și Confirmare parolă nu corespund",
-      "age_terms_agreement_text_1": "Am peste 13 ani"
+      "age_terms_agreement_text_1": "Am peste 13 ani",
+      "heading": "Register with email"
     },
     "privacy-policy": {
       "no_results": "Nu există rezultate pentru țara și limba selectate"
@@ -444,7 +463,33 @@
       "december": "decembrie",
       "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere",
       "require_cookies": "Pentru a viziona acest videoclip, vă rugăm să acceptați toate cookie-urile.",
-      "cookie_preferences": "Preferințe pentru cookie-uri"
+      "cookie_preferences": "Preferințe pentru cookie-uri",
+      "upcoming_tab_label": "Urmează",
+      "past_tab_label": "Trecut",
+      "sunday": "du",
+      "monday": "lu",
+      "tuesday": "ma",
+      "wednesday": "mi",
+      "thursday": "joi",
+      "friday": "vineri",
+      "saturday": "sâ",
+      "no_upcoming_consultations": "Nu aveți consultații planificate",
+      "no_past_consultations": "Nu aveți consultații anterioare",
+      "reject_consultation_success": "Consultație respinsă",
+      "accept_consultation_success": "Consultation accepted successfully",
+      "join": "Intrare",
+      "edit": "Editare",
+      "details": "Vedeți detalii",
+      "active": "Acum",
+      "reject": "Reject suggestion",
+      "accept": "Accept consultation",
+      "cancel_consultation": "Anulați consultația",
+      "suggested": "Propunere",
+      "view_profile": "Vedeți profilul personal",
+      "conducted": "Consultație încheiată",
+      "not_conducted": "Nu a avut loc",
+      "free": "Free",
+      "coupon": "Cupon"
     },
     "mood-tracker": {
       "happy": "Fericit",
@@ -461,7 +506,8 @@
       "emergency_label": "Se referă acest lucru la un eveniment din viață sau la o situație critică?",
       "recommendations": "Recomandări",
       "recommendations_text": "Vrei să vezi graficul stării tale și conținutul recomandat?",
-      "check_out": "Vezi detalii"
+      "check_out": "Vezi detalii",
+      "mood_tracker_long": "Study your mood tracker"
     },
     "mascot-welcome-header": {
       "welcome": "Bine ați revenit {{name}}!",
@@ -509,7 +555,8 @@
       "min_read": "durata lecturii",
       "by": "de {{creator}}",
       "number_of_more_options": "încă {{count}}",
-      "read": "Citire"
+      "read": "Citire",
+      "show_more": "Show more"
     },
     "mood-tracker-history": {
       "heading": "În ansamblu, v-ați simțit {{feeling}} în ultimele 30 de zile",
@@ -669,12 +716,10 @@
       "online_interaction": "Online",
       "phone_interaction": "Telefon",
       "hybrid_interaction": "Hibrid",
-
       "free_services": "Servicii gratuite",
       "paid_services": "Servicii plătite",
       "co_payment_services": "Servicii cu coplată",
       "cnas_reimbursed_services": "Servicii decontate de CNAS",
-
       "violence_victim_helpline": "Linie de asistență pentru victimele violenței",
       "social_information_counseling": "Informare și consiliere socială",
       "rehab_psycho_neuro_children": "Servicii de recuperare pentru copii cu tulburări psihoneuro-motorii",
@@ -688,7 +733,6 @@
       "rehab_autism_children": "Servicii de recuperare pentru copii cu autism",
       "art_recreational_activities": "Activități recreative artistice (teatru, muzică, poezie, pictură, storytelling)",
       "addiction_helpline": "Linie de asistență pentru dependențe",
-
       "emergency_situations": "Situații de urgență",
       "pediatric_psychiatry": "Psihiatrie pediatrică",
       "psychological_evaluation": "Evaluare psihologică",
@@ -707,14 +751,12 @@
       "pediatric_neurology": "Neurologie pediatrică",
       "special_psychopedagogy": "Psihopedagogie specială",
       "neuropsychomotor_recovery": "Recuperare neuropsihomotorie",
-
       "sector_1": "Sector 1",
       "sector_2": "Sector 2",
       "sector_3": "Sector 3",
       "sector_4": "Sector 4",
       "sector_5": "Sector 5",
       "sector_6": "Sector 6",
-
       "aggression_violence_victim_or_aggressor": "Agresiune/violență - victimă sau agresor",
       "learning_difficulties_special_educational_needs": "Dificultăți de învățare/Nevoi educaționale speciale",
       "behavioral_disorder": "Tulburări de comportament",
@@ -724,12 +766,10 @@
       "identity_issues": "Probleme de identitate",
       "illness_oncological_treatment_chronic_diseases": "Boală (tratament oncologic, boli cronice)",
       "other_situations": "Alte situații",
-
       "public": "Public",
       "private": "Privat",
       "ong": "ONG",
       "public_private": "Public-privat",
-
       "work_with_placeholder": "Selectați categoriile pentru care se lucrează",
       "specialisations_placeholder": "Selectați serviciile oferite",
       "district_placeholder": "Selectați sectorul",
@@ -737,10 +777,8 @@
       "user_interactions_placeholder": "Selectați modurile de interacțiune",
       "property_types_placeholder": "Selectați tipurile de proprietate",
       "search_placeholder": "Căutați după numele organizației",
-
       "no_data_found": "Nu s-au găsit date",
       "reset_filters": "Resetați filtrele",
-
       "view_organization_details": "Citește mai mult",
       "address": "Adresă",
       "phone": "Telefon",
@@ -762,7 +800,6 @@
       "work_with_label": "Lucrează cu",
       "offered_services_label": "Servicii oferite",
       "providers_label": "Furnizori",
-
       "violence_victim_helpline": "Linie de asistență pentru victimele violenței",
       "individual_psychotherapy": "Psihoterapie individuală",
       "social_information_counseling": "Informare și consiliere socială",
@@ -779,7 +816,6 @@
       "art_recreational_activities": "Activități recreative artistice (teatru, muzică, poezie, pictură, storytelling)",
       "addiction_helpline": "Linie de asistență pentru dependențe",
       "group_psychotherapy": "Psihoterapie de grup",
-
       "emergency_situations": "Situații de urgență",
       "pediatric_psychiatry": "Psihiatrie pediatrică",
       "psychological_evaluation": "Evaluare psihologică",
@@ -795,29 +831,24 @@
       "pediatric_neurology": "Neurologie pediatrică",
       "special_psychopedagogy": "Psihopedagogie specială",
       "neuropsychomotor_recovery": "Recuperare neuropsihomotorie",
-
       "in_person_interaction": "În persoană",
       "online_interaction": "Online",
       "phone_interaction": "Telefon",
       "hybrid_interaction": "Hibrid",
-
       "free_services": "Servicii gratuite",
       "paid_services": "Servicii plătite",
       "co_payment_services": "Servicii cu coplată",
       "cnas_reimbursed_services": "Servicii decontate de CNAS",
-
       "public": "Public",
       "private": "Privat",
       "ong": "ONG",
       "public_private": "Public-privat",
-
       "sector_1": "Sector 1",
       "sector_2": "Sector 2",
       "sector_3": "Sector 3",
       "sector_4": "Sector 4",
       "sector_5": "Sector 5",
       "sector_6": "Sector 6",
-
       "aggression_violence_victim_or_aggressor": "Agresiune/violență - victimă sau agresor",
       "learning_difficulties_special_educational_needs": "Dificultăți de învățare/Nevoi educaționale speciale",
       "behavioral_disorder": "Tulburări de comportament",
@@ -827,8 +858,8 @@
       "identity_issues": "Probleme de identitate",
       "illness_oncological_treatment_chronic_diseases": "Boală (tratament oncologic, boli cronice)",
       "other_situations": "Alte situații",
-
-      "copy_link_success": "Link copiat în clipboard!"
+      "copy_link_success": "Link copiat în clipboard!",
+      "description_label": "Despre mine"
     },
     "baseline-assesment": {
       "instructions": "Instrucțiuni: Gândindu-vă la ultimele două săptămâni, alegeți opțiunea care vi se potrivește cel mai bine pentru afirmațiile de mai jos.",
@@ -859,7 +890,6 @@
       "appetite_loss": "Nu am poftă de mâncare.",
       "substance_use": "Am încercat de mai multe ori fumatul sau substanțe ilegale (alcool, droguri etc.).",
       "frequent_headaches": "Am deseori dureri de cap fără motiv.",
-
       "question": "Întrebarea {{number}} din {{total}}",
       "completed": "{{percentage}}% finalizat",
       "back": "Înapoi",
@@ -902,7 +932,6 @@
       "read_more_button": "Citește mai mult",
       "by": "de {{creator}}",
       "min_read": "min de citit",
-
       "psychological": "Psihologic",
       "biological": "Biologic",
       "social": "Social",
@@ -936,6 +965,14 @@
       "summary_heading": "Recomandări generate în funcție de scorul obținut",
       "organizations": "Organizații recomandate",
       "view_more": "Vezi mai mult"
+    },
+    "dashboard-hero": {
+      "heading": "Welcome back"
+    },
+    "download-app": {
+      "heading": "Download our mobile app",
+      "paragraph": "Now available for iOS and Android",
+      "download_text": "Download from"
     }
   },
   "pages": {
@@ -1367,6 +1404,15 @@
       "start_date": "Data de început",
       "end_date": "Data de sfârșit",
       "end_date_before_start_error": "Data de sfârșit trebuie să fie după data de început"
+    },
+    "welcome": {
+      "heading": "Welcome to",
+      "country": "Țara",
+      "language": "Limba",
+      "placeholder": "Select",
+      "register_email": "Înregistrare cu e-mail",
+      "register_anonymously": "Înregistrare anonimă",
+      "continue_as_guest": "Continuați fără înregistrare"
     }
   },
   "modals": {

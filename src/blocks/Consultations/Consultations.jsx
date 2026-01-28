@@ -141,7 +141,7 @@ export const Consultations = ({
         <GridItem
           key={index}
           md={hasMoreThanOne ? 4 : 8}
-          lg={hasMoreThanOne ? 6 : 12}
+          lg={hasMoreThanOne ? 4 : 12}
           classes="consultations__grid__consultations-item__grid__consultation"
         >
           <Consultation
@@ -159,6 +159,11 @@ export const Consultations = ({
             withOrganization={!!consultation.organizationId}
             t={t}
             toast={toast}
+            classes={
+              hasMoreThanOne
+                ? "consultations__grid__consultations-item__grid__consultation__item"
+                : ""
+            }
           />
         </GridItem>
       );
@@ -172,6 +177,7 @@ export const Consultations = ({
           <TabsUnderlined
             options={tabsOptions}
             handleSelect={handleTabClick}
+            textType="h3"
             t={t}
           />
         </GridItem>

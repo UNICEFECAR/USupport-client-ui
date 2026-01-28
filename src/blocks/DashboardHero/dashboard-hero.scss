@@ -1,0 +1,14 @@
+@import "@USupport-components-library/styles";
+
+.dashboard-hero {
+  padding-top: $spacing_5_6;
+  padding-bottom: $spacing_5_6;
+
+  &__heading {
+    text-align: left;
+
+    &__name {
+      @include themify($themes, "color", "color_6a4ffb_8c90eb");
+    }
+  }
+}

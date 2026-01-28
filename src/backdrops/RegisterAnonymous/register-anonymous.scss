@@ -1,0 +1,10 @@
+@import "@USupport-components-library/styles";
+
+.register-anonymous-modal {
+  &__content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

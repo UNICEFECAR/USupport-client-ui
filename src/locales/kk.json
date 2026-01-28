@@ -30,7 +30,24 @@
       "reject_all_cookies": "Барлығын қабылдамау",
       "accept_necessary_cookies": "Тек қажеттілерін қабылдау",
       "save": "Сақтау",
-      "high_contrast": "Жоғары контраст"
+      "high_contrast": "Жоғары контраст",
+      "your_profile": "Сіздің парақшаңыз",
+      "guest": "Қонақ",
+      "application_settings": "Баптаулар",
+      "rate_share": "Бағалау",
+      "other": "Басқа",
+      "notifications_settings_button_label": "Хабарландыру баптаулары",
+      "rate_us_button_label": "Бізге баға беріңіз",
+      "share_button_label": "Қосымшамен бөлісу",
+      "contact_us_button_label": "Бізге хабарласыңыз",
+      "privacy_policy_button_label": "Құпиялық саясаты",
+      "FAQ_button_label": "Жиі қойылатын сұрақтар",
+      "mood_tracker_button_label": "Көңіл-күй трекері",
+      "payments_history_button_label": "Төлем тарихы",
+      "terms_of_use": "Пайдалану шарттары",
+      "cookie_policy": "Cookie саясаты",
+      "user_guide": "Платформа нұсқаулығы",
+      "edit_profile": "Edit profile"
     },
     "provider-overview": {
       "earliest_slot_label": "Консультация алу үшін жақын арадағы бос уақыт",
@@ -149,7 +166,8 @@
       "copy_success": "Сәтті көшірілген код",
       "confirm_password_label": "Құпия сөзді растаңыз",
       "password_match_error": "Құпия сөз және Құпия сөзді растау өрістері сәйкес келмейді",
-      "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен"
+      "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен",
+      "heading": "Register anonymously"
     },
     "register-support": {
       "button_continue_label": "Жалғастыру",
@@ -224,7 +242,9 @@
       "modal_heading": "Электронды поштаңызды тексеріңіз",
       "modal_text": "Егер Сіз платформада тіркелген болсаңыз, құпия сөзді қалпына келтіруге сілтеме аласыз.",
       "client": "Клиент",
-      "heading": "Қош келдіңіз, бұл - "
+      "heading": "Қош келдіңіз, бұл - ",
+      "heading_modal": "Forgot password",
+      "go_back_to_login": "Go back to login"
     },
     "consultations": {
       "upcoming_tab_label": "Алдағы",
@@ -328,7 +348,8 @@
       "login_button_label": "Менің аккаунтым бар",
       "confirm_password_label": "Құпия сөзді растаңыз",
       "password_match_error": "Құпия сөз және Құпия сөзді растау өрістері сәйкес келмейді",
-      "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен"
+      "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен",
+      "heading": "Register with email"
     },
     "privacy-policy": {
       "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады."
@@ -442,7 +463,33 @@
       "december": "желтоқсан",
       "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
       "cookie_preferences": "Cookie параметрлері",
-      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз",
+      "upcoming_tab_label": "Алдағы",
+      "past_tab_label": "Бұрынғы",
+      "sunday": "Жс",
+      "monday": "Дс",
+      "tuesday": "Сс",
+      "wednesday": "Ср",
+      "thursday": "Бс",
+      "friday": "Жм",
+      "saturday": "Сб",
+      "no_upcoming_consultations": "Сізде алдағы консультациялар жоқ",
+      "no_past_consultations": "Сізде брынғы консультациялар жоқ",
+      "reject_consultation_success": "Консультациядан сәтті бас тарттыңыз",
+      "accept_consultation_success": "Консультация сәтті қабылданды",
+      "join": "Қосылу",
+      "edit": "Өзгерту",
+      "details": "Мәліметтерді қарау",
+      "active": "Қазір",
+      "reject": "Reject suggestion",
+      "accept": "Accept consultation",
+      "cancel_consultation": "Консультациядан бас тарту",
+      "suggested": "Ұсынылды",
+      "view_profile": "Жеке парақшаны қарап шығу",
+      "conducted": "Консультация аяқталды",
+      "not_conducted": "Өткізілмеді",
+      "free": "Free",
+      "coupon": "Купон"
     },
     "mood-tracker": {
       "happy": "Керемет",
@@ -459,7 +506,8 @@
       "how_it_works": "Қалай жұмыс істейді",
       "recommendations": "Ұсыныстар",
       "recommendations_text": "Көңіл-күй графигіңізді қарап, ұсынылған мазмұнды көргіңіз келе ме?",
-      "check_out": "Қарап шығу"
+      "check_out": "Қарап шығу",
+      "mood_tracker_long": "Study your mood tracker"
     },
     "mascot-welcome-header": {
       "welcome": "Қайта оралуыңызбен, {{name}}!",
@@ -507,7 +555,8 @@
       "min_read": "минут оқуға",
       "by": "Дайындаушы {{creator}}",
       "number_of_more_options": "тағы {{count}}",
-      "read": "Оқу"
+      "read": "Оқу",
+      "show_more": "Show more"
     },
     "mood-tracker-history": {
       "heading": "Жалпы сіз соңғы 30 күнде {{feeling}} сезіндіңіз",
@@ -850,7 +899,12 @@
       "assessment_completed": "Бағалау аяқталды",
       "assessment_completed_description": "Бағалауды аяқтағаныңызға рахмет. Жауаптарыңыз сақталды және сізге көмектесу үшін пайдаланылады.",
       "assessment_completed_button": "Басты бетке қайту",
-      "save_button_label": "Save for later"
+      "save_button_label": "Save for later",
+      "sontrgly_disagree": "Strongly Disagree",
+      "disagree": "Disagree",
+      "neutral": "Бейтарап",
+      "agree": "Agree",
+      "strongly_agree": "Strongly Agree"
     },
     "baseline-assessment-dashboard": {
       "heading": "Сіздің базалық бағалауыңыз",
@@ -865,7 +919,9 @@
       "psychological": "Psychological",
       "biological": "Biological",
       "social": "Social",
-      "latest_results": "Latest Results"
+      "latest_results": "Latest Results",
+      "how_it_works": "How it works",
+      "see_last_result": "Latest results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Бағалау аяқталды",
@@ -906,7 +962,17 @@
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
       "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
       "same_same_same": "Сіздің нәтижелеріңіз алдыңғы бағалаумен бірдей.",
-      "organizations": "Ұсынылған ұйымдар"
+      "organizations": "Ұсынылған ұйымдар",
+      "summary_heading": "Recommendations generated based on the score obtained",
+      "view_more": "View more"
+    },
+    "dashboard-hero": {
+      "heading": "Welcome back"
+    },
+    "download-app": {
+      "heading": "Download our mobile app",
+      "paragraph": "Now available for iOS and Android",
+      "download_text": "Download from"
     }
   },
   "pages": {
@@ -1338,6 +1404,15 @@
       "start_date": "Басталу күні",
       "end_date": "Аяқталу күні",
       "end_date_before_start_error": "Аяқталу күні басталу күнінен кейін болуы керек"
+    },
+    "welcome": {
+      "heading": "Welcome to",
+      "country": "Ел",
+      "language": "Тіл",
+      "placeholder": "Select",
+      "register_email": "Электронды пошта арқылы тіркеліңіз",
+      "register_anonymously": "Электрондық поштасыз тіркелу",
+      "continue_as_guest": "Тіркеусіз жалғастыру"
     }
   },
   "modals": {
@@ -1453,6 +1528,16 @@
       "heading": "Сеанстан шынымен кеткіңіз келе ме?",
       "confirm": "Шығу",
       "cancel": "Болдырмау"
+    },
+    "how-it-works-ba": {
+      "heading": "How baseline assessment works",
+      "subheading_1": "Before accessing your baseline assessment, please review and accept the Privacy Policy. You must accept it to continue.",
+      "subheading_2": "You can also start the assessment anytime from your dashboard.",
+      "subheading_3": "The assessment is divided into multiple questions with a progress bar, and you can save your progress and continue later.",
+      "subheading_4": "Белгілі бір оқиғаны басу арқылы сол сәтке жазылған барлық түсініктемелер мен жазбаларды көре аласыз, бұл сіздің көңіл күйіңізге не әсер еткенін тереңірек түсінуге мүмкіндік береді.",
+      "subheading_5": "Сіз кез келген таңдалған күн аралығына есеп жасай аласыз және оны CSV файлы ретінде экспорттай аласыз — бұл сіздің көңіл күй деректеріңізді қарап шығуды немесе қажет болған жағдайда бөлісуді жеңілдетеді.",
+      "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
+      "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
     }
   },
   "routes": {

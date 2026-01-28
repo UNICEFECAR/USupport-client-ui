@@ -30,7 +30,24 @@
       "reject_all_cookies": "Reject all",
       "accept_necessary_cookies": "Accept only necessary",
       "save": "Save",
-      "high_contrast": "Բարձր հակադրություն"
+      "high_contrast": "Բարձր հակադրություն",
+      "your_profile": "Ձեր պրոֆիլը",
+      "guest": "Հյուր",
+      "application_settings": "Հավելվածի կարգավորումներ",
+      "rate_share": "Գնահատել",
+      "other": "Այլ",
+      "notifications_settings_button_label": "Ծանուցումների կարգավորումներ",
+      "rate_us_button_label": "Գնահատեք մեզ",
+      "share_button_label": "Հավելվածի մասին տեղեկացնեք ուրիշներին",
+      "contact_us_button_label": "Կապվեք մեզ հետ",
+      "privacy_policy_button_label": "Գաղտնիության քաղաքականություն",
+      "FAQ_button_label": "Հաճախակի տրվող հարցեր",
+      "mood_tracker_button_label": "Տրամադրության ստուգիչ",
+      "payments_history_button_label": "Վճարման պատմությունը",
+      "terms_of_use": "Օգտվելու պայմանները",
+      "cookie_policy": "Cookie-ների քաղաքականությունը",
+      "user_guide": "Հարթակի գործածելիությունը",
+      "edit_profile": "Edit profile"
     },
     "provider-overview": {
       "earliest_slot_label": "Խորհրդատվության ամենամոտ հասանելի ժամանակը",
@@ -149,7 +166,8 @@
       "copy_success": "Կոդը բարեհաջող պատճենված է",
       "confirm_password_label": "Հաստատել գաղտնաբառը",
       "password_match_error": "«Գաղտնաբառ» և «Հաստատել գաղտնաբառը» դաշտերը չեն համընկնում",
-      "age_terms_agreement_text_1": "Ես 13 տարեկանից բարձր եմ"
+      "age_terms_agreement_text_1": "Ես 13 տարեկանից բարձր եմ",
+      "heading": "Register anonymously"
     },
     "register-support": {
       "button_continue_label": "Շարունակել",
@@ -224,7 +242,9 @@
       "modal_heading": "Ստուգեք ձեր էլեկտրոնային փոստը",
       "modal_text": "Եթե գրանցված եք հարթակում, ապա կստանաք հղում՝ գաղտնաբառը վերագործարկելու համար",
       "client": "Հաճախորդ",
-      "heading": "Բարի գալուստ"
+      "heading": "Բարի գալուստ",
+      "heading_modal": "Forgot password",
+      "go_back_to_login": "Go back to login"
     },
     "consultations": {
       "upcoming_tab_label": "Առաջիկա",
@@ -328,7 +348,8 @@
       "login_button_label": "Ես արդեն ունեմ օգտահաշիվ",
       "confirm_password_label": "Հաստատել գաղտնաբառը",
       "password_match_error": "«Գաղտնաբառ» և «Հաստատել» դաշտերը չեն համընկնում",
-      "age_terms_agreement_text_1": "Ես 13 տարեկանից բարձր եմ"
+      "age_terms_agreement_text_1": "Ես 13 տարեկանից բարձր եմ",
+      "heading": "Register with email"
     },
     "privacy-policy": {
       "no_results": "Ընտրված երկրի և լեզվի վերաբերյալ արդյունքներ չեն գտնվել"
@@ -442,7 +463,33 @@
       "december": "Դեկտեմբեր",
       "require_cookies": "To view this video, please accept all cookies.",
       "cookie_preferences": "Cookie preferences",
-      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ"
+      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ",
+      "upcoming_tab_label": "Առաջիկա",
+      "past_tab_label": "Նախկին",
+      "sunday": "Կիր․",
+      "monday": "Երկշ․",
+      "tuesday": "Երքշ․",
+      "wednesday": "Չորք․",
+      "thursday": "Հնգշ․",
+      "friday": "Ուրբ․",
+      "saturday": "Շաբ․",
+      "no_upcoming_consultations": "Դուք առաջիկայում խորհրդատվություններ չունեք",
+      "no_past_consultations": "Նախկինում խորհրդատվություններ չեք ունեցել",
+      "reject_consultation_success": "Consultation rejected successfully",
+      "accept_consultation_success": "Consultation accepted successfully",
+      "join": "Միանալ",
+      "edit": "Փոփոխել",
+      "details": "Տես մանրամասները",
+      "active": "Այժմ",
+      "reject": "Մերժել առաջարկությունը",
+      "accept": "Accept consultation",
+      "cancel_consultation": "Չեղարկել խորհրդատվությունը",
+      "suggested": "Առաջարկվել է",
+      "view_profile": "Դիտել անձնական պրոֆիլը",
+      "conducted": "Խորհրդատվությունը ավարտված է",
+      "not_conducted": "Չի իրականացվել",
+      "free": "Անվճար",
+      "coupon": "Coupon"
     },
     "mood-tracker": {
       "happy": "Ուրախ եմ",
@@ -459,7 +506,8 @@
       "how_it_works": "Ինչպես է գործում",
       "recommendations": "Առաջարկություններ",
       "recommendations_text": "Ցանկանու՞մ եք դիտել ձեր տրամադրության գրաֆիկը և տեսնել առաջարկված բովանդակությունը:",
-      "check_out": "Դիտել"
+      "check_out": "Դիտել",
+      "mood_tracker_long": "Study your mood tracker"
     },
     "mascot-welcome-header": {
       "welcome": "Բարի վերադարձ {{հաճախորդի անունը}}",
@@ -507,7 +555,8 @@
       "min_read": "րոպե կարդալու համար",
       "by": "{{creator}}-ի կողմից",
       "number_of_more_options": "{{count}} ավելին",
-      "read": "Կարդալ"
+      "read": "Կարդալ",
+      "show_more": "Show more"
     },
     "mood-tracker-history": {
       "heading": "Ընդհանուր առամբ, դուք վերջին 30 օրվա ընթացքում զգացել եք {{feeling}} ",
@@ -850,7 +899,12 @@
       "assessment_completed": "Assessment Completed",
       "assessment_completed_description": "Thank you for completing the assessment. Your answers have been saved and will be used to help you.",
       "assessment_completed_button": "Back to Home",
-      "save_button_label": "Save for later"
+      "save_button_label": "Save for later",
+      "sontrgly_disagree": "Strongly Disagree",
+      "disagree": "Disagree",
+      "neutral": "Ոչ գոհ եմ, ոչ՝ դժգոհ",
+      "agree": "Agree",
+      "strongly_agree": "Strongly Agree"
     },
     "baseline-assessment-dashboard": {
       "heading": "Your Baseline Assessment",
@@ -865,7 +919,9 @@
       "psychological": "Psychological",
       "biological": "Biological",
       "social": "Social",
-      "latest_results": "Latest Results"
+      "latest_results": "Latest Results",
+      "how_it_works": "How it works",
+      "see_last_result": "Latest results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",
@@ -906,7 +962,17 @@
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
       "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
       "same_same_same": "Ձեր արդյունքները նույնն են, ինչ նախորդ գնահատականը:",
-      "organizations": "Recommended organizations"
+      "organizations": "Recommended organizations",
+      "summary_heading": "Recommendations generated based on the score obtained",
+      "view_more": "View more"
+    },
+    "dashboard-hero": {
+      "heading": "Welcome back"
+    },
+    "download-app": {
+      "heading": "Download our mobile app",
+      "paragraph": "Now available for iOS and Android",
+      "download_text": "Download from"
     }
   },
   "pages": {
@@ -1338,6 +1404,15 @@
       "start_date": "Սկզբի ամսաթիվ",
       "end_date": "Ավարտի ամսաթիվ",
       "end_date_before_start_error": "Ավարտի ամսաթիվը պետք է լինի ավելի ուշ, քան սկզբի ամսաթիվը"
+    },
+    "welcome": {
+      "heading": "Welcome to",
+      "country": "Country",
+      "language": "Language",
+      "placeholder": "Select",
+      "register_email": "Գրանցվել էլեկտրոնային փոստով",
+      "register_anonymously": "Գրանցվել առանց էլեկտրոնային փոստի",
+      "continue_as_guest": "Շարունակել առանց գրանցման"
     }
   },
   "modals": {
@@ -1453,6 +1528,16 @@
       "heading": "Վստա՞հ եք, որ ցանկանում եք լքել խորհրդատվությունը?",
       "confirm": "Լքել",
       "cancel": "Չեղարկել"
+    },
+    "how-it-works-ba": {
+      "heading": "How baseline assessment works",
+      "subheading_1": "Before accessing your baseline assessment, please review and accept the Privacy Policy. You must accept it to continue.",
+      "subheading_2": "You can also start the assessment anytime from your dashboard.",
+      "subheading_3": "The assessment is divided into multiple questions with a progress bar, and you can save your progress and continue later.",
+      "subheading_4": "Սեղմելով կոնկրետ իրադարձության վրա՝ կարող եք դիտել այդ պահին գրանցված բոլոր մեկնաբանություններն ու նշումները՝ ավելի խորապես հասկանալու համար, թե ինչն է ազդել ձեր տրամադրության վրա։",
+      "subheading_5": "Դուք կարող եք ստեղծել հաշվետվություն ցանկացած ընտրված ժամանակահատվածի համար և արտահանել այն CSV ֆայլի ձևաչափով՝ հեշտությամբ վերանայելու կամ կիսվելու ձեր տրամադրության տվյալներով, երբ անհրաժեշտ է։",
+      "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
+      "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
     }
   },
   "routes": {

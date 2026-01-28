@@ -1,17 +1,21 @@
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { RootContext } from "#routes";
-import { ThemeContext } from "@USupport-components-library/utils";
 
 import {
+  useWindowDimensions,
+  ThemeContext,
+} from "@USupport-components-library/utils";
+import {
   Block,
-  Button,
   Loading,
   CustomCarousel,
-  ConsultationBig,
+  Consultation,
   VideoPlayer,
+  NewButton,
 } from "@USupport-components-library/src";
 
 import "./consultations-dashboard.scss";
@@ -32,6 +36,7 @@ export const ConsultationsDashboard = ({
   isLoading,
 }) => {
   const navigate = useNavigate();
+  const { width } = useWindowDimensions();
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
   const { cookieState, setCookieState } = useContext(ThemeContext);
 
@@ -51,7 +56,7 @@ export const ConsultationsDashboard = ({
 
   const breakpointsItem = {
     desktop: {
-      breakpoint: { max: 5000, min: 1366 }, // 5000 is a hack to make sure it's the last breakpoint
+      breakpoint: { max: 5000, min: 1366 }, // 5000 to make sure it's the last breakpoint
       items: 3,
     },
     smallLaptop: {
@@ -75,14 +80,17 @@ export const ConsultationsDashboard = ({
           className="consultations-dashboard__consultation-container"
           key={consultation.consultationId}
         >
-          <ConsultationBig
+          <Consultation
+            renderIn="client"
             consultation={consultation}
-            handleJoin={openJoinConsultation}
-            handleChange={openEditConsultation}
-            handleAcceptSuggestion={handleAcceptSuggestion}
-            handleSchedule={handleSchedule}
+            handleJoinClick={openJoinConsultation}
+            handleOpenEdit={openEditConsultation}
+            handleAcceptConsultation={handleAcceptSuggestion}
+            suggested={consultation.status === "suggested"}
+            overview={false}
             t={t}
             toast={toast}
+            classes="consultations-dashboard__consultation-container__consultation-card"
           />
         </div>
       );
@@ -109,9 +117,15 @@ export const ConsultationsDashboard = ({
     <Block classes="consultations-dashboard">
       <div className="consultations-dashboard__heading">
         <h4>{t("heading")}</h4>
-        <p className="small-text view-all-button" onClick={handleViewAll}>
-          {t("view_all")}
-        </p>
+        {width < 768 ? (
+          <p className="small-text view-all-button" onClick={handleViewAll}>
+            {t("view_all")}
+          </p>
+        ) : (
+          <h5 className="view-all-button" onClick={handleViewAll}>
+            {t("view_all")}
+          </h5>
+        )}
       </div>
       {shouldShowVideo && (
         <div className="consultations-dashboard__video-container">
@@ -131,14 +145,7 @@ export const ConsultationsDashboard = ({
       {isLoading ? (
         <Loading size="lg" />
       ) : !upcomingConsultations || upcomingConsultations.length === 0 ? (
-        <div className="consultations-dashboard__button-container">
-          <Button
-            label={t("schedule_consultation_label")}
-            type="secondary"
-            size="lg"
-            onClick={handleScheduleConsultation}
-          />
-        </div>
+        <></>
       ) : (
         <div className="consultations-dashboard__carousel-container">
           <CustomCarousel breakpointItems={breakpointsItem} speed={5000}>
@@ -146,6 +153,14 @@ export const ConsultationsDashboard = ({
           </CustomCarousel>
         </div>
       )}
+      <NewButton
+        label={t("schedule_consultation_label")}
+        type="gradient"
+        size="lg"
+        onClick={handleScheduleConsultation}
+        iconName="calendar"
+        classes="consultations-dashboard__schedule-consultation-button"
+      />
     </Block>
   );
 };
