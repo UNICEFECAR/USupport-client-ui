@@ -6,10 +6,10 @@ import {
   Block,
   Grid,
   GridItem,
-  Toggle,
-  RadioButtonSelectorGroup,
+  DropdownWithLabel,
   Loading,
   Error as ErrorComponent,
+  RadioButton,
 } from "@USupport-components-library/src";
 import {
   useGetNotificationPreferences,
@@ -56,7 +56,7 @@ export const NotificationPreferences = () => {
   };
   const notificationsPreferencesMutation = useUpdateNotificationPreferences(
     onSuccess,
-    onUpdateError
+    onUpdateError,
   );
 
   const handleChange = (field, value) => {
@@ -80,11 +80,16 @@ export const NotificationPreferences = () => {
               lg={12}
               classes="notification-preferences__grid__item"
             >
-              <p className="paragraph">{t("email")}</p>
+              <RadioButton
+                label={t("email")}
+                isChecked={data?.email}
+                setIsChecked={(value) => handleChange("email", value)}
+              />
+              {/* <p className="paragraph">{t("email")}</p>
               <Toggle
                 isToggled={data?.email}
                 setParentState={(value) => handleChange("email", value)}
-              />
+              /> */}
             </GridItem>
           )}
           {!IS_RO && (
@@ -94,7 +99,14 @@ export const NotificationPreferences = () => {
               lg={12}
               classes="notification-preferences__grid__item"
             >
-              <p className="paragraph">{t("appointment")}</p>
+              <RadioButton
+                label={t("appointment")}
+                isChecked={data?.consultationReminder}
+                setIsChecked={(value) =>
+                  handleChange("consultationReminder", value)
+                }
+              />
+              {/* <p className="paragraph">{t("appointment")}</p>
               <Toggle
                 isToggled={
                   data?.consultationReminder
@@ -104,15 +116,31 @@ export const NotificationPreferences = () => {
                 setParentState={(value) =>
                   handleChange("consultationReminder", value)
                 }
-              />
+              /> */}
               {data?.consultationReminder && (
-                <RadioButtonSelectorGroup
-                  selected={data.consultationReminderMin}
-                  setSelected={(value) =>
-                    handleChange("consultationReminderMin", value)
-                  }
-                  options={consultationReminderOptions}
-                />
+                <GridItem
+                  xs={4}
+                  md={8}
+                  lg={12}
+                  classes="notification-preferences__grid__item"
+                >
+                  <DropdownWithLabel
+                    selected={data.consultationReminderMin}
+                    setSelected={(value) =>
+                      handleChange("consultationReminderMin", value)
+                    }
+                    options={consultationReminderOptions}
+                    label={null}
+                    classes="notification-preferences__grid__item__dropdown"
+                  />
+                </GridItem>
+                // <RadioButtonSelectorGroup
+                //   selected={data.consultationReminderMin}
+                //   setSelected={(value) =>
+                //     handleChange("consultationReminderMin", value)
+                //   }
+                //   options={consultationReminderOptions}
+                // />
               )}
               {error ? <ErrorComponent message={error} /> : null}
             </GridItem>

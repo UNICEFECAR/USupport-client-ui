@@ -5,30 +5,32 @@
 
   &__grid {
     place-items: start;
-    padding-top: $spacing_3_2;
     padding-bottom: $spacing_10_0;
+    padding-top: $spacing_2_0;
+    gap: $spacing_1_8;
 
     @media screen and (min-width: $screen_md) {
       place-items: center;
       padding-top: $spacing_5_0;
     }
 
+    @media screen and (min-width: $screen_lg) {
+      max-width: 58.4rem;
+    }
+
     &__item {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding-bottom: $spacing_2_4;
-      width: 20rem;
-
-      @media screen and (min-width: $screen_md) {
-        width: 35rem;
-      }
+      width: 100%;
 
       & > .paragraph {
         color: $color_blue_3d527b;
         @include themify($themes, "color", "color_3d527b_white");
         padding-bottom: $spacing_1_6;
+      }
+
+      &__dropdown {
+        margin-top: $spacing_2_4;
       }
     }
 
