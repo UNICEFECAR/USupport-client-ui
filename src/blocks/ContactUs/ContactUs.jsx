@@ -7,7 +7,7 @@ import {
   Textarea,
   Grid,
   GridItem,
-  Button,
+  NewButton,
   Modal,
   Input,
   Loading,
@@ -136,7 +136,7 @@ export const ContactUs = () => {
   };
   const sendIssueEmailMutation = useSendIssueEmail(
     onSendEmailSuccess,
-    onSendEmailError
+    onSendEmailError,
   );
 
   const handleSubmit = async () => {
@@ -203,13 +203,15 @@ export const ContactUs = () => {
             />
           </GridItem>
 
-          <GridItem xs={4} md={8} lg={12}>
-            <Button
-              classes="contact-us__grid__button"
+          <GridItem
+            xs={4}
+            md={8}
+            lg={12}
+            classes="contact-us__grid__button-item"
+          >
+            <NewButton
               size="lg"
               label={t("button")}
-              type="primary"
-              color="green"
               onClick={handleSubmit}
               disabled={!canSubmit}
               isLoading={sendIssueEmailMutation.isLoading}
