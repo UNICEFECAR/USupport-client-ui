@@ -3,15 +3,17 @@
 .faq {
   @include full-height-page-navbar;
 
-  padding: $spacing_5_2 $spacing_1_5 $spacing_15_6 $spacing_1_5;
+  // padding: $spacing_5_2 $spacing_1_5 $spacing_15_6 $spacing_1_5;
 
-  @media screen and (min-width: $screen-md) {
-    padding: $spacing_8_0 $spacing_23_0 $spacing_15_6 $spacing_23_0;
-  }
+  // @media screen and (min-width: $screen-md) {
+  //   padding: $spacing_8_0 $spacing_23_0 $spacing_15_6 $spacing_23_0;
+  // }
 
-  @media screen and (min-width: $screen-lg) {
-    padding: $spacing_8_0 $spacing_40_3 $spacing_15_6 $spacing_40_3;
-  }
+  // @media screen and (min-width: $screen-lg) {
+  //   padding: $spacing_8_0 $spacing_40_3 $spacing_15_6 $spacing_40_3;
+  // }
+
+  padding-block: $spacing_5_2;
 
   &__no-results {
     padding: $spacing_10_0;
@@ -22,5 +24,24 @@
     max-width: 50rem;
     margin: 0 auto;
     margin-bottom: $spacing_3_2;
+  }
+
+  &__content-container {
+    display: flex;
+    flex-direction: row;
+
+    &__left-side {
+      @media screen and (min-width: $screen-lg) {
+        max-width: 58.4rem;
+      }
+    }
+
+    &__right-side {
+      display: none;
+      @media screen and (min-width: $screen-lg) {
+        display: block;
+        width: 100%;
+      }
+    }
   }
 }

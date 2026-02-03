@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useEventListener } from "#hooks";
 
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+import { mascotConfusedBlue } from "@USupport-components-library/assets";
 
 import "./faq.scss";
 
@@ -26,7 +27,7 @@ export const FAQ = () => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
 
   const handler = useCallback(() => {
@@ -82,18 +83,27 @@ export const FAQ = () => {
 
   return (
     <Block classes="faq">
-      <InputSearch
-        value={searchQuery}
-        onChange={(value) => setSearchQuery(value)}
-        placeholder={t("search")}
-        classes="faq__search"
-      />
-      {filteredFAQs && <CollapsibleFAQ data={filteredFAQs} />}
-      {faqIdsQuerry.data?.length > 0 && !FAQsData && FAQsLoading && <Loading />}
-      {(!filteredFAQs?.length && !FAQsLoading && isFAQsFetched) ||
-      faqIdsQuerry.data?.length === 0 ? (
-        <h3 className="page__faq__no-results">{t("no_results")}</h3>
-      ) : null}
+      <div className="faq__content-container">
+        <div className="faq__content-container__left-side">
+          <InputSearch
+            value={searchQuery}
+            onChange={(value) => setSearchQuery(value)}
+            placeholder={t("search")}
+            classes="faq__search"
+          />
+          {filteredFAQs && <CollapsibleFAQ data={filteredFAQs} />}
+          {faqIdsQuerry.data?.length > 0 && !FAQsData && FAQsLoading && (
+            <Loading />
+          )}
+          {(!filteredFAQs?.length && !FAQsLoading && isFAQsFetched) ||
+          faqIdsQuerry.data?.length === 0 ? (
+            <h3 className="page__faq__no-results">{t("no_results")}</h3>
+          ) : null}
+        </div>
+        <div className="faq__content-container__right-side">
+          <img src={mascotConfusedBlue} alt="mascot confused blue" />
+        </div>
+      </div>
     </Block>
   );
 };
