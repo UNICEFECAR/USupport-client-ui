@@ -1,5 +1,5 @@
 import React from "react";
-import { Page, FAQ as FAQBlock } from "#blocks";
+import { Page, FAQ as FAQBlock, DownloadApp } from "#blocks";
 import { useTranslation } from "react-i18next";
 
 /**
@@ -19,6 +19,7 @@ export const FAQ = () => {
       subheading={t("subheading")}
     >
       <FAQBlock />
+      <DownloadApp />
     </Page>
   );
 };
