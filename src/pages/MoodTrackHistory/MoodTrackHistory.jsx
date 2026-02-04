@@ -6,7 +6,8 @@ import { ButtonWithIcon, Button } from "@USupport-components-library/src";
 import {
   Page,
   MoodTrackHistory as MoodTrackHistoryBlock,
-  GiveSuggestion,
+  // GiveSuggestion,
+  DownloadApp,
 } from "#blocks";
 import { RootContext } from "#routes";
 import { MoodTrackReport } from "#backdrops";
@@ -77,7 +78,8 @@ export const MoodTrackHistory = () => {
         onClose={() => setIsReportOpen(false)}
       />
       <MoodTrackHistoryBlock />
-      <GiveSuggestion type="mood-tracker" />
+      {/* <GiveSuggestion type="mood-tracker" /> */}
+      <DownloadApp />
     </Page>
   );
 };

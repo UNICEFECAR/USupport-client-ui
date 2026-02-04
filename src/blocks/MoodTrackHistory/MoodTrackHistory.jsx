@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 
 import {
   Block,
-  Emoticon,
   Icon,
   MoodTrackDetails,
   Loading,
   LineChart,
   CardMedia,
+  Modal,
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
@@ -91,22 +91,23 @@ export const MoodTrackHistory = () => {
   useGetMoodTrackEntries(limitToLoad, pageNum, onSuccess, enabled);
 
   const emoticons = [
-    { name: "happy", label: "Happy", value: 4 },
-    { name: "good", label: "Good", value: 3 },
-    { name: "sad", label: "Sad", value: 2 },
-    { name: "depressed", label: "Depressed", value: 1 },
-    { name: "worried", label: "Worried", value: 0 },
+    { name: "happy", label: "Happy", value: 4 ,emoji: "😍"},
+    { name: "good", label: "Good", value: 3 ,emoji: "😀"},
+    { name: "sad", label: "Sad", value: 2 ,emoji: "😔"},
+    { name: "depressed", label: "Depressed", value: 1 ,emoji: "☹️"},
+    { name: "worried", label: "Worried", value: 0 ,emoji: "😣"},
   ];
 
   const renderAllEmoticons = () => {
     return emoticons.map((emoticon, index) => {
       return (
         <div className="mood-track-history__emoticon-container" key={index}>
-          <Emoticon
+          {/* <Emoticon
             name={`emoticon-${emoticon.name}`}
             classes="mood-track-history__emoticon"
             size="xs"
-          />
+          /> */}
+          {width < 768 ? <h1>{emoticon.emoji}</h1> : <h2>{emoticon.emoji}</h2>}
           <p className="small-text">
             {width >= 768 ? t(emoticon.label.toLowerCase()) : ""}
           </p>
@@ -147,7 +148,6 @@ export const MoodTrackHistory = () => {
 
   const handleMoodClick = (index) => {
     setSelectedItemId(moodTrackerData[limit].entries[index].mood_tracker_id);
-    console.log(moodTrackerData[limit].entries[index].mood_tracker_id);
   };
 
   return (
@@ -163,10 +163,11 @@ export const MoodTrackHistory = () => {
           )}
           <div className="mood-track-history__content-container">
             <div className="mood-track-history__content-container__emoticons-container">
+              {renderAllEmoticons()}
               <div
                 className={[
                   "mood-track-history__icon-container",
-                  !moodTrackerData[limit].hasMore && //TODO: make it work
+                  !moodTrackerData[limit].hasMore && 
                     "mood-track-history__icon-container__disabled",
                 ].join(" ")}
               >
@@ -180,13 +181,9 @@ export const MoodTrackHistory = () => {
                   }
                 />
               </div>
-              {renderAllEmoticons()}
             </div>
             <div className="mood-track-history__content-container__chart-container">
               <div className="mood-track-history__content-container__chart-container__wrapper">
-                <div className="mood-track-history__content-container__chart-wrapper__dates">
-                  {renderDates()}
-                </div>
                 <div className="mood-track-history__content-container__chart-wrapper">
                   <LineChart
                     data={moodTrackerData[limit]?.entries || []}
@@ -194,11 +191,14 @@ export const MoodTrackHistory = () => {
                     selectedItemId={selectedItemId}
                   />
                 </div>
+                <div className="mood-track-history__content-container__chart-wrapper__dates">
+                  {renderDates()}
+                </div>
               </div>
               <div>
                 <div
                   className={[
-                    "mood-track-history__content-container__emoticons-container__icon",
+                    "mood-track-history__content-container__emoticons-container__icon--right",
                     pageNum === 0 &&
                       "mood-track-history__content-container__emoticons-container__icon__right__disabled",
                   ].join(" ")}
@@ -214,19 +214,39 @@ export const MoodTrackHistory = () => {
               </div>
             </div>
           </div>
-          {moodTrackerData[limit]?.entries.find(
-            (x) => x.mood_tracker_id === selectedItemId
-          ) && (
-            <div className="mood-track-history__information-container">
-              <MoodTrackDetails
-                mood={moodTrackerData[limit]?.entries.find(
-                  (x) => x.mood_tracker_id === selectedItemId
-                )}
-                handleClose={() => setSelectedItemId(null)}
-                t={t}
-              />
-            </div>
-          )}
+          {(() => {
+            const selectedMood = moodTrackerData[limit]?.entries.find(
+              (x) => x.mood_tracker_id === selectedItemId
+            );
+            
+            if (!selectedMood) return null;
+
+            const dateText = `${
+              selectedMood.time.getDate() > 9
+                ? selectedMood.time.getDate()
+                : `0${selectedMood.time.getDate()}`
+            }.${
+              selectedMood.time.getMonth() + 1 > 9
+                ? selectedMood.time.getMonth() + 1
+                : `0${selectedMood.time.getMonth() + 1}`
+            }`;
+            const hourText = `${selectedMood.time.getHours()}:${
+              selectedMood.time.getMinutes() > 9
+                ? selectedMood.time.getMinutes()
+                : `0${selectedMood.time.getMinutes()}`
+            }`;
+
+            return (
+              <Modal
+                isOpen={!!selectedMood}
+                closeModal={() => setSelectedItemId(null)}
+                heading={`${dateText} ${hourText}`}
+                hasCloseIcon={true}
+              >
+                <MoodTrackDetails mood={selectedMood} t={t} />
+              </Modal>
+            );
+          })()}
         </>
       )}
 
