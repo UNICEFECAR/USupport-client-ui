@@ -14,5 +14,36 @@
     <div id="root"></div>
     <script type="module" src="/src/HackTimer.js"></script>
     <script type="module" src="/src/index.jsx"></script>
+    <script>
+      if (
+        window.location.hostname.includes("cyprus") &&
+        window.location.hostname.includes("staging")
+      ) {
+        window.partner = "unicef";
+        window.widgetKey = "unicef";
+        window.floating = true;
+        window.channel = "sme";
+        (function () {
+          const windowAlias = window;
+          const documentAlias = document;
+          const init = function () {
+            const scriptElem = documentAlias.createElement("script");
+            scriptElem.type = "text/javascript";
+            scriptElem.async = true;
+            scriptElem.src = "https://widget.wysa.io/wrapper/js/etriage.js";
+            const scriptTag = documentAlias.getElementsByTagName("script")[0];
+            scriptTag.parentNode.insertBefore(scriptElem, scriptTag);
+            console.log("Wysa script loaded");
+          };
+          if (document.readyState === "complete") {
+            init();
+          } else if (windowAlias.attachEvent) {
+            windowAlias.attachEvent("onload", init);
+          } else {
+            windowAlias.addEventListener("load", init, false);
+          }
+        })();
+      }
+    </script>
   </body>
 </html>
