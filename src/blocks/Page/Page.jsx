@@ -79,6 +79,7 @@ export const Page = ({
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_RO = localStorage.getItem("country") === "RO";
+  const IS_CY = localStorage.getItem("country") === "CY";
   // const IS_DEV = import.meta.env.MODE === "development";
   // const IS_STAGING = window.location.href.includes("staging");
   // const IS_CY = localStorage.getItem("country") === "CY";
@@ -353,7 +354,10 @@ export const Page = ({
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
         size="lg"
-        classes="page__theme-button"
+        classes={[
+          "page__theme-button",
+          IS_CY ? "page__theme-button--cy" : "",
+        ].join(" ")}
         onClick={toggleTheme}
       />
     );
@@ -567,7 +571,10 @@ export const Page = ({
           )} */}
           <CircleIconButton
             iconName="phone-emergency"
-            classes="page__emergency-button"
+            classes={[
+              "page__emergency-button",
+              IS_CY ? "page__emergency-button--cy" : "",
+            ].join(" ")}
             onClick={() => {
               addSosCenterClickMutation.mutate({
                 isMain: true,

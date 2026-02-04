@@ -204,6 +204,10 @@
     right: $spacing_1_6;
     z-index: $z_index_emergency_button;
 
+    &--cy {
+      bottom: 10vh;
+    }
+
     @media screen and (min-width: $screen-md) {
       right: $spacing_3_2;
     }
@@ -219,6 +223,10 @@
     background-color: $color_primary_20809e;
     padding: 1rem;
     border-radius: 5rem;
+
+    &--cy {
+      bottom: 10vh;
+    }
 
     @media screen and (min-width: $screen-md) {
       right: $spacing_3_2;
