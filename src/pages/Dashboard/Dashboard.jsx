@@ -19,6 +19,8 @@ import {
   JoinConsultation,
   ConfirmConsultation,
   SelectConsultation,
+  UserGuide,
+  EmergencySituation,
 } from "#backdrops";
 
 import {
@@ -90,6 +92,8 @@ export const Dashboard = () => {
     useState(true);
   const [isBaselineAssesmentModalOpen, setIsBaselineAssesmentModalOpen] =
     useState(false);
+  const [isUserGuideOpen, setIsUserGuideOpen] = useState(false);
+  const [isEmergencySituationOpen, setIsEmergencySituationOpen] = useState(false);
 
   const openRequireDataAgreement = (successAction) => {
     if (successAction) {
@@ -210,7 +214,7 @@ export const Dashboard = () => {
       });
     } else {
       if (consultationPrice.current && consultationPrice.current > 0) {
-        navigate(`/checkout`, {
+        navigate("/checkout", {
           state: { consultationId: consultationId },
         });
       } else {
@@ -243,7 +247,7 @@ export const Dashboard = () => {
       addCountryEventMutation.mutate({
         eventType: "web_schedule_button_click",
       });
-      navigate(`/select-provider`);
+      navigate("/select-provider");
     }
   };
 
@@ -252,9 +256,24 @@ export const Dashboard = () => {
       addCountryEventMutation.mutate({
         eventType: "web_schedule_button_click",
       });
-      navigate(`/select-provider`);
+      navigate("/select-provider");
     }
   };
+
+  const openUserGuide = () => {
+    setIsUserGuideOpen(true);
+  };
+  const closeUserGuide = () => {
+    setIsUserGuideOpen(false);
+  };
+
+  const openEmergencySituation = () => {
+    setIsEmergencySituationOpen(true);
+  };
+  const closeEmergencySituation = () => {
+    setIsEmergencySituationOpen(false);
+  };
+
   return (
     <Page
       classes="page__dashboard"
@@ -280,6 +299,7 @@ export const Dashboard = () => {
           handleSchedule={handleScheduleConsultation}
           handleAcceptSuggestion={handleAcceptSuggestion}
           name={clientName}
+          handleOpenUserGuide={openUserGuide}
           t={t}
         />
         <MoodTracker
@@ -361,6 +381,15 @@ export const Dashboard = () => {
         isOpen={isRequireDataAgreementOpen}
         onClose={closeRequireDataAgreement}
         onSuccess={handleDataAgreementSucess}
+      />
+      <UserGuide
+        isOpen={isUserGuideOpen}
+        handleOpenEmergencySituation={openEmergencySituation}
+        onClose={closeUserGuide}
+      />
+      <EmergencySituation
+        isOpen={isEmergencySituationOpen}
+        onClose={closeEmergencySituation}
       />
     </Page>
   );
