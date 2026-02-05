@@ -14,8 +14,8 @@ import {
   PasswordModal,
   Box,
   CookieBanner,
-  WysaButton,
-  Wysa,
+  // WysaButton,
+  // Wysa,
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -78,11 +78,12 @@ export const Page = ({
   const isLoggedIn = useIsLoggedIn();
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
-  const IS_DEV = import.meta.env.MODE === "development";
-  const IS_STAGING = window.location.href.includes("staging");
   const IS_RO = localStorage.getItem("country") === "RO";
   const IS_CY = localStorage.getItem("country") === "CY";
-  const SHOW_WYSA = IS_STAGING || IS_DEV;
+  // const IS_DEV = import.meta.env.MODE === "development";
+  // const IS_STAGING = window.location.href.includes("staging");
+  // const IS_CY = localStorage.getItem("country") === "CY";
+  // const SHOW_WYSA = IS_STAGING || IS_DEV;
 
   const {
     theme,
@@ -97,14 +98,14 @@ export const Page = ({
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
-  const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
+  // const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
   const token = localStorage.getItem("token");
 
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(
-    !!token && !isTmpUser,
+    !!token && !isTmpUser
   );
 
   let localStorageCountry = localStorage.getItem("country");
@@ -112,7 +113,7 @@ export const Page = ({
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorageLanguage
       ? { value: localStorageLanguage.toUpperCase() }
-      : { value: "EN" },
+      : { value: "EN" }
   );
   const [selectedCountry, setSelectedCountry] = useState();
 
@@ -222,7 +223,7 @@ export const Page = ({
     });
 
     const foundLanguageFromUrl = languages.find(
-      (x) => x.value === languageFromUrl,
+      (x) => x.value === languageFromUrl
     );
     if (foundLanguageFromUrl) {
       localStorage.setItem("language", languageFromUrl);
@@ -245,7 +246,7 @@ export const Page = ({
       staleTime: Infinity,
       cacheTime: 1000 * 60 * 60 * 24, // Keep cached for 24 hours
       enabled: !!selectedCountry,
-    },
+    }
   );
 
   useEffect(() => {
@@ -353,7 +354,10 @@ export const Page = ({
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
         size="lg"
-        classes="page__theme-button"
+        classes={[
+          "page__theme-button",
+          IS_CY ? "page__theme-button--cy" : "",
+        ].join(" ")}
         onClick={toggleTheme}
       />
     );
@@ -373,7 +377,7 @@ export const Page = ({
     window.location.hostname === "romania.usupport.online";
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation && IS_RO_SUBDOMAIN,
+    !hasPassedValidation && IS_RO_SUBDOMAIN
   );
   const [passwordError, setPasswordError] = useState("");
 
@@ -390,7 +394,7 @@ export const Page = ({
         queryClient.setQueryData(["hasPassedValidation"], true);
         setIsPasswordModalOpen(false);
       },
-    },
+    }
   );
 
   const addSosCenterClickMutation = useAddSosCenterClick();
@@ -556,7 +560,7 @@ export const Page = ({
       {themeButton()}
       {showEmergencyButton && (
         <>
-          {IS_CY && SHOW_WYSA && (
+          {/* {IS_CY && SHOW_WYSA && (
             <>
               <WysaButton onClick={() => setIsWysaModalOpen(true)} />
               <Wysa
@@ -564,10 +568,13 @@ export const Page = ({
                 onClose={() => setIsWysaModalOpen(false)}
               />
             </>
-          )}
+          )} */}
           <CircleIconButton
             iconName="phone-emergency"
-            classes="page__emergency-button"
+            classes={[
+              "page__emergency-button",
+              IS_CY ? "page__emergency-button--cy" : "",
+            ].join(" ")}
             onClick={() => {
               addSosCenterClickMutation.mutate({
                 isMain: true,
