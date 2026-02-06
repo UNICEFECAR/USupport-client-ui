@@ -304,11 +304,13 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
           </div>
         </GridItem>
 
-        <GridItem md={8} lg={12} classes="article-view__category-item">
-          <div className="article-view__details-item__category">
-            <p className="small-text ">{articleData.categoryName}</p>
-          </div>
-        </GridItem>
+        {articleData.categoryName && (
+          <GridItem md={8} lg={12} classes="article-view__category-item">
+            <div className="article-view__details-item__category">
+              <p className="small-text ">{articleData.categoryName}</p>
+            </div>
+          </GridItem>
+        )}
 
         <GridItem md={8} lg={12} classes="article-view__details-item">
           {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
@@ -387,7 +389,10 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
         </GridItem>
 
         <GridItem md={8} lg={12} classes="article-view__body-item">
-          <Markdown markDownText={articleData.bodyCK || articleData.body} className={"text"} />
+          <Markdown
+            markDownText={articleData.bodyCK || articleData.body}
+            className={"text"}
+          />
         </GridItem>
       </Grid>
 
