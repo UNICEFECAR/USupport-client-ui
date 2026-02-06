@@ -7,8 +7,9 @@ import {
   Grid,
   GridItem,
   Button,
-  ConsultationDashboard,
+  CircleIconButton,
   ButtonWithIcon,
+  ConsultationDashboard,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useCustomNavigate as useNavigate } from "#hooks";
@@ -36,6 +37,7 @@ export const MascotWelcomeHeader = ({
   handleSchedule,
   handleAcceptSuggestion,
   name,
+  handleOpenUserGuide,
 }) => {
   const navigate = useNavigate();
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
@@ -81,9 +83,33 @@ export const MascotWelcomeHeader = ({
             </>
           ) : (
             <>
+            <div style={{display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px"}}>
               <h4 className="mascot-welcome-header__heading">
                 {t("welcome", { name })}
               </h4>
+              {
+                width < 768 ? (
+                  <div>
+                  <CircleIconButton
+                        size="sm"
+                        color="purple"
+                        onClick={handleOpenUserGuide}
+                        iconName="read-book"
+                        iconColor="#fff"
+                        iconSize="sm"
+                      />
+                      </div>
+                ) : (
+                <ButtonWithIcon
+                        size="sm"
+                        label={t("user_guide")}
+                        color="purple"
+                        onClick={handleOpenUserGuide}
+                        iconName="read-book"
+                        iconColor="#fff"
+                        iconSize="sm"
+                      />) }
+                      </div>
               {!IS_RO && (
                 <p className="text mascot-welcome-header__subheading">
                   {t("next_consultation")}
@@ -106,6 +132,7 @@ export const MascotWelcomeHeader = ({
                       />
                     </div>
                   </div>
+          
                 </div>
               ) : (
                 <ConsultationDashboard
