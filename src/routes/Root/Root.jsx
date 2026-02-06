@@ -28,6 +28,7 @@ import {
   Consultations,
   ContactUs,
   CookiePolicy,
+  ChildrenRights,
   Dashboard,
   FAQ,
   ForgotPassword,
@@ -403,6 +404,14 @@ const LanguageLayout = () => {
         element={
           <ProtectedRoute>
             <BaselineAssesment />
+          </ProtectedRoute>
+        }
+      />
+            <Route
+        path="children-rights"
+        element={
+          <ProtectedRoute>
+            <ChildrenRights />
           </ProtectedRoute>
         }
       />
