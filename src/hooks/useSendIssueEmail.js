@@ -13,6 +13,7 @@ export default function useSendIssueEmail(onSuccess, onError) {
       subject: payload.subjectLabel,
       title: payload.title,
       text: payload.text,
+      email: payload.email,
     });
 
     const addFormPromise = userSvc.addContactForm({
