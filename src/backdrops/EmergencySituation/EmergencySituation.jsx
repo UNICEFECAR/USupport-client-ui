@@ -34,6 +34,8 @@ const navigate = useNavigate()
         {t("paragraph_two")}
       </Trans>
       </p>
+      <h4 className="emergency-situation__question">{t("question")}</h4>
+      <p className="text emergency-situation__subquestion">{t("subquestion")}</p>
       <div className="emergency-situation__buttons">
       <ButtonSelector
         label={t("yes")}

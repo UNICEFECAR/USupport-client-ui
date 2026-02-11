@@ -1,11 +1,17 @@
-@import '@USupport-components-library/styles';
+@import "@USupport-components-library/styles";
 
-.emergency-situation{
-    &__buttons{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        margin-block:2rem;
-    }
+.emergency-situation {
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-block: 2rem;
+  }
+  &__question {
+    margin-top: 2rem;
+  }
+  &__subquestion {
+    margin-top: 0.5rem;
+  }
 }
