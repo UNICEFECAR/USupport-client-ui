@@ -15,8 +15,10 @@ import {
   CheckBox,
   Loading,
   ArticlesGrid,
+  
 } from "@USupport-components-library/src";
 import { cmsSvc } from "@USupport-components-library/services";
+import { createArticleSlug } from "@USupport-components-library/utils";
 
 import "./children-rights.scss";
 import { useSearchParams } from "react-router-dom";
@@ -165,7 +167,7 @@ const SCREENS = {
     type: "content",
     titleKey: "section_3_title",
     paragraphKey: "section_3_paragraph",
-    sectionNumber: 12,
+    sectionNumber: 3,
   },
 
   // Section 4 - Services for SEN students (Content)
@@ -181,7 +183,7 @@ const SCREENS = {
     type: "content",
     titleKey: "section_5_title",
     paragraphKey: "section_5_paragraph",
-    sectionNumber: 5,
+    sectionNumber: 3,
   },
 
   // Section 6 - Services for violence victims (Content)
@@ -695,9 +697,11 @@ export const ChildrenRights = () => {
   };
 
   // Handle article click
-  const handleArticleClick = useCallback((article) => {
-    const articleSlug = article.attributes?.slug || article.slug;
-    const articleId = article.id;
+  const handleArticleClick = useCallback((id, title) => {
+
+    const articleSlug = createArticleSlug(title);
+    console.log(articleSlug);
+    const articleId = id;
     if (articleSlug) {
       navigate(`/information-portal/article/${articleId}/${articleSlug}`);
     }
