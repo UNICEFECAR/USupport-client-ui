@@ -105,7 +105,7 @@ export const Page = ({
   const token = localStorage.getItem("token");
 
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(
-    !!token && !isTmpUser
+    !!token && !isTmpUser,
   );
 
   let localStorageCountry = localStorage.getItem("country");
@@ -113,7 +113,7 @@ export const Page = ({
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorageLanguage
       ? { value: localStorageLanguage.toUpperCase() }
-      : { value: "EN" }
+      : { value: "EN" },
   );
   const [selectedCountry, setSelectedCountry] = useState();
 
@@ -223,7 +223,7 @@ export const Page = ({
     });
 
     const foundLanguageFromUrl = languages.find(
-      (x) => x.value === languageFromUrl
+      (x) => x.value === languageFromUrl,
     );
     if (foundLanguageFromUrl) {
       localStorage.setItem("language", languageFromUrl);
@@ -246,7 +246,7 @@ export const Page = ({
       staleTime: Infinity,
       cacheTime: 1000 * 60 * 60 * 24, // Keep cached for 24 hours
       enabled: !!selectedCountry,
-    }
+    },
   );
 
   useEffect(() => {
@@ -354,10 +354,7 @@ export const Page = ({
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
         size="lg"
-        classes={[
-          "page__theme-button",
-          IS_CY ? "page__theme-button--cy" : "",
-        ].join(" ")}
+        classes={["page__theme-button"].join(" ")}
         onClick={toggleTheme}
       />
     );
@@ -377,7 +374,7 @@ export const Page = ({
     window.location.hostname === "romania.usupport.online";
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation && IS_RO_SUBDOMAIN
+    !hasPassedValidation && IS_RO_SUBDOMAIN,
   );
   const [passwordError, setPasswordError] = useState("");
 
@@ -394,7 +391,7 @@ export const Page = ({
         queryClient.setQueryData(["hasPassedValidation"], true);
         setIsPasswordModalOpen(false);
       },
-    }
+    },
   );
 
   const addSosCenterClickMutation = useAddSosCenterClick();
@@ -571,10 +568,7 @@ export const Page = ({
           )} */}
           <CircleIconButton
             iconName="phone-emergency"
-            classes={[
-              "page__emergency-button",
-              IS_CY ? "page__emergency-button--cy" : "",
-            ].join(" ")}
+            classes={["page__emergency-button"].join(" ")}
             onClick={() => {
               addSosCenterClickMutation.mutate({
                 isMain: true,
