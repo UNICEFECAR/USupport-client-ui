@@ -87,30 +87,32 @@ export const MascotWelcomeHeader = ({
               <h4 className="mascot-welcome-header__heading">
                 {t("welcome", { name })}
               </h4>
-              {
+              {IS_RO && (
                 width < 768 ? (
                   <div>
-                  <CircleIconButton
-                        size="sm"
-                        color="purple"
-                        onClick={handleOpenUserGuide}
-                        iconName="read-book"
-                        iconColor="#fff"
-                        iconSize="sm"
-                      />
-                      </div>
+                    <CircleIconButton
+                      size="sm"
+                      color="purple"
+                      onClick={handleOpenUserGuide}
+                      iconName="read-book"
+                      iconColor="#fff"
+                      iconSize="sm"
+                    />
+                  </div>
                 ) : (
-                <ButtonWithIcon
-                        size="sm"
-                        label={t("user_guide")}
-                        color="purple"
-                        onClick={handleOpenUserGuide}
-                        iconName="read-book"
-                        iconColor="#fff"
-                        iconSize="sm"
-                      />) }
-                      </div>
-              {!IS_RO && (
+                  <ButtonWithIcon
+                    size="sm"
+                    label={t("user_guide")}
+                    color="purple"
+                    onClick={handleOpenUserGuide}
+                    iconName="read-book"
+                    iconColor="#fff"
+                    iconSize="sm"
+                  />
+                )
+              )}
+              </div>
+              {IS_RO && (
                 <p className="text mascot-welcome-header__subheading">
                   {t("next_consultation")}
                 </p>
