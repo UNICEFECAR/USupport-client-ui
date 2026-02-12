@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
-import { Page, GiveSuggestion } from "#blocks";
+import { Page, DownloadApp, InformationPortalHero } from "#blocks";
 import {
   useCustomNavigate as useNavigate,
   useEventListener,
@@ -36,8 +36,6 @@ import {
   isLikedOrDislikedByUser,
   useWindowDimensions,
 } from "@USupport-components-library/utils";
-
-import { mascotHappyPurple } from "@USupport-components-library/assets";
 
 import "./information-portal.scss";
 
@@ -112,7 +110,7 @@ export const InformationPortal = () => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
 
   const handler = useCallback(() => {
@@ -133,7 +131,7 @@ export const InformationPortal = () => {
 
   const articleIdsQuery = useQuery(
     ["articleIds", currentCountry],
-    getArticlesIds
+    getArticlesIds,
   );
 
   //--------------------- Videos IDs ----------------------//
@@ -152,7 +150,7 @@ export const InformationPortal = () => {
 
   const podcastIdsQuery = useQuery(
     ["podcastIds", currentCountry],
-    getPodcastsIds
+    getPodcastsIds,
   );
 
   // Get the selected content type
@@ -191,25 +189,7 @@ export const InformationPortal = () => {
       )}
 
       <Page classes="page__information-portal" showGoBackArrow={false}>
-        <Grid classes="page__information-portal__banner">
-          <GridItem
-            xs={1}
-            md={1}
-            lg={1}
-            classes="page__information-portal__mascot-item"
-          >
-            <img src={mascotHappyPurple} alt="Mascot" />
-          </GridItem>
-          <GridItem
-            xs={3}
-            md={7}
-            lg={11}
-            classes="page__information-portal__headings-item"
-          >
-            <h3>{t("heading")}</h3>
-            <p className="subheading">{t("subheading")}</p>
-          </GridItem>
-        </Grid>
+        <InformationPortalHero />
 
         <Block classes="page__information-portal__block">
           {contentTabs.length > 1 && (
@@ -393,10 +373,11 @@ export const InformationPortal = () => {
               lg={12}
               classes="page__information-portal__give-suggestion"
             >
-              <GiveSuggestion />
+              {/* <GiveSuggestion /> */}
             </GridItem>
           </Grid>
         </Block>
+        <DownloadApp />
       </Page>
     </>
   );
@@ -421,11 +402,11 @@ const ContentList = ({
   const { t, i18n } = useTranslation("pages", {
     keyPrefix: "information-portal",
   });
+  const { width } = useWindowDimensions();
 
   const { isTmpUser } = useContext(RootContext);
-  const { data: userContentEngagements } = useGetUserContentEngagements(
-    !isTmpUser
-  );
+  const { data: userContentEngagements } =
+    useGetUserContentEngagements(!isTmpUser);
 
   const fetchContent = async () => {
     let { data } = await getContent({
@@ -441,7 +422,7 @@ const ContentList = ({
     // Handle async destructureContentData (for podcasts) or sync (for articles/videos)
     if (contentType === "podcast") {
       return await Promise.all(
-        contentData.map((item) => destructureContentData(item))
+        contentData.map((item) => destructureContentData(item)),
       );
     }
     return contentData.map(destructureContentData);
@@ -457,7 +438,7 @@ const ContentList = ({
     {
       enabled: contentIds?.length > 0,
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   // Get likes and dislikes for content items
@@ -475,7 +456,7 @@ const ContentList = ({
     {
       enabled: !!contentItems?.length,
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   if (isLoading) return <Loading />;
@@ -485,21 +466,9 @@ const ContentList = ({
   return (
     <Grid classes="page__information-portal__block__grid">
       <GridItem md={8} lg={12} classes="articles__articles-item">
-        <Grid>
-          <GridItem
-            xs={2}
-            md={4}
-            lg={6}
-            classes="page__information-portal__heading-item"
-          >
-            <h4>{heading}</h4>
-          </GridItem>
-          <GridItem
-            xs={2}
-            md={4}
-            lg={6}
-            classes="page__information-portal__view-more-item"
-          >
+        <div className="page__information-portal__content-heading">
+          <h4>{heading}</h4>
+          {width < 768 ? (
             <p
               className="small-text view-all-button"
               onClick={() =>
@@ -510,8 +479,20 @@ const ContentList = ({
             >
               {t("view_all")}
             </p>
-          </GridItem>
-
+          ) : (
+            <h5
+              className="view-all-button"
+              onClick={() =>
+                navigate(navigateToAllPath, {
+                  state: { sort: sortBy },
+                })
+              }
+            >
+              {t("view_all")}
+            </h5>
+          )}
+        </div>
+        <Grid>
           {hasNoData ? (
             <GridItem md={8} lg={12}>
               <p style={{ textAlign: "center", marginTop: "12px" }}>

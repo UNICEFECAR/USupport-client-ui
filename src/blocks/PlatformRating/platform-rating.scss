@@ -1,23 +1,26 @@
 @import "@USupport-components-library/styles";
 
 .platform-rating {
-  &__grid {
-    place-items: center;
+  & .container {
+    max-width: 58.4rem;
+    margin: 0 auto;
+
+    @media screen and (min-width: $screen-lg) {
+      margin-left: 0;
+    }
+  }
+
+  &__content-container {
     text-align: left;
     padding-top: $spacing_3_2;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_2_4;
+    padding-bottom: $spacing_6_0;
 
-    &__item {
-      &__textarea {
-        margin-top: $spacing_2_4;
-
-        @media screen and (min-width: $screen-md) {
-          margin-top: $spacing_3_0;
-        }
-      }
-
-      & > button {
-        margin-top: $spacing_3_2;
-      }
+    &__textarea {
+      width: 100%;
     }
   }
 }

@@ -65,6 +65,7 @@ export const ForgotPassword = ({ isOpen, handleGoBack }) => {
       <Backdrop
         heading={t("heading_modal")}
         isOpen={isOpen}
+        onClose={() => {}} // No-op to prevent closing via overlay click
         handleGoBack={handleGoBack}
         hasGoBackArrow={true}
         hasCloseIcon={false}

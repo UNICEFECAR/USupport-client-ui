@@ -2,23 +2,7 @@
 @import "@USupport-components-library/styles";
 
 .page__information-portal {
-  &__banner {
-    height: 22.2rem;
-    text-align: left;
-    background: $gradient_secondary_0_3_opacity;
-    border-radius: 0 0 0 $spacing_10_0;
-    padding-top: $spacing_2_0;
-    min-width: calc(38rem);
-
-    @media screen and (min-width: $screen-md) {
-      height: 17.4rem;
-    }
-
-    & h3,
-    & p {
-      @include themify($themes, "color", "color_3d527b_white");
-    }
-  }
+  min-width: 40.7rem;
 
   &__tabs-container {
     margin-top: $spacing_6_0;
@@ -29,32 +13,31 @@
     }
   }
 
+  &__content-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: $spacing_1_6;
+
+    > h4 {
+      text-align: left;
+    }
+  }
+
   & .view-all-button {
-    color: $color_secondary_9749fa;
+    @include themify($themes, "color", "color_6a4ffb_8c90eb");
     cursor: pointer;
+    padding: $spacing_1_6 0;
+  }
+
+  & h5.view-all-button {
+    font-weight: 500;
   }
 
   &__block {
     text-align: left;
-  }
-
-  &__mascot-item {
-    margin-top: $spacing_0_4;
-    @media screen and (min-width: $screen-md) {
-      margin-top: $spacing_2_4;
-    }
-  }
-
-  &__headings-item {
-    padding: $spacing_3_2 0 0 $spacing_4_0;
-    margin-right: $spacing_1_6;
-
-    .subheading {
-      padding-top: $spacing_1_6;
-    }
-    @media screen and (min-width: $screen-md) {
-      padding-top: $spacing_5_0;
-    }
   }
 
   &__block__grid {
@@ -65,11 +48,8 @@
     }
   }
 
-  &__heading-item {
-    text-align: left;
-  }
-
-  &__view-more-item {
-    justify-self: end;
+  & .tabs-underlined-container {
+    justify-content: center;
+    max-width: unset;
   }
 }

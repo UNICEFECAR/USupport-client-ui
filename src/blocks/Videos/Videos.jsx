@@ -33,9 +33,14 @@ import "./videos.scss";
  *
  * Videos block
  *
+ * @param {Object} props
+ * @param {boolean} props.showSearch - Whether to show internal search input
+ * @param {boolean} props.showCategories - Whether to show categories
+ * @param {string} props.sort - Sort option
+ * @param {string} props.externalSearchValue - External search value from parent
  * @return {jsx}
  */
-export const Videos = ({ showSearch, showCategories, sort }) => {
+export const Videos = ({ showSearch, showCategories, sort, externalSearchValue }) => {
   const navigate = useNavigate();
   const { isTmpUser } = useContext(RootContext);
 
@@ -107,7 +112,12 @@ export const Videos = ({ showSearch, showCategories, sort }) => {
 
   //--------------------- Search Input ----------------------//
   const [searchValue, setSearchValue] = useState("");
-  const debouncedSearchValue = useDebounce(searchValue, 500);
+  const internalDebouncedSearchValue = useDebounce(searchValue, 500);
+  
+  // Use external search value if provided, otherwise use internal
+  const debouncedSearchValue = externalSearchValue !== undefined 
+    ? externalSearchValue 
+    : internalDebouncedSearchValue;
 
   const handleInputChange = (newValue) => {
     setSearchValue(newValue);

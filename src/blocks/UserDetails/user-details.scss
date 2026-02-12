@@ -1,16 +1,39 @@
 @import "@USupport-components-library/styles";
 
 .user-details {
+  &__profile-picture-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &.btn-xs {
+      min-width: unset;
+      padding: 0;
+    }
+  }
+
   &__grid {
     padding-bottom: $spacing_6_0;
+    max-width: 58.4rem;
+    margin: 0 auto;
+    gap: $spacing_2_4;
+
+    @media screen and (min-width: $screen_lg) {
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    &__dropdowns-grid {
+      gap: $spacing_2_4;
+    }
 
     &-item {
-      justify-self: center;
-      padding-top: $spacing_2_4;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_2_4;
 
       &__access-token {
-        padding-top: $spacing_3_2;
-
         & > .access-token-container {
           margin-top: 0;
           margin-bottom: $spacing_1_2;
@@ -18,15 +41,6 @@
             padding-bottom: $spacing_1_2;
           }
         }
-      }
-
-      & > .input-container,
-      & > .dropdown-with-label {
-        padding-top: $spacing_2_4;
-      }
-
-      & > .input-container:first-of-type {
-        padding-top: $spacing_3_2;
       }
 
       .dropdown-with-label {
@@ -61,12 +75,16 @@
           display: flex;
           flex-direction: row;
           flex-wrap: nowrap;
-          justify-content: space-between;
+          gap: $spacing_1_2;
+          align-items: flex-start;
           padding-top: $spacing_1_2;
           width: 100%;
 
+          & > .checkbox-wrapper {
+            margin-top: $spacing_0_2;
+          }
+
           & > p {
-            max-width: 60%;
             text-align: left;
           }
         }
@@ -79,10 +97,32 @@
       min-width: unset;
       padding: 0;
     }
+
+    &__buttons-container {
+      display: flex;
+      flex-direction: row;
+      gap: $spacing_1_2;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+
+      & > .button {
+        width: 100%;
+
+        @media screen and (min-width: $screen_lg) {
+          min-width: 20rem;
+        }
+      }
+    }
+
+    &__delete-buttons-container {
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &__modal-heading {
-    color: $color_primary_20809e;
+    color: #7f2ee5;
     cursor: pointer;
 
     &--hc {

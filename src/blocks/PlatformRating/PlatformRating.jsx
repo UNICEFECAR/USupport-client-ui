@@ -8,7 +8,7 @@ import {
   GridItem,
   Rating,
   Textarea,
-  Button,
+  NewButton,
   Error,
 } from "@USupport-components-library/src";
 
@@ -61,31 +61,29 @@ export const PlatformRating = () => {
 
   return (
     <Block classes="platform-rating">
-      <Grid md={8} lg={12} classes="platform-rating__grid">
-        <GridItem md={8} lg={12} classes="platform-rating__grid__item">
-          <Rating
-            label={t("rating_label")}
-            changeOnHoverEnabled
-            setParentState={(value) => handleChange("rating", value)}
-            rating={data.rating}
-          />
-          <Textarea
-            label={t("textarea_label")}
-            placeholder={t("textarea_placeholder")}
-            onChange={(value) => handleChange("comment", value)}
-            classes="platform-rating__grid__item__textarea"
-            value={data.comment}
-          />
-          {errors.submit && <Error error={errors.submit} />}
-          <Button
-            label={t("button_label")}
-            size="lg"
-            onClick={() => handleSendRating()}
-            disabled={canContinue}
-            loading={addRatingMutation.isLoading}
-          />
-        </GridItem>
-      </Grid>
+      <div className="platform-rating__content-container">
+        <Rating
+          label={t("rating_label")}
+          changeOnHoverEnabled
+          setParentState={(value) => handleChange("rating", value)}
+          rating={data.rating}
+        />
+        <Textarea
+          label={t("textarea_label")}
+          placeholder={t("textarea_placeholder")}
+          onChange={(value) => handleChange("comment", value)}
+          classes="platform-rating__content-container__textarea"
+          value={data.comment}
+        />
+        {errors.submit && <Error error={errors.submit} />}
+        <NewButton
+          label={t("button_label")}
+          size="lg"
+          onClick={() => handleSendRating()}
+          disabled={canContinue}
+          loading={addRatingMutation.isLoading}
+        />
+      </div>
     </Block>
   );
 };

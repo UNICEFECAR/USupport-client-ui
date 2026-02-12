@@ -77,9 +77,8 @@ export const Login = ({
       );
 
       window.dispatchEvent(new Event("login"));
+      window.dispatchEvent(new Event("token-changed"));
       setErrors({});
-      //TODO: Close the modals
-      // navigate("/dashboard");
       const language = localStorage.getItem("language");
       userSvc.changeLanguage(language).catch((err) => {
         console.log(err, "Error when changing language");
@@ -107,6 +106,7 @@ export const Login = ({
   return (
     <Backdrop
       isOpen={isOpen}
+      onClose={() => {}}
       hasGoBackArrow={true}
       handleGoBack={handleGoBack}
       thirdCtaLabel={t("register_button_label")}

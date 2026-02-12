@@ -350,7 +350,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
 
   const handleRegisterRedirection = () => {
     userSvc.logout();
-    navigate("/register-preview");
+    navigate("/dashboard");
   };
 
   const handleModalCtaClick = () => {

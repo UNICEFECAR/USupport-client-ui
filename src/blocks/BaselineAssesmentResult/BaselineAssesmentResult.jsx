@@ -79,7 +79,7 @@ export const BaselineAssesmentResult = ({ result }) => {
           <GridItem md={8} lg={12}>
             <Grid classes="baseline-assesment-result__compare-grid">
               <GridItem md={8} lg={12}>
-                <h4>Some text to show</h4>
+                {/* <h4>Some text to show</h4> */}
                 {result?.comparePrevious && <h4>{resultText}</h4>}
               </GridItem>
               <GridItem md={8} lg={12}>
@@ -176,7 +176,7 @@ export const BaselineAssesmentResult = ({ result }) => {
                       navigate(
                         `/information-portal/article/${
                           articleData.id
-                        }/${createArticleSlug(articleData.title)}`
+                        }/${createArticleSlug(articleData.title)}`,
                       );
                     }}
                   />
@@ -213,7 +213,7 @@ export const BaselineAssesmentResult = ({ result }) => {
                       navigate(
                         `/information-portal/video/${
                           videoData.id
-                        }/${createArticleSlug(videoData.title)}`
+                        }/${createArticleSlug(videoData.title)}`,
                       );
                     }}
                   />
@@ -253,7 +253,7 @@ export const BaselineAssesmentResult = ({ result }) => {
                       navigate(
                         `/information-portal/podcast/${
                           podcastData.id
-                        }/${createArticleSlug(podcastData.title)}`
+                        }/${createArticleSlug(podcastData.title)}`,
                       );
                     }}
                   />

@@ -24,7 +24,6 @@ import {
   ActivityHistory,
   ArticleInformation,
   Articles,
-  Consultation,
   Consultations,
   ContactUs,
   CookiePolicy,
@@ -49,7 +48,6 @@ import {
   TermsOfUse,
   UserDetails,
   UserProfile,
-  Welcome,
   Notifications,
   PaymentHistory,
   Checkout,
@@ -92,14 +90,7 @@ const LanguageLayout = () => {
           </CountryValidationRoute>
         }
       />
-      <Route
-        path="dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="dashboard" element={<Dashboard />} />
       <Route
         path="consultation"
         element={
@@ -406,7 +397,7 @@ const LanguageLayout = () => {
           </ProtectedRoute>
         }
       />
-      <Route path="/" element={<Welcome />} />
+      <Route path="/" element={<Navigate to="dashboard" replace />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

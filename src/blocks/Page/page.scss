@@ -25,12 +25,6 @@
     }
   }
 
-  &__header-icon {
-    @media screen and (min-width: $screen-lg) {
-      display: none;
-    }
-  }
-
   &__header {
     align-items: center;
     justify-content: space-between;
@@ -51,9 +45,17 @@
     }
 
     &__text-container {
-      display: flex;
+      display: column;
       flex-direction: row;
       align-items: center;
+
+      &__go-back {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        margin-bottom: 1rem;
+      }
     }
 
     &__language {
@@ -196,13 +198,13 @@
     padding-left: $spacing_2_4;
 
     @media screen and (min-width: $screen-md) {
-      padding-left: calc($spacing_2_6 + $spacing_8_0);
-      padding-right: calc($spacing_2_6 + $spacing_8_0);
+      padding-left: $spacing_3_6;
+      padding-right: $spacing_3_6;
     }
 
     @media screen and (min-width: $screen-lg) {
-      padding-left: calc($spacing_23_0 + $spacing_5_6);
-      padding-right: calc($spacing_23_0 + $spacing_5_6);
+      padding-left: $spacing_11_5;
+      padding-right: $spacing_11_5;
     }
   }
 

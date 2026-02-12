@@ -22,7 +22,7 @@ export const NotFound = () => {
         headingText={t("heading")}
         subheadingText={t("subheading")}
         buttonText={t("button")}
-        handleClick={() => navigate("/")}
+        handleClick={() => navigate("/dashboard")}
       />
     </Page>
   );

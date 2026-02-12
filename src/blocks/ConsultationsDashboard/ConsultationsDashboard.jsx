@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
@@ -12,7 +12,6 @@ import {
 import {
   Block,
   Loading,
-  CustomCarousel,
   Consultation,
   VideoPlayer,
   NewButton,
@@ -34,6 +33,7 @@ export const ConsultationsDashboard = ({
   handleSchedule,
   upcomingConsultations,
   isLoading,
+  isLoggedIn,
 }) => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
@@ -54,30 +54,59 @@ export const ConsultationsDashboard = ({
     (language === "kk" || language === "ru") &&
     (!upcomingConsultations || upcomingConsultations.length === 0);
 
-  const breakpointsItem = {
-    desktop: {
-      breakpoint: { max: 5000, min: 1366 }, // 5000 to make sure it's the last breakpoint
-      items: 3,
-    },
-    smallLaptop: {
-      breakpoint: { max: 1366, min: 768 },
-      items: 2,
-    },
-    tablet: {
-      breakpoint: { max: 768, min: 375 },
-      items: 1,
-    },
-    mobile: {
-      breakpoint: { max: 375, min: 0 },
-      items: 1,
-    },
-  };
+  // Generate dummy consultations for non-logged-in users
+  const dummyConsultations = useMemo(() => {
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(10, 0, 0, 0);
+
+    const dayAfter = new Date(now);
+    dayAfter.setDate(dayAfter.getDate() + 2);
+    dayAfter.setHours(14, 0, 0, 0);
+
+    const nextWeek = new Date(now);
+    nextWeek.setDate(nextWeek.getDate() + 5);
+    nextWeek.setHours(11, 0, 0, 0);
+
+    return [
+      {
+        consultationId: "dummy-1",
+        timestamp: tomorrow.getTime(),
+        image: "default",
+        status: "scheduled",
+        providerName: t("dummy_provider_1") || "Dr. Smith",
+        price: 0,
+      },
+      {
+        consultationId: "dummy-2",
+        timestamp: dayAfter.getTime(),
+        image: "default",
+        status: "scheduled",
+        providerName: t("dummy_provider_2") || "Dr. Johnson",
+        price: 0,
+      },
+      {
+        consultationId: "dummy-3",
+        timestamp: nextWeek.getTime(),
+        image: "default",
+        status: "scheduled",
+        providerName: t("dummy_provider_3") || "Dr. Williams",
+        price: 0,
+      },
+    ];
+  }, [t]);
+
+  const consultationsToShow =
+    !isLoggedIn && (!upcomingConsultations || upcomingConsultations.length === 0)
+      ? dummyConsultations
+      : upcomingConsultations;
 
   const renderConsultations = () => {
-    return upcomingConsultations?.map((consultation) => {
+    return consultationsToShow?.slice(0, 3).map((consultation) => {
       return (
         <div
-          className="consultations-dashboard__consultation-container"
+          className="consultations-dashboard__scroll-container__item"
           key={consultation.consultationId}
         >
           <Consultation
@@ -87,10 +116,9 @@ export const ConsultationsDashboard = ({
             handleOpenEdit={openEditConsultation}
             handleAcceptConsultation={handleAcceptSuggestion}
             suggested={consultation.status === "suggested"}
-            overview={false}
+            overview={!isLoggedIn ? true : false}
             t={t}
             toast={toast}
-            classes="consultations-dashboard__consultation-container__consultation-card"
           />
         </div>
       );
@@ -144,13 +172,11 @@ export const ConsultationsDashboard = ({
       )}
       {isLoading ? (
         <Loading size="lg" />
-      ) : !upcomingConsultations || upcomingConsultations.length === 0 ? (
+      ) : !consultationsToShow || consultationsToShow.length === 0 ? (
         <></>
       ) : (
-        <div className="consultations-dashboard__carousel-container">
-          <CustomCarousel breakpointItems={breakpointsItem} speed={5000}>
-            {renderConsultations()}
-          </CustomCarousel>
+        <div className="consultations-dashboard__scroll-container">
+          {renderConsultations()}
         </div>
       )}
       <NewButton

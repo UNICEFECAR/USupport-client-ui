@@ -12,55 +12,71 @@
     text-align: left;
     place-items: center;
     padding-top: $spacing_2_4;
+    gap: $spacing_2_8;
 
     @media screen and (min-width: $screen_md) {
-      padding-top: $spacing_6_0;
+      padding-top: $spacing_4_8;
     }
 
     &__headings-item {
+      width: 100%;
+      max-width: 46rem;
+      margin-bottom: $spacing_3_2;
+
       & h4 {
+        font-weight: $font_medium;
         @media screen and (min-width: $screen_md) {
           margin-bottom: $spacing_2_4;
         }
+      }
+
+      & .text {
+        color: #6989a4;
+        font-weight: $font_medium;
       }
     }
 
     &__warning-container {
       align-items: center;
       display: flex;
-      margin-top: $spacing_2_4;
-      max-width: 42rem;
+      max-width: 55rem;
+      margin-bottom: $spacing_3_2;
 
       & .icon {
         margin-right: $spacing_2_4;
       }
 
       & p {
-        width: 90%;
+        width: 80%;
       }
     }
 
     &__continue-button {
-      margin: $spacing_2_4 0;
+      width: 100%;
+      max-width: 46rem;
     }
 
     &__button {
-      margin-top: $spacing_4_0;
+      margin-top: $spacing_2_4;
+      width: 100%;
+      max-width: 46rem;
     }
   }
 
   &__question {
-    max-width: 36.8rem;
-    margin-top: $spacing_4_0;
+    &__text {
+      font-weight: $font_semi_bold;
+    }
 
     &__answers {
       display: flex;
-      justify-content: space-between;
+      gap: $spacing_1_6;
+      padding-top: $spacing_1_2;
 
-      & .radio-button-selector {
-        margin-top: $spacing_0_8;
-        width: 40%;
-      }
+      // & .radio-button-selector {
+      //   margin-top: $spacing_0_8;
+      //   width: 40%;
+      // }
 
       &__emoticon-container {
         margin-top: $spacing_0_8;
@@ -81,6 +97,6 @@
 
   &__question-item {
     width: 100%;
-    max-width: 36.8rem;
+    max-width: 46rem;
   }
 }

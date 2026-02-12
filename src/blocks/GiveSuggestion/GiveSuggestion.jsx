@@ -92,7 +92,7 @@ export const GiveSuggestion = ({ type = "information-portal" }) => {
 
   const handleRegisterRedirection = () => {
     userSvc.logout();
-    navigate("/register-preview");
+    navigate("/dashboard");
   };
 
   return (

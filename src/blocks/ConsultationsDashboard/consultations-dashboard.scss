@@ -40,15 +40,20 @@
     max-width: $screen-md;
   }
 
-  &__consultation-container {
+  &__scroll-container {
     display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
+    overflow-x: auto;
+    gap: $spacing_1_6;
+    padding-bottom: $spacing_0_8;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
 
-    &__consultation-card {
-      margin-left: 0;
-      margin-right: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__item {
+      flex: 0 0 auto;
     }
   }
 

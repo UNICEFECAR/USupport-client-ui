@@ -14,7 +14,7 @@ export const CountryValidationRoute = ({ children }) => {
   });
 
   if (!country || country === "global")
-    return <Navigate to={`/client/${language}/`} />;
+    return <Navigate to={`/client/${language}/dashboard`} />;
 
   return children;
 };

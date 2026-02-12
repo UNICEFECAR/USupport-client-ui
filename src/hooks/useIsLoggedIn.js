@@ -112,5 +112,18 @@ export const useIsLoggedIn = () => {
 
   useEventListener("token-changed", handler);
 
+  const loginHandler = useCallback(() => {
+    const isLoggedIn = validateUser();
+    setResult(isLoggedIn);
+  });
+
+  useEventListener("login", loginHandler);
+
+  const logoutHandler = useCallback(() => {
+    setResult(false);
+  }, []);
+
+  useEventListener("logout", logoutHandler);
+
   return result;
 };

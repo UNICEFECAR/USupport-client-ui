@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { useCustomNavigate as useNavigate } from "#hooks";
+import { useCustomNavigate as useNavigate, useIsLoggedIn } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -48,9 +48,17 @@ import "./dashboard.scss";
 export const Dashboard = () => {
   const { t } = useTranslation("pages", { keyPrefix: "dashboard-page" });
   const navigate = useNavigate();
+  const isLoggedIn = useIsLoggedIn();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
-  const clientDataQuery = useGetClientData(!isTmpUser)[0];
+  // Determine if user is authenticated (logged in and not loading)
+  const isAuthenticated = isLoggedIn === true;
+  const isAuthLoading = isLoggedIn === "loading";
+
+  // Disable all queries if user is not authenticated
+  const shouldEnableQueries = isAuthenticated && !isTmpUser;
+
+  const clientDataQuery = useGetClientData(shouldEnableQueries)[0];
   const clientData = clientDataQuery?.data;
 
   const IS_RO = localStorage.getItem("country") === "RO";
@@ -65,8 +73,8 @@ export const Dashboard = () => {
 
   const consultationPrice = useRef();
 
-  // Get the consultations data only if the user is NOT temporary
-  const consultationsQuery = isTmpUser ? [] : useGetAllConsultations();
+  // Get the consultations data only if the user is authenticated and NOT temporary
+  const consultationsQuery = useGetAllConsultations(shouldEnableQueries);
 
   const upcomingConsultations = useMemo(() => {
     const currentDateTs = new Date().getTime();
@@ -163,7 +171,7 @@ export const Dashboard = () => {
   };
   const acceptConsultationMutation = useAcceptConsultation(
     onAcceptConsultationSuccess,
-    onAcceptConsultationError
+    onAcceptConsultationError,
   );
 
   const handleAcceptSuggestion = (consultationId, price) => {
@@ -191,7 +199,7 @@ export const Dashboard = () => {
   };
   const rescheduleConsultationMutation = useRescheduleConsultation(
     onRescheduleConsultationSuccess,
-    onRescheduleConsultationError
+    onRescheduleConsultationError,
   );
 
   const onScheduleConsultationError = (error) => {
@@ -199,7 +207,7 @@ export const Dashboard = () => {
   };
   const scheduleConsultationMutation = useScheduleConsultation(
     onRescheduleConsultationSuccess,
-    onScheduleConsultationError
+    onScheduleConsultationError,
   );
 
   // Block slot logic
@@ -256,6 +264,9 @@ export const Dashboard = () => {
       navigate(`/select-provider`);
     }
   };
+  // Show authentication backdrop when user is not authenticated (and not loading)
+  const showAuthBackdrop = !isAuthenticated && !isAuthLoading;
+
   return (
     <Page
       classes="page__dashboard"
@@ -263,10 +274,11 @@ export const Dashboard = () => {
       showFooter
       showEmergencyButton
       showGoBackArrow={false}
+      showAuthenticationBackdrop={showAuthBackdrop}
     >
       {IS_RO && (
         <BaselineAssesmentModal
-          isTmpUser={isTmpUser}
+          isTmpUser={isTmpUser || !isAuthenticated}
           open={isBaselineAssesmentModalOpen}
           setOpen={setIsBaselineAssesmentModalOpen}
         />
@@ -285,13 +297,13 @@ export const Dashboard = () => {
           t={t}
         /> */}
         <MoodTracker
-          isTmpUser={isTmpUser}
-          clientData={clientData}
+          isTmpUser={isTmpUser || !isAuthenticated}
+          clientData={clientData || {}}
           openRequireDataAgreement={openRequireDataAgreement}
         />
         {IS_RO && (
           <BaselineAssessmentDashboard
-            isTmpUser={isTmpUser}
+            isTmpUser={isTmpUser || !isAuthenticated}
             openBaselineAssesmentModal={() =>
               setIsBaselineAssesmentModalOpen(true)
             }
@@ -304,7 +316,8 @@ export const Dashboard = () => {
             handleAcceptSuggestion={handleAcceptSuggestion}
             handleSchedule={handleScheduleConsultation}
             upcomingConsultations={upcomingConsultations}
-            isLoading={consultationsQuery.isLoading}
+            isLoading={shouldEnableQueries && consultationsQuery.isLoading}
+            isLoggedIn={isAuthenticated}
             t={t}
           />
         )}
@@ -353,8 +366,8 @@ export const Dashboard = () => {
               startDate: new Date(selectedSlot?.time || selectedSlot),
               endDate: new Date(
                 new Date(selectedSlot?.time || selectedSlot).setHours(
-                  new Date(selectedSlot?.time || selectedSlot).getHours() + 1
-                )
+                  new Date(selectedSlot?.time || selectedSlot).getHours() + 1,
+                ),
               ),
             }}
           />

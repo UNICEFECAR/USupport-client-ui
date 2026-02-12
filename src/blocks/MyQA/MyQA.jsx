@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useCallback, useMemo, useEffect, useState } from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
 
@@ -6,17 +6,16 @@ import {
   Block,
   Grid,
   GridItem,
+  TabsUnderlined,
   Tabs,
-  Button,
+  NewButton,
   Answer,
-  InputSearch,
-  ButtonWithIcon,
   Loading,
   Dropdown,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
-import { useEventListener, useGetLanguages } from "#hooks";
+import { useEventListener, useGetLanguages, useGetQuestionsTags } from "#hooks";
 
 import "./my-qa.scss";
 
@@ -36,20 +35,26 @@ export const MyQA = ({
   tabs,
   setTabs,
   isUserQuestionsEnabled,
-  handleFilterTags,
   filterTag,
+  setFilterTag,
   isQuestionsDataLoading,
   selectedLanguage,
   setSelectedLanguage,
   setShouldFetchQuestions,
+  searchValue,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "my-qa" });
   const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
-  const [searchValue, setSearchValue] = useState("");
-
   const { data: languages } = useGetLanguages();
+  const [tags, setTags] = useState([]);
+
+  const onTagsSuccess = useCallback((data) => {
+    setTags(data);
+  }, []);
+
+  useGetQuestionsTags(onTagsSuccess);
 
   const handler = useCallback(() => {
     const lang = localStorage.getItem("language");
@@ -98,6 +103,26 @@ export const MyQA = ({
     setTabs(tabsCopy);
   };
 
+  const getTagsOptions = useMemo(() => {
+    return tags.map((tag) => ({
+      label: tag.label,
+      value: tag.id,
+      isSelected: filterTag === tag.label,
+    }));
+  }, [tags, filterTag]);
+
+  const handleTagSelect = (index) => {
+    const selectedTag = tags[index];
+    if (selectedTag && setFilterTag) {
+      // If clicking the same tag, clear the filter; otherwise set it
+      if (filterTag === selectedTag.label) {
+        setFilterTag("");
+      } else {
+        setFilterTag(selectedTag.label);
+      }
+    }
+  };
+
   const handleProviderClick = (providerId) => {
     navigate(`/provider-overview?provider-id=${providerId}`);
   };
@@ -120,7 +145,7 @@ export const MyQA = ({
           ?.toLowerCase()
           .includes(value);
         const isTagMatching = question.tags?.find((x) =>
-          x.toLowerCase().includes(value)
+          x.toLowerCase().includes(value),
         );
         const isQuestionMatching = question.question
           ?.toLowerCase()
@@ -148,17 +173,18 @@ export const MyQA = ({
 
     return filteredQuestions.map((question, index) => {
       return (
-        <Answer
-          question={question}
-          key={index}
-          classes="my-qa__answer"
-          isInYourQuestions={isUserQuestionsEnabled}
-          handleLike={handleLike}
-          handleReadMore={() => handleReadMore(question)}
-          handleScheduleConsultationClick={handleScheduleConsultationClick}
-          handleProviderClick={handleProviderClick}
-          t={t}
-        />
+        <GridItem key={index} md={8} lg={6}>
+          <Answer
+            question={question}
+            classes="my-qa__answer"
+            isInYourQuestions={isUserQuestionsEnabled}
+            handleLike={handleLike}
+            handleReadMore={() => handleReadMore(question)}
+            handleScheduleConsultationClick={handleScheduleConsultationClick}
+            handleProviderClick={handleProviderClick}
+            t={t}
+          />
+        </GridItem>
       );
     });
   };
@@ -173,53 +199,58 @@ export const MyQA = ({
               lg={12}
               classes="my-qa__tabs-grid__search-container"
             >
-              <InputSearch
-                placeholder={t("search_placeholder")}
-                value={searchValue}
-                onChange={(value) => setSearchValue(value.toLowerCase())}
-                classes="my-qa__tabs-grid__search-container__input"
-              />
-              <Dropdown
-                options={languageOptions}
-                selected={selectedLanguage}
-                setSelected={(lang) => {
-                  console.log(lang);
-                  setSelectedLanguage(lang);
-                }}
-                placeholder={t("placeholder")}
-                classes="my-qa__categories-item__language-dropdown"
-              />
+              <Grid>
+                <GridItem md={4} lg={6}>
+                  <div className="my-qa__tabs-grid__search-container__tabs">
+                    <TabsUnderlined
+                      textType="h3"
+                      options={tabs.map((tab) => {
+                        return {
+                          label: t(tab.value),
+                          value: tab.value,
+                          isSelected: tab.isSelected,
+                        };
+                      })}
+                      handleSelect={handleTabChange}
+                    />
+                  </div>
+                </GridItem>
+                <GridItem md={4} lg={6}>
+                  <div className="my-qa__tabs-grid__search-container__dropdown">
+                    <Dropdown
+                      options={languageOptions}
+                      selected={selectedLanguage}
+                      setSelected={(lang) => {
+                        console.log(lang);
+                        setSelectedLanguage(lang);
+                      }}
+                      placeholder={t("placeholder")}
+                      classes="my-qa__categories-item__language-dropdown"
+                    />
+                  </div>
+                </GridItem>
+              </Grid>
             </GridItem>
+            {tags.length > 0 && (
+              <GridItem
+                md={8}
+                lg={12}
+                classes="my-qa__tabs-grid__tags-container"
+              >
+                <Tabs
+                  options={getTagsOptions}
+                  handleSelect={handleTagSelect}
+                  t={t}
+                />
+              </GridItem>
+            )}
             <GridItem
               md={8}
               lg={12}
               classes="my-qa__tabs-grid__filter-button-item"
-            >
-              <Tabs
-                options={tabs.map((tab) => {
-                  return {
-                    label: t(tab.value),
-                    value: tab.value,
-                    isSelected: tab.isSelected,
-                  };
-                })}
-                handleSelect={handleTabChange}
-              />
-              <div>
-                <ButtonWithIcon
-                  label={t("filter")}
-                  iconName="filter"
-                  iconColor="#ffffff"
-                  iconSize="sm"
-                  color="purple"
-                  size="sm"
-                  onClick={handleFilterTags}
-                  classes="my-qa__tabs-grid__filter-button"
-                />
-              </div>
-            </GridItem>
+            ></GridItem>
             <GridItem md={8} lg={12} classes="my-qa__button-item">
-              <Button
+              <NewButton
                 label={t("ask_button_label")}
                 size={width < 980 && width > 768 ? "lg" : "lg"}
                 classes="my-qa__ask-question-button"
@@ -230,7 +261,7 @@ export const MyQA = ({
         </GridItem>
         <GridItem xs={4} md={8} lg={12}>
           {questions?.length > 0 ? (
-            <div className="my-qa__answers-container">{renderQuestions()}</div>
+            <Grid classes="my-qa__answers-container">{renderQuestions()}</Grid>
           ) : isQuestionsDataLoading ? (
             <Loading />
           ) : (

@@ -4,9 +4,11 @@ import { useLocation } from "react-router-dom";
 
 import {
   Page,
-  MascotHeaderMyQA,
+  // MascotHeaderMyQA,
   MyQA as MyQABlock,
-  GiveSuggestion,
+  // GiveSuggestion,
+  DownloadApp,
+  InformationPortalHero,
 } from "#blocks";
 
 import { CreateQuestion, QuestionDetails, HowItWorksMyQA } from "#modals";
@@ -61,6 +63,7 @@ export const MyQA = () => {
     useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState();
   const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const clientData = useGetClientData()[1];
   const addCountryEventMutation = useAddCountryEvent();
@@ -73,16 +76,14 @@ export const MyQA = () => {
 
   const userQuestions = useGetClientQuestions(
     isUserQuestionsEnabled,
-    selectedLanguage
+    selectedLanguage,
   );
   const allQuestions = useGetQuestions(
     tabs.find((tab) => tab.isSelected).value,
     !isUserQuestionsEnabled,
-    selectedLanguage
+    selectedLanguage,
   );
 
-  // If redirected to this screen from notifications
-  // Open the question details modal
   useEffect(() => {
     if (
       location.state?.questionId &&
@@ -90,7 +91,7 @@ export const MyQA = () => {
       !hasOpenedQuestionFromLocation
     ) {
       const question = allQuestions.data.find(
-        (question) => question.questionId === location.state.questionId
+        (question) => question.questionId === location.state.questionId,
       );
       if (question) {
         handleSetIsQuestionDetailsOpen(question);
@@ -212,9 +213,12 @@ export const MyQA = () => {
 
   return (
     <Page classes="page__my-qa" showGoBackArrow={false}>
-      <MascotHeaderMyQA
-        handleSeeHowItWorksClick={() => setIsHowItWorksOpen(true)}
-        handleHowItWorks={() => setIsHowItWorksOpen(true)}
+      <InformationPortalHero
+        showSearch={true}
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        buttonLabel="See how it works"
+        buttonOnClick={() => setIsHowItWorksOpen(true)}
       />
       <MyQABlock
         handleAskAnonymous={handleAskAnonymous}
@@ -226,6 +230,7 @@ export const MyQA = () => {
         setTabs={setTabs}
         isUserQuestionsEnabled={isUserQuestionsEnabled}
         filterTag={filterTag}
+        setFilterTag={setFilterTag}
         handleFilterTags={() => setIsFilterQuestionsOpen(true)}
         isQuestionsDataLoading={
           userQuestions.isFetching || allQuestions.isFetching
@@ -233,8 +238,10 @@ export const MyQA = () => {
         selectedLanguage={selectedLanguage}
         setSelectedLanguage={setSelectedLanguage}
         setShouldFetchQuestions={setShouldFetchQuestions}
+        searchValue={searchValue}
       />
-      <GiveSuggestion type="my-qa" />
+      {/* <GiveSuggestion type="my-qa" /> */}
+      <DownloadApp />
       <CreateQuestion
         isOpen={isCreateQuestionOpen}
         onClose={() => setIsCreateQuestionOpen(false)}

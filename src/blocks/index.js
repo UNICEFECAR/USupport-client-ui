@@ -52,3 +52,4 @@ export * from "./BaselineAssesmentResult";
 export * from "./BaselineAssessmentDashboard";
 export * from "./DashboardHero";
 export * from "./DownloadApp";
+export * from "./InformationPortalHero";

@@ -206,6 +206,7 @@ export const RegisterEmail = ({ isOpen, handleGoBack, handleLogin }) => {
     <>
       <Backdrop
         isOpen={isOpen}
+        onClose={() => {}} // No-op to prevent closing via overlay click
         hasGoBackArrow={true}
         handleGoBack={handleGoBack}
         hasCloseIcon={false}

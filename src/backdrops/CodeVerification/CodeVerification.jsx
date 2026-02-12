@@ -80,6 +80,7 @@ export const CodeVerification = ({
       );
 
       window.dispatchEvent(new Event("login"));
+      window.dispatchEvent(new Event("token-changed"));
       navigate("/register/about-you");
     },
     onError: (error) => {
@@ -102,7 +103,8 @@ export const CodeVerification = ({
       classes="code-verification"
       title="CodeVerification"
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={() => {}} // No-op to prevent closing via overlay click
+      hasCloseIcon={false}
       heading={t("heading")}
       text={t("subheading")}
     >

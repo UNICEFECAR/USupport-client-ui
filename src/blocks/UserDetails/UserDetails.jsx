@@ -6,17 +6,17 @@ import { toast } from "react-toastify";
 import {
   AccessToken,
   Block,
-  Button,
-  ButtonWithIcon,
   DropdownWithLabel,
   Error as ErrorMessage,
+  ButtonOnlyIcon,
   Grid,
   GridItem,
   Input,
   Loading,
   Modal,
-  Toggle,
   ProfilePicturePreview,
+  CheckBox,
+  NewButton,
 } from "@USupport-components-library/src";
 import {
   validateProperty,
@@ -179,7 +179,7 @@ export const UserDetails = ({
   const userDataMutation = useUpdateClientData(
     clientData,
     onUpdateSuccess,
-    onUpdateError
+    onUpdateError,
   );
 
   const openDataProcessingModal = () => setDataProcessingModalOpen(true);
@@ -190,7 +190,7 @@ export const UserDetails = ({
       "nickname",
       clientData.nickname,
       nicknameSchema,
-      setErrors
+      setErrors,
     );
   };
 
@@ -252,7 +252,7 @@ export const UserDetails = ({
 
   const handleLogout = () => {
     userSvc.logout();
-    navigate("/");
+    navigate("/dashboard");
   };
 
   // Disable the save button IF:
@@ -275,12 +275,20 @@ export const UserDetails = ({
       ) : (
         <Grid classes="user-details__grid">
           <GridItem md={8} lg={12} classes="user-details__grid-item">
-            <ProfilePicturePreview
-              image={clientData.image}
-              handleDeleteClick={openDeletePictureBackdrop}
-              handleChangeClick={openUploadPictureModal}
-              changePhotoText={t("change_photo")}
-            />
+            <div className="user-details__profile-picture-container">
+              <ProfilePicturePreview
+                image={clientData.image}
+                handleDeleteClick={openDeletePictureBackdrop}
+                handleChangeClick={openUploadPictureModal}
+                changePhotoText={t("change_photo")}
+              />
+              <ButtonOnlyIcon
+                iconName={"exit"}
+                iconSize={"md"}
+                iconColor={"#6989A4"}
+                onClick={handleLogout}
+              />
+            </div>
 
             {clientData.accessToken ? (
               <AccessToken
@@ -319,143 +327,127 @@ export const UserDetails = ({
               placeholder={t("email_placeholder")}
               errorMessage={errors.email}
             />
-            <DropdownWithLabel
-              options={sexOptions}
-              selected={clientData.sex}
-              setSelected={(option) => handleChange("sex", option)}
-              label={`${t("sex")}${
-                clientDataQuery?.data?.accessToken ? "" : "*"
-              }`}
-              placeholder={t("sex_placeholder")}
-            />
-            <DropdownWithLabel
-              options={getYearsOptions()}
-              selected={clientData.yearOfBirth}
-              setSelected={(option) => handleChange("yearOfBirth", option)}
-              label={`${t("year_of_birth")}${
-                clientDataQuery?.data?.accessToken ? "" : "*"
-              }`}
-              placeholder={t("year_of_birth_placeholder")}
-            />
-            <DropdownWithLabel
-              options={urbanRuralOptions}
-              selected={clientData.urbanRural}
-              setSelected={(option) => handleChange("urbanRural", option)}
-              label={`${t("living_place")}${
-                clientDataQuery?.data?.accessToken ? "" : "*"
-              }`}
-              placeholder={t("living_place_placeholder")}
-            />
-            {errors.submit ? <ErrorMessage message={errors.submit} /> : null}
-            <Button
-              classes="user-details__grid__save-button"
-              type="primary"
-              label={t("button_text")}
-              size="lg"
-              onClick={handleSave}
-              disabled={isSaveDisabled}
-              loading={userDataMutation.isLoading}
-            />
-            <Button
-              type="secondary"
-              classes="user-details__grid__discard-button"
-              label={t("button_secondary_text")}
-              size="lg"
-              disabled={!canSaveChanges}
-              onClick={handleDiscard}
-            />
-          </GridItem>
-          <GridItem classes="user-details__grid-item-privacy" md={8} lg={12}>
-            <div className="user-details__grid-item-privacy__content">
-              <p className="text user-details__grid-item-privacy__content-privacy ">
-                {t("privacy")}
+            <Grid classes="user-details__grid__dropdowns-grid">
+              <GridItem md={8} lg={4}>
+                <DropdownWithLabel
+                  options={sexOptions}
+                  selected={clientData.sex}
+                  setSelected={(option) => handleChange("sex", option)}
+                  label={`${t("sex")}${
+                    clientDataQuery?.data?.accessToken ? "" : "*"
+                  }`}
+                  placeholder={t("sex_placeholder")}
+                />
+              </GridItem>
+              <GridItem md={8} lg={4}>
+                <DropdownWithLabel
+                  options={getYearsOptions()}
+                  selected={clientData.yearOfBirth}
+                  setSelected={(option) => handleChange("yearOfBirth", option)}
+                  label={`${t("year_of_birth")}${
+                    clientDataQuery?.data?.accessToken ? "" : "*"
+                  }`}
+                  placeholder={t("year_of_birth_placeholder")}
+                />
+              </GridItem>
+              <GridItem md={8} lg={4}>
+                <DropdownWithLabel
+                  options={urbanRuralOptions}
+                  selected={clientData.urbanRural}
+                  setSelected={(option) => handleChange("urbanRural", option)}
+                  label={`${t("living_place")}${
+                    clientDataQuery?.data?.accessToken ? "" : "*"
+                  }`}
+                  placeholder={t("living_place_placeholder")}
+                />
+              </GridItem>
+            </Grid>
+            <div className="user-details__grid-item-privacy__content-consent">
+              <CheckBox
+                isChecked={dataProcessing ? true : false}
+                setIsChecked={handleToggleClick}
+              />
+              <p className="text">
+                <Trans
+                  components={[
+                    <span
+                      onClick={() =>
+                        window
+                          .open(
+                            `${WEBSITE_URL}/privacy-policy`,
+                            "_blank",
+                            "noreferrer",
+                          )
+                          .focus()
+                      }
+                      className={[
+                        "user-details__modal-heading",
+                        theme === "highContrast"
+                          ? "user-details__modal-heading--hc"
+                          : "",
+                      ].join(" ")}
+                    />,
+                  ]}
+                >
+                  {t("consent")}
+                </Trans>
               </p>
-              <div className="user-details__grid-item-privacy__content-consent">
-                <p className="text">
-                  <Trans
-                    components={[
-                      <span
-                        onClick={() =>
-                          window
-                            .open(
-                              `${WEBSITE_URL}/privacy-policy`,
-                              "_blank",
-                              "noreferrer"
-                            )
-                            .focus()
-                        }
-                        className={[
-                          "user-details__modal-heading",
-                          theme === "highContrast"
-                            ? "user-details__modal-heading--hc"
-                            : "",
-                        ].join(" ")}
-                      />,
-                    ]}
-                  >
-                    {t("consent")}
-                  </Trans>
-                </p>
-                <Toggle
-                  isToggled={dataProcessing ? true : false}
-                  setParentState={handleToggleClick}
-                  shouldChangeState={dataProcessing ? false : true}
-                />
-              </div>
-              <Button
-                size="lg"
-                type="ghost"
-                label={t("change_password")}
-                classes="user-details__grid__change-password-button"
-                onClick={openChangePasswordBackdrop}
-              />
-              <ButtonWithIcon
-                iconName={"exit"}
-                iconSize={"md"}
-                size="lg"
-                iconColor={"#20809e"}
-                color={"green"}
-                label={t("logout")}
-                type={"ghost"}
-                classes="user-details__grid__delete-account-button"
-                onClick={handleLogout}
-              />
-              <ButtonWithIcon
-                iconName={"circle-close"}
-                iconSize={"md"}
-                size="lg"
-                iconColor={"#eb5757"}
-                color={"red"}
-                label={t("delete_account")}
-                type={"ghost"}
-                classes="user-details__grid__delete-account-button"
-                onClick={openDeleteAccountBackdrop}
-              />
-              <ButtonWithIcon
-                iconName={"circle-close"}
-                iconSize={"md"}
-                size="lg"
-                iconColor={"#eb5757"}
-                color={"red"}
-                label={t("delete_mood_tracker")}
-                type={"ghost"}
-                classes="user-details__grid__delete-account-button"
-                onClick={openDeleteMoodTrackerHistory}
-              />
-              {!IS_RO && (
-                <ButtonWithIcon
-                  iconName={"circle-close"}
-                  iconSize={"md"}
-                  size="lg"
-                  iconColor={"#eb5757"}
-                  color={"red"}
-                  label={t("delete_chat")}
-                  type={"ghost"}
-                  classes="user-details__grid__delete-account-button"
-                  onClick={openDeleteChatHistory}
-                />
-              )}
             </div>
+            {errors.submit ? <ErrorMessage message={errors.submit} /> : null}
+            <div className="user-details__grid__buttons-container">
+              <NewButton
+                label={t("button_text")}
+                onClick={handleSave}
+                disabled={isSaveDisabled}
+                loading={userDataMutation.isLoading}
+                size="lg"
+              />
+              <NewButton
+                label={t("button_secondary_text")}
+                disabled={!canSaveChanges}
+                onClick={handleDiscard}
+                type="outline"
+                size="lg"
+              />
+            </div>
+          </GridItem>
+          <GridItem md={8} lg={12}>
+            <Grid classes="user-details__grid__delete-buttons-container">
+              <GridItem md={4} lg={6}>
+                <NewButton
+                  size="lg"
+                  type="text"
+                  label={t("change_password")}
+                  onClick={openChangePasswordBackdrop}
+                />
+              </GridItem>
+              <GridItem md={4} lg={6}>
+                <NewButton
+                  size="lg"
+                  type="text"
+                  label={t("delete_account")}
+                  onClick={openDeleteAccountBackdrop}
+                />
+              </GridItem>
+              <GridItem md={4} lg={6}>
+                <NewButton
+                  size="lg"
+                  type="text"
+                  label={t("delete_mood_tracker")}
+                  onClick={openDeleteMoodTrackerHistory}
+                />
+              </GridItem>
+              {!IS_RO && (
+                <GridItem md={4} lg={6}>
+                  <NewButton
+                    size="lg"
+                    type="text"
+                    label={t("delete_chat")}
+                    onClick={openDeleteChatHistory}
+                  />
+                </GridItem>
+              )}
+            </Grid>
           </GridItem>
         </Grid>
       )}
@@ -472,7 +464,7 @@ export const UserDetails = ({
                     .open(
                       `${WEBSITE_URL}/privacy-policy`,
                       "_blank",
-                      "noreferrer"
+                      "noreferrer",
                     )
                     .focus()
                 }

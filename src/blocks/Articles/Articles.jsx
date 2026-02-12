@@ -48,9 +48,14 @@ const PL_LANGUAGE_AGE_GROUP_IDS = {
  *
  * Articles block
  *
+ * @param {Object} props
+ * @param {boolean} props.showSearch - Whether to show internal search input
+ * @param {boolean} props.showCategories - Whether to show categories
+ * @param {string} props.sort - Sort option
+ * @param {string} props.externalSearchValue - External search value from parent
  * @return {jsx}
  */
-export const Articles = ({ showSearch, showCategories, sort }) => {
+export const Articles = ({ showSearch, showCategories, sort, externalSearchValue }) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { isTmpUser } = useContext(RootContext);
@@ -190,7 +195,12 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   //--------------------- Search Input ----------------------//
   const [searchValue, setSearchValue] = useState("");
-  const debouncedSearchValue = useDebounce(searchValue, 500);
+  const internalDebouncedSearchValue = useDebounce(searchValue, 500);
+  
+  // Use external search value if provided, otherwise use internal
+  const debouncedSearchValue = externalSearchValue !== undefined 
+    ? externalSearchValue 
+    : internalDebouncedSearchValue;
 
   const handleInputChange = (newValue) => {
     setSearchValue(newValue);

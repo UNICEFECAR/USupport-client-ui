@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   RegisterEmail,
@@ -11,9 +11,11 @@ import {
 /**
  * Authentication backdrop grouping all the authentication related backdrops
  *
+ * @param {boolean} isOpen - Controls whether authentication modals should be shown
+ *
  * @returns {jsx}
  */
-export const Authentication = () => {
+export const Authentication = ({ isOpen = false }) => {
   const [isRegisterWithEmailModalOpen, setIsRegisterWithEmailModalOpen] =
     useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -22,6 +24,25 @@ export const Authentication = () => {
   const [isRegisterAnonymousModalOpen, setIsRegisterAnonymousModalOpen] =
     useState(false);
   const [openWelcome, setOpenWelcome] = useState(null);
+
+  // When isOpen becomes true, reset all states and show Welcome
+  useEffect(() => {
+    if (isOpen) {
+      setIsRegisterWithEmailModalOpen(false);
+      setIsLoginModalOpen(false);
+      setIsForgotPasswordModalOpen(false);
+      setIsRegisterAnonymousModalOpen(false);
+      // Trigger the welcome modal to open
+      if (openWelcome) {
+        openWelcome();
+      }
+    }
+  }, [isOpen]);
+
+  // Don't render anything if not open
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <>

@@ -36,6 +36,7 @@ export const RegisterAnonymous = ({
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "register-anonymous" });
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const countriesData = queryClient.getQueryData(["countries"]);
 
@@ -109,7 +110,7 @@ export const RegisterAnonymous = ({
       localStorage.setItem("refresh-token", refreshToken);
 
       window.dispatchEvent(new Event("login"));
-      //TODO: add the redirect logic
+      window.dispatchEvent(new Event("token-changed"));
       navigate("/register/about-you", {
         state: {
           isAnonymous: true,
@@ -191,6 +192,7 @@ export const RegisterAnonymous = ({
       <Backdrop
         heading={t("heading")}
         isOpen={isOpen}
+        onClose={() => {}} // No-op to prevent closing via overlay click
         handleGoBack={handleGoBack}
         hasGoBackArrow={true}
         hasCloseIcon={false}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Page, NotificationPreferences } from "#blocks";
+import { Page, NotificationPreferences, DownloadApp } from "#blocks";
 import { useTranslation } from "react-i18next";
 
 import "./notification-preferences.scss";
@@ -22,6 +22,7 @@ export const NotificationPreferencesPage = () => {
       classes="page__notification-preferences"
     >
       <NotificationPreferences />
+      <DownloadApp />
     </Page>
   );
 };

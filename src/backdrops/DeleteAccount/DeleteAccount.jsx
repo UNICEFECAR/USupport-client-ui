@@ -33,7 +33,7 @@ export const DeleteAccount = ({ isOpen, onClose }) => {
     onSuccess: () => {
       userSvc.logout();
 
-      navigate("/");
+      navigate("/dashboard");
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);

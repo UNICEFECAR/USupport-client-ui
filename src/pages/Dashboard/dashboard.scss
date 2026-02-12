@@ -7,10 +7,10 @@
     @include full-height-page-navbar;
   }
 
-  @media screen and (min-width: $screen-md) {
-    background: url(../assets/background-v-shape-full.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
+  // @media screen and (min-width: $screen-md) {
+  //   background: url(../assets/background-v-shape-full.png);
+  //   background-repeat: no-repeat;
+  //   background-position: center;
+  //   background-size: cover;
+  // }
 }

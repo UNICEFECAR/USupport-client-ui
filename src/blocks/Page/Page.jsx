@@ -63,6 +63,7 @@ export const Page = ({
   classes,
   children,
   renderLanguageSelector = false,
+  showAuthenticationBackdrop = false,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -432,7 +433,7 @@ export const Page = ({
     localStorage.removeItem("token");
     localStorage.removeItem("refresh-token");
     localStorage.removeItem("expires-in");
-    navigateTo(`/${localStorageLanguage}/register-preview`);
+    navigateTo(`/client/${localStorageLanguage}/dashboard`);
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
@@ -474,12 +475,12 @@ export const Page = ({
   const handleLogout = () => {
     userSvc.logout();
 
-    navigateTo(`/client/${localStorageLanguage}`);
+    window.location.href = `/client/${localStorageLanguage}/dashboard`;
   };
 
   return (
     <>
-      <Authentication />
+      <Authentication isOpen={showAuthenticationBackdrop} />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -526,13 +527,13 @@ export const Page = ({
             <div className="page__header">
               <div className="page__header__text-container">
                 {showGoBackArrow && (
-                  <Icon
-                    classes="page__header-icon"
-                    name="arrow-chevron-back"
-                    size="md"
-                    color="#20809E"
+                  <div
+                    className="page__header__text-container__go-back"
                     onClick={handleGoBackArrowClick}
-                  />
+                  >
+                    <Icon name="arrow-chevron-back" size="md" color="#20809E" />
+                    <p>{t("go_back")}</p>
+                  </div>
                 )}
                 {heading && <h1 className="page__header-heading">{heading}</h1>}
               </div>
@@ -739,6 +740,11 @@ Page.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
+
+  /**
+   * Show authentication backdrop for unauthenticated users
+   */
+  showAuthenticationBackdrop: PropTypes.bool,
 };
 
 Page.defaultProps = {

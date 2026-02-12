@@ -4,6 +4,11 @@
   text-align: left;
   padding-bottom: $spacing_0_8;
   background-color: #eaf7f9;
+
+  .theme-dark &,
+  .theme-highContrast & {
+    background-color: #193246;
+  }
   padding-bottom: $spacing_4_2;
 
   &__headings-item {

@@ -42,7 +42,9 @@ export const Welcome = ({
 
   useEffect(() => {
     if (onOpenRequest) {
-      onOpenRequest(() => {
+      // Wrap in an extra arrow so React's useState setter stores the function
+      // instead of treating it as a functional updater
+      onOpenRequest(() => () => {
         setIsOpen(true);
         setError(null); // Clear errors when reopening
       });
@@ -75,6 +77,7 @@ export const Welcome = ({
       localStorage.setItem("refresh-token", refreshToken);
 
       window.dispatchEvent(new Event("login"));
+      window.dispatchEvent(new Event("token-changed"));
       setIsOpen(false);
     },
     onError: (error) => {
@@ -226,6 +229,7 @@ export const Welcome = ({
       classes="welcome-modal"
       title="Welcome"
       isOpen={isOpen}
+      onClose={() => {}} // No-op to prevent closing via overlay click
       ctaLabel={t("register_email")}
       ctaHandleClick={() => handleRedirect("email")}
       isCtaDisabled={!selectedCountry || !selectedLanguage}

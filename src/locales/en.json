@@ -47,7 +47,8 @@
       "terms_of_use": "Terms of use",
       "cookie_policy": "Cookie policy",
       "user_guide": "Platform usage",
-      "edit_profile": "Edit profile"
+      "edit_profile": "Edit profile",
+      "go_back": "Go back"
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
@@ -489,7 +490,10 @@
       "not_conducted": "Not conducted",
       "free": "Free",
       "coupon": "Coupon",
-      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time",
+      "dummy_provider_1": "Dr. Smith",
+      "dummy_provider_2": "Dr. Johnson",
+      "dummy_provider_3": "Dr. Williams"
     },
     "mood-tracker": {
       "happy": "Happy",
@@ -1060,7 +1064,8 @@
       "subheading_default": "You can find all articles here",
       "subheading_newest": "Here you can find newest articles",
       "subheading_most_read": "Here you can find the most read articles from all categories",
-      "heading": "Articles"
+      "heading": "Articles",
+      "search": "Search"
     },
     "article-information": {
       "heading": "More Articles",
@@ -1076,6 +1081,7 @@
     "information-portal": {
       "heading": "Information portal",
       "subheading": "Here you can explore everything you need to improve your mental health",
+      "search": "Search",
       "heading_newest": "Newest Articles",
       "heading_popular": "Most popular",
       "heading_no_language_results": "We could not find any articles based on your selected language.",
@@ -1194,7 +1200,8 @@
       "subheading_newest": "Watch our newest videos.",
       "heading_most_viewed": "Most Viewed Videos",
       "subheading_most_viewed": "Watch our most viewed videos.",
-      "all": "All"
+      "all": "All",
+      "search": "Search"
     },
     "video-information-page": {
       "more_videos": "More videos",
@@ -1217,7 +1224,8 @@
       "subheading_newest": "Listen to our newest podcasts.",
       "heading_most_viewed": "Most Viewed Podcasts",
       "subheading_most_viewed": "Listen to our most viewed podcasts.",
-      "all": "All"
+      "all": "All",
+      "search": "Search"
     },
     "organizations-page": {
       "heading": "Organizations"
