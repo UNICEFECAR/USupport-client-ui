@@ -1,0 +1,11 @@
+@import '@USupport-components-library/styles';
+
+.user-guide{
+    &__buttons{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        margin-block:2rem;
+    }
+}

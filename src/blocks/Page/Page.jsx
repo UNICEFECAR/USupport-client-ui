@@ -14,8 +14,6 @@ import {
   PasswordModal,
   Box,
   CookieBanner,
-  WysaButton,
-  Wysa,
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -74,11 +72,7 @@ export const Page = ({
   const isLoggedIn = useIsLoggedIn();
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
-  const IS_DEV = import.meta.env.MODE === "development";
-  const IS_STAGING = window.location.href.includes("staging");
   const IS_RO = localStorage.getItem("country") === "RO";
-  const IS_CY = localStorage.getItem("country") === "CY";
-  const SHOW_WYSA = IS_STAGING || IS_DEV;
 
   const {
     theme,
@@ -93,7 +87,7 @@ export const Page = ({
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
-  const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
+  // const [isModalOpen, setIsWysaModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
@@ -421,7 +415,7 @@ export const Page = ({
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
         size="lg"
-        classes="page__theme-button"
+        classes={["page__theme-button"].join(" ")}
         onClick={toggleTheme}
       />
     );
@@ -635,18 +629,9 @@ export const Page = ({
       {themeButton()}
       {showEmergencyButton && (
         <>
-          {SHOW_WYSA && IS_CY && (
-            <>
-              <WysaButton onClick={() => setIsWysaModalOpen(true)} />
-              <Wysa
-                isOpen={isWysaModalOpen}
-                onClose={() => setIsWysaModalOpen(false)}
-              />
-            </>
-          )}
           <CircleIconButton
             iconName="phone-emergency"
-            classes="page__emergency-button"
+            classes={["page__emergency-button"].join(" ")}
             onClick={() => {
               addSosCenterClickMutation.mutate({
                 isMain: true,

@@ -20,6 +20,8 @@ import {
   JoinConsultation,
   ConfirmConsultation,
   SelectConsultation,
+  UserGuide,
+  EmergencySituation,
 } from "#backdrops";
 
 import {
@@ -98,6 +100,9 @@ export const Dashboard = () => {
   const [redirectToSelectProvider, setRedirectToSelectProvider] =
     useState(true);
   const [isBaselineAssesmentModalOpen, setIsBaselineAssesmentModalOpen] =
+    useState(false);
+  const [isUserGuideOpen, setIsUserGuideOpen] = useState(false);
+  const [isEmergencySituationOpen, setIsEmergencySituationOpen] =
     useState(false);
 
   const openRequireDataAgreement = (successAction) => {
@@ -219,7 +224,7 @@ export const Dashboard = () => {
       });
     } else {
       if (consultationPrice.current && consultationPrice.current > 0) {
-        navigate(`/checkout`, {
+        navigate("/checkout", {
           state: { consultationId: consultationId },
         });
       } else {
@@ -252,7 +257,7 @@ export const Dashboard = () => {
       addCountryEventMutation.mutate({
         eventType: "web_schedule_button_click",
       });
-      navigate(`/select-provider`);
+      navigate("/select-provider");
     }
   };
 
@@ -261,11 +266,25 @@ export const Dashboard = () => {
       addCountryEventMutation.mutate({
         eventType: "web_schedule_button_click",
       });
-      navigate(`/select-provider`);
+      navigate("/select-provider");
     }
   };
   // Show authentication backdrop when user is not authenticated (and not loading)
   const showAuthBackdrop = !isAuthenticated && !isAuthLoading;
+
+  const openUserGuide = () => {
+    setIsUserGuideOpen(true);
+  };
+  const closeUserGuide = () => {
+    setIsUserGuideOpen(false);
+  };
+
+  const openEmergencySituation = () => {
+    setIsEmergencySituationOpen(true);
+  };
+  const closeEmergencySituation = () => {
+    setIsEmergencySituationOpen(false);
+  };
 
   return (
     <Page
@@ -294,6 +313,7 @@ export const Dashboard = () => {
           handleSchedule={handleScheduleConsultation}
           handleAcceptSuggestion={handleAcceptSuggestion}
           name={clientName}
+          handleOpenUserGuide={openUserGuide}
           t={t}
         /> */}
         <MoodTracker
@@ -377,6 +397,15 @@ export const Dashboard = () => {
         isOpen={isRequireDataAgreementOpen}
         onClose={closeRequireDataAgreement}
         onSuccess={handleDataAgreementSucess}
+      />
+      <UserGuide
+        isOpen={isUserGuideOpen}
+        handleOpenEmergencySituation={openEmergencySituation}
+        onClose={closeUserGuide}
+      />
+      <EmergencySituation
+        isOpen={isEmergencySituationOpen}
+        onClose={closeEmergencySituation}
       />
     </Page>
   );

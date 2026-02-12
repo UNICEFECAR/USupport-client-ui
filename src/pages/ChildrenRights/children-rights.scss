@@ -1,0 +1,195 @@
+@import "@USupport-components-library/styles";
+
+.page__children-rights {
+  min-height: 100vh;
+}
+
+.children-rights {
+  &__grid {
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 $spacing_1_6;
+  }
+
+  // Header section with title and paragraph
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing_3_2;
+    margin-top: $spacing_1_2;
+    width: 100%;
+
+    h2 {
+      margin-bottom: $spacing_2_0;
+      color: $color_blue_3d527b;
+      @include themify($themes, "color", "color_blue_3d527b_white");
+    }
+
+    p.text {
+      margin-bottom: $spacing_1_6;
+      max-width: 64rem;
+      margin-left: auto;
+      margin-right: auto;
+      color: $color_gray_66768d;
+      @include themify($themes, "color", "color_gray_92989b_c1d7e0");
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+  }
+
+  // Question section
+  &__question {
+    margin-bottom: $spacing_2_0;
+    width: 100%;
+
+    &__content {
+      text-align: left;
+      max-width: 64rem;
+      margin: 0 auto;
+
+      h4 {
+        margin-bottom: $spacing_1_6;
+        line-height: 1.4;
+        color: $color_blue_3d527b;
+        @include themify($themes, "color", "color_blue_3d527b_white");
+      }
+    }
+  }
+
+  // Answers section
+  &__answers {
+    margin-bottom: $spacing_3_2;
+    width: 100%;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_1_6;
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+
+    &__option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $spacing_0_8;
+      flex: 1;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      .radio-button-selector {
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        &--selected {
+          border: 1px solid $color_secondary_9749fa;
+        }
+      }
+    }
+
+    // Multi-select checkbox styling
+    &--multi {
+      .children-rights__answers__container {
+        gap: $spacing_1_2;
+      }
+
+      .checkbox-wrapper {
+        border-radius: $border_radius_2_4;
+        padding: $spacing_1_2 $spacing_1_6;
+        box-shadow: $shadow_1;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: $spacing_1_2;
+
+        @include themify(
+          $themes,
+          "background-color",
+          "color_white_gray_66768d"
+        );
+        @include themify($themes, "box-shadow", "shadow_1_shadow_2");
+
+        &:hover {
+          transform: translateY(-2px);
+          border: 1px solid $color_primary_pressed_156f8c;
+        }
+
+        .label {
+          color: $color_blue_3d527b;
+          @include themify($themes, "color", "color_blue_3d527b_white");
+        }
+      }
+    }
+  }
+
+  // Navigation section
+  &__navigation {
+    width: 100%;
+    margin-top: $spacing_2_4;
+    margin-bottom: $spacing_2_4;
+
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: $spacing_2_4;
+      max-width: 64rem;
+      margin: 0 auto;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: $spacing_1_6;
+      }
+
+      button {
+        flex: 1;
+        min-width: 12rem;
+
+        @media screen and (max-width: $screen_sm) {
+          min-width: unset;
+        }
+      }
+    }
+  }
+
+  // Content screen styling
+  &__content {
+    text-align: left;
+    width: 100%;
+    // max-width: 64rem;
+    margin: 0 auto;
+
+    h2 {
+      text-align: center;
+      margin-bottom: $spacing_2_4;
+      color: $color_blue_3d527b;
+      @include themify($themes, "color", "color_blue_3d527b_white");
+    }
+
+    p.text {
+      margin-bottom: $spacing_2_4;
+      color: $color_gray_66768d;
+      @include themify($themes, "color", "color_gray_92989b_c1d7e0");
+      line-height: 1.6;
+      white-space: pre-line;
+      text-align: left;
+    }
+
+    &__cta {
+      margin-top: $spacing_2_4;
+    }
+  }
+
+  // Dark theme adjustments
+  @include themify($themes, "background-color", "color_white_black_37");
+}

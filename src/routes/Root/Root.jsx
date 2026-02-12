@@ -27,6 +27,7 @@ import {
   Consultations,
   ContactUs,
   CookiePolicy,
+  ChildrenRights,
   Dashboard,
   FAQ,
   ForgotPassword,
@@ -398,6 +399,15 @@ const LanguageLayout = () => {
         }
       />
       <Route path="/" element={<Navigate to="dashboard" replace />} />
+      <Route
+        path="children-rights"
+        element={
+          <ProtectedRoute>
+            <ChildrenRights />
+          </ProtectedRoute>
+        }
+      />
+      {/* <Route path="/" element={<Welcome />} /> */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
@@ -421,7 +431,7 @@ export default function Root() {
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
   const [country, setCountry] = useState(
-    localStorage.getItem("country") || null
+    localStorage.getItem("country") || null,
   );
   const [loggedIn, setLoggedIn] = useState(!!token);
   const [activeCoupon, setActiveCoupon] = useState();

@@ -79,7 +79,6 @@ export const BaselineAssesmentResult = ({ result }) => {
           <GridItem md={8} lg={12}>
             <Grid classes="baseline-assesment-result__compare-grid">
               <GridItem md={8} lg={12}>
-                {/* <h4>Some text to show</h4> */}
                 {result?.comparePrevious && <h4>{resultText}</h4>}
               </GridItem>
               <GridItem md={8} lg={12}>

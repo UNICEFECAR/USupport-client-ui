@@ -57,17 +57,35 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
   const queryClient = useQueryClient();
   const { isTmpUser } = useContext(RootContext);
   const [searchParams] = useSearchParams();
+
+  // Parse URL params from children-rights flow
   const specialisations = searchParams.get("specialisations");
   const specialisationsArray = specialisations
     ? specialisations?.replace(/^\[|\]$/g, "").split(",")
     : [];
+  const districtParam = searchParams.get("district");
+  const propertyTypeParam = searchParams.get("propertyType");
+  const paymentMethodParam = searchParams.get("paymentMethod");
+  const userInteractionParam = searchParams.get("userInteraction");
+
+  // Build initial filters from URL params
+  const getInitialFilters = () => {
+    return {
+      search: "",
+      district: districtParam || "",
+      paymentMethod: paymentMethodParam || "",
+      userInteraction: userInteractionParam || "",
+      specialisations: specialisationsArray,
+      propertyType: propertyTypeParam || "",
+    };
+  };
 
   const [mapControls, setMapControls] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [isPersonalizationModalOpen, setIsPersonalizationModalOpen] =
     useState(false);
   const [startPersonalization, setStartPersonalization] = useState(false);
-  const [filters, setFilters] = useState(INITIAL_FILTERS);
+  const [filters, setFilters] = useState(getInitialFilters);
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
   const [isBaselineAssesmentModalOpen, setIsBaselineAssesmentModalOpen] =
     useState(false);
@@ -75,6 +93,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
     useState(false);
   const [hasTriggeredAutoPersonalization, setHasTriggeredAutoPersonalization] =
     useState(false);
+  const [hasAppliedUrlFilters, setHasAppliedUrlFilters] = useState(false);
 
   const debouncedSearch = useDebounce(filters.search, 500);
 
@@ -118,17 +137,50 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
     },
   });
 
+  // Apply URL filters from children-rights flow on initial load
+  useEffect(() => {
+    if (!hasAppliedUrlFilters && data && data.length > 0) {
+      const hasUrlFilters =
+        specialisationsArray.length > 0 ||
+        districtParam ||
+        propertyTypeParam ||
+        paymentMethodParam ||
+        userInteractionParam;
+
+      if (hasUrlFilters) {
+        setHasAppliedUrlFilters(true);
+        // Filters are already applied via getInitialFilters, just mark as applied
+        // and scroll to map if we have results
+        if (data.length > 0) {
+          interactiveMapRef.current?.scrollIntoView({
+            behavior: "smooth",
+          });
+        }
+      }
+    }
+  }, [
+    data,
+    hasAppliedUrlFilters,
+    specialisationsArray,
+    districtParam,
+    propertyTypeParam,
+    paymentMethodParam,
+    userInteractionParam,
+  ]);
+
+  // Legacy: Apply specialisations from URL (for backwards compatibility)
   useEffect(() => {
     if (
       specialisationsArray.length > 0 &&
       data &&
       data.length > 0 &&
-      !hasAppliedSpecialisations
+      !hasAppliedSpecialisations &&
+      !hasAppliedUrlFilters
     ) {
       setHasAppliedSpecialisations(true);
       handleChange("specialisations", specialisationsArray);
     }
-  }, [specialisationsArray, data, hasAppliedSpecialisations]);
+  }, [specialisationsArray, data, hasAppliedSpecialisations, hasAppliedUrlFilters]);
 
   useEffect(() => {
     if (data && data.length && startPersonalization) {

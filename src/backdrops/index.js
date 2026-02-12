@@ -19,3 +19,5 @@ export * from "./RegisterEmail";
 export * from "./Login";
 export * from "./ForgotPassword";
 export * from "./RegisterAnonymous";
+export * from "./UserGuide";
+export * from "./EmergencySituation";
