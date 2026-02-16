@@ -17,6 +17,8 @@ import {
   useError,
 } from "#hooks";
 
+import { mascotCalmBlue } from "@USupport-components-library/assets";
+
 import "./notification-preferences.scss";
 
 import { useGetClientData } from "#hooks";
@@ -67,86 +69,70 @@ export const NotificationPreferences = () => {
 
   return (
     <Block classes="notification-preferences">
-      {notificationPreferencesQuery.isLoading &&
-      clientDataQuery.isLoading &&
-      !notificationPreferencesQuery.data ? (
-        <Loading size="lg" />
-      ) : (
-        <Grid classes="notification-preferences__grid">
-          {isAnon ? null : (
-            <GridItem
-              xs={4}
-              md={8}
-              lg={12}
-              classes="notification-preferences__grid__item"
-            >
-              <RadioButton
-                label={t("email")}
-                isChecked={data?.email}
-                setIsChecked={(value) => handleChange("email", value)}
-              />
-              {/* <p className="paragraph">{t("email")}</p>
-              <Toggle
-                isToggled={data?.email}
-                setParentState={(value) => handleChange("email", value)}
-              /> */}
-            </GridItem>
-          )}
-          {!IS_RO && (
-            <GridItem
-              xs={4}
-              md={8}
-              lg={12}
-              classes="notification-preferences__grid__item"
-            >
-              <RadioButton
-                label={t("appointment")}
-                isChecked={data?.consultationReminder}
-                setIsChecked={(value) =>
-                  handleChange("consultationReminder", value)
-                }
-              />
-              {/* <p className="paragraph">{t("appointment")}</p>
-              <Toggle
-                isToggled={
-                  data?.consultationReminder
-                    ? data?.consultationReminder
-                    : false
-                }
-                setParentState={(value) =>
-                  handleChange("consultationReminder", value)
-                }
-              /> */}
-              {data?.consultationReminder && (
+      <div className="notification-preferences__content-wrapper">
+        <div className="notification-preferences__content-wrapper__left">
+          {notificationPreferencesQuery.isLoading &&
+          clientDataQuery.isLoading &&
+          !notificationPreferencesQuery.data ? (
+            <Loading size="lg" />
+          ) : (
+            <Grid classes="notification-preferences__grid">
+              {isAnon ? null : (
                 <GridItem
                   xs={4}
                   md={8}
                   lg={12}
                   classes="notification-preferences__grid__item"
                 >
-                  <DropdownWithLabel
-                    selected={data.consultationReminderMin}
-                    setSelected={(value) =>
-                      handleChange("consultationReminderMin", value)
-                    }
-                    options={consultationReminderOptions}
-                    label={null}
-                    classes="notification-preferences__grid__item__dropdown"
+                  <RadioButton
+                    label={t("email")}
+                    isChecked={data?.email}
+                    setIsChecked={(value) => handleChange("email", value)}
                   />
                 </GridItem>
-                // <RadioButtonSelectorGroup
-                //   selected={data.consultationReminderMin}
-                //   setSelected={(value) =>
-                //     handleChange("consultationReminderMin", value)
-                //   }
-                //   options={consultationReminderOptions}
-                // />
               )}
-              {error ? <ErrorComponent message={error} /> : null}
-            </GridItem>
+              {!IS_RO && (
+                <GridItem
+                  xs={4}
+                  md={8}
+                  lg={12}
+                  classes="notification-preferences__grid__item"
+                >
+                  <RadioButton
+                    label={t("appointment")}
+                    isChecked={data?.consultationReminder}
+                    setIsChecked={(value) =>
+                      handleChange("consultationReminder", value)
+                    }
+                  />
+                  {data?.consultationReminder && (
+                    <GridItem
+                      xs={4}
+                      md={8}
+                      lg={12}
+                      classes="notification-preferences__grid__item"
+                    >
+                      <DropdownWithLabel
+                        selected={data.consultationReminderMin}
+                        setSelected={(value) =>
+                          handleChange("consultationReminderMin", value)
+                        }
+                        options={consultationReminderOptions}
+                        label={null}
+                        classes="notification-preferences__grid__item__dropdown"
+                      />
+                    </GridItem>
+                  )}
+                  {error ? <ErrorComponent message={error} /> : null}
+                </GridItem>
+              )}
+            </Grid>
           )}
-        </Grid>
-      )}
+        </div>
+        <div className="notification-preferences__content-wrapper__right">
+          <img src={mascotCalmBlue} alt="mascot" />
+        </div>
+      </div>
     </Block>
   );
 };

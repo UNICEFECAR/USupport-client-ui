@@ -3,16 +3,6 @@
 .faq {
   @include full-height-page-navbar;
 
-  // padding: $spacing_5_2 $spacing_1_5 $spacing_15_6 $spacing_1_5;
-
-  // @media screen and (min-width: $screen-md) {
-  //   padding: $spacing_8_0 $spacing_23_0 $spacing_15_6 $spacing_23_0;
-  // }
-
-  // @media screen and (min-width: $screen-lg) {
-  //   padding: $spacing_8_0 $spacing_40_3 $spacing_15_6 $spacing_40_3;
-  // }
-
   padding-block: $spacing_5_2;
 
   &__no-results {
@@ -21,7 +11,6 @@
 
   &__search {
     width: 100%;
-    max-width: 50rem;
     margin: 0 auto;
     margin-bottom: $spacing_3_2;
   }
@@ -31,6 +20,7 @@
     flex-direction: row;
 
     &__left-side {
+      width: 100%;
       @media screen and (min-width: $screen-lg) {
         max-width: 58.4rem;
       }

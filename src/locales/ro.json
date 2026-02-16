@@ -47,7 +47,27 @@
       "terms_of_use": "Condiții de utilizare",
       "cookie_policy": "Politica privind cookie-urile",
       "user_guide": "Utilizarea platformei",
-      "edit_profile": "Edit profile"
+      "edit_profile": "Edit profile",
+      "go_back": "Înapoi",
+      "notifications_heading": "Notificări",
+      "notifications_mark_read": "Marcați toate ca citite",
+      "notifications_empty": "Nu există notificări încă",
+      "notifications_load_more": "Încarcă mai multe",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> a programat o consultație pe {{date}} de la {{startHour}} la {{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> a reprogramat consultația dvs. de la {{date}} {{startHour}}-{{endHour}} la {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Consultația dvs. cu <0>{{providerName}}</0> pe {{date}} de la {{startHour}} la {{endHour}} a fost anulată",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> a anulat consultația dvs. pe {{date}} de la {{startHour}} la {{endHour}}",
+      "notifications_consultation_remind_start": "Consultația dvs. începe în <0>{{minutes}}</0> minute",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> a sugerat o consultație pe {{date}} de la {{startHour}} la {{endHour}}",
+      "notifications_consultation_suggestion_booking": "Ați acceptat o sugestie de consultație de la <0>{{providerName}}</0> pe {{date}} de la {{startHour}} la {{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Sugestia de consultație de la <0>{{providerName}}</0> pe {{date}} de la {{startHour}} la {{endHour}} a fost anulată",
+      "notifications_consultation_started": "Consultația dvs. cu <0>{{providerName}}</0> a început",
+      "notifications_question_answered": "<0>{{providerName}}</0> a răspuns la întrebarea dvs.",
+      "notifications_consultation_remind_start_24_hours_before": "Consultația dvs. cu <0>{{providerName}}</0> începe peste 24 de ore",
+      "notifications_consultation_remind_start_48_hours_before": "Consultația dvs. cu <0>{{providerName}}</0> începe peste 48 de ore",
+      "all": "Toate",
+      "new": "Noi",
+      "read": "Citite"
     },
     "provider-overview": {
       "earliest_slot_label": "Primul interval disponibil pentru consultație",
@@ -543,7 +563,8 @@
       "december": "decembrie",
       "coupon": "Cupon",
       "explore_button_label": "Explorați",
-      "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere"
+      "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere",
+      "user_guide": "Ghidul utilizatorului"
     },
     "activity-log-dashboard": {
       "heading": "Jurnal de activitate",
@@ -970,12 +991,43 @@
       "view_more": "Vezi mai mult"
     },
     "dashboard-hero": {
-      "heading": "Welcome back"
+      "heading": "Welcome back",
+      "user_guide": "Ghid de utilizare",
+      "next_consultation": "Consultația următoare::",
+      "change_button_label": "Modificare",
+      "accept_button_label": "Acceptați consultația",
+      "join_button_label": "Intrare",
+      "schedule_button_label": "Program",
+      "live_label": "Acum",
+      "no_consultations": "În prezent nu aveți consultații programate",
+      "free": "Gratuit",
+      "ordinal_st": "st",
+      "ordinal_nd": "nd",
+      "ordinal_rd": "rd",
+      "ordinal_th": "th",
+      "january": "ianuarie",
+      "february": "februarie",
+      "march": "martie",
+      "april": "aprilie",
+      "may": "mai",
+      "june": "iunie",
+      "july": "iulie",
+      "august": "august",
+      "september": "septembrie",
+      "october": "octombrie",
+      "november": "noiembrie",
+      "december": "decembrie",
+      "coupon": "Cupon",
+      "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere"
     },
     "download-app": {
       "heading": "Download our mobile app",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
+    },
+    "find-support-near-you": {
+      "heading": "Găsiți sprijin în apropiere",
+      "explore_button_label": "Explorați"
     }
   },
   "pages": {
@@ -1063,7 +1115,8 @@
       "heading_most_read": "Cele mai citite articole",
       "subheading_default": "Găsiți toate articolele aici",
       "subheading_newest": "Aici găsiți cele mai noi articole",
-      "subheading_most_read": "Aici găsiți cele mai citite articole din toate categoriile"
+      "subheading_most_read": "Aici găsiți cele mai citite articole din toate categoriile",
+      "search": "Căutare"
     },
     "article-information": {
       "heading": "Mai multe articole",
@@ -1096,7 +1149,8 @@
       "podcasts": "Podcasturi",
       "view_more": "Vezi mai mult",
       "require_cookies": "Pentru a viziona acest videoclip, vă rugăm să acceptați toate cookie-urile.",
-      "cookie_preferences": "Preferințe pentru cookie-uri"
+      "cookie_preferences": "Preferințe pentru cookie-uri",
+      "search": "Căutare"
     },
     "register-email-page": {
       "heading": "Înregistrați-vă cu e-mail în uSupport"
@@ -1197,7 +1251,8 @@
       "subheading_newest": "Urmăriți cele mai noi videoclipuri.",
       "heading_most_viewed": "Cele mai vizualizate videoclipuri",
       "subheading_most_viewed": "Urmăriți cele mai vizualizate videoclipuri.",
-      "all": "Toate"
+      "all": "Toate",
+      "search": "Căutare"
     },
     "video-information-page": {
       "more_videos": "Mai multe videoclipuri",
@@ -1220,7 +1275,8 @@
       "subheading_newest": "Ascultați cele mai noi podcasturi.",
       "heading_most_viewed": "Cele mai ascultate podcasturi",
       "subheading_most_viewed": "Ascultați cele mai ascultate podcasturi.",
-      "all": "Toate"
+      "all": "Toate",
+      "search": "Căutare"
     },
     "organizations-page": {
       "heading": "Organizații"
@@ -1237,6 +1293,7 @@
       "continue": "Continuă",
       "submit": "Trimite",
       "view_content": "Vezi mai mult conținut",
+      "read_more_button": "Citiți mai mult",
       "no_articles_found": "Nu s-au găsit articole pentru acest subiect.",
       "non_emergency_title": "Situații non-urgente",
       "non_emergency_paragraph": "Orice situatie care NU pune in pericol viata si integritatea copilului sau adolescentului la acest moment.",

@@ -1,7 +1,23 @@
 @import "@USupport-components-library/styles";
 
 .user-details {
+  &__content-wrapper {
+    position: relative;
+
+    &__right {
+      display: none;
+      @media screen and (min-width: $screen-lg) {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 20%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
   &__profile-picture-container {
+    padding-top: $spacing_0_4;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

@@ -47,7 +47,27 @@
       "terms_of_use": "Условия использования",
       "cookie_policy": "Политика Cookie",
       "user_guide": "Руководство по платформе",
-      "edit_profile": "Edit profile"
+      "edit_profile": "Edit profile",
+      "go_back": "Назад",
+      "notifications_heading": "Уведомления",
+      "notifications_mark_read": "Отметить все как прочитанные",
+      "notifications_empty": "Пока нет уведомлений",
+      "notifications_load_more": "Загрузить еще",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> записал(а) консультацию на {{date}} с {{startHour}} до {{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> перенес(ла) вашу консультацию с {{date}} {{startHour}}-{{endHour}} на {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Ваша консультация с <0>{{providerName}}</0> на {{date}} с {{startHour}} до {{endHour}} была отменена",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> отменил(а) вашу консультацию на {{date}} с {{startHour}} до {{endHour}}",
+      "notifications_consultation_remind_start": "Ваша консультация начнется через <0>{{minutes}}</0> минут",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> предложил(а) консультацию на {{date}} с {{startHour}} до {{endHour}}",
+      "notifications_consultation_suggestion_booking": "Вы приняли предложение консультации от <0>{{providerName}}</0> на {{date}} с {{startHour}} до {{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Предложение консультации от <0>{{providerName}}</0> на {{date}} с {{startHour}} до {{endHour}} было отменено",
+      "notifications_consultation_started": "Ваша консультация с <0>{{providerName}}</0> началась",
+      "notifications_question_answered": "<0>{{providerName}}</0> ответил(а) на ваш вопрос",
+      "notifications_consultation_remind_start_24_hours_before": "Ваша консультация с <0>{{providerName}}</0> начнется через 24 часа",
+      "notifications_consultation_remind_start_48_hours_before": "Ваша консультация с <0>{{providerName}}</0> начнется через 48 часов",
+      "all": "Все",
+      "new": "Новые",
+      "read": "Прочитанные"
     },
     "provider-overview": {
       "earliest_slot_label": "Самый ранний доступный слот свободного времени для консультации",
@@ -543,7 +563,8 @@
       "december": "декабря",
       "coupon": "Купон",
       "explore_button_label": "Исследовать",
-      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала",
+      "user_guide": "Руководство пользователя"
     },
     "activity-log-dashboard": {
       "heading": "Журнал активности",
@@ -970,12 +991,43 @@
       "view_more": "View more"
     },
     "dashboard-hero": {
-      "heading": "Welcome back"
+      "heading": "Welcome back",
+      "user_guide": "Руководство",
+      "next_consultation": "Следующая консультация:",
+      "change_button_label": "Изменить",
+      "accept_button_label": "Принять консультацию",
+      "join_button_label": "Присоединиться",
+      "schedule_button_label": "Запланировать",
+      "live_label": "Сейчас",
+      "no_consultations": "В настоящее время у Вас нет предстоящих консультаций",
+      "free": "Свободно",
+      "ordinal_st": "st",
+      "ordinal_nd": "nd",
+      "ordinal_rd": "rd",
+      "ordinal_th": "th",
+      "january": "января",
+      "february": "февраля",
+      "march": "марта",
+      "april": "апреля",
+      "may": "мая",
+      "june": "июня",
+      "july": "июля",
+      "august": "августа",
+      "september": "сентября",
+      "october": "октября",
+      "november": "ноября",
+      "december": "декабря",
+      "coupon": "Купон",
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
     },
     "download-app": {
       "heading": "Download our mobile app",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
+    },
+    "find-support-near-you": {
+      "heading": "Найдите поддержку рядом",
+      "explore_button_label": "Посмотреть"
     }
   },
   "pages": {
@@ -1063,7 +1115,8 @@
       "subheading_default": "Вы можете найти все статьи здесь",
       "subheading_newest": "Здесь Вы можете найти новые статьи",
       "subheading_most_read": "Здесь Вы можете найти наиболее читаемые статьи из всех категорий",
-      "heading": "Статьи"
+      "heading": "Статьи",
+      "search": "Поиск"
     },
     "article-information": {
       "heading": "Больше статей",
@@ -1096,7 +1149,8 @@
       "podcasts": "Подкасты",
       "view_more": "Показать ещё",
       "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
-      "cookie_preferences": "Настройки cookie"
+      "cookie_preferences": "Настройки cookie",
+      "search": "Поиск"
     },
     "register-email-page": {
       "heading": "Зарегистрируйтесь с помощью электронной почты в uSupport"
@@ -1197,7 +1251,8 @@
       "subheading_newest": "Смотрите наши новейшие видео.",
       "heading_most_viewed": "Самые популярные видео",
       "subheading_most_viewed": "Смотрите наши самые популярные видео.",
-      "all": "Все"
+      "all": "Все",
+      "search": "Поиск"
     },
     "video-information-page": {
       "more_videos": "Больше видео",
@@ -1220,7 +1275,8 @@
       "subheading_newest": "Слушайте наши новейшие подкасты.",
       "heading_most_viewed": "Самые популярные подкасты",
       "subheading_most_viewed": "Слушайте наши самые популярные подкасты.",
-      "all": "Все"
+      "all": "Все",
+      "search": "Поиск"
     },
     "organizations-page": {
       "heading": "Организации"
@@ -1237,6 +1293,7 @@
       "continue": "Продолжить",
       "submit": "Отправить",
       "view_content": "Посмотреть больше контента",
+      "read_more_button": "Подробнее",
       "no_articles_found": "Статьи по этой теме не найдены.",
       "non_emergency_title": "Неэкстренные ситуации",
       "non_emergency_paragraph": "Любая ситуация, которая в настоящее время не угрожает жизни или безопасности ребенка или подростка.",
@@ -1526,6 +1583,22 @@
       "register_email": "Зарегистрируйтесь с помощью электронной почты",
       "register_anonymously": "Зарегистрироваться без электронной почты",
       "continue_as_guest": "Продолжить без регистрации"
+    },
+    "user-guide": {
+      "heading": "Хотите узнать больше о:",
+      "emergency_services": "Экстренных службах",
+      "map": "Карте услуг по охране психического здоровья и психоэмоциональной поддержке, доступных в Бухаресте",
+      "rights": "Правах детей и подростков на доступ к услугам по охране психического здоровья и психоэмоциональной поддержке"
+    },
+    "emergency-situation": {
+      "heading": "Карта услуг по охране психического здоровья и психосоциальной поддержке для детей и подростков в Бухаресте",
+      "paragraph": "Эта интерактивная карта представляет услуги по охране психического здоровья и психосоциальному благополучию, доступные детям и подросткам в Бухаресте. Мы постараемся направить вас, чтобы предложить варианты, которые лучше всего соответствуют вашим потребностям.",
+      "paragraph_two": "<0>Отказ от ответственности:</0> Эта карта создана на основе описаний, размещенных на сайтах поставщиков услуг. Мы не можем гарантировать точность информации на момент доступа к карте. Услуги и поставщики постоянно меняются, поэтому мы рекомендуем после выбора поставщика связаться с ним по телефону и подробно описать ситуацию, в которой вам нужна профессиональная помощь.",
+      "question": "Вы ищете услуги для экстренной ситуации?",
+      "subquestion": "Например: самоповреждение, попытка самоубийства, школьное или семейное насилие, сексуальное насилие и т. д.",
+      "yes": "Да",
+      "no": "Нет",
+      "dont_know": "Не знаю, насколько это срочно"
     }
   },
   "modals": {
@@ -1651,6 +1724,22 @@
       "subheading_5": "Вы можете создать отчет за любой выбранный период и экспортировать его в формате CSV, чтобы легко просматривать или делиться своими данными о настроении при необходимости.",
       "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
       "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
+    },
+    "user-guide": {
+      "heading": "Хотите узнать больше о:",
+      "emergency_services": "Экстренных службах",
+      "map": "Карте услуг по охране психического здоровья и психоэмоциональной поддержке, доступных в Бухаресте",
+      "rights": "Правах детей и подростков на доступ к услугам по охране психического здоровья и психоэмоциональной поддержке"
+    },
+    "emergency-situation": {
+      "heading": "Карта услуг по охране психического здоровья и психосоциальной поддержке для детей и подростков в Бухаресте",
+      "paragraph": "Эта интерактивная карта представляет услуги по охране психического здоровья и психосоциальному благополучию, доступные детям и подросткам в Бухаресте. Мы постараемся направить вас, чтобы предложить варианты, которые лучше всего соответствуют вашим потребностям.",
+      "paragraph_two": "<0>Отказ от ответственности:</0> Эта карта создана на основе описаний, размещенных на сайтах поставщиков услуг. Мы не можем гарантировать точность информации на момент доступа к карте. Услуги и поставщики постоянно меняются, поэтому мы рекомендуем после выбора поставщика связаться с ним по телефону и подробно описать ситуацию, в которой вам нужна профессиональная помощь.",
+      "question": "Вы ищете услуги для экстренной ситуации?",
+      "subquestion": "Например: самоповреждение, попытка самоубийства, школьное или семейное насилие, сексуальное насилие и т. д.",
+      "yes": "Да",
+      "no": "Нет",
+      "dont_know": "Не знаю, насколько это срочно"
     }
   },
   "routes": {

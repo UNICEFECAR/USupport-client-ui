@@ -4,13 +4,15 @@ import { useCustomNavigate as useNavigate } from "#hooks";
 
 import {
   BaselineAssesmentBox,
-  Button,
+  NewButton,
   Box,
   Block,
   Loading,
 } from "@USupport-components-library/src";
-import { HowItWorksBA } from "#modals";
 
+import { useWindowDimensions } from "@USupport-components-library/utils";
+
+import { HowItWorksBA } from "#modals";
 import { useGetLatestBaselineAssessment } from "#hooks";
 
 import "./baseline-assessment-dashboard.scss";
@@ -26,6 +28,7 @@ export const BaselineAssessmentDashboard = ({
   openBaselineAssesmentModal,
   isTmpUser,
 }) => {
+  const { width } = useWindowDimensions();
   const [isHowItWorksBAOpen, setIsHowItWorksBAOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -33,9 +36,8 @@ export const BaselineAssessmentDashboard = ({
     keyPrefix: "baseline-assessment-dashboard",
   });
 
-  const { data: latestAssessment, isFetching } = useGetLatestBaselineAssessment(
-    !isTmpUser
-  );
+  const { data: latestAssessment, isFetching } =
+    useGetLatestBaselineAssessment(!isTmpUser);
   const hasCompletedAssessment = latestAssessment?.status === "completed";
   const handleViewAssessment = () => {
     if (latestAssessment) {
@@ -56,19 +58,35 @@ export const BaselineAssessmentDashboard = ({
               {t("heading")}
             </h4>
             {hasCompletedAssessment ? (
-              <p
-                onClick={handleViewAssessment}
-                className="small-text mood-tracker-button"
-              >
-                {t("see_last_result")}
-              </p>
-            ) : (
+              width < 768 ? (
+                <p
+                  onClick={handleViewAssessment}
+                  className="small-text mood-tracker-button"
+                >
+                  {t("see_last_result")}
+                </p>
+              ) : (
+                <h5
+                  className="mood-tracker-button"
+                  onClick={handleViewAssessment}
+                >
+                  {t("see_last_result")}
+                </h5>
+              )
+            ) : width < 768 ? (
               <p
                 className="small-text mood-tracker-button"
                 onClick={() => setIsHowItWorksBAOpen(true)}
               >
                 {t("how_it_works")}
               </p>
+            ) : (
+              <h5
+                className="mood-tracker-button"
+                onClick={() => setIsHowItWorksBAOpen(true)}
+              >
+                {t("how_it_works")}
+              </h5>
             )}
           </div>
 
@@ -76,9 +94,9 @@ export const BaselineAssessmentDashboard = ({
             {isFetching ? (
               <Loading />
             ) : !latestAssessment ? (
-              <Button size="lg" onClick={openBaselineAssesmentModal}>
+              <NewButton size="lg" onClick={openBaselineAssesmentModal}>
                 {t("start_new_assessment")}
-              </Button>
+              </NewButton>
             ) : latestAssessment.status === "completed" ? (
               <div className="baseline-assessment-dashboard__results">
                 <h5 className="baseline-assessment-dashboard__results__heading">
@@ -103,13 +121,13 @@ export const BaselineAssessmentDashboard = ({
                     </p>
                   </Box>
                 </div>
-                <Button
+                <NewButton
                   classes="baseline-assessment-dashboard__results__button"
                   size="lg"
                   onClick={openBaselineAssesmentModal}
                 >
                   {t("start_new_assessment")}
-                </Button>
+                </NewButton>
               </div>
             ) : (
               <BaselineAssesmentBox

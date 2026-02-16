@@ -3,6 +3,20 @@
 .notification-preferences {
   @include full-height-page-navbar;
 
+  &__content-wrapper {
+    position: relative;
+
+    &__right {
+      display: none;
+      @media screen and (min-width: $screen-lg) {
+        display: block;
+        position: absolute;
+        right: 0;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
   &__grid {
     place-items: start;
     padding-bottom: $spacing_10_0;

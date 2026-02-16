@@ -47,7 +47,27 @@
       "terms_of_use": "Օգտվելու պայմանները",
       "cookie_policy": "Cookie-ների քաղաքականությունը",
       "user_guide": "Հարթակի գործածելիությունը",
-      "edit_profile": "Edit profile"
+      "edit_profile": "Edit profile",
+      "go_back": "Վերադառնալ",
+      "notifications_heading": "Ծանուցումներ",
+      "notifications_mark_read": "Նշել բոլորը որպես կարդացված",
+      "notifications_empty": "Դեռևս ծանուցումներ չկան",
+      "notifications_load_more": "Բեռնել ավելին",
+      "notifications_consultation_booking": "<0>{{providerName}}</0>-ը ամրագրել է խորհրդատվություն {{date}}՝ {{startHour}}-ից մինչև {{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0>-ը տեղափոխել է ձեր խորհրդատվությունը {{date}} {{startHour}}-{{endHour}}-ից դեպի {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ {{date}}՝ {{startHour}}-ից մինչև {{endHour}} չեղարկվել է",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0>-ը չեղարկել է ձեր խորհրդատվությունը {{date}}՝ {{startHour}}-ից մինչև {{endHour}}",
+      "notifications_consultation_remind_start": "Ձեր խորհրդատվությունը սկսվում է <0>{{minutes}}</0> րոպեից",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0>-ը առաջարկել է խորհրդատվություն {{date}}՝ {{startHour}}-ից մինչև {{endHour}}",
+      "notifications_consultation_suggestion_booking": "Դուք ընդունել եք խորհրդատվության առաջարկը <0>{{providerName}}</0>-ից՝ {{date}} {{startHour}}-ից մինչև {{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "<0>{{providerName}}</0>-ից խորհրդատվության առաջարկը {{date}}՝ {{startHour}}-ից մինչև {{endHour}} չեղարկվել է",
+      "notifications_consultation_started": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ սկսվել է",
+      "notifications_question_answered": "<0>{{providerName}}</0>-ը պատասխանել է ձեր հարցին",
+      "notifications_consultation_remind_start_24_hours_before": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ կսկսվի 24 ժամից",
+      "notifications_consultation_remind_start_48_hours_before": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ կսկսվի 48 ժամից",
+      "all": "Բոլորը",
+      "new": "Նոր",
+      "read": "Կարդացված"
     },
     "provider-overview": {
       "earliest_slot_label": "Խորհրդատվության ամենամոտ հասանելի ժամանակը",
@@ -543,7 +563,8 @@
       "december": "Դեկտեմբեր",
       "coupon": "Կտրոնը",
       "explore_button_label": "Explore",
-      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ"
+      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ",
+      "user_guide": "Օգտագործողի ուղեցույց"
     },
     "activity-log-dashboard": {
       "heading": "Գործողությունների գրանցամատյան",
@@ -970,12 +991,43 @@
       "view_more": "View more"
     },
     "dashboard-hero": {
-      "heading": "Welcome back"
+      "heading": "Welcome back",
+      "user_guide": "Օգտագործման ուղեցույց",
+      "next_consultation": "Հաջորդ խորհրդատվությունը:",
+      "change_button_label": "Փոփոխել",
+      "accept_button_label": "Ընդունել խորհրդատվությունը",
+      "join_button_label": "Միանալ",
+      "schedule_button_label": "Պլանավորել",
+      "live_label": "Հիմա",
+      "no_consultations": "Ներկա պահին դուք չունեք առաջիկայում պլանավորված խորհրդատվություններ։",
+      "free": "Անվճար",
+      "ordinal_st": "ին",
+      "ordinal_nd": "րդ",
+      "ordinal_rd": "րդ",
+      "ordinal_th": "րդ",
+      "january": "Հունվար",
+      "february": "Փետրվար",
+      "march": "Մարտ",
+      "april": "Ապրիլ",
+      "may": "Մայիս",
+      "june": "Հունիս",
+      "july": "Հուլիս",
+      "august": "Օգոստոս",
+      "september": "Սեպտեմբեր",
+      "october": "Հոկտեմբեր",
+      "november": "Նոյեմբեր",
+      "december": "Դեկտեմբեր",
+      "coupon": "Կտրոնը",
+      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ"
     },
     "download-app": {
       "heading": "Download our mobile app",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
+    },
+    "find-support-near-you": {
+      "heading": "Գտեք աջակցություն ձեր մոտ",
+      "explore_button_label": "Ուսումնասիրել"
     }
   },
   "pages": {
@@ -1063,7 +1115,8 @@
       "subheading_default": "Բոլոր հոդվածները կարող եք գտնել այստեղ",
       "subheading_newest": "Այստեղ կարող եք գտնել ամենաթարմ հոդվածները",
       "subheading_most_read": "Այստեղ կարող եք գտնել ամենաշատ ընթերցված հոդվածները՝ բոլոր կատեգորիաներում",
-      "heading": "Articles"
+      "heading": "Articles",
+      "search": "Որոնում"
     },
     "article-information": {
       "heading": "Լրացուցիչ հոդվածներ",
@@ -1096,7 +1149,8 @@
       "podcasts": "Podcasts",
       "view_more": "View more",
       "require_cookies": "To view this video, please accept all cookies.",
-      "cookie_preferences": "Cookie preferences"
+      "cookie_preferences": "Cookie preferences",
+      "search": "Որոնում"
     },
     "register-email-page": {
       "heading": "Գրանցվել uSupport-ում՝ էլեկտրոնային փոստի միջոցով"
@@ -1197,7 +1251,8 @@
       "subheading_newest": "Watch our newest videos.",
       "heading_most_viewed": "Most Viewed Videos",
       "subheading_most_viewed": "Watch our most viewed videos.",
-      "all": "All"
+      "all": "All",
+      "search": "Որոնում"
     },
     "video-information-page": {
       "more_videos": "More videos",
@@ -1220,7 +1275,8 @@
       "subheading_newest": "Listen to our newest podcasts.",
       "heading_most_viewed": "Most Viewed Podcasts",
       "subheading_most_viewed": "Listen to our most viewed podcasts.",
-      "all": "All"
+      "all": "All",
+      "search": "Որոնում"
     },
     "organizations-page": {
       "heading": "Organizations"
@@ -1237,6 +1293,7 @@
       "continue": "Շարունակել",
       "submit": "Ուղարկել",
       "view_content": "Տեսնել ավելին",
+      "read_more_button": "Կարդալ ավելին",
       "no_articles_found": "Այս թեմայի վերաբերյալ հոդվածներ չեն գտնվել:",
       "non_emergency_title": "Ոչ արտակարգ իրավիճակներ",
       "non_emergency_paragraph": "Ցանկացած իրավիճակ, որը ներկայումս չի սպառնում երեխայի կամ դեռահասի կյանքին կամ անվտանգությանը:",
@@ -1526,6 +1583,22 @@
       "register_email": "Գրանցվել էլեկտրոնային փոստով",
       "register_anonymously": "Գրանցվել առանց էլեկտրոնային փոստի",
       "continue_as_guest": "Շարունակել առանց գրանցման"
+    },
+    "user-guide": {
+      "heading": "Ցանկանու՞մ եք ավելին իմանալ հետևյալի մասին․",
+      "emergency_services": "Արտակարգ ծառայություններ",
+      "map": "Բուխարեստում հասանելի հոգեկան առողջության և հոգե-հուզական աջակցության ծառայությունների քարտեզ",
+      "rights": "Երեխաների և դեռահասների իրավունքները՝ հոգեկան առողջության և հոգե-հուզական աջակցության ծառայություններից օգտվելու համար"
+    },
+    "emergency-situation": {
+      "heading": "Բուխարեստում երեխաների և դեռահասների համար հոգեկան առողջության և հոգեսոցիալական աջակցության ծառայությունների քարտեզ",
+      "paragraph": "Այս ինտերակտիվ քարտեզը ներկայացնում է Բուխարեստում երեխաների և դեռահասների համար հասանելի հոգեկան առողջության և հոգեսոցիալական բարեկեցության ծառայությունները։ Մենք կփորձենք ձեզ ուղղորդել՝ առաջարկելով ձեր կարիքներին ամենահամապատասխան տարբերակները։",
+      "paragraph_two": "<0>Հրաժարում:</0> Այս քարտեզը ստեղծվել է ծառայություններ մատուցողների կայքերում տեղադրված նկարագրությունների հիման վրա։ Մենք չենք կարող երաշխավորել տեղեկատվության ճշգրտությունը քարտեզին մուտք գործելու պահին։ Ծառայությունները և մատակարարները մշտապես փոխվում են, ուստի խորհուրդ ենք տալիս՝ մատակարար ընտրելիս կապ հաստատել նրանց հետ հեռախոսով և մանրամասն նկարագրել իրավիճակը, որի համար ձեզ անհրաժեշտ է մասնագիտական օգնություն։",
+      "question": "Արտակարգ իրավիճակի համար ծառայություններ եք փնտրու՞մ",
+      "subquestion": "Օրինակ՝ ինքնավնասում, ինքնասպանության փորձ, դպրոցական կամ ընտանեկան բռնություն, սեռական բռնություն և այլն",
+      "yes": "Այո",
+      "no": "Ոչ",
+      "dont_know": "Չգիտեմ՝ շտապ է, թե ոչ"
     }
   },
   "modals": {
@@ -1651,6 +1724,22 @@
       "subheading_5": "Դուք կարող եք ստեղծել հաշվետվություն ցանկացած ընտրված ժամանակահատվածի համար և արտահանել այն CSV ֆայլի ձևաչափով՝ հեշտությամբ վերանայելու կամ կիսվելու ձեր տրամադրության տվյալներով, երբ անհրաժեշտ է։",
       "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
       "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
+    },
+    "user-guide": {
+      "heading": "Ցանկանու՞մ եք ավելին իմանալ հետևյալի մասին․",
+      "emergency_services": "Արտակարգ ծառայություններ",
+      "map": "Բուխարեստում հասանելի հոգեկան առողջության և հոգե-հուզական աջակցության ծառայությունների քարտեզ",
+      "rights": "Երեխաների և դեռահասների իրավունքները՝ հոգեկան առողջության և հոգե-հուզական աջակցության ծառայություններից օգտվելու համար"
+    },
+    "emergency-situation": {
+      "heading": "Բուխարեստում երեխաների և դեռահասների համար հոգեկան առողջության և հոգեսոցիալական աջակցության ծառայությունների քարտեզ",
+      "paragraph": "Այս ինտերակտիվ քարտեզը ներկայացնում է Բուխարեստում երեխաների և դեռահասների համար հասանելի հոգեկան առողջության և հոգեսոցիալական բարեկեցության ծառայությունները։ Մենք կփորձենք ձեզ ուղղորդել՝ առաջարկելով ձեր կարիքներին ամենահամապատասխան տարբերակները։",
+      "paragraph_two": "<0>Հրաժարում:</0> Այս քարտեզը ստեղծվել է ծառայություններ մատուցողների կայքերում տեղադրված նկարագրությունների հիման վրա։ Մենք չենք կարող երաշխավորել տեղեկատվության ճշգրտությունը քարտեզին մուտք գործելու պահին։ Ծառայությունները և մատակարարները մշտապես փոխվում են, ուստի խորհուրդ ենք տալիս՝ մատակարար ընտրելիս կապ հաստատել նրանց հետ հեռախոսով և մանրամասն նկարագրել իրավիճակը, որի համար ձեզ անհրաժեշտ է մասնագիտական օգնություն։",
+      "question": "Արտակարգ իրավիճակի համար ծառայություններ եք փնտրու՞մ",
+      "subquestion": "Օրինակ՝ ինքնավնասում, ինքնասպանության փորձ, դպրոցական կամ ընտանեկան բռնություն, սեռական բռնություն և այլն",
+      "yes": "Այո",
+      "no": "Ոչ",
+      "dont_know": "Չգիտեմ՝ շտապ է, թե ոչ"
     }
   },
   "routes": {

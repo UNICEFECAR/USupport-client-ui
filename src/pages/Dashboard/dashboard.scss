@@ -3,14 +3,9 @@
 
 .page__dashboard {
   min-height: 80vh;
+  padding-top: 0;
+
   &__content {
     @include full-height-page-navbar;
   }
-
-  // @media screen and (min-width: $screen-md) {
-  //   background: url(../assets/background-v-shape-full.png);
-  //   background-repeat: no-repeat;
-  //   background-position: center;
-  //   background-size: cover;
-  // }
 }

@@ -47,7 +47,27 @@
       "terms_of_use": "Όροι χρήσης",
       "cookie_policy": "Πολιτική cookies",
       "user_guide": "Χρήση πλατφόρμας",
-      "edit_profile": "Edit profile"
+      "edit_profile": "Edit profile",
+      "go_back": "Πίσω",
+      "notifications_heading": "Ειδοποιήσεις",
+      "notifications_mark_read": "Σήμανση όλων ως αναγνωσμένων",
+      "notifications_empty": "Δεν υπάρχουν ειδοποιήσεις ακόμη",
+      "notifications_load_more": "Φόρτωση περισσότερων",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> έκλεισε μια συνεδρία στις {{date}} από {{startHour}} έως {{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> μετέφερε τη συνεδρία σας από {{date}} {{startHour}}-{{endHour}} σε {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Η συνεδρία σας με τον/την <0>{{providerName}}</0> στις {{date}} από {{startHour}} έως {{endHour}} ακυρώθηκε",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> ακύρωσε τη συνεδρία σας στις {{date}} από {{startHour}} έως {{endHour}}",
+      "notifications_consultation_remind_start": "Η συνεδρία σας ξεκινά σε <0>{{minutes}}</0> λεπτά",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> πρότεινε μια συνεδρία στις {{date}} από {{startHour}} έως {{endHour}}",
+      "notifications_consultation_suggestion_booking": "Αποδεχθήκατε την πρόταση συνεδρίας από τον/την <0>{{providerName}}</0> στις {{date}} από {{startHour}} έως {{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Η πρόταση συνεδρίας από τον/την <0>{{providerName}}</0> στις {{date}} από {{startHour}} έως {{endHour}} ακυρώθηκε",
+      "notifications_consultation_started": "Η συνεδρία σας με τον/την <0>{{providerName}}</0> ξεκίνησε",
+      "notifications_question_answered": "<0>{{providerName}}</0> απάντησε στην ερώτησή σας",
+      "notifications_consultation_remind_start_24_hours_before": "Η συνεδρία σας με τον/την <0>{{providerName}}</0> ξεκινά σε 24 ώρες",
+      "notifications_consultation_remind_start_48_hours_before": "Η συνεδρία σας με τον/την <0>{{providerName}}</0> ξεκινά σε 48 ώρες",
+      "all": "Όλες",
+      "new": "Νέες",
+      "read": "Διαβασμένες"
     },
     "provider-overview": {
       "earliest_slot_label": "Συντομότερο διαθέσιμο ραντεβού για συνεδρία",
@@ -543,7 +563,8 @@
       "december": "Δεκέμβριος",
       "coupon": "Κουπόνι",
       "explore_button_label": "Εξερεύνηση",
-      "join_button_label_tooltip": "Μπορείτε να συνδεθείτε στη συνεδρία 5 λεπτά πριν από την ώρα έναρξης"
+      "join_button_label_tooltip": "Μπορείτε να συνδεθείτε στη συνεδρία 5 λεπτά πριν από την ώρα έναρξης",
+      "user_guide": "Οδηγός χρήστη"
     },
     "activity-log-dashboard": {
       "heading": "Ιστορικό δραστηριοτήτων",
@@ -970,12 +991,43 @@
       "view_more": "Δείτε περισσότερα"
     },
     "dashboard-hero": {
-      "heading": "Welcome back"
+      "heading": "Welcome back",
+      "user_guide": "Οδηγός χρήσης",
+      "next_consultation": "Επόμενη συνεδρία:",
+      "change_button_label": "Αλλαγή",
+      "accept_button_label": "Αποδοχή συνεδρίας",
+      "join_button_label": "Είσοδος",
+      "schedule_button_label": "Προγραμματισμός",
+      "live_label": "Τώρα",
+      "no_consultations": "Προς το παρόν δεν έχετε προγραμματισμένες συνεδρίες",
+      "free": "Δωρεάν",
+      "ordinal_st": "η",
+      "ordinal_nd": "η",
+      "ordinal_rd": "η",
+      "ordinal_th": "η",
+      "january": "Ιανουάριος",
+      "february": "Φεβρουάριος",
+      "march": "Μάρτιος",
+      "april": "Απρίλιος",
+      "may": "Μάιος",
+      "june": "Ιούνιος",
+      "july": "Ιούλιος",
+      "august": "Αύγουστος",
+      "september": "Σεπτέμβριος",
+      "october": "Οκτώβριος",
+      "november": "Νοέμβριος",
+      "december": "Δεκέμβριος",
+      "coupon": "Κουπόνι",
+      "join_button_label_tooltip": "Μπορείτε να συνδεθείτε στη συνεδρία 5 λεπτά πριν από την ώρα έναρξης"
     },
     "download-app": {
       "heading": "Download our mobile app",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
+    },
+    "find-support-near-you": {
+      "heading": "Βρείτε υποστήριξη κοντά σας",
+      "explore_button_label": "Εξερεύνηση"
     }
   },
   "pages": {
@@ -1063,7 +1115,8 @@
       "subheading_default": "Μπορείτε να βρείτε όλα τα άρθρα εδώ",
       "subheading_newest": "Εδώ μπορείτε να βρείτε τα πιο πρόσφατα άρθρα",
       "subheading_most_read": "Εδώ μπορείτε να βρείτε τα πιο δημοφιλή άρθρα από όλες τις κατηγορίες.",
-      "heading": "Άρθρα"
+      "heading": "Άρθρα",
+      "search": "Αναζήτηση"
     },
     "article-information": {
       "heading": "Περισσότερα άρθρα",
@@ -1096,7 +1149,8 @@
       "podcasts": "Podcast",
       "view_more": "Δείτε περισσότερα",
       "require_cookies": "Για να δείτε αυτό το βίντεο, αποδεχτείτε όλα τα cookies.",
-      "cookie_preferences": "Προτιμήσεις cookies"
+      "cookie_preferences": "Προτιμήσεις cookies",
+      "search": "Αναζήτηση"
     },
     "register-email-page": {
       "heading": "Εγγραφείτε στο uSupport μέσω email"
@@ -1197,7 +1251,8 @@
       "subheading_newest": "Παρακολουθήστε τα πιο πρόσφατα βίντεό μας.",
       "heading_most_viewed": "Τα πιο δημοφιλή βίντεο",
       "subheading_most_viewed": "Παρακολουθήστε τα πιο δημοφιλή μας βίντεο.",
-      "all": "Όλα"
+      "all": "Όλα",
+      "search": "Αναζήτηση"
     },
     "video-information-page": {
       "more_videos": "Περισσότερα βίντεο",
@@ -1220,7 +1275,8 @@
       "subheading_newest": "Ακούστε τα πιο πρόσφατα podcast μας.",
       "heading_most_viewed": "Τα πιο δημοφιλή podcast",
       "subheading_most_viewed": "Ακούστε τα πιο δημοφιλή podcast μας.",
-      "all": "Όλα"
+      "all": "Όλα",
+      "search": "Αναζήτηση"
     },
     "organizations-page": {
       "heading": "Οργανισμοί"
@@ -1237,6 +1293,7 @@
       "continue": "Συνέχεια",
       "submit": "Υποβολή",
       "view_content": "Δείτε περισσότερο περιεχόμενο",
+      "read_more_button": "Διαβάστε περισσότερα",
       "no_articles_found": "Δεν βρέθηκαν άρθρα για αυτό το θέμα.",
       "non_emergency_title": "Μη επείγουσες καταστάσεις",
       "non_emergency_paragraph": "Οποιαδήποτε κατάσταση που δεν απειλεί προς το παρόν τη ζωή ή την ασφάλεια του παιδιού ή του εφήβου.",
@@ -1526,6 +1583,22 @@
       "register_email": "Εγγραφή μέσω email",
       "register_anonymously": "Ανώνυμη εγγραφή",
       "continue_as_guest": "Συνέχεια χωρίς εγγραφή"
+    },
+    "user-guide": {
+      "heading": "Θέλετε να μάθετε περισσότερα για:",
+      "emergency_services": "Υπηρεσίες έκτακτης ανάγκης",
+      "map": "Χάρτης υπηρεσιών ψυχικής υγείας και ψυχοσυναισθηματικής υποστήριξης που είναι διαθέσιμες στο Βουκουρέστι",
+      "rights": "Τα δικαιώματα των παιδιών και των εφήβων να έχουν πρόσβαση σε υπηρεσίες ψυχικής υγείας και ψυχοσυναισθηματικής υποστήριξης"
+    },
+    "emergency-situation": {
+      "heading": "Χάρτης Υπηρεσιών Ψυχικής Υγείας και Ψυχοκοινωνικής Υποστήριξης για Παιδιά και Εφήβους στο Βουκουρέστι",
+      "paragraph": "Αυτός ο διαδραστικός χάρτης παρουσιάζει υπηρεσίες ψυχικής υγείας και ψυχοκοινωνικής ευημερίας που είναι διαθέσιμες για παιδιά και εφήβους στο Βουκουρέστι. Θα προσπαθήσουμε να σας καθοδηγήσουμε ώστε να σας προσφέρουμε επιλογές που ταιριάζουν καλύτερα στις ανάγκες σας.",
+      "paragraph_two": "<0>Αποποίηση ευθύνης:</0> Αυτός ο χάρτης δημιουργήθηκε βάσει των περιγραφών που βρέθηκαν στους ιστότοπους των παρόχων υπηρεσιών. Δεν μπορούμε να εγγυηθούμε την ακρίβεια των πληροφοριών τη στιγμή που αποκτάτε πρόσβαση στον χάρτη. Οι υπηρεσίες και οι πάροχοι αλλάζουν συνεχώς, γι’ αυτό συνιστούμε, όταν επιλέξετε έναν πάροχο, να επικοινωνήσετε μαζί του τηλεφωνικά και να εξηγήσετε λεπτομερώς την κατάσταση για την οποία χρειάζεστε επαγγελματική βοήθεια.",
+      "question": "Αναζητάτε υπηρεσίες για μια επείγουσα κατάσταση;",
+      "subquestion": "Για παράδειγμα: αυτοτραυματισμός, απόπειρα αυτοκτονίας, σχολική ή οικογενειακή βία, σεξουαλική κακοποίηση κ.λπ.",
+      "yes": "Ναι",
+      "no": "Όχι",
+      "dont_know": "Δεν ξέρω αν είναι επείγον"
     }
   },
   "modals": {
@@ -1651,6 +1724,22 @@
       "subheading_5": "Μπορείτε να δημιουργήσετε αναφορά για οποιοδήποτε επιλεγμένο χρονικό διάστημα και να την εξαγάγετε ως αρχείο CSV, ώστε να ελέγχετε ή να μοιράζεστε εύκολα τα δεδομένα που αφορούν τη διάθεσή σας όποτε το χρειάζεστε.",
       "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
       "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
+    },
+    "user-guide": {
+      "heading": "Θέλετε να μάθετε περισσότερα για:",
+      "emergency_services": "Υπηρεσίες έκτακτης ανάγκης",
+      "map": "Χάρτης υπηρεσιών ψυχικής υγείας και ψυχοσυναισθηματικής υποστήριξης που είναι διαθέσιμες στο Βουκουρέστι",
+      "rights": "Τα δικαιώματα των παιδιών και των εφήβων να έχουν πρόσβαση σε υπηρεσίες ψυχικής υγείας και ψυχοσυναισθηματικής υποστήριξης"
+    },
+    "emergency-situation": {
+      "heading": "Χάρτης Υπηρεσιών Ψυχικής Υγείας και Ψυχοκοινωνικής Υποστήριξης για Παιδιά και Εφήβους στο Βουκουρέστι",
+      "paragraph": "Αυτός ο διαδραστικός χάρτης παρουσιάζει υπηρεσίες ψυχικής υγείας και ψυχοκοινωνικής ευημερίας που είναι διαθέσιμες για παιδιά και εφήβους στο Βουκουρέστι. Θα προσπαθήσουμε να σας καθοδηγήσουμε ώστε να σας προσφέρουμε επιλογές που ταιριάζουν καλύτερα στις ανάγκες σας.",
+      "paragraph_two": "<0>Αποποίηση ευθύνης:</0> Αυτός ο χάρτης δημιουργήθηκε βάσει των περιγραφών που βρέθηκαν στους ιστότοπους των παρόχων υπηρεσιών. Δεν μπορούμε να εγγυηθούμε την ακρίβεια των πληροφοριών τη στιγμή που αποκτάτε πρόσβαση στον χάρτη. Οι υπηρεσίες και οι πάροχοι αλλάζουν συνεχώς, γι’ αυτό συνιστούμε, όταν επιλέξετε έναν πάροχο, να επικοινωνήσετε μαζί του τηλεφωνικά και να εξηγήσετε λεπτομερώς την κατάσταση για την οποία χρειάζεστε επαγγελματική βοήθεια.",
+      "question": "Αναζητάτε υπηρεσίες για μια επείγουσα κατάσταση;",
+      "subquestion": "Για παράδειγμα: αυτοτραυματισμός, απόπειρα αυτοκτονίας, σχολική ή οικογενειακή βία, σεξουαλική κακοποίηση κ.λπ.",
+      "yes": "Ναι",
+      "no": "Όχι",
+      "dont_know": "Δεν ξέρω αν είναι επείγον"
     }
   },
   "routes": {

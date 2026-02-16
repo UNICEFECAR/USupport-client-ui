@@ -2,7 +2,7 @@
 
 .mood-track-history {
   padding-bottom: $spacing_3_2;
-  
+
   &__content-container {
     display: flex;
     flex-direction: row;
@@ -123,6 +123,7 @@
       & .card-media {
         margin: unset;
         @media screen and (min-width: $screen-md) {
+          width: 100%;
           max-width: 45%;
         }
       }

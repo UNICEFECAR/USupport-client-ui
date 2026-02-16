@@ -8,7 +8,7 @@ import {
   ProgressBar,
   Loading,
   Icon,
-  Button,
+  NewButton,
 } from "@USupport-components-library/src";
 import { createArticleSlug } from "@USupport-components-library/utils";
 import { CardMedia, Markdown } from "@USupport-components-library/src";
@@ -124,7 +124,7 @@ export const BaselineAssesmentResult = ({ result }) => {
                 {t("summary_heading")}
               </h4>
               <Markdown markDownText={data.summaryCK} className={"text"} />
-              <Button
+              <NewButton
                 onClick={() =>
                   navigate("/organizations", {
                     state: { personalizeFromAssessment: true },
@@ -135,7 +135,7 @@ export const BaselineAssesmentResult = ({ result }) => {
                 classes="baseline-assesment-result__summary__interactive-map-button"
               >
                 {t("organizations")}
-              </Button>
+              </NewButton>
             </GridItem>
           </>
         )}

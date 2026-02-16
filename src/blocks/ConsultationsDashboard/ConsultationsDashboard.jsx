@@ -98,7 +98,8 @@ export const ConsultationsDashboard = ({
   }, [t]);
 
   const consultationsToShow =
-    !isLoggedIn && (!upcomingConsultations || upcomingConsultations.length === 0)
+    !isLoggedIn &&
+    (!upcomingConsultations || upcomingConsultations.length === 0)
       ? dummyConsultations
       : upcomingConsultations;
 
@@ -183,6 +184,7 @@ export const ConsultationsDashboard = ({
         label={t("schedule_consultation_label")}
         type="gradient"
         size="lg"
+        isFullWidth={true}
         onClick={handleScheduleConsultation}
         iconName="calendar"
         classes="consultations-dashboard__schedule-consultation-button"

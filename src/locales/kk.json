@@ -47,7 +47,27 @@
       "terms_of_use": "Пайдалану шарттары",
       "cookie_policy": "Cookie саясаты",
       "user_guide": "Платформа нұсқаулығы",
-      "edit_profile": "Edit profile"
+      "edit_profile": "Edit profile",
+      "go_back": "Артқа",
+      "notifications_heading": "Хабарландырулар",
+      "notifications_mark_read": "Барлығын оқылған деп белгілеу",
+      "notifications_empty": "Әзірге хабарландыру жоқ",
+      "notifications_load_more": "Көбірек жүктеу",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> {{date}} күні {{startHour}}-ден {{endHour}}-ге дейін кеңеске жазды",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> сіздің кеңесіңізді {{date}} {{startHour}}-{{endHour}} уақытынан {{newDate}} {{newStartHour}}-{{newEndHour}} уақытына ауыстырды",
+      "notifications_consultation_cancellation": "<0>{{providerName}}</0> маманымен {{date}} күні {{startHour}}-ден {{endHour}}-ге дейінгі кеңесіңіз тоқтатылды",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> сіздің {{date}} күні {{startHour}}-ден {{endHour}}-ге дейінгі кеңесіңізді тоқтатты",
+      "notifications_consultation_remind_start": "Кеңесіңіз <0>{{minutes}}</0> минуттан кейін басталады",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> {{date}} күні {{startHour}}-ден {{endHour}}-ге дейін кеңес ұсынды",
+      "notifications_consultation_suggestion_booking": "Сіз <0>{{providerName}}</0> ұсынған {{date}} күні {{startHour}}-ден {{endHour}}-ге дейінгі кеңесті қабылдадыңыз",
+      "notifications_consultation_suggestion_cancellation": "<0>{{providerName}}</0> ұсынған {{date}} күні {{startHour}}-ден {{endHour}}-ге дейінгі кеңес тоқтатылды",
+      "notifications_consultation_started": "<0>{{providerName}}</0> маманымен кеңесіңіз басталды",
+      "notifications_question_answered": "<0>{{providerName}}</0> сұрағыңызға жауап берді",
+      "notifications_consultation_remind_start_24_hours_before": "<0>{{providerName}}</0> маманымен кеңесіңіз 24 сағаттан кейін басталады",
+      "notifications_consultation_remind_start_48_hours_before": "<0>{{providerName}}</0> маманымен кеңесіңіз 48 сағаттан кейін басталады",
+      "all": "Барлығы",
+      "new": "Жаңа",
+      "read": "Оқылған"
     },
     "provider-overview": {
       "earliest_slot_label": "Консультация алу үшін жақын арадағы бос уақыт",
@@ -543,7 +563,8 @@
       "december": "желтоқсан",
       "coupon": "Купон",
       "explore_button_label": "Зерттеу",
-      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз",
+      "user_guide": "Пайдаланушы нұсқаулығы"
     },
     "activity-log-dashboard": {
       "heading": "Әрекеттер журналы",
@@ -970,12 +991,43 @@
       "view_more": "View more"
     },
     "dashboard-hero": {
-      "heading": "Welcome back"
+      "heading": "Welcome back",
+      "user_guide": "Нұсқаулық",
+      "next_consultation": "Келесі консультация:",
+      "change_button_label": "Құпия сөзді өзгерту",
+      "accept_button_label": "Консультацияны қабылдау",
+      "join_button_label": "Қосылу",
+      "schedule_button_label": "Жоспарлау",
+      "live_label": "Қазір",
+      "no_consultations": "Қазіргі Сізде алдағы консультациялар жоқ",
+      "free": "Бос",
+      "ordinal_st": "-ші",
+      "ordinal_nd": "-ші",
+      "ordinal_rd": "-ші",
+      "ordinal_th": "-ші/-шы",
+      "january": "қаңтар",
+      "february": "ақпан",
+      "march": "наурыз",
+      "april": "сәуір",
+      "may": "мамыр",
+      "june": "маусым",
+      "july": "шілде",
+      "august": "тамыз",
+      "september": "қыркүйек",
+      "october": "қазан",
+      "november": "қараша",
+      "december": "желтоқсан",
+      "coupon": "Купон",
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
     },
     "download-app": {
       "heading": "Download our mobile app",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
+    },
+    "find-support-near-you": {
+      "heading": "Жақын маңнан қолдау табыңыз",
+      "explore_button_label": "Зерттеу"
     }
   },
   "pages": {
@@ -1063,7 +1115,8 @@
       "subheading_default": "Барлық мақалаларды осы жерден таба аласыз",
       "subheading_newest": "Мұнда Сіз жаңа мақалаларды таба аласыз",
       "subheading_most_read": "Мұнда Сіз барлық категориялардағы ең көп оқылатын мақалаларды таба аласыз",
-      "heading": "Мақалалар"
+      "heading": "Мақалалар",
+      "search": "Іздеу"
     },
     "article-information": {
       "heading": "Көбірек мақалалар",
@@ -1096,7 +1149,8 @@
       "podcasts": "Подкасттар",
       "view_more": "Көбірек көру",
       "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
-      "cookie_preferences": "Cookie параметрлері"
+      "cookie_preferences": "Cookie параметрлері",
+      "search": "Іздеу"
     },
     "register-email-page": {
       "heading": "uSupport сайтында электронды пошта арқылы тіркеліңіз"
@@ -1197,7 +1251,8 @@
       "subheading_newest": "Біздің жаңа бейнелерімізді көріңіз.",
       "heading_most_viewed": "Ең көп қаралған бейнелер",
       "subheading_most_viewed": "Біздің ең көп қаралған бейнелерімізді көріңіз.",
-      "all": "Барлығы"
+      "all": "Барлығы",
+      "search": "Іздеу"
     },
     "video-information-page": {
       "more_videos": "Көбірек видеолар",
@@ -1220,7 +1275,8 @@
       "subheading_newest": "Біздің жаңа Аудиобақыттарымызды тыңдаңыз.",
       "heading_most_viewed": "Ең көп қаралған Аудиобақыттар",
       "subheading_most_viewed": "Біздің ең көп қаралған Аудиобақыттарымызды тыңдаңыз.",
-      "all": "Барлығы"
+      "all": "Барлығы",
+      "search": "Іздеу"
     },
     "organizations-page": {
       "heading": "Ұйымдар"
@@ -1237,6 +1293,7 @@
       "continue": "Жалғастыру",
       "submit": "Жіберу",
       "view_content": "Көбірек мазмұнды көру",
+      "read_more_button": "Толығырақ оқу",
       "no_articles_found": "Осы тақырып бойынша мақалалар табылмады.",
       "non_emergency_title": "Төтенше емес жағдайлар",
       "non_emergency_paragraph": "Қазіргі уақытта баланың немесе жасөспірімнің өміріне немесе қауіпсіздігіне қауіп төндірмейтін кез келген жағдай.",
@@ -1526,6 +1583,22 @@
       "register_email": "Электронды пошта арқылы тіркеліңіз",
       "register_anonymously": "Электрондық поштасыз тіркелу",
       "continue_as_guest": "Тіркеусіз жалғастыру"
+    },
+    "user-guide": {
+      "heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",
+      "emergency_services": "Жедел қызметтер",
+      "map": "Бухарестте қолжетімді психикалық денсаулық және психо-эмоционалдық қолдау қызметтерінің картасы",
+      "rights": "Балалар мен жасөспірімдердің психикалық денсаулық және психо-эмоционалдық қолдау қызметтеріне қол жеткізу құқықтары"
+    },
+    "emergency-situation": {
+      "heading": "Бухаресттегі балалар мен жасөспірімдерге арналған психикалық денсаулық және психоәлеуметтік қолдау қызметтерінің картасы",
+      "paragraph": "Бұл интерактивті карта Бухаресттегі балалар мен жасөспірімдерге қолжетімді психикалық денсаулық пен психоәлеуметтік әл-ауқат қызметтерін көрсетеді. Біз сіздің қажеттіліктеріңізге ең сәйкес келетін нұсқаларды ұсыну үшін сізге бағыт-бағдар беруге тырысамыз.",
+      "paragraph_two": "<0>Ескерту:</0> Бұл карта қызмет көрсетушілердің веб-сайттарындағы сипаттамалар негізінде жасалды. Картаны пайдаланған сәттегі ақпараттың дәлдігіне кепілдік бере алмаймыз. Қызметтер мен провайдерлер үнемі өзгеріп отырады, сондықтан провайдерді таңдаған кезде оларға телефон арқылы хабарласып, кәсіби көмек қажет жағдайды егжей-тегжейлі түсіндіруді ұсынамыз.",
+      "question": "Жедел жағдайға арналған қызметтерді іздеп жүрсіз бе?",
+      "subquestion": "Мысалы: өзіне зиян келтіру, суицид әрекеті, мектептегі немесе отбасындағы зорлық-зомбылық, жыныстық зорлық-зомбылық және т.б.",
+      "yes": "Иә",
+      "no": "Жоқ",
+      "dont_know": "Шұғыл екенін білмеймін"
     }
   },
   "modals": {
@@ -1651,6 +1724,22 @@
       "subheading_5": "Сіз кез келген таңдалған күн аралығына есеп жасай аласыз және оны CSV файлы ретінде экспорттай аласыз — бұл сіздің көңіл күй деректеріңізді қарап шығуды немесе қажет болған жағдайда бөлісуді жеңілдетеді.",
       "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
       "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
+    },
+    "user-guide": {
+      "heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",
+      "emergency_services": "Жедел қызметтер",
+      "map": "Бухарестте қолжетімді психикалық денсаулық және психо-эмоционалдық қолдау қызметтерінің картасы",
+      "rights": "Балалар мен жасөспірімдердің психикалық денсаулық және психо-эмоционалдық қолдау қызметтеріне қол жеткізу құқықтары"
+    },
+    "emergency-situation": {
+      "heading": "Бухаресттегі балалар мен жасөспірімдерге арналған психикалық денсаулық және психоәлеуметтік қолдау қызметтерінің картасы",
+      "paragraph": "Бұл интерактивті карта Бухаресттегі балалар мен жасөспірімдерге қолжетімді психикалық денсаулық пен психоәлеуметтік әл-ауқат қызметтерін көрсетеді. Біз сіздің қажеттіліктеріңізге ең сәйкес келетін нұсқаларды ұсыну үшін сізге бағыт-бағдар беруге тырысамыз.",
+      "paragraph_two": "<0>Ескерту:</0> Бұл карта қызмет көрсетушілердің веб-сайттарындағы сипаттамалар негізінде жасалды. Картаны пайдаланған сәттегі ақпараттың дәлдігіне кепілдік бере алмаймыз. Қызметтер мен провайдерлер үнемі өзгеріп отырады, сондықтан провайдерді таңдаған кезде оларға телефон арқылы хабарласып, кәсіби көмек қажет жағдайды егжей-тегжейлі түсіндіруді ұсынамыз.",
+      "question": "Жедел жағдайға арналған қызметтерді іздеп жүрсіз бе?",
+      "subquestion": "Мысалы: өзіне зиян келтіру, суицид әрекеті, мектептегі немесе отбасындағы зорлық-зомбылық, жыныстық зорлық-зомбылық және т.б.",
+      "yes": "Иә",
+      "no": "Жоқ",
+      "dont_know": "Шұғыл екенін білмеймін"
     }
   },
   "routes": {

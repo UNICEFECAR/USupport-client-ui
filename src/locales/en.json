@@ -48,7 +48,26 @@
       "cookie_policy": "Cookie policy",
       "user_guide": "Platform usage",
       "edit_profile": "Edit profile",
-      "go_back": "Go back"
+      "go_back": "Go back",
+      "notifications_heading": "Notifications",
+      "notifications_mark_read": "Mark all as read",
+      "notifications_empty": "No notifications yet",
+      "notifications_load_more": "Load more",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> booked a consultation on {{date}} from {{startHour}} to {{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> rescheduled your consultation from {{date}} {{startHour}}-{{endHour}} to {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Your consultation with <0>{{providerName}}</0> on {{date}} from {{startHour}} to {{endHour}} has been cancelled",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> cancelled your consultation on {{date}} from {{startHour}} to {{endHour}}",
+      "notifications_consultation_remind_start": "Your consultation starts in <0>{{minutes}}</0> minutes",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> suggested a consultation on {{date}} from {{startHour}} to {{endHour}}",
+      "notifications_consultation_suggestion_booking": "You accepted a consultation suggestion from <0>{{providerName}}</0> on {{date}} from {{startHour}} to {{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Consultation suggestion from <0>{{providerName}}</0> on {{date}} from {{startHour}} to {{endHour}} has been cancelled",
+      "notifications_consultation_started": "Your consultation with <0>{{providerName}}</0> has started",
+      "notifications_question_answered": "<0>{{providerName}}</0> answered your question",
+      "notifications_consultation_remind_start_24_hours_before": "Your consultation with <0>{{providerName}}</0> is starting in 24 hours",
+      "notifications_consultation_remind_start_48_hours_before": "Your consultation with <0>{{providerName}}</0> is starting in 48 hours",
+      "all": "All",
+      "new": "New",
+      "read": "Read"
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
@@ -972,12 +991,43 @@
       "view_more": "View more"
     },
     "dashboard-hero": {
-      "heading": "Welcome back"
+      "heading": "Welcome back",
+      "user_guide": "User Guide",
+      "next_consultation": "Next consultation:",
+      "change_button_label": "Change",
+      "accept_button_label": "Accept consultation",
+      "join_button_label": "Join",
+      "schedule_button_label": "Schedule",
+      "live_label": "Now",
+      "no_consultations": "Currently you do not have upcoming consultations",
+      "free": "Free",
+      "ordinal_st": "st",
+      "ordinal_nd": "nd",
+      "ordinal_rd": "rd",
+      "ordinal_th": "th",
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December",
+      "coupon": "Coupon",
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
     },
     "download-app": {
       "heading": "Download our mobile app",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
+    },
+    "find-support-near-you": {
+      "heading": "Find support near you",
+      "explore_button_label": "Explore"
     }
   },
   "pages": {

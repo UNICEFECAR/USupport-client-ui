@@ -47,7 +47,27 @@
       "terms_of_use": "Умови використання",
       "cookie_policy": "Політика щодо файлів cookie",
       "user_guide": "Інструкція використання платформи",
-      "edit_profile": "Edit profile"
+      "edit_profile": "Edit profile",
+      "go_back": "Назад",
+      "notifications_heading": "Сповіщення",
+      "notifications_mark_read": "Позначити всі як прочитані",
+      "notifications_empty": "Поки що немає сповіщень",
+      "notifications_load_more": "Завантажити ще",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> записав(ла) вас на консультацію {{date}} з {{startHour}} до {{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> переніс(ла) вашу консультацію з {{date}} {{startHour}}-{{endHour}} на {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Вашу консультацію з <0>{{providerName}}</0> на {{date}} з {{startHour}} до {{endHour}} скасовано",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> скасував(ла) вашу консультацію на {{date}} з {{startHour}} до {{endHour}}",
+      "notifications_consultation_remind_start": "Ваша консультація почнеться через <0>{{minutes}}</0> хв",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> запропонував(ла) консультацію на {{date}} з {{startHour}} до {{endHour}}",
+      "notifications_consultation_suggestion_booking": "Ви прийняли пропозицію консультації від <0>{{providerName}}</0> на {{date}} з {{startHour}} до {{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Пропозицію консультації від <0>{{providerName}}</0> на {{date}} з {{startHour}} до {{endHour}} скасовано",
+      "notifications_consultation_started": "Ваша консультація з <0>{{providerName}}</0> розпочалася",
+      "notifications_question_answered": "<0>{{providerName}}</0> відповів(ла) на ваше запитання",
+      "notifications_consultation_remind_start_24_hours_before": "Ваша консультація з <0>{{providerName}}</0> розпочнеться через 24 години",
+      "notifications_consultation_remind_start_48_hours_before": "Ваша консультація з <0>{{providerName}}</0> розпочнеться через 48 годин",
+      "all": "Усі",
+      "new": "Нові",
+      "read": "Прочитані"
     },
     "provider-overview": {
       "earliest_slot_label": "Найближчий вільний часовий слот для консультації",
@@ -543,7 +563,8 @@
       "december": "Грудень",
       "coupon": "Купон",
       "explore_button_label": "Дослідити",
-      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
+      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку",
+      "user_guide": "Посібник користувача"
     },
     "activity-log-dashboard": {
       "heading": "Журнал активності",
@@ -970,12 +991,43 @@
       "view_more": "Переглянути більше"
     },
     "dashboard-hero": {
-      "heading": "Welcome back"
+      "heading": "Welcome back",
+      "user_guide": "Інструкція використання",
+      "next_consultation": "Наступна консультація:",
+      "change_button_label": "Зміна",
+      "accept_button_label": "Погодься на консультацію",
+      "join_button_label": "Приєднайся",
+      "schedule_button_label": "Розклад",
+      "live_label": "Зараз",
+      "no_consultations": "Наразі немає майбутніх консультацій",
+      "free": "Безкоштовно",
+      "ordinal_st": "-ий",
+      "ordinal_nd": "-ий",
+      "ordinal_rd": "-ій",
+      "ordinal_th": "-ий",
+      "january": "Січень",
+      "february": "Лютий",
+      "march": "Березень",
+      "april": "Квітень",
+      "may": "Травень",
+      "june": "Червень",
+      "july": "Липень",
+      "august": "Серпень",
+      "september": "Вересень",
+      "october": "Жовтень",
+      "november": "Листопад",
+      "december": "Грудень",
+      "coupon": "Купон",
+      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
     },
     "download-app": {
       "heading": "Download our mobile app",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
+    },
+    "find-support-near-you": {
+      "heading": "Знайдіть підтримку поруч",
+      "explore_button_label": "Переглянути"
     }
   },
   "pages": {
@@ -1063,7 +1115,8 @@
       "subheading_default": "Всі статті можна знайти тут",
       "subheading_newest": "Тут можна знайти найновіші статті",
       "subheading_most_read": "Тут можна знайти найпопулярніші статті з усіх категорій",
-      "heading": "Статті"
+      "heading": "Статті",
+      "search": "Пошук"
     },
     "article-information": {
       "heading": "Більше статей",
@@ -1096,7 +1149,8 @@
       "podcasts": "Подкасти",
       "view_more": "Переглянути більше",
       "require_cookies": "Щоб переглянути це відео, прийміть усі файли cookie.",
-      "cookie_preferences": "Налаштування файлів cookie"
+      "cookie_preferences": "Налаштування файлів cookie",
+      "search": "Пошук"
     },
     "register-email-page": {
       "heading": "Зареєструйтеся в uSupport за допомогою електронної пошти"
@@ -1197,7 +1251,8 @@
       "subheading_newest": "Дивіться наші нові відео.",
       "heading_most_viewed": "Найпопулярніші відео",
       "subheading_most_viewed": "Дивіться наші найпопулярніші відео.",
-      "all": "Усі"
+      "all": "Усі",
+      "search": "Пошук"
     },
     "video-information-page": {
       "more_videos": "Більше відео",
@@ -1220,7 +1275,8 @@
       "subheading_newest": "Слухайте наші найновіші подкасти.",
       "heading_most_viewed": "Найпопулярніші подкасти",
       "subheading_most_viewed": "Слухайте наші найпопулярніші подкасти.",
-      "all": "Усі"
+      "all": "Усі",
+      "search": "Пошук"
     },
     "organizations-page": {
       "heading": "Організації"
@@ -1237,6 +1293,7 @@
       "continue": "Продовжити",
       "submit": "Відправити",
       "view_content": "Переглянути більше контенту",
+      "read_more_button": "Читати більше",
       "no_articles_found": "Статті з цієї теми не знайдено.",
       "non_emergency_title": "Неекстрені ситуації",
       "non_emergency_paragraph": "Будь-яка ситуація, яка наразі не загрожує життю або безпеці дитини або підлітка.",

@@ -15,7 +15,7 @@ import {
 
 import {
   Block,
-  Button,
+  NewButton,
   ButtonWithIcon,
   Grid,
   GridItem,
@@ -64,7 +64,7 @@ export const BaselineAssesment = ({
     error: answersError,
   } = useGetClientAnswersForBaselineAssessmentById(
     selectedSession?.baselineAssessmentId,
-    !state.isNewSession
+    !state.isNewSession,
   );
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export const BaselineAssesment = ({
   const handleStartAssessment = () => {
     if (!canStartNewAssessment) {
       toast.error(
-        "You have an assessment in progress. Please complete it before starting a new one."
+        "You have an assessment in progress. Please complete it before starting a new one.",
       );
       return;
     }
@@ -141,7 +141,7 @@ export const BaselineAssesment = ({
         },
       }));
     },
-    [currentQuestion]
+    [currentQuestion],
   );
 
   // Navigate to next question
@@ -213,7 +213,7 @@ export const BaselineAssesment = ({
             return { ...prev, answers: newAnswers };
           });
         },
-      }
+      },
     );
   };
 
@@ -314,13 +314,12 @@ export const BaselineAssesment = ({
             </GridItem>
             {canStartNewAssessment && (
               <GridItem md={8} lg={12}>
-                <Button
+                <NewButton
                   label={"Start Assessment"}
                   size="lg"
                   onClick={handleStartAssessment}
                   loading={createBaselineAssessmentMutation.isLoading}
                   disabled={createBaselineAssessmentMutation.isLoading}
-                  type="primary"
                 />
               </GridItem>
             )}
@@ -368,14 +367,14 @@ export const BaselineAssesment = ({
             {/* Navigation */}
             <GridItem md={8} lg={12} classes="baseline-assesment__navigation">
               <div className="baseline-assesment__navigation__buttons">
-                <Button
+                <NewButton
                   disabled={state.currentQuestionIndex === 0}
                   label={t("back")}
-                  type="secondary"
+                  type="outline"
                   size="lg"
                   onClick={handleBack}
                 />
-                <Button
+                <NewButton
                   label={isLastQuestion ? t("finish_assessment") : t("next")}
                   size="lg"
                   onClick={handleNext}
@@ -383,11 +382,11 @@ export const BaselineAssesment = ({
                   loading={addBaselineAssessmentAnswerMutation.isLoading}
                 />
               </div>
-              <ButtonWithIcon
+              <NewButton
                 iconName="save"
                 iconColor="#ffffff"
                 size="md"
-                color="purple"
+                type="solid"
                 label={t("save_button_label")}
                 classes="baseline-assesment__navigation__save-for-later"
                 onClick={handleRedirectToDashboard}

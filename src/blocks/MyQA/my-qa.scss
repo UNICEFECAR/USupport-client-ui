@@ -13,15 +13,13 @@
     }
 
     &__language-dropdown {
-      width: 34.4rem;
+      @media screen and (min-width: $screen-md) {
+        width: 34.4rem;
+      }
       text-align: left;
       margin-bottom: $spacing_1_2;
       margin-top: $spacing_1_2;
     }
-  }
-
-  &__button-item {
-    place-self: center;
   }
 
   &__tabs-grid {
@@ -68,16 +66,10 @@
     }
   }
 
-  &__ask-question-button {
-    margin-top: $spacing_1_6;
-    max-width: 10rem;
-    margin-inline: auto;
-
-    @media screen and (min-width: $screen-md) {
-      max-width: 34rem;
-    }
-    @media screen and (min-width: $screen-lg) {
-      margin-top: 0;
+  &__button-item {
+    &__button {
+      margin-top: $spacing_1_2;
+      margin-inline: auto;
     }
   }
 

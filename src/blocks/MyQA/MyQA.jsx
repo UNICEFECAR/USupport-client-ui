@@ -244,16 +244,12 @@ export const MyQA = ({
                 />
               </GridItem>
             )}
-            <GridItem
-              md={8}
-              lg={12}
-              classes="my-qa__tabs-grid__filter-button-item"
-            ></GridItem>
             <GridItem md={8} lg={12} classes="my-qa__button-item">
               <NewButton
                 label={t("ask_button_label")}
-                size={width < 980 && width > 768 ? "lg" : "lg"}
-                classes="my-qa__ask-question-button"
+                size="lg"
+                classes="my-qa__button-item__button"
+                isFullWidth={true}
                 onClick={handleAskAnonymous}
               />
             </GridItem>

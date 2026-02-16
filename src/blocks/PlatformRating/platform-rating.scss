@@ -1,26 +1,41 @@
 @import "@USupport-components-library/styles";
 
 .platform-rating {
-  & .container {
-    max-width: 58.4rem;
-    margin: 0 auto;
+  padding-bottom: $spacing_3_2;
 
-    @media screen and (min-width: $screen-lg) {
-      margin-left: 0;
+  &__content-wrapper {
+    position: relative;
+
+    &__left {
+      text-align: left;
+      padding-top: $spacing_3_2;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_2_4;
+      padding-bottom: $spacing_6_0;
+
+      @media screen and (min-width: $screen-lg) {
+        max-width: 58.4rem;
+      }
+    }
+
+    &__right {
+      display: none;
+      @media screen and (min-width: $screen-lg) {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      & img {
+        width: 50%;
+      }
     }
   }
 
-  &__content-container {
-    text-align: left;
-    padding-top: $spacing_3_2;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: $spacing_2_4;
-    padding-bottom: $spacing_6_0;
-
-    &__textarea {
-      width: 100%;
-    }
+  &__textarea {
+    width: 100%;
   }
 }

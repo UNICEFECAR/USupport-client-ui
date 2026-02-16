@@ -12,6 +12,7 @@ import {
   BaselineAssessmentDashboard,
   DashboardHero,
   DownloadApp,
+  FindSupportNearYou,
 } from "#blocks";
 
 import {
@@ -303,7 +304,7 @@ export const Dashboard = () => {
         />
       )}
       <div className="page__dashboard__content">
-        <DashboardHero />
+        <DashboardHero handleOpenUserGuide={openUserGuide} />
         {/* <MascotWelcomeHeader
           nextConsultation={
             upcomingConsultations ? upcomingConsultations[0] : null
@@ -321,15 +322,17 @@ export const Dashboard = () => {
           clientData={clientData || {}}
           openRequireDataAgreement={openRequireDataAgreement}
         />
-        {IS_RO && (
-          <BaselineAssessmentDashboard
-            isTmpUser={isTmpUser || !isAuthenticated}
-            openBaselineAssesmentModal={() =>
-              setIsBaselineAssesmentModalOpen(true)
-            }
-          />
-        )}
-        {!IS_RO && (
+        {IS_RO ? (
+          <>
+            <FindSupportNearYou />
+            <BaselineAssessmentDashboard
+              isTmpUser={isTmpUser || !isAuthenticated}
+              openBaselineAssesmentModal={() =>
+                setIsBaselineAssesmentModalOpen(true)
+              }
+            />
+          </>
+        ) : (
           <ConsultationsDashboard
             openJoinConsultation={openJoinConsultation}
             openEditConsultation={openEditConsultation}

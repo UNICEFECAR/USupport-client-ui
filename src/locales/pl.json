@@ -47,7 +47,27 @@
       "terms_of_use": "Regulaminem",
       "cookie_policy": "Polityka plików cookies",
       "user_guide": "Wykorzystanie platformy",
-      "edit_profile": "Edit profile"
+      "edit_profile": "Edit profile",
+      "go_back": "Wróć",
+      "notifications_heading": "Powiadomienia",
+      "notifications_mark_read": "Oznacz wszystkie jako przeczytane",
+      "notifications_empty": "Brak powiadomień",
+      "notifications_load_more": "Załaduj więcej",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> zarezerwował(a) konsultację na {{date}} w godz. {{startHour}}–{{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> przełożył(a) Twoją konsultację z {{date}} {{startHour}}-{{endHour}} na {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Twoja konsultacja z <0>{{providerName}}</0> w dniu {{date}} w godz. {{startHour}}–{{endHour}} została anulowana",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> anulował(a) Twoją konsultację w dniu {{date}} w godz. {{startHour}}–{{endHour}}",
+      "notifications_consultation_remind_start": "Twoja konsultacja rozpocznie się za <0>{{minutes}}</0> min",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> zaproponował(a) konsultację na {{date}} w godz. {{startHour}}–{{endHour}}",
+      "notifications_consultation_suggestion_booking": "Zaakceptowałeś(-aś) propozycję konsultacji od <0>{{providerName}}</0> na {{date}} w godz. {{startHour}}–{{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Propozycja konsultacji od <0>{{providerName}}</0> na {{date}} w godz. {{startHour}}–{{endHour}} została anulowana",
+      "notifications_consultation_started": "Twoja konsultacja z <0>{{providerName}}</0> rozpoczęła się",
+      "notifications_question_answered": "<0>{{providerName}}</0> odpowiedział(a) na Twoje pytanie",
+      "notifications_consultation_remind_start_24_hours_before": "Twoja konsultacja z <0>{{providerName}}</0> rozpocznie się za 24 godziny",
+      "notifications_consultation_remind_start_48_hours_before": "Twoja konsultacja z <0>{{providerName}}</0> rozpocznie się za 48 godzin",
+      "all": "Wszystkie",
+      "new": "Nowe",
+      "read": "Przeczytane"
     },
     "provider-overview": {
       "earliest_slot_label": "Najwcześniejszy dostępny termin konsultacji",
@@ -543,7 +563,8 @@
       "december": "Grudzień",
       "coupon": "Kupon",
       "explore_button_label": "Odkryj",
-      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem",
+      "user_guide": "Poradnik użytkownika"
     },
     "activity-log-dashboard": {
       "heading": "Rejestr aktywności",
@@ -970,12 +991,43 @@
       "view_more": "Zobacz więcej"
     },
     "dashboard-hero": {
-      "heading": "Welcome back"
+      "heading": "Welcome back",
+      "user_guide": "Przewodnik",
+      "next_consultation": "Następna konsultacja:",
+      "change_button_label": "Zmiana",
+      "accept_button_label": "Zaakceptuj konsulatcję",
+      "join_button_label": "Dołącz",
+      "schedule_button_label": "Kalendarz",
+      "live_label": "Teraz",
+      "no_consultations": "Obecnie nie masz nadchodzących konsultacji",
+      "free": "Bezpłatne",
+      "ordinal_st": ".",
+      "ordinal_nd": ".",
+      "ordinal_rd": ".",
+      "ordinal_th": ".",
+      "january": "Styczeń",
+      "february": "Luty",
+      "march": "Marzec",
+      "april": "Kwiecień",
+      "may": "Maj",
+      "june": "Czerwiec",
+      "july": "Lipiec",
+      "august": "Sierpień",
+      "september": "Wrzesień",
+      "october": "Październik",
+      "november": "Listopad",
+      "december": "Grudzień",
+      "coupon": "Kupon",
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
     },
     "download-app": {
       "heading": "Download our mobile app",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
+    },
+    "find-support-near-you": {
+      "heading": "Znajdź wsparcie w pobliżu",
+      "explore_button_label": "Przeglądaj"
     }
   },
   "pages": {
@@ -1063,7 +1115,8 @@
       "subheading_default": "Wszystkie artykuły można znaleźć tutaj",
       "subheading_newest": "Tutaj możesz znaleźć najnowsze artykuły",
       "subheading_most_read": "Tutaj możesz znaleźć najczęściej czytane artykuły ze wszystkich kategorii",
-      "heading": "Artykuły"
+      "heading": "Artykuły",
+      "search": "Szukaj"
     },
     "article-information": {
       "heading": "Więcej artykułów",
@@ -1096,7 +1149,8 @@
       "podcasts": "Audiodyski",
       "view_more": "Zobacz więcej",
       "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
-      "cookie_preferences": "Preferencje plików cookie"
+      "cookie_preferences": "Preferencje plików cookie",
+      "search": "Szukaj"
     },
     "register-email-page": {
       "heading": "Zarejestruj się w uSupport za pomocą adresu email"
@@ -1197,7 +1251,8 @@
       "subheading_newest": "Obejrzyj nasze najnowsze filmy.",
       "heading_most_viewed": "Najczęściej oglądane filmy",
       "subheading_most_viewed": "Obejrzyj nasze najczęściej oglądane filmy.",
-      "all": "Wszystkie"
+      "all": "Wszystkie",
+      "search": "Szukaj"
     },
     "video-information-page": {
       "more_videos": "Więcej filmów",
@@ -1220,7 +1275,8 @@
       "subheading_newest": "Posłuchaj naszych najnowszych podcastów.",
       "heading_most_viewed": "Najczęściej oglądane podcasty",
       "subheading_most_viewed": "Posłuchaj naszych najczęściej oglądanych podcastów.",
-      "all": "All"
+      "all": "All",
+      "search": "Szukaj"
     },
     "organizations-page": {
       "heading": "Organizacje"
@@ -1237,6 +1293,7 @@
       "continue": "Kontynuuj",
       "submit": "Prześlij",
       "view_content": "Zobacz więcej treści",
+      "read_more_button": "Czytaj więcej",
       "no_articles_found": "Nie znaleziono artykułów na ten temat.",
       "non_emergency_title": "Sytuacje niepilne",
       "non_emergency_paragraph": "Każda sytuacja, która obecnie nie zagraża życiu lub bezpieczeństwu dziecka lub nastolatka.",
@@ -1526,6 +1583,22 @@
       "register_email": "Zarejestruj się za pomocą adresu e-mail",
       "register_anonymously": "Rejestracja anonimowa",
       "continue_as_guest": "Kontynuuj bez rejestracji"
+    },
+    "user-guide": {
+      "heading": "Chcesz dowiedzieć się więcej o:",
+      "emergency_services": "Służbach ratunkowych",
+      "map": "Mapie usług wsparcia zdrowia psychicznego i psychoemocjonalnego dostępnych w Bukareszcie",
+      "rights": "Prawach dzieci i młodzieży do dostępu do usług wsparcia zdrowia psychicznego i psychoemocjonalnego"
+    },
+    "emergency-situation": {
+      "heading": "Mapa usług wsparcia zdrowia psychicznego i psychospołecznego dla dzieci i młodzieży w Bukareszcie",
+      "paragraph": "Ta interaktywna mapa przedstawia usługi zdrowia psychicznego i dobrostanu psychospołecznego dostępne dla dzieci i młodzieży w Bukareszcie. Postaramy się poprowadzić Cię tak, aby zaproponować opcje najlepiej dopasowane do Twoich potrzeb.",
+      "paragraph_two": "<0>Zastrzeżenie:</0> Ta mapa została opracowana na podstawie opisów znajdujących się na stronach internetowych dostawców usług. Nie możemy zagwarantować aktualności i dokładności informacji w momencie korzystania z mapy. Usługi i dostawcy stale się zmieniają, dlatego zalecamy, aby po wyborze dostawcy skontaktować się z nim telefonicznie i szczegółowo opisać sytuację, w której potrzebujesz profesjonalnej pomocy.",
+      "question": "Szukasz usług w sytuacji nagłej?",
+      "subquestion": "Na przykład: samookaleczenie, próba samobójcza, przemoc szkolna lub domowa, wykorzystanie seksualne itp.",
+      "yes": "Tak",
+      "no": "Nie",
+      "dont_know": "Nie wiem, czy to pilne"
     }
   },
   "modals": {
@@ -1651,6 +1724,22 @@
       "subheading_5": "When you complete the assessment, you’ll see your psychological, biological, and social results. You can retake it later to compare changes in your well-being, and related content based on your results will appear below.",
       "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
       "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
+    },
+    "user-guide": {
+      "heading": "Chcesz dowiedzieć się więcej o:",
+      "emergency_services": "Służbach ratunkowych",
+      "map": "Mapie usług wsparcia zdrowia psychicznego i psychoemocjonalnego dostępnych w Bukareszcie",
+      "rights": "Prawach dzieci i młodzieży do dostępu do usług wsparcia zdrowia psychicznego i psychoemocjonalnego"
+    },
+    "emergency-situation": {
+      "heading": "Mapa usług wsparcia zdrowia psychicznego i psychospołecznego dla dzieci i młodzieży w Bukareszcie",
+      "paragraph": "Ta interaktywna mapa przedstawia usługi zdrowia psychicznego i dobrostanu psychospołecznego dostępne dla dzieci i młodzieży w Bukareszcie. Postaramy się poprowadzić Cię tak, aby zaproponować opcje najlepiej dopasowane do Twoich potrzeb.",
+      "paragraph_two": "<0>Zastrzeżenie:</0> Ta mapa została opracowana na podstawie opisów znajdujących się na stronach internetowych dostawców usług. Nie możemy zagwarantować aktualności i dokładności informacji w momencie korzystania z mapy. Usługi i dostawcy stale się zmieniają, dlatego zalecamy, aby po wyborze dostawcy skontaktować się z nim telefonicznie i szczegółowo opisać sytuację, w której potrzebujesz profesjonalnej pomocy.",
+      "question": "Szukasz usług w sytuacji nagłej?",
+      "subquestion": "Na przykład: samookaleczenie, próba samobójcza, przemoc szkolna lub domowa, wykorzystanie seksualne itp.",
+      "yes": "Tak",
+      "no": "Nie",
+      "dont_know": "Nie wiem, czy to pilne"
     }
   },
   "routes": {

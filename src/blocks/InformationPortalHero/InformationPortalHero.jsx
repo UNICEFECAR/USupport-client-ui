@@ -93,6 +93,7 @@ export const InformationPortalHero = ({
           label={buttonLabel}
           classes="information-portal-hero__button"
           onClick={buttonOnClick}
+          type="white"
         />
       )}
     </div>

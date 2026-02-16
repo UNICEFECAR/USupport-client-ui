@@ -1,15 +1,9 @@
 @import "@USupport-components-library/styles";
 
 .register-about-you {
-  padding-top: $spacing_3_2;
-  height: 100%;
-
-  & .container {
-    height: 100%;
-  }
+  padding-top: $spacing_5_2;
 
   &__grid {
-    min-height: 90vh;
     text-align: left;
 
     &__content-item {
@@ -24,6 +18,9 @@
       }
 
       &__inputs-container {
+        width: 100%;
+        max-width: 53rem;
+
         & > *:not(:first-child) {
           margin-top: $spacing_2_4;
         }

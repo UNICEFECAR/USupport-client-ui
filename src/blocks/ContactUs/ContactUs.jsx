@@ -20,6 +20,8 @@ import { useSendIssueEmail, useGetClientData } from "#hooks";
 
 import Joi from "joi";
 
+import { mascotHappyBlue } from "@USupport-components-library/assets";
+
 import "./contact-us.scss";
 
 const initialData = {
@@ -159,66 +161,75 @@ export const ContactUs = () => {
 
   return (
     <Block classes="contact-us">
-      {clientDataQuery.isLoading && !clientDataQuery.data && !isTmpUser ? (
-        <Loading size="lg" />
-      ) : (
-        <Grid classes="contact-us__grid" xs={4} md={8} lg={12}>
-          <GridItem xs={4} md={8} lg={12}>
-            <DropdownWithLabel
-              label={t("issue")}
-              errorMessage={errors.issue}
-              classes="contact-us__issue-input"
-              placeholder={t("issue_placeholder")}
-              options={issues.map((x) => ({
-                ...x,
-                label: t(x.label),
-              }))}
-              selected={data.issue}
-              setSelected={handleIssueChange}
-            />
-          </GridItem>
-          {clientDataQuery.data?.accessToken && (
-            <GridItem xs={4} md={8} lg={12}>
-              <Input
-                value={data.email}
-                label={t("email")}
-                placeholder="user@mail.com"
-                onChange={(e) => handleChange("email", e.currentTarget.value)}
-              />
-            </GridItem>
-          )}
-          <GridItem
-            classes="contact-us__grid__textarea-item"
-            xs={4}
-            md={8}
-            lg={12}
-          >
-            <Textarea
-              label={t("message")}
-              placeholder={t("message_placeholder")}
-              onChange={(value) => handleChange("message", value)}
-              errorMessage={errors.message}
-              classes="contact-us__message-input"
-              value={data.message}
-            />
-          </GridItem>
+      <div className="contact-us__content-wrapper">
+        <div className="contact-us__content-wrapper__left">
+          {clientDataQuery.isLoading && !clientDataQuery.data && !isTmpUser ? (
+            <Loading size="lg" />
+          ) : (
+            <Grid classes="contact-us__grid" xs={4} md={8} lg={12}>
+              <GridItem xs={4} md={8} lg={12}>
+                <DropdownWithLabel
+                  label={t("issue")}
+                  errorMessage={errors.issue}
+                  classes="contact-us__issue-input"
+                  placeholder={t("issue_placeholder")}
+                  options={issues.map((x) => ({
+                    ...x,
+                    label: t(x.label),
+                  }))}
+                  selected={data.issue}
+                  setSelected={handleIssueChange}
+                />
+              </GridItem>
+              {clientDataQuery.data?.accessToken && (
+                <GridItem xs={4} md={8} lg={12}>
+                  <Input
+                    value={data.email}
+                    label={t("email")}
+                    placeholder="user@mail.com"
+                    onChange={(e) =>
+                      handleChange("email", e.currentTarget.value)
+                    }
+                  />
+                </GridItem>
+              )}
+              <GridItem
+                classes="contact-us__grid__textarea-item"
+                xs={4}
+                md={8}
+                lg={12}
+              >
+                <Textarea
+                  label={t("message")}
+                  placeholder={t("message_placeholder")}
+                  onChange={(value) => handleChange("message", value)}
+                  errorMessage={errors.message}
+                  classes="contact-us__message-input"
+                  value={data.message}
+                />
+              </GridItem>
 
-          <GridItem
-            xs={4}
-            md={8}
-            lg={12}
-            classes="contact-us__grid__button-item"
-          >
-            <NewButton
-              size="lg"
-              label={t("button")}
-              onClick={handleSubmit}
-              disabled={!canSubmit}
-              isLoading={sendIssueEmailMutation.isLoading}
-            />
-          </GridItem>
-        </Grid>
-      )}
+              <GridItem
+                xs={4}
+                md={8}
+                lg={12}
+                classes="contact-us__grid__button-item"
+              >
+                <NewButton
+                  size="lg"
+                  label={t("button")}
+                  onClick={handleSubmit}
+                  disabled={!canSubmit}
+                  isLoading={sendIssueEmailMutation.isLoading}
+                />
+              </GridItem>
+            </Grid>
+          )}
+        </div>
+        <div className="contact-us__content-wrapper__right">
+          <img src={mascotHappyBlue} alt="mascot" />
+        </div>
+      </div>
       <Modal
         isOpen={isSuccessModalOpen}
         closeModal={closeSuccessModal}

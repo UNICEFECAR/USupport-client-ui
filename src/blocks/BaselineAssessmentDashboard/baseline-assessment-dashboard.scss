@@ -11,9 +11,13 @@
   }
 
   & .mood-tracker-button {
-    color: $color_secondary_9749fa;
+    @include themify($themes, "color", "color_6a4ffb_8c90eb");
     cursor: pointer;
     padding: $spacing_1_6 0;
+  }
+
+  & h5.mood-tracker-button {
+    font-weight: 500;
   }
 
   &__assessment {

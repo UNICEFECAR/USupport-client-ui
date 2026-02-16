@@ -26,7 +26,7 @@ import {
   Grid,
   GridItem,
   Loading,
-  Button,
+  NewButton,
   OrganizationOverview,
   Modal,
   Select,
@@ -126,7 +126,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
     onSuccess: ({ data: specialisations }) => {
       if (specialisations.length) {
         const specialisationIds = specialisations.map(
-          (x) => x.organization_specialisation_id
+          (x) => x.organization_specialisation_id,
         );
         interactiveMapRef.current?.scrollIntoView({
           behavior: "smooth",
@@ -180,7 +180,12 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
       setHasAppliedSpecialisations(true);
       handleChange("specialisations", specialisationsArray);
     }
-  }, [specialisationsArray, data, hasAppliedSpecialisations, hasAppliedUrlFilters]);
+  }, [
+    specialisationsArray,
+    data,
+    hasAppliedSpecialisations,
+    hasAppliedUrlFilters,
+  ]);
 
   useEffect(() => {
     if (data && data.length && startPersonalization) {
@@ -235,7 +240,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
         mapControls.zoomToLocation(
           organization.location.latitude,
           organization.location.longitude,
-          14 // Zoom level for organization location
+          14, // Zoom level for organization location
         );
       }
 
@@ -357,10 +362,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
               isSmall
             />
           )}
-        </div>
-
-        {metadata?.specialisations && metadata.specialisations.length > 0 && (
-          <div className="organizations__specialisations-container">
+          {metadata?.specialisations && metadata.specialisations.length > 0 && (
             <Select
               placeholder={t("specialisations_placeholder")}
               options={metadata.specialisations
@@ -368,7 +370,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
                   label: t(spec.name),
                   value: spec.organizationSpecialisationId,
                   selected: filters.specialisations.includes(
-                    spec.organizationSpecialisationId
+                    spec.organizationSpecialisationId,
                   ),
                 }))
                 .sort((a, b) => a.label.localeCompare(b.label))}
@@ -378,12 +380,12 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
                   .map((option) => option.value);
                 handleChange("specialisations", selectedValues);
               }}
-              classes="organizations__specialisations-select select-container--full-width"
               maxMenuHeight={250}
               isSearchable={true}
+              isSmall
             />
-          </div>
-        )}
+          )}
+        </div>
       </>
     );
   };
@@ -418,7 +420,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
             queryKey: ["latest-baseline-assessment"],
           });
           navigate(
-            `/baseline-assesment/${assessmentData.baselineAssessmentId}`
+            `/baseline-assesment/${assessmentData.baselineAssessmentId}`,
           );
         },
       });
@@ -435,30 +437,24 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
             onChange={(e) => handleChange("search", e.target.value)}
             classes="organizations__search-container__input"
           />
-          <Button
+          <NewButton
             onClick={() => setFilters(INITIAL_FILTERS)}
-            size="sm"
             classes="organizations__search-container__reset-filters-btn"
-          >
-            {t("reset_filters")}
-          </Button>
+            label={t("reset_filters")}
+          />
         </div>
         <div ref={interactiveMapRef} />
         {renderFilters()}
-        <Button
+        <NewButton
           onClick={() => setFilters(INITIAL_FILTERS)}
-          size="sm"
           classes="organizations__reset-filters-btn"
-        >
-          {t("reset_filters")}
-        </Button>
+          label={t("reset_filters")}
+          type="outline"
+        />
 
-        <Button
-          // reference={interactiveMapRef}
+        <NewButton
           classes="organizations__search-container__personalize-btn"
-          color="purple"
           onClick={handlePersonalizeClick}
-          size="sm"
           loading={personalizationMutation.isLoading}
           label={t("personalize")}
         />

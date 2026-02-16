@@ -8,7 +8,7 @@ import {
   Error,
   Input,
   DropdownWithLabel,
-  Button,
+  NewButton,
   Grid,
   GridItem,
 } from "@USupport-components-library/src";
@@ -133,7 +133,7 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
   const updateClientDetailsMutation = useUpdateClientData(
     getDataToSend(),
     onMutateSuccess,
-    onMutateError
+    onMutateError,
   );
 
   const handleBlur = (field) => {
@@ -220,17 +220,17 @@ export const RegisterAboutYou = ({ isAnonymous }) => {
               errorMessage={errors.urbanRural}
               setSelected={(option) => handleSelect("urbanRural", option)}
               label={t("living_place_label")}
-              classes="register-about-you__grid__content-item__inputs-container__year-dropdown"
               placeholder={t("living_place_placeholder")}
             />
           </div>
           {errors.submit ? <Error message={errors.submit} /> : null}
-          <Button
+          <NewButton
             disabled={!canContinue}
             loading={updateClientDetailsMutation.isLoading}
             size="lg"
             label={t("button_continue_label")}
             onClick={() => handleContinue()}
+            isFullWidth
           />
         </GridItem>
       </Grid>

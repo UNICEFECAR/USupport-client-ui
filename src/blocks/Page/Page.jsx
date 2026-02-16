@@ -13,6 +13,7 @@ import {
   Icon,
   PasswordModal,
   Box,
+  Block,
   CookieBanner,
 } from "@USupport-components-library/src";
 import {
@@ -36,6 +37,7 @@ import {
   useError,
   useAddSosCenterClick,
 } from "#hooks";
+import { NotificationMenu } from "./NotificationMenu";
 
 import "./page.scss";
 
@@ -87,7 +89,6 @@ export const Page = ({
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
-  // const [isModalOpen, setIsWysaModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
@@ -260,6 +261,10 @@ export const Page = ({
     setHasUnreadNotifications(false);
   });
   useEventListener("all-notifications-read", allNotificationsReadHandler);
+
+  const renderNotificationsContent = (closePanel) => (
+    <NotificationMenu closePanel={closePanel} />
+  );
 
   const clientData = queryClient.getQueryData(["client-data"]);
   const image = clientData?.image;
@@ -507,6 +512,7 @@ export const Page = ({
           clientName={clientName}
           handleLogout={handleLogout}
           openRegistrationModal={() => setIsRegistrationModalOpen(true)}
+          renderNotificationsContent={renderNotificationsContent}
         />
       )}
       <div
@@ -518,7 +524,7 @@ export const Page = ({
       >
         {(heading || showGoBackArrow || headingButton) && (
           <>
-            <div className="page__header">
+            <Block classes="page__header">
               <div className="page__header__text-container">
                 {showGoBackArrow && (
                   <div
@@ -606,7 +612,7 @@ export const Page = ({
                   </OutsideClickHandler>
                 </div>
               )}
-            </div>
+            </Block>
             {headingButton && (
               <div className="page__mobile-button-container">
                 {width < 768 &&

@@ -4,8 +4,6 @@ import { toast } from "react-toastify";
 
 import {
   Block,
-  Grid,
-  GridItem,
   Rating,
   Textarea,
   NewButton,
@@ -13,6 +11,7 @@ import {
 } from "@USupport-components-library/src";
 
 import { useAddPlatformRating } from "#hooks";
+import { mascotHappyBlue } from "@USupport-components-library/assets";
 
 import "./platform-rating.scss";
 
@@ -61,28 +60,33 @@ export const PlatformRating = () => {
 
   return (
     <Block classes="platform-rating">
-      <div className="platform-rating__content-container">
-        <Rating
-          label={t("rating_label")}
-          changeOnHoverEnabled
-          setParentState={(value) => handleChange("rating", value)}
-          rating={data.rating}
-        />
-        <Textarea
-          label={t("textarea_label")}
-          placeholder={t("textarea_placeholder")}
-          onChange={(value) => handleChange("comment", value)}
-          classes="platform-rating__content-container__textarea"
-          value={data.comment}
-        />
-        {errors.submit && <Error error={errors.submit} />}
-        <NewButton
-          label={t("button_label")}
-          size="lg"
-          onClick={() => handleSendRating()}
-          disabled={canContinue}
-          loading={addRatingMutation.isLoading}
-        />
+      <div className="platform-rating__content-wrapper">
+        <div className="platform-rating__content-wrapper__left">
+          <Rating
+            label={t("rating_label")}
+            changeOnHoverEnabled
+            setParentState={(value) => handleChange("rating", value)}
+            rating={data.rating}
+          />
+          <Textarea
+            label={t("textarea_label")}
+            placeholder={t("textarea_placeholder")}
+            onChange={(value) => handleChange("comment", value)}
+            classes="platform-rating__textarea"
+            value={data.comment}
+          />
+          {errors.submit && <Error error={errors.submit} />}
+          <NewButton
+            label={t("button_label")}
+            size="lg"
+            onClick={() => handleSendRating()}
+            disabled={canContinue}
+            loading={addRatingMutation.isLoading}
+          />
+        </div>
+        <div className="platform-rating__content-wrapper__right">
+          <img src={mascotHappyBlue} alt="mascot" />
+        </div>
       </div>
     </Block>
   );

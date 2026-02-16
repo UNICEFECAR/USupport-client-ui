@@ -1,15 +1,24 @@
 @import "@USupport-components-library/styles";
 
 .contact-us {
-  background-image: url(./assets/background.png);
-  background-position: right bottom;
-  background-repeat: no-repeat;
-  background-size: 32.5rem 18rem;
-  padding-bottom: $spacing_23_0;
+  padding-bottom: $spacing_3_2;
+  &__content-wrapper {
+    position: relative;
 
-  @media screen and (min-width: $screen_md) {
-    padding-bottom: $spacing_10_0;
-    background-image: none;
+    &__right {
+      display: none;
+      @media screen and (min-width: $screen-lg) {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      & img {
+        max-width: 50%;
+      }
+    }
   }
 
   &__grid {

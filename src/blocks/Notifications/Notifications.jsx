@@ -7,7 +7,7 @@ import { useCustomNavigate as useNavigate } from "#hooks";
 
 import {
   Block,
-  Button,
+  NewButton,
   Grid,
   GridItem,
   Loading,
@@ -59,7 +59,7 @@ export const Notifications = ({
   }
 
   const consultationsDataQuery = useGetAllConsultations(
-    !!shouldFetchConsultations
+    !!shouldFetchConsultations,
   );
 
   // Accept consultation logic
@@ -72,13 +72,13 @@ export const Notifications = ({
   };
   const acceptConsultationMutation = useAcceptConsultation(
     onAcceptConsultationSuccess,
-    onAcceptConsultationError
+    onAcceptConsultationError,
   );
 
   const handleAcceptSuggestion = (
     consultationId,
     consultationPrice,
-    notificationId
+    notificationId,
   ) => {
     if (!hasAgreedToDataProcessing) {
       openRequireDataAgreement();
@@ -100,7 +100,7 @@ export const Notifications = ({
   };
   const rejectConsultationMutation = useRejectConsultation(
     onRejectConsultationSuccess,
-    onRejectConsultationError
+    onRejectConsultationError,
   );
   const rejectConsultation = (consultationId, notificationId) => {
     rejectConsultationMutation.mutate(consultationId);
@@ -133,7 +133,7 @@ export const Notifications = ({
     const handleNotificationClick = (
       notificationId,
       redirectTo = "/consultations",
-      content
+      content,
     ) => {
       markNotificationAsReadByIdMutation.mutate([notificationId]);
       if (redirectTo !== null) {
@@ -265,11 +265,9 @@ export const Notifications = ({
             }
           >
             {checkIsFiveMinutesBefore(notification.content.time) && (
-              <Button
+              <NewButton
                 classes="notifications__center-button"
-                size="md"
                 label={t("join")}
-                color="purple"
                 onClick={() => {
                   const data =
                     consultationsData?.length !== 0
@@ -277,7 +275,7 @@ export const Notifications = ({
                       : consultationsDataQuery?.data;
                   const consultationToJoin = data.find(
                     (x) =>
-                      x.consultationId === notification.content.consultationId
+                      x.consultationId === notification.content.consultationId,
                   );
                   openJoinConsultation(consultationToJoin);
                 }}
@@ -308,29 +306,25 @@ export const Notifications = ({
           >
             {!notification.isRead ? (
               <div className="notifications__suggested-consultation">
-                <Button
+                <NewButton
                   onClick={() =>
                     handleAcceptSuggestion(
                       notification.content.consultationId,
                       notification.content.consultationPrice,
-                      notification.notificationId
+                      notification.notificationId,
                     )
                   }
-                  size="md"
                   label={t("accept")}
-                  color="purple"
                 />
-                <Button
+                <NewButton
                   onClick={() =>
                     rejectConsultation(
                       notification.content.consultationId,
-                      notification.notificationId
+                      notification.notificationId,
                     )
                   }
-                  size="md"
                   label={t("reject")}
-                  type="ghost"
-                  color="green"
+                  type="outline"
                 />
               </div>
             ) : null}
@@ -406,16 +400,15 @@ export const Notifications = ({
             handleClick={() =>
               handleNotificationClick(
                 notification.notificationId,
-                canJoin ? null : "/consultations"
+                canJoin ? null : "/consultations",
               )
             }
           >
             {canJoin && (
-              <Button
+              <NewButton
                 classes="notifications__center-button"
                 size="md"
                 label={t("join")}
-                color="purple"
                 onClick={() => {
                   const data =
                     consultationsData?.length !== 0
@@ -423,7 +416,7 @@ export const Notifications = ({
                       : consultationsDataQuery?.data;
                   const consultationToJoin = data.find(
                     (x) =>
-                      x.consultationId === notification.content.consultationId
+                      x.consultationId === notification.content.consultationId,
                   );
                   openJoinConsultation(consultationToJoin);
                 }}
@@ -442,7 +435,7 @@ export const Notifications = ({
               handleNotificationClick(
                 notification.notificationId,
                 "/my-qa",
-                notification.content
+                notification.content,
               )
             }
             text={

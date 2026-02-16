@@ -9,6 +9,8 @@ import {
   LineChart,
   CardMedia,
   Modal,
+  Grid,
+  GridItem,
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
@@ -63,7 +65,7 @@ export const MoodTrackHistory = () => {
 
     if (prevEntries.length < limitToLoad) {
       prevEntries.push(
-        ...curEntries.slice(0, limitToLoad - prevEntries.length)
+        ...curEntries.slice(0, limitToLoad - prevEntries.length),
       );
     }
 
@@ -91,11 +93,11 @@ export const MoodTrackHistory = () => {
   useGetMoodTrackEntries(limitToLoad, pageNum, onSuccess, enabled);
 
   const emoticons = [
-    { name: "happy", label: "Happy", value: 4 ,emoji: "😍"},
-    { name: "good", label: "Good", value: 3 ,emoji: "😀"},
-    { name: "sad", label: "Sad", value: 2 ,emoji: "😔"},
-    { name: "depressed", label: "Depressed", value: 1 ,emoji: "☹️"},
-    { name: "worried", label: "Worried", value: 0 ,emoji: "😣"},
+    { name: "happy", label: "Happy", value: 4, emoji: "😍" },
+    { name: "good", label: "Good", value: 3, emoji: "😀" },
+    { name: "sad", label: "Sad", value: 2, emoji: "😔" },
+    { name: "depressed", label: "Depressed", value: 1, emoji: "☹️" },
+    { name: "worried", label: "Worried", value: 0, emoji: "😣" },
   ];
 
   const renderAllEmoticons = () => {
@@ -167,7 +169,7 @@ export const MoodTrackHistory = () => {
               <div
                 className={[
                   "mood-track-history__icon-container",
-                  !moodTrackerData[limit].hasMore && 
+                  !moodTrackerData[limit].hasMore &&
                     "mood-track-history__icon-container__disabled",
                 ].join(" ")}
               >
@@ -216,9 +218,9 @@ export const MoodTrackHistory = () => {
           </div>
           {(() => {
             const selectedMood = moodTrackerData[limit]?.entries.find(
-              (x) => x.mood_tracker_id === selectedItemId
+              (x) => x.mood_tracker_id === selectedItemId,
             );
-            
+
             if (!selectedMood) return null;
 
             const dateText = `${
@@ -271,38 +273,39 @@ export const MoodTrackHistory = () => {
               <h4 className="mood-track-history__recommendations-container__articles-heading">
                 {t("articles")}
               </h4>
-              <div className="mood-track-history__recommendations-container__articles">
+              <Grid>
                 {moodTrackerRecommendations.articles.map((article) => (
-                  <CardMedia
-                    type="portrait"
-                    size="md"
-                    title={article.title}
-                    image={
-                      article.imageMedium ||
-                      article.imageThumbnail ||
-                      article.imageSmall
-                    }
-                    description={article.description}
-                    labels={article.labels}
-                    creator={article.creator}
-                    readingTime={article.readingTime}
-                    categoryName={article.categoryName}
-                    // isLikedByUser={isLikedByUser}
-                    // isDislikedByUser={isDislikedByUser}
-                    likes={article.likes}
-                    dislikes={article.dislikes}
-                    // isRead={readArticleIds.includes(article.id)}
-                    t={t}
-                    onClick={() => {
-                      navigate(
-                        `/information-portal/article/${
-                          article.id
-                        }/${createArticleSlug(article.title)}`
-                      );
-                    }}
-                  />
+                  <GridItem>
+                    <CardMedia
+                      type="portrait"
+                      title={article.title}
+                      image={
+                        article.imageMedium ||
+                        article.imageThumbnail ||
+                        article.imageSmall
+                      }
+                      description={article.description}
+                      labels={article.labels}
+                      creator={article.creator}
+                      readingTime={article.readingTime}
+                      categoryName={article.categoryName}
+                      // isLikedByUser={isLikedByUser}
+                      // isDislikedByUser={isDislikedByUser}
+                      likes={article.likes}
+                      dislikes={article.dislikes}
+                      // isRead={readArticleIds.includes(article.id)}
+                      t={t}
+                      onClick={() => {
+                        navigate(
+                          `/information-portal/article/${
+                            article.id
+                          }/${createArticleSlug(article.title)}`,
+                        );
+                      }}
+                    />
+                  </GridItem>
                 ))}
-              </div>
+              </Grid>
             </div>
           )}
           {moodTrackerRecommendations?.videos?.length > 0 && (
@@ -332,7 +335,7 @@ export const MoodTrackHistory = () => {
                       navigate(
                         `/information-portal/video/${
                           videoData.id
-                        }/${createArticleSlug(videoData.title)}`
+                        }/${createArticleSlug(videoData.title)}`,
                       );
                     }}
                   />
@@ -367,7 +370,7 @@ export const MoodTrackHistory = () => {
                       navigate(
                         `/information-portal/podcast/${
                           podcastData.id
-                        }/${createArticleSlug(podcastData.title)}`
+                        }/${createArticleSlug(podcastData.title)}`,
                       );
                     }}
                   />

@@ -83,12 +83,14 @@ export const MoodTracker = ({
   };
 
   const renderEmoticons = () => {
+    const anySelected = emoticons.some((e) => e.isSelected);
     return emoticons.map((emoticon, index) => {
+      const isActive = !anySelected || emoticon.isSelected;
       return (
         <div
           className={[
             "mood-tracker__rating__emoticon-container",
-            !emoticon.isSelected &&
+            !isActive &&
               "mood-tracker__rating__emoticon-container--not-selected",
           ].join(" ")}
           key={index}
@@ -98,10 +100,10 @@ export const MoodTracker = ({
             <span
               className={[
                 "emoticon",
-                `emoticon--${emoticon.isSelected ? "lg" : "sm"}`,
+                `emoticon--${isActive ? "lg" : "sm"}`,
               ].join(" ")}
               style={{
-                fontSize: emoticon.isSelected ? "6.4rem" : "4.8rem",
+                fontSize: isActive ? "6.4rem" : "4.8rem",
                 display: "inline-block",
                 lineHeight: "1",
               }}
@@ -203,13 +205,20 @@ export const MoodTracker = ({
                 {t("mood_tracker_long")}
               </h5>
             )
-          ) : (
+          ) : width < 768 ? (
             <p
               className="small-text mood-tracker-button"
               onClick={() => setIsHowItWorksMoodTrackOpen(true)}
             >
               {t("how_it_works")}
             </p>
+          ) : (
+            <h5
+              className="mood-tracker-button"
+              onClick={() => setIsHowItWorksMoodTrackOpen(true)}
+            >
+              {t("how_it_works")}
+            </h5>
           )}
         </div>
         <>
@@ -221,6 +230,7 @@ export const MoodTracker = ({
                 onChange={(value) => setComment(value)}
                 placeholder={t("additional_comment_placeholder")}
                 size="md"
+                classes="mood-tracker__additional-comment__textarea"
               />
               {country === "RO" && (
                 <div className="mood-tracker__additional-comment__toggle-container">
@@ -239,6 +249,7 @@ export const MoodTracker = ({
                   size="lg"
                   onClick={handleSubmit}
                   loading={addMoodTrackMutation.isLoading}
+                  isFullWidth={true}
                 />
               </div>
             </div>

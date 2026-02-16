@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router-dom";
 
-import { ButtonWithIcon, Button } from "@USupport-components-library/src";
+import { ButtonWithIcon, NewButton } from "@USupport-components-library/src";
 import {
   Page,
   MoodTrackHistory as MoodTrackHistoryBlock,
@@ -47,20 +47,17 @@ export const MoodTrackHistory = () => {
       headingButton={
         IS_RO ? (
           <div className="page__mood-track-history__heading-button-container">
-            <Button
+            <NewButton
               label={t("how_it_works")}
               size="sm"
-              type="secondary"
-              color="purple"
               onClick={() => setIsHowItWorksMoodTrackOpen(true)}
+              type="outline"
             />
-            <ButtonWithIcon
+            <NewButton
               label={t("export_report")}
               iconName="document"
-              iconColor="#ffffff"
               size="sm"
               circleSize="sm"
-              color="purple"
               onClick={() => setIsReportOpen(true)}
             />
           </div>
