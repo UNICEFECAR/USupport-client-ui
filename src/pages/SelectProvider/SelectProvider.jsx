@@ -6,8 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import {
   RadialCircle,
-  ButtonWithIcon,
-  Button,
+  NewButton,
   Modal,
   Input,
   Block,
@@ -106,7 +105,7 @@ export const SelectProvider = () => {
   const providersQuery = useGetProvidersData(
     activeCoupon,
     allFilters,
-    onSuccess
+    onSuccess,
   );
   const [providersData, setProvidersData] = useState();
 
@@ -180,12 +179,11 @@ export const SelectProvider = () => {
       showHeadingButtonBelow={width < 768 ? true : false}
       headingButton={
         <div className="page__select-provider__buttons">
-          <ButtonWithIcon
+          <NewButton
             label={t("button_label")}
             iconName="filter"
             iconColor="#ffffff"
             iconSize="sm"
-            color="purple"
             size="sm"
             onClick={handleFilterClick}
           />
@@ -285,12 +283,11 @@ const FiltersBlock = ({
       /> */}
       {SHOW_COUPON && (
         <div className="page__select-provider__filters-block__coupon-note">
-          <Button
+          <NewButton
             label={
               activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
             }
             size="sm"
-            color="green"
             onClick={activeCoupon ? removeCoupon : openCouponModal}
           />
           {IS_PL && <p className="">*{t("coupon_note")}</p>}
