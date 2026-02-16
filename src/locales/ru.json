@@ -677,6 +677,18 @@
       "try_again_button_label": "Пробовать снова"
     },
     "mood-track-history": {
+      "month_1": "Янв",
+      "month_2": "Фев",
+      "month_3": "Мар",
+      "month_4": "Апр",
+      "month_5": "Май",
+      "month_6": "Июн",
+      "month_7": "Июл",
+      "month_8": "Авг",
+      "month_9": "Сен",
+      "month_10": "Окт",
+      "month_11": "Ноя",
+      "month_12": "Дек",
       "happy": "Отлично",
       "good": "Хорошо",
       "sad": "Грустно",

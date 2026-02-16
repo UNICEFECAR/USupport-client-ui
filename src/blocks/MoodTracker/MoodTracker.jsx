@@ -14,6 +14,13 @@ import {
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useAddMoodTrack, useGetHasCompletedMoodTrackerEver } from "#hooks";
 import { ThemeContext } from "@USupport-components-library/utils";
+import {
+  moodTrackHappy,
+  moodTrackGood,
+  moodTrackSad,
+  moodTrackDepressed,
+  moodTrackWorried,
+} from "@USupport-components-library/assets";
 import { HowItWorksMoodTrack } from "#modals";
 
 import { RootContext } from "#routes";
@@ -43,16 +50,16 @@ export const MoodTracker = ({
   const { t } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
 
   const emoticonsArray = [
-    { value: "happy", label: t("happy"), isSelected: false, emoji: "😍" },
-    { value: "good", label: t("good"), isSelected: false, emoji: "😀" },
-    { value: "sad", label: t("sad"), isSelected: false, emoji: "😔" },
+    { value: "happy", label: t("happy"), isSelected: false, image: moodTrackHappy },
+    { value: "good", label: t("good"), isSelected: false, image: moodTrackGood },
+    { value: "sad", label: t("sad"), isSelected: false, image: moodTrackSad },
     {
       value: "depressed",
       label: t("depressed"),
       isSelected: false,
-      emoji: "☹️",
+      image: moodTrackDepressed,
     },
-    { value: "worried", label: t("worried"), isSelected: false, emoji: "😣" },
+    { value: "worried", label: t("worried"), isSelected: false, image: moodTrackWorried },
   ];
 
   const [comment, setComment] = useState("");
@@ -97,19 +104,18 @@ export const MoodTracker = ({
           onClick={() => handleEmoticonClick(emoticon.value)}
         >
           <div className="mood-tracker__rating__emoticon-container__content">
-            <span
+            <img
+              src={emoticon.image}
+              alt={emoticon.value}
               className={[
                 "emoticon",
                 `emoticon--${isActive ? "lg" : "sm"}`,
               ].join(" ")}
               style={{
-                fontSize: isActive ? "6.4rem" : "4.8rem",
-                display: "inline-block",
-                lineHeight: "1",
+                width: isActive ? "6.4rem" : "4.8rem",
+                height: isActive ? "6.4rem" : "4.8rem",
               }}
-            >
-              {emoticon.emoji}
-            </span>
+            />
             <p
               className={[
                 "small-text",

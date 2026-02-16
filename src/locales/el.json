@@ -677,6 +677,18 @@
       "try_again_button_label": "Δοκιμάστε ξανά"
     },
     "mood-track-history": {
+      "month_1": "Ιαν",
+      "month_2": "Φεβ",
+      "month_3": "Μαρ",
+      "month_4": "Απρ",
+      "month_5": "Μαΐ",
+      "month_6": "Ιουν",
+      "month_7": "Ιουλ",
+      "month_8": "Αυγ",
+      "month_9": "Σεπ",
+      "month_10": "Οκτ",
+      "month_11": "Νοε",
+      "month_12": "Δεκ",
       "happy": "Χαρούμενος/η",
       "good": "Καλά",
       "sad": "Λυπημένος/η",

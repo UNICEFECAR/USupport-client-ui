@@ -677,6 +677,18 @@
       "try_again_button_label": "Փորձել կրկին"
     },
     "mood-track-history": {
+      "month_1": "Հնվ",
+      "month_2": "Փետ",
+      "month_3": "Մար",
+      "month_4": "Ապր",
+      "month_5": "Մայ",
+      "month_6": "Հուն",
+      "month_7": "Հուլ",
+      "month_8": "Օգս",
+      "month_9": "Սեպ",
+      "month_10": "Հոկ",
+      "month_11": "Նոյ",
+      "month_12": "Դեկ",
       "happy": "Գերազանց",
       "good": "Ուրախ",
       "sad": "Տխուր",

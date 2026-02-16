@@ -677,6 +677,18 @@
       "try_again_button_label": "Қайталап көріңіз"
     },
     "mood-track-history": {
+      "month_1": "Қаң",
+      "month_2": "Ақп",
+      "month_3": "Нау",
+      "month_4": "Сәу",
+      "month_5": "Мам",
+      "month_6": "Мау",
+      "month_7": "Шіл",
+      "month_8": "Там",
+      "month_9": "Қыр",
+      "month_10": "Қаз",
+      "month_11": "Қар",
+      "month_12": "Жел",
       "happy": "Керемет",
       "good": "Жақсы",
       "sad": "Көңілсіз",

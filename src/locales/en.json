@@ -458,7 +458,7 @@
       "exported_at": "Exported at: {{time}}"
     },
     "consultations-dashboard": {
-      "heading": "My Consultations",
+      "heading": "Upcoming Consultations",
       "view_all": "View all",
       "schedule_consultation_label": "Schedule a consultation",
       "live_text": "Now",
@@ -677,6 +677,18 @@
       "try_again_button_label": "Try again"
     },
     "mood-track-history": {
+      "month_1": "Jan",
+      "month_2": "Feb",
+      "month_3": "Mar",
+      "month_4": "Apr",
+      "month_5": "May",
+      "month_6": "Jun",
+      "month_7": "Jul",
+      "month_8": "Aug",
+      "month_9": "Sep",
+      "month_10": "Oct",
+      "month_11": "Nov",
+      "month_12": "Dec",
       "happy": "Happy",
       "good": "Good",
       "sad": "Sad",

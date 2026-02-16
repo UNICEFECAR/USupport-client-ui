@@ -65,10 +65,10 @@ export const ActivityHistory = () => {
       classes="page__activity-history"
       showEmergencyButton={false}
       handleGoBack={handleGoBack}
-      showFooter={width < 768 ? false : true}
       showNavbar={width < 768 ? false : true}
       additionalPadding={width < 768 ? false : true}
       showGoBackArrow={false}
+      showFooter={false}
     >
       <ActivityHistoryBlock
         openSelectConsultation={openSelectConsultation}

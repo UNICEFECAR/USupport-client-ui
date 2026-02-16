@@ -15,14 +15,13 @@ import {
 
 import {
   Avatar,
-  Block,
-  Button,
   Icon,
   InputSearch,
   Loading,
   Message,
   SystemMessage,
   Toggle,
+  NewButton,
 } from "@USupport-components-library/src";
 
 import {
@@ -95,7 +94,7 @@ export const ActivityHistory = ({
   const allChatHistoryQuery = useGetAllChatHistoryData(
     providerId,
     chatQueryData.data?.clientDetailId,
-    showAllConsultations
+    showAllConsultations,
   );
   const { data } = useGetProviderStatus(providerId);
   const providerStatus = data?.status;
@@ -151,7 +150,7 @@ export const ActivityHistory = ({
   const renderAllMessages = useCallback(() => {
     if (shownMessages?.length === 0)
       return (
-        <p className="activity-history__main__messages-container__no-messages">
+        <p className="activity-history__messages__no-messages">
           {t("no_messages")}
         </p>
       );
@@ -212,12 +211,12 @@ export const ActivityHistory = ({
   return chatQueryData.isLoading ? (
     <Loading size="lg" />
   ) : (
-    <>
-      <Block classes="activity-history__header-block">
-        <div className="activity-history__header-block__provider-container">
+    <div className="activity-history">
+      <div className="activity-history__header">
+        <div className="activity-history__header__provider-container">
           <Icon
             name="arrow-chevron-back"
-            classes="activity-history__header-block__provider-container__icon"
+            classes="activity-history__header__provider-container__icon"
             size="md"
             color="#20809E"
             onClick={() => navigate(-1)}
@@ -225,21 +224,21 @@ export const ActivityHistory = ({
           <Avatar image={providerImage} />
           <h4>{consultation.providerName}</h4>
         </div>
-        <div className="activity-history__main__controls">
+        <div className="activity-history__header__controls">
           <InputSearch
             value={search}
             onChange={setSearch}
             placeholder={t("search")}
-            classes="activity-history__main__search"
+            classes="activity-history__header__controls__search"
           />
-          <div className="activity-history__main__controls__toggle">
+          <div className="activity-history__header__controls__toggle">
             <Toggle
               isToggled={showSystemMessages}
               setParentState={handleToggleSystemMessages}
             />
             <p>{t("show_system_messages")}</p>
           </div>
-          <div className="activity-history__main__controls__toggle">
+          <div className="activity-history__header__controls__toggle">
             <Toggle
               isToggled={showAllConsultations}
               setParentState={setShowAllConsultations}
@@ -265,8 +264,8 @@ export const ActivityHistory = ({
               loading ? (
                 "Loading document..."
               ) : (
-                <Button
-                  classes="activity-history__main__controls__export-button"
+                <NewButton
+                  classes="activity-history__header__controls__export-button"
                   size="sm"
                   onClick={(e) => e.stopPropagation()}
                   label={t("export_label")}
@@ -275,33 +274,31 @@ export const ActivityHistory = ({
             }
           </PDFDownloadLink>
         </div>
-      </Block>
+      </div>
 
-      <Block classes="activity-history__main">
-        <div className="activity-history__main__content">
-          <div
-            className="activity-history__main__messages-container"
-            ref={messagesContainerRef}
-          >
-            {isFiltering ||
-            (showAllConsultations && allChatHistoryQuery.isLoading) ? (
-              <Loading size="lg" />
-            ) : (
-              renderAllMessages()
-            )}
-          </div>
-        </div>
-        {providerStatus === "active" && (
-          <div className="activity-history__main__button-container">
-            <Button
-              label={t("button_label")}
-              size="lg"
-              onClick={handleSchedule}
-            />
-          </div>
+      <div
+        className="activity-history__messages"
+        ref={messagesContainerRef}
+      >
+        {isFiltering ||
+        (showAllConsultations && allChatHistoryQuery.isLoading) ? (
+          <Loading size="lg" />
+        ) : (
+          renderAllMessages()
         )}
-      </Block>
-    </>
+      </div>
+
+      {providerStatus === "active" && (
+        <div className="activity-history__footer">
+          <NewButton
+            label={t("button_label")}
+            iconName="calendar"
+            size="lg"
+            onClick={handleSchedule}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -13,6 +13,11 @@
     background-image: url("./assets/hero.png");
   }
 
+  .theme-dark &,
+  .theme-highContrast & {
+    background-image: none;
+  }
+
   &--no-additional-top-padding {
     padding-top: 0;
   }

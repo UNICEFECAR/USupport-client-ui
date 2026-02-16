@@ -22,6 +22,13 @@ import {
   useGetMoodTrackerRecommendations,
   useCustomNavigate as useNavigate,
 } from "#hooks";
+import {
+  moodTrackHappy,
+  moodTrackGood,
+  moodTrackSad,
+  moodTrackDepressed,
+  moodTrackWorried,
+} from "@USupport-components-library/assets";
 
 import "./mood-track-history.scss";
 
@@ -93,23 +100,26 @@ export const MoodTrackHistory = () => {
   useGetMoodTrackEntries(limitToLoad, pageNum, onSuccess, enabled);
 
   const emoticons = [
-    { name: "happy", label: "Happy", value: 4, emoji: "😍" },
-    { name: "good", label: "Good", value: 3, emoji: "😀" },
-    { name: "sad", label: "Sad", value: 2, emoji: "😔" },
-    { name: "depressed", label: "Depressed", value: 1, emoji: "☹️" },
-    { name: "worried", label: "Worried", value: 0, emoji: "😣" },
+    { name: "happy", label: "Happy", value: 4, image: moodTrackHappy },
+    { name: "good", label: "Good", value: 3, image: moodTrackGood },
+    { name: "sad", label: "Sad", value: 2, image: moodTrackSad },
+    { name: "depressed", label: "Depressed", value: 1, image: moodTrackDepressed },
+    { name: "worried", label: "Worried", value: 0, image: moodTrackWorried },
   ];
 
   const renderAllEmoticons = () => {
     return emoticons.map((emoticon, index) => {
       return (
         <div className="mood-track-history__emoticon-container" key={index}>
-          {/* <Emoticon
-            name={`emoticon-${emoticon.name}`}
-            classes="mood-track-history__emoticon"
-            size="xs"
-          /> */}
-          {width < 768 ? <h1>{emoticon.emoji}</h1> : <h2>{emoticon.emoji}</h2>}
+          <img
+            src={emoticon.image}
+            alt={emoticon.name}
+            className="mood-track-history__emoticon-image"
+            style={{
+              width: width < 768 ? "3.2rem" : "4.8rem",
+              height: width < 768 ? "3.2rem" : "4.8rem",
+            }}
+          />
           <p className="small-text">
             {width >= 768 ? t(emoticon.label.toLowerCase()) : ""}
           </p>
@@ -124,11 +134,7 @@ export const MoodTrackHistory = () => {
         mood.time.getDate() > 9
           ? mood.time.getDate()
           : `0${mood.time.getDate()}`
-      }.${
-        mood.time.getMonth() + 1 > 9
-          ? mood.time.getMonth() + 1
-          : `0${mood.time.getMonth() + 1}`
-      }`;
+      } ${t(`month_${mood.time.getMonth() + 1}`)}`;
       const hourText = `${mood.time.getHours()}:${
         mood.time.getMinutes() > 9
           ? mood.time.getMinutes()
@@ -137,7 +143,7 @@ export const MoodTrackHistory = () => {
 
       return (
         <div className="mood-track-history__date-container" key={index}>
-          <p className="small-text">{dateText}</p>
+          <p className="text">{dateText}</p>
           <p className="small-text">{hourText}</p>
         </div>
       );

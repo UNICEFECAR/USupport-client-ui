@@ -677,6 +677,18 @@
       "try_again_button_label": "Spróbuj ponownie"
     },
     "mood-track-history": {
+      "month_1": "Sty",
+      "month_2": "Lut",
+      "month_3": "Mar",
+      "month_4": "Kwi",
+      "month_5": "Maj",
+      "month_6": "Cze",
+      "month_7": "Lip",
+      "month_8": "Sie",
+      "month_9": "Wrz",
+      "month_10": "Paź",
+      "month_11": "Lis",
+      "month_12": "Gru",
       "happy": "Szczęśliwy/a",
       "good": "Zadowolony/a",
       "sad": "Smutny/a",
