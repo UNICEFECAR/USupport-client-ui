@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import {
   Block,
-  Button,
+  NewButton,
   ProviderDetails,
   Loading,
 } from "@USupport-components-library/src";
@@ -30,7 +30,7 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
 
   const { data: provider } = useGetProviderDataById(
     providerId,
-    activeCoupon?.campaignId
+    activeCoupon?.campaignId,
   );
 
   const image = AMAZON_S3_BUCKET + "/" + (provider?.image || "default");
@@ -50,7 +50,7 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
         />
       )}
       <div className="provider-profile__button-container">
-        <Button
+        <NewButton
           label={t("button_label")}
           size="lg"
           onClick={openScheduleBackdrop}
