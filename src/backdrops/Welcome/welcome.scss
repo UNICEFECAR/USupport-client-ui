@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
     padding-bottom: $spacing_2_0;
     gap: $spacing_2_4;
 
@@ -21,20 +22,28 @@
     &__buttons-container {
       display: flex;
       flex-direction: column;
+      align-items: center;
       width: 100%;
       gap: $spacing_1_6;
+      margin-top: auto;
     }
 
     &__buttons-row {
       display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: $spacing_2_0;
       width: 100%;
-      margin-top: $spacing_0_8;
 
       & > button,
       & > .button {
         flex: 1 1 0;
         min-width: 0;
+      }
+
+      @media screen and (max-width: $screen-md) {
+        padding-inline: $spacing_1_6;
+        width: calc(100% - 2 * #{$spacing_1_6});
       }
     }
 
