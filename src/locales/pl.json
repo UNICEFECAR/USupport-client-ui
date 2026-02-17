@@ -1594,7 +1594,9 @@
       "placeholder": "Select",
       "register_email": "Zarejestruj się za pomocą adresu e-mail",
       "register_anonymously": "Rejestracja anonimowa",
-      "continue_as_guest": "Kontynuuj bez rejestracji"
+      "continue_as_guest": "Kontynuuj bez rejestracji",
+      "already_have_account": "Masz już konto?",
+      "log_in": "Zaloguj się"
     },
     "user-guide": {
       "heading": "Chcesz dowiedzieć się więcej o:",

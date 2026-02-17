@@ -6,6 +6,7 @@ import {
   Backdrop,
   DropdownWithLabel,
   Loading,
+  NewButton,
 } from "@USupport-components-library/src";
 import { languageSvc, userSvc } from "@USupport-components-library/services";
 import {
@@ -36,6 +37,7 @@ export const Welcome = ({
   onRegisterEmail,
   onRegisterAnonymous,
   onOpenRequest,
+  onLogin,
 }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [error, setError] = useState(null);
@@ -224,22 +226,20 @@ export const Welcome = ({
     replaceLanguageInUrl(lang);
   };
 
+  const buttonsDisabled = !selectedCountry || !selectedLanguage;
+
+  const handleLoginClick = () => {
+    setIsOpen(false);
+    onLogin?.();
+  };
+
   return (
     <Backdrop
       classes="welcome-modal"
       title="Welcome"
       isOpen={isOpen}
-      onClose={() => {}} // No-op to prevent closing via overlay click
-      ctaLabel={t("register_email")}
-      ctaHandleClick={() => handleRedirect("email")}
-      isCtaDisabled={!selectedCountry || !selectedLanguage}
-      secondaryCtaLabel={t("register_anonymously")}
-      secondaryCtaHandleClick={() => handleRedirect("anonymously")}
-      isSecondaryCtaDisabled={!selectedCountry || !selectedLanguage}
+      onClose={() => {}}
       heading={t("heading")}
-      thirdCtaLabel={t("continue_as_guest")}
-      thirdCtaHandleClick={() => handleRedirect("guest")}
-      isThirdCtaDisabled={!selectedCountry || !selectedLanguage}
       hasCloseIcon={false}
       errorMessage={error}
     >
@@ -287,6 +287,51 @@ export const Welcome = ({
             <Loading size="lg" />
           </div>
         )}
+
+        <div className="welcome-modal__content-container__buttons-container">
+          <div className="welcome-modal__content-container__buttons-row">
+            <NewButton
+              label={t("register_email")}
+              disabled={buttonsDisabled}
+              onClick={() => handleRedirect("email")}
+              size="lg"
+            />
+            <NewButton
+              label={t("register_anonymously")}
+              disabled={buttonsDisabled}
+              onClick={() => handleRedirect("anonymously")}
+              type="outline"
+              size="lg"
+            />
+          </div>
+
+          <p
+            className={[
+              "welcome-modal__content-container__login-text",
+              buttonsDisabled &&
+                "welcome-modal__content-container__login-text--disabled",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            {t("already_have_account")}{" "}
+            <span
+              className="welcome-modal__content-container__login-link"
+              onClick={buttonsDisabled ? undefined : handleLoginClick}
+            >
+              {t("log_in")}
+            </span>
+          </p>
+
+          <NewButton
+            label={t("continue_as_guest")}
+            disabled={buttonsDisabled}
+            onClick={() => handleRedirect("guest")}
+            type="text"
+            size="sm"
+            classes="welcome-modal__content-container__guest-link"
+          />
+        </div>
       </div>
     </Backdrop>
   );

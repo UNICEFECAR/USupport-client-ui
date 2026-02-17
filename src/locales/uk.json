@@ -1594,7 +1594,9 @@
       "placeholder": "Select",
       "register_email": "Зареєструйтеся за допомогою електронної пошти",
       "register_anonymously": "Анонімна реєстрація",
-      "continue_as_guest": "Продовжити без реєстрації"
+      "continue_as_guest": "Продовжити без реєстрації",
+      "already_have_account": "Вже маєте обліковий запис?",
+      "log_in": "Увійти"
     },
     "user-guide": {
       "heading": "Хочеш дізнатися більше про:",

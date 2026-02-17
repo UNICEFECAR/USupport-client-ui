@@ -1442,7 +1442,9 @@
       "placeholder": "Select",
       "register_email": "Register with email",
       "register_anonymously": "Register anonymously",
-      "continue_as_guest": "Continue without registration"
+      "continue_as_guest": "Continue without registration",
+      "already_have_account": "Already have an account?",
+      "log_in": "Log in"
     },
     "filter-providers": {
       "heading": "Filter providers",

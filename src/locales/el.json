@@ -1594,7 +1594,9 @@
       "placeholder": "Select",
       "register_email": "Εγγραφή μέσω email",
       "register_anonymously": "Ανώνυμη εγγραφή",
-      "continue_as_guest": "Συνέχεια χωρίς εγγραφή"
+      "continue_as_guest": "Συνέχεια χωρίς εγγραφή",
+      "already_have_account": "Έχετε ήδη λογαριασμό;",
+      "log_in": "Σύνδεση"
     },
     "user-guide": {
       "heading": "Θέλετε να μάθετε περισσότερα για:",

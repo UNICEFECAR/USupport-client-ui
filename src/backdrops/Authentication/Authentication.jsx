@@ -49,6 +49,7 @@ export const Authentication = ({ isOpen = false }) => {
       <Welcome
         onRegisterEmail={() => setIsRegisterWithEmailModalOpen(true)}
         onRegisterAnonymous={() => setIsRegisterAnonymousModalOpen(true)}
+        onLogin={() => setIsLoginModalOpen(true)}
         onOpenRequest={setOpenWelcome}
       />
       <RegisterEmail
