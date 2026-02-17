@@ -49,9 +49,8 @@ export const ArticleInformation = () => {
     return articlesIds;
   };
 
-  const { data: userContentEngagements } = useGetUserContentEngagements(
-    !isTmpUser
-  );
+  const { data: userContentEngagements } =
+    useGetUserContentEngagements(!isTmpUser);
   const {
     data: articleContentEngagements,
     isLoading: isArticleContentEngagementsLoading,
@@ -70,7 +69,7 @@ export const ArticleInformation = () => {
         }
         return acc;
       },
-      { likes: 0, dislikes: 0 }
+      { likes: 0, dislikes: 0 },
     );
     return { likes, dislikes };
   });
@@ -80,7 +79,7 @@ export const ArticleInformation = () => {
 
     const { data } = await cmsSvc.getArticleById(
       articleIdToFetch,
-      i18n.language
+      i18n.language,
     );
     const finalData = destructureArticleData(data);
     return finalData;
@@ -152,7 +151,7 @@ export const ArticleInformation = () => {
         const ids = articles.map((article) => article.id);
         const { likes, dislikes } = await getLikesAndDislikesForContent(
           ids,
-          "article"
+          "article",
         );
         return articles.map((article) => ({
           ...article,
@@ -318,7 +317,7 @@ export const ArticleInformation = () => {
                 userEngagements: userContentEngagements,
               });
               const articleData = destructureArticleData(
-                article.data ? article.data : article
+                article.data ? article.data : article,
               );
 
               return (
@@ -350,7 +349,7 @@ export const ArticleInformation = () => {
                       navigate(
                         `/information-portal/article/${
                           articleData.id
-                        }/${createArticleSlug(articleData.title)}`
+                        }/${createArticleSlug(articleData.title)}`,
                       );
                       onArticleClick();
                     }}

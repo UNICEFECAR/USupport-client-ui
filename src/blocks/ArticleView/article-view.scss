@@ -4,125 +4,184 @@
   text-align: left;
   margin-top: $spacing_1_6;
 
-  @media screen and (min-width: $screen-md) {
-    padding: 0 $spacing_10_0;
-  }
-
-  @media screen and (min-width: $screen-lg) {
-    padding: 0 $spacing_30_7;
-  }
-
-  &__main-grid {
-    grid-gap: 0;
-  }
-
-  &__image-item {
-    width: 100%;
-    height: auto;
-    max-height: 40rem;
-    border-radius: $border_radius_1_2;
-    object-fit: cover;
+  &__content {
+    max-width: 72rem;
+    margin: 0 auto;
 
     @media screen and (min-width: $screen-md) {
-      max-height: 60rem;
-    }
-  }
-
-  &__labels-item {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: $spacing_1_6;
-
-    padding-top: $spacing_0_8;
-    flex-wrap: wrap;
-
-    .article-view__label {
-      margin-top: $spacing_0_5;
-      &:not(:last-child) {
-        margin-right: $spacing_0_8;
-      }
-    }
-  }
-
-  &__title-item {
-    padding-top: $spacing_1_7;
-  }
-
-  &__details-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: $spacing_1_0;
-
-    &__category {
-      width: max-content;
-      display: flex;
-      align-content: center;
-      justify-content: center;
-      flex-direction: column;
-      height: 2.2rem;
-      @include themifyCustom(
-        $themes,
-        "background-color",
-        "color_blue_20809E_0_3",
-        "color_gray_66768d",
-        "color_blue_20809E_0_3"
-      );
-      border-radius: $border_radius_2_5;
-      padding: 0 $spacing_1_2 0 $spacing_1_2;
-      margin-top: $spacing_1_6;
-
-      .small-text {
-        font-weight: $font_bold;
-        white-space: nowrap;
-
-        @include themifyCustom(
-          $themes,
-          "color",
-          "color_blue_3d527b",
-          "color_gray_c1d7e0"
-        );
-      }
-    }
-
-    .icon {
-      margin-right: $spacing_0_5;
-      margin-left: $spacing_1_0;
-    }
-
-    &__download {
-      border-radius: 25px;
-      border: 1px solid $color_blue_3d527b;
-
-      padding: 4px 12px;
-      margin-left: $spacing_1_0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-
-      & .loading {
-        padding: 0px 0px !important;
-        width: 16px;
-        height: 16px;
-      }
-
-      & .icon {
-        margin: 0 !important;
-      }
+      padding: 0 $spacing_3_2;
     }
 
     @media screen and (min-width: $screen-lg) {
-      padding-top: $spacing_0_8;
+      padding: 0;
     }
   }
 
-  &__like-item {
-    margin-left: auto;
-    place-items: center;
+  &__title {
+    margin-bottom: $spacing_1_6;
   }
 
-  &__body-item {
-    padding-top: $spacing_2_5;
+  &__meta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing_0_8;
+    margin-bottom: $spacing_1_2;
+  }
+
+  &__category-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.4rem;
+    border-radius: $border_radius_2_5;
+    padding: 0 $spacing_1_2;
+
+    @include themifyCustom(
+      $themes,
+      "background-color",
+      "color_blue_20809E_0_3",
+      "color_gray_66768d",
+      "color_blue_20809E_0_3"
+    );
+
+    .small-text {
+      font-weight: $font_bold;
+      white-space: nowrap;
+
+      @include themifyCustom(
+        $themes,
+        "color",
+        "color_blue_3d527b",
+        "color_gray_c1d7e0"
+      );
+    }
+  }
+
+  &__creator {
+    @include themifyCustom(
+      $themes,
+      "color",
+      "color_gray_66768d",
+      "color_gray_a6b4b8"
+    );
+  }
+
+  &__meta-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    @include themifyCustom(
+      $themes,
+      "background-color",
+      "color_gray_66768d",
+      "color_gray_a6b4b8"
+    );
+  }
+
+  &__meta .icon {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  &__labels {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $spacing_0_5;
+    margin-bottom: $spacing_1_6;
+  }
+
+  &__separator {
+    width: 100%;
+    height: 1px;
+
+    @include themifyCustom(
+      $themes,
+      "background-color",
+      "color_gray_ea",
+      "color_gray_344054"
+    );
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing_0_8 0;
+  }
+
+  &__actions-left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__actions-right {
+    display: flex;
+    align-items: center;
+    gap: $spacing_0_8;
+  }
+
+  &__action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    @include themifyCustom(
+      $themes,
+      "background-color",
+      "color_transparent",
+      "color_transparent"
+    );
+
+    &:hover {
+      @include themifyCustom(
+        $themes,
+        "background-color",
+        "color_gray_ea",
+        "color_gray_344054"
+      );
+    }
+
+    & .loading {
+      padding: 0px 0px !important;
+      width: 16px;
+      height: 16px;
+    }
+
+    & .icon {
+      margin: 0 !important;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    max-height: 46rem;
+    border-radius: $border_radius_1_2;
+    object-fit: cover;
+    margin-top: $spacing_2_5;
+
+    @media screen and (min-width: $screen-md) {
+      max-height: 50rem;
+    }
+  }
+
+  &__body {
+    padding-top: $spacing_3_2;
+    padding-bottom: $spacing_4_0;
+
+    .text {
+      line-height: $line_height_2_8;
+    }
   }
 }

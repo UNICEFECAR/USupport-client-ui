@@ -5,8 +5,6 @@ import propTypes from "prop-types";
 
 import {
   Block,
-  Grid,
-  GridItem,
   Icon,
   Label,
   Markdown,
@@ -165,7 +163,7 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
   const addContentRatingMutation = useAddContentRating(
     onMutate,
     onError,
-    onSuccess
+    onSuccess,
   );
 
   const addContentEngagementMutation = useAddContentEngagement();
@@ -184,7 +182,7 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
     },
     {
       enabled: !!articleData?.id && !isTmpUser,
-    }
+    },
   );
 
   const handleAddRating = (action) => {
@@ -249,7 +247,7 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
       link.href = url;
       link.setAttribute(
         "download",
-        `${articleData.title.replace(/\s+/g, "_")}.pdf`
+        `${articleData.title.replace(/\s+/g, "_")}.pdf`,
       );
 
       // Trigger download
@@ -297,114 +295,110 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
 
   return (
     <Block classes="article-view">
-      <Grid classes="article-view__main-grid">
-        <GridItem md={8} lg={12} classes="article-view__title-item">
-          <div className="article-view__title-row">
-            <h3>{articleData.title}</h3>
-          </div>
-        </GridItem>
+      <div className="article-view__content">
+        {/* Title */}
+        <h2 className="article-view__title">{articleData.title}</h2>
 
-        {articleData.categoryName && (
-          <GridItem md={8} lg={12} classes="article-view__category-item">
-            <div className="article-view__details-item__category">
-              <p className="small-text ">{articleData.categoryName}</p>
+        {/* Author & meta row */}
+        <div className="article-view__meta">
+          {articleData.categoryName && (
+            <div className="article-view__category-badge">
+              <p className="small-text">{articleData.categoryName}</p>
             </div>
-          </GridItem>
-        )}
-
-        <GridItem md={8} lg={12} classes="article-view__details-item">
-          {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
-
+          )}
+          {creator && (
+            <p className="small-text article-view__creator">
+              {t("by", { creator })}
+            </p>
+          )}
+          <div className="article-view__meta-dot" />
           <Icon
             color={theme === "light" ? "#66768d" : "#ffffff"}
             name={"time"}
             size="sm"
           />
-          <p className={"small-text"}>
-            {" "}
+          <p className="small-text">
             {articleData.readingTime} {t("min_read")}
           </p>
+        </div>
 
-          <div
-            onClick={handleExportToPdf}
-            className="article-view__details-item__download"
-          >
-            {isExportingPdf ? (
-              <Loading padding="0px" size="sm" />
-            ) : (
-              <Icon
-                color={theme === "light" ? "#66768d" : "#ffffff"}
-                name="download"
-                size="sm"
-              />
-            )}
-          </div>
-          <div
-            onClick={handleCopyLink}
-            className="article-view__details-item__download"
-          >
-            <Icon
-              color={theme === "light" ? "#66768d" : "#ffffff"}
-              name="share"
-              size="sm"
-            />
-          </div>
-        </GridItem>
-
-        <GridItem xs={3} md={6} lg={8} classes="article-view__labels-item">
-          {articleData.labels.map((label, index) => {
-            return (
+        {/* Labels */}
+        {articleData.labels.length > 0 && (
+          <div className="article-view__labels">
+            {articleData.labels.map((label, index) => (
               <Label
-                classes={"article-view__label"}
+                classes="article-view__label"
                 text={label.name}
                 key={index}
               />
-            );
-          })}
-        </GridItem>
+            ))}
+          </div>
+        )}
 
-        <GridItem xs={1} md={2} lg={4} classes="article-view__like-item">
-          <Like
-            renderInClient
-            handleClick={handleAddRating}
-            likes={ratings.likes || 0}
-            isLiked={ratings.isLikedByUser || false}
-            dislikes={ratings.dislikes || 0}
-            isDisliked={ratings.isDislikedByUser || false}
-            answerId={articleData.id}
-            isTmpUser={isTmpUser}
-          />
-        </GridItem>
+        {/* Separator */}
+        <div className="article-view__separator" />
 
-        <GridItem md={8} lg={12}>
-          <img
-            className="article-view__image-item"
-            src={
-              articleData.imageMedium
-                ? articleData.imageMedium
-                : "https://picsum.photos/300/400"
-            }
-            alt=""
-          />
-        </GridItem>
+        {/* Action bar */}
+        <div className="article-view__actions">
+          <div className="article-view__actions-left">
+            <Like
+              renderInClient
+              handleClick={handleAddRating}
+              likes={ratings.likes || 0}
+              isLiked={ratings.isLikedByUser || false}
+              dislikes={ratings.dislikes || 0}
+              isDisliked={ratings.isDislikedByUser || false}
+              answerId={articleData.id}
+              isTmpUser={isTmpUser}
+            />
+          </div>
+          <div className="article-view__actions-right">
+            <div
+              onClick={handleExportToPdf}
+              className="article-view__action-btn"
+            >
+              {isExportingPdf ? (
+                <Loading padding="0px" size="sm" />
+              ) : (
+                <Icon
+                  color={theme === "light" ? "#66768d" : "#ffffff"}
+                  name="download"
+                  size="sm"
+                />
+              )}
+            </div>
+            <div onClick={handleCopyLink} className="article-view__action-btn">
+              <Icon
+                color={theme === "light" ? "#66768d" : "#ffffff"}
+                name="share"
+                size="sm"
+              />
+            </div>
+          </div>
+        </div>
 
-        <GridItem md={8} lg={12} classes="article-view__body-item">
+        {/* Separator */}
+        <div className="article-view__separator" />
+
+        {/* Hero image */}
+        <img
+          className="article-view__image"
+          src={
+            articleData.imageMedium
+              ? articleData.imageMedium
+              : "https://picsum.photos/300/400"
+          }
+          alt={articleData.title}
+        />
+
+        {/* Article body */}
+        <div className="article-view__body">
           <Markdown
             markDownText={articleData.bodyCK || articleData.body}
             className={"text"}
           />
-        </GridItem>
-      </Grid>
-
-      {/* <ShareModal
-        isOpen={isShareModalOpen}
-        onClose={handleCloseShareModal}
-        contentUrl={url}
-        title={articleData.title}
-        successText={t("share_success")}
-        copyText={t("copy_link")}
-        shareTitle={t("share_title")}
-      /> */}
+        </div>
+      </div>
     </Block>
   );
 };
@@ -421,7 +415,7 @@ ArticleView.propTypes = {
     labels: propTypes.arrayOf(
       propTypes.shape({
         name: propTypes.string,
-      })
+      }),
     ),
   }).isRequired,
 };
