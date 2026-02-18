@@ -677,6 +677,7 @@
       "try_again_button_label": "Փորձել կրկին"
     },
     "mood-track-history": {
+      "all": "Բոլորը",
       "month_1": "Հնվ",
       "month_2": "Փետ",
       "month_3": "Մար",
@@ -957,7 +958,8 @@
       "social": "Social",
       "latest_results": "Latest Results",
       "how_it_works": "How it works",
-      "see_last_result": "Latest results"
+      "see_last_result": "Latest results",
+      "explore_button_label": "Explore map"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",

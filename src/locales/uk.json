@@ -677,6 +677,7 @@
       "try_again_button_label": "Спробуй ще раз."
     },
     "mood-track-history": {
+      "all": "Всі",
       "month_1": "Січ",
       "month_2": "Лют",
       "month_3": "Бер",
@@ -957,7 +958,8 @@
       "social": "Соціальний",
       "latest_results": "Останні Результати",
       "how_it_works": "Як це працює",
-      "see_last_result": "Останні результати"
+      "see_last_result": "Останні результати",
+      "explore_button_label": "Дослідити карту"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Оцінювання завершено",

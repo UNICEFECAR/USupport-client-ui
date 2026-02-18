@@ -12,7 +12,6 @@ import {
   BaselineAssessmentDashboard,
   DashboardHero,
   DownloadApp,
-  FindSupportNearYou,
 } from "#blocks";
 
 import {
@@ -324,7 +323,6 @@ export const Dashboard = () => {
         />
         {IS_RO ? (
           <>
-            <FindSupportNearYou />
             <BaselineAssessmentDashboard
               isTmpUser={isTmpUser || !isAuthenticated}
               openBaselineAssesmentModal={() =>

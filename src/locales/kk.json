@@ -677,6 +677,7 @@
       "try_again_button_label": "Қайталап көріңіз"
     },
     "mood-track-history": {
+      "all": "Барлығы",
       "month_1": "Қаң",
       "month_2": "Ақп",
       "month_3": "Нау",
@@ -957,7 +958,8 @@
       "social": "Social",
       "latest_results": "Latest Results",
       "how_it_works": "How it works",
-      "see_last_result": "Latest results"
+      "see_last_result": "Latest results",
+      "explore_button_label": "Картаны зерттеу"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Бағалау аяқталды",

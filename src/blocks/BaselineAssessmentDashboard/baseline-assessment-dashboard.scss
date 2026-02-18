@@ -2,7 +2,6 @@
 
 .baseline-assessment-dashboard {
   margin-bottom: 2rem;
-  margin-top: 3.6rem;
 
   &__heading {
     margin-bottom: 1.5rem;
@@ -20,13 +19,70 @@
     font-weight: 500;
   }
 
-  &__assessment {
+  &__container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 4rem;
+    gap: $spacing_2_4;
+    padding: $spacing_2_4;
     margin-bottom: 2rem;
+    border-radius: $border_radius_1_6;
+    overflow: hidden;
+
+    // Map as background
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("../../assets/map.webp");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(102, 118, 141, 0.5);
+      z-index: 1;
+    }
+  }
+
+  &__explore-button {
+    position: relative;
+    z-index: 2;
+    padding: 1.5px;
+    background-color: $color_white_ff;
+    border-radius: $border_radius_0_8;
+    box-shadow: $shadow_1;
+
+    @media screen and (min-width: $screen-md) {
+      position: absolute;
+      top: $spacing_2_4;
+      right: $spacing_2_4;
+    }
+  }
+
+  &__assessment {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 50rem;
+    padding: $spacing_2_0;
+    border-radius: $border_radius_2_4;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: $shadow_2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   &__no-assessment {
@@ -62,14 +118,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      gap: $spacing_1_2;
 
-      @media screen and (min-width: 1024px) {
-        flex-direction: row;
-      }
-
-      & .box {
-        min-width: 20rem;
-        margin-inline: 1rem;
+      &__item {
+        padding: $spacing_0_8 $spacing_1_2;
+        width: 50%;
       }
     }
 

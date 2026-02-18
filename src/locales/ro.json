@@ -677,6 +677,7 @@
       "try_again_button_label": "Încercați din nou"
     },
     "mood-track-history": {
+      "all": "Toate",
       "month_1": "Ian",
       "month_2": "Feb",
       "month_3": "Mar",
@@ -957,7 +958,8 @@
       "social": "Social",
       "latest_results": "Ultimele rezultate",
       "how_it_works": "Cum funcționează",
-      "see_last_result": "Ultimele rezultate"
+      "see_last_result": "Ultimele rezultate",
+      "explore_button_label": "Explorați harta"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Evaluare finalizată",

@@ -677,6 +677,7 @@
       "try_again_button_label": "Try again"
     },
     "mood-track-history": {
+      "all": "All",
       "month_1": "Jan",
       "month_2": "Feb",
       "month_3": "Mar",
@@ -710,7 +711,8 @@
       "read_more_button": "Read more",
       "by": "by {{creator}}",
       "min_read": "min read",
-      "no_recommendations": "No recommendations found"
+      "no_recommendations": "No recommendations found",
+      "select_year": "Select year"
     },
     "mascot-header-MyQA": {
       "heading": "My Q&A",
@@ -957,7 +959,8 @@
       "social": "Social",
       "latest_results": "Latest Results",
       "how_it_works": "How it works",
-      "see_last_result": "Latest results"
+      "see_last_result": "Latest results",
+      "explore_button_label": "Explore map"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",

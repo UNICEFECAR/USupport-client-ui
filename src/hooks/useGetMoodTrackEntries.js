@@ -4,11 +4,14 @@ import { clientSvc } from "@USupport-components-library/services";
 export function useGetMoodTrackEntries(
   limit = 6,
   pageNum = 0,
+  year,
   onSuccess,
-  enabled
+  enabled,
 ) {
+  console.log("useGetMoodTrackEntries", limit, pageNum, year);
+
   const getMoodTrackEntries = async () => {
-    const { data } = await clientSvc.getMoodTrackEntries(limit, pageNum);
+    const { data } = await clientSvc.getMoodTrackEntries(limit, pageNum, year);
 
     const curEntries = data.currentEntries.map((moodTrack) => {
       const date = new Date(moodTrack.time);
@@ -30,9 +33,9 @@ export function useGetMoodTrackEntries(
   };
 
   const getMoodTrackEntriesQuery = useQuery(
-    ["getMoodTrackEntries", limit, pageNum],
+    ["getMoodTrackEntries", limit, pageNum, year],
     getMoodTrackEntries,
-    { onSuccess: onSuccess, enabled: !!enabled }
+    { onSuccess: onSuccess, enabled: !!enabled },
   );
 
   return getMoodTrackEntriesQuery;

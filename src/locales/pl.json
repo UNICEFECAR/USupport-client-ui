@@ -677,6 +677,7 @@
       "try_again_button_label": "Spróbuj ponownie"
     },
     "mood-track-history": {
+      "all": "Wszystkie",
       "month_1": "Sty",
       "month_2": "Lut",
       "month_3": "Mar",
@@ -957,7 +958,8 @@
       "social": "Social",
       "latest_results": "Latest Results",
       "how_it_works": "How it works",
-      "see_last_result": "Latest results"
+      "see_last_result": "Latest results",
+      "explore_button_label": "Odkryj mapę"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Ocena zakończona",

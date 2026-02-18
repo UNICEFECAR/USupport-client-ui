@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import {
   Block,
+  Dropdown,
   Icon,
   MoodTrackDetails,
   Loading,
@@ -56,6 +57,16 @@ export const MoodTrackHistory = () => {
   const [moodTrackerData, setMoodTrackerData] = useState({});
   const [selectedItemId, setSelectedItemId] = React.useState(null);
   const [lastMood, setLastMood] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
+
+  const yearOptions = useMemo(() => {
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let year = 2024; year <= currentYear; year++) {
+      years.push({ label: String(year), value: year });
+    }
+    return [{ label: t("all"), value: "all" }, ...years];
+  }, [t]);
 
   const onSuccess = (data) => {
     const { curEntries, prevEntries, hasMore } = data;
@@ -97,13 +108,24 @@ export const MoodTrackHistory = () => {
     return !loadedPages.includes(pageNum);
   }, [loadedPages, pageNum]);
 
-  useGetMoodTrackEntries(limitToLoad, pageNum, onSuccess, enabled);
+  useGetMoodTrackEntries(
+    limitToLoad,
+    pageNum,
+    selectedYear,
+    onSuccess,
+    enabled,
+  );
 
   const emoticons = [
     { name: "happy", label: "Happy", value: 4, image: moodTrackHappy },
     { name: "good", label: "Good", value: 3, image: moodTrackGood },
     { name: "sad", label: "Sad", value: 2, image: moodTrackSad },
-    { name: "depressed", label: "Depressed", value: 1, image: moodTrackDepressed },
+    {
+      name: "depressed",
+      label: "Depressed",
+      value: 1,
+      image: moodTrackDepressed,
+    },
     { name: "worried", label: "Worried", value: 0, image: moodTrackWorried },
   ];
 
@@ -169,6 +191,15 @@ export const MoodTrackHistory = () => {
               <p>{t("no_result")}</p>
             </div>
           )}
+          <div className="mood-track-history__year-dropdown">
+            <Dropdown
+              options={yearOptions}
+              selected={selectedYear}
+              setSelected={setSelectedYear}
+              placeholder={t("select_year")}
+              isSmall
+            />
+          </div>
           <div className="mood-track-history__content-container">
             <div className="mood-track-history__content-container__emoticons-container">
               {renderAllEmoticons()}
@@ -280,8 +311,8 @@ export const MoodTrackHistory = () => {
                 {t("articles")}
               </h4>
               <Grid>
-                {moodTrackerRecommendations.articles.map((article) => (
-                  <GridItem>
+                {moodTrackerRecommendations.articles.map((article, index) => (
+                  <GridItem key={index}>
                     <CardMedia
                       type="portrait"
                       title={article.title}

@@ -90,56 +90,70 @@ export const BaselineAssessmentDashboard = ({
             )}
           </div>
 
-          <div className="baseline-assessment-dashboard__assessment">
-            {isFetching ? (
-              <Loading />
-            ) : !latestAssessment ? (
-              <NewButton size="lg" onClick={openBaselineAssesmentModal}>
-                {t("start_new_assessment")}
-              </NewButton>
-            ) : latestAssessment.status === "completed" ? (
-              <div className="baseline-assessment-dashboard__results">
-                <h5 className="baseline-assessment-dashboard__results__heading">
-                  {t("latest_results")}
-                </h5>
-                <div className="baseline-assessment-dashboard__results__items">
-                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
-                    <p>
-                      {t("psychological")}:{" "}
-                      {latestAssessment.finalResult.psychologicalScore}
-                    </p>
-                  </Box>
-                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
-                    <p>
-                      {t("social")}: {latestAssessment.finalResult.socialScore}
-                    </p>
-                  </Box>
-                  <Box classes="baseline-assesment-result__compare-grid__stats-container__item">
-                    <p>
-                      {t("biological")}:{" "}
-                      {latestAssessment.finalResult.biologicalScore}
-                    </p>
-                  </Box>
-                </div>
-                <NewButton
-                  classes="baseline-assessment-dashboard__results__button"
-                  size="lg"
-                  onClick={openBaselineAssesmentModal}
-                >
+          <div className="baseline-assessment-dashboard__container">
+            <div className="baseline-assessment-dashboard__assessment">
+              {isFetching ? (
+                <Loading />
+              ) : !latestAssessment ? (
+                <NewButton size="lg" onClick={openBaselineAssesmentModal}>
                   {t("start_new_assessment")}
                 </NewButton>
-              </div>
-            ) : (
-              <BaselineAssesmentBox
-                progress={latestAssessment.completionPercentage}
-                status={latestAssessment.status}
-                startedAt={latestAssessment.startedAt}
-                currentPosition={latestAssessment.currentPosition}
-                completionPercentage={latestAssessment.completionPercentage}
-                handleViewAssessment={handleViewAssessment}
-                t={t}
+              ) : latestAssessment.status === "completed" ? (
+                <div className="baseline-assessment-dashboard__results">
+                  <h5 className="baseline-assessment-dashboard__results__heading">
+                    {t("latest_results")}
+                  </h5>
+                  <div className="baseline-assessment-dashboard__results__items">
+                    <Box classes="baseline-assessment-dashboard__results__items__item">
+                      <p>
+                        {t("psychological")}:{" "}
+                        {latestAssessment.finalResult.psychologicalScore}
+                      </p>
+                    </Box>
+                    <Box classes="baseline-assessment-dashboard__results__items__item">
+                      <p>
+                        {t("social")}:{" "}
+                        {latestAssessment.finalResult.socialScore}
+                      </p>
+                    </Box>
+                    <Box classes="baseline-assessment-dashboard__results__items__item">
+                      <p>
+                        {t("biological")}:{" "}
+                        {latestAssessment.finalResult.biologicalScore}
+                      </p>
+                    </Box>
+                  </div>
+                  <NewButton
+                    classes="baseline-assessment-dashboard__results__button"
+                    size="lg"
+                    onClick={openBaselineAssesmentModal}
+                  >
+                    {t("start_new_assessment")}
+                  </NewButton>
+                </div>
+              ) : (
+                <BaselineAssesmentBox
+                  progress={latestAssessment.completionPercentage}
+                  status={latestAssessment.status}
+                  startedAt={latestAssessment.startedAt}
+                  currentPosition={latestAssessment.currentPosition}
+                  completionPercentage={latestAssessment.completionPercentage}
+                  handleViewAssessment={handleViewAssessment}
+                  t={t}
+                />
+              )}
+            </div>
+            <div className="baseline-assessment-dashboard__explore-button">
+              <NewButton
+                label={t("explore_button_label")}
+                onClick={() => {
+                  navigate("/organizations");
+                }}
+                iconName="search"
+                iconColor="#fff"
+                iconSize="sm"
               />
-            )}
+            </div>
           </div>
         </div>
       </Block>

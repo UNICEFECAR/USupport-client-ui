@@ -677,6 +677,7 @@
       "try_again_button_label": "Δοκιμάστε ξανά"
     },
     "mood-track-history": {
+      "all": "Όλα",
       "month_1": "Ιαν",
       "month_2": "Φεβ",
       "month_3": "Μαρ",
@@ -957,7 +958,8 @@
       "social": "Κοινωνικές",
       "latest_results": "Τα πιο πρόσφατα αποτελέσματα",
       "how_it_works": "Δείτε πώς λειτουργεί",
-      "see_last_result": "Latest results"
+      "see_last_result": "Latest results",
+      "explore_button_label": "Εξερεύνηση χάρτη"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Η αξιολόγηση ολοκληρώθηκε",
