@@ -221,6 +221,14 @@
     position: fixed;
     right: $spacing_1_6;
     z-index: $z_index_emergency_button;
+    box-shadow:
+      0 0 20px rgba(235, 87, 87, 0.6),
+      0 4px 12px rgba(235, 87, 87, 0.4);
+    transition: box-shadow 0.3s ease;
+
+    // &:hover {
+    //   box-shadow: 0 0 30px rgba(235, 87, 87, 0.8), 0 6px 16px rgba(235, 87, 87, 0.5);
+    // }
 
     @media screen and (min-width: $screen-md) {
       right: $spacing_3_2;
