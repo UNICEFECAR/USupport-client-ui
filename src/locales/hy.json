@@ -184,10 +184,10 @@
       "login_button_label": "Ես արդեն ունեմ օգտահաշիվ",
       "copy_text": "Պատճենեք, պահպանեք կամ գրի առեք ձեր անանուն կոդը։ Եթե կորցնեք այն, այլևս չեք կարողանա մուտք գործել ձեր օգտահաշիվ",
       "copy_success": "Կոդը բարեհաջող պատճենված է",
-      "confirm_password_label": "Հաստատել գաղտնաբառը",
+      "confirm_password_label": "Հաստատել գաղտնաբառը *",
       "password_match_error": "«Գաղտնաբառ» և «Հաստատել գաղտնաբառը» դաշտերը չեն համընկնում",
       "age_terms_agreement_text_1": "Ես 13 տարեկանից բարձր եմ",
-      "heading": "Register anonymously"
+      "heading": "Բարի գալուստ"
     },
     "register-support": {
       "button_continue_label": "Շարունակել",
@@ -352,6 +352,7 @@
       "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
+      "heading": "Բարի գալուստ",
       "email_error": "Խնդրում ենք մուտքագրել էլեկտրոնային փոստի գործող հասցե։",
       "password_error": "Գաղտնաբառը պետք է պարունակի առնվազն 8 նիշ, 1 մեծատառ, 1 փոքրատառ և 1 թիվ",
       "email_label": "Էլեկտրոնային փոստի հասցեն *",
@@ -366,10 +367,9 @@
       "register_button": "Գրանցվել",
       "paragraph": "Կամ գրանցվել ․․․-ի միջոցով",
       "login_button_label": "Ես արդեն ունեմ օգտահաշիվ",
-      "confirm_password_label": "Հաստատել գաղտնաբառը",
+      "confirm_password_label": "Հաստատել գաղտնաբառը *",
       "password_match_error": "«Գաղտնաբառ» և «Հաստատել» դաշտերը չեն համընկնում",
-      "age_terms_agreement_text_1": "Ես 13 տարեկանից բարձր եմ",
-      "heading": "Register with email"
+      "age_terms_agreement_text_1": "Ես 13 տարեկանից բարձր եմ"
     },
     "privacy-policy": {
       "no_results": "Ընտրված երկրի և լեզվի վերաբերյալ արդյունքներ չեն գտնվել"
@@ -1590,13 +1590,17 @@
       "end_date_before_start_error": "Ավարտի ամսաթիվը պետք է լինի ավելի ուշ, քան սկզբի ամսաթիվը"
     },
     "welcome": {
-      "heading": "Welcome to",
-      "country": "Country",
-      "language": "Language",
-      "placeholder": "Select",
+      "heading": "Բարի գալուստ",
+      "country": "Երկիր",
+      "language": "Լեզու",
+      "placeholder": "Ընտրել",
       "register_email": "Գրանցվել էլեկտրոնային փոստով",
       "register_anonymously": "Գրանցվել առանց էլեկտրոնային փոստի",
-      "continue_as_guest": "Շարունակել առանց գրանցման"
+      "continue_as_guest": "Շարունակել առանց գրանցման",
+      "already_have_account": "Արդեն ունե՞ք հաշիվ",
+      "log_in": "Մուտք գործել",
+      "client": "Հաճախորդ",
+      "poland_description": "uSupport-ը հոգեկան առողջության և բարեկեցության հարթակ է, որը նախատեսված է երիտասարդների համար (16–24):"
     },
     "user-guide": {
       "heading": "Ցանկանու՞մ եք ավելին իմանալ հետևյալի մասին․",

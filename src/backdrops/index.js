@@ -21,3 +21,4 @@ export * from "./ForgotPassword";
 export * from "./RegisterAnonymous";
 export * from "./UserGuide";
 export * from "./EmergencySituation";
+export * from "./AuthenticationModalsLogo";

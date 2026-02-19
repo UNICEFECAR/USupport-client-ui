@@ -184,10 +184,10 @@
       "login_button_label": "Έχω ήδη λογαριασμό",
       "copy_text": "Αντιγράψτε και αποθηκεύστε ή σημειώστε τον ανώνυμο κωδικό σας, καθώς αν τον χάσετε δεν θα είναι δυνατή η πρόσβαση στον λογαριασμό σας.",
       "copy_success": "Ο κωδικός αντιγράφηκε με επιτυχία",
-      "confirm_password_label": "Επιβεβαίωση κωδικού πρόσβασης",
+      "confirm_password_label": "Επιβεβαίωση κωδικού πρόσβασης *",
       "password_match_error": "Ο κωδικός πρόσβασης και η επιβεβαίωση δεν ταιριάζουν",
       "age_terms_agreement_text_1": "Είμαι πάνω από {{age}} ετών.",
-      "heading": "Register anonymously"
+      "heading": "Καλώς ήρθατε στο"
     },
     "register-support": {
       "button_continue_label": "Συνέχεια",
@@ -352,6 +352,7 @@
       "pl_text": "Το uSupport είναι μια πλατφόρμα ψυχικής υγείας και ευεξίας που έχει σχεδιαστεί για νέους (16-24 ετών)."
     },
     "register-email": {
+      "heading": "Καλώς ήρθατε στο",
       "email_error": "Παρακαλούμε εισαγάγετε μια έγκυρη διεύθυνση email",
       "password_error": "Ο κωδικός πρόσβασης πρέπει να περιέχει τουλάχιστον 8 χαρακτήρες, 1 κεφαλαίο γράμμα, 1 πεζό γράμμα και 1 αριθμό",
       "email_label": "Email *",
@@ -368,8 +369,7 @@
       "login_button_label": "Έχω ήδη λογαριασμό",
       "confirm_password_label": "Επιβεβαίωση κωδικού πρόσβασης",
       "password_match_error": "Ο κωδικός πρόσβασης και η επιβεβαίωση δεν ταιριάζουν",
-      "age_terms_agreement_text_1": "Είμαι πάνω από {{age}} ετών",
-      "heading": "Register with email"
+      "age_terms_agreement_text_1": "Είμαι πάνω από {{age}} ετών"
     },
     "privacy-policy": {
       "no_results": "Δεν υπάρχουν αποτελέσματα για την επιλεγμένη χώρα και γλώσσα."
@@ -1590,7 +1590,7 @@
       "end_date_before_start_error": "Η ημερομηνία λήξης πρέπει να είναι μετά την ημερομηνία έναρξης"
     },
     "welcome": {
-      "heading": "Welcome to",
+      "heading": "Καλώς ήρθατε στο",
       "country": "Χώρα",
       "language": "Γλώσσα",
       "placeholder": "Select",
@@ -1598,7 +1598,9 @@
       "register_anonymously": "Ανώνυμη εγγραφή",
       "continue_as_guest": "Συνέχεια χωρίς εγγραφή",
       "already_have_account": "Έχετε ήδη λογαριασμό;",
-      "log_in": "Σύνδεση"
+      "log_in": "Σύνδεση",
+      "client": "Client",
+      "poland_description": "uSupport είναι μια πλατφόρμα ψυχικής υγείας και ευεξίας που έχει σχεδιαστεί για νέους (16-24 ετών)."
     },
     "user-guide": {
       "heading": "Θέλετε να μάθετε περισσότερα για:",

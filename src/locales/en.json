@@ -184,10 +184,10 @@
       "login_button_label": "I already have an account",
       "copy_text": "Copy and save or write down your anonymous code, if you lose it you cannot get access to your account anymore",
       "copy_success": "Code copied successfully",
-      "confirm_password_label": "Confirm password",
+      "confirm_password_label": "Confirm password *",
       "password_match_error": "The Password and Confirm Password fields do not match",
       "age_terms_agreement_text_1": "I am over {{age}} years old",
-      "heading": "Register anonymously"
+      "heading": "Welcome to"
     },
     "register-support": {
       "button_continue_label": "Continue",
@@ -352,7 +352,7 @@
       "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
-      "heading": "Register with email",
+      "heading": "Welcome to",
       "email_error": "Please enter a valid email",
       "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
       "email_label": "Email *",
@@ -367,7 +367,7 @@
       "register_button": "Register",
       "paragraph": "Or register with:",
       "login_button_label": "I already have an account",
-      "confirm_password_label": "Confirm password",
+      "confirm_password_label": "Confirm password *",
       "password_match_error": "The Password and Confirm Password fields do not match",
       "age_terms_agreement_text_1": "I am over {{age}} years old"
     },
@@ -1447,7 +1447,9 @@
       "register_anonymously": "Register anonymously",
       "continue_as_guest": "Continue without registration",
       "already_have_account": "Already have an account?",
-      "log_in": "Log in"
+      "log_in": "Log in",
+      "client": "Client",
+      "poland_description": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "filter-providers": {
       "heading": "Filter providers",

@@ -1,15 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Joi from "joi";
 
 import { Backdrop, Input, Modal } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
-import { validate, ThemeContext } from "@USupport-components-library/utils";
-import {
-  logoVerticalSvg,
-  logoVerticalDarkSvg,
-  logoVerticalRomaniaPng,
-} from "@USupport-components-library/assets";
+import { validate } from "@USupport-components-library/utils";
+
+import { AuthenticationModalsLogo } from "../";
 
 import "./forgot-password.scss";
 
@@ -22,8 +19,6 @@ import "./forgot-password.scss";
  */
 export const ForgotPassword = ({ isOpen, handleGoBack }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "forgot-password" });
-  const { theme } = useContext(ThemeContext);
-  const IS_RO = localStorage.getItem("country") === "RO";
 
   const [data, setData] = useState({ email: "" });
   const [errors, setErrors] = useState({});
@@ -65,7 +60,7 @@ export const ForgotPassword = ({ isOpen, handleGoBack }) => {
       <Backdrop
         heading={t("heading_modal")}
         isOpen={isOpen}
-        onClose={() => {}} // No-op to prevent closing via overlay click
+        onClose={() => {}}
         handleGoBack={handleGoBack}
         hasGoBackArrow={true}
         hasCloseIcon={false}
@@ -76,17 +71,7 @@ export const ForgotPassword = ({ isOpen, handleGoBack }) => {
         errorMessage={errors.submit}
       >
         <div className="forgot-password-modal__content-container">
-          <img
-            src={
-              IS_RO
-                ? logoVerticalRomaniaPng
-                : theme !== "light"
-                  ? logoVerticalDarkSvg
-                  : logoVerticalSvg
-            }
-            alt="Logo"
-            className="welcome-modal__content-container__logo"
-          />
+          <AuthenticationModalsLogo />
           <Input
             label={t("input_email_label")}
             value={data.email}

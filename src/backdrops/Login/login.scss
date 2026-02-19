@@ -1,11 +1,26 @@
 @import "@USupport-components-library/styles";
 
 .login-modal {
-  &__content-container {
+  &__content-form {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-bottom: $spacing_4_0;
-    gap: $spacing_1_6;
+    gap: $spacing_2_0;
+
+    &__forgot-password {
+      margin-left: 0;
+      margin-right: auto;
+      padding-left: 0;
+      padding-top: 0;
+
+      & .btn__content-container {
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+    }
+
+    &__submit-button {
+      display: none;
+    }
   }
 }

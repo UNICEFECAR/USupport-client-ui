@@ -1,0 +1,13 @@
+@import "@USupport-components-library/styles";
+
+.authentication-modals-logo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__logo {
+    width: 16rem;
+    margin-inline: auto;
+  }
+}

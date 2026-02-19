@@ -184,10 +184,10 @@
       "login_button_label": "Już posiadam konto",
       "copy_text": "Skopiuj i zapisz lub zanotuj swój anonimowy token. Jeśli go zgubisz, nie zalogujesz się na swoje konto i nie połączysz się na konsultację z psychologiem! Do odbycia sesji z psychologiem potrzebujesz tokenu dostępu i hasła do konta.",
       "copy_success": "Token został pomyślnie skopiowany",
-      "confirm_password_label": "Potwierdź hasło",
+      "confirm_password_label": "Potwierdź hasło *",
       "password_match_error": "Pola Hasło i Potwierdź hasło nie są zgodne",
       "age_terms_agreement_text_1": "Mam ponad {{age}} lat",
-      "heading": "Register anonymously"
+      "heading": "Witamy w"
     },
     "register-support": {
       "button_continue_label": "Kontynuuj",
@@ -352,6 +352,7 @@
       "pl_text": "uSupport to platforma zdrowia psychicznego i dobrego samopoczucia przeznaczona dla młodych osób (16-24)"
     },
     "register-email": {
+      "heading": "Witamy w",
       "email_error": "Wprowadź poprawny adres email",
       "password_error": "Hasło powinno zawierać co najmniej 8 znaków, 1 wielką literę, 1 małą literę i 1 cyfrę.",
       "email_label": "Email *",
@@ -366,10 +367,9 @@
       "register_button": "Rejestracja",
       "paragraph": "Lub zarejestruj się za pomocą:",
       "login_button_label": "Już posiadam konto",
-      "confirm_password_label": "Potwierdź hasło",
+      "confirm_password_label": "Potwierdź hasło *",
       "password_match_error": "Pola Hasło i Potwierdź hasło nie są zgodne",
-      "age_terms_agreement_text_1": "Mam ponad {{age}} lat",
-      "heading": "Register with email"
+      "age_terms_agreement_text_1": "Mam ponad {{age}} lat"
     },
     "privacy-policy": {
       "no_results": "Brak wyników dla wybranego kraju i języka."
@@ -1590,15 +1590,17 @@
       "end_date_before_start_error": "Data zakończenia musi być po dacie rozpoczęcia"
     },
     "welcome": {
-      "heading": "Welcome to",
+      "heading": "Witamy w",
       "country": "Kraj",
       "language": "Język",
-      "placeholder": "Select",
+      "placeholder": "Wybierz",
       "register_email": "Zarejestruj się za pomocą adresu e-mail",
       "register_anonymously": "Rejestracja anonimowa",
       "continue_as_guest": "Kontynuuj bez rejestracji",
       "already_have_account": "Masz już konto?",
-      "log_in": "Zaloguj się"
+      "log_in": "Zaloguj się",
+      "client": "Klient",
+      "poland_description": "uSupport to platforma zdrowia psychicznego i dobrostanu zaprojektowana dla młodzieży (16–24)."
     },
     "user-guide": {
       "heading": "Chcesz dowiedzieć się więcej o:",

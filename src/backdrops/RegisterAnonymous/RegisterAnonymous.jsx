@@ -18,6 +18,7 @@ import { userSvc } from "@USupport-components-library/services";
 
 import { useError, useCustomNavigate as useNavigate } from "#hooks";
 import { SaveAccessCodeConfirmation } from "#modals";
+import { AuthenticationModalsLogo } from "../";
 
 import "./register-anonymous.scss";
 
@@ -167,7 +168,7 @@ export const RegisterAnonymous = ({
     data.password &&
     data.confirmPassword &&
     data.isPrivacyAndTermsSelected &&
-    // data.isAgeTermsSelected &&
+    data.isAgeTermsSelected &&
     data.nickname;
 
   const handleRegisterButtonClick = () => {
@@ -192,7 +193,7 @@ export const RegisterAnonymous = ({
       <Backdrop
         heading={t("heading")}
         isOpen={isOpen}
-        onClose={() => {}} // No-op to prevent closing via overlay click
+        onClose={() => {}}
         handleGoBack={handleGoBack}
         hasGoBackArrow={true}
         hasCloseIcon={false}
@@ -204,6 +205,7 @@ export const RegisterAnonymous = ({
         thirdCtaLabel={t("login_button_label")}
         thirdCtaHandleClick={() => handleLoginRedirect()}
       >
+        <AuthenticationModalsLogo />
         <form
           className="register-anonymous-modal__content-container"
           onSubmit={(e) => {
@@ -233,11 +235,9 @@ export const RegisterAnonymous = ({
             onChange={(e) => handleChange("nickname", e.target.value)}
             onBlur={(e) => handleBlur("nickname", e.target.value)}
             errorMessage={errors.nickname}
-            classes="register-anonymous__grid__content-item__main-component__input"
           />
           <InputPassword
             label={t("password_label")}
-            classes="register-anonymous__grid__content-item__main-component__input-password"
             value={data.password}
             name="new-password"
             autoComplete="new-password"
@@ -248,7 +248,6 @@ export const RegisterAnonymous = ({
             }}
           />
           <InputPassword
-            classes="register-email__grid__password-input"
             label={t("confirm_password_label")}
             value={data.confirmPassword}
             name="new-password-confirm"

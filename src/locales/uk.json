@@ -184,10 +184,10 @@
       "login_button_label": "Вже маю обліковий запис",
       "copy_text": "Скопіюй і збережи або запиши свій анонімний токен.\nЯкщо ти його загубиш, не зможеш увійти до свого облікового запису та приєднатися до консультації з психологом!\nДля проведення сесії з психологом тобі потрібні токен доступу та пароль до облікового запису.",
       "copy_success": "токен скопійовано",
-      "confirm_password_label": "Підтвердіть пароль",
+      "confirm_password_label": "Підтвердіть пароль *",
       "password_match_error": "Поля «Пароль» і «Підтвердити пароль» не збігаються",
       "age_terms_agreement_text_1": "Мені більше 16 років",
-      "heading": "Register anonymously"
+      "heading": "Вітаємо в"
     },
     "register-support": {
       "button_continue_label": "Продовжити",
@@ -352,6 +352,7 @@
       "pl_text": "uSupport — це платформа психічного здоров’я та добробуту, призначена для молодих людей (16–24)"
     },
     "register-email": {
+      "heading": "Вітаємо в",
       "email_error": "Введи дійсну адресу електронної пошти",
       "password_error": "Пароль має містити щонайменше 8 символів, 1 велику літеру, 1 малу літеру і 1 цифру",
       "email_label": "Електронна пошта *",
@@ -366,10 +367,9 @@
       "register_button": "Зареєструватися",
       "paragraph": "Або зареєструйся використовуючи:",
       "login_button_label": "Вже маю обліковий запис",
-      "confirm_password_label": "Підтвердити пароль",
+      "confirm_password_label": "Підтвердити пароль *",
       "password_match_error": "Поля «Пароль» і «Підтверити пароль» не збігаються",
-      "age_terms_agreement_text_1": "Мені більше {{age}} років",
-      "heading": "Register with email"
+      "age_terms_agreement_text_1": "Мені більше {{age}} років"
     },
     "privacy-policy": {
       "no_results": "Для обраної країни й мови немає результатів."
@@ -1590,15 +1590,17 @@
       "end_date_before_start_error": "Дата завершення має бути пізніше дати початку"
     },
     "welcome": {
-      "heading": "Welcome to",
+      "heading": "Ласкаво просимо до",
       "country": "Країна",
       "language": "Мова",
-      "placeholder": "Select",
-      "register_email": "Зареєструйтеся за допомогою електронної пошти",
+      "placeholder": "Вибрати",
+      "register_email": "Зареєструватися за допомогою електронної пошти",
       "register_anonymously": "Анонімна реєстрація",
       "continue_as_guest": "Продовжити без реєстрації",
       "already_have_account": "Вже маєте обліковий запис?",
-      "log_in": "Увійти"
+      "log_in": "Увійти",
+      "client": "Клієнт",
+      "poland_description": "uSupport — це платформа психічного здоров’я та добробуту, розроблена для молоді (16–24)."
     },
     "user-guide": {
       "heading": "Хочеш дізнатися більше про:",

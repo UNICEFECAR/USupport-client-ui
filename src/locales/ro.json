@@ -184,10 +184,10 @@
       "login_button_label": "Am deja un cont",
       "copy_text": "Copiați și salvați sau notați codul dvs. anonim. Dacă îl pierdeți, nu veți mai avea acces la cont.",
       "copy_success": "Codul a fost copiat",
-      "confirm_password_label": "Confirmați parola",
+      "confirm_password_label": "Confirmați parola *",
       "password_match_error": "Câmpurile Parolă nouă și Confirmare parolă nu corespund",
       "age_terms_agreement_text_1": "Am peste 10 ani",
-      "heading": "Register anonymously"
+      "heading": "Bine ați venit la"
     },
     "register-support": {
       "button_continue_label": "Continuați",
@@ -352,6 +352,7 @@
       "pl_text": "uSupport este o platformă de sănătate mintală și bunăstare destinată tinerilor (16–24)."
     },
     "register-email": {
+      "heading": "Bine ați venit la",
       "email_error": "Vă rugăm să introduceți o adresă de e-mail validă",
       "password_error": "Parola trebuie să conțină cel puțin 8 caractere, 1 literă majusculă, 1 literă minusculă și 1 număr",
       "email_label": "Email *",
@@ -366,10 +367,9 @@
       "register_button": "Înregistrare",
       "paragraph": "Sau înregistrați-vă cu:",
       "login_button_label": "Am deja un cont",
-      "confirm_password_label": "Confirmați parola",
+      "confirm_password_label": "Confirmați parola *",
       "password_match_error": "Câmpurile Parolă nouă și Confirmare parolă nu corespund",
-      "age_terms_agreement_text_1": "Am peste 13 ani",
-      "heading": "Register with email"
+      "age_terms_agreement_text_1": "Am peste 13 ani"
     },
     "privacy-policy": {
       "no_results": "Nu există rezultate pentru țara și limba selectate"
@@ -1605,13 +1605,17 @@
       "end_date_before_start_error": "Data de sfârșit trebuie să fie după data de început"
     },
     "welcome": {
-      "heading": "Welcome to",
+      "heading": "Bine ați venit la",
       "country": "Țara",
       "language": "Limba",
-      "placeholder": "Select",
+      "placeholder": "Selectați",
       "register_email": "Înregistrare cu e-mail",
       "register_anonymously": "Înregistrare anonimă",
-      "continue_as_guest": "Continuați fără înregistrare"
+      "continue_as_guest": "Continuați fără înregistrare",
+      "already_have_account": "Aveți deja un cont?",
+      "log_in": "Autentificare",
+      "client": "Client",
+      "poland_description": "uSupport este o platformă de sănătate mintală și bunăstare destinată tinerilor (16–24)."
     },
     "user-guide": {
       "heading": "Vrei sa afli mai multe despre:",

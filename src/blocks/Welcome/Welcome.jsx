@@ -68,12 +68,12 @@ export const Welcome = () => {
       if (subdomain === "usupport") {
         window.location.href = window.location.href.replace(
           subdomain,
-          `${countryLabel}.usupport`
+          `${countryLabel}.usupport`,
         );
       } else if (subdomain === "staging") {
         window.location.href = window.location.href.replace(
           subdomain,
-          `${countryLabel}.staging`
+          `${countryLabel}.staging`,
         );
       }
     }
@@ -126,7 +126,7 @@ export const Welcome = () => {
       staleTime: Infinity,
       cacheTime: 1000 * 60 * 60 * 24, // Keep cached for 24 hours
       enabled: !!selectedCountry,
-    }
+    },
   );
 
   const handleSelectCountry = (country) => {
@@ -134,7 +134,7 @@ export const Welcome = () => {
       setSelectedCountry(country);
     }, 1);
     const countryObject = countries.find(
-      (x) => x.value.toLocaleLowerCase() === country.toLocaleLowerCase()
+      (x) => x.value.toLocaleLowerCase() === country.toLocaleLowerCase(),
     );
     const subdomain = window.location.hostname.split(".")[0];
     if (!window.location.href.includes("localhost")) {
@@ -167,11 +167,11 @@ export const Welcome = () => {
     localStorage.setItem("country", country);
     localStorage.setItem(
       "country_id",
-      countries.find((x) => x.value === selectedCountry).countryID
+      countries.find((x) => x.value === selectedCountry).countryID,
     );
     localStorage.setItem(
       "currency_symbol",
-      countries.find((x) => x.value === selectedCountry).currencySymbol
+      countries.find((x) => x.value === selectedCountry).currencySymbol,
     );
     localStorage.setItem("language", language);
     window.dispatchEvent(new Event("countryChanged"));
@@ -190,8 +190,8 @@ export const Welcome = () => {
               IS_RO
                 ? logoVerticalRomaniaPng
                 : theme !== "light"
-                ? logoVerticalDarkSvg
-                : logoVerticalSvg
+                  ? logoVerticalDarkSvg
+                  : logoVerticalSvg
             }
             alt="Logo"
             className="welcome__grid__logo-item__logo"

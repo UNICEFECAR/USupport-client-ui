@@ -184,10 +184,10 @@
       "login_button_label": "Менің аккаунтым бар",
       "copy_text": "Анонимді кодты көшіріп алып, сақтап қойыңыз немесе жазып алыңыз, егер оны жоғалтып алсаңыз, аккаунтыңызға кіре алмайсыз.",
       "copy_success": "Сәтті көшірілген код",
-      "confirm_password_label": "Құпия сөзді растаңыз",
+      "confirm_password_label": "Құпия сөзді растаңыз *",
       "password_match_error": "Құпия сөз және Құпия сөзді растау өрістері сәйкес келмейді",
       "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен",
-      "heading": "Register anonymously"
+      "heading": "Қош келдіңіз"
     },
     "register-support": {
       "button_continue_label": "Жалғастыру",
@@ -352,6 +352,7 @@
       "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
+      "heading": "Қош келдіңіз",
       "email_error": "Өтінеміз қолданыстағы электронды поштаңызды енгізіңіз",
       "password_error": "Құпия сөз кемінде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен және 1 саннан тұруы керек.",
       "email_label": "Электронды пошта *",
@@ -366,10 +367,9 @@
       "register_button": "Тіркелу",
       "paragraph": "Немесе келесілер арқылы тіркеліңіз:",
       "login_button_label": "Менің аккаунтым бар",
-      "confirm_password_label": "Құпия сөзді растаңыз",
+      "confirm_password_label": "Құпия сөзді растаңыз *",
       "password_match_error": "Құпия сөз және Құпия сөзді растау өрістері сәйкес келмейді",
-      "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен",
-      "heading": "Register with email"
+      "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен"
     },
     "privacy-policy": {
       "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады."
@@ -1590,13 +1590,17 @@
       "end_date_before_start_error": "Аяқталу күні басталу күнінен кейін болуы керек"
     },
     "welcome": {
-      "heading": "Welcome to",
+      "heading": "Қош келдіңіз",
       "country": "Ел",
       "language": "Тіл",
-      "placeholder": "Select",
+      "placeholder": "Таңдау",
       "register_email": "Электронды пошта арқылы тіркеліңіз",
       "register_anonymously": "Электрондық поштасыз тіркелу",
-      "continue_as_guest": "Тіркеусіз жалғастыру"
+      "continue_as_guest": "Тіркеусіз жалғастыру",
+      "already_have_account": "Есептік жазбаңыз бар ма?",
+      "log_in": "Кіру",
+      "client": "Клиент",
+      "poland_description": "uSupport – жастарға (16–24) арналған психикалық денсаулық пен әл-ауқат платформасы."
     },
     "user-guide": {
       "heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -11,15 +11,8 @@ import {
   Button,
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
-import {
-  getCountryFromTimezone,
-  ThemeContext,
-} from "@USupport-components-library/utils";
-import {
-  logoVerticalSvg,
-  logoVerticalDarkSvg,
-  logoVerticalRomaniaPng,
-} from "@USupport-components-library/assets";
+import { getCountryFromTimezone } from "@USupport-components-library/utils";
+import { AuthenticationModalsLogo } from "../";
 
 import "./login.scss";
 
@@ -38,9 +31,6 @@ export const Login = ({
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "login" });
   const queryClient = useQueryClient();
-
-  const { theme } = useContext(ThemeContext);
-  const IS_RO = localStorage.getItem("country") === "RO";
 
   const [data, setData] = useState({
     email: "",
@@ -105,6 +95,7 @@ export const Login = ({
 
   return (
     <Backdrop
+      heading={t("heading")}
       isOpen={isOpen}
       onClose={() => {}}
       hasGoBackArrow={true}
@@ -118,49 +109,40 @@ export const Login = ({
       errorMessage={errors.submit}
       hasCloseIcon={false}
     >
-      <div className="login-modal__content-container">
-        <img
-          src={
-            IS_RO
-              ? logoVerticalRomaniaPng
-              : theme !== "light"
-                ? logoVerticalDarkSvg
-                : logoVerticalSvg
-          }
-          alt="Logo"
-          className="welcome-modal__content-container__logo"
+      <form onSubmit={handleLogin} className="login-modal__content-form">
+        <AuthenticationModalsLogo />
+        <Input
+          label={t("email_label")}
+          name="username"
+          autoComplete="username"
+          onChange={(value) => handleChange("email", value.currentTarget.value)}
+          placeholder={t("email_placeholder")}
+          value={data.email}
         />
-        <form onSubmit={handleLogin}>
-          <Input
-            label={t("email_label")}
-            name="username"
-            autoComplete="username"
-            onChange={(value) =>
-              handleChange("email", value.currentTarget.value)
-            }
-            placeholder={t("email_placeholder")}
-            value={data.email}
-          />
-          <InputPassword
-            classes="login__grid__inputs-item__input--password"
-            label={t("password_label")}
-            name="current-password"
-            autoComplete="current-password"
-            onChange={(value) =>
-              handleChange("password", value.currentTarget.value)
-            }
-            placeholder={t("password_placeholder")}
-            value={data.password}
-          />
-          <Button
-            type="ghost"
-            color="purple"
-            classes="login__grid__forgot-password"
-            label={t("forgot_password_label")}
-            onClick={() => handleForgotPassword()}
-          />
-        </form>
-      </div>
+        <InputPassword
+          label={t("password_label")}
+          name="current-password"
+          autoComplete="current-password"
+          onChange={(value) =>
+            handleChange("password", value.currentTarget.value)
+          }
+          placeholder={t("password_placeholder")}
+          value={data.password}
+        />
+        <Button
+          type="ghost"
+          color="purple"
+          classes="login-modal__content-form__forgot-password"
+          label={t("forgot_password_label")}
+          onClick={() => handleForgotPassword()}
+        />
+        <button
+          type="submit"
+          className="login-modal__content-form__submit-button"
+          aria-hidden="true"
+          disabled={!data.email || !data.password}
+        />
+      </form>
     </Backdrop>
   );
 };

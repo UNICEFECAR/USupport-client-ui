@@ -10,11 +10,6 @@ import {
 } from "@USupport-components-library/src";
 import { languageSvc, userSvc } from "@USupport-components-library/services";
 import {
-  logoVerticalSvg,
-  logoVerticalDarkSvg,
-  logoVerticalRomaniaPng,
-} from "@USupport-components-library/assets";
-import {
   ThemeContext,
   replaceLanguageInUrl,
   getLanguageFromUrl,
@@ -22,6 +17,7 @@ import {
   redirectToUrl,
 } from "@USupport-components-library/utils";
 
+import { AuthenticationModalsLogo } from "../";
 import { useAddCountryEvent, useError } from "#hooks";
 
 import "./welcome.scss";
@@ -54,10 +50,9 @@ export const Welcome = ({
   }, [onOpenRequest]);
   const { t, i18n } = useTranslation("backdrops", { keyPrefix: "welcome" });
   const queryClient = useQueryClient();
-  const { theme, setIsInWelcome } = useContext(ThemeContext);
+  const { setIsInWelcome } = useContext(ThemeContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
-  const IS_RO = localStorage.getItem("country") === "RO";
 
   const addCountryEventMutation = useAddCountryEvent();
 
@@ -244,17 +239,12 @@ export const Welcome = ({
       errorMessage={error}
     >
       <div className="welcome-modal__content-container">
-        <img
-          src={
-            IS_RO
-              ? logoVerticalRomaniaPng
-              : theme !== "light"
-                ? logoVerticalDarkSvg
-                : logoVerticalSvg
-          }
-          alt="Logo"
-          className="welcome-modal__content-container__logo"
-        />
+        <AuthenticationModalsLogo />
+        {selectedCountry === "PL" && (
+          <h4 className="welcome-modal__content-container__pl-description">
+            {t("poland_description")}
+          </h4>
+        )}
         {!languagesQuery.isFetching && countries ? (
           <>
             <DropdownWithLabel
@@ -283,9 +273,7 @@ export const Welcome = ({
             />
           </>
         ) : (
-          <div className="welcome-modal__grid__loading-container">
-            <Loading size="lg" />
-          </div>
+          <Loading padding="6.7rem" />
         )}
 
         <div className="welcome-modal__content-container__buttons-container">

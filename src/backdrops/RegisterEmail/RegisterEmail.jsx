@@ -18,7 +18,7 @@ import {
 import { userSvc } from "@USupport-components-library/services";
 import { validateProperty } from "@USupport-components-library/utils";
 
-import { CodeVerification } from "../";
+import { CodeVerification, AuthenticationModalsLogo } from "../";
 
 import "./register-email.scss";
 
@@ -136,16 +136,6 @@ export const RegisterEmail = ({ isOpen, handleGoBack, handleLogin }) => {
     intervalId.current = interval;
   };
 
-  // const handleGoBack = () => {
-  //   navigate("/register-preview");
-  // };
-
-  // if (isLoggedIn === "loading") return <Loading />;
-  // if (isLoggedIn === true)
-  //   return (
-  //     <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
-  //   );
-
   const schema = Joi.object({
     password: Joi.string()
       .pattern(new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}"))
@@ -206,7 +196,7 @@ export const RegisterEmail = ({ isOpen, handleGoBack, handleLogin }) => {
     <>
       <Backdrop
         isOpen={isOpen}
-        onClose={() => {}} // No-op to prevent closing via overlay click
+        onClose={() => {}}
         hasGoBackArrow={true}
         handleGoBack={handleGoBack}
         hasCloseIcon={false}
@@ -219,6 +209,7 @@ export const RegisterEmail = ({ isOpen, handleGoBack, handleLogin }) => {
         thirdCtaHandleClick={handleLogin}
       >
         <div className="register-email-modal__content-container">
+          <AuthenticationModalsLogo />
           <Input
             label={t("email_label")}
             placeholder="user@mail.com"

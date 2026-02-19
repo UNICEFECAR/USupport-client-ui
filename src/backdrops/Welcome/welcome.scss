@@ -8,11 +8,10 @@
     align-items: center;
     height: 100%;
     padding-bottom: $spacing_2_0;
-    gap: $spacing_2_4;
+    gap: $spacing_2_0;
 
-    &__logo {
-      width: 16rem;
-      margin-inline: auto;
+    &__pl-description {
+      text-align: center;
     }
 
     &__dropdown {
