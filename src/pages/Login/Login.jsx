@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import { Page, Login as LoginBlock } from "#blocks";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle, Loading } from "@USupport-components-library/src";
@@ -18,14 +18,19 @@ import "./login.scss";
 export const Login = () => {
   const { t } = useTranslation("pages", { keyPrefix: "login-page" });
   const { width } = useWindowDimensions();
+  const [searchParams] = useSearchParams();
+  const nextPath = searchParams.get("next");
 
   const isLoggedIn = useIsLoggedIn();
 
   if (isLoggedIn === "loading") return <Loading />;
-  if (isLoggedIn === true)
-    return (
-      <Navigate to={`/client/${localStorage.getItem("language")}/dashboard`} />
-    );
+  if (isLoggedIn === true) {
+    const redirectTo =
+      nextPath && nextPath.startsWith("/client/")
+        ? nextPath
+        : `/client/${localStorage.getItem("language")}/dashboard`;
+    return <Navigate to={redirectTo} replace />;
+  }
 
   return (
     <Page
