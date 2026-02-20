@@ -278,6 +278,7 @@ export const SelectProvider = () => {
         isFiltering={isFiltering}
         selectedBillingType={selectedBillingType}
         setSelectedBillingType={setSelectedBillingType}
+        width={width}
       />
 
       {width < 768 && <RadialCircle color="purple" />}

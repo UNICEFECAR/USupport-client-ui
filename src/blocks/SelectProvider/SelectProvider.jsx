@@ -37,6 +37,7 @@ export const SelectProvider = ({
   isFiltering,
   selectedBillingType,
   setSelectedBillingType,
+  width,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "select-provider" });
   const tPage = useTranslation("pages", {
@@ -277,16 +278,18 @@ export const SelectProvider = ({
           {t("choose-the-provider")}
         </p>
 
-        <ButtonWithIcon
-          label={"Filter"}
-          iconName="filter"
-          iconColor="#ffffff"
-          iconSize="sm"
-          color="purple"
-          size="sm"
-          classes="select-provider__filter-button"
-          // onClick={handleFilterClick}
-        />
+        {width < 768 && (
+          <ButtonWithIcon
+            label={"Filter"}
+            iconName="filter"
+            iconColor="#ffffff"
+            iconSize="sm"
+            color="purple"
+            size="sm"
+            classes="select-provider__filter-button"
+            // onClick={handleFilterClick}
+          />
+        )}
         {(!isCouponTabSelected || activeCoupon) && (
           <InfiniteScroll
             dataLength={providersQuery.data?.pages.length || 0}
