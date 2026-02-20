@@ -1,18 +1,17 @@
-import React, { useMemo, useContext, useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import React, {
+  useMemo,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
+import { Navigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import {
-  RadialCircle,
-  ButtonWithIcon,
-  Button,
-  Modal,
-  Input,
-  Block,
-} from "@USupport-components-library/src";
-import { clientSvc, countrySvc } from "@USupport-components-library/services";
+import { RadialCircle, ButtonWithIcon } from "@USupport-components-library/src";
+import { countrySvc, clientSvc } from "@USupport-components-library/services";
 
 import { useGetProvidersData, useError } from "#hooks";
 import { FilterProviders } from "#backdrops";
@@ -28,11 +27,6 @@ const fetchCountry = async () => {
   return currentCountry?.alpha2 === "KZ" ? true : false;
 };
 
-const POLAND_COUPON = {
-  couponValue: "UNICEF2025",
-  campaignId: "f035657b-daa7-417a-9784-959b042473e7",
-};
-
 /**
  * SelectProvider
  *
@@ -43,13 +37,129 @@ const POLAND_COUPON = {
 export const SelectProvider = () => {
   const { t } = useTranslation("pages", { keyPrefix: "select-provider-page" });
   const { width } = useWindowDimensions();
+  const [searchParams] = useSearchParams();
+  const urlCoupon = searchParams.get("coupon")?.trim() || null;
 
-  const { isTmpUser, activeCoupon, setActiveCoupon } = useContext(RootContext);
-
-  const country = localStorage.getItem("country");
-  const IS_PL = country === "PL";
+  const { isTmpUser, activeCoupon, setActiveCoupon, selectedCountry } =
+    useContext(RootContext);
 
   const { data: isKzCountry } = useQuery(["country-min-price"], fetchCountry);
+
+  // Validate URL coupon if present (takes priority over country default when valid)
+  const urlCouponQuery = useQuery(
+    ["url-coupon", urlCoupon],
+    () => clientSvc.checkIsCouponAvailable(urlCoupon).then((res) => res.data),
+    { enabled: !!urlCoupon, retry: false }
+  );
+  // Determine the default billing type based on country settings (or URL coupon)
+  const getDefaultBillingType = useCallback(() => {
+    if (!selectedCountry) return null;
+
+    const {
+      hasPayments,
+      hasCoupons,
+      hasFreeConsultations,
+      defaultBillingType,
+    } = selectedCountry;
+
+    // If URL has a coupon param, show the coupon tab (so user sees the coupon form)
+    if (urlCoupon && hasCoupons) return "coupon";
+
+    // If defaultBillingType is set and the corresponding option is available, use it
+    if (defaultBillingType) {
+      if (defaultBillingType === "paid" && hasPayments) return "paid";
+      if (defaultBillingType === "coupon" && hasCoupons) return "coupon";
+      if (defaultBillingType === "free" && hasFreeConsultations) return "free";
+    }
+
+    // Fallback to first available option
+    if (hasPayments) return "paid";
+    if (hasCoupons) return "coupon";
+    if (hasFreeConsultations) return "free";
+
+    return null;
+  }, [selectedCountry, urlCoupon]);
+
+  const [selectedBillingType, setSelectedBillingType] = useState(null);
+
+  // Set default billing type when country is loaded (coupon tab when ?coupon= is in URL)
+  useEffect(() => {
+    if (!selectedCountry || selectedBillingType !== null) return;
+    const defaultType = getDefaultBillingType();
+    if (defaultType) setSelectedBillingType(defaultType);
+  }, [selectedCountry, getDefaultBillingType, selectedBillingType]);
+
+  useEffect(() => {
+    if (selectedBillingType !== "coupon") {
+      setActiveCoupon(null);
+    }
+  }, [selectedBillingType, setActiveCoupon]);
+
+  const defaultCouponCode = selectedCountry?.defaultCouponCode;
+  const defaultCouponQuery = useQuery(
+    ["default-coupon", defaultCouponCode],
+    () =>
+      clientSvc
+        .checkIsCouponAvailable(defaultCouponCode)
+        .then((res) => res.data),
+    { enabled: !!defaultCouponCode && !urlCoupon }
+  );
+
+  const safeUrlCouponError = urlCouponQuery.error ?? {
+    response: { data: { error: { message: null } } },
+  };
+
+  const urlCouponErrorData = useError(safeUrlCouponError);
+  const [urlCouponErrorDismissed, setUrlCouponErrorDismissed] = useState(false);
+  const urlCouponErrorMessage =
+    !urlCouponErrorDismissed &&
+    urlCoupon &&
+    urlCouponQuery.isFetched &&
+    !urlCouponQuery.data?.campaign_id
+      ? urlCouponErrorData?.message || t("coupon_not_found_error")
+      : null;
+
+  useEffect(() => {
+    setUrlCouponErrorDismissed(false);
+  }, [urlCoupon]);
+
+  // On coupon tab: apply URL coupon if valid; if URL coupon invalid, clear activeCoupon so input shows URL coupon.
+  // Only use country default when there is no URL coupon.
+  useEffect(() => {
+    if (selectedBillingType !== "coupon") return;
+    setActiveCoupon((current) => {
+      if (urlCoupon) {
+        if (urlCouponQuery.data?.campaign_id) {
+          return {
+            couponValue: urlCoupon,
+            campaignId: urlCouponQuery.data.campaign_id,
+          };
+        }
+        if (urlCouponQuery.isFetched) return null; // URL coupon invalid – clear so input shows urlCoupon only
+        return current; // still validating
+      }
+      if (current) return current; // no URL coupon – keep user's choice
+      if (defaultCouponCode && defaultCouponQuery.data?.campaign_id) {
+        return {
+          couponValue: defaultCouponCode,
+          campaignId: defaultCouponQuery.data.campaign_id,
+        };
+      }
+      return current;
+    });
+  }, [
+    selectedBillingType,
+    defaultCouponCode,
+    defaultCouponQuery.data,
+    urlCoupon,
+    urlCouponQuery.data,
+    urlCouponQuery.isFetched,
+    setActiveCoupon,
+  ]);
+
+  // Don't apply coupon if not on coupon tab
+  const effectiveActiveCoupon =
+    selectedBillingType === "coupon" ? activeCoupon : null;
 
   if (isTmpUser)
     return (
@@ -57,10 +167,6 @@ export const SelectProvider = () => {
     );
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isCouponModalOpen, setIsCouponModalOpen] = useState(false);
-  const [couponValue, setCouponValue] = useState("");
-  const [couponError, setCouponError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const initialFilters = useMemo(() => {
     return {
@@ -79,15 +185,6 @@ export const SelectProvider = () => {
   });
 
   useEffect(() => {
-    const isStaging = window.location.hostname.includes("staging");
-    // || window.location.hostname.includes("localhost");
-    if (IS_PL && !isStaging) {
-      setCouponValue("UNICEF2025");
-      setActiveCoupon(POLAND_COUPON);
-    }
-  }, [IS_PL]);
-
-  useEffect(() => {
     if (isKzCountry) {
       setAllFilters((prev) => ({
         ...prev,
@@ -104,9 +201,10 @@ export const SelectProvider = () => {
     setIsFiltering(false);
   };
   const providersQuery = useGetProvidersData(
-    activeCoupon,
+    effectiveActiveCoupon,
     allFilters,
-    onSuccess
+    onSuccess,
+    selectedBillingType
   );
   const [providersData, setProvidersData] = useState();
 
@@ -129,34 +227,6 @@ export const SelectProvider = () => {
     closeFilter();
   };
 
-  const openCouponModal = () => setIsCouponModalOpen(true);
-  const closeCouponModal = () => setIsCouponModalOpen(false);
-
-  const removeCoupon = () => {
-    setActiveCoupon(null);
-  };
-
-  const handleSubmitCoupon = async () => {
-    setIsLoading(true);
-    try {
-      const { data } = await clientSvc.checkIsCouponAvailable(couponValue);
-
-      if (data?.campaign_id) {
-        setActiveCoupon({
-          couponValue,
-          campaignId: data.campaign_id,
-        });
-        closeCouponModal();
-        setCouponError("");
-      }
-    } catch (err) {
-      const { message: errorMessage } = useError(err);
-      setCouponError(errorMessage);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const providerLanguages = providersQuery.data?.pages
     .flat()
     .map((x) => x.languages)
@@ -172,44 +242,42 @@ export const SelectProvider = () => {
     <Page
       classes="page__select-provider"
       heading={
-        activeCoupon
-          ? t("heading_with_coupon", { coupon: activeCoupon.couponValue })
+        effectiveActiveCoupon
+          ? t("heading_with_coupon", {
+              coupon: effectiveActiveCoupon.couponValue,
+            })
           : t("heading")
       }
-      subheading={t("subheading")}
+      // subheading={t("subheading")}
       showHeadingButtonBelow={width < 768 ? true : false}
       headingButton={
-        <div className="page__select-provider__buttons">
-          <ButtonWithIcon
-            label={t("button_label")}
-            iconName="filter"
-            iconColor="#ffffff"
-            iconSize="sm"
-            color="purple"
-            size="sm"
-            onClick={handleFilterClick}
-          />
-        </div>
+        width < 768 ? null : (
+          <div className="page__select-provider__buttons">
+            <ButtonWithIcon
+              label={t("button_label")}
+              iconName="filter"
+              iconColor="#ffffff"
+              iconSize="sm"
+              color="purple"
+              size="sm"
+              onClick={handleFilterClick}
+            />
+          </div>
+        )
       }
     >
-      <FiltersBlock
-        handleSave={handleFilterSave}
-        t={t}
-        activeCoupon={activeCoupon}
-        removeCoupon={removeCoupon}
-        openCouponModal={openCouponModal}
-        allFilters={allFilters}
-        setAllFilters={setAllFilters}
-        isFiltering={isFiltering}
-        isToggleDisabled={isKzCountry}
-        IS_PL={IS_PL}
-      />
-
       <SelectProviderBlock
         providers={providersData}
-        activeCoupon={activeCoupon}
+        activeCoupon={effectiveActiveCoupon}
+        setActiveCoupon={setActiveCoupon}
+        urlCoupon={urlCoupon}
+        urlCouponErrorMessage={urlCouponErrorMessage}
+        onRemoveCoupon={() => setUrlCouponErrorDismissed(true)}
         isLoading={providersQuery.isFetching}
         providersQuery={providersQuery}
+        isFiltering={isFiltering}
+        selectedBillingType={selectedBillingType}
+        setSelectedBillingType={setSelectedBillingType}
       />
 
       {width < 768 && <RadialCircle color="purple" />}
@@ -223,79 +291,6 @@ export const SelectProvider = () => {
         languages={providerLanguages}
         initialFilters={initialFilters}
       />
-      <Modal
-        isOpen={isCouponModalOpen}
-        closeModal={closeCouponModal}
-        heading={t("modal_coupon_heading")}
-        ctaLabel={t("modal_coupon_button_label")}
-        ctaHandleClick={handleSubmitCoupon}
-        isCtaLoading={isLoading}
-        errorMessage={couponError}
-      >
-        <p className="text">{t("coupon_paragraph")}</p>
-        <p className="text">{t("coupon_paragraph_two")}</p>
-        <div className="page__select-provider__coupon-modal-input">
-          <Input
-            label={t("modal_coupon_input_label")}
-            placeholder={t("modal_coupon_input_placeholder")}
-            value={couponValue}
-            onChange={(e) => setCouponValue(e.target.value)}
-          />
-        </div>
-      </Modal>
     </Page>
-  );
-};
-
-const FiltersBlock = ({
-  handleSave,
-  activeCoupon,
-  removeCoupon,
-  openCouponModal,
-  allFilters,
-  setAllFilters,
-  isToggleDisabled = false,
-  IS_PL,
-  t,
-}) => {
-  const localStorageCountry = localStorage.getItem("country");
-  const SHOW_COUPON = localStorageCountry !== "KZ";
-
-  const handleChange = (field, val) => {
-    const newData = { ...allFilters };
-    newData[field] = val;
-    setAllFilters(newData);
-    handleSave(newData);
-  };
-
-  return (
-    <Block classes="page__select-provider__filters-block">
-      {/* <Input
-        type="number"
-        label={t("max_price")}
-        placeholder={t("max_price")}
-        value={allFilters.maxPrice}
-        onChange={(e) => handleChange("maxPrice", e.target.value)}
-      /> */}
-      {/* <Toggle
-        isToggled={allFilters.onlyFreeConsultation}
-        setParentState={(val) => handleChange("onlyFreeConsultation", val)}
-        label={t("providers_free_consultation_label")}
-        isDisabled={isToggleDisabled}
-      /> */}
-      {SHOW_COUPON && (
-        <div className="page__select-provider__filters-block__coupon-note">
-          <Button
-            label={
-              activeCoupon ? t("remove_coupon_label") : t("button_coupon_label")
-            }
-            size="sm"
-            color="green"
-            onClick={activeCoupon ? removeCoupon : openCouponModal}
-          />
-          {IS_PL && <p className="">*{t("coupon_note")}</p>}
-        </div>
-      )}
-    </Block>
   );
 };
