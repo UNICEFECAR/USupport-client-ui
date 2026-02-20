@@ -39,6 +39,7 @@ import {
 } from "#hooks";
 
 import "./page.scss";
+import { RootContext } from "../../routes/Root/Root";
 
 const kazakhstanCountry = {
   value: "KZ",
@@ -79,7 +80,7 @@ export const Page = ({
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_RO = localStorage.getItem("country") === "RO";
-  const IS_CY = localStorage.getItem("country") === "CY";
+
   // const IS_DEV = import.meta.env.MODE === "development";
   // const IS_STAGING = window.location.href.includes("staging");
   // const IS_CY = localStorage.getItem("country") === "CY";
@@ -93,6 +94,8 @@ export const Page = ({
     cookieState,
     setCookieState,
   } = useContext(ThemeContext);
+  const { setSelectedCountry: setSelectedCountryContext } =
+    useContext(RootContext);
   const { width } = useWindowDimensions();
   const location = useLocation();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
@@ -105,7 +108,7 @@ export const Page = ({
   const token = localStorage.getItem("token");
 
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(
-    !!token && !isTmpUser,
+    !!token && !isTmpUser
   );
 
   let localStorageCountry = localStorage.getItem("country");
@@ -113,7 +116,7 @@ export const Page = ({
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorageLanguage
       ? { value: localStorageLanguage.toUpperCase() }
-      : { value: "EN" },
+      : { value: "EN" }
   );
   const [selectedCountry, setSelectedCountry] = useState();
 
@@ -193,6 +196,11 @@ export const Page = ({
         localName: x.local_name,
         videosActive: x.videos_active,
         podcastsActive: x.podcasts_active,
+        hasPayments: x.has_payments,
+        hasCoupons: x.has_coupons,
+        hasFreeConsultations: x.has_free_consultations,
+        defaultBillingType: x.default_billing_type,
+        defaultCouponCode: x.default_coupon_code,
       };
       return countryObject;
     });
@@ -223,7 +231,7 @@ export const Page = ({
     });
 
     const foundLanguageFromUrl = languages.find(
-      (x) => x.value === languageFromUrl,
+      (x) => x.value === languageFromUrl
     );
     if (foundLanguageFromUrl) {
       localStorage.setItem("language", languageFromUrl);
@@ -246,8 +254,19 @@ export const Page = ({
       staleTime: Infinity,
       cacheTime: 1000 * 60 * 60 * 24, // Keep cached for 24 hours
       enabled: !!selectedCountry,
-    },
+    }
   );
+
+  useEffect(() => {
+    if (countries && selectedCountry) {
+      const countryObject = countries.find(
+        (x) => x.value === selectedCountry.value
+      );
+      if (countryObject) {
+        setSelectedCountryContext(countryObject);
+      }
+    }
+  }, [countries, selectedCountry]);
 
   useEffect(() => {
     const countries = queryClient.getQueryData(["countries"]);
@@ -374,7 +393,7 @@ export const Page = ({
     window.location.hostname === "romania.usupport.online";
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation && IS_RO_SUBDOMAIN,
+    !hasPassedValidation && IS_RO_SUBDOMAIN
   );
   const [passwordError, setPasswordError] = useState("");
 
@@ -391,7 +410,7 @@ export const Page = ({
         queryClient.setQueryData(["hasPassedValidation"], true);
         setIsPasswordModalOpen(false);
       },
-    },
+    }
   );
 
   const addSosCenterClickMutation = useAddSosCenterClick();
