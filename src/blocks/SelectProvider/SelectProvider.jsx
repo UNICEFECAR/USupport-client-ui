@@ -46,11 +46,11 @@ export const SelectProvider = ({
           <p>{t("no_match")}</p>
         </GridItem>
       );
-    return providers?.map((provider, index) => {
+    return providers?.map((provider) => {
       return (
         <GridItem
           md={4}
-          lg={6}
+          lg={4}
           key={provider.providerDetailId}
           classes="select-provider__grid__provider"
         >
