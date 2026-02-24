@@ -15,6 +15,12 @@
       &__grid {
         place-items: center;
 
+        &__empty {
+          display: flex;
+          justify-content: center;
+          text-align: center;
+        }
+
         &__consultation {
           &__item {
             width: calc(100% - 2 * $spacing_1_6);

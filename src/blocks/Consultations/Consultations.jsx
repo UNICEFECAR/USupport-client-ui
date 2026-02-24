@@ -245,13 +245,7 @@ export const Consultations = ({
         </GridItem>
       );
     });
-  }, [
-    filterConsultations,
-    filter,
-    hasPast,
-    onScheduleConsultationClick,
-    t,
-  ]);
+  }, [filterConsultations, filter, onScheduleConsultationClick, t]);
 
   return (
     <Block classes="consultations">

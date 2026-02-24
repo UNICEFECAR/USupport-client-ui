@@ -182,12 +182,14 @@ export const ConsultationsDashboard = ({
                 onClick={handleScheduleConsultation}
                 iconName="calendar"
                 size="lg"
+                isFullWidth
               />
               <NewButton
                 label={t("explore_resources_label")}
                 onClick={() => navigate("/information-portal")}
                 size="lg"
                 type="outline"
+                isFullWidth
               />
             </Box>
           </div>

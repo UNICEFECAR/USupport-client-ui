@@ -60,12 +60,12 @@
           padding: $spacing_2_4;
           display: flex;
           flex-direction: column;
-          gap: $spacing_1_6;
+          gap: $spacing_2_0;
           justify-content: center;
           align-items: center;
 
           @media screen and (min-width: $screen-lg) {
-            padding: $spacing_2_4;
+            padding: $spacing_3_2 $spacing_7_2;
           }
         }
 
