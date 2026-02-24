@@ -40,7 +40,9 @@ export const AuthenticationModalsLogo = ({ classes }) => {
           className="authentication-modals-logo__logo"
         />
       </div>
-      <h3 className="welcome-modal__client-heading">{t("heading")}</h3>
+      <h3 className="authentication-modals-logo__client-heading">
+        {t("heading")}
+      </h3>
     </div>
   );
 };

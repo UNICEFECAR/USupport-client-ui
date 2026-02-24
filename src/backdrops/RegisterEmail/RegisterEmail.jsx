@@ -200,14 +200,13 @@ export const RegisterEmail = ({ isOpen, handleGoBack, handleLogin }) => {
         hasGoBackArrow={true}
         handleGoBack={handleGoBack}
         hasCloseIcon={false}
-        heading={t("heading")}
         ctaLabel={t("register_button")}
         ctaHandleClick={requestEmailOTPMutation.mutate}
         isCtaDisabled={!canContinue}
         isCtaLoading={requestEmailOTPMutation.isLoading}
         thirdCtaLabel={t("login_button_label")}
         thirdCtaHandleClick={handleLogin}
-      topHeaderComponent={<AuthenticationModalsLogo />}
+        topHeaderComponent={<AuthenticationModalsLogo />}
       >
         <div className="register-email-modal__content-container">
           <Input

@@ -7,7 +7,6 @@ import Joi from "joi";
 
 import {
   AccessToken,
-  Icon,
   Input,
   InputPassword,
   TermsAgreement,
@@ -191,7 +190,6 @@ export const RegisterAnonymous = ({
   return (
     <>
       <Backdrop
-        heading={t("heading")}
         isOpen={isOpen}
         onClose={() => {}}
         handleGoBack={handleGoBack}
@@ -213,17 +211,16 @@ export const RegisterAnonymous = ({
             handleRegisterButtonClick();
           }}
         >
-          <AccessToken
-            accessToken={userAccessToken}
-            isLoading={userAccessTokenIsLoading}
-            accessTokenLabel={t("paragraph_1")}
-            handleCopy={handleCopy}
-            name="username"
-            autoComplete="username"
-          />
+          <div className="register-anonymous-modal__content-container__access-token-container">
+            <AccessToken
+              accessToken={userAccessToken}
+              isLoading={userAccessTokenIsLoading}
+              accessTokenLabel={t("paragraph_1")}
+              handleCopy={handleCopy}
+              name="username"
+              autoComplete="username"
+            />
 
-          <div className="register-anonymous__grid__content-item__main-component__copy-container">
-            <Icon name="warning" size="md" />
             <p className="small-text">{t("copy_text")}</p>
           </div>
 

@@ -95,7 +95,6 @@ export const Login = ({
 
   return (
     <Backdrop
-      heading={t("heading")}
       isOpen={isOpen}
       onClose={() => {}}
       hasGoBackArrow={true}
