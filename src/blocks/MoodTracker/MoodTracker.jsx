@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import {
   Block,
   NewButton,
-  Box,
   Textarea,
   Toggle,
   Modal,
@@ -194,7 +193,7 @@ export const MoodTracker = ({
 
   const renderEmojiBox = () => {
     return (
-      <Box liquidGlass classes="mood-tracker__rating-box">
+      <div className="mood-tracker__rating-container">
         <div className="mood-tracker__rating-box__rating">
           {renderEmoticons()}
         </div>
@@ -228,7 +227,7 @@ export const MoodTracker = ({
             {t("how_it_works")}
           </h5>
         )}
-      </Box>
+      </div>
     );
   };
 
