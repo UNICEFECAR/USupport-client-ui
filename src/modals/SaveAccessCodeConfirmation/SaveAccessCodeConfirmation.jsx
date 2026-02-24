@@ -32,7 +32,7 @@ export const SaveAccessCodeConfirmation = ({
 
   const [hasAgreed, setHasAgreed] = useState(false);
   const [hasCopied, setHasCopied] = useState(false);
-  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(true);
 
   const handleCopy = () => {
     setShouldAnimate(false);
@@ -41,12 +41,7 @@ export const SaveAccessCodeConfirmation = ({
   };
 
   const handleCheckboxClick = () => {
-    setHasAgreed(!hasAgreed);
-    if (!hasAgreed && !hasCopied) {
-      setShouldAnimate(true);
-    } else if (hasAgreed) {
-      setShouldAnimate(false);
-    }
+    setHasAgreed((prev) => !prev);
   };
 
   return (
