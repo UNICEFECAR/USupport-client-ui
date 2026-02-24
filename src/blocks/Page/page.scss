@@ -39,17 +39,14 @@
   }
 
   &__header {
-    padding: $spacing_3_2 $spacing_1_6 $spacing_1_6 $spacing_1_6;
+    padding-top: $spacing_3_2;
+    padding-bottom: $spacing_1_6;
 
     @media screen and (min-width: $screen-md) {
       padding-top: $spacing_5_0;
-      padding-left: $spacing_3_6;
-      padding-right: $spacing_3_6;
     }
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_5_0;
-      padding-left: $spacing_11_5;
-      padding-right: $spacing_11_5;
     }
 
     &__text-container {
