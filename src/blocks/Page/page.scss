@@ -203,17 +203,6 @@
   &__subheading-text {
     white-space: pre-line;
     text-align: left;
-    padding-left: $spacing_2_4;
-
-    @media screen and (min-width: $screen-md) {
-      padding-left: $spacing_3_6;
-      padding-right: $spacing_3_6;
-    }
-
-    @media screen and (min-width: $screen-lg) {
-      padding-left: $spacing_11_5;
-      padding-right: $spacing_11_5;
-    }
   }
 
   &__emergency-button {

@@ -281,15 +281,12 @@ export const Page = ({
       const { sex, yearOfBirth, urbanRural } = clientData;
       const pathname = location.pathname.split("/").filter(Boolean);
       const pathnameWithoutLanguage = pathname.slice(2).join("/");
-      // Show RegisterAboutYou modal if profile data is incomplete
-      // and user is not already on the register/about-you route
       if (
         (!sex || !yearOfBirth || !urbanRural) &&
         pathnameWithoutLanguage !== "register/about-you"
       ) {
         setIsRegisterAboutYouModalOpen(true);
       } else if (sex && yearOfBirth && urbanRural) {
-        // Close modal if profile is complete
         setIsRegisterAboutYouModalOpen(false);
       }
     }
@@ -640,7 +637,11 @@ export const Page = ({
             )}
           </>
         )}
-        <p className="page__subheading-text text">{subheading}</p>
+        {subheading && (
+          <Block classes="page__subheading">
+            <p className="page__subheading-text text">{subheading}</p>
+          </Block>
+        )}
         {showHeadingButtonBelow && headingButton && (
           <div className="page__header-button-container">{headingButton}</div>
         )}
