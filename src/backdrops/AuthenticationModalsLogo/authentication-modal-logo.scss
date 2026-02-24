@@ -6,8 +6,17 @@
   flex-direction: column;
   align-items: center;
 
-  &__logo {
-    width: 16rem;
-    margin-inline: auto;
+  &__logo-container {
+    padding: $spacing_1_6 0;
+    width: 100%;
+    background-color: #f0f1f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__client-heading {
+    margin: $spacing_1_6 0;
   }
 }

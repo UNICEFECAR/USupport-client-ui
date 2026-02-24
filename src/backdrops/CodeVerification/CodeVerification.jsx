@@ -34,6 +34,7 @@ export const CodeVerification = ({
   showTimer,
   canRequestNewEmail,
   isMutating,
+  onRegistrationSuccess,
 }) => {
   const { t } = useTranslation("backdrops", { keyPrefix: "code-verification" });
   const navigate = useNavigate();
@@ -81,7 +82,13 @@ export const CodeVerification = ({
 
       window.dispatchEvent(new Event("login"));
       window.dispatchEvent(new Event("token-changed"));
-      navigate("/register/about-you");
+      if (onRegistrationSuccess) {
+        onRegistrationSuccess();
+      } else {
+        // Stay on the current page (e.g. dashboard) after successful registration
+        // instead of redirecting to /register/about-you.
+        navigate("/dashboard");
+      }
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);

@@ -29,7 +29,7 @@ import {
   getLanguageFromUrl,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
-import { Authentication } from "#backdrops";
+import { Authentication, RegisterAboutYou } from "#backdrops";
 import {
   useIsLoggedIn,
   useEventListener,
@@ -89,6 +89,8 @@ export const Page = ({
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+  const [isRegisterAboutYouModalOpen, setIsRegisterAboutYouModalOpen] =
+    useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
@@ -279,18 +281,19 @@ export const Page = ({
       const { sex, yearOfBirth, urbanRural } = clientData;
       const pathname = location.pathname.split("/").filter(Boolean);
       const pathnameWithoutLanguage = pathname.slice(2).join("/");
+      // Show RegisterAboutYou modal if profile data is incomplete
+      // and user is not already on the register/about-you route
       if (
         (!sex || !yearOfBirth || !urbanRural) &&
         pathnameWithoutLanguage !== "register/about-you"
       ) {
-        navigateTo(`/client/${localStorageLanguage}/register/about-you`, {
-          state: {
-            isAnonymous: !!clientData.accessToken,
-          },
-        });
+        setIsRegisterAboutYouModalOpen(true);
+      } else if (sex && yearOfBirth && urbanRural) {
+        // Close modal if profile is complete
+        setIsRegisterAboutYouModalOpen(false);
       }
     }
-  }, [clientData]);
+  }, [clientData, location.pathname]);
 
   const menuPages = [
     {
@@ -477,9 +480,20 @@ export const Page = ({
     window.location.href = `/client/${localStorageLanguage}/dashboard`;
   };
 
+  const isAnonymous = clientData?.accessToken ? true : false;
+
   return (
     <>
       <Authentication isOpen={showAuthenticationBackdrop} />
+      <RegisterAboutYou
+        isOpen={isRegisterAboutYouModalOpen}
+        isAnonymous={isAnonymous}
+        handleGoBack={undefined}
+        onSuccess={() => {
+          setIsRegisterAboutYouModalOpen(false);
+        }}
+        handleLogout={handleLogout}
+      />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -513,6 +527,7 @@ export const Page = ({
           handleLogout={handleLogout}
           openRegistrationModal={() => setIsRegistrationModalOpen(true)}
           renderNotificationsContent={renderNotificationsContent}
+          languageLabel={t("language_label")}
         />
       )}
       <div

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
 import { toast } from "react-toastify";
@@ -29,6 +29,7 @@ import {
 export const NotificationMenu = ({ closePanel }) => {
   const [tabs] = useState(["all", "new", "read"]);
   const [selectedTab, setSelectedTab] = useState("all");
+  const loadMoreRef = useRef(null);
 
   const navigateTo = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "page" });
@@ -119,6 +120,41 @@ export const NotificationMenu = ({ closePanel }) => {
     onMarkAllAsReadSuccess,
     onMarkAllAsReadError,
   );
+
+  useEffect(() => {
+    const sentinel = loadMoreRef.current;
+
+    if (!sentinel) return;
+    if (!notificationsQuery.hasNextPage) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (
+          entry.isIntersecting &&
+          notificationsQuery.hasNextPage &&
+          !notificationsQuery.isFetchingNextPage
+        ) {
+          notificationsQuery.fetchNextPage();
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px 200px 0px",
+        threshold: 0.1,
+      },
+    );
+
+    observer.observe(sentinel);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [
+    notificationsQuery.hasNextPage,
+    notificationsQuery.isFetchingNextPage,
+    selectedTab,
+  ]);
 
   const renderNotificationItem = (notification) => {
     if (!notification.content) return null;
@@ -221,13 +257,9 @@ export const NotificationMenu = ({ closePanel }) => {
           ))
         )}
         {notificationsQuery.hasNextPage && (
-          <NewButton
-            type="text"
-            label={t("notifications_load_more")}
-            onClick={() => notificationsQuery.fetchNextPage()}
-            size="sm"
-          />
+          <div ref={loadMoreRef} style={{ height: "1px", width: "100%" }} />
         )}
+        {notificationsQuery.isFetchingNextPage && <Loading size="md" />}
       </div>
     </div>
   );

@@ -110,11 +110,9 @@ export const RegisterAnonymous = () => {
       localStorage.setItem("refresh-token", refreshToken);
 
       window.dispatchEvent(new Event("login"));
-      navigate("/register/about-you", {
-        state: {
-          isAnonymous: true,
-        },
-      });
+      // Stay on the current page (e.g. dashboard) after successful registration
+      // instead of redirecting to /register/about-you.
+      navigate("/dashboard");
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);

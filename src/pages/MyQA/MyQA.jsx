@@ -217,8 +217,6 @@ export const MyQA = () => {
         showSearch={true}
         searchValue={searchValue}
         onSearchChange={setSearchValue}
-        buttonLabel="See how it works"
-        buttonOnClick={() => setIsHowItWorksOpen(true)}
       />
       <MyQABlock
         handleAskAnonymous={handleAskAnonymous}
@@ -238,6 +236,7 @@ export const MyQA = () => {
         selectedLanguage={selectedLanguage}
         setSelectedLanguage={setSelectedLanguage}
         setShouldFetchQuestions={setShouldFetchQuestions}
+        setIsHowItWorksOpen={setIsHowItWorksOpen}
         searchValue={searchValue}
       />
       {/* <GiveSuggestion type="my-qa" /> */}

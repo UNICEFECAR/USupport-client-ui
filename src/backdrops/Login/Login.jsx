@@ -108,9 +108,9 @@ export const Login = ({
       isCtaLoading={loginMutation.isLoading}
       errorMessage={errors.submit}
       hasCloseIcon={false}
+      topHeaderComponent={<AuthenticationModalsLogo />}
     >
       <form onSubmit={handleLogin} className="login-modal__content-form">
-        <AuthenticationModalsLogo />
         <Input
           label={t("email_label")}
           name="username"

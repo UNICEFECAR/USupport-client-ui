@@ -16,13 +16,7 @@ import {
   isLikedOrDislikedByUser,
   getLikesAndDislikesForContent,
 } from "@USupport-components-library/utils";
-import {
-  Block,
-  Grid,
-  GridItem,
-  CardMedia,
-  Loading,
-} from "@USupport-components-library/src";
+import { Block, CardMedia, Loading } from "@USupport-components-library/src";
 
 import {
   userSvc,
@@ -110,11 +104,8 @@ export const ArticleInformation = () => {
   const articleIdsQuerry = useQuery(["articleIds"], getArticlesIds);
 
   const getSimilarArticles = async () => {
-    if (!articleData?.categoryId) return [];
-
     try {
       let readArticleIds = [];
-      // If no results in current category, get category interactions to try other categories
       let categoryInteractions = [];
       if (!isTmpUser) {
         const { data } = await clientSvc.getCategoryInteractions();
@@ -127,122 +118,127 @@ export const ArticleInformation = () => {
 
       const articles = [];
 
-      // First try current category
-      const currentCategoryResult =
-        await cmsSvc.getRecommendedArticlesForCategory({
-          categoryId: articleData.categoryId,
-          categoryWeight: 1,
-          page: 1,
-          limit: 3,
-          language: i18n.language,
-          excludeIds: readArticleIds,
-          countryArticleIds: articleIdsQuerry.data,
-          tagIds: articleData.labels.map((label) => label.id),
-          ageGroupId: articleData.ageGroupId,
-        });
-
-      if (
-        currentCategoryResult.success &&
-        currentCategoryResult.data?.length > 0
-      ) {
-        articles.push(...currentCategoryResult.data);
-      }
-      if (articles.length >= 3) {
-        const ids = articles.map((article) => article.id);
-        const { likes, dislikes } = await getLikesAndDislikesForContent(
-          ids,
-          "article",
-        );
-        return articles.map((article) => ({
-          ...article,
-          likes: likes.get(article.id),
-          dislikes: dislikes.get(article.id),
-        }));
-      }
-
-      if (categoryInteractions?.length > 0) {
-        // Build category interaction map and sort by weight
-        const categoryInteractionMap = new Map();
-        categoryInteractions.forEach((interaction) => {
-          const {
-            category_id: categoryId,
-            count,
-            tag_ids: tagIds,
-          } = interaction;
-          if (categoryId !== articleData.categoryId) {
-            // Skip current category
-            if (categoryInteractionMap.has(categoryId)) {
-              categoryInteractionMap.set(categoryId, {
-                count: categoryInteractionMap.get(categoryId).count + count,
-                tagIds: [
-                  ...categoryInteractionMap.get(categoryId).tagIds,
-                  ...tagIds,
-                ],
-              });
-            } else {
-              categoryInteractionMap.set(categoryId, {
-                count: count,
-                tagIds: tagIds,
-              });
-            }
-          }
-        });
-
-        // Sort categories by interaction count
-        const sortedCategories = Array.from(categoryInteractionMap.entries())
-          .map(([categoryId, data]) => ({
-            categoryId,
-            categoryWeight: data.count,
-            tagIds: data.tagIds,
-          }))
-          .sort((a, b) => b.categoryWeight - a.categoryWeight);
-
-        // Try each category in order of interaction weight
-        for (const category of sortedCategories) {
-          const result = await cmsSvc.getRecommendedArticlesForCategory({
-            categoryId: category.categoryId,
-            categoryWeight: category.categoryWeight,
+      if (articleData?.categoryId) {
+        const currentCategoryResult =
+          await cmsSvc.getRecommendedArticlesForCategory({
+            categoryId: articleData.categoryId,
+            categoryWeight: 1,
             page: 1,
-            limit: 3 - articles.length,
+            limit: 3,
             language: i18n.language,
             excludeIds: readArticleIds,
             countryArticleIds: articleIdsQuerry.data,
-            tagIds: category.tagIds,
+            tagIds: articleData.labels.map((label) => label.id),
             ageGroupId: articleData.ageGroupId,
           });
 
-          if (result.success && result.data?.length > 0) {
-            articles.push(...result.data);
-            readArticleIds.push(...result.data.map((x) => x.id));
-            if (articles.length >= 3) {
-              return articles;
+        if (
+          currentCategoryResult.success &&
+          currentCategoryResult.data?.length > 0
+        ) {
+          articles.push(...currentCategoryResult.data);
+        }
+        if (articles.length >= 3) {
+          const ids = articles.map((article) => article.id);
+          const { likes, dislikes } = await getLikesAndDislikesForContent(
+            ids,
+            "article",
+          );
+          return articles.map((article) => ({
+            ...article,
+            likes: likes.get(article.id),
+            dislikes: dislikes.get(article.id),
+          }));
+        }
+
+        if (categoryInteractions?.length > 0) {
+          const categoryInteractionMap = new Map();
+          categoryInteractions.forEach((interaction) => {
+            const {
+              category_id: categoryId,
+              count,
+              tag_ids: tagIds,
+            } = interaction;
+            if (categoryId !== articleData.categoryId) {
+              if (categoryInteractionMap.has(categoryId)) {
+                categoryInteractionMap.set(categoryId, {
+                  count: categoryInteractionMap.get(categoryId).count + count,
+                  tagIds: [
+                    ...categoryInteractionMap.get(categoryId).tagIds,
+                    ...tagIds,
+                  ],
+                });
+              } else {
+                categoryInteractionMap.set(categoryId, {
+                  count: count,
+                  tagIds: tagIds,
+                });
+              }
+            }
+          });
+
+          const sortedCategories = Array.from(categoryInteractionMap.entries())
+            .map(([categoryId, data]) => ({
+              categoryId,
+              categoryWeight: data.count,
+              tagIds: data.tagIds,
+            }))
+            .sort((a, b) => b.categoryWeight - a.categoryWeight);
+
+          for (const category of sortedCategories) {
+            const result = await cmsSvc.getRecommendedArticlesForCategory({
+              categoryId: category.categoryId,
+              categoryWeight: category.categoryWeight,
+              page: 1,
+              limit: 3 - articles.length,
+              language: i18n.language,
+              excludeIds: readArticleIds,
+              countryArticleIds: articleIdsQuerry.data,
+              tagIds: category.tagIds,
+              ageGroupId: articleData.ageGroupId,
+            });
+
+            if (result.success && result.data?.length > 0) {
+              articles.push(...result.data);
+              readArticleIds.push(...result.data.map((x) => x.id));
+              if (articles.length >= 3) {
+                return articles;
+              }
             }
           }
         }
       }
 
-      // If still no results, fall back to newest articles
-      const { data: newest } = await cmsSvc.getArticles({
-        limit: 3 - articles.length,
-        sortBy: "createdAt",
-        sortOrder: "desc",
-        locale: i18n.language,
-        excludeIds: readArticleIds,
-        populate: true,
-        ids: articleIdsQuerry.data,
-        ageGroupId: articleData.ageGroupId,
-      });
-      const combinedArticles = [...articles, ...newest.data];
-      const combinedArticlesIds = combinedArticles.map((article) => article.id);
-      const {
-        articleLikes: combinedArticlesLikes,
-        articleDislikes: combinedArticlesDislikes,
-      } = await getLikesAndDislikesForContent(combinedArticlesIds, "article");
+      if (articles.length < 3) {
+        const { data: newest } = await cmsSvc.getArticles({
+          limit: 3 - articles.length,
+          sortBy: "createdAt",
+          sortOrder: "desc",
+          locale: i18n.language,
+          excludeIds: readArticleIds,
+          populate: true,
+          ids: articleIdsQuerry.data,
+          ...(articleData?.ageGroupId && {
+            ageGroupId: articleData.ageGroupId,
+          }),
+        });
+        if (newest?.data?.length > 0) {
+          articles.push(...newest.data);
+        }
+      }
 
-      return combinedArticles.map((article) => ({
+      if (articles.length === 0) return [];
+
+      const articleIds = articles.map((article) => article.id);
+      const { likes, dislikes } = await getLikesAndDislikesForContent(
+        articleIds,
+        "article",
+      );
+
+      return articles.map((article) => ({
         ...article,
-        likes: combinedArticlesLikes.get(article.id),
-        dislikes: combinedArticlesDislikes.get(article.id),
+        likes: likes?.get(article.id),
+        dislikes: dislikes?.get(article.id),
       }));
     } catch (error) {
       console.error("Error fetching similar articles:", error);
@@ -260,10 +256,7 @@ export const ArticleInformation = () => {
       !isFetchingArticleData &&
       !articleIdsQuerry.isLoading &&
       articleIdsQuerry.data?.length > 0 &&
-      articleData &&
-      articleData.categoryId
-        ? true
-        : false,
+      !!articleData,
   });
 
   const onArticleClick = () => {
@@ -278,98 +271,110 @@ export const ArticleInformation = () => {
 
   const isLoading = isFetchingArticleData || isArticleContentEngagementsLoading;
 
+  const renderSidebar = () => {
+    if (!isMoreArticlesLoading && moreArticles?.length > 0) {
+      return (
+        <aside className="page__article-information__sidebar">
+          <h4 className="page__article-information__sidebar__heading">
+            {t("heading")}
+          </h4>
+          {moreArticles.map((article, index) => {
+            const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+              contentType: "article",
+              contentData: article,
+              userEngagements: userContentEngagements,
+            });
+            const articleData = destructureArticleData(
+              article.data ? article.data : article,
+            );
+
+            return (
+              <CardMedia
+                key={index}
+                type="portrait"
+                size="sm"
+                title={articleData.title}
+                image={
+                  articleData.imageMedium ||
+                  articleData.imageThumbnail ||
+                  articleData.imageSmall
+                }
+                description={articleData.description}
+                labels={articleData.labels}
+                creator={articleData.creator}
+                readingTime={articleData.readingTime}
+                categoryName={articleData.categoryName}
+                likes={articleData.likes}
+                dislikes={articleData.dislikes}
+                isLikedByUser={isLiked}
+                isDislikedByUser={isDisliked}
+                t={t}
+                onClick={() => {
+                  navigate(
+                    `/information-portal/article/${
+                      articleData.id
+                    }/${createArticleSlug(articleData.title)}`,
+                  );
+                  onArticleClick();
+                }}
+              />
+            );
+          })}
+        </aside>
+      );
+    }
+
+    if (!moreArticles && isMoreArticlesLoading && isMoreArticlesFetching) {
+      return (
+        <aside className="page__article-information__sidebar">
+          <Loading size="lg" />
+        </aside>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <Page classes="page__article-information">
-      {articleData && !isLoading ? (
-        <ArticleView
-          articleData={{
-            ...articleData,
-            likes: articleContentEngagements?.likes || 0,
-            dislikes: articleContentEngagements?.dislikes || 0,
-            contentRating: {
-              isLikedByUser: isLiked,
-              isDislikedByUser: isDisliked,
-            },
-          }}
-          t={t}
-          language={i18n.language}
-          navigate={navigate}
-          isTmpUser={isTmpUser}
-        />
-      ) : isFetched && !isLoading ? (
-        <h3 className="page__article-information__no-results">
-          {t("not_found")}
-        </h3>
-      ) : (
-        <Loading size="lg" />
-      )}
+      <Block classes="page__article-information__block">
+        <div className="page__article-information__layout">
+          <div className="page__article-information__main">
+            {articleData && !isLoading ? (
+              <ArticleView
+                articleData={{
+                  ...articleData,
+                  likes: articleContentEngagements?.likes || 0,
+                  dislikes: articleContentEngagements?.dislikes || 0,
+                  contentRating: {
+                    isLikedByUser: isLiked,
+                    isDislikedByUser: isDisliked,
+                  },
+                }}
+                t={t}
+                language={i18n.language}
+                navigate={navigate}
+                isTmpUser={isTmpUser}
+              />
+            ) : isFetched && !isLoading ? (
+              <h3 className="page__article-information__no-results">
+                {t("not_found")}
+              </h3>
+            ) : (
+              <Loading size="lg" />
+            )}
+          </div>
+          {renderSidebar()}
+        </div>
 
-      {!isMoreArticlesLoading && moreArticles.length > 0 && (
-        <Block classes="page__article-information__more-articles">
-          <Grid classes="page__article-information__more-articles__main-grid">
-            <GridItem md={8} lg={12} classes="more-articles__heading-item">
-              <h4>{t("heading")}</h4>
-            </GridItem>
-            {moreArticles.map((article, index) => {
-              const { isLiked, isDisliked } = isLikedOrDislikedByUser({
-                contentType: "article",
-                contentData: article,
-                userEngagements: userContentEngagements,
-              });
-              const articleData = destructureArticleData(
-                article.data ? article.data : article,
-              );
-
-              return (
-                <GridItem
-                  classes="page__article-information__more-articles-card"
-                  key={index}
-                >
-                  <CardMedia
-                    type="portrait"
-                    size="sm"
-                    style={{ gridColumn: "span 4" }}
-                    title={articleData.title}
-                    image={
-                      articleData.imageMedium ||
-                      articleData.imageThumbnail ||
-                      articleData.imageSmall
-                    }
-                    description={articleData.description}
-                    labels={articleData.labels}
-                    creator={articleData.creator}
-                    readingTime={articleData.readingTime}
-                    categoryName={articleData.categoryName}
-                    likes={articleData.likes}
-                    dislikes={articleData.dislikes}
-                    isLikedByUser={isLiked}
-                    isDislikedByUser={isDisliked}
-                    t={t}
-                    onClick={() => {
-                      navigate(
-                        `/information-portal/article/${
-                          articleData.id
-                        }/${createArticleSlug(articleData.title)}`,
-                      );
-                      onArticleClick();
-                    }}
-                  />
-                </GridItem>
-              );
-            })}
-          </Grid>
-        </Block>
-      )}
-      {!moreArticles && isMoreArticlesLoading && isMoreArticlesFetching && (
-        <Loading size="lg" />
-      )}
-      {!moreArticles?.length &&
-        !isMoreArticlesLoading &&
-        isMoreArticlesFetched && (
-          <h3 className="page__article-information__no-results">
-            {t("no_results")}
-          </h3>
-        )}
+        {!moreArticles?.length &&
+          !isMoreArticlesLoading &&
+          isMoreArticlesFetched && (
+            <h3 className="page__article-information__no-results">
+              {t("no_results")}
+            </h3>
+          )}
+      </Block>
     </Page>
   );
 };

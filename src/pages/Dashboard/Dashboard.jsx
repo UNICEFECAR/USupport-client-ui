@@ -10,7 +10,6 @@ import {
   ConsultationsDashboard,
   ArticlesDashboard,
   BaselineAssessmentDashboard,
-  DashboardHero,
   DownloadApp,
 } from "#blocks";
 
@@ -303,7 +302,7 @@ export const Dashboard = () => {
         />
       )}
       <div className="page__dashboard__content">
-        <DashboardHero handleOpenUserGuide={openUserGuide} />
+        {/* <DashboardHero handleOpenUserGuide={openUserGuide} /> */}
         {/* <MascotWelcomeHeader
           nextConsultation={
             upcomingConsultations ? upcomingConsultations[0] : null
@@ -320,6 +319,7 @@ export const Dashboard = () => {
           isTmpUser={isTmpUser || !isAuthenticated}
           clientData={clientData || {}}
           openRequireDataAgreement={openRequireDataAgreement}
+          openUserGuide={openUserGuide}
         />
         {IS_RO ? (
           <>

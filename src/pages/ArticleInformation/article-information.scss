@@ -3,25 +3,61 @@
 .page__article-information {
   @include full-height-page-navbar;
 
-  & .article-view {
-    margin-bottom: $spacing_2_2;
+  &__block {
+    overflow: visible;
   }
 
-  &__more-articles {
-    padding-top: $spacing_4_0;
+  &__layout {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: $screen-lg) {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: $spacing_4_0;
+    }
+  }
+
+  &__main {
+    flex: 1;
+    min-width: 0;
+
+    .article-view {
+      margin-bottom: 0;
+      padding: 0;
+    }
+  }
+
+  &__sidebar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $spacing_2_4;
+    padding-top: $spacing_2_0;
     padding-bottom: $spacing_5_6;
-
-    &__main-grid {
-      grid-gap: $spacing_2_4;
-    }
-
-    &__article-card {
-      text-align: left;
-    }
-  }
-
-  &__more-articles-card {
     text-align: left;
+
+    @media screen and (min-width: $screen-lg) {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      width: 32rem;
+      min-width: 32rem;
+      padding-top: $spacing_1_6;
+    }
+
+    &__heading {
+      width: 100%;
+      margin-bottom: $spacing_0_8;
+    }
+
+    .card-media {
+      overflow: visible;
+
+      @media screen and (max-width: $screen-lg) {
+        flex: 1 1 calc(33.333% - #{$spacing_2_4});
+        min-width: 25rem;
+      }
+    }
   }
 
   &__no-results {

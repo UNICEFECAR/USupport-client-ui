@@ -4,60 +4,151 @@
   padding-top: $spacing_4_8;
   padding-bottom: $spacing_6_4;
 
-  &__heading {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    > h4 {
-      text-align: left;
+  &__box {
+    &--no-consultations {
+      width: 50%;
     }
 
-    > h5 {
-      font-weight: 500;
-    }
+    &__content {
+      display: flex;
+      flex-direction: column;
 
-    .view-all-button {
-      @include themify($themes, "color", "color_6a4ffb_8c90eb");
-      cursor: pointer;
-      padding: $spacing_1_6 0;
+      @media screen and (min-width: $screen-lg) {
+        flex-direction: row;
+      }
+
+      &__part {
+        padding: $spacing_3_2;
+
+        @media screen and (min-width: $screen-lg) {
+          width: 100%;
+
+          &:not(
+            .consultations-dashboard__box__content__part--no-consultations
+          ) {
+            width: calc(50% - 2 * $spacing_3_2);
+          }
+        }
+
+        & h3 {
+          text-align: left;
+          font-weight: 300;
+          letter-spacing: 0.01em;
+        }
+
+        &:first-child {
+          border-bottom: 2px solid $color_gray_ea;
+
+          @media screen and (min-width: $screen-lg) {
+            border-bottom: none;
+            border-right: 2px solid $color_gray_ea;
+          }
+        }
+
+        &--no-consultations {
+          &:first-child {
+            border-bottom: none;
+
+            @media screen and (min-width: $screen-lg) {
+              border-right: none;
+            }
+          }
+        }
+
+        &__need-support-box {
+          margin-top: $spacing_2_4;
+          padding: $spacing_2_4;
+          display: flex;
+          flex-direction: column;
+          gap: $spacing_1_6;
+          justify-content: center;
+          align-items: center;
+
+          @media screen and (min-width: $screen-lg) {
+            padding: $spacing_2_4;
+          }
+        }
+
+        &__consultation {
+          width: 100%;
+          height: calc(100% - $spacing_3_6);
+          padding-top: $spacing_2_4;
+
+          & .consultation {
+            width: calc(100% - $spacing_2_4);
+          }
+
+          @media screen and (min-width: $screen-lg) {
+            .consultation {
+              height: calc(100% - 2 * $spacing_2_4);
+            }
+          }
+        }
+      }
     }
   }
 
-  &__button-container {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    margin-top: $spacing_2_0;
-    padding-bottom: $spacing_1_6;
-  }
+  // &__heading {
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: space-between;
+  //   align-items: center;
 
-  &__video-container {
-    margin: $spacing_2_0 auto;
-    width: 100%;
-    max-width: $screen-md;
-  }
+  //   > h4 {
+  //     text-align: left;
+  //   }
 
-  &__scroll-container {
-    display: flex;
-    overflow-x: auto;
-    gap: $spacing_1_6;
-    padding-bottom: $spacing_0_8;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  //   > h5 {
+  //     font-weight: 500;
+  //   }
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  //   .view-all-button {
+  //     @include themify($themes, "color", "color_6a4ffb_8c90eb");
+  //     cursor: pointer;
+  //     padding: $spacing_1_6 0;
+  //   }
+  // }
 
-    &__item {
-      flex: 0 0 auto;
-    }
-  }
+  // &__button-container {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-items: center;
+  //   align-items: center;
+  //   margin-top: $spacing_2_0;
+  //   padding-bottom: $spacing_1_6;
+  // }
 
-  &__schedule-consultation-button {
-    margin: $spacing_2_0 auto 0;
+  // &__video-container {
+  //   margin: $spacing_2_0 auto;
+  //   width: 100%;
+  //   max-width: $screen-md;
+  // }
+
+  // &__scroll-container {
+  //   display: flex;
+  //   overflow-x: auto;
+  //   gap: $spacing_1_6;
+  //   padding-bottom: $spacing_0_8;
+  //   -webkit-overflow-scrolling: touch;
+  //   scrollbar-width: none;
+
+  //   &::-webkit-scrollbar {
+  //     display: none;
+  //   }
+
+  //   &__item {
+  //     flex: 0 0 auto;
+  //   }
+  // }
+
+  // &__schedule-consultation-button {
+  //   margin: $spacing_2_0 auto 0;
+  // }
+
+  &__no-consultations {
+    padding-top: $spacing_2_4;
+    margin: 0;
+    @include themify($themes, "color", "color_6a4ffb_8c90eb");
+    font-size: 0.875rem;
   }
 }

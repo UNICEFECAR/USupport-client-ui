@@ -3,6 +3,21 @@
 .my-qa {
   padding-top: $spacing_3_2;
 
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: $spacing_2_4;
+
+    &__button {
+      @media screen and (min-width: $screen-md) {
+        min-width: 34.4rem;
+        max-width: 34.4rem;
+      }
+    }
+  }
+
   &__categories-item {
     overflow-x: auto;
     padding-top: $spacing_1_0;

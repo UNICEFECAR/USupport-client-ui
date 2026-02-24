@@ -69,9 +69,9 @@ export const ForgotPassword = ({ isOpen, handleGoBack }) => {
         isCtaDisabled={canContinue}
         isCtaLoading={loading}
         errorMessage={errors.submit}
+        topHeaderComponent={<AuthenticationModalsLogo />}
       >
         <div className="forgot-password-modal__content-container">
-          <AuthenticationModalsLogo />
           <Input
             label={t("input_email_label")}
             value={data.email}

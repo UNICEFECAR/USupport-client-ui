@@ -12,8 +12,8 @@ import {
   Answer,
   Loading,
   Dropdown,
+  Icon,
 } from "@USupport-components-library/src";
-import { useWindowDimensions } from "@USupport-components-library/utils";
 
 import { useEventListener, useGetLanguages, useGetQuestionsTags } from "#hooks";
 
@@ -41,10 +41,10 @@ export const MyQA = ({
   selectedLanguage,
   setSelectedLanguage,
   setShouldFetchQuestions,
+  setIsHowItWorksOpen,
   searchValue,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "my-qa" });
-  const { width } = useWindowDimensions();
   const navigate = useNavigate();
 
   const { data: languages } = useGetLanguages();
@@ -191,6 +191,23 @@ export const MyQA = ({
 
   return (
     <Block classes="my-qa">
+      <div>
+        <div className="my-qa__header">
+          <div
+            className="page__header__text-container__go-back"
+            onClick={() => navigate(-1)}
+          >
+            <Icon name="arrow-chevron-back" size="md" color="#20809E" />
+            <p>{t("go_back")}</p>
+          </div>
+          <NewButton
+            size="lg"
+            label={t("how_it_works")}
+            onClick={setIsHowItWorksOpen}
+            classes="my-qa__header__button"
+          />
+        </div>
+      </div>
       <Grid>
         <GridItem xs={4} md={8} lg={12}>
           <Grid classes="my-qa__tabs-grid">

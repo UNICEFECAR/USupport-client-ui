@@ -269,6 +269,7 @@
     "consultations": {
       "upcoming_tab_label": "Предстоящие",
       "past_tab_label": "Прошлые",
+      "schedule_button_label": "Запланировать консультацию",
       "sunday": "Вс",
       "monday": "Пн",
       "tuesday": "Вт",

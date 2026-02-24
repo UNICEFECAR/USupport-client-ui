@@ -269,6 +269,7 @@
     "consultations": {
       "upcoming_tab_label": "Nadchodzące",
       "past_tab_label": "Wcześniejsze",
+      "schedule_button_label": "Zaplanuj konsultację",
       "sunday": "Niedz.",
       "monday": "Pon.",
       "tuesday": "Wt.",

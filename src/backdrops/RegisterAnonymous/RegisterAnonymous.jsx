@@ -204,8 +204,8 @@ export const RegisterAnonymous = ({
         isCtaLoading={registerMutation.isLoading}
         thirdCtaLabel={t("login_button_label")}
         thirdCtaHandleClick={() => handleLoginRedirect()}
+        topHeaderComponent={<AuthenticationModalsLogo />}
       >
-        <AuthenticationModalsLogo />
         <form
           className="register-anonymous-modal__content-container"
           onSubmit={(e) => {

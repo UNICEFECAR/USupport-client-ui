@@ -8,47 +8,16 @@
     background-color: #193246;
   }
 
+  &__tabs-block {
+    padding-top: $spacing_6_0;
+    text-align: left;
+  }
+
   &__tabs-container {
-    margin-top: $spacing_6_0;
     margin-inline: auto;
 
     &__inner {
       display: flex;
-    }
-  }
-
-  &__content-heading {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: $spacing_1_6;
-
-    > h4 {
-      text-align: left;
-    }
-  }
-
-  & .view-all-button {
-    @include themify($themes, "color", "color_6a4ffb_8c90eb");
-    cursor: pointer;
-    padding: $spacing_1_6 0;
-  }
-
-  & h5.view-all-button {
-    font-weight: 500;
-  }
-
-  &__block {
-    text-align: left;
-  }
-
-  &__block__grid {
-    padding-top: $spacing_2_0;
-
-    @media screen and (min-width: $screen-md) {
-      padding-top: $spacing_2_4;
     }
   }
 

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { toast } from "react-toastify";
@@ -9,12 +9,44 @@ import {
   GridItem,
   TabsUnderlined,
   Consultation,
+  NewButton,
 } from "@USupport-components-library/src";
 import { ONE_HOUR } from "@USupport-components-library/utils";
 
 import { useGetAllConsultations, useRejectConsultation } from "#hooks";
 
 import "./consultations.scss";
+
+/**
+ * Get upcoming consultations (not yet finished)
+ */
+const getUpcomingConsultations = (consultations, currentDateTs) => {
+  return consultations
+    ?.filter((consultation) => {
+      const endTime = consultation.timestamp + ONE_HOUR;
+      return (
+        consultation.timestamp >= currentDateTs ||
+        (currentDateTs >= consultation.timestamp && currentDateTs <= endTime)
+      );
+    })
+    .sort((a, b) => a.timestamp - b.timestamp);
+};
+
+/**
+ * Get past consultations (finished)
+ */
+const getPastConsultations = (consultations, currentDateTs) => {
+  return consultations
+    ?.filter((consultation) => {
+      const endTime = consultation.timestamp + ONE_HOUR;
+      return (
+        endTime < currentDateTs &&
+        (consultation.status === "finished" ||
+          consultation.status === "scheduled")
+      );
+    })
+    .sort((a, b) => b.timestamp - a.timestamp);
+};
 
 /**
  * Consultations
@@ -27,6 +59,7 @@ export const Consultations = ({
   openEditConsultation,
   openJoinConsultation,
   acceptConsultation,
+  onScheduleConsultationClick,
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "consultations" });
@@ -49,6 +82,41 @@ export const Consultations = ({
   };
 
   const consultationsQuery = useGetAllConsultations();
+  const hasAutoTriggeredRef = useRef(false);
+
+  const currentDateTs = new Date().getTime();
+  const consultations = consultationsQuery.data || [];
+  const upcomingConsultations = getUpcomingConsultations(
+    consultations,
+    currentDateTs
+  );
+  const pastConsultations = getPastConsultations(
+    consultations,
+    currentDateTs
+  );
+  const hasUpcoming = upcomingConsultations?.length > 0;
+  const hasPast = pastConsultations?.length > 0;
+
+  useEffect(() => {
+    if (
+      onScheduleConsultationClick &&
+      !consultationsQuery.isLoading &&
+      consultationsQuery.data &&
+      !hasUpcoming &&
+      !hasPast &&
+      !hasAutoTriggeredRef.current
+    ) {
+      hasAutoTriggeredRef.current = true;
+      onScheduleConsultationClick();
+    }
+  }, [
+    consultationsQuery.isLoading,
+    consultationsQuery.data,
+    hasUpcoming,
+    hasPast,
+    onScheduleConsultationClick,
+  ]);
+
   const handleTabClick = (index) => {
     const optionsCopy = [...tabsOptions];
 
@@ -126,13 +194,22 @@ export const Consultations = ({
     if (filteredConsultations?.length === 0)
       return (
         <GridItem md={8} lg={12}>
-          <p>
-            {t(
-              filter === "upcoming"
-                ? "no_upcoming_consultations"
-                : "no_past_consultations"
-            )}
-          </p>
+          {filter === "upcoming" && hasPast && onScheduleConsultationClick ? (
+            <NewButton
+              label={t("schedule_button_label")}
+              onClick={onScheduleConsultationClick}
+              iconName="calendar"
+              size="lg"
+            />
+          ) : (
+            <p>
+              {t(
+                filter === "upcoming"
+                  ? "no_upcoming_consultations"
+                  : "no_past_consultations"
+              )}
+            </p>
+          )}
         </GridItem>
       );
     return filteredConsultations?.map((consultation, index) => {
@@ -168,7 +245,13 @@ export const Consultations = ({
         </GridItem>
       );
     });
-  }, [consultationsQuery.data, filter]);
+  }, [
+    filterConsultations,
+    filter,
+    hasPast,
+    onScheduleConsultationClick,
+    t,
+  ]);
 
   return (
     <Block classes="consultations">

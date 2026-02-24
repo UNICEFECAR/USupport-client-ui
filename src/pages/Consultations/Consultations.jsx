@@ -225,6 +225,7 @@ export const Consultations = () => {
           openEditConsultation={openEditConsultation}
           acceptConsultation={acceptConsultation}
           openRequireDataAgreement={openRequireDataAgreement}
+          onScheduleConsultationClick={handleScheduleConsultationClick}
         />
       )}
       {selectedConsultation && (

@@ -363,7 +363,6 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
                 <Icon
                   color={theme === "light" ? "#66768d" : "#ffffff"}
                   name="download"
-                  size="sm"
                 />
               )}
             </div>
@@ -371,7 +370,6 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
               <Icon
                 color={theme === "light" ? "#66768d" : "#ffffff"}
                 name="share"
-                size="sm"
               />
             </div>
           </div>

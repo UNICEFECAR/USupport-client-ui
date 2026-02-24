@@ -67,7 +67,8 @@
       "notifications_consultation_remind_start_48_hours_before": "Your consultation with <0>{{providerName}}</0> is starting in 48 hours",
       "all": "All",
       "new": "New",
-      "read": "Read"
+      "read": "Read",
+      "language_label": "Language"
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
@@ -167,7 +168,9 @@
       "sex_placeholder": "Enter your sex",
       "year_of_birth_placeholder": "Enter your year of birth",
       "living_place_placeholder": "Enter your living place",
-      "parent": "Parent"
+      "parent": "Parent",
+      "logout_button_label": "Logout",
+      "heading": "Welcome to"
     },
     "register-anonymous": {
       "nickname_label": "Nickname *",
@@ -187,7 +190,7 @@
       "confirm_password_label": "Confirm password *",
       "password_match_error": "The Password and Confirm Password fields do not match",
       "age_terms_agreement_text_1": "I am over {{age}} years old",
-      "heading": "Welcome to"
+      "heading": "Welcome to Client Portal"
     },
     "register-support": {
       "button_continue_label": "Continue",
@@ -269,6 +272,7 @@
     "consultations": {
       "upcoming_tab_label": "Upcoming",
       "past_tab_label": "Past",
+      "schedule_button_label": "Schedule a consultation",
       "sunday": "Sunday",
       "monday": "Monday",
       "tuesday": "Tuesday",
@@ -512,7 +516,9 @@
       "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time",
       "dummy_provider_1": "Dr. Smith",
       "dummy_provider_2": "Dr. Johnson",
-      "dummy_provider_3": "Dr. Williams"
+      "dummy_provider_3": "Dr. Williams",
+      "explore_resources_label": "Explore resources",
+      "heading_need_support": "Need support?"
     },
     "mood-tracker": {
       "happy": "Happy",
@@ -520,6 +526,7 @@
       "sad": "Sad",
       "depressed": "Depressed",
       "worried": "Worried",
+      "welcome-heading": "Welcome",
       "heading": "How are you feeling today?",
       "mood_tracker": "Mood Tracker",
       "mood_tracker_long": "Study your mood tracker",
@@ -533,7 +540,7 @@
       "check_out": "Check out"
     },
     "mascot-welcome-header": {
-      "welcome": "Welcome back {{name}}!",
+      "welcome": "Welcome {{name}}!",
       "no_registration_heading": "You are using the app without registration",
       "no_registration_subheading": "To use all the features of the app you need to have an anonymous or regular account.",
       "create_account_button": "Create an account",
@@ -581,6 +588,12 @@
       "number_of_more_options": "{{count}} more",
       "read": "Read",
       "show_more": "Show more"
+    },
+    "most-read-articles": {
+      "heading": "Most Read Article",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}"
     },
     "mood-tracker-history": {
       "heading": "Overall you felt {{feeling}} in the last 30 days",
@@ -740,7 +753,9 @@
       "no_answers_found": "There are no answered questions",
       "language": "Language",
       "all_languages": "All languages",
-      "date_answered": "on {{date}}"
+      "date_answered": "on {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "videos": {
       "view_more": "View more",
@@ -1006,7 +1021,7 @@
       "view_more": "View more"
     },
     "dashboard-hero": {
-      "heading": "Welcome back",
+      "heading": "Welcome",
       "user_guide": "User Guide",
       "next_consultation": "Next consultation:",
       "change_button_label": "Change",
@@ -1145,6 +1160,7 @@
       "export_failed": "Export failed. Please try again."
     },
     "information-portal": {
+      "go_back": "Go back",
       "heading": "Information portal",
       "subheading": "Here you can explore everything you need to improve your mental health",
       "search": "Search",
@@ -1439,7 +1455,7 @@
   },
   "backdrops": {
     "welcome": {
-      "heading": "Welcome to",
+      "heading": "Welcome to Client Portal",
       "country": "Country",
       "language": "Language",
       "placeholder": "Select",

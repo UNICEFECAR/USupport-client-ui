@@ -508,8 +508,8 @@ export const ArticlesDashboard = () => {
                   classes="articles-dashboard__show-more-item"
                 >
                   <NewButton
+                    size="lg"
                     classes="articles-dashboard__show-more-button"
-                    type="white"
                     onClick={() => navigate("/information-portal/articles")}
                   >
                     {t("show_more")}

@@ -11,6 +11,7 @@ import {
 } from "@USupport-components-library/utils";
 import {
   Block,
+  Box,
   Loading,
   Consultation,
   VideoPlayer,
@@ -36,7 +37,7 @@ export const ConsultationsDashboard = ({
   isLoggedIn,
 }) => {
   const navigate = useNavigate();
-  const { width } = useWindowDimensions();
+  // const { width } = useWindowDimensions();
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
   const { cookieState, setCookieState } = useContext(ThemeContext);
 
@@ -104,11 +105,11 @@ export const ConsultationsDashboard = ({
       : upcomingConsultations;
 
   const renderConsultations = () => {
-    return consultationsToShow?.slice(0, 3).map((consultation) => {
+    return consultationsToShow?.slice(0, 1).map((consultation) => {
       return (
         <div
-          className="consultations-dashboard__scroll-container__item"
           key={consultation.consultationId}
+          className="consultations-dashboard__box__content__part__consultation"
         >
           <Consultation
             renderIn="client"
@@ -120,6 +121,7 @@ export const ConsultationsDashboard = ({
             overview={!isLoggedIn ? true : false}
             t={t}
             toast={toast}
+            liquidGlass
           />
         </div>
       );
@@ -144,7 +146,54 @@ export const ConsultationsDashboard = ({
 
   return (
     <Block classes="consultations-dashboard">
-      <div className="consultations-dashboard__heading">
+      <Box
+        classes={[
+          "consultations-dashboard__box",
+          !upcomingConsultations ||
+            (upcomingConsultations.length === 0 &&
+              "consultations-dashboard__box--no-consultations"),
+        ]}
+        liquidGlass
+      >
+        <div className="consultations-dashboard__box__content">
+          {(isLoading ||
+            !isLoggedIn ||
+            (upcomingConsultations && upcomingConsultations.length > 0)) && (
+            <div className={["consultations-dashboard__box__content__part"]}>
+              <h3 className="">{t("heading")}</h3>
+              {isLoading ? <Loading size="lg" /> : renderConsultations()}
+            </div>
+          )}
+          <div
+            className={[
+              "consultations-dashboard__box__content__part",
+              !upcomingConsultations ||
+                (upcomingConsultations.length === 0 &&
+                  "consultations-dashboard__box__content__part--no-consultations"),
+            ].join(" ")}
+          >
+            <h3 className="">{t("heading_need_support")}</h3>
+            <Box
+              classes="consultations-dashboard__box__content__part__need-support-box"
+              liquidGlass
+            >
+              <NewButton
+                label={t("schedule_consultation_label")}
+                onClick={handleScheduleConsultation}
+                iconName="calendar"
+                size="lg"
+              />
+              <NewButton
+                label={t("explore_resources_label")}
+                onClick={() => navigate("/information-portal")}
+                size="lg"
+                type="outline"
+              />
+            </Box>
+          </div>
+        </div>
+      </Box>
+      {/* <div className="consultations-dashboard__heading">
         <h4>{t("heading")}</h4>
         {width < 768 ? (
           <p className="small-text view-all-button" onClick={handleViewAll}>
@@ -188,7 +237,7 @@ export const ConsultationsDashboard = ({
         onClick={handleScheduleConsultation}
         iconName="calendar"
         classes="consultations-dashboard__schedule-consultation-button"
-      />
+      /> */}
     </Block>
   );
 };

@@ -207,9 +207,9 @@ export const RegisterEmail = ({ isOpen, handleGoBack, handleLogin }) => {
         isCtaLoading={requestEmailOTPMutation.isLoading}
         thirdCtaLabel={t("login_button_label")}
         thirdCtaHandleClick={handleLogin}
+      topHeaderComponent={<AuthenticationModalsLogo />}
       >
         <div className="register-email-modal__content-container">
-          <AuthenticationModalsLogo />
           <Input
             label={t("email_label")}
             placeholder="user@mail.com"

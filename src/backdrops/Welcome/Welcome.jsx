@@ -231,15 +231,14 @@ export const Welcome = ({
   return (
     <Backdrop
       classes="welcome-modal"
-      title="Welcome"
       isOpen={isOpen}
       onClose={() => {}}
-      heading={t("heading")}
       hasCloseIcon={false}
       errorMessage={error}
+      hasLogoHeader
+      topHeaderComponent={<AuthenticationModalsLogo />}
     >
       <div className="welcome-modal__content-container">
-        <AuthenticationModalsLogo />
         {selectedCountry === "PL" && (
           <h4 className="welcome-modal__content-container__pl-description">
             {t("poland_description")}

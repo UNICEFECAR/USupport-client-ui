@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useTranslation } from "react-i18next";
 
 import {
-  logoVerticalSvg,
+  logoHorizontalSvg,
   logoVerticalDarkSvg,
   logoVerticalRomaniaPng,
 } from "@USupport-components-library/assets";
@@ -27,18 +27,20 @@ export const AuthenticationModalsLogo = ({ classes }) => {
     <div
       className={["authentication-modals-logo", classNames(classes)].join(" ")}
     >
-      <img
-        src={
-          IS_RO
-            ? logoVerticalRomaniaPng
-            : theme !== "light"
-              ? logoVerticalDarkSvg
-              : logoVerticalSvg
-        }
-        alt="Logo"
-        className="authentication-modals-logo__logo"
-      />
-      <h2 className="welcome-modal__client-heading">{t("client")}</h2>
+      <div className="authentication-modals-logo__logo-container">
+        <img
+          src={
+            IS_RO
+              ? logoVerticalRomaniaPng
+              : theme !== "light"
+                ? logoVerticalDarkSvg
+                : logoHorizontalSvg
+          }
+          alt="Logo"
+          className="authentication-modals-logo__logo"
+        />
+      </div>
+      <h3 className="welcome-modal__client-heading">{t("heading")}</h3>
     </div>
   );
 };

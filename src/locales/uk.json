@@ -269,6 +269,7 @@
     "consultations": {
       "upcoming_tab_label": "Майбутні",
       "past_tab_label": "Попередні",
+      "schedule_button_label": "Заплануй консультацію",
       "sunday": "Нд",
       "monday": "Пн",
       "tuesday": "Вт",

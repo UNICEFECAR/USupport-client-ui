@@ -269,6 +269,7 @@
     "consultations": {
       "upcoming_tab_label": "Επερχόμενες",
       "past_tab_label": "Προηγούμενες",
+      "schedule_button_label": "Προγραμματίστε μια συνεδρία",
       "sunday": "Κυρ",
       "monday": "Δευ",
       "tuesday": "Τρ",

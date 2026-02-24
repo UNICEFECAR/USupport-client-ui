@@ -19,6 +19,7 @@ export * from "./RegisterEmail";
 export * from "./Login";
 export * from "./ForgotPassword";
 export * from "./RegisterAnonymous";
+export * from "./RegisterAboutYou";
 export * from "./UserGuide";
 export * from "./EmergencySituation";
 export * from "./AuthenticationModalsLogo";
