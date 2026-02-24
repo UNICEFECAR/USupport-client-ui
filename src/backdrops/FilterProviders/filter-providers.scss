@@ -4,7 +4,6 @@
   &__content {
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding-bottom: $spacing_3_6;
 
     &:has(.dropdown--expanded) {
