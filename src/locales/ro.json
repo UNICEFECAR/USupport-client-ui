@@ -1014,7 +1014,8 @@
       "header": "Consultații",
       "button_label": "Programați o consultație",
       "reject_consultation_success": "Consultație respinsă",
-      "accept_consultation_success": "Consultație acceptată "
+      "accept_consultation_success": "Consultație acceptată ",
+      "suggestion_expired": "Consultația sugerată nu mai poate fi acceptată, deoarece mai sunt mai puțin de 24 de ore până la ora rezervării"
     },
     "login-page": {
       "heading_1": "Bine ați revenit, ne bucurăm să vă revedem",
