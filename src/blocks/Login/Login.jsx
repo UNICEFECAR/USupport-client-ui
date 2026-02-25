@@ -114,7 +114,11 @@ export const Login = () => {
   };
 
   const handleRegisterRedirect = () => {
-    navigate("/register-preview");
+    const registerPreviewPath =
+      nextPath && nextPath.startsWith("/client/")
+        ? `/register-preview?next=${encodeURIComponent(nextPath)}`
+        : "/register-preview";
+    navigate(registerPreviewPath);
   };
 
   return (
