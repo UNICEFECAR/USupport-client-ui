@@ -991,7 +991,8 @@
       "header": "Konsultacje",
       "button_label": "Zaplanuj konsultację",
       "reject_consultation_success": "Konsultacja została pomyślnie odrzucona",
-      "accept_consultation_success": "Konsultacja została pomyślnie zaakceptowana"
+      "accept_consultation_success": "Konsultacja została pomyślnie zaakceptowana",
+      "suggestion_expired": "Sugerowana konsultacja nie może być już zaakceptowana, ponieważ do terminu rezerwacji pozostało mniej niż 24 godziny"
     },
     "login-page": {
       "heading_1": "Witamy z powrotem, dobrze znów cię widzieć",

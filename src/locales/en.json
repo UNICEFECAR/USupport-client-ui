@@ -244,6 +244,7 @@
       "no_upcoming_consultations": "You have no upcoming consultations",
       "no_past_consultations": "You have no past consultations",
       "reject_consultation_success": "Consultation rejected successfully",
+      "suggestion_expired": "This consultation suggestion can no longer be accepted as it is less than 24 hours before the booking time",
       "accept_consultation_success": "Consultation accepted successfully",
       "join": "Join",
       "edit": "Edit",
@@ -997,7 +998,8 @@
       "header": "Consultations",
       "button_label": "Schedule a consultation",
       "reject_consultation_success": "Consultation rejected successfully",
-      "accept_consultation_success": "Consultation accepted successfully"
+      "accept_consultation_success": "Consultation accepted successfully",
+      "suggestion_expired": "The suggested consultation can no longer be accepted as it is less than 24 hours before the booking time"
     },
     "login-page": {
       "heading_1": "Welcome back, good to see you again",
