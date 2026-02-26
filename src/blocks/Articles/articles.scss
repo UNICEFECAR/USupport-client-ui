@@ -1,8 +1,6 @@
 @import "@USupport-components-library/styles";
 
 .articles {
-  @include full-height-page-navbar;
-
   padding-bottom: $spacing_3_2;
   text-align: left;
 
@@ -48,5 +46,11 @@
         font-size: $font-size_2_4;
       }
     }
+  }
+}
+
+.page__articles {
+  .articles {
+    @include full-height-page-navbar;
   }
 }

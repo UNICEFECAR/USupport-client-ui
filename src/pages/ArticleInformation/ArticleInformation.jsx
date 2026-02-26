@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -31,6 +31,9 @@ export const ArticleInformation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { isTmpUser } = useContext(RootContext);
+
+  const mainScrollRef = useRef(null);
+  const sidebarScrollRef = useRef(null);
 
   const { i18n, t } = useTranslation("pages", {
     keyPrefix: "article-information",
@@ -259,6 +262,48 @@ export const ArticleInformation = () => {
       !!articleData,
   });
 
+  useEffect(() => {
+    const sidebarEl = sidebarScrollRef.current;
+    const mainEl = mainScrollRef.current;
+
+    if (!sidebarEl || !mainEl) {
+      return;
+    }
+
+    const handleScroll = () => {
+      const articleHeight = mainEl.scrollHeight;
+      const articleTop = mainEl.offsetTop;
+      const viewportHeight = window.innerHeight;
+
+      const maxArticleScroll =
+        articleHeight > viewportHeight ? articleHeight - viewportHeight : 1;
+
+      const currentArticleScroll = window.scrollY - articleTop;
+
+      const ratio = Math.min(
+        1,
+        Math.max(0, currentArticleScroll / (maxArticleScroll || 1)),
+      );
+
+      const sidebarScrollable =
+        sidebarEl.scrollHeight - sidebarEl.clientHeight;
+
+      if (sidebarScrollable <= 0) return;
+
+      sidebarEl.scrollTop = ratio * sidebarScrollable;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [articleData, moreArticles?.length]);
+
   const onArticleClick = () => {
     window.scrollTo(0, 0);
   };
@@ -274,7 +319,10 @@ export const ArticleInformation = () => {
   const renderSidebar = () => {
     if (!isMoreArticlesLoading && moreArticles?.length > 0) {
       return (
-        <aside className="page__article-information__sidebar">
+        <aside
+          className="page__article-information__sidebar"
+          ref={sidebarScrollRef}
+        >
           <h4 className="page__article-information__sidebar__heading">
             {t("heading")}
           </h4>
@@ -326,7 +374,10 @@ export const ArticleInformation = () => {
 
     if (!moreArticles && isMoreArticlesLoading && isMoreArticlesFetching) {
       return (
-        <aside className="page__article-information__sidebar">
+        <aside
+          className="page__article-information__sidebar"
+          ref={sidebarScrollRef}
+        >
           <Loading size="lg" />
         </aside>
       );
@@ -339,7 +390,10 @@ export const ArticleInformation = () => {
     <Page classes="page__article-information">
       <Block classes="page__article-information__block">
         <div className="page__article-information__layout">
-          <div className="page__article-information__main">
+          <div
+            className="page__article-information__main"
+            ref={mainScrollRef}
+          >
             {articleData && !isLoading ? (
               <ArticleView
                 articleData={{

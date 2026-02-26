@@ -7,9 +7,13 @@
   background-image: url("./assets/mobile-hero.png");
   background-size: 100% auto;
   background-position: top center;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $screen-md) {
+    background-image: url("./assets/tablet-hero.png");
+  }
+
+  @media screen and (min-width: $screen-lg) {
     background-image: url("./assets/hero.png");
   }
 

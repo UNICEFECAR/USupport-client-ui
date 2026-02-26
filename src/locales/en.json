@@ -48,7 +48,7 @@
       "cookie_policy": "Cookie policy",
       "user_guide": "Platform usage",
       "edit_profile": "Edit profile",
-      "go_back": "Go back",
+      "go_back": "Back",
       "notifications_heading": "Notifications",
       "notifications_mark_read": "Mark all as read",
       "notifications_empty": "No notifications yet",
@@ -462,7 +462,7 @@
       "exported_at": "Exported at: {{time}}"
     },
     "consultations-dashboard": {
-      "heading": "Upcoming Consultations",
+      "heading": "Upcoming consultations",
       "view_all": "View all",
       "schedule_consultation_label": "Schedule a consultation",
       "live_text": "Now",
@@ -526,6 +526,7 @@
       "sad": "Sad",
       "depressed": "Depressed",
       "worried": "Worried",
+      "history": "History",
       "welcome-heading": "Welcome",
       "heading": "How are you feeling today?",
       "mood_tracker": "Mood Tracker",
@@ -537,7 +538,8 @@
       "how_it_works": "How it works",
       "recommendations": "Recommendations",
       "recommendations_text": "Do you want to check out your mood graph and see recommended content?",
-      "check_out": "Check out"
+      "check_out": "Check out",
+      "user_guide": "User Guide"
     },
     "mascot-welcome-header": {
       "welcome": "Welcome {{name}}!",
@@ -570,8 +572,7 @@
       "december": "December",
       "coupon": "Coupon",
       "explore_button_label": "Explore map",
-      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time",
-      "user_guide": "User Guide"
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
     },
     "activity-log-dashboard": {
       "heading": "Activity Log",
@@ -754,7 +755,7 @@
       "language": "Language",
       "all_languages": "All languages",
       "date_answered": "on {{date}}",
-      "go_back": "Go back",
+      "go_back": "Back",
       "how_it_works": "See how it works"
     },
     "videos": {

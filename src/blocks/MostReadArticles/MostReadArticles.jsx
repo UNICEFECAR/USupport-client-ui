@@ -13,6 +13,7 @@ import {
   destructureArticleData,
   createArticleSlug,
   getLikesAndDislikesForContent,
+  useWindowDimensions,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
@@ -25,6 +26,8 @@ export const MostReadArticles = () => {
     keyPrefix: "most-read-articles",
   });
   const navigate = useNavigate();
+  const { width } = useWindowDimensions();
+  const isNotDescktop = width < 1366;
 
   const [showBlock, setShowBlock] = useState(false);
 
@@ -142,7 +145,7 @@ export const MostReadArticles = () => {
                 >
                   <CardMedia
                     size="lg"
-                    type="landscape"
+                    type={!isNotDescktop ? "landscape" : "portrait"}
                     title={mostReadArticlesQuery.data[0].title}
                     image={mostReadArticlesQuery.data[0].imageMedium}
                     description={mostReadArticlesQuery.data[0].description}

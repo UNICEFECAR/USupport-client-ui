@@ -30,11 +30,10 @@ export const AuthenticationModalsLogo = ({ classes }) => {
       <div className="authentication-modals-logo__logo-container">
         <img
           src={
-            IS_RO
-              ? logoVerticalRomaniaPng
-              : theme !== "light"
-                ? logoVerticalDarkSvg
-                : logoHorizontalSvg
+            // IS_RO
+            //   ? logoVerticalRomaniaPng
+            //   :
+            theme !== "light" ? logoVerticalDarkSvg : logoHorizontalSvg
           }
           alt="Logo"
           className="authentication-modals-logo__logo"

@@ -5,7 +5,7 @@
   margin-top: $spacing_1_6;
 
   &__content {
-    max-width: 72rem;
+    max-width: 80rem;
     margin: 0 auto;
 
     @media screen and (min-width: $screen-md) {
@@ -13,7 +13,18 @@
     }
 
     @media screen and (min-width: $screen-lg) {
-      padding: 0;
+      padding: $spacing_1_6;
+      border-radius: $border_radius_1_6;
+      margin-top: $spacing_1_6;
+      margin-bottom: $spacing_1_6;
+      box-shadow: $shadow_1;
+
+      @include themifyCustom(
+        $themes,
+        "background-color",
+        "color_white_ff",
+        "color_gray_101828"
+      );
     }
   }
 
@@ -60,12 +71,15 @@
   }
 
   &__creator {
-    @include themifyCustom(
-      $themes,
-      "color",
-      "color_gray_66768d",
-      "color_gray_a6b4b8"
-    );
+    max-width: 60%;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &.text {
+      color: #ba7446;
+    }
   }
 
   &__meta-dot {
@@ -73,18 +87,18 @@
     height: 3px;
     border-radius: 50%;
     flex-shrink: 0;
-
-    @include themifyCustom(
-      $themes,
-      "background-color",
-      "color_gray_66768d",
-      "color_gray_a6b4b8"
-    );
+    background-color: #ba7446;
   }
 
-  &__meta .icon {
-    margin: 0;
-    flex-shrink: 0;
+  &__meta {
+    & .icon {
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    & .text {
+      color: #ba7446;
+    }
   }
 
   &__labels {

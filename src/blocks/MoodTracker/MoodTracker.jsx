@@ -74,6 +74,31 @@ export const MoodTracker = ({
     return emoticons.some((emoticon) => emoticon.isSelected);
   }, [emoticons]);
 
+  const renderAdditionalButton = () => {
+    const labelClasses = [width < 768 && "small-text"]
+      .filter(Boolean)
+      .join(" ");
+
+    return (
+      <div
+        className="mood-tracker__rating-box__rating__emoticon-container"
+        onClick={handleMoodtrackClick}
+      >
+        <Emoticon
+          name={
+            hasCompletedMoodTrackerEver
+              ? "emoticon-history"
+              : "emoticon-insight"
+          }
+          size="sm"
+        />
+        <p className={labelClasses}>
+          {hasCompletedMoodTrackerEver ? t("history") : t("how_it_works")}
+        </p>
+      </div>
+    );
+  };
+
   const onSuccess = () => {
     setComment("");
     setEmoticons(emoticonsArray);
@@ -196,37 +221,8 @@ export const MoodTracker = ({
       <div className="mood-tracker__rating-container">
         <div className="mood-tracker__rating-box__rating">
           {renderEmoticons()}
+          {renderAdditionalButton()}
         </div>
-        {!(IS_RO && !hasCompletedMoodTrackerEver) ? (
-          width < 768 ? (
-            <NewButton
-              onClick={handleMoodtrackClick}
-              label={t("mood_tracker_long")}
-              fullWidth
-            />
-          ) : (
-            <NewButton
-              onClick={handleMoodtrackClick}
-              label={t("mood_tracker_long")}
-              size="lg"
-              fullWidth
-            />
-          )
-        ) : width < 768 ? (
-          <p
-            className="small-text mood-tracker-button"
-            onClick={() => setIsHowItWorksMoodTrackOpen(true)}
-          >
-            {t("how_it_works")}
-          </p>
-        ) : (
-          <h5
-            className="mood-tracker-button"
-            onClick={() => setIsHowItWorksMoodTrackOpen(true)}
-          >
-            {t("how_it_works")}
-          </h5>
-        )}
       </div>
     );
   };

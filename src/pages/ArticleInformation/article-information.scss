@@ -35,14 +35,29 @@
     gap: $spacing_2_4;
     padding-top: $spacing_2_0;
     padding-bottom: $spacing_5_6;
+    padding-left: $spacing_2_0;
+    padding-right: $spacing_2_0;
     text-align: left;
+
+    // Hide scrollbar but keep scrolling
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE, Edge legacy
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
 
     @media screen and (min-width: $screen-lg) {
       flex-direction: column;
       flex-wrap: nowrap;
       width: 32rem;
       min-width: 32rem;
-      padding-top: $spacing_1_6;
+      padding: $spacing_1_6;
+      position: sticky;
+      top: $spacing_3_2;
+      max-height: calc(100vh - #{$spacing_3_2});
+      overflow-y: auto;
     }
 
     &__heading {
