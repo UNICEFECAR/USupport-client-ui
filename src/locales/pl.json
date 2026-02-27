@@ -198,7 +198,10 @@
       "wednesday": "Śr.",
       "thursday": "Czw.",
       "friday": "Pt.",
-      "saturday": "Sob."
+      "saturday": "Sob.",
+      "tab_paid": "Płatne",
+      "tab_coupon": "Kupon",
+      "tab_free": "Bezpłatne"
     },
     "notification-preferences": {
       "email": "Powiadomienia email",
@@ -950,6 +953,7 @@
       "modal_coupon_input_placeholder": "KUPON1",
       "heading_with_coupon": "Wybierz konsultanta/kę, aby użyć kupon: {{coupon}}",
       "remove_coupon_label": "Usuń kupon",
+      "coupon_not_found_error": "Ten kupon nie został znaleziony lub nie jest już ważny.",
       "coupon_paragraph": "Kupony zapewniają bezpłatne sesje i są sponsorowane przez naszych partnerów.",
       "coupon_paragraph_two": "Jeśli otrzymałeś kod kuponu z kampanii w mediach społecznościowych lub od partnera, skopiuj go i wklej poniżej. Po przesłaniu kodu kuponu zobaczysz wszystkich konsultantów, którzy go obsługują i ich dostępność. Kupon może obsługiwać jedną lub więcej sesji. Platforma wskaże, czy kupon wygasł lub czy wszystkie sesje zostały wykorzystane.",
       "max_price": "Cena maksymalna",
@@ -987,7 +991,8 @@
       "header": "Konsultacje",
       "button_label": "Zaplanuj konsultację",
       "reject_consultation_success": "Konsultacja została pomyślnie odrzucona",
-      "accept_consultation_success": "Konsultacja została pomyślnie zaakceptowana"
+      "accept_consultation_success": "Konsultacja została pomyślnie zaakceptowana",
+      "suggestion_expired": "Sugerowana konsultacja nie może być już zaakceptowana, ponieważ do terminu rezerwacji pozostało mniej niż 24 godziny"
     },
     "login-page": {
       "heading_1": "Witamy z powrotem, dobrze znów cię widzieć",

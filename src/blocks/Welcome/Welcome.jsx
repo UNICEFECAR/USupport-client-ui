@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCustomNavigate as useNavigate } from "#hooks";
@@ -26,6 +27,7 @@ import {
 } from "@USupport-components-library/utils";
 
 import "./welcome.scss";
+import { RootContext } from "../../routes/Root/Root";
 
 /**
  * Welcome
@@ -38,7 +40,11 @@ export const Welcome = () => {
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "welcome" });
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const nextPath = searchParams.get("next");
   const { theme, setIsInWelcome } = useContext(ThemeContext);
+  const { setSelectedCountry: setSelectedCountryContext } =
+    useContext(RootContext);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
   const IS_RO = localStorage.getItem("country") === "RO";
@@ -87,6 +93,15 @@ export const Welcome = () => {
       }, 2000);
     }
   }, [countries]);
+
+  useEffect(() => {
+    if (countries && selectedCountry) {
+      const countryObject = countries.find((x) => x.value === selectedCountry);
+      if (countryObject) {
+        setSelectedCountryContext(countryObject);
+      }
+    }
+  }, [countries, selectedCountry]);
 
   const fetchLanguages = async () => {
     const res = await languageSvc.getActiveLanguages();
@@ -177,7 +192,11 @@ export const Welcome = () => {
     window.dispatchEvent(new Event("countryChanged"));
     i18n.changeLanguage(language);
 
-    navigate("/register-preview");
+    const registerPreviewPath =
+      nextPath && nextPath.startsWith("/client/")
+        ? `/register-preview?next=${encodeURIComponent(nextPath)}`
+        : "/register-preview";
+    navigate(registerPreviewPath);
   };
 
   return (

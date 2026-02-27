@@ -200,7 +200,10 @@
       "wednesday": "mi",
       "thursday": "joi",
       "friday": "vineri",
-      "saturday": "sâ"
+      "saturday": "sâ",
+      "tab_paid": "Plătit",
+      "tab_coupon": "Cupon",
+      "tab_free": "Gratuit"
     },
     "notification-preferences": {
       "email": "Notificări prin e-mail",
@@ -973,6 +976,7 @@
       "modal_coupon_input_placeholder": "CUPON1",
       "heading_with_coupon": "Selectați un furnizor pentru a utiliza cuponul: {{coupon}}",
       "remove_coupon_label": "Eliminați cuponul",
+      "coupon_not_found_error": "Acest cupon nu a fost găsit sau nu mai este valid.",
       "coupon_paragraph": "Cupoanele oferă sesiuni „gratuite” și sunt sponsorizate de partenerii noștri.",
       "coupon_paragraph_two": "Dacă ați primit un cod de cupon de la o campanie de social media sau de la un partener, vă rugăm să îl copiați și să îl lipiți mai jos. După ce trimiteți codul cuponului, veți vedea toți furnizorii care îl acceptă și disponibilitatea acestora. Un cupon poate acoperi una sau mai multe sesiuni. Platforma va indica dacă cuponul a expirat sau s-a folosit numărul maxim de sesiuni.",
       "max_price": "Preț maxim",
@@ -1010,7 +1014,8 @@
       "header": "Consultații",
       "button_label": "Programați o consultație",
       "reject_consultation_success": "Consultație respinsă",
-      "accept_consultation_success": "Consultație acceptată "
+      "accept_consultation_success": "Consultație acceptată ",
+      "suggestion_expired": "Consultația sugerată nu mai poate fi acceptată, deoarece mai sunt mai puțin de 24 de ore până la ora rezervării"
     },
     "login-page": {
       "heading_1": "Bine ați revenit, ne bucurăm să vă revedem",

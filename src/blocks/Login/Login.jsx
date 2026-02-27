@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useSearchParams, useNavigate as useRawNavigate } from "react-router-dom";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -36,6 +37,9 @@ export const Login = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "login" });
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const rawNavigate = useRawNavigate();
+  const [searchParams] = useSearchParams();
+  const nextPath = searchParams.get("next");
   const { theme } = useContext(ThemeContext);
   const IS_RO = localStorage.getItem("country") === "RO";
 
@@ -75,7 +79,12 @@ export const Login = () => {
 
       window.dispatchEvent(new Event("login"));
       setErrors({});
-      navigate("/dashboard");
+      // Redirect to the page the user tried to access, or dashboard
+      if (nextPath && nextPath.startsWith("/client/")) {
+        rawNavigate(nextPath);
+      } else {
+        navigate("/dashboard");
+      }
       const language = localStorage.getItem("language");
       userSvc.changeLanguage(language).catch((err) => {
         console.log(err, "Error when changing language");
@@ -105,7 +114,11 @@ export const Login = () => {
   };
 
   const handleRegisterRedirect = () => {
-    navigate("/register-preview");
+    const registerPreviewPath =
+      nextPath && nextPath.startsWith("/client/")
+        ? `/register-preview?next=${encodeURIComponent(nextPath)}`
+        : "/register-preview";
+    navigate(registerPreviewPath);
   };
 
   return (

@@ -407,7 +407,7 @@ const LanguageLayout = () => {
           </ProtectedRoute>
         }
       />
-            <Route
+      <Route
         path="children-rights"
         element={
           <ProtectedRoute>
@@ -445,6 +445,7 @@ export default function Root() {
   const [activeCoupon, setActiveCoupon] = useState();
   const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
   const [hasAddedPlatformAccess, setHasAddedPlatformAccess] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
@@ -529,6 +530,8 @@ export default function Root() {
         setActiveCoupon,
         leaveConsultationFn,
         loggedIn,
+        selectedCountry,
+        setSelectedCountry,
       }}
     >
       {loggedIn && !hideIdleTimer && (
