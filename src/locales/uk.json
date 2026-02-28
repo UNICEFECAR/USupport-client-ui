@@ -47,7 +47,7 @@
       "terms_of_use": "Умови використання",
       "cookie_policy": "Політика щодо файлів cookie",
       "user_guide": "Інструкція використання платформи",
-      "edit_profile": "Edit profile",
+      "edit_profile": "Редагувати профіль",
       "go_back": "Назад",
       "notifications_heading": "Сповіщення",
       "notifications_mark_read": "Позначити всі як прочитані",
@@ -67,7 +67,9 @@
       "notifications_consultation_remind_start_48_hours_before": "Ваша консультація з <0>{{providerName}}</0> розпочнеться через 48 годин",
       "all": "Усі",
       "new": "Нові",
-      "read": "Прочитані"
+      "read": "Прочитані",
+      "language_label": "Мова",
+      "logout": "Вийти"
     },
     "provider-overview": {
       "earliest_slot_label": "Найближчий вільний часовий слот для консультації",
@@ -263,8 +265,8 @@
       "modal_text": "Якщо ти зареєстрований/а на платформі, то отримаєш посилання для відновлення паролю.",
       "client": "Клієнт/ка",
       "heading": "Вітаємо в",
-      "heading_modal": "Forgot password",
-      "go_back_to_login": "Go back to login"
+      "heading_modal": "Забули пароль?",
+      "go_back_to_login": "Повернутися до входу"
     },
     "consultations": {
       "upcoming_tab_label": "Майбутні",
@@ -505,8 +507,8 @@
       "edit": "Редагувати",
       "details": "Дивитися деталі",
       "active": "Зараз",
-      "reject": "Reject suggestion",
-      "accept": "Accept consultation",
+      "reject": "Відхилити пропозицію",
+      "accept": "Прийняти консультацію",
       "cancel_consultation": "Скасувати консультацію",
       "suggested": "Запропоновані",
       "view_profile": "Переглянути особистий профіль",
@@ -532,7 +534,7 @@
       "recommendations": "Рекомендації",
       "recommendations_text": "Хочете переглянути графік настрою та побачити рекомендований контент?",
       "check_out": "Переглянути",
-      "mood_tracker_long": "Study your mood tracker"
+      "mood_tracker_long": "Вивчіть свій трекер настрою"
     },
     "mascot-welcome-header": {
       "welcome": "З поверненням, {{name}}!",
@@ -582,7 +584,7 @@
       "by": "Від {{creator}}",
       "number_of_more_options": "ще {{count}}",
       "read": "Читати",
-      "show_more": "Show more"
+      "show_more": "Показати більше"
     },
     "mood-tracker-history": {
       "heading": "Загалом протягом останніх 30 днів ти почував/ла себе {{feeling}}",
@@ -1007,7 +1009,7 @@
       "view_more": "Переглянути більше"
     },
     "dashboard-hero": {
-      "heading": "Welcome back",
+      "heading": "З поверненням",
       "user_guide": "Інструкція використання",
       "next_consultation": "Наступна консультація:",
       "change_button_label": "Зміна",
@@ -1037,9 +1039,9 @@
       "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
     },
     "download-app": {
-      "heading": "Download our mobile app",
-      "paragraph": "Now available for iOS and Android",
-      "download_text": "Download from"
+      "heading": "Завантажте наш мобільний додаток",
+      "paragraph": "Тепер доступно для iOS та Android",
+      "download_text": "Завантажити з"
     },
     "find-support-near-you": {
       "heading": "Знайдіть підтримку поруч",

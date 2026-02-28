@@ -47,7 +47,7 @@
       "terms_of_use": "Условия использования",
       "cookie_policy": "Политика Cookie",
       "user_guide": "Руководство по платформе",
-      "edit_profile": "Edit profile",
+      "edit_profile": "Редактировать профиль",
       "go_back": "Назад",
       "notifications_heading": "Уведомления",
       "notifications_mark_read": "Отметить все как прочитанные",
@@ -67,7 +67,9 @@
       "notifications_consultation_remind_start_48_hours_before": "Ваша консультация с <0>{{providerName}}</0> начнется через 48 часов",
       "all": "Все",
       "new": "Новые",
-      "read": "Прочитанные"
+      "read": "Прочитанные",
+      "language_label": "Язык",
+      "logout": "Выйти"
     },
     "provider-overview": {
       "earliest_slot_label": "Самый ранний доступный слот свободного времени для консультации",
@@ -143,8 +145,8 @@
       "button_link": "Посетить веб-сайт",
       "button_call": "Связаться сейчас",
       "no_results": "Для выбранной страны и языка ничего не нашлось.",
-      "other_emergency_services": "Other emergency service providers",
-      "browse": "Browse"
+      "other_emergency_services": "Другие службы экстренной помощи",
+      "browse": "Обзор"
     },
     "register-about-you": {
       "input_name_label": "Имя",
@@ -263,8 +265,8 @@
       "modal_text": "Если Вы зарегистрированы на платформе, Вы получите ссылку для сброса Вашего пароля.",
       "client": "Клиент",
       "heading": "Добро пожаловать в",
-      "heading_modal": "Forgot password",
-      "go_back_to_login": "Go back to login"
+      "heading_modal": "Забыли пароль?",
+      "go_back_to_login": "Вернуться к входу"
     },
     "consultations": {
       "upcoming_tab_label": "Предстоящие",
@@ -505,8 +507,8 @@
       "edit": "Редактировать",
       "details": "Смотреть подробности",
       "active": "Сейчас",
-      "reject": "Reject suggestion",
-      "accept": "Accept consultation",
+      "reject": "Отклонить предложение",
+      "accept": "Принять консультацию",
       "cancel_consultation": "Отменить консультацию",
       "suggested": "Предложено",
       "view_profile": "Просмотреть личный профиль",
@@ -532,7 +534,7 @@
       "recommendations": "Рекомендации",
       "recommendations_text": "Хотите посмотреть график настроения и увидеть рекомендованный контент?",
       "check_out": "Посмотреть",
-      "mood_tracker_long": "Study your mood tracker"
+      "mood_tracker_long": "Изучите свой трекер настроения"
     },
     "mascot-welcome-header": {
       "welcome": "С возвращением, {{name}}!",
@@ -582,7 +584,7 @@
       "by": "От {{creator}}",
       "number_of_more_options": "еще {{count}}",
       "read": "Читать",
-      "show_more": "Show more"
+      "show_more": "Показать больше"
     },
     "mood-tracker-history": {
       "heading": "В целом вы чувствовали {{feeling}}  в течение последних 30 дней",
@@ -939,11 +941,11 @@
       "assessment_completed_description": "Спасибо за прохождение оценки. Ваши ответы сохранены и будут использованы, чтобы помочь вам.",
       "assessment_completed_button": "Вернуться на главную",
       "save_button_label": "Сохранить для позже",
-      "sontrgly_disagree": "Strongly Disagree",
-      "disagree": "Disagree",
+      "sontrgly_disagree": "Полностью не согласен",
+      "disagree": "Не согласен",
       "neutral": "Нейтрален(а)",
-      "agree": "Agree",
-      "strongly_agree": "Strongly Agree"
+      "agree": "Согласен",
+      "strongly_agree": "Полностью согласен"
     },
     "baseline-assessment-dashboard": {
       "heading": "Ваша базовая оценка",
@@ -972,9 +974,9 @@
       "read_more_button": "Читать далее",
       "by": "от {{creator}}",
       "min_read": "мин чтения",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
+      "psychological": "Психологический",
+      "biological": "Биологический",
+      "social": "Социальный",
       "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
       "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
       "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
@@ -1004,10 +1006,10 @@
       "same_same_same": "Ваши результаты такие же, как и в предыдущей оценке.",
       "organizations": "Рекомендованные организации",
       "summary_heading": "Recommendations generated based on the score obtained",
-      "view_more": "View more"
+      "view_more": "Подробнее"
     },
     "dashboard-hero": {
-      "heading": "Welcome back",
+      "heading": "С возвращением",
       "user_guide": "Руководство",
       "next_consultation": "Следующая консультация:",
       "change_button_label": "Изменить",
@@ -1037,9 +1039,9 @@
       "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
     },
     "download-app": {
-      "heading": "Download our mobile app",
-      "paragraph": "Now available for iOS and Android",
-      "download_text": "Download from"
+      "heading": "Скачайте наше мобильное приложение",
+      "paragraph": "Теперь доступно для iOS и Android",
+      "download_text": "Скачать из"
     },
     "find-support-near-you": {
       "heading": "Найдите поддержку рядом",

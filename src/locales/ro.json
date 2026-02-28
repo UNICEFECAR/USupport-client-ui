@@ -47,7 +47,7 @@
       "terms_of_use": "Condiții de utilizare",
       "cookie_policy": "Politica privind cookie-urile",
       "user_guide": "Utilizarea platformei",
-      "edit_profile": "Edit profile",
+      "edit_profile": "Editează profilul",
       "go_back": "Înapoi",
       "notifications_heading": "Notificări",
       "notifications_mark_read": "Marcați toate ca citite",
@@ -67,7 +67,9 @@
       "notifications_consultation_remind_start_48_hours_before": "Consultația dvs. cu <0>{{providerName}}</0> începe peste 48 de ore",
       "all": "Toate",
       "new": "Noi",
-      "read": "Citite"
+      "read": "Citite",
+      "language_label": "Limbă",
+      "logout": "Deconectare"
     },
     "provider-overview": {
       "earliest_slot_label": "Primul interval disponibil pentru consultație",
@@ -263,8 +265,8 @@
       "modal_text": "Dacă sunteți înregistrat în platformă, veți primi un link pentru a vă reseta parola.",
       "client": "Client",
       "heading": "Bine ați venit la",
-      "heading_modal": "Forgot password",
-      "go_back_to_login": "Go back to login"
+      "heading_modal": "Ați uitat parola?",
+      "go_back_to_login": "Întoarceți-vă la autentificare"
     },
     "consultations": {
       "upcoming_tab_label": "Urmează",
@@ -505,8 +507,8 @@
       "edit": "Editare",
       "details": "Vedeți detalii",
       "active": "Acum",
-      "reject": "Reject suggestion",
-      "accept": "Accept consultation",
+      "reject": "Respinge sugestia",
+      "accept": "Acceptă consultația",
       "cancel_consultation": "Anulați consultația",
       "suggested": "Propunere",
       "view_profile": "Vedeți profilul personal",
@@ -532,7 +534,7 @@
       "recommendations": "Recomandări",
       "recommendations_text": "Vrei să vezi graficul stării tale și conținutul recomandat?",
       "check_out": "Vezi detalii",
-      "mood_tracker_long": "Study your mood tracker"
+      "mood_tracker_long": "Studiați jurnalul stării de spirit"
     },
     "mascot-welcome-header": {
       "welcome": "Bine ați revenit {{name}}!",
@@ -582,7 +584,7 @@
       "by": "de {{creator}}",
       "number_of_more_options": "încă {{count}}",
       "read": "Citire",
-      "show_more": "Show more"
+      "show_more": "Afișează mai mult"
     },
     "mood-tracker-history": {
       "heading": "În ansamblu, v-ați simțit {{feeling}} în ultimele 30 de zile",
@@ -1007,7 +1009,7 @@
       "view_more": "Vezi mai mult"
     },
     "dashboard-hero": {
-      "heading": "Welcome back",
+      "heading": "Bine ați revenit",
       "user_guide": "Ghid de utilizare",
       "next_consultation": "Consultația următoare::",
       "change_button_label": "Modificare",
@@ -1037,9 +1039,9 @@
       "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere"
     },
     "download-app": {
-      "heading": "Download our mobile app",
-      "paragraph": "Now available for iOS and Android",
-      "download_text": "Download from"
+      "heading": "Descărcați aplicația noastră mobilă",
+      "paragraph": "Acum disponibil pentru iOS și Android",
+      "download_text": "Descarcă din"
     },
     "find-support-near-you": {
       "heading": "Găsiți sprijin în apropiere",

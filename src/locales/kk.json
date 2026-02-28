@@ -47,7 +47,7 @@
       "terms_of_use": "Пайдалану шарттары",
       "cookie_policy": "Cookie саясаты",
       "user_guide": "Платформа нұсқаулығы",
-      "edit_profile": "Edit profile",
+      "edit_profile": "Профильді өңдеу",
       "go_back": "Артқа",
       "notifications_heading": "Хабарландырулар",
       "notifications_mark_read": "Барлығын оқылған деп белгілеу",
@@ -67,7 +67,9 @@
       "notifications_consultation_remind_start_48_hours_before": "<0>{{providerName}}</0> маманымен кеңесіңіз 48 сағаттан кейін басталады",
       "all": "Барлығы",
       "new": "Жаңа",
-      "read": "Оқылған"
+      "read": "Оқылған",
+      "language_label": "Тіл",
+      "logout": "Шығу"
     },
     "provider-overview": {
       "earliest_slot_label": "Консультация алу үшін жақын арадағы бос уақыт",
@@ -143,8 +145,8 @@
       "button_link": "Веб-сайтқа кіру",
       "button_call": "Қазір хабарласу",
       "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
-      "other_emergency_services": "Other emergency service providers",
-      "browse": "Browse"
+      "other_emergency_services": "Төтенше жағдайлардың басқа сервистері",
+      "browse": "Шолу"
     },
     "register-about-you": {
       "input_name_label": "Аты",
@@ -263,8 +265,8 @@
       "modal_text": "Егер Сіз платформада тіркелген болсаңыз, құпия сөзді қалпына келтіруге сілтеме аласыз.",
       "client": "Клиент",
       "heading": "Қош келдіңіз, бұл - ",
-      "heading_modal": "Forgot password",
-      "go_back_to_login": "Go back to login"
+      "heading_modal": "Құпия сөзді ұмыттыңыз ба?",
+      "go_back_to_login": "Кіруге оралу"
     },
     "consultations": {
       "upcoming_tab_label": "Алдағы",
@@ -505,8 +507,8 @@
       "edit": "Өзгерту",
       "details": "Мәліметтерді қарау",
       "active": "Қазір",
-      "reject": "Reject suggestion",
-      "accept": "Accept consultation",
+      "reject": "Ұсынысты қабылдамау",
+      "accept": "Консультацияны қабылдау",
       "cancel_consultation": "Консультациядан бас тарту",
       "suggested": "Ұсынылды",
       "view_profile": "Жеке парақшаны қарап шығу",
@@ -532,7 +534,7 @@
       "recommendations": "Ұсыныстар",
       "recommendations_text": "Көңіл-күй графигіңізді қарап, ұсынылған мазмұнды көргіңіз келе ме?",
       "check_out": "Қарап шығу",
-      "mood_tracker_long": "Study your mood tracker"
+      "mood_tracker_long": "Көңіл-күй трекеріңізді зерттеңіз"
     },
     "mascot-welcome-header": {
       "welcome": "Қайта оралуыңызбен, {{name}}!",
@@ -582,7 +584,7 @@
       "by": "Дайындаушы {{creator}}",
       "number_of_more_options": "тағы {{count}}",
       "read": "Оқу",
-      "show_more": "Show more"
+      "show_more": "Көбірек көрсету"
     },
     "mood-tracker-history": {
       "heading": "Жалпы сіз соңғы 30 күнде {{feeling}} сезіндіңіз",
@@ -938,12 +940,12 @@
       "assessment_completed": "Бағалау аяқталды",
       "assessment_completed_description": "Бағалауды аяқтағаныңызға рахмет. Жауаптарыңыз сақталды және сізге көмектесу үшін пайдаланылады.",
       "assessment_completed_button": "Басты бетке қайту",
-      "save_button_label": "Save for later",
-      "sontrgly_disagree": "Strongly Disagree",
-      "disagree": "Disagree",
+      "save_button_label": "Кейінірек сақтау",
+      "sontrgly_disagree": "Толығымен келіспеймін",
+      "disagree": "Келіспеймін",
       "neutral": "Бейтарап",
-      "agree": "Agree",
-      "strongly_agree": "Strongly Agree"
+      "agree": "Келісемін",
+      "strongly_agree": "Толығымен келісемін"
     },
     "baseline-assessment-dashboard": {
       "heading": "Сіздің базалық бағалауыңыз",
@@ -955,12 +957,12 @@
       "view": "Нәтижелерді көру",
       "view_detailed_results": "Толық нәтижелерді көру",
       "started_at": "{{date}} басталды",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
-      "latest_results": "Latest Results",
-      "how_it_works": "How it works",
-      "see_last_result": "Latest results",
+      "psychological": "Психологиялық",
+      "biological": "Биологиялық",
+      "social": "Әлеуметтік",
+      "latest_results": "Соңғы нәтижелер",
+      "how_it_works": "Қалай жұмыс істейді",
+      "see_last_result": "Соңғы нәтижелер",
       "explore_button_label": "Картаны зерттеу"
     },
     "baseline-assesment-result": {
@@ -972,9 +974,9 @@
       "read_more_button": "Толығырақ",
       "by": "{{creator}} авторы",
       "min_read": "мин оқу",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
+      "psychological": "Психологиялық",
+      "biological": "Биологиялық",
+      "social": "Әлеуметтік",
       "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
       "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
       "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
@@ -1004,10 +1006,10 @@
       "same_same_same": "Сіздің нәтижелеріңіз алдыңғы бағалаумен бірдей.",
       "organizations": "Ұсынылған ұйымдар",
       "summary_heading": "Recommendations generated based on the score obtained",
-      "view_more": "View more"
+      "view_more": "Көбірек көру"
     },
     "dashboard-hero": {
-      "heading": "Welcome back",
+      "heading": "Қайта қош келдіңіз",
       "user_guide": "Нұсқаулық",
       "next_consultation": "Келесі консультация:",
       "change_button_label": "Құпия сөзді өзгерту",
@@ -1037,9 +1039,9 @@
       "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
     },
     "download-app": {
-      "heading": "Download our mobile app",
-      "paragraph": "Now available for iOS and Android",
-      "download_text": "Download from"
+      "heading": "Мобильді қолданбамызды жүктеп алыңыз",
+      "paragraph": "Енді iOS және Android үшін қол жетімді",
+      "download_text": "Жүктеп алу"
     },
     "find-support-near-you": {
       "heading": "Жақын маңнан қолдау табыңыз",

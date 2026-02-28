@@ -23,13 +23,13 @@
       "submit": "Ուղարկել",
       "dark": "Մուգ",
       "light": "Լուսավոր",
-      "page_5": "Organizations",
-      "cookie_banner_header": "We value your privacy",
-      "cookie_banner_text": "This website uses cookies to enhance and secure your browsing experience. By using our website, you agree to our <0>Cookie Policy</0>.",
-      "accept_all_cookies": "Accept all",
-      "reject_all_cookies": "Reject all",
-      "accept_necessary_cookies": "Accept only necessary",
-      "save": "Save",
+      "page_5": "Կազմակերպություններ",
+      "cookie_banner_header": "Մենք գնահատում ենք ձեր գաղտնիությունը",
+      "cookie_banner_text": "Այս կայքը օգտագործում է cookie-ներ՝ ձեր դիտարկման փորձը բարելավելու և ապահովելու համար: Մեր կայքը օգտագործելով՝ դուք համաձայնում եք մեր <0>Cookie-ների քաղաքականությանը</0>:",
+      "accept_all_cookies": "Ընդունել բոլորը",
+      "reject_all_cookies": "Մերժել բոլորը",
+      "accept_necessary_cookies": "Ընդունել միայն անհրաժեշտները",
+      "save": "Պահպանել",
       "high_contrast": "Բարձր հակադրություն",
       "your_profile": "Ձեր պրոֆիլը",
       "guest": "Հյուր",
@@ -47,7 +47,7 @@
       "terms_of_use": "Օգտվելու պայմանները",
       "cookie_policy": "Cookie-ների քաղաքականությունը",
       "user_guide": "Հարթակի գործածելիությունը",
-      "edit_profile": "Edit profile",
+      "edit_profile": "Խմբագրել պրոֆիլը",
       "go_back": "Վերադառնալ",
       "notifications_heading": "Ծանուցումներ",
       "notifications_mark_read": "Նշել բոլորը որպես կարդացված",
@@ -67,7 +67,9 @@
       "notifications_consultation_remind_start_48_hours_before": "Ձեր խորհրդատվությունը <0>{{providerName}}</0>-ի հետ կսկսվի 48 ժամից",
       "all": "Բոլորը",
       "new": "Նոր",
-      "read": "Կարդացված"
+      "read": "Կարդացված",
+      "language_label": "Լեզու",
+      "logout": "Դուրս գալ"
     },
     "provider-overview": {
       "earliest_slot_label": "Խորհրդատվության ամենամոտ հասանելի ժամանակը",
@@ -143,8 +145,8 @@
       "button_link": "Այցելել կայքէջ",
       "button_call": "Կապվել հիմա",
       "no_results": "Ընտրված երկրի և լեզվի վերաբերյալ արդյունքներ չեն գտնվել",
-      "other_emergency_services": "Other emergency service providers",
-      "browse": "Browse"
+      "other_emergency_services": "Այլ արտակարգ իրավիճակների ծառայությունների մատուցողներ",
+      "browse": "Զննել"
     },
     "register-about-you": {
       "input_name_label": "Անունը",
@@ -263,8 +265,8 @@
       "modal_text": "Եթե գրանցված եք հարթակում, ապա կստանաք հղում՝ գաղտնաբառը վերագործարկելու համար",
       "client": "Հաճախորդ",
       "heading": "Բարի գալուստ",
-      "heading_modal": "Forgot password",
-      "go_back_to_login": "Go back to login"
+      "heading_modal": "Մոռացե՞լ եք գաղտնաբառը",
+      "go_back_to_login": "Վերադառնալ մուտքին"
     },
     "consultations": {
       "upcoming_tab_label": "Առաջիկա",
@@ -326,7 +328,7 @@
       "min_read": "րոպե կարդալու համար",
       "by": "ի կողմից {{creator}}",
       "number_of_more_options": "{{count}} ավելին",
-      "read": "Read"
+      "read": "Կարդալ"
     },
     "give-suggestion": {
       "heading": "Ներկայացրեք մեզ ձեր առաջարկությունները",
@@ -506,7 +508,7 @@
       "details": "Տես մանրամասները",
       "active": "Այժմ",
       "reject": "Մերժել առաջարկությունը",
-      "accept": "Accept consultation",
+      "accept": "Ընդունել խորհրդատվությունը",
       "cancel_consultation": "Չեղարկել խորհրդատվությունը",
       "suggested": "Առաջարկվել է",
       "view_profile": "Դիտել անձնական պրոֆիլը",
@@ -532,7 +534,7 @@
       "recommendations": "Առաջարկություններ",
       "recommendations_text": "Ցանկանու՞մ եք դիտել ձեր տրամադրության գրաֆիկը և տեսնել առաջարկված բովանդակությունը:",
       "check_out": "Դիտել",
-      "mood_tracker_long": "Study your mood tracker"
+      "mood_tracker_long": "Ուսումնասիրեք ձեր տրամադրության ստուգիչը"
     },
     "mascot-welcome-header": {
       "welcome": "Բարի վերադարձ {{հաճախորդի անունը}}",
@@ -582,7 +584,7 @@
       "by": "{{creator}}-ի կողմից",
       "number_of_more_options": "{{count}} ավելին",
       "read": "Կարդալ",
-      "show_more": "Show more"
+      "show_more": "Ցուցադրել ավելին"
     },
     "mood-tracker-history": {
       "heading": "Ընդհանուր առամբ, դուք վերջին 30 օրվա ընթացքում զգացել եք {{feeling}} ",
@@ -744,7 +746,7 @@
       "date_answered": "ըստ {{date}}"
     },
     "videos": {
-      "view_more": "View more",
+      "view_more": "Ցուցադրել ավելին",
       "all": "All",
       "could_not_load_content": "Could not load content.",
       "no_results": "No results found",
@@ -931,37 +933,37 @@
       "frequent_headaches": "I have frequent headaches for no reason.",
       "question": "Question {{number}} of {{total}}",
       "completed": "{{percentage}}% completed",
-      "back": "Back",
-      "next": "Next",
-      "start_assessment": "Start Assessment",
-      "finish_assessment": "Finish Assessment",
-      "assessment_completed": "Assessment Completed",
-      "assessment_completed_description": "Thank you for completing the assessment. Your answers have been saved and will be used to help you.",
-      "assessment_completed_button": "Back to Home",
-      "save_button_label": "Save for later",
-      "sontrgly_disagree": "Strongly Disagree",
-      "disagree": "Disagree",
+      "back": "Հետ",
+      "next": "Հաջորդ",
+      "start_assessment": "Սկսել գնահատումը",
+      "finish_assessment": "Ավարտել գնահատումը",
+      "assessment_completed": "Գնահատումը ավարտված է",
+      "assessment_completed_description": "Շնորհակալություն գնահատումը ավարտելու համար: Ձեր պատասխանները պահպանվել են և կօգտագործվեն ձեզ օգնելու համար:",
+      "assessment_completed_button": "Վերադառնալ գլխավոր",
+      "save_button_label": "Պահպանել ավելի ուշ",
+      "sontrgly_disagree": "Լիովին չեմ համաձայն",
+      "disagree": "Չեմ համաձայն",
       "neutral": "Ոչ գոհ եմ, ոչ՝ դժգոհ",
-      "agree": "Agree",
-      "strongly_agree": "Strongly Agree"
+      "agree": "Համաձայն եմ",
+      "strongly_agree": "Լիովին համաձայն եմ"
     },
     "baseline-assessment-dashboard": {
-      "heading": "Your Baseline Assessment",
-      "no_assessment_text": "You haven't completed a baseline assessment yet. Complete one to get personalized insights about your mental health.",
-      "start_new_assessment": "Start Assessment",
-      "completed": "Completed",
-      "in_progress": "In Progress",
-      "continue": "Continue",
-      "view": "View Results",
-      "view_detailed_results": "View Detailed Results",
-      "started_at": "Started on {{date}}",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
-      "latest_results": "Latest Results",
-      "how_it_works": "How it works",
-      "see_last_result": "Latest results",
-      "explore_button_label": "Explore map"
+      "heading": "Ձեր բազային գնահատումը",
+      "no_assessment_text": "Դուք դեռ ավարտել եք բազային գնահատումը: Ավարտեք մեկը՝ ձեր մտավոր առողջության մասին անհատականացված պատկերացումներ ստանալու համար:",
+      "start_new_assessment": "Սկսել գնահատումը",
+      "completed": "Ավարտված",
+      "in_progress": "Ընթացքի մեջ",
+      "continue": "Շարունակել",
+      "view": "Դիտել արդյունքները",
+      "view_detailed_results": "Դիտել մանրամասն արդյունքները",
+      "started_at": "Սկսվել է {{date}}",
+      "psychological": "Հոգեբանական",
+      "biological": "Կենսաբանական",
+      "social": "Հասարակական",
+      "latest_results": "Վերջին արդյունքներ",
+      "how_it_works": "Ինչպես է աշխատում",
+      "see_last_result": "Վերջին արդյունքներ",
+      "explore_button_label": "Զննել քարտեզը"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",
@@ -971,10 +973,10 @@
       "recommended_podcasts": "Recommended podcasts",
       "read_more_button": "Read more",
       "by": "by {{creator}}",
-      "min_read": "min read",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
+      "min_read": "րոպե կարդալ",
+      "psychological": "Հոգեբանական",
+      "biological": "Կենսաբանական",
+      "social": "Հասարակական",
       "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
       "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
       "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
@@ -1004,10 +1006,10 @@
       "same_same_same": "Ձեր արդյունքները նույնն են, ինչ նախորդ գնահատականը:",
       "organizations": "Recommended organizations",
       "summary_heading": "Recommendations generated based on the score obtained",
-      "view_more": "View more"
+      "view_more": "Ցուցադրել ավելին"
     },
     "dashboard-hero": {
-      "heading": "Welcome back",
+      "heading": "Բարի վերադարձ",
       "user_guide": "Օգտագործման ուղեցույց",
       "next_consultation": "Հաջորդ խորհրդատվությունը:",
       "change_button_label": "Փոփոխել",
@@ -1037,9 +1039,9 @@
       "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ"
     },
     "download-app": {
-      "heading": "Download our mobile app",
-      "paragraph": "Now available for iOS and Android",
-      "download_text": "Download from"
+      "heading": "Ներբեռնեք մեր բջջային հավելվածը",
+      "paragraph": "Այժմ հասանելի iOS և Android-ի համար",
+      "download_text": "Ներբեռնել"
     },
     "find-support-near-you": {
       "heading": "Գտեք աջակցություն ձեր մոտ",
@@ -1163,7 +1165,7 @@
       "heading_newest_podcasts": "Newest podcasts",
       "heading_popular_podcasts": "Popular podcasts",
       "podcasts": "Podcasts",
-      "view_more": "View more",
+      "view_more": "Ցուցադրել ավելին",
       "require_cookies": "To view this video, please accept all cookies.",
       "cookie_preferences": "Cookie preferences",
       "search": "Որոնում"
@@ -1272,7 +1274,7 @@
     },
     "video-information-page": {
       "more_videos": "More videos",
-      "read_more_button": "View more",
+      "read_more_button": "Ցուցադրել ավելին",
       "not_found": "Video not found",
       "share_success": "Video link copied to clipboard",
       "require_cookies": "To view this video, please accept all cookies.",
@@ -1280,7 +1282,7 @@
     },
     "podcast-information-page": {
       "more_podcasts": "More podcasts",
-      "view_more": "View more",
+      "view_more": "Ցուցադրել ավելին",
       "not_found": "Podcast not found",
       "share_success": "Link copied to clipboard!"
     },
@@ -1295,7 +1297,7 @@
       "search": "Որոնում"
     },
     "organizations-page": {
-      "heading": "Organizations"
+      "heading": "Կազմակերպություններ"
     },
     "organization-overview-page": {
       "heading": "Organization overview",

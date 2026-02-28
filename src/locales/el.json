@@ -47,7 +47,7 @@
       "terms_of_use": "Όροι χρήσης",
       "cookie_policy": "Πολιτική cookies",
       "user_guide": "Χρήση πλατφόρμας",
-      "edit_profile": "Edit profile",
+      "edit_profile": "Επεξεργασία προφίλ",
       "go_back": "Πίσω",
       "notifications_heading": "Ειδοποιήσεις",
       "notifications_mark_read": "Σήμανση όλων ως αναγνωσμένων",
@@ -67,7 +67,9 @@
       "notifications_consultation_remind_start_48_hours_before": "Η συνεδρία σας με τον/την <0>{{providerName}}</0> ξεκινά σε 48 ώρες",
       "all": "Όλες",
       "new": "Νέες",
-      "read": "Διαβασμένες"
+      "read": "Διαβασμένες",
+      "language_label": "Γλώσσα",
+      "logout": "Αποσύνδεση"
     },
     "provider-overview": {
       "earliest_slot_label": "Συντομότερο διαθέσιμο ραντεβού για συνεδρία",
@@ -263,8 +265,8 @@
       "modal_text": "Εάν είστε εγγεγραμμένοι στην πλατφόρμα, θα λάβετε έναν σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασής σας.",
       "client": "Πελάτης",
       "heading": "Καλωσορίσατε στο",
-      "heading_modal": "Forgot password",
-      "go_back_to_login": "Go back to login"
+      "heading_modal": "Ξεχάσατε τον κωδικό;",
+      "go_back_to_login": "Επιστροφή στη σύνδεση"
     },
     "consultations": {
       "upcoming_tab_label": "Επερχόμενες",
@@ -505,8 +507,8 @@
       "edit": "Επεξεργασία",
       "details": "Δείτε λεπτομέρειες",
       "active": "Τώρα",
-      "reject": "Reject suggestion",
-      "accept": "Accept consultation",
+      "reject": "Απόρριψη πρότασης",
+      "accept": "Αποδοχή συνεδρίας",
       "cancel_consultation": "Ακύρωση συνεδρίας",
       "suggested": "Προτεινόμενες",
       "view_profile": "Προβολή προσωπικού προφίλ",
@@ -532,7 +534,7 @@
       "recommendations": "Συστάσεις",
       "recommendations_text": "Θέλετε να δείτε το γράφημα της διάθεσής σας και το προτεινόμενο περιεχόμενο;",
       "check_out": "Έλεγχος",
-      "mood_tracker_long": "Study your mood tracker"
+      "mood_tracker_long": "Μελετήστε την καταγραφή της διάθεσής σας"
     },
     "mascot-welcome-header": {
       "welcome": "Καλωσόρισες πίσω, {{name}}!",
@@ -582,7 +584,7 @@
       "by": "από {{creator}}",
       "number_of_more_options": "{{count}} περισσότερα",
       "read": "Ανάγνωση",
-      "show_more": "Show more"
+      "show_more": "Εμφάνιση περισσότερων"
     },
     "mood-tracker-history": {
       "heading": "Συνολικά, τις τελευταίες 30 ημέρες νιώθατε {{feeling}}.",
@@ -960,7 +962,7 @@
       "social": "Κοινωνικές",
       "latest_results": "Τα πιο πρόσφατα αποτελέσματα",
       "how_it_works": "Δείτε πώς λειτουργεί",
-      "see_last_result": "Latest results",
+      "see_last_result": "Τελευταία αποτελέσματα",
       "explore_button_label": "Εξερεύνηση χάρτη"
     },
     "baseline-assesment-result": {
@@ -1007,7 +1009,7 @@
       "view_more": "Δείτε περισσότερα"
     },
     "dashboard-hero": {
-      "heading": "Welcome back",
+      "heading": "Καλώς ήρθατε πάλι",
       "user_guide": "Οδηγός χρήσης",
       "next_consultation": "Επόμενη συνεδρία:",
       "change_button_label": "Αλλαγή",
@@ -1037,9 +1039,9 @@
       "join_button_label_tooltip": "Μπορείτε να συνδεθείτε στη συνεδρία 5 λεπτά πριν από την ώρα έναρξης"
     },
     "download-app": {
-      "heading": "Download our mobile app",
-      "paragraph": "Now available for iOS and Android",
-      "download_text": "Download from"
+      "heading": "Κατεβάστε την εφαρμογή μας",
+      "paragraph": "Τώρα διαθέσιμη για iOS και Android",
+      "download_text": "Λήψη από"
     },
     "find-support-near-you": {
       "heading": "Βρείτε υποστήριξη κοντά σας",
@@ -1736,7 +1738,7 @@
       "cancel": "Παραμονή"
     },
     "how-it-works-ba": {
-      "heading": "How baseline assessment works",
+      "heading": "Πώς λειτουργεί η αρχική αξιολόγηση",
       "subheading_1": "Before accessing your baseline assessment, please review and accept the Privacy Policy. You must accept it to continue.",
       "subheading_2": "You can also start the assessment anytime from your dashboard.",
       "subheading_3": "The assessment is divided into multiple questions with a progress bar, and you can save your progress and continue later.",

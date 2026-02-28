@@ -47,7 +47,7 @@
       "terms_of_use": "Regulaminem",
       "cookie_policy": "Polityka plików cookies",
       "user_guide": "Wykorzystanie platformy",
-      "edit_profile": "Edit profile",
+      "edit_profile": "Edytuj profil",
       "go_back": "Wróć",
       "notifications_heading": "Powiadomienia",
       "notifications_mark_read": "Oznacz wszystkie jako przeczytane",
@@ -67,7 +67,9 @@
       "notifications_consultation_remind_start_48_hours_before": "Twoja konsultacja z <0>{{providerName}}</0> rozpocznie się za 48 godzin",
       "all": "Wszystkie",
       "new": "Nowe",
-      "read": "Przeczytane"
+      "read": "Przeczytane",
+      "language_label": "Język",
+      "logout": "Wyloguj"
     },
     "provider-overview": {
       "earliest_slot_label": "Najwcześniejszy dostępny termin konsultacji",
@@ -143,8 +145,8 @@
       "button_link": "Odwiedź stronę",
       "button_call": "Skontaktuj się teraz",
       "no_results": "Brak wyników dla aktualnie wybranego kraju i języka.",
-      "other_emergency_services": "Other emergency service providers",
-      "browse": "Browse"
+      "other_emergency_services": "Inni dostawcy usług w nagłych wypadkach",
+      "browse": "Przeglądaj"
     },
     "register-about-you": {
       "input_name_label": "Imię",
@@ -263,8 +265,8 @@
       "modal_text": "Jeśli jesteś zarejestrowany na platformie, otrzymasz link do zresetowania hasła.",
       "client": "Klient/ka",
       "heading": "Witamy w",
-      "heading_modal": "Forgot password",
-      "go_back_to_login": "Go back to login"
+      "heading_modal": "Zapomniałeś hasła?",
+      "go_back_to_login": "Wróć do logowania"
     },
     "consultations": {
       "upcoming_tab_label": "Nadchodzące",
@@ -505,8 +507,8 @@
       "edit": "Edytuj",
       "details": "Zobacz szczegóły",
       "active": "Teraz",
-      "reject": "Reject suggestion",
-      "accept": "Accept consultation",
+      "reject": "Odrzuć sugestię",
+      "accept": "Zaakceptuj konsultację",
       "cancel_consultation": "Anuluj konsultację",
       "suggested": "Sugerowane",
       "view_profile": "Wyświetl profil osobisty",
@@ -532,7 +534,7 @@
       "recommendations": "Rekomendacje",
       "recommendations_text": "Chcesz zobaczyć wykres swojego nastroju i polecane treści?",
       "check_out": "Zobacz",
-      "mood_tracker_long": "Study your mood tracker"
+      "mood_tracker_long": "Przeanalizuj swój dziennik nastroju"
     },
     "mascot-welcome-header": {
       "welcome": "Witamy z powrotem {{name}}!",
@@ -582,7 +584,7 @@
       "by": "Przez {{creator}}",
       "number_of_more_options": "jeszcze {{count}}",
       "read": "Czytać",
-      "show_more": "Show more"
+      "show_more": "Pokaż więcej"
     },
     "mood-tracker-history": {
       "heading": "Ogólnie rzecz biorąc, czułeś się/aś się {{feeling}} w ciągu ostatnich 30 dni",
@@ -938,12 +940,12 @@
       "assessment_completed": "Ocena zakończona",
       "assessment_completed_description": "Dziękujemy za wypełnienie oceny. Twoje odpowiedzi zostały zapisane i zostaną wykorzystane, aby Ci pomóc.",
       "assessment_completed_button": "Powrót do strony głównej",
-      "save_button_label": "Save for later",
-      "sontrgly_disagree": "Strongly Disagree",
-      "disagree": "Disagree",
-      "neutral": "Neutral",
-      "agree": "Agree",
-      "strongly_agree": "Strongly Agree"
+      "save_button_label": "Zapisz na później",
+      "sontrgly_disagree": "Zdecydowanie się nie zgadzam",
+      "disagree": "Nie zgadzam się",
+      "neutral": "Neutralnie",
+      "agree": "Zgadzam się",
+      "strongly_agree": "Zdecydowanie się zgadzam"
     },
     "baseline-assessment-dashboard": {
       "heading": "Twoja podstawowa ocena",
@@ -955,12 +957,12 @@
       "view": "Zobacz wyniki",
       "view_detailed_results": "Zobacz szczegółowe wyniki",
       "started_at": "Rozpoczęto {{date}}",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
-      "latest_results": "Latest Results",
-      "how_it_works": "How it works",
-      "see_last_result": "Latest results",
+      "psychological": "Psychologiczny",
+      "biological": "Biologiczny",
+      "social": "Społeczny",
+      "latest_results": "Ostatnie wyniki",
+      "how_it_works": "Jak to działa",
+      "see_last_result": "Ostatnie wyniki",
       "explore_button_label": "Odkryj mapę"
     },
     "baseline-assesment-result": {
@@ -972,9 +974,9 @@
       "read_more_button": "Czytaj więcej",
       "by": "autor: {{creator}}",
       "min_read": "min czytania",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
+      "psychological": "Psychologiczny",
+      "biological": "Biologiczny",
+      "social": "Społeczny",
       "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
       "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
       "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
@@ -1007,7 +1009,7 @@
       "view_more": "Zobacz więcej"
     },
     "dashboard-hero": {
-      "heading": "Welcome back",
+      "heading": "Witaj ponownie",
       "user_guide": "Przewodnik",
       "next_consultation": "Następna konsultacja:",
       "change_button_label": "Zmiana",
@@ -1037,9 +1039,9 @@
       "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
     },
     "download-app": {
-      "heading": "Download our mobile app",
-      "paragraph": "Now available for iOS and Android",
-      "download_text": "Download from"
+      "heading": "Pobierz naszą aplikację mobilną",
+      "paragraph": "Teraz dostępna na iOS i Android",
+      "download_text": "Pobierz z"
     },
     "find-support-near-you": {
       "heading": "Znajdź wsparcie w pobliżu",

@@ -68,7 +68,8 @@
       "all": "All",
       "new": "New",
       "read": "Read",
-      "language_label": "Language"
+      "language_label": "Language",
+      "logout": "Logout"
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
