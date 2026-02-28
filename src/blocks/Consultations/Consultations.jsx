@@ -88,12 +88,9 @@ export const Consultations = ({
   const consultations = consultationsQuery.data || [];
   const upcomingConsultations = getUpcomingConsultations(
     consultations,
-    currentDateTs
+    currentDateTs,
   );
-  const pastConsultations = getPastConsultations(
-    consultations,
-    currentDateTs
-  );
+  const pastConsultations = getPastConsultations(consultations, currentDateTs);
   const hasUpcoming = upcomingConsultations?.length > 0;
   const hasPast = pastConsultations?.length > 0;
 
@@ -153,7 +150,7 @@ export const Consultations = ({
   };
   const rejectConsultationMutation = useRejectConsultation(
     onRejectConsultationSuccess,
-    onRejectConsultationError
+    onRejectConsultationError,
   );
   const rejectConsultation = (consultationId) => {
     rejectConsultationMutation.mutate(consultationId);
@@ -206,7 +203,7 @@ export const Consultations = ({
               {t(
                 filter === "upcoming"
                   ? "no_upcoming_consultations"
-                  : "no_past_consultations"
+                  : "no_past_consultations",
               )}
             </p>
           )}
@@ -222,6 +219,7 @@ export const Consultations = ({
           classes="consultations__grid__consultations-item__grid__consultation"
         >
           <Consultation
+            isLoading={consultationsQuery.isLoading}
             renderIn="client"
             handleOpenEdit={handleOpenEdit}
             handleJoinClick={openJoinConsultation}
