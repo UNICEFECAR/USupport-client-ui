@@ -285,8 +285,7 @@ export const ArticleInformation = () => {
         Math.max(0, currentArticleScroll / (maxArticleScroll || 1)),
       );
 
-      const sidebarScrollable =
-        sidebarEl.scrollHeight - sidebarEl.clientHeight;
+      const sidebarScrollable = sidebarEl.scrollHeight - sidebarEl.clientHeight;
 
       if (sidebarScrollable <= 0) return;
 
@@ -390,10 +389,7 @@ export const ArticleInformation = () => {
     <Page classes="page__article-information">
       <Block classes="page__article-information__block">
         <div className="page__article-information__layout">
-          <div
-            className="page__article-information__main"
-            ref={mainScrollRef}
-          >
+          <div className="page__article-information__main" ref={mainScrollRef}>
             {articleData && !isLoading ? (
               <ArticleView
                 articleData={{
