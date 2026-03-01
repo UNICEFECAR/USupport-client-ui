@@ -21,7 +21,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.2",
     "classnames": "^2.3.2",
-    "html2pdf.js": "^0.10.3",
+    "html2pdf.js": "^0.14.0",
     "i18next": "^21.10.0",
     "joi": "^17.9.2",
     "jwt-decode": "^3.1.2",
@@ -60,6 +60,8 @@
     "glob-parent": "5.1.2",
     "trim-newlines": "3.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "dompurify": "^3.2.10",
+    "jspdf": "^4.2.0"
   }
 }
