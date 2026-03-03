@@ -66,6 +66,7 @@ export const SelectProvider = ({
             freeLabel={activeCoupon ? t("coupon") : t("free")}
             earliestAvailableSlot={provider.earliestAvailableSlot}
             t={t}
+            liquidGlass
           />
         </GridItem>
       );
@@ -82,6 +83,7 @@ export const SelectProvider = ({
         initialScrollY={20}
         hasChildren={true}
         scrollThreshold={0}
+        style={{ overflow: "visible" }}
       >
         <Grid md={8} lg={12} classes="select-provider__grid">
           {renderProviders()}
