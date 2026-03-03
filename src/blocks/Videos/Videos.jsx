@@ -426,6 +426,7 @@ export const Videos = ({
                     next={getMoreVideos}
                     hasMore={hasMore}
                     loader={<Loading size="lg" />}
+                    style={{ overflow: "visible" }}
                   >
                     <div className="videos__custom-grid">
                       {videos.map((video, index) => {

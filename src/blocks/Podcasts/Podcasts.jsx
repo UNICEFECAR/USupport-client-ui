@@ -421,6 +421,7 @@ export const Podcasts = ({
                     next={getMorePodcasts}
                     hasMore={hasMore}
                     loader={<Loading size="lg" />}
+                    style={{ overflow: "visible" }}
                   >
                     <div className="podcasts__custom-grid">
                       {podcasts.map((podcast, index) => {

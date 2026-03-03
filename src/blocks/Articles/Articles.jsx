@@ -456,6 +456,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
           next={isTmpUser ? getMoreArticles : loadMore}
           hasMore={isTmpUser ? hasMoreGuest : hasMore}
           loader={<Loading />}
+          style={{ overflow: "visible" }}
           // endMessage={} // Add end message here if required
         >
           <Grid classes="articles__main-grid">

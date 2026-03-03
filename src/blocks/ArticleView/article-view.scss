@@ -6,25 +6,33 @@
 
   &__content {
     max-width: 80rem;
-    margin: 0 auto;
+    margin: 0 auto $spacing_1_6;
+
+    padding: $spacing_1_6;
+    border-radius: $border_radius_1_6;
+    @include themifyNormal($themes) {
+      background: themed(glass_panel_background);
+      border: 1px solid themed(glass_border_color);
+      box-shadow: themed(glass_shadow);
+    }
+    backdrop-filter: blur(10px) saturate(1.12);
+    -webkit-backdrop-filter: blur(10px) saturate(1.12);
+
+    // Light theme: match CardMedia almost-white background
+    .theme-light & {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(224, 233, 255, 0.7);
+      box-shadow: 0 0.6rem 1rem rgba(9, 14, 26, 0.08);
+    }
 
     @media screen and (min-width: $screen-md) {
-      padding: 0 $spacing_3_2;
+      padding: $spacing_3_2;
+      margin-inline: $spacing_1_6;
     }
 
     @media screen and (min-width: $screen-lg) {
-      padding: $spacing_1_6;
-      border-radius: $border_radius_1_6;
       margin-top: $spacing_1_6;
-      margin-bottom: $spacing_1_6;
-      box-shadow: $shadow_1;
-
-      @include themifyCustom(
-        $themes,
-        "background-color",
-        "color_white_ff",
-        "color_gray_101828"
-      );
+      margin-bottom: $spacing_3_2;
     }
   }
 

@@ -4,10 +4,12 @@
   text-align: left;
   padding-bottom: $spacing_0_8;
   background-color: #eaf7f9;
+  background: linear-gradient(180deg, #e6e1f5 0%, #dcd5f2 100%);
 
   .theme-dark &,
   .theme-highContrast & {
     background-color: #193246;
+    background: linear-gradient(180deg, #193246 0%, #101b26 100%);
   }
   padding-bottom: $spacing_4_2;
 
@@ -54,6 +56,10 @@
 
   &__article-item {
     margin-top: $spacing_1_6;
+
+    @media screen and (min-width: $screen-md) {
+      padding-inline: $spacing_1_2;
+    }
 
     &__card-media {
       &.card-media {
