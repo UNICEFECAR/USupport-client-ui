@@ -310,7 +310,17 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
             <p className="text article-view__creator">{t("by", { creator })}</p>
           )}
           <div className="article-view__meta-dot" />
-          <Icon color={"#ba7446"} name={"time"} size="sm" />
+          <Icon
+            name="time"
+            size="sm"
+            color={
+              theme === "highContrast"
+                ? "#ffff00" // highContrast color_text_main
+                : theme === "dark"
+                ? "#ededed" // dark color_text_main
+                : "#0e202f" // light color_text_main
+            }
+          />
           <p className="text">
             {articleData.readingTime} {t("min_read")}
           </p>

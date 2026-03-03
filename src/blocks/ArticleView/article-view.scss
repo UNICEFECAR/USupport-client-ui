@@ -86,7 +86,13 @@
     white-space: nowrap;
 
     &.text {
-      color: #ba7446;
+      @include themifyCustom(
+        $themes,
+        "color",
+        "color_orange_article_creator",
+        "color_orange_article_creator",
+        "color_orange_article_creator"
+      );
     }
   }
 
@@ -95,7 +101,13 @@
     height: 3px;
     border-radius: 50%;
     flex-shrink: 0;
-    background-color: #ba7446;
+    @include themifyCustom(
+      $themes,
+      "background-color",
+      "color_orange_article_creator",
+      "color_orange_article_creator",
+      "color_orange_article_creator"
+    );
   }
 
   &__meta {
@@ -105,7 +117,13 @@
     }
 
     & .text {
-      color: #ba7446;
+      @include themifyCustom(
+        $themes,
+        "color",
+        "color_orange_article_creator",
+        "color_orange_article_creator",
+        "color_orange_article_creator"
+      );
     }
   }
 
