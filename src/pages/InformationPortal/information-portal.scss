@@ -2,6 +2,8 @@
 @import "@USupport-components-library/styles";
 
 .page__information-portal {
+  background-image: url("./assets/hero.png");
+
   .theme-dark &,
   .theme-highContrast & {
     background-color: #193246;
