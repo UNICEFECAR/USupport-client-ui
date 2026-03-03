@@ -195,6 +195,7 @@ export const RegisterEmail = ({ isOpen, handleGoBack, handleLogin }) => {
   return (
     <>
       <Backdrop
+        classes="register-email-modal"
         isOpen={isOpen}
         onClose={() => {}}
         hasGoBackArrow={true}

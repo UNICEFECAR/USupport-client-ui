@@ -58,6 +58,7 @@ export const ForgotPassword = ({ isOpen, handleGoBack }) => {
   return (
     <>
       <Backdrop
+        classes="forgot-password-modal"
         heading={t("heading_modal")}
         isOpen={isOpen}
         onClose={() => {}}
