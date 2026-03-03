@@ -17,7 +17,35 @@
     background-image: url("./assets/hero.png");
   }
 
-  .theme-dark &,
+  .theme-dark & {
+    background: radial-gradient(
+        760px 320px at 15% 78%,
+        rgba(63, 81, 132, 0.3),
+        transparent 72%
+      ),
+      radial-gradient(
+        820px 340px at 82% 68%,
+        rgba(46, 65, 112, 0.3),
+        transparent 72%
+      ),
+      radial-gradient(
+        620px 260px at 45% 90%,
+        rgba(38, 52, 91, 0.26),
+        transparent 74%
+      ),
+      radial-gradient(
+        980px 420px at 8% 8%,
+        rgba(78, 100, 162, 0.34),
+        transparent 70%
+      ),
+      radial-gradient(
+        860px 360px at 92% 20%,
+        rgba(108, 88, 180, 0.3),
+        transparent 72%
+      ),
+      linear-gradient(135deg, #0f1728 0%, #122039 42%, #182a46 100%);
+  }
+
   .theme-highContrast & {
     background-image: none;
   }
