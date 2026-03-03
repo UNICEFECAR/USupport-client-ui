@@ -234,6 +234,7 @@ export const Consultations = ({
             withOrganization={!!consultation.organizationId}
             t={t}
             toast={toast}
+            liquidGlass
             classes={
               hasMoreThanOne
                 ? "consultations__grid__consultations-item__grid__consultation__item"

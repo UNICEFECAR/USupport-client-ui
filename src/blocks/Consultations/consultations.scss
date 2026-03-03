@@ -29,4 +29,17 @@
       }
     }
   }
+
+  // Use original, softer liquid glass styling for consultation cards in this block
+  .theme-light & {
+    .card--liquid-glass {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.44),
+        rgba(235, 243, 255, 0.3)
+      );
+      border: 1px solid rgba(224, 233, 255, 0.72);
+      box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.14);
+    }
+  }
 }
