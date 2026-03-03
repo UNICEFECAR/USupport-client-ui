@@ -260,13 +260,17 @@ export const MoodTracker = ({
                   </>
                 )}
               </h1>
-              {
-                <div className="mood-tracker__subheading-container">
+              <div className="mood-tracker__subheading-container">
+                {width < 1366 ? (
+                  <h2 className="mood-tracker__subheading-container__subheading">
+                    {t("heading")}
+                  </h2>
+                ) : (
                   <h3 className="mood-tracker__subheading-container__subheading">
                     {t("heading")}
                   </h3>
-                </div>
-              }
+                )}
+              </div>
               {width > 768 ? renderEmojiBox() : null}
             </div>
             {width <= 768 ? renderButton() : null}
