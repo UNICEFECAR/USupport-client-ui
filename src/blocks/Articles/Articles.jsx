@@ -19,6 +19,7 @@ import {
   Tabs,
   Loading,
   ArticlesGrid,
+  ButtonOnlyIcon,
 } from "@USupport-components-library/src";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import {
@@ -55,7 +56,12 @@ const PL_LANGUAGE_AGE_GROUP_IDS = {
  * @param {string} props.externalSearchValue - External search value from parent
  * @return {jsx}
  */
-export const Articles = ({ showSearch, showCategories, sort, externalSearchValue }) => {
+export const Articles = ({
+  showSearch,
+  showCategories,
+  sort,
+  externalSearchValue,
+}) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { isTmpUser } = useContext(RootContext);
@@ -75,6 +81,8 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
   const [ageGroups, setAgeGroups] = useState();
   const [selectedAgeGroup, setSelectedAgeGroup] = useState();
   const [showAgeGroups, setShowAgeGroups] = useState(true);
+  const [isAlternativeGridPattern, setIsAlternativeGridPattern] =
+    useState(false);
 
   const { data: contentEngagements } = useGetUserContentEngagements(!isTmpUser);
 
@@ -121,7 +129,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
       onSuccess: (data) => {
         setAgeGroups([...data]);
       },
-    }
+    },
   );
 
   const handleAgeGroupOnPress = (index) => {
@@ -158,7 +166,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
           value: category.attributes.name,
           id: category.id,
           isSelected: false,
-        })
+        }),
       );
 
       setSelectedCategory(categoriesData[0]);
@@ -176,7 +184,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
       onSuccess: (data) => {
         setCategories([...data]);
       },
-    }
+    },
   );
 
   const handleCategoryOnPress = (index) => {
@@ -196,11 +204,12 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
   //--------------------- Search Input ----------------------//
   const [searchValue, setSearchValue] = useState("");
   const internalDebouncedSearchValue = useDebounce(searchValue, 500);
-  
+
   // Use external search value if provided, otherwise use internal
-  const debouncedSearchValue = externalSearchValue !== undefined 
-    ? externalSearchValue 
-    : internalDebouncedSearchValue;
+  const debouncedSearchValue =
+    externalSearchValue !== undefined
+      ? externalSearchValue
+      : internalDebouncedSearchValue;
 
   const handleInputChange = (newValue) => {
     setSearchValue(newValue);
@@ -208,7 +217,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
 
   const handler = useCallback(() => {
@@ -234,7 +243,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
 
   const articleIdsQuery = useQuery(
     ["articleIds", currentCountry],
-    getArticlesIds
+    getArticlesIds,
   );
 
   const { data: articleCategoryIdsToShow } = useQuery(
@@ -249,7 +258,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
       return cmsSvc.getArticleCategoryIds(
         usersLanguage,
         selectedAgeGroup.id,
-        articleIdsQuery.data?.length > 0 ? articleIdsQuery.data : undefined
+        articleIdsQuery.data?.length > 0 ? articleIdsQuery.data : undefined,
       );
     },
     {
@@ -257,7 +266,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
         !!selectedAgeGroup?.id &&
         !articleIdsQuery.isLoading &&
         !!articleIdsQuery.data?.length,
-    }
+    },
   );
 
   const categoriesToShow = useMemo(() => {
@@ -266,7 +275,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
     return categories.filter(
       (category) =>
         articleCategoryIdsToShow.includes(category.id) ||
-        category.value === "all"
+        category.value === "all",
     );
   }, [categories, articleCategoryIdsToShow]);
 
@@ -327,7 +336,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
           setArticles([...data.articles]);
           setNumberOfArticles(data.numberOfArticles);
         },
-      }
+      },
     );
 
   useEffect(() => {
@@ -405,7 +414,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
 
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         articleIds,
-        "article"
+        "article",
       );
 
       setArticlesLikes((prevArticlesLikes) => {
@@ -448,6 +457,8 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
   let areCategoriesAndAgeGroupsReady =
     categoriesToShow?.length > 1 && ageGroupsQuery?.data?.length > 0;
 
+  const currentGridPattern = isAlternativeGridPattern ? [2, 2, 2] : [2, 3, 1];
+
   return (
     <Block classes="articles">
       {ageGroups?.length > 0 && categories?.length > 0 && (
@@ -463,13 +474,31 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
             {showAgeGroups &&
               categoriesToShow?.length > 1 &&
               ageGroupsQuery?.data?.length > 0 && (
-                <GridItem md={4} lg={6} classes="articles__age-groups-item">
+                <GridItem md={8} lg={12} classes="articles__age-groups-item">
                   {ageGroups && (
                     <div className="articles__age-groups-tabs__container">
                       <TabsUnderlined
                         options={ageGroups}
                         handleSelect={handleAgeGroupOnPress}
                         textType="h3"
+                      />
+                      <ButtonOnlyIcon
+                        iconName={
+                          isAlternativeGridPattern ? "grid-view" : "list-view"
+                        }
+                        iconSize={"md"}
+                        onClick={() =>
+                          setIsAlternativeGridPattern(
+                            (prevIsAlternativeGridPattern) =>
+                              !prevIsAlternativeGridPattern,
+                          )
+                        }
+                        aria-label={
+                          isAlternativeGridPattern
+                            ? "Switch to 2-3-1 layout"
+                            : "Switch to 2-2-2 layout"
+                        }
+                        classes="articles__age-groups-tabs__container__layout-toggle"
                       />
                     </div>
                   )}
@@ -499,7 +528,7 @@ export const Articles = ({ showSearch, showCategories, sort, externalSearchValue
                   articles={transformedArticles}
                   onArticleClick={handleArticleClick}
                   t={t}
-                  pattern={[2, 3, 1]}
+                  pattern={currentGridPattern}
                 />
               )}
 

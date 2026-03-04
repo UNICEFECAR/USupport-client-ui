@@ -10,12 +10,19 @@
 
   &__age-groups-item {
     @media screen and (min-width: $screen-lg) {
+      width: 100%;
       justify-self: flex-start;
     }
   }
 
   &__age-groups-tabs__container {
     display: flex;
+    align-items: center;
+    width: 100%;
+
+    &__layout-toggle {
+      margin-left: auto;
+    }
   }
 
   &__search-item {
