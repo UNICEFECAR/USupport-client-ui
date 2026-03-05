@@ -203,7 +203,9 @@
       "saturday": "sâ",
       "tab_paid": "Plătit",
       "tab_coupon": "Cupon",
-      "tab_free": "Gratuit"
+      "tab_free": "Gratuit",
+      "choose-the-provider": "Alegeți specialistul cu care doriți să vorbiți prin video, audio sau text. Uneori poate dura câteva ședințe până găsiți un specialist potrivit nevoilor și abordării preferate.",
+      "coupon_note": "De data aceasta v-am introdus un cod pentru o ședință gratuită! Programați o întâlnire cu unul dintre consultanții noștri și faceți primul pas către îmbunătățirea bunăstării."
     },
     "notification-preferences": {
       "email": "Notificări prin e-mail",
