@@ -201,7 +201,9 @@
       "saturday": "Sob.",
       "tab_paid": "Płatne",
       "tab_coupon": "Kupon",
-      "tab_free": "Bezpłatne"
+      "tab_free": "Bezpłatne",
+      "choose-the-provider": "Wybierz specjalistę, z którym chcesz rozmawiać przez wideo, audio lub czat. Czasami może minąć kilka sesji, zanim znajdziesz specjalistę odpowiedniego do Twoich potrzeb i preferowanego podejścia.",
+      "coupon_note": "Tym razem wpisaliśmy dla Ciebie kod na darmową sesję! Umów się na wizytę u jednego z naszych konsultantów i zrób pierwszy krok ku lepszemu samopoczuciu."
     },
     "notification-preferences": {
       "email": "Powiadomienia email",
