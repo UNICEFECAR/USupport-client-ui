@@ -175,20 +175,6 @@ export const SelectProvider = () => {
           ? t("heading_with_coupon", { coupon: activeCoupon.couponValue })
           : t("heading")
       }
-      subheading={t("subheading")}
-      showHeadingButtonBelow={width < 768 ? true : false}
-      headingButton={
-        <div className="page__select-provider__buttons">
-          <NewButton
-            label={t("button_label")}
-            iconName="filter"
-            iconColor="#ffffff"
-            iconSize="sm"
-            size="sm"
-            onClick={handleFilterClick}
-          />
-        </div>
-      }
     >
       <FiltersBlock
         handleSave={handleFilterSave}
@@ -208,6 +194,10 @@ export const SelectProvider = () => {
         activeCoupon={activeCoupon}
         isLoading={providersQuery.isFetching}
         providersQuery={providersQuery}
+        isFiltering={isFiltering}
+        subheading={t("subheading")}
+        onFilterClick={handleFilterClick}
+        filterButtonLabel={t("button_label")}
       />
 
       {width < 768 && <RadialCircle color="purple" />}

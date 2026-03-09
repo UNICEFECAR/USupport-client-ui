@@ -48,7 +48,7 @@
       "cookie_policy": "Cookie policy",
       "user_guide": "Platform usage",
       "edit_profile": "Edit profile",
-      "go_back": "Back",
+      "go_back": "Go back",
       "notifications_heading": "Notifications",
       "notifications_mark_read": "Mark all as read",
       "notifications_empty": "No notifications yet",
@@ -121,7 +121,14 @@
       "video_label": "Video representation",
       "button_label": "Schedule consultation",
       "hour_consultation": "for 1 hour consultation",
-      "free": "free of charge"
+      "free": "free of charge",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
     },
     "user-profile": {
       "your_profile": "Your profile",
@@ -756,7 +763,7 @@
       "language": "Language",
       "all_languages": "All languages",
       "date_answered": "on {{date}}",
-      "go_back": "Back",
+      "go_back": "Go back",
       "how_it_works": "See how it works"
     },
     "videos": {
@@ -947,7 +954,7 @@
       "frequent_headaches": "I have frequent headaches for no reason.",
       "question": "Question {{number}} of {{total}}",
       "completed": "{{percentage}}% completed",
-      "back": "Back",
+      "back": "Go back",
       "next": "Next",
       "start_assessment": "Start Assessment",
       "finish_assessment": "Finish Assessment",
@@ -963,7 +970,9 @@
     },
     "baseline-assessment-dashboard": {
       "heading": "Your Baseline Assessment",
+      "heading_completed": "Your Latest Assessment",
       "no_assessment_text": "You haven't completed a baseline assessment yet. Complete one to get personalized insights about your mental health.",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
       "start_new_assessment": "Start Assessment",
       "completed": "Completed",
       "in_progress": "In Progress",
@@ -976,8 +985,11 @@
       "social": "Social",
       "latest_results": "Latest Results",
       "how_it_works": "How it works",
-      "see_last_result": "Latest results",
-      "explore_button_label": "Explore map"
+      "see_last_result": "View Results",
+      "explore_button_label": "Explore Organizations",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",
@@ -1322,7 +1334,7 @@
       "login": ""
     },
     "children-rights-page": {
-      "back": "Back",
+      "back": "Go back",
       "continue": "Continue",
       "submit": "Submit",
       "view_content": "View more content",

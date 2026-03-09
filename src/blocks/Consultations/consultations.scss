@@ -1,8 +1,62 @@
 @import "@USupport-components-library/styles";
 
 .consultations {
+  &__box {
+    padding: $spacing_3_2;
+    margin-top: $spacing_2_4;
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_1_6;
+    padding-bottom: $spacing_1_6;
+    border-bottom: 1px solid $color_gray_ea;
+    margin-bottom: $spacing_1_6;
+
+    @include themifyCustom(
+      $themes,
+      "border-bottom-color",
+      "color_gray_ea",
+      "color_gray_344054"
+    );
+
+    @media screen and (min-width: $screen-md) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__heading-main {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_8;
+
+    @media screen and (min-width: $screen-md) {
+      align-items: flex-start;
+    }
+  }
+
+  &__heading-title {
+    margin: 0;
+  }
+
+  &__heading-button--inline {
+    @media screen and (max-width: $screen-md) {
+      align-self: flex-start;
+    }
+  }
+
+  &__heading-button--below {
+    margin-top: $spacing_1_6;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 20rem;
+  }
+
   &__grid {
-    padding-top: $spacing_2_4;
     padding-bottom: $spacing_6_4;
 
     &__tabs-item {
@@ -10,8 +64,6 @@
     }
 
     &__consultations-item {
-      margin-top: $spacing_2_4;
-
       &__grid {
         place-items: center;
 
@@ -30,8 +82,8 @@
     }
   }
 
-  // Use original, softer liquid glass styling for consultation cards in this block
   .theme-light & {
+    // Keep softer liquid glass styling for cards
     .card--liquid-glass {
       background: linear-gradient(
         145deg,
@@ -41,5 +93,27 @@
       border: 1px solid rgba(224, 233, 255, 0.72);
       box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.14);
     }
+
+    // Use CardMedia glass background for the main consultations box
+    .consultations__box.box--liquid-glass {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(224, 233, 255, 0.7);
+      box-shadow: 0 0.6rem 1rem rgba(9, 14, 26, 0.08);
+      border-radius: $border_radius_2_4;
+      backdrop-filter: blur(10px) saturate(1.12);
+      -webkit-backdrop-filter: blur(10px) saturate(1.12);
+    }
+  }
+
+  &__section {
+    &:not(:first-of-type) {
+      margin-top: $spacing_3_2;
+    }
+  }
+
+  &__empty {
+    padding: $spacing_2_4 0;
+    display: flex;
+    justify-content: center;
   }
 }

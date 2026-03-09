@@ -3,18 +3,6 @@
 .soscenter {
   @include full-height-page-navbar;
 
-  padding-top: $spacing_3_2;
-  padding-bottom: $spacing_6_4;
-
-  @media screen and (min-width: $screen-md) {
-    padding-bottom: $spacing_8_0;
-  }
-
-  @media screen and (min-width: $screen-lg) {
-    padding-top: $spacing_5_6;
-    padding-bottom: $spacing_16_0;
-  }
-
   &__heading-item {
     text-align: center;
   }
@@ -28,8 +16,8 @@
   }
 
   &__box {
-    padding: $spacing_2_4;
     text-align: left;
+    margin-bottom: $spacing_2_4;
 
     @media screen and (min-width: $screen-md) {
       padding: $spacing_5_6 $spacing_9_6;
@@ -56,10 +44,26 @@
     }
   }
 
+  .theme-light & {
+    // Match Consultations main box liquid-glass background
+    .soscenter__box.box--liquid-glass {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(224, 233, 255, 0.7);
+      box-shadow: 0 0.6rem 1rem rgba(9, 14, 26, 0.08);
+      border-radius: $border_radius_2_4;
+      backdrop-filter: blur(10px) saturate(1.12);
+      -webkit-backdrop-filter: blur(10px) saturate(1.12);
+    }
+  }
+
   &__secondary-grid {
     row-gap: 2rem;
+    place-items: stretch;
+
     &__item {
-      justify-self: center;
+      justify-self: stretch;
+      width: 100%;
+      display: flex;
 
       &--romania-button {
         display: flex;

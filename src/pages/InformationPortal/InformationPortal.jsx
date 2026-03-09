@@ -104,11 +104,7 @@ export const InformationPortal = () => {
     contentTabs.find((tab) => tab.isSelected)?.value || "articles";
 
   return (
-    <Page
-      classes="page__information-portal"
-      showGoBackArrow={false}
-      darkBackground={true}
-    >
+    <Page showGoBackArrow={false} darkBackground={true}>
       <InformationPortalHero
         showSearch={true}
         searchValue={searchValue}

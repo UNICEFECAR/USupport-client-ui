@@ -121,7 +121,14 @@
       "video_label": "Prezentacja wideo",
       "button_label": "Zaplanuj konsultację",
       "hour_consultation": "za 1 godzinę konsultacji",
-      "free": "Bezpłatne"
+      "free": "Bezpłatne",
+      "monday": "Poniedziałek",
+      "tuesday": "Wtorek",
+      "wednesday": "Środa",
+      "thursday": "Czwartek",
+      "friday": "Piątek",
+      "saturday": "Sobota",
+      "sunday": "Niedziela"
     },
     "user-profile": {
       "your_profile": "Twój profil",
@@ -169,7 +176,9 @@
       "sex_placeholder": "Wprowadź swoją płeć",
       "year_of_birth_placeholder": "Wprowadź swój rok urodzenia",
       "living_place_placeholder": "Wprowadź swoje miejsce zamieszkania",
-      "parent": "Rodzic"
+      "parent": "Rodzic",
+      "logout_button_label": "Wyloguj",
+      "heading": "Witamy w"
     },
     "register-anonymous": {
       "nickname_label": "Nick *",
@@ -515,7 +524,9 @@
       "conducted": "Konsultacja zakończona",
       "not_conducted": "Nie przeprowadzono",
       "free": "Bezpłatne",
-      "coupon": "Kupon"
+      "coupon": "Kupon",
+      "explore_resources_label": "Explore resources",
+      "heading_need_support": "Need support?"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",
@@ -534,7 +545,9 @@
       "recommendations": "Rekomendacje",
       "recommendations_text": "Chcesz zobaczyć wykres swojego nastroju i polecane treści?",
       "check_out": "Zobacz",
-      "mood_tracker_long": "Przeanalizuj swój dziennik nastroju"
+      "mood_tracker_long": "Przeanalizuj swój dziennik nastroju",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide"
     },
     "mascot-welcome-header": {
       "welcome": "Witamy z powrotem {{name}}!",
@@ -715,7 +728,8 @@
       "read_more_button": "Czytaj więcej",
       "by": "autor: {{creator}}",
       "min_read": "min czytania",
-      "no_recommendations": "Nie znaleziono rekomendacji"
+      "no_recommendations": "Nie znaleziono rekomendacji",
+      "select_year": "Select year"
     },
     "mascot-header-MyQA": {
       "heading": "Moje Pytania i odpowiedzi",
@@ -743,7 +757,9 @@
       "no_answers_found": "Brak odpowiedzi",
       "language": "Język",
       "all_languages": "Wszystkie języki",
-      "date_answered": "dnia {{date}}"
+      "date_answered": "dnia {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "videos": {
       "view_more": "Zobacz więcej",
@@ -963,7 +979,12 @@
       "latest_results": "Ostatnie wyniki",
       "how_it_works": "Jak to działa",
       "see_last_result": "Ostatnie wyniki",
-      "explore_button_label": "Odkryj mapę"
+      "explore_button_label": "Odkryj mapę",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Ocena zakończona",
@@ -1046,6 +1067,12 @@
     "find-support-near-you": {
       "heading": "Znajdź wsparcie w pobliżu",
       "explore_button_label": "Przeglądaj"
+    },
+    "most-read-articles": {
+      "heading": "Most Read Article",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}"
     }
   },
   "pages": {
@@ -1168,7 +1195,8 @@
       "view_more": "Zobacz więcej",
       "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
       "cookie_preferences": "Preferencje plików cookie",
-      "search": "Szukaj"
+      "search": "Szukaj",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "Zarejestruj się w uSupport za pomocą adresu email"

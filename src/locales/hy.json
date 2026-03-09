@@ -121,7 +121,14 @@
       "video_label": "Տեսաներկայացում",
       "button_label": "Պլանավորել խորհրդատվություն",
       "hour_consultation": "1 ժամանոց խորհրդատվության համար",
-      "free": "Անվճար"
+      "free": "Անվճար",
+      "monday": "Երկուշաբթի",
+      "tuesday": "Երեքշաբթի",
+      "wednesday": "Չորեքշաբթի",
+      "thursday": "Հինգշաբթի",
+      "friday": "Ուրբաթ",
+      "saturday": "Շաբաթ",
+      "sunday": "Կիրակի"
     },
     "user-profile": {
       "your_profile": "Ձեր պրոֆիլը",
@@ -169,7 +176,9 @@
       "sex_placeholder": "Մուտքագրեք ձեր սեռը",
       "year_of_birth_placeholder": "Մուտքագրեք ձեր ծննդյան տարեթիվը",
       "living_place_placeholder": "Մուտքագրեք ձեր բնակության վայրը",
-      "parent": "Ծնող"
+      "parent": "Ծնող",
+      "logout_button_label": "Դուրս գալ",
+      "heading": "Բարի գալուստ"
     },
     "register-anonymous": {
       "nickname_label": "Ծածկանունը *",
@@ -515,7 +524,9 @@
       "conducted": "Խորհրդատվությունը ավարտված է",
       "not_conducted": "Չի իրականացվել",
       "free": "Անվճար",
-      "coupon": "Coupon"
+      "coupon": "Coupon",
+      "explore_resources_label": "Explore resources",
+      "heading_need_support": "Need support?"
     },
     "mood-tracker": {
       "happy": "Ուրախ եմ",
@@ -534,7 +545,9 @@
       "recommendations": "Առաջարկություններ",
       "recommendations_text": "Ցանկանու՞մ եք դիտել ձեր տրամադրության գրաֆիկը և տեսնել առաջարկված բովանդակությունը:",
       "check_out": "Դիտել",
-      "mood_tracker_long": "Ուսումնասիրեք ձեր տրամադրության ստուգիչը"
+      "mood_tracker_long": "Ուսումնասիրեք ձեր տրամադրության ստուգիչը",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide"
     },
     "mascot-welcome-header": {
       "welcome": "Բարի վերադարձ {{հաճախորդի անունը}}",
@@ -715,7 +728,8 @@
       "read_more_button": "Կարդալ ավելին",
       "by": "հեղինակ՝ {{creator}}",
       "min_read": "րոպե ընթերցանություն",
-      "no_recommendations": "Առաջարկություններ չեն գտնվել"
+      "no_recommendations": "Առաջարկություններ չեն գտնվել",
+      "select_year": "Select year"
     },
     "mascot-header-MyQA": {
       "heading": "Իմ հարցուպատասխանը",
@@ -743,7 +757,9 @@
       "no_answers_found": "Պատասխանված հարցեր չկան",
       "language": "Լեզու",
       "all_languages": "All languages",
-      "date_answered": "ըստ {{date}}"
+      "date_answered": "ըստ {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "videos": {
       "view_more": "Ցուցադրել ավելին",
@@ -963,7 +979,12 @@
       "latest_results": "Վերջին արդյունքներ",
       "how_it_works": "Ինչպես է աշխատում",
       "see_last_result": "Վերջին արդյունքներ",
-      "explore_button_label": "Զննել քարտեզը"
+      "explore_button_label": "Զննել քարտեզը",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",
@@ -1046,6 +1067,12 @@
     "find-support-near-you": {
       "heading": "Գտեք աջակցություն ձեր մոտ",
       "explore_button_label": "Ուսումնասիրել"
+    },
+    "most-read-articles": {
+      "heading": "Most Read Article",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}"
     }
   },
   "pages": {
@@ -1168,7 +1195,8 @@
       "view_more": "Ցուցադրել ավելին",
       "require_cookies": "To view this video, please accept all cookies.",
       "cookie_preferences": "Cookie preferences",
-      "search": "Որոնում"
+      "search": "Որոնում",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "Գրանցվել uSupport-ում՝ էլեկտրոնային փոստի միջոցով"

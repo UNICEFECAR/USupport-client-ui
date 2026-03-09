@@ -121,7 +121,14 @@
       "video_label": "Бейне-таныстырылым",
       "button_label": "Консультацияны жоспарлау",
       "hour_consultation": "1 сағаттық консультация үшін",
-      "free": "тегін"
+      "free": "тегін",
+      "monday": "Дүйсенбі",
+      "tuesday": "Сейсенбі",
+      "wednesday": "Сәрсенбі",
+      "thursday": "Бейсенбі",
+      "friday": "Жұма",
+      "saturday": "Сенбі",
+      "sunday": "Жексенбі"
     },
     "user-profile": {
       "your_profile": "Сіздің парақшаңыз",
@@ -169,7 +176,9 @@
       "sex_placeholder": "Жынысыңызды енгізіңіз",
       "year_of_birth_placeholder": "Туған жылыңызды енгізіңіз",
       "living_place_placeholder": "Тұрғылықты жеріңізді енгізіңіз",
-      "parent": "Ата-ана"
+      "parent": "Ата-ана",
+      "logout_button_label": "Шығу",
+      "heading": "Қош келдіңіз"
     },
     "register-anonymous": {
       "nickname_label": "Лақап аты *",
@@ -515,7 +524,9 @@
       "conducted": "Консультация аяқталды",
       "not_conducted": "Өткізілмеді",
       "free": "Free",
-      "coupon": "Купон"
+      "coupon": "Купон",
+      "explore_resources_label": "Explore resources",
+      "heading_need_support": "Need support?"
     },
     "mood-tracker": {
       "happy": "Керемет",
@@ -534,7 +545,9 @@
       "recommendations": "Ұсыныстар",
       "recommendations_text": "Көңіл-күй графигіңізді қарап, ұсынылған мазмұнды көргіңіз келе ме?",
       "check_out": "Қарап шығу",
-      "mood_tracker_long": "Көңіл-күй трекеріңізді зерттеңіз"
+      "mood_tracker_long": "Көңіл-күй трекеріңізді зерттеңіз",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide"
     },
     "mascot-welcome-header": {
       "welcome": "Қайта оралуыңызбен, {{name}}!",
@@ -715,7 +728,8 @@
       "read_more_button": "Толығырақ оқу",
       "by": "{{creator}} авторынан",
       "min_read": "мин оқу",
-      "no_recommendations": "Ұсыныстар табылмады"
+      "no_recommendations": "Ұсыныстар табылмады",
+      "select_year": "Select year"
     },
     "mascot-header-MyQA": {
       "heading": "Менің Q&A (Сұрақ/Жауап)",
@@ -743,7 +757,9 @@
       "no_answers_found": "Сұрақтарға жауап жоқ",
       "language": "Тіл",
       "all_languages": "Барлық тілдер",
-      "date_answered": "{{date}} күні"
+      "date_answered": "{{date}} күні",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "videos": {
       "view_more": "Көбірек көру",
@@ -963,7 +979,12 @@
       "latest_results": "Соңғы нәтижелер",
       "how_it_works": "Қалай жұмыс істейді",
       "see_last_result": "Соңғы нәтижелер",
-      "explore_button_label": "Картаны зерттеу"
+      "explore_button_label": "Картаны зерттеу",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Бағалау аяқталды",
@@ -1046,6 +1067,12 @@
     "find-support-near-you": {
       "heading": "Жақын маңнан қолдау табыңыз",
       "explore_button_label": "Зерттеу"
+    },
+    "most-read-articles": {
+      "heading": "Most Read Article",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}"
     }
   },
   "pages": {
@@ -1168,7 +1195,8 @@
       "view_more": "Көбірек көру",
       "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
       "cookie_preferences": "Cookie параметрлері",
-      "search": "Іздеу"
+      "search": "Іздеу",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "uSupport сайтында электронды пошта арқылы тіркеліңіз"

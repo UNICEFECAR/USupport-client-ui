@@ -64,6 +64,7 @@ export const Page = ({
   children,
   renderLanguageSelector = false,
   showAuthenticationBackdrop = false,
+  darkBackground = false,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -531,6 +532,7 @@ export const Page = ({
         className={[
           "page",
           `${additionalPadding ? "" : "page--no-additional-top-padding"}`,
+          `${darkBackground ? "page--dark-background" : ""}`,
           `${classNames(classes)}`,
         ].join(" ")}
       >

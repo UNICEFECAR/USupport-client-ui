@@ -138,7 +138,7 @@ export const Consultations = () => {
   };
   const rescheduleConsultationMutation = useRescheduleConsultation(
     onRescheduleConsultationSuccess,
-    onRescheduleConsultationError
+    onRescheduleConsultationError,
   );
 
   // Block slot logic
@@ -173,7 +173,7 @@ export const Consultations = () => {
   };
   const acceptConsultationMutation = useAcceptConsultation(
     onAcceptConsultationSuccess,
-    onAcceptConsultationError
+    onAcceptConsultationError,
   );
   const acceptConsultation = (consultationId, price) => {
     if (!clientDataQuery.data?.dataProcessing) {
@@ -207,15 +207,15 @@ export const Consultations = () => {
     <Page
       heading={t("header")}
       classes="page__consultations"
-      headingButton={
-        <NewButton
-          label={t("button_label")}
-          onClick={handleScheduleConsultationClick}
-          iconName="calendar"
-          size="lg"
-          classes="page__consultations__button"
-        />
-      }
+      // headingButton={
+      //   <NewButton
+      //     label={t("button_label")}
+      //     onClick={handleScheduleConsultationClick}
+      //     iconName="calendar"
+      //     size="lg"
+      //     classes="page__consultations__button"
+      //   />
+      // }
     >
       {clientDataQuery.isLoading || clientDataQuery.isFetching ? (
         <Loading />
@@ -271,8 +271,8 @@ export const Consultations = () => {
             startDate: new Date(selectedSlot?.time || selectedSlot),
             endDate: new Date(
               new Date(selectedSlot?.time || selectedSlot).setHours(
-                new Date(selectedSlot?.time || selectedSlot).getHours() + 1
-              )
+                new Date(selectedSlot?.time || selectedSlot).getHours() + 1,
+              ),
             ),
           }}
         />

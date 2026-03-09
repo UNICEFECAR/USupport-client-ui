@@ -1,6 +1,8 @@
 @import "@USupport-components-library/styles";
 
 .page__organizations {
+  @include full-height-page-navbar;
+
   & .give-suggestion__grid {
     & .give-suggestion__heading-item {
       place-self: center;

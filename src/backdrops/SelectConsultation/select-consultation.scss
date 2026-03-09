@@ -4,6 +4,7 @@
   & .base-modal__body {
     overflow: hidden;
   }
+
   & .backdrop__children {
     flex: 0.9;
     overflow: hidden;
@@ -16,6 +17,12 @@
   &__no-slots {
     text-align: center;
     padding-top: $spacing_3_2;
+  }
+
+  &__no-slots-text {
+    text-align: center;
+    color: $color_gray_66768d;
+    padding: $spacing_2_4;
   }
 
   &__coupon-container {
@@ -39,7 +46,7 @@
   &__content-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 100%;
     padding-top: $spacing_3_2;
 
     & .header {
@@ -51,15 +58,49 @@
     }
 
     &__slots {
-      overflow: scroll;
-      height: 50rem;
-      padding-top: $spacing_1_2;
+      overflow-y: auto;
+      padding: $spacing_1_2 0;
       padding-bottom: $spacing_2_4;
     }
+  }
 
-    & .radio-button-selector-group {
-      padding: 0 $spacing_1_2;
-      padding-bottom: 28rem;
+  &__time-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+    gap: $spacing_1_2;
+    padding: 0 $spacing_0_4;
+  }
+
+  &__time-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing_1_2 $spacing_1_6;
+    border-radius: $border_radius_2_4;
+    border: 1px solid $color_gray_92989b;
+    background-color: transparent;
+    color: $color_gray_66768d;
+    font-weight: $font_medium;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #8da2fc;
+      background-color: rgba(#8da2fc, 0.08);
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+
+    &--selected {
+      border-color: #8da2fc;
+      background-color: #8da2fc;
+      color: $color_white_ff;
+
+      &:hover {
+        background-color: darken(#8da2fc, 8%);
+      }
     }
   }
 }

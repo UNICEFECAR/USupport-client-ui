@@ -121,7 +121,14 @@
       "video_label": "Видео-представление",
       "button_label": "Запланировать консультацию",
       "hour_consultation": "за 1 часовую консультацию",
-      "free": "бесплатно"
+      "free": "бесплатно",
+      "monday": "Понедельник",
+      "tuesday": "Вторник",
+      "wednesday": "Среда",
+      "thursday": "Четверг",
+      "friday": "Пятница",
+      "saturday": "Суббота",
+      "sunday": "Воскресенье"
     },
     "user-profile": {
       "your_profile": "Ваш профиль",
@@ -169,7 +176,9 @@
       "sex_placeholder": "Введите свой пол",
       "year_of_birth_placeholder": "Введите свой год рождения",
       "living_place_placeholder": "Введите место вашего жительства",
-      "parent": "Родитель"
+      "parent": "Родитель",
+      "logout_button_label": "Выйти",
+      "heading": "Добро пожаловать в"
     },
     "register-anonymous": {
       "nickname_label": "Псевдоним *",
@@ -515,7 +524,9 @@
       "conducted": "Консультация завершена",
       "not_conducted": "Не проводилась",
       "free": "Free",
-      "coupon": "Купон"
+      "coupon": "Купон",
+      "explore_resources_label": "Explore resources",
+      "heading_need_support": "Need support?"
     },
     "mood-tracker": {
       "happy": "Отлично",
@@ -534,7 +545,9 @@
       "recommendations": "Рекомендации",
       "recommendations_text": "Хотите посмотреть график настроения и увидеть рекомендованный контент?",
       "check_out": "Посмотреть",
-      "mood_tracker_long": "Изучите свой трекер настроения"
+      "mood_tracker_long": "Изучите свой трекер настроения",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide"
     },
     "mascot-welcome-header": {
       "welcome": "С возвращением, {{name}}!",
@@ -715,7 +728,8 @@
       "read_more_button": "Читать далее",
       "by": "от {{creator}}",
       "min_read": "мин чтения",
-      "no_recommendations": "Рекомендации не найдены"
+      "no_recommendations": "Рекомендации не найдены",
+      "select_year": "Select year"
     },
     "mascot-header-MyQA": {
       "heading": "Мой Q&A (Вопрос/Ответ)",
@@ -743,7 +757,9 @@
       "no_answers_found": "Нет ответов на вопросы",
       "language": "Язык",
       "all_languages": "Все языки",
-      "date_answered": "от {{date}}"
+      "date_answered": "от {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "videos": {
       "view_more": "Посмотреть больше",
@@ -963,7 +979,12 @@
       "latest_results": "Последние результаты",
       "how_it_works": "Как это работает",
       "see_last_result": "Базовая оценка результатов",
-      "explore_button_label": "Исследовать карту"
+      "explore_button_label": "Исследовать карту",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Оценка завершена",
@@ -1046,6 +1067,12 @@
     "find-support-near-you": {
       "heading": "Найдите поддержку рядом",
       "explore_button_label": "Посмотреть"
+    },
+    "most-read-articles": {
+      "heading": "Most Read Article",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}"
     }
   },
   "pages": {
@@ -1168,7 +1195,8 @@
       "view_more": "Показать ещё",
       "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
       "cookie_preferences": "Настройки cookie",
-      "search": "Поиск"
+      "search": "Поиск",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "Зарегистрируйтесь с помощью электронной почты в uSupport"

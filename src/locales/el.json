@@ -121,7 +121,14 @@
       "video_label": "Βίντεο παρουσίασης",
       "button_label": "Προγραμματίστε μια συνεδρία",
       "hour_consultation": "για συνεδρία 1 ώρας",
-      "free": "δωρεάν"
+      "free": "δωρεάν",
+      "monday": "Δευτέρα",
+      "tuesday": "Τρίτη",
+      "wednesday": "Τετάρτη",
+      "thursday": "Πέμπτη",
+      "friday": "Παρασκευή",
+      "saturday": "Σάββατο",
+      "sunday": "Κυριακή"
     },
     "user-profile": {
       "your_profile": "Το προφίλ σας",
@@ -169,7 +176,9 @@
       "sex_placeholder": "Εισαγάγετε το φύλο σας",
       "year_of_birth_placeholder": "Εισαγάγετε το έτος γέννησής σας",
       "living_place_placeholder": "Εισαγάγετε τον τόπο διαμονής σας",
-      "parent": "Γονέας"
+      "parent": "Γονέας",
+      "logout_button_label": "Αποσύνδεση",
+      "heading": "Καλώς ήρθατε στο"
     },
     "register-anonymous": {
       "nickname_label": "Ψευδώνυμο *",
@@ -515,7 +524,9 @@
       "conducted": "Η συνεδρία έληξε",
       "not_conducted": "Δεν πραγματοποιήθηκε",
       "free": "Free",
-      "coupon": "Κουπόνι"
+      "coupon": "Κουπόνι",
+      "explore_resources_label": "Explore resources",
+      "heading_need_support": "Need support?"
     },
     "mood-tracker": {
       "happy": "Χαρούμενος/η",
@@ -534,7 +545,9 @@
       "recommendations": "Συστάσεις",
       "recommendations_text": "Θέλετε να δείτε το γράφημα της διάθεσής σας και το προτεινόμενο περιεχόμενο;",
       "check_out": "Έλεγχος",
-      "mood_tracker_long": "Μελετήστε την καταγραφή της διάθεσής σας"
+      "mood_tracker_long": "Μελετήστε την καταγραφή της διάθεσής σας",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide"
     },
     "mascot-welcome-header": {
       "welcome": "Καλωσόρισες πίσω, {{name}}!",
@@ -715,7 +728,8 @@
       "read_more_button": "Διαβάστε περισσότερα",
       "by": "από {{creator}}",
       "min_read": "λεπτά ανάγνωσης",
-      "no_recommendations": "Δεν βρέθηκαν συστάσεις"
+      "no_recommendations": "Δεν βρέθηκαν συστάσεις",
+      "select_year": "Select year"
     },
     "mascot-header-MyQA": {
       "heading": "Οι Ερωτήσεις και Απαντήσεις μου",
@@ -743,7 +757,9 @@
       "no_answers_found": "Δεν υπάρχουν απαντημένες ερωτήσεις",
       "language": "Γλώσσα",
       "all_languages": "Όλες οι γλώσσες",
-      "date_answered": "στις"
+      "date_answered": "στις",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "videos": {
       "view_more": "Δείτε περισσότερα",
@@ -963,7 +979,12 @@
       "latest_results": "Τα πιο πρόσφατα αποτελέσματα",
       "how_it_works": "Δείτε πώς λειτουργεί",
       "see_last_result": "Τελευταία αποτελέσματα",
-      "explore_button_label": "Εξερεύνηση χάρτη"
+      "explore_button_label": "Εξερεύνηση χάρτη",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Η αξιολόγηση ολοκληρώθηκε",
@@ -1046,6 +1067,12 @@
     "find-support-near-you": {
       "heading": "Βρείτε υποστήριξη κοντά σας",
       "explore_button_label": "Εξερεύνηση"
+    },
+    "most-read-articles": {
+      "heading": "Most Read Article",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}"
     }
   },
   "pages": {
@@ -1168,7 +1195,8 @@
       "view_more": "Δείτε περισσότερα",
       "require_cookies": "Για να δείτε αυτό το βίντεο, αποδεχτείτε όλα τα cookies.",
       "cookie_preferences": "Προτιμήσεις cookies",
-      "search": "Αναζήτηση"
+      "search": "Αναζήτηση",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "Εγγραφείτε στο uSupport μέσω email"

@@ -15,10 +15,14 @@
 
   @media screen and (min-width: $screen-lg) {
     background-image: url("./assets/hero.png");
+    &--dark-background {
+      background-image: url("./assets/hero-dark.png");
+    }
   }
 
   .theme-dark & {
-    background: radial-gradient(
+    background:
+      radial-gradient(
         760px 320px at 15% 78%,
         rgba(63, 81, 132, 0.3),
         transparent 72%

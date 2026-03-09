@@ -5,19 +5,14 @@ import { useTranslation } from "react-i18next";
 
 import { RootContext } from "#routes";
 
-import {
-  Backdrop,
-  Header,
-  RadioButtonSelectorGroup,
-  Loading,
-} from "@USupport-components-library/src";
+import { Backdrop, Header, Loading } from "@USupport-components-library/src";
 import { providerSvc } from "@USupport-components-library/services";
 import {
   getTimestampFromUTC,
   parseUTCDate,
 } from "@USupport-components-library/utils";
 
-import { useGetProviderDataById, useError } from "#hooks";
+import { useGetProviderDataById } from "#hooks";
 
 import "./select-consultation.scss";
 
@@ -69,7 +64,7 @@ export const SelectConsultation = ({
       getTimestampFromUTC(startDate),
       getTimestampFromUTC(currentDay),
       providerId,
-      campaignId
+      campaignId,
     );
     if (campaignId) {
       return data.map((x) => ({
@@ -110,7 +105,7 @@ export const SelectConsultation = ({
   const availableSlotsQuery = useQuery(
     ["available-slots", startDate, currentDay, providerId],
     () => getAvailableSlots(startDate, currentDay, providerId),
-    { enabled: !!startDate && !!currentDay && !!providerId }
+    { enabled: !!startDate && !!currentDay && !!providerId },
   );
   const availableSlots = availableSlotsQuery.data;
 
@@ -123,48 +118,48 @@ export const SelectConsultation = ({
     setSelectedSlot(slot);
   };
 
+  const getDoubleDigitHour = (hour) =>
+    hour === 24 ? "00" : hour < 10 ? `0${hour}` : hour;
+
   const renderFreeSlots = () => {
     const todaySlots = availableSlots?.filter((slot) => {
       const slotDate = new Date(slot.time || slot).getDate();
       const currentDayDate = new Date(currentDay).getDate();
 
-      // Check if the slot is for the current campaign
       if (campaignId && campaignId !== slot.campaign_id) {
         return false;
       }
       return slotDate === currentDayDate;
     });
+
     if (!todaySlots || todaySlots?.length === 0)
-      return <p>{t("no_slots_available")}</p>;
-
-    const options = todaySlots?.map(
-      (slot) => {
-        const slotLocal = new Date(slot.time || slot);
-
-        const value = new Date(slot.time || slot).getTime();
-
-        const getDoubleDigitHour = (hour) =>
-          hour === 24 ? "00" : hour < 10 ? `0${hour}` : hour;
-
-        const displayStartHours = getDoubleDigitHour(slotLocal.getHours());
-        const displayStartMinutes = getDoubleDigitHour(slotLocal.getMinutes());
-        const displayEndHours = getDoubleDigitHour(slotLocal.getHours() + 1);
-        const displayEndMinutes = getDoubleDigitHour(slotLocal.getMinutes());
-        const label = `${displayStartHours}:${displayStartMinutes} - ${displayEndHours}:${displayEndMinutes}`;
-
-        return { label: label, value };
-      },
-      [availableSlots]
-    );
+      return (
+        <p className="select-consultation__no-slots-text">
+          {t("no_slots_available")}
+        </p>
+      );
 
     return (
-      <RadioButtonSelectorGroup
-        options={options}
-        name="free-slots"
-        selected={selectedSlot}
-        setSelected={handleChooseSlot}
-        classes="select-consultation__radio-button-selector-group"
-      />
+      <div className="select-consultation__time-grid">
+        {todaySlots.map((slot) => {
+          const slotLocal = new Date(slot.time || slot);
+          const value = slotLocal.getTime();
+          const displayHours = getDoubleDigitHour(slotLocal.getHours());
+          const displayMinutes = getDoubleDigitHour(slotLocal.getMinutes());
+          const isSelected = selectedSlot === value;
+
+          return (
+            <button
+              key={value}
+              type="button"
+              className={`select-consultation__time-chip ${isSelected ? "select-consultation__time-chip--selected" : ""}`}
+              onClick={() => handleChooseSlot(value)}
+            >
+              {displayHours}:{displayMinutes}
+            </button>
+          );
+        })}
+      </div>
     );
   };
 
@@ -186,7 +181,7 @@ export const SelectConsultation = ({
 
       if (allMatchingSlots.length >= 1) {
         const hasOrganizationSlot = allMatchingSlots.find(
-          (slot) => !!slot.organization_id
+          (slot) => !!slot.organization_id,
         );
         if (hasOrganizationSlot) {
           slotObject = hasOrganizationSlot;

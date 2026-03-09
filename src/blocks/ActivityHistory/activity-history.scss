@@ -6,96 +6,162 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  height: 100%;
 
-  &__header {
-    flex: 0 0 auto;
-    padding: $spacing_1_6 $spacing_2_0;
+  & .container {
+    height: calc(100% - 10rem);
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    padding: $spacing_2_4;
+    padding-bottom: 0;
+    margin-top: $spacing_2_4;
+    margin-bottom: $spacing_2_4;
+    overflow: hidden;
+    height: 100%;
 
     @media screen and (min-width: $screen-md) {
-      padding: $spacing_2_0 $spacing_3_6;
+      padding: $spacing_3_2;
+      padding-bottom: 0;
     }
+  }
 
-    &__provider-container {
-      display: flex;
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_1_6;
+    padding-bottom: $spacing_1_6;
+    border-bottom: 1px solid $color_gray_ea;
+
+    @include themifyCustom(
+      $themes,
+      "border-bottom-color",
+      "color_gray_ea",
+      "color_gray_344054"
+    );
+
+    @media screen and (min-width: $screen-md) {
       flex-direction: row;
       align-items: center;
-      justify-content: center;
-      position: relative;
+      justify-content: space-between;
+    }
 
-      &__icon {
-        position: absolute;
-        left: 0;
-        cursor: pointer;
-      }
+    &__provider-info {
+      display: flex;
+      align-items: center;
+      gap: $spacing_1_2;
 
-      & .avatar {
-        width: 4.2rem;
-        height: 4.2rem;
-        margin-right: $spacing_1_6;
+      .avatar {
+        width: 4.8rem;
+        height: 4.8rem;
+        flex-shrink: 0;
       }
     }
 
-    &__controls {
-      margin: 0 auto;
-      padding-top: $spacing_1_2;
-      max-width: 34rem;
+    &__back-icon {
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    &__provider-details {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
+      gap: $spacing_0_4;
+    }
+
+    &__provider-name {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    &__subtitle {
+      margin: 0;
+      opacity: 0.7;
+      font-size: 1.4rem;
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: $spacing_1_2;
+      flex-wrap: wrap;
+
+      @media screen and (max-width: $screen-md) {
+        margin-top: $spacing_0_8;
+      }
+    }
+
+    &__export-button {
+      white-space: nowrap;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_1_6;
+    padding: $spacing_1_6 0;
+    border-bottom: 1px solid $color_gray_ea;
+
+    @include themifyCustom(
+      $themes,
+      "border-bottom-color",
+      "color_gray_ea",
+      "color_gray_344054"
+    );
+
+    @media screen and (min-width: $screen-md) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__search {
+      width: 100%;
+      max-width: 30rem;
 
       @media screen and (min-width: $screen-md) {
-        align-items: center;
+        max-width: 28rem;
+      }
+    }
+
+    &__toggles {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_1_2;
+
+      @media screen and (min-width: $screen-md) {
         flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 100%;
+        gap: $spacing_2_4;
       }
+    }
 
-      &__toggle {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        margin-top: $spacing_1_2;
+    &__toggle {
+      display: flex;
+      align-items: center;
+      gap: $spacing_0_8;
 
-        @media screen and (min-width: $screen-md) {
-          margin-right: $spacing_1_2;
-        }
-
-        & p {
-          margin-left: $spacing_1_2;
-        }
-      }
-
-      &__search {
-        margin-top: $spacing_1_2;
-        width: 100%;
-        max-width: 30rem;
-
-        @media screen and (min-width: $screen-md) {
-          margin-right: $spacing_2_0;
-          max-width: 34rem;
-        }
-      }
-
-      &__export-button {
-        margin-top: $spacing_1_2;
+      span {
+        font-size: 1.4rem;
+        white-space: nowrap;
       }
     }
   }
 
   &__messages {
-    flex: 1 1 auto;
+    flex: 1 1 0;
     min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    padding: 0 $spacing_2_0;
-
-    @media screen and (min-width: $screen-md) {
-      padding: 0 $spacing_3_6;
-    }
+    padding: $spacing_1_6 0;
 
     &::-webkit-scrollbar {
       width: 0.4rem;
@@ -103,23 +169,31 @@
 
     &::-webkit-scrollbar-track {
       margin: $spacing_2_4;
-      background: rgba(217, 217, 217, 0.63);
+      background: rgba(237, 233, 254, 0.6);
       border-radius: 0.3rem;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: $color_primary_20809e;
+      background: linear-gradient(
+        180deg,
+        rgba(167, 139, 250, 0.8) 0%,
+        rgba(139, 92, 246, 0.7) 100%
+      );
       border-radius: 0.3rem;
-    }
 
-    @media screen and (min-width: $screen-md) {
-      max-width: 75rem;
-      align-self: center;
-      width: 100%;
+      &:hover {
+        background: linear-gradient(
+          180deg,
+          rgba(167, 139, 250, 0.95) 0%,
+          rgba(124, 58, 237, 0.85) 100%
+        );
+      }
     }
 
     &__no-messages {
-      margin-top: $spacing_2_4;
+      text-align: center;
+      padding: $spacing_4_8 0;
+      opacity: 0.7;
     }
 
     .system-message {
@@ -130,25 +204,28 @@
       align-self: flex-end;
     }
 
-    & .message,
-    & .system-message {
-      margin-top: $spacing_1_6;
+    .message-received {
+      align-self: flex-start;
     }
 
-    @media screen and (min-width: $screen-md) {
-      & .message,
-      & .system-message {
-        margin-top: $spacing_2_4;
+    & .message,
+    & .system-message {
+      margin-top: $spacing_1_2;
+
+      @media screen and (min-width: $screen-md) {
+        margin-top: $spacing_1_6;
       }
     }
   }
 
-  &__footer {
-    flex: 0 0 auto;
-    padding: $spacing_1_6 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  .theme-light & {
+    .activity-history__box.box--liquid-glass {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(224, 233, 255, 0.7);
+      box-shadow: 0 0.6rem 1rem rgba(9, 14, 26, 0.08);
+      border-radius: $border_radius_2_4;
+      backdrop-filter: blur(10px) saturate(1.12);
+      -webkit-backdrop-filter: blur(10px) saturate(1.12);
+    }
   }
 }

@@ -121,7 +121,14 @@
       "video_label": "Reprezentare video",
       "button_label": "Programați o consultație",
       "hour_consultation": "pentru o oră de consultanță",
-      "free": "gratuit"
+      "free": "gratuit",
+      "monday": "Luni",
+      "tuesday": "Marți",
+      "wednesday": "Miercuri",
+      "thursday": "Joi",
+      "friday": "Vineri",
+      "saturday": "Sâmbătă",
+      "sunday": "Duminică"
     },
     "user-profile": {
       "your_profile": "Profilul dvs.",
@@ -169,7 +176,9 @@
       "sex_placeholder": "Introduceți sexul dvs.",
       "year_of_birth_placeholder": "Introduceți anul nașterii",
       "living_place_placeholder": "Introduceți locul dvs. de reședință",
-      "parent": "Părinte"
+      "parent": "Părinte",
+      "logout_button_label": "Deconectare",
+      "heading": "Bine ați venit la"
     },
     "register-anonymous": {
       "nickname_label": "Pseudonim *",
@@ -515,7 +524,9 @@
       "conducted": "Consultație încheiată",
       "not_conducted": "Nu a avut loc",
       "free": "Free",
-      "coupon": "Cupon"
+      "coupon": "Cupon",
+      "explore_resources_label": "Explore resources",
+      "heading_need_support": "Need support?"
     },
     "mood-tracker": {
       "happy": "Fericit",
@@ -534,7 +545,9 @@
       "recommendations": "Recomandări",
       "recommendations_text": "Vrei să vezi graficul stării tale și conținutul recomandat?",
       "check_out": "Vezi detalii",
-      "mood_tracker_long": "Studiați jurnalul stării de spirit"
+      "mood_tracker_long": "Studiați jurnalul stării de spirit",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide"
     },
     "mascot-welcome-header": {
       "welcome": "Bine ați revenit {{name}}!",
@@ -715,7 +728,8 @@
       "read_more_button": "Citește mai mult",
       "by": "de {{creator}}",
       "min_read": "min de citit",
-      "no_recommendations": "Nu s-au găsit recomandări"
+      "no_recommendations": "Nu s-au găsit recomandări",
+      "select_year": "Select year"
     },
     "mascot-header-MyQA": {
       "heading": "Întrebările mele",
@@ -743,7 +757,9 @@
       "filter": "Filtrați etichetele",
       "no_answers_found": "Nu există întrebări cu răspuns",
       "language": "Limba",
-      "date_answered": "la {{date}}"
+      "date_answered": "la {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "videos": {
       "view_more": "Vezi mai mult",
@@ -949,7 +965,9 @@
     },
     "baseline-assessment-dashboard": {
       "heading": "Evaluarea dvs. inițială",
+      "heading_completed": "Ultima dvs. evaluare",
       "no_assessment_text": "Nu ați completat încă o evaluare inițială. Completați una pentru a primi informații personalizate despre sănătatea dvs. mintală.",
+      "no_assessment_description": "Faceți o evaluare rapidă pentru a vă înțelege mai bine sănătatea mintală și a primi recomandări personalizate.",
       "start_new_assessment": "Începeți evaluarea",
       "completed": "Finalizată",
       "in_progress": "În curs",
@@ -962,8 +980,11 @@
       "social": "Social",
       "latest_results": "Ultimele rezultate",
       "how_it_works": "Cum funcționează",
-      "see_last_result": "Ultimele rezultate",
-      "explore_button_label": "Explorați harta"
+      "see_last_result": "Vizualizați rezultatele",
+      "explore_button_label": "Explorați organizațiile",
+      "explore_heading": "Găsiți sprijin în apropierea dvs.",
+      "explore_card_title": "Descoperiți sprijin local",
+      "explore_card_description": "Găsiți organizații și resurse de sănătate mintală în zona dvs."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Evaluare finalizată",
@@ -1046,6 +1067,12 @@
     "find-support-near-you": {
       "heading": "Găsiți sprijin în apropiere",
       "explore_button_label": "Explorați"
+    },
+    "most-read-articles": {
+      "heading": "Most Read Article",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}"
     }
   },
   "pages": {
@@ -1168,7 +1195,8 @@
       "view_more": "Vezi mai mult",
       "require_cookies": "Pentru a viziona acest videoclip, vă rugăm să acceptați toate cookie-urile.",
       "cookie_preferences": "Preferințe pentru cookie-uri",
-      "search": "Căutare"
+      "search": "Căutare",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "Înregistrați-vă cu e-mail în uSupport"
@@ -1367,14 +1395,12 @@
       "service_pediatric_neurology": "Neurologie pediatrică",
       "service_special_education": "Psihopedagogie specială",
       "service_neuropsychomotor_rehab": "Recuperare neuropsihomotorie",
-
       "rights_intro_title": "Drepturile copiilor si adolescentilor de a accesa servicii de sanatate mintala si suport psiho-social",
       "rights_intro_paragraph": "Acest ghid te ajută să descoperi ce fel de ajutor poți primi, dacă ai nevoie, și cine te poate sprijini – la școală, în sistemul de asistență socială sau în cel de sănătate. Vei afla ce servicii există pentru copii și adolescenți în România și cum poți ajunge la ele.",
       "rights_intro_question": "Ce fel de servicii te intereseaza?",
       "rights_intro_answer_1": "Servicii oferite in scoala",
       "rights_intro_answer_2": "Servicii oferite in sistemul de asistenta sociala",
       "rights_intro_answer_3": "Servicii oferite in sistemul de sanatate",
-
       "section_2_title": "🏫 Servicii oferite în școli",
       "section_2_question": "Vrei sa stii mai multe despre servicii oferite:",
       "section_2_answer_1": "Tuturor elevilor",
@@ -1382,22 +1408,16 @@
       "section_2_answer_3": "Elevelor gravide şi elevilor părinţi",
       "section_2_answer_4": "Elevilor victime sau autori ai violentei in scoala",
       "section_2_answer_5": "Elevilor sanctionati in urma unor evenimente",
-
       "section_3_title": "🎓 Servicii pentru toți elevii",
       "section_3_paragraph": "Toţi elevii beneficiază prin lege de supravegherea stării de sănătate psihică, prin <0>servicii de consiliere psihologică conexe activităţii de învăţământ</0> pentru asigurarea integrității lor psihologice.\n\nElevii au dreptul la servicii de <0>informare, consiliere școlară, profesională și psihologică</0>, care îi pot ajuta să se dezvolte și să-și descopere drumul potrivit\n\nElevii cu <0>cerințe educaționale speciale (CES) sau alte dificultăți</0> pot primi sprijin suplimentar, adaptat nevoilor lor – de exemplu, <0>condiții speciale de studiu, evaluare sau chiar școlarizare la domiciliu ori în unități medicale</0>, dacă este nevoie.\n\nDe asemenea, toți elevii au dreptul la <0>asistență medicală, psihologică și logopedică gratuită</0>, prin cabinetele școlare sau prin unitățile medicale de stat.\n\n📘 Gasesti aici pasii ce trebuie urmati pentru a beneficia, ca elev, de servicii de sprijin psihologic: ",
-
       "section_4_title": "🧒🏻 Servicii oferite elevilor cu niveluri de sprijin I, II, III, IV (Nevoi Educaționale Speciale – NES)",
       "section_4_paragraph": "Elevii care au <0>cerințe educaționale speciale (CES)<0/> beneficiază de un <0>plan educațional personalizat (PEP)</0>, realizat de specialiștii din cadrul <0>centrului județean de asistență psihopedagogică</0>. Acest plan este adaptat nevoilor fiecărui elev și poate include <0>sprijin pentru familie, consiliere psihologică, asistență psihopedagogică, ajutor la învățare, terapii specifice, kinetoterapie</0> sau alte forme de <0>suport personalizat</0>.\n\nGăsești aici pașii ce trebuie urmați pentru obținerea certificatului de orientare școlară și profesională, precum și serviciile de care pot beneficia copiii cu CES.",
-
       "section_5_title": "👩‍🍼 Servicii pentru elevi însărcinate și părinți elevi",
       "section_5_paragraph": "Conform Legii nr. 198 din 4 iulie 2023 a învățământului preuniversitar, Art. 76, alin (5)  elevele gravide și elevii părinți beneficiază cu prioritate de o serie de facilități care vizează combaterea abandonului școlar, cum ar fi <0>💬 consiliere școlară (inclusiv cu sprijinul unui mediator școlar) și  🧠 consiliere psihologică</0>.\n\n📘 Legea nu are  inca norme metodologice de aplicare. Pana cand acestea vor fi publicate iti sugeram sa consulti sectiunea dedicata serviciilor disponbilie pentru toti elevii:  ",
-
       "section_6_title": "🛑 Servicii pentru elevi care sunt victime sau făptuitori de violență în școală",
       "section_6_paragraph": "💔 Elevii care au fost victima unei situații de violență  beneficiază de <0>servicii decontate de intervenție psihologică și psihoterapeutică, în baza unei recomandări de la consilierul școlar</0>. Aceste servicii sunt concepute pentru a ajuta elevii să isi revina emoțional, să își recapete sentimentul de siguranță și să se reintegreze cu încredere în viața școlară. 🌱\n\nAici poți găsi situațiile considerate violență în școală, precum și pașii ce trebuie urmați dacă ai fost victima, martorul sau dacă ți-a fost raportat un act de violență.",
-
       "section_7_title": "Elevi sancționați după anumite incidente",
       "section_7_paragraph": "Elevii pot fi sanctionati daca:\n\n - distrug sau modifica documente școlare ori bunuri ale școlii;\n\n - introduc materiale care promovează violența, ura, discriminarea sau afectează imaginea unei persoane;\n\n - blochează accesul în școală;\n\n - dețin sau să consumă droguri, alcool, țigări, substanțe etnobotanice sau joacă jocuri de noroc în incinta școlii;\n\n - aduc sau folosesc arme, petarde, sprayuri sau alte obiecte periculoase;\n\n - distribuie materiale politice, religioase, obscene sau pornografice;\n\n - jignesc, discriminează sau manifestă violență fizică ori verbală;\n\n - părăsesc școala în timpul programului fără permisiune;\n\n - aduc persoane străine fără acordul conducerii;\n\n - promovează mesaje sau simboluri rasiste\n\nGasesti aici tipul de sanctiuni:",
-
       "section_8_title": "🛡️ Servicii oferite în sistemul de asistență socială",
       "section_8_question": "Doriți să aflați mai multe despre serviciile oferite pentru:",
       "section_8_answer_1": "Minori supuși violenței de către părinți/îngrijitori sau victime ale violenței domestice",
@@ -1405,28 +1425,21 @@
       "section_8_answer_3": "Minori din centre rezidențiale pentru copii separați temporar sau permanent de părinți",
       "section_8_answer_4": "Minori din centre de primire de urgență pentru copii abuzați, neglijați sau exploatati",
       "section_8_answer_5": "Minori din servicii sociale cu cazare, organizate ca centre de urgență, precum și adăposturi de noapte pentru copii fără adăpost",
-
       "section_9_title": "👨🏻‍👩🏻‍👧🏻‍👦🏻 Servicii oferite minorilor supusi violenței de către părinți / persoane responsabile sau victimele violentei domestice",
       "section_9_paragraph": "📘 Daca vrei sa afli mai multe despre formele de protectie asigurate de directiile de asistenta sociala s protectia copilului, citeste aici",
-
       "section_10_title": "🏘️ Servicii oferite minorilor in centre de asistenta sociala",
       "section_10_paragraph": "📘 Daca vrei sa afli mai multe despre serviciile oferite minorilor in centrele de asistenta sociala, citeste aici",
-
       "section_11_title": "Servicii oferite în sistemul de sănătate",
       "section_11_question": "📚 Doriți să aflați mai multe despre:",
       "section_11_answer_1": "Servicii pentru copii cu vârsta între 0–18 ani, indiferent dacă sunt înscriși într-o instituție de învățământ sau nu",
       "section_11_answer_2": "Pacienți minori cu diverse afecțiuni",
       "section_11_answer_3": "Pacienți minori cu tulburări mintale",
-
       "section_12_title": "🩺 Servicii pentru copiii intre 0 – 18 ani, indiferent daca sunt inscrisi intr-o forma de invatamant sau nu ",
       "section_12_paragraph": "📘 Daca vrei sa afli mai multe despre serviciile oferite copiilor intre 0 – 18 ani , citeste aici",
-
       "section_13_title": "🩺 Servicii oferite minorilor pacienti cu diferite afectiuni ",
       "section_13_paragraph": "📘 Daca vrei sa afli mai multe despre serviciile oferite minorilor pacienti cu diferite afectiuni, citeste aici:",
-
       "section_14_title": "🩺 Servicii oferite minorilor cu tulburări psihice /",
       "section_14_paragraph": "📘 Daca vrei sa afli mai multe despre serviciile oferite minorilor pacienti  cu tulburări psihice , citeste aici:",
-
       "by": "de {{creator}}",
       "min_read": "min citire",
       "read_more": "Citește mai mult",

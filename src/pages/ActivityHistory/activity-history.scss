@@ -7,6 +7,13 @@
   box-sizing: border-box;
   overflow: hidden;
 
+  .activity-history {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
   &__radial-circle {
     top: 3.5rem;
     left: -15rem;

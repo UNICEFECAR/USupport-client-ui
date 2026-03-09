@@ -1,171 +1,270 @@
 @import "@USupport-components-library/styles";
 
 .baseline-assessment-dashboard {
-  margin-bottom: 2rem;
+  padding-top: $spacing_4_8;
+  padding-bottom: $spacing_6_4;
 
-  &__heading {
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-    text-align: left;
-  }
-
-  & .mood-tracker-button {
-    @include themify($themes, "color", "color_6a4ffb_8c90eb");
-    cursor: pointer;
-    padding: $spacing_1_6 0;
-  }
-
-  & h5.mood-tracker-button {
-    font-weight: 500;
-  }
-
-  &__container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: $spacing_2_4;
-    padding: $spacing_2_4;
-    margin-bottom: 2rem;
-    border-radius: $border_radius_1_6;
-    overflow: hidden;
-
-    // Map as background
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: url("../../assets/map.webp");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 0;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: rgba(102, 118, 141, 0.5);
-      z-index: 1;
+  // Keep original (softer) liquid glass styling for cards on this block
+  .theme-light & {
+    .box--liquid-glass,
+    .card--liquid-glass {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.44),
+        rgba(235, 243, 255, 0.3)
+      );
+      border: 1px solid rgba(224, 233, 255, 0.72);
+      box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.14);
     }
   }
 
-  &__explore-button {
-    position: relative;
-    z-index: 2;
-    padding: 1.5px;
-    background-color: $color_white_ff;
-    border-radius: $border_radius_0_8;
-    box-shadow: $shadow_1;
-
-    @media screen and (min-width: $screen-md) {
-      position: absolute;
-      top: $spacing_2_4;
-      right: $spacing_2_4;
-    }
-  }
-
-  &__assessment {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 50rem;
-    padding: $spacing_2_0;
-    border-radius: $border_radius_2_4;
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: $shadow_2;
-
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  &__no-assessment {
-    text-align: center;
-    padding: 2rem;
-    border: 1px dashed var(--border-light);
-    border-radius: 8px;
-    background: var(--background-secondary);
-
-    &-text {
-      margin-bottom: 1.5rem;
-      color: var(--text-secondary);
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-  }
-
-  &__results {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &__heading {
-      text-align: center;
-      display: block;
-      padding-bottom: 1.2rem;
-      margin: unset;
-    }
-
-    &__items {
+  &__box {
+      &__content {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      gap: $spacing_1_2;
 
-      &__item {
-        padding: $spacing_0_8 $spacing_1_2;
-        width: 50%;
+      @media screen and (min-width: $screen-lg) {
+        flex-direction: row;
+        align-items: stretch;
       }
-    }
 
-    &__button {
-      margin-top: 3rem;
-    }
-  }
+      &__part {
+        padding: $spacing_3_2;
+        display: flex;
+        flex-direction: column;
 
-  &__start-button {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+        @media screen and (min-width: $screen-lg) {
+          width: 50%;
+        }
 
-    &:hover {
-      background: var(--primary-color-dark);
-    }
+        & > h3 {
+          text-align: left;
+          font-weight: 300;
+          letter-spacing: 0.01em;
+        }
 
-    &:focus {
-      outline: 2px solid var(--primary-color);
-      outline-offset: 2px;
-    }
-  }
-}
+        &:first-child {
+          border-bottom: 2px solid $color_gray_ea;
+          @include themifyCustom(
+            $themes,
+            "border-bottom-color",
+            "color_gray_ea",
+            "color_gray_344054"
+          );
 
-@media (max-width: 768px) {
-  .baseline-assessment-dashboard {
-    &__content {
-      padding: 1rem;
-    }
+          @media screen and (min-width: $screen-lg) {
+            border-bottom: none;
+            border-right: 2px solid $color_gray_ea;
+            @include themifyCustom(
+              $themes,
+              "border-right-color",
+              "color_gray_ea",
+              "color_gray_344054"
+            );
+          }
+        }
 
-    &__heading {
-      font-size: 1.25rem;
-    }
+        &--map {
+          position: relative;
+        }
 
-    &__no-assessment {
-      padding: 1.5rem;
+        &--assessment {
+          display: flex;
+          flex-direction: column;
+        }
+
+        &__header {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: $spacing_0_8;
+
+          & > h3 {
+            text-align: left;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            margin: 0;
+          }
+
+          &__link {
+            @include themify($themes, "color", "color_6a4ffb_8c90eb");
+            cursor: pointer;
+            font-weight: 500;
+            white-space: nowrap;
+            margin: 0;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        &__map-container {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: $spacing_3_2;
+          margin-top: $spacing_2_4;
+          border-radius: $border_radius_1_6;
+          overflow: hidden;
+          min-height: 200px;
+          flex: 1;
+
+          // Map as background
+          &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("../../assets/map.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              135deg,
+              rgba(106, 79, 251, 0.25) 0%,
+              rgba(102, 118, 141, 0.4) 100%
+            );
+            z-index: 1;
+          }
+        }
+
+        &__explore-card {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: $spacing_3_2;
+          width: 100%;
+          max-width: 320px;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border-radius: $border_radius_2_4;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
+            0 2px 8px rgba(106, 79, 251, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.8);
+
+          @media screen and (min-width: $screen-lg) {
+            padding: $spacing_4_0;
+          }
+
+          &__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(
+              135deg,
+              rgba(106, 79, 251, 0.12) 0%,
+              rgba(140, 144, 235, 0.12) 100%
+            );
+            margin-bottom: $spacing_1_6;
+          }
+
+          &__description {
+            margin: 0 0 $spacing_2_4;
+            text-align: center;
+            @include themify($themes, "color", "color_667085_a0a4b1");
+          }
+        }
+
+        &__inner-box {
+          margin-top: $spacing_2_4;
+          padding: $spacing_2_4;
+          display: flex;
+          flex-direction: column;
+          gap: $spacing_2_0;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+
+          @media screen and (min-width: $screen-lg) {
+            padding: $spacing_3_2 $spacing_7_2;
+          }
+
+          &__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(
+              135deg,
+              rgba(106, 79, 251, 0.12) 0%,
+              rgba(140, 144, 235, 0.12) 100%
+            );
+          }
+        }
+
+        &__description {
+          text-align: center;
+          margin-bottom: $spacing_1_2;
+          @include themify($themes, "color", "color_667085_a0a4b1");
+        }
+
+        &__results {
+          display: flex;
+          flex-direction: column;
+          gap: $spacing_1_2;
+          width: 100%;
+          margin-bottom: $spacing_1_6;
+
+          @media screen and (min-width: $screen-md) {
+            flex-direction: row;
+            justify-content: center;
+            gap: $spacing_2_0;
+          }
+
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: $spacing_1_6 $spacing_2_4;
+            border-radius: $border_radius_0_8;
+            background: rgba(106, 79, 251, 0.08);
+
+            @media screen and (min-width: $screen-md) {
+              min-width: 120px;
+            }
+          }
+
+          &__label {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0;
+            @include themify($themes, "color", "color_667085_a0a4b1");
+          }
+
+          &__value {
+            margin: 0;
+            @include themify($themes, "color", "color_6a4ffb_8c90eb");
+          }
+        }
+
+        &__buttons {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: $spacing_1_6;
+          width: 100%;
+          margin-top: $spacing_1_2;
+        }
+      }
     }
   }
 }

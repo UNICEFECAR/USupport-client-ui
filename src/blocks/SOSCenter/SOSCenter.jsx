@@ -10,6 +10,7 @@ import {
 
 import {
   Block,
+  Box,
   NewButton,
   Grid,
   GridItem,
@@ -33,7 +34,7 @@ import "./sos-center.scss";
  *
  * @return {jsx}
  */
-export const SOSCenter = () => {
+export const SOSCenter = ({ description }) => {
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "sos-center" });
   const { loggedIn } = useContext(RootContext);
   const navigate = useNavigate();
@@ -134,49 +135,56 @@ export const SOSCenter = () => {
       {SOSCentersData && (
         <Grid classes="soscenter__grid">
           <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">
-            <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
-              {IS_RO && emergencyServiceSpecialization && loggedIn && (
-                <GridItem
-                  classes="soscenter__secondary-grid__item soscenter__secondary-grid__item--romania-button"
-                  md={8}
-                  lg={12}
-                >
-                  <p>{t("other_emergency_services")}</p>
-                  <NewButton
-                    onClick={() =>
-                      navigate(
-                        `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`,
-                      )
-                    }
-                    label={t("browse")}
-                  />
-                </GridItem>
+            <Box classes="soscenter__box" liquidGlass>
+              {description && (
+                <div className="soscenter__box-heading">
+                  <h3>{description}</h3>
+                </div>
               )}
-              {SOSCentersData.map((sosCenter, index) => {
-                return (
+              <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
+                {IS_RO && emergencyServiceSpecialization && loggedIn && (
                   <GridItem
-                    classes="soscenter__secondary-grid__item"
-                    md={4}
+                    classes="soscenter__secondary-grid__item soscenter__secondary-grid__item--romania-button"
+                    md={8}
                     lg={12}
-                    key={index}
                   >
-                    <EmergencyCenter
-                      title={sosCenter.attributes.title}
-                      text={sosCenter.attributes.text}
-                      link={sosCenter.attributes.url}
-                      phone={sosCenter.attributes.phone}
-                      btnLabelLink={t("button_link")}
-                      btnLabelCall={t("button_call")}
-                      onClick={() => handleSosCenterClick(sosCenter)}
-                      image={
-                        sosCenter.attributes.image?.data?.attributes?.formats
-                          ?.medium?.url
+                    <p>{t("other_emergency_services")}</p>
+                    <NewButton
+                      onClick={() =>
+                        navigate(
+                          `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`,
+                        )
                       }
+                      label={t("browse")}
                     />
                   </GridItem>
-                );
-              })}
-            </Grid>
+                )}
+                {SOSCentersData.map((sosCenter, index) => {
+                  return (
+                    <GridItem
+                      classes="soscenter__secondary-grid__item"
+                      md={4}
+                      lg={6}
+                      key={index}
+                    >
+                      <EmergencyCenter
+                        title={sosCenter.attributes.title}
+                        text={sosCenter.attributes.text}
+                        link={sosCenter.attributes.url}
+                        phone={sosCenter.attributes.phone}
+                        btnLabelLink={t("button_link")}
+                        btnLabelCall={t("button_call")}
+                        onClick={() => handleSosCenterClick(sosCenter)}
+                        image={
+                          sosCenter.attributes.image?.data?.attributes?.formats
+                            ?.medium?.url
+                        }
+                      />
+                    </GridItem>
+                  );
+                })}
+              </Grid>
+            </Box>
           </GridItem>
         </Grid>
       )}

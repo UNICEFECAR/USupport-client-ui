@@ -212,7 +212,7 @@ export const MyQA = () => {
   };
 
   return (
-    <Page classes="page__my-qa" showGoBackArrow={false}>
+    <Page classes="page__my-qa" showGoBackArrow={false} darkBackground={true}>
       <InformationPortalHero
         showSearch={true}
         searchValue={searchValue}

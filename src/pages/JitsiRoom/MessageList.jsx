@@ -117,7 +117,7 @@ export const MessageList = ({
     // Then check which one of the following two cases is true:
     const joinMessages = messages
       .filter(
-        (x) => x.content === "provider_joined" || x.content === "provider_left"
+        (x) => x.content === "provider_joined" || x.content === "provider_left",
       )
       .sort((a, b) => new Date(Number(b.time)) - new Date(Number(a.time)));
     if (joinMessages.length === 0) return false;
@@ -134,14 +134,14 @@ export const MessageList = ({
 
   const chatDataQuery = useGetChatData(
     consultation?.chatId,
-    onGetChatDataSuccess
+    onGetChatDataSuccess,
   );
 
   const providerId = chatDataQuery.data?.providerDetailId;
   const allChatHistoryQuery = useGetAllChatHistoryData(
     providerId,
     clientId,
-    chatDataQuery.isFetched
+    chatDataQuery.isFetched,
   );
 
   useEffect(() => {
@@ -152,7 +152,7 @@ export const MessageList = ({
     ) {
       setMessages((prev) => {
         const currentMessagesTimes = chatDataQuery.data.messages.map(
-          (x) => x.time
+          (x) => x.time,
         );
         const previousFiltered = allChatHistoryQuery.data.messages
           .flat()
@@ -174,7 +174,7 @@ export const MessageList = ({
     messagesToShow.sort((a, b) => new Date(a.time) - new Date(b.time));
     if (debouncedSearch) {
       messagesToShow = messagesToShow.filter((message) =>
-        message.content?.toLowerCase().includes(debouncedSearch.toLowerCase())
+        message.content?.toLowerCase().includes(debouncedSearch.toLowerCase()),
       );
     }
 
@@ -243,7 +243,7 @@ export const MessageList = ({
       {
         // width >= 1024 ?
         width >= 1150 && isChatShownOnTablet ? (
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative", width: "48rem" }}>
             <OptionsContainer
               showOptions={showOptions}
               setShowOptions={setShowOptions}

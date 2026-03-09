@@ -21,6 +21,7 @@ import { BaselineAssesmentModal, RequireRegistration } from "#modals";
 import {
   Dropdown,
   Block,
+  Box,
   Input,
   InteractiveMap,
   Grid,
@@ -32,6 +33,7 @@ import {
   Select,
 } from "@USupport-components-library/src";
 import { clientSvc, userSvc } from "@USupport-components-library/services";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./organizations.scss";
 
@@ -56,6 +58,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { isTmpUser } = useContext(RootContext);
+  const { theme } = useContext(ThemeContext);
   const [searchParams] = useSearchParams();
 
   // Parse URL params from children-rights flow
@@ -221,6 +224,10 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
     });
   };
 
+  const handleResetFilters = () => {
+    setFilters(INITIAL_FILTERS);
+  };
+
   const handleOrganizationClick = (organization) => {
     // Scroll to map when organization is clicked
     interactiveMapRef.current?.scrollIntoView({
@@ -276,6 +283,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
             address={organization.address}
             onClick={() => handleOrganizationClick(organization)}
             t={t}
+            iconColor={theme === "dark" || theme === "highContrast" ? "#ededed" : "#20809E"}
           />
         </GridItem>
       );
@@ -289,7 +297,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
 
     return (
       <>
-        <div className="organizations__dropdowns-container">
+        <div className="organizations__filters">
           {metadata?.districts && metadata.districts.length > 0 && (
             <Dropdown
               selected={filters.district}
@@ -430,48 +438,54 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
   return (
     <>
       <Block classes="organizations">
-        <div className="organizations__search-container">
-          <Input
-            placeholder={t("search_placeholder")}
-            value={filters.search}
-            onChange={(e) => handleChange("search", e.target.value)}
-            classes="organizations__search-container__input"
-          />
-          <NewButton
-            onClick={() => setFilters(INITIAL_FILTERS)}
-            classes="organizations__search-container__reset-filters-btn"
-            label={t("reset_filters")}
-          />
-        </div>
-        <div ref={interactiveMapRef} />
-        {renderFilters()}
-        <NewButton
-          onClick={() => setFilters(INITIAL_FILTERS)}
-          classes="organizations__reset-filters-btn"
-          label={t("reset_filters")}
-          type="outline"
-        />
+        <Box classes="organizations__box" liquidGlass>
+          <div className="organizations__toolbar">
+            <Input
+              placeholder={t("search_placeholder")}
+              value={filters.search}
+              onChange={(e) => handleChange("search", e.target.value)}
+              classes="organizations__search"
+            />
+            <div className="organizations__toolbar-actions">
+              <NewButton
+                onClick={handleResetFilters}
+                classes="organizations__reset-btn"
+                label={t("reset_filters")}
+                type="outline"
+                size="sm"
+              />
+              <NewButton
+                classes="organizations__personalize-btn"
+                onClick={handlePersonalizeClick}
+                loading={personalizationMutation.isLoading}
+                label={t("personalize")}
+                size="sm"
+              />
+            </div>
+          </div>
 
-        <NewButton
-          classes="organizations__search-container__personalize-btn"
-          onClick={handlePersonalizeClick}
-          loading={personalizationMutation.isLoading}
-          label={t("personalize")}
-        />
-        {!isOrganizationsKeyLoading && (
-          <InteractiveMap
-            data={data}
-            userLocation={userLocation}
-            setUserLocation={setUserLocation}
-            onMapReady={handleMapReady}
-            t={t}
-            navigate={navigate}
-            organizationsKey={organizationsKey}
-          />
-        )}
-        <Grid md={8} lg={12} classes="organizations__grid">
-          {isLoading ? <Loading /> : renderOrganizations()}
-        </Grid>
+          {renderFilters()}
+
+          <div ref={interactiveMapRef} />
+
+          {!isOrganizationsKeyLoading && (
+            <div className="organizations__map">
+              <InteractiveMap
+                data={data}
+                userLocation={userLocation}
+                setUserLocation={setUserLocation}
+                onMapReady={handleMapReady}
+                t={t}
+                navigate={navigate}
+                organizationsKey={organizationsKey}
+              />
+            </div>
+          )}
+
+          <Grid md={8} lg={12} classes="organizations__grid">
+            {isLoading ? <Loading /> : renderOrganizations()}
+          </Grid>
+        </Box>
       </Block>
       <Modal
         isOpen={isPersonalizationModalOpen}

@@ -1,13 +1,13 @@
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { toast } from "react-toastify";
 
 import {
   Block,
+  Box,
   Grid,
   GridItem,
-  TabsUnderlined,
   Consultation,
   NewButton,
 } from "@USupport-components-library/src";
@@ -64,13 +64,6 @@ export const Consultations = ({
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "consultations" });
 
-  const [tabsOptions, setTabsOptions] = useState([
-    { label: t("upcoming_tab_label"), value: "upcoming", isSelected: true },
-    { label: t("past_tab_label"), value: "past", isSelected: false },
-  ]);
-
-  const [filter, setFilter] = useState("upcoming");
-
   const daysOfWeekTranslations = {
     monday: t("monday"),
     tuesday: t("tuesday"),
@@ -114,21 +107,6 @@ export const Consultations = ({
     onScheduleConsultationClick,
   ]);
 
-  const handleTabClick = (index) => {
-    const optionsCopy = [...tabsOptions];
-
-    for (let i = 0; i < optionsCopy.length; i++) {
-      if (i === index) {
-        optionsCopy[i].isSelected = true;
-      } else {
-        optionsCopy[i].isSelected = false;
-      }
-    }
-
-    setTabsOptions(optionsCopy);
-    setFilter(optionsCopy[index].value);
-  };
-
   const handleOpenEdit = (consultation) => {
     openEditConsultation(consultation);
   };
@@ -156,119 +134,159 @@ export const Consultations = ({
     rejectConsultationMutation.mutate(consultationId);
   };
 
-  const filterConsultations = useCallback(() => {
-    const currentDateTs = new Date().getTime();
-
-    return consultationsQuery.data
-      ?.filter((consultation) => {
-        const endTime = consultation.timestamp + ONE_HOUR;
-        if (filter === "upcoming") {
-          return (
-            consultation.timestamp >= currentDateTs ||
-            (currentDateTs >= consultation.timestamp &&
-              currentDateTs <= endTime)
-          );
-        } else {
-          return (
-            endTime < currentDateTs &&
-            (consultation.status === "finished" ||
-              consultation.status === "scheduled")
-          );
-        }
-      })
-      .sort((a, b) => {
-        if (filter === "upcoming") {
-          return a.timestamp - b.timestamp;
-        } else {
-          return b.timestamp - a.timestamp;
-        }
-      });
-  }, [consultationsQuery.data, filter]);
-
   const renderAllConsultations = useCallback(() => {
-    const filteredConsultations = filterConsultations();
+    const nowTs = new Date().getTime();
+    const upcoming = getUpcomingConsultations(consultationsQuery.data || [], nowTs) || [];
+    const past = getPastConsultations(consultationsQuery.data || [], nowTs) || [];
+    const hasUpcomingLocal = upcoming.length > 0;
+    const hasPastLocal = past.length > 0;
 
-    if (filteredConsultations?.length === 0)
+    const renderList = (list) => {
+      return list.map((consultation, index) => {
+        const hasMoreThanOne = list.length > 1;
+
+        return (
+          <GridItem
+            key={consultation.consultationId || index}
+            md={8}
+            lg={hasMoreThanOne ? 6 : 12}
+            classes="consultations__grid__consultations-item__grid__consultation"
+          >
+            <Consultation
+              isLoading={consultationsQuery.isLoading}
+              renderIn="client"
+              handleOpenEdit={handleOpenEdit}
+              handleJoinClick={openJoinConsultation}
+              handleOpenDetails={handleOpenDetails}
+              daysOfWeekTranslations={daysOfWeekTranslations}
+              consultation={consultation}
+              overview={false}
+              suggested={consultation.status === "suggested"}
+              handleAcceptConsultation={acceptConsultation}
+              handleRejectConsultation={rejectConsultation}
+              sponsorImage={consultation.sponsorImage}
+              withOrganization={!!consultation.organizationId}
+              t={t}
+              toast={toast}
+              liquidGlass
+              classes={
+                hasMoreThanOne
+                  ? "consultations__grid__consultations-item__grid__consultation__item"
+                  : ""
+              }
+            />
+          </GridItem>
+        );
+      });
+    };
+
+    // No consultations at all – show a centered schedule button if available
+    if (!hasUpcomingLocal && !hasPastLocal) {
       return (
-        <GridItem md={8} lg={12}>
-          {filter === "upcoming" && hasPast && onScheduleConsultationClick ? (
+        <div className="consultations__empty">
+          {onScheduleConsultationClick && (
             <NewButton
               label={t("schedule_button_label")}
               onClick={onScheduleConsultationClick}
               iconName="calendar"
               size="lg"
             />
-          ) : (
-            <p>
-              {t(
-                filter === "upcoming"
-                  ? "no_upcoming_consultations"
-                  : "no_past_consultations",
-              )}
-            </p>
           )}
-        </GridItem>
+        </div>
       );
-    return filteredConsultations?.map((consultation, index) => {
-      const hasMoreThanOne = filteredConsultations.length > 1;
-      return (
-        <GridItem
-          key={index}
-          md={hasMoreThanOne ? 4 : 8}
-          lg={hasMoreThanOne ? 4 : 12}
-          classes="consultations__grid__consultations-item__grid__consultation"
-        >
-          <Consultation
-            isLoading={consultationsQuery.isLoading}
-            renderIn="client"
-            handleOpenEdit={handleOpenEdit}
-            handleJoinClick={openJoinConsultation}
-            handleOpenDetails={handleOpenDetails}
-            daysOfWeekTranslations={daysOfWeekTranslations}
-            consultation={consultation}
-            overview={false}
-            suggested={consultation.status === "suggested" ? true : false}
-            handleAcceptConsultation={acceptConsultation}
-            handleRejectConsultation={rejectConsultation}
-            sponsorImage={consultation.sponsorImage}
-            withOrganization={!!consultation.organizationId}
-            t={t}
-            toast={toast}
-            liquidGlass
-            classes={
-              hasMoreThanOne
-                ? "consultations__grid__consultations-item__grid__consultation__item"
-                : ""
-            }
-          />
-        </GridItem>
-      );
-    });
-  }, [filterConsultations, filter, onScheduleConsultationClick, t]);
+    }
 
-  return (
-    <Block classes="consultations">
-      <Grid md={8} lg={12} classes="consultations__grid">
-        <GridItem md={8} lg={12} classes="consultations__grid__tabs-item">
-          <TabsUnderlined
-            options={tabsOptions}
-            handleSelect={handleTabClick}
-            textType="h3"
-            t={t}
-          />
-        </GridItem>
-        <GridItem
-          md={8}
-          lg={12}
-          classes="consultations__grid__consultations-item"
+    const sections = [];
+
+    if (hasUpcomingLocal) {
+      sections.push(
+        <div
+          className="consultations__section consultations__section--upcoming"
+          key="upcoming-section"
         >
+          <div className="consultations__heading">
+            <div className="consultations__heading-main">
+              <h3 className="consultations__heading-title">
+                {t("upcoming_tab_label")}
+              </h3>
+            </div>
+            {onScheduleConsultationClick && (
+              <NewButton
+                label={t("schedule_button_label")}
+                onClick={onScheduleConsultationClick}
+                iconName="calendar"
+                size="lg"
+                classes="consultations__heading-button--inline"
+              />
+            )}
+          </div>
           <Grid
             md={8}
             lg={12}
             classe="consultations__grid__consultations-item__grid"
           >
-            {renderAllConsultations()}
+            {renderList(upcoming)}
           </Grid>
+        </div>,
+      );
+    }
+
+    if (hasPastLocal) {
+      sections.push(
+        <div
+          className="consultations__section consultations__section--past"
+          key="past-section"
+        >
+          <div className="consultations__heading">
+            <div className="consultations__heading-main">
+              <h3 className="consultations__heading-title">
+                {t("past_tab_label")}
+              </h3>
+            </div>
+            {!hasUpcomingLocal && onScheduleConsultationClick && (
+              <NewButton
+                label={t("schedule_button_label")}
+                onClick={onScheduleConsultationClick}
+                iconName="calendar"
+                size="lg"
+                classes="consultations__heading-button--inline"
+              />
+            )}
+          </div>
+          <Grid
+            md={8}
+            lg={12}
+            classe="consultations__grid__consultations-item__grid"
+          >
+            {renderList(past)}
+          </Grid>
+        </div>,
+      );
+    }
+
+    return sections;
+  }, [
+    acceptConsultation,
+    consultationsQuery.data,
+    consultationsQuery.isLoading,
+    daysOfWeekTranslations,
+    onScheduleConsultationClick,
+    openJoinConsultation,
+    rejectConsultation,
+    t,
+  ]);
+
+  return (
+    <Block classes="consultations">
+      <Grid md={8} lg={12} classes="consultations__grid">
+        <GridItem
+          md={8}
+          lg={12}
+          classes="consultations__grid__consultations-item"
+        >
+          <Box classes="consultations__box" liquidGlass>
+            {renderAllConsultations()}
+          </Box>
         </GridItem>
       </Grid>
     </Block>

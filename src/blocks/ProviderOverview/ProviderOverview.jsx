@@ -26,7 +26,7 @@ import "./provider-overview.scss";
 export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "provider-overview" });
   const { activeCoupon } = useContext(RootContext);
-  const { cookieState, setCookieState } = useContext(ThemeContext);
+  const { cookieState, setCookieState, theme } = useContext(ThemeContext);
 
   const { data: provider } = useGetProviderDataById(
     providerId,
@@ -45,17 +45,21 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
           t={t}
           image={image}
           renderIn="client"
+          activeCoupon={activeCoupon}
           cookieState={cookieState}
           setCookieState={setCookieState}
+          iconColor={theme === "dark" || theme === "highContrast" ? "#ededed" : "#66768D"}
+          buttonComponent={
+            <NewButton
+              label={t("button_label")}
+              iconName="calendar"
+              iconColor="#ffffff"
+              size="lg"
+              onClick={openScheduleBackdrop}
+            />
+          }
         />
       )}
-      <div className="provider-profile__button-container">
-        <NewButton
-          label={t("button_label")}
-          size="lg"
-          onClick={openScheduleBackdrop}
-        />
-      </div>
     </Block>
   );
 };

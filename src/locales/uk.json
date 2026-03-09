@@ -121,7 +121,14 @@
       "video_label": "Відеопрезентація",
       "button_label": "Заплануй консультацію",
       "hour_consultation": "за 1 годину консультації",
-      "free": "безкоштовно"
+      "free": "безкоштовно",
+      "monday": "Понеділок",
+      "tuesday": "Вівторок",
+      "wednesday": "Середа",
+      "thursday": "Четвер",
+      "friday": "Пʼятниця",
+      "saturday": "Субота",
+      "sunday": "Неділя"
     },
     "user-profile": {
       "your_profile": "Твій профіль",
@@ -169,7 +176,9 @@
       "sex_placeholder": "Вкажіть свою стать",
       "year_of_birth_placeholder": "Вкажіть свій рік народження",
       "living_place_placeholder": "Вкажіть своє місце проживання",
-      "parent": "Мати/Батько/Опікун"
+      "parent": "Мати/Батько/Опікун",
+      "logout_button_label": "Вийти",
+      "heading": "Вітаємо в"
     },
     "register-anonymous": {
       "nickname_label": "Нікнейм *",
@@ -515,7 +524,9 @@
       "conducted": "Консультацію завершено",
       "not_conducted": "Не відбулася",
       "free": "Free",
-      "coupon": "Купон"
+      "coupon": "Купон",
+      "explore_resources_label": "Explore resources",
+      "heading_need_support": "Need support?"
     },
     "mood-tracker": {
       "happy": "Щасливим/ою",
@@ -534,7 +545,9 @@
       "recommendations": "Рекомендації",
       "recommendations_text": "Хочете переглянути графік настрою та побачити рекомендований контент?",
       "check_out": "Переглянути",
-      "mood_tracker_long": "Вивчіть свій трекер настрою"
+      "mood_tracker_long": "Вивчіть свій трекер настрою",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide"
     },
     "mascot-welcome-header": {
       "welcome": "З поверненням, {{name}}!",
@@ -715,7 +728,8 @@
       "read_more_button": "Читати більше",
       "by": "від {{creator}}",
       "min_read": "хв читання",
-      "no_recommendations": "Рекомендацій не знайдено"
+      "no_recommendations": "Рекомендацій не знайдено",
+      "select_year": "Select year"
     },
     "mascot-header-MyQA": {
       "heading": "Мої запитання й відповіді",
@@ -743,7 +757,9 @@
       "no_answers_found": "Немає відповідей на запитання",
       "language": "Мова",
       "all_languages": "Усі мови",
-      "date_answered": "від {{date}}"
+      "date_answered": "від {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "videos": {
       "view_more": "Переглянути більше",
@@ -963,7 +979,12 @@
       "latest_results": "Останні Результати",
       "how_it_works": "Як це працює",
       "see_last_result": "Останні результати",
-      "explore_button_label": "Дослідити карту"
+      "explore_button_label": "Дослідити карту",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Оцінювання завершено",
@@ -1046,6 +1067,12 @@
     "find-support-near-you": {
       "heading": "Знайдіть підтримку поруч",
       "explore_button_label": "Переглянути"
+    },
+    "most-read-articles": {
+      "heading": "Most Read Article",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}"
     }
   },
   "pages": {
@@ -1168,7 +1195,8 @@
       "view_more": "Переглянути більше",
       "require_cookies": "Щоб переглянути це відео, прийміть усі файли cookie.",
       "cookie_preferences": "Налаштування файлів cookie",
-      "search": "Пошук"
+      "search": "Пошук",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "Зареєструйтеся в uSupport за допомогою електронної пошти"
