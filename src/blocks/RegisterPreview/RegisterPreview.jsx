@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSearchParams, useNavigate as useRawNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
 import {
@@ -31,6 +32,9 @@ export const RegisterPreview = () => {
   const { t } = useTranslation("blocks", { keyPrefix: "register-preview" });
   const country = localStorage.getItem("country");
   const navigate = useNavigate();
+  const rawNavigate = useRawNavigate();
+  const [searchParams] = useSearchParams();
+  const nextPath = searchParams.get("next");
   const [error, setErrror] = useState();
 
   const addCountryEventMutation = useAddCountryEvent();
@@ -84,7 +88,11 @@ export const RegisterPreview = () => {
       localStorage.setItem("refresh-token", refreshToken);
 
       window.dispatchEvent(new Event("login"));
-      navigate("/dashboard");
+      if (nextPath && nextPath.startsWith("/client/")) {
+        rawNavigate(nextPath);
+      } else {
+        navigate("/dashboard");
+      }
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);
@@ -139,7 +147,13 @@ export const RegisterPreview = () => {
               size="lg"
               label={t("login")}
               color="purple"
-              onClick={() => navigate("/login")}
+              onClick={() =>
+                navigate(
+                  nextPath && nextPath.startsWith("/client/")
+                    ? `/login?next=${encodeURIComponent(nextPath)}`
+                    : "/login"
+                )
+              }
             />
             <Button
               label={t("register_anonymously")}

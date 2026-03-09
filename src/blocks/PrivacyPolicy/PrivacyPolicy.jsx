@@ -50,7 +50,9 @@ export const PrivacyPolicy = () => {
     data: policiesData,
     isLoading: policiesLoading,
     isFetched: isPoliciesFetched,
-  } = useQuery(["policies", currentCountry, i18n.language], getPolicies);
+  } = useQuery(["policies", currentCountry, i18n.language], getPolicies,{
+    enabled:!!currentCountry
+  });
 
   return (
     <Block classes="privacy-policy">

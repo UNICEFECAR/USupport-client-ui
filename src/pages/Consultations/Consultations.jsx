@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { ONE_HOUR } from "@USupport-components-library/utils";
 
 import {
   Page,
@@ -44,8 +45,27 @@ export const Consultations = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { t } = useTranslation("pages", { keyPrefix: "consultations-page" });
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const { isTmpUser } = useContext(RootContext);
+
+  useEffect(() => {
+    const suggestionDate = searchParams.get("suggestion_date");
+    if (suggestionDate) {
+      const bookingTime = new Date(suggestionDate).getTime();
+      const now = Date.now();
+      const twentyFourHours = 24 * ONE_HOUR;
+
+      if (bookingTime - now < twentyFourHours) {
+        toast.error(t("suggestion_expired"), {
+          duration: 7000,
+        });
+      }
+
+      searchParams.delete("suggestion_date");
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, []);
 
   if (isTmpUser)
     return (

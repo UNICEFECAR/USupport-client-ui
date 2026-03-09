@@ -5,7 +5,7 @@ import {
   getTimestampFromUTC,
 } from "@USupport-components-library/utils";
 
-const constructFiltersQueryString = (filters) => {
+const constructFiltersQueryString = (filters, billingType) => {
   const providerTypes = filters.providerTypes?.join(",");
   const sex = filters.providerSex?.join(",");
   const language = filters.language;
@@ -50,6 +50,10 @@ const constructFiltersQueryString = (filters) => {
     queryString += `&startDate=${startDate}`;
   }
 
+  if (billingType) {
+    queryString += `&billingType=${billingType}`;
+  }
+
   return queryString || "";
 };
 
@@ -59,7 +63,8 @@ const constructFiltersQueryString = (filters) => {
 export default function useGetProvidersData(
   activeCoupon = null,
   filters,
-  onSuccess = () => {}
+  onSuccess = () => {},
+  billingType = null
 ) {
   const fetchProvidersData = async ({ pageParam = 1 }) => {
     const today = new Date();
@@ -67,10 +72,13 @@ export default function useGetProvidersData(
     const startDate = getTimestampFromUTC(first);
 
     const providersLimit = 15;
-    const filtersQueryString = constructFiltersQueryString({
-      ...filters,
-      startDate,
-    });
+    const filtersQueryString = constructFiltersQueryString(
+      {
+        ...filters,
+        startDate,
+      },
+      billingType
+    );
 
     const { data } = await providerSvc.getAllProviders({
       campaignId: activeCoupon?.campaignId,
@@ -105,8 +113,19 @@ export default function useGetProvidersData(
     // Return only the providers that have available slot
     return formattedData.filter((x) => x.earliestAvailableSlot);
   };
+  // Determine if the query should be enabled
+  // For coupon billing type, only fetch if there's an active coupon
+  // For other billing types, always fetch
+  const isEnabled = (() => {
+    if (!billingType) return false;
+    if (billingType === "coupon") {
+      return !!activeCoupon;
+    }
+    return true;
+  })();
+
   const providersDataQuery = useInfiniteQuery(
-    ["all-providers-data", activeCoupon, filters],
+    ["all-providers-data", activeCoupon, filters, billingType],
     fetchProvidersData,
     {
       getNextPageParam: (lastPage, pages) => {
@@ -118,7 +137,7 @@ export default function useGetProvidersData(
       onSuccess: () => {
         onSuccess();
       },
-      enabled: activeCoupon === null ? true : !!activeCoupon,
+      enabled: isEnabled,
     }
   );
   return providersDataQuery;

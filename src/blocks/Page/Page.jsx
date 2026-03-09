@@ -14,7 +14,8 @@ import {
   PasswordModal,
   Box,
   CookieBanner,
-  AccessibilityController,
+  // WysaButton,
+  // Wysa,
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -27,7 +28,6 @@ import {
   ThemeContext,
   replaceLanguageInUrl,
   getLanguageFromUrl,
-  redirectToLocalStorageCountry,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
 import {
@@ -39,6 +39,7 @@ import {
 } from "#hooks";
 
 import "./page.scss";
+import { RootContext } from "../../routes/Root/Root";
 
 const kazakhstanCountry = {
   value: "KZ",
@@ -78,8 +79,12 @@ export const Page = ({
   const isLoggedIn = useIsLoggedIn();
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
-  const IS_DEV = process.env.NODE_ENV === "development";
   const IS_RO = localStorage.getItem("country") === "RO";
+
+  // const IS_DEV = import.meta.env.MODE === "development";
+  // const IS_STAGING = window.location.href.includes("staging");
+  // const IS_CY = localStorage.getItem("country") === "CY";
+  // const SHOW_WYSA = IS_STAGING || IS_DEV;
 
   const {
     theme,
@@ -89,11 +94,14 @@ export const Page = ({
     cookieState,
     setCookieState,
   } = useContext(ThemeContext);
+  const { setSelectedCountry: setSelectedCountryContext } =
+    useContext(RootContext);
   const { width } = useWindowDimensions();
   const location = useLocation();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+  // const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
@@ -188,6 +196,11 @@ export const Page = ({
         localName: x.local_name,
         videosActive: x.videos_active,
         podcastsActive: x.podcasts_active,
+        hasPayments: x.has_payments,
+        hasCoupons: x.has_coupons,
+        hasFreeConsultations: x.has_free_consultations,
+        defaultBillingType: x.default_billing_type,
+        defaultCouponCode: x.default_coupon_code,
       };
       return countryObject;
     });
@@ -243,6 +256,17 @@ export const Page = ({
       enabled: !!selectedCountry,
     }
   );
+
+  useEffect(() => {
+    if (countries && selectedCountry) {
+      const countryObject = countries.find(
+        (x) => x.value === selectedCountry.value
+      );
+      if (countryObject) {
+        setSelectedCountryContext(countryObject);
+      }
+    }
+  }, [countries, selectedCountry]);
 
   useEffect(() => {
     const countries = queryClient.getQueryData(["countries"]);
@@ -349,7 +373,7 @@ export const Page = ({
       <Icon
         name={theme === "light" ? "dark-mode-switch" : "light-mode"}
         size="lg"
-        classes="page__theme-button"
+        classes={["page__theme-button"].join(" ")}
         onClick={toggleTheme}
       />
     );
@@ -551,18 +575,29 @@ export const Page = ({
       </div>
       {themeButton()}
       {showEmergencyButton && (
-        <CircleIconButton
-          iconName="phone-emergency"
-          classes="page__emergency-button"
-          onClick={() => {
-            addSosCenterClickMutation.mutate({
-              isMain: true,
-              platform: "client",
-            });
-            navigateTo(`/client/${localStorageLanguage}/sos-center`);
-          }}
-          label={t("emergency_button")}
-        />
+        <>
+          {/* {IS_CY && SHOW_WYSA && (
+            <>
+              <WysaButton onClick={() => setIsWysaModalOpen(true)} />
+              <Wysa
+                isOpen={isWysaModalOpen}
+                onClose={() => setIsWysaModalOpen(false)}
+              />
+            </>
+          )} */}
+          <CircleIconButton
+            iconName="phone-emergency"
+            classes={["page__emergency-button"].join(" ")}
+            onClick={() => {
+              addSosCenterClickMutation.mutate({
+                isMain: true,
+                platform: "client",
+              });
+              navigateTo(`/client/${localStorageLanguage}/sos-center`);
+            }}
+            label={t("emergency_button")}
+          />
+        </>
       )}
       {isFooterShown && (
         <Footer

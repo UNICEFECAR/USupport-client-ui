@@ -3,6 +3,62 @@
 .select-provider {
   @include full-height-page-navbar;
 
+  padding-left: $spacing_2_4;
+
+  @media screen and (min-width: $screen-md) {
+    padding-left: calc($spacing_2_6 + $spacing_8_0);
+    padding-right: calc($spacing_2_6 + $spacing_8_0);
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    padding-left: calc($spacing_23_0 + $spacing_5_6);
+    padding-right: calc($spacing_23_0 + $spacing_5_6);
+  }
+
+  &__filter-button {
+    margin-left: auto;
+    margin-top: $spacing_1_6;
+  }
+
+  &__coupon-section {
+    padding-top: $spacing_2_0;
+    text-align: left;
+    margin: 0;
+
+    &__header {
+      text-align: left;
+      margin-bottom: $spacing_2_0;
+      // max-width: 80%;
+      margin-inline: auto;
+    }
+
+    &__input-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing_1_6;
+      margin-top: $spacing_1_0;
+    }
+
+    &__buttons {
+      display: flex;
+      flex-direction: row;
+      gap: $spacing_1_0;
+      width: 100%;
+      max-width: 30rem;
+
+      @media screen and (min-width: $screen_md) {
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  & .tabs-container {
+    margin-top: $spacing_2_0;
+    justify-content: flex-start;
+  }
+
   &__grid {
     place-items: center;
     padding-top: $spacing_3_0;
@@ -14,14 +70,13 @@
     }
 
     @media screen and (min-width: $screen_md) {
-
       &__provider {
         justify-self: start;
         height: 100%;
       }
 
       &__provider:nth-child(odd) {
-        justify-self: end;
+        justify-self: start;
         height: 100%;
       }
     }

@@ -9,7 +9,7 @@ const distDir = path.resolve(__dirname, "..", "dist");
 const localesDir = path.resolve(__dirname, "..", "src", "locales");
 
 // Languages configured in website/src/i18n.js
-const languages = ["hy", "en", "kk", "pl", "ro", "ru", "uk"];
+const languages = ["hy", "en", "kk", "pl", "ro", "ru", "uk", "el"];
 
 async function main() {
   const indexPath = path.join(distDir, "index.html");

@@ -28,6 +28,7 @@ import {
   Consultations,
   ContactUs,
   CookiePolicy,
+  ChildrenRights,
   Dashboard,
   FAQ,
   ForgotPassword,
@@ -406,6 +407,14 @@ const LanguageLayout = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="children-rights"
+        element={
+          <ProtectedRoute>
+            <ChildrenRights />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/" element={<Welcome />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
@@ -436,6 +445,7 @@ export default function Root() {
   const [activeCoupon, setActiveCoupon] = useState();
   const [isRegistrationModalOpan, setIsRegistrationModalOpen] = useState(false);
   const [hasAddedPlatformAccess, setHasAddedPlatformAccess] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   const handler = useCallback(() => {
     const country = localStorage.getItem("country");
@@ -520,6 +530,8 @@ export default function Root() {
         setActiveCoupon,
         leaveConsultationFn,
         loggedIn,
+        selectedCountry,
+        setSelectedCountry,
       }}
     >
       {loggedIn && !hideIdleTimer && (
