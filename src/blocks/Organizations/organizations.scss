@@ -4,6 +4,7 @@
   &__box {
     padding: $spacing_3_2;
     margin-top: $spacing_2_4;
+    position: relative;
   }
 
   &__toolbar {
@@ -13,6 +14,8 @@
     padding-bottom: $spacing_1_6;
     border-bottom: 1px solid $color_gray_ea;
     margin-bottom: $spacing_1_6;
+    position: relative;
+    z-index: 2;
 
     @include themifyCustom(
       $themes,
@@ -104,9 +107,13 @@
     flex-wrap: wrap;
     gap: $spacing_1_6;
     padding-block: $spacing_1_6;
+    position: relative;
+    z-index: 2;
   }
 
   &__map {
+    position: relative;
+    z-index: 1;
     margin-top: $spacing_1_6;
   }
 
