@@ -118,9 +118,6 @@ export const SelectConsultation = ({
     setSelectedSlot(slot);
   };
 
-  const getDoubleDigitHour = (hour) =>
-    hour === 24 ? "00" : hour < 10 ? `0${hour}` : hour;
-
   const renderFreeSlots = () => {
     const todaySlots = availableSlots?.filter((slot) => {
       const slotDate = new Date(slot.time || slot).getDate();
@@ -131,34 +128,62 @@ export const SelectConsultation = ({
       }
       return slotDate === currentDayDate;
     });
-
     if (!todaySlots || todaySlots?.length === 0)
       return (
-        <p className="select-consultation__no-slots-text">
-          {t("no_slots_available")}
-        </p>
+        <div className="select-consultation__content-container__slots-empty">
+          <p className="select-consultation__no-slots-text">
+            {t("no_slots_available")}
+          </p>
+        </div>
       );
 
-    return (
-      <div className="select-consultation__time-grid">
-        {todaySlots.map((slot) => {
-          const slotLocal = new Date(slot.time || slot);
-          const value = slotLocal.getTime();
-          const displayHours = getDoubleDigitHour(slotLocal.getHours());
-          const displayMinutes = getDoubleDigitHour(slotLocal.getMinutes());
-          const isSelected = selectedSlot === value;
+    const options = todaySlots?.map(
+      (slot) => {
+        const slotLocal = new Date(slot.time || slot);
 
-          return (
-            <button
-              key={value}
-              type="button"
-              className={`select-consultation__time-chip ${isSelected ? "select-consultation__time-chip--selected" : ""}`}
-              onClick={() => handleChooseSlot(value)}
-            >
-              {displayHours}:{displayMinutes}
-            </button>
-          );
-        })}
+        const value = new Date(slot.time || slot).getTime();
+
+        const getDoubleDigitHour = (hour) =>
+          hour === 24 ? "00" : hour < 10 ? `0${hour}` : hour;
+
+        const displayStartHours = getDoubleDigitHour(slotLocal.getHours());
+        const displayStartMinutes = getDoubleDigitHour(slotLocal.getMinutes());
+        const displayEndHours = getDoubleDigitHour(slotLocal.getHours() + 1);
+        const displayEndMinutes = getDoubleDigitHour(slotLocal.getMinutes());
+        const label = `${displayStartHours}:${displayStartMinutes} - ${displayEndHours}:${displayEndMinutes}`;
+
+        return { label: label, value };
+      },
+      [availableSlots],
+    );
+
+    const isSingleOption = options.length === 1;
+
+    return (
+      <div
+        className={`select-consultation__time-grid${
+          isSingleOption ? " select-consultation__time-grid--single" : ""
+        }`}
+      >
+        {options.map((option) => (
+          <label
+            key={option.value}
+            className={`select-consultation__time-chip${
+              selectedSlot === option.value
+                ? " select-consultation__time-chip--selected"
+                : ""
+            }`}
+          >
+            <input
+              type="radio"
+              name="free-slots"
+              value={option.value}
+              checked={selectedSlot === option.value}
+              onChange={() => handleChooseSlot(option.value)}
+            />
+            <p className="text">{option.label}</p>
+          </label>
+        ))}
       </div>
     );
   };
@@ -199,8 +224,9 @@ export const SelectConsultation = ({
       title="SelectConsultation"
       isOpen={isOpen}
       onClose={onClose}
-      heading={edit === true ? t("heading_edit") : t("heading_new")}
-      text={edit === true ? t("subheading_edit") : t("subheading_new")}
+      // heading={edit === true ? t("heading_edit") : t("heading_new")}
+      // text={edit === true ? t("subheading_edit") : t("subheading_new")}
+      heading={edit === true ? t("subheading_edit") : t("subheading_new")}
       ctaLabel={t("cta_button_label")}
       ctaHandleClick={handleSave}
       isCtaDisabled={isCtaDisabled ? true : !selectedSlot ? true : false}
