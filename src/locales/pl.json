@@ -633,7 +633,7 @@
       "no_recommendations": "Nie znaleziono rekomendacji"
     },
     "mascot-header-MyQA": {
-      "heading": "Moje Pytania i odpowiedzi",
+      "heading": "Zapytaj psychologa",
       "subheading_its": "To jest",
       "subheading_anonymous": "ANONIMOWE",
       "subheading_text1": "Twoje pytania",
@@ -876,7 +876,8 @@
       "biological": "Biological",
       "social": "Social",
       "latest_results": "Latest Results",
-      "how_it_works": "How it works"
+      "how_it_works": "How it works",
+      "see_last_result": "Latest results"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Ocena zakończona",
@@ -917,7 +918,9 @@
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
       "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
       "same_same_same": "Twoje wyniki są takie same jak w poprzedniej ocenie.",
-      "organizations": "Organizacje zalecane"
+      "organizations": "Organizacje zalecane",
+      "summary_heading": "Recommendations generated based on the score obtained",
+      "view_more": "View more"
     }
   },
   "pages": {
@@ -942,7 +945,7 @@
     },
     "sos-center-page": {
       "heading": "Nagły wypadek",
-      "subheading": "Pilnie potrzebujesz pomocy? Skontaktuj się z niektórymi z wymienionych ośrodków już teraz."
+      "subheading": "Pilnie potrzebujesz pomocy? Skontaktuj się z jednym z poniższych ośrodków już teraz."
     },
     "select-provider-page": {
       "heading": "Wybierz konsultanta/kę",
@@ -1132,7 +1135,7 @@
     "notifications-page": {
       "heading": "Powiadomienia",
       "mark_read": "Oznacz wszystkie jako przeczytane",
-      "subheading": "Tutaj możesz znaleźć wszystkie powiadomienia, które kiedykolwiek otrzymałeś na swoje konto."
+      "subheading": "Tutaj znajdziesz wszystkie powiadomienia otrzymane na swoim koncie."
     },
     "videos-page": {
       "heading_default": "Filmy",
@@ -1530,9 +1533,9 @@
     },
     "how-it-works-my-qa": {
       "heading": "Jak to działa",
-      "subheading_1": "Klienci mogą wysłać anonimową prywatną wiadomość do usupport w wybranym przez siebie języku, korzystając ze strony internetowej lub aplikacji.",
-      "subheading_2": "Zatwierdzone — dostępny/a specjalista/ka uSupport odpowie, przedstawiając odpowiednie ścieżki wsparcia itp.",
-      "subheading_3": "Odpowiedź będzie widoczna dla wszystkich! Trafi do wspólnej przestrzeni z odpowiednimi #tagami, aby można było do niej wrócić w przyszłości."
+      "subheading_1": "Użytkownik wysyła anonimową, prywatną wiadomość do uSupport poprzez formularz, w wybranym przez siebie języku.",
+      "subheading_2": "Na Twoje pytanie odpowie psycholog/żka uSupport i udzieli pomocnych wskazówek.",
+      "subheading_3": "Odpowiedź będzie publiczna. Zostanie dodana do wspólnej bazy z #tagami, aby łatwo można było ją później znaleźć."
     },
     "question-details": {
       "today": "Dzisiaj",
