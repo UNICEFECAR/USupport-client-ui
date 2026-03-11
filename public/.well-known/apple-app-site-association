@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "K288UMKCNF.org.unicef.ecar.usupport",
+        "paths": [
+          "/client/select-provider",
+          "/client/select-provider*",
+          "/client/*"
+        ]
+      }
+    ]
+  }
+}
