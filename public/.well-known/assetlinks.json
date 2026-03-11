@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "org.unicef.ecar.usupport",
+      "sha256_cert_fingerprints": [
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C",
+        "7D:5C:80:D0:7E:FF:12:DF:C6:92:E4:03:F3:86:1E:CE:46:07:08:FF:98:FB:29:50:04:D4:11:62:B7:74:5E:51"
+      ]
+    }
+  }
+]
