@@ -305,7 +305,10 @@
       "not_conducted": "Չի իրականացվել",
       "free": "Անվճար",
       "coupon": "Կտրոնը",
-      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ"
+      "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ",
+      "psychologist": "Հոգեբան",
+      "psychiatrist": "Հոգեբույժ",
+      "psychotherapist": "Հոգեթերապևտ"
     },
     "login": {
       "email_label": "Էլեկտրոնային փոստի հասցե / մուտքի սարք",
@@ -524,9 +527,9 @@
       "conducted": "Խորհրդատվությունը ավարտված է",
       "not_conducted": "Չի իրականացվել",
       "free": "Անվճար",
-      "coupon": "Coupon",
-      "explore_resources_label": "Explore resources",
-      "heading_need_support": "Need support?"
+      "coupon": "Կուպոն",
+      "explore_resources_label": "Ուսումնասիրեք ռեսուրսները",
+      "heading_need_support": "Օգնության կարիք ունե՞ք"
     },
     "mood-tracker": {
       "happy": "Ուրախ եմ",
@@ -729,7 +732,7 @@
       "by": "հեղինակ՝ {{creator}}",
       "min_read": "րոպե ընթերցանություն",
       "no_recommendations": "Առաջարկություններ չեն գտնվել",
-      "select_year": "Select year"
+      "select_year": "Ընտրեք տարին"
     },
     "mascot-header-MyQA": {
       "heading": "Իմ հարցուպատասխանը",
@@ -1069,10 +1072,10 @@
       "explore_button_label": "Ուսումնասիրել"
     },
     "most-read-articles": {
-      "heading": "Most Read Article",
-      "read_more_button": "Click to read more",
-      "min_read": "min read",
-      "by": "by {{creator}}"
+      "heading": "Ամենաշատ կարդացվող հոդվածը",
+      "read_more_button": "Սեղմեք՝ կարդալու համար",
+      "min_read": "րոպե ընթերցում",
+      "by": "{{creator}} հեղինակությամբ"
     }
   },
   "pages": {

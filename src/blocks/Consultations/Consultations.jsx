@@ -136,8 +136,10 @@ export const Consultations = ({
 
   const renderAllConsultations = useCallback(() => {
     const nowTs = new Date().getTime();
-    const upcoming = getUpcomingConsultations(consultationsQuery.data || [], nowTs) || [];
-    const past = getPastConsultations(consultationsQuery.data || [], nowTs) || [];
+    const upcoming =
+      getUpcomingConsultations(consultationsQuery.data || [], nowTs) || [];
+    const past =
+      getPastConsultations(consultationsQuery.data || [], nowTs) || [];
     const hasUpcomingLocal = upcoming.length > 0;
     const hasPastLocal = past.length > 0;
 
@@ -149,7 +151,7 @@ export const Consultations = ({
           <GridItem
             key={consultation.consultationId || index}
             md={8}
-            lg={hasMoreThanOne ? 6 : 12}
+            lg={6}
             classes="consultations__grid__consultations-item__grid__consultation"
           >
             <Consultation
@@ -223,7 +225,7 @@ export const Consultations = ({
           <Grid
             md={8}
             lg={12}
-            classe="consultations__grid__consultations-item__grid"
+            classes="consultations__grid__consultations-item__grid"
           >
             {renderList(upcoming)}
           </Grid>
@@ -256,7 +258,7 @@ export const Consultations = ({
           <Grid
             md={8}
             lg={12}
-            classe="consultations__grid__consultations-item__grid"
+            classes="consultations__grid__consultations-item__grid"
           >
             {renderList(past)}
           </Grid>

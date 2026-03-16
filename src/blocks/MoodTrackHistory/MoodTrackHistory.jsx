@@ -186,20 +186,21 @@ export const MoodTrackHistory = () => {
         <Loading />
       ) : (
         <>
-          {moodTrackerData[limit].entries.length === 0 && (
+          {moodTrackerData[limit].entries.length === 0 ? (
             <div>
               <p>{t("no_result")}</p>
             </div>
+          ) : (
+            <div className="mood-track-history__year-dropdown">
+              <Dropdown
+                options={yearOptions}
+                selected={selectedYear}
+                setSelected={setSelectedYear}
+                placeholder={t("select_year")}
+                isSmall
+              />
+            </div>
           )}
-          <div className="mood-track-history__year-dropdown">
-            <Dropdown
-              options={yearOptions}
-              selected={selectedYear}
-              setSelected={setSelectedYear}
-              placeholder={t("select_year")}
-              isSmall
-            />
-          </div>
           <div className="mood-track-history__content-container">
             <div className="mood-track-history__content-container__emoticons-container">
               {renderAllEmoticons()}

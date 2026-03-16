@@ -4,7 +4,6 @@
   padding-top: $spacing_4_8;
   padding-bottom: $spacing_6_4;
 
-  // Keep original (softer) liquid glass styling for cards on this block
   .theme-light & {
     .box--liquid-glass,
     .card--liquid-glass {
@@ -19,7 +18,7 @@
   }
 
   &__box {
-      &__content {
+    &__content {
       display: flex;
       flex-direction: column;
 
@@ -148,13 +147,46 @@
           padding: $spacing_3_2;
           width: 100%;
           max-width: 320px;
-          background: rgba(255, 255, 255, 0.95);
+          border-radius: $border_radius_2_4;
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          border-radius: $border_radius_2_4;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12),
-            0 2px 8px rgba(106, 79, 251, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.8);
+          min-width: 0;
+
+          @include themifyNormal($themes) {
+            background: themed(glass_panel_background);
+            background-color: themed(glass_panel_background);
+            border: 1px solid themed(glass_border_color);
+            box-shadow: themed(glass_shadow);
+          }
+
+          .theme-light & {
+            background: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow:
+              0 8px 32px rgba(0, 0, 0, 0.12),
+              0 2px 8px rgba(106, 79, 251, 0.08);
+          }
+
+          button,
+          a,
+          [role="button"] {
+            max-width: 100%;
+            width: 100%;
+            min-width: 0;
+          }
+
+          button,
+          a,
+          [role="button"],
+          button *,
+          a *,
+          [role="button"] * {
+            white-space: normal;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            min-width: 0;
+          }
 
           @media screen and (min-width: $screen-lg) {
             padding: $spacing_4_0;
@@ -208,6 +240,10 @@
               rgba(106, 79, 251, 0.12) 0%,
               rgba(140, 144, 235, 0.12) 100%
             );
+          }
+
+          &__icon--inline {
+            margin-bottom: $spacing_1_6;
           }
         }
 

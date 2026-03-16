@@ -305,7 +305,10 @@
       "not_conducted": "Өткізілмеді",
       "free": "Тегін",
       "coupon": "Купон",
-      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт"
     },
     "login": {
       "email_label": "Электронды пошта / кіру токені",
@@ -523,10 +526,10 @@
       "view_profile": "Жеке парақшаны қарап шығу",
       "conducted": "Консультация аяқталды",
       "not_conducted": "Өткізілмеді",
-      "free": "Free",
+      "free": "Тегін",
       "coupon": "Купон",
-      "explore_resources_label": "Explore resources",
-      "heading_need_support": "Need support?"
+      "explore_resources_label": "Ресурстарды қарау",
+      "heading_need_support": "Қолдау керек пе?"
     },
     "mood-tracker": {
       "happy": "Керемет",
@@ -729,7 +732,7 @@
       "by": "{{creator}} авторынан",
       "min_read": "мин оқу",
       "no_recommendations": "Ұсыныстар табылмады",
-      "select_year": "Select year"
+      "select_year": "Жылды таңдаңыз"
     },
     "mascot-header-MyQA": {
       "heading": "Менің Q&A (Сұрақ/Жауап)",
@@ -1069,10 +1072,10 @@
       "explore_button_label": "Зерттеу"
     },
     "most-read-articles": {
-      "heading": "Most Read Article",
-      "read_more_button": "Click to read more",
-      "min_read": "min read",
-      "by": "by {{creator}}"
+      "heading": "Ең көп оқылған мақала",
+      "read_more_button": "Толығырақ оқу",
+      "min_read": "мин оқу",
+      "by": "{{creator}} авторлығымен"
     }
   },
   "pages": {

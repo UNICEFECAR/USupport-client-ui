@@ -230,7 +230,7 @@ export const Welcome = ({
 
   return (
     <Backdrop
-      classes="welcome-modal"
+      classes="backdrop--auth backdrop--from-bottom welcome-modal"
       isOpen={isOpen}
       onClose={() => {}}
       hasCloseIcon={false}

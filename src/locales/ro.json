@@ -305,7 +305,10 @@
       "not_conducted": "Nu a avut loc",
       "free": "Gratuit",
       "coupon": "Cupon",
-      "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere"
+      "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere",
+      "psychologist": "Psiholog",
+      "psychiatrist": "Psihiatru",
+      "psychotherapist": "Psihoterapeut"
     },
     "login": {
       "email_label": "Email / Token de acces",
@@ -523,10 +526,10 @@
       "view_profile": "Vedeți profilul personal",
       "conducted": "Consultație încheiată",
       "not_conducted": "Nu a avut loc",
-      "free": "Free",
+      "free": "Gratuit",
       "coupon": "Cupon",
-      "explore_resources_label": "Explore resources",
-      "heading_need_support": "Need support?"
+      "explore_resources_label": "Explorați resursele",
+      "heading_need_support": "Ai nevoie de sprijin?"
     },
     "mood-tracker": {
       "happy": "Fericit",
@@ -729,7 +732,7 @@
       "by": "de {{creator}}",
       "min_read": "min de citit",
       "no_recommendations": "Nu s-au găsit recomandări",
-      "select_year": "Select year"
+      "select_year": "Selectează anul"
     },
     "mascot-header-MyQA": {
       "heading": "Întrebările mele",
@@ -1069,10 +1072,10 @@
       "explore_button_label": "Explorați"
     },
     "most-read-articles": {
-      "heading": "Most Read Article",
-      "read_more_button": "Click to read more",
-      "min_read": "min read",
-      "by": "by {{creator}}"
+      "heading": "Cel mai citit articol",
+      "read_more_button": "Faceți clic pentru a citi mai mult",
+      "min_read": "min de citit",
+      "by": "de {{creator}}"
     }
   },
   "pages": {

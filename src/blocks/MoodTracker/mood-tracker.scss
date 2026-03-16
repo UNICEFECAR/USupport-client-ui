@@ -167,6 +167,10 @@
           user-select: none;
           margin: 0 auto;
           border-radius: 50%;
+          overflow: hidden;
+          isolation: isolate;
+          transform: translateZ(0);
+          -webkit-mask-image: -webkit-radial-gradient(white, black);
           border: 0.15rem solid rgba(255, 255, 255, 0.62);
           background:
             radial-gradient(
@@ -185,7 +189,9 @@
             0 10px 18px rgba(90, 81, 145, 0.2);
           backdrop-filter: blur(8px) saturate(1.12);
           -webkit-backdrop-filter: blur(8px) saturate(1.12);
-          transition: transform 160ms ease, box-shadow 160ms ease;
+          transition:
+            transform 160ms ease,
+            box-shadow 160ms ease;
         }
 
         &:hover .emoticon {
@@ -210,36 +216,24 @@
       }
 
       &--modal {
-        max-width: 50rem;
+        max-width: 100%;
+        margin: 0 auto;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .mood-tracker__rating-box__rating__emoticon-container {
+          flex: 0 0 calc(100% / 5);
+          max-width: calc(100% / 5);
+          width: auto;
+        }
+
+        @media screen and (min-width: $screen_md) {
+          .mood-tracker__rating-box__rating__emoticon-container {
+            flex: 1 1 0;
+            max-width: 16rem;
+          }
+        }
       }
-    }
-  }
-
-  &__additional-comment {
-    display: flex;
-    flex-direction: column;
-    margin: $spacing_1_8;
-
-    max-width: 53rem;
-
-    @media screen and (min-width: $screen_md) {
-      margin: 0 auto;
-    }
-
-    &__toggle-container {
-      display: flex;
-      flex-direction: row;
-      gap: $spacing_1_6;
-      padding-top: $spacing_1_6;
-      align-items: center;
-
-      &__text {
-        text-align: left;
-      }
-    }
-
-    &__button-container {
-      margin-top: $spacing_1_6;
     }
   }
 
@@ -256,5 +250,50 @@
   &__how-it-works-btn {
     margin-bottom: auto;
     margin-left: $spacing_1_6;
+  }
+
+  &__modal {
+    &__content {
+      padding: $spacing_1_6 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: $spacing_1_6;
+
+      &__additional-comment {
+        display: flex;
+        flex-direction: column;
+        margin: $spacing_1_8;
+        width: 100%;
+
+        @media screen and (min-width: $screen_md) {
+          margin: 0 auto;
+        }
+
+        &__toggle-container {
+          display: flex;
+          flex-direction: row;
+          gap: $spacing_1_6;
+          padding-top: $spacing_1_6;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+
+          &__text {
+            text-align: left;
+            width: 100%;
+          }
+
+          & .toggle-wrapper {
+            width: auto;
+          }
+        }
+
+        &__button-container {
+          margin-top: $spacing_1_6;
+        }
+      }
+    }
   }
 }

@@ -19,7 +19,6 @@ import {
   Tabs,
   Loading,
   ArticlesGrid,
-  ButtonOnlyIcon,
 } from "@USupport-components-library/src";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import {
@@ -81,8 +80,6 @@ export const Articles = ({
   const [ageGroups, setAgeGroups] = useState();
   const [selectedAgeGroup, setSelectedAgeGroup] = useState();
   const [showAgeGroups, setShowAgeGroups] = useState(true);
-  const [isAlternativeGridPattern, setIsAlternativeGridPattern] =
-    useState(false);
 
   const { data: contentEngagements } = useGetUserContentEngagements(!isTmpUser);
 
@@ -457,7 +454,7 @@ export const Articles = ({
   let areCategoriesAndAgeGroupsReady =
     categoriesToShow?.length > 1 && ageGroupsQuery?.data?.length > 0;
 
-  const currentGridPattern = isAlternativeGridPattern ? [2, 2, 2] : [2, 3, 1];
+  const currentGridPattern = [2, 2, 2];
 
   return (
     <Block classes="articles">
@@ -481,24 +478,6 @@ export const Articles = ({
                         options={ageGroups}
                         handleSelect={handleAgeGroupOnPress}
                         textType="h3"
-                      />
-                      <ButtonOnlyIcon
-                        iconName={
-                          isAlternativeGridPattern ? "grid-view" : "list-view"
-                        }
-                        iconSize={"md"}
-                        onClick={() =>
-                          setIsAlternativeGridPattern(
-                            (prevIsAlternativeGridPattern) =>
-                              !prevIsAlternativeGridPattern,
-                          )
-                        }
-                        aria-label={
-                          isAlternativeGridPattern
-                            ? "Switch to 2-3-1 layout"
-                            : "Switch to 2-2-2 layout"
-                        }
-                        classes="articles__age-groups-tabs__container__layout-toggle"
                       />
                     </div>
                   )}

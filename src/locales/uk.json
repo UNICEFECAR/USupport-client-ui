@@ -305,7 +305,10 @@
       "not_conducted": "Не відбулася",
       "free": "Безкоштовно",
       "coupon": "Купон",
-      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
+      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку",
+      "psychologist": "Психолог/иня",
+      "psychiatrist": "Психіатр/иня",
+      "psychotherapist": "Психотерапевт/ка"
     },
     "login": {
       "email_label": "Електронна пошта / токен доступу",
@@ -523,10 +526,10 @@
       "view_profile": "Переглянути особистий профіль",
       "conducted": "Консультацію завершено",
       "not_conducted": "Не відбулася",
-      "free": "Free",
+      "free": "Безкоштовно",
       "coupon": "Купон",
-      "explore_resources_label": "Explore resources",
-      "heading_need_support": "Need support?"
+      "explore_resources_label": "Переглянути ресурси",
+      "heading_need_support": "Потрібна підтримка?"
     },
     "mood-tracker": {
       "happy": "Щасливим/ою",
@@ -729,7 +732,7 @@
       "by": "від {{creator}}",
       "min_read": "хв читання",
       "no_recommendations": "Рекомендацій не знайдено",
-      "select_year": "Select year"
+      "select_year": "Оберіть рік"
     },
     "mascot-header-MyQA": {
       "heading": "Мої запитання й відповіді",
@@ -1069,10 +1072,10 @@
       "explore_button_label": "Переглянути"
     },
     "most-read-articles": {
-      "heading": "Most Read Article",
-      "read_more_button": "Click to read more",
-      "min_read": "min read",
-      "by": "by {{creator}}"
+      "heading": "Найбільш читана стаття",
+      "read_more_button": "Натисни, щоб прочитати більше",
+      "min_read": "хв читання",
+      "by": "від {{creator}}"
     }
   },
   "pages": {

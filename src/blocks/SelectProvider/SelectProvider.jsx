@@ -37,6 +37,12 @@ export const SelectProvider = ({
     navigate(`/provider-overview?provider-id=${provider.providerDetailId}`);
   };
 
+  const handleBookSessionClick = (provider) => {
+    navigate(
+      `/provider-overview?provider-id=${provider.providerDetailId}&openSchedule=true`,
+    );
+  };
+
   const providers = providersQuery.data?.pages.flat() || [];
   const renderProviders = () => {
     if ((isFiltering && providersQuery.isFetching) || providersQuery.isLoading)
@@ -59,12 +65,11 @@ export const SelectProvider = ({
           <p>{t("no_match")}</p>
         </GridItem>
       );
-    const hasMoreThanOne = providers.length > 1;
     return providers?.map((provider) => {
       return (
         <GridItem
           md={4}
-          lg={hasMoreThanOne ? 4 : 12}
+          lg={6}
           key={provider.providerDetailId}
           classes="select-provider__grid__providers-item__grid__provider"
         >
@@ -81,6 +86,8 @@ export const SelectProvider = ({
             earliestAvailableSlot={provider.earliestAvailableSlot}
             t={t}
             liquidGlass
+            handleViewProfile={() => handleProviderClick(provider)}
+            handleBookSession={() => handleBookSessionClick(provider)}
           />
         </GridItem>
       );
@@ -89,48 +96,56 @@ export const SelectProvider = ({
 
   return (
     <Block classes="select-provider">
-      <Box classes="select-provider__box" liquidGlass>
-        {(subheading || onFilterClick) && (
-          <div className="select-provider__heading">
-            <div className="select-provider__heading-main">
-              {subheading && (
-                <p className="select-provider__heading-subheading text">
-                  {subheading}
-                </p>
-              )}
-            </div>
-            {onFilterClick && (
-              <NewButton
-                label={filterButtonLabel}
-                iconName="filter"
-                iconColor="#ffffff"
-                iconSize="sm"
-                size="sm"
-                onClick={onFilterClick}
-                classes="select-provider__heading-button"
-              />
-            )}
-          </div>
-        )}
-        <InfiniteScroll
-          dataLength={providersQuery.data?.pages.length || 0}
-          next={providersQuery.fetchNextPage}
-          hasMore={providersQuery.hasNextPage}
-          loader={<Loading />}
-          initialScrollY={20}
-          hasChildren={true}
-          scrollThreshold={0}
-          style={{ overflow: "visible" }}
+      <Grid md={8} lg={12} classes="select-provider__grid">
+        <GridItem
+          md={8}
+          lg={12}
+          classes="select-provider__grid__providers-item"
         >
-          <Grid
-            md={8}
-            lg={12}
-            classes="select-provider__grid__providers-item__grid"
-          >
-            {renderProviders()}
-          </Grid>
-        </InfiniteScroll>
-      </Box>
+          <Box classes="consultations__box" liquidGlass>
+            {(subheading || onFilterClick) && (
+              <div className="select-provider__heading">
+                <div className="select-provider__heading-main">
+                  {subheading && (
+                    <p className="select-provider__heading-subheading text">
+                      {subheading}
+                    </p>
+                  )}
+                </div>
+                {onFilterClick && (
+                  <NewButton
+                    label={filterButtonLabel}
+                    iconName="filter"
+                    iconColor="#ffffff"
+                    iconSize="sm"
+                    size="sm"
+                    onClick={onFilterClick}
+                    classes="select-provider__heading-button"
+                  />
+                )}
+              </div>
+            )}
+            <InfiniteScroll
+              dataLength={providersQuery.data?.pages.length || 0}
+              next={providersQuery.fetchNextPage}
+              hasMore={providersQuery.hasNextPage}
+              loader={<Loading />}
+              initialScrollY={20}
+              hasChildren={true}
+              scrollThreshold={0}
+              style={{ overflow: "visible" }}
+            >
+              <Grid
+                md={8}
+                lg={12}
+                classes="select-provider__grid__providers-item__grid"
+              >
+                {renderProviders()}
+              </Grid>
+            </InfiniteScroll>
+          </Box>
+        </GridItem>
+      </Grid>
     </Block>
   );
 };

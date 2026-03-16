@@ -51,7 +51,6 @@ export const MoodTrackHistory = () => {
               label={t("how_it_works")}
               size="sm"
               onClick={() => setIsHowItWorksMoodTrackOpen(true)}
-              type="outline"
             />
             <NewButton
               label={t("export_report")}

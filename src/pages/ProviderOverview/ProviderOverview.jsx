@@ -53,6 +53,7 @@ export const ProviderOverview = () => {
   const [consultationId, setConsultationId] = useState();
   const consultationPrice = useRef();
   const selectedSlot = useRef();
+  const [scheduledConsultation, setScheduledConsultation] = useState();
 
   // Modal state variables
   const [isScheduleBackdropOpen, setIsScheduleBackdropOpen] = useState(false);
@@ -75,6 +76,13 @@ export const ProviderOverview = () => {
   };
   const openConfirmConsultationBackdrop = () => setIsConfirmBackdropOpen(true);
   const openRequireDataAgreement = () => setIsRequireDataAgreementOpen(true);
+
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("openSchedule") === "true") {
+      openScheduleBackdrop();
+    }
+  }, []);
 
   // Close modals
   const closeConfirmConsultationBackdrop = () =>
@@ -104,8 +112,11 @@ export const ProviderOverview = () => {
   };
   const blockSlotMutation = useBlockSlot(onBlockSlotSuccess, onBlockSlotError);
 
-  const onScheduleConsultationSuccess = () => {
+  const onScheduleConsultationSuccess = (data) => {
     setIsBlockSlotSubmitting(false);
+    if (data?.consultation) {
+      setScheduledConsultation(data.consultation);
+    }
     setConsultationId(consultationId);
     closeScheduleBackdrop();
     openConfirmConsultationBackdrop();
@@ -176,6 +187,10 @@ export const ProviderOverview = () => {
                 ).getHours() + 1
               )
             ),
+            providerName: scheduledConsultation?.provider_name,
+            providerImage: scheduledConsultation?.provider_image,
+            providerSpecializations:
+              scheduledConsultation?.provider_specializations,
           }}
         />
       )}

@@ -16,6 +16,7 @@ body:has(.login-modal) {
     display: flex;
     flex-direction: column;
     gap: $spacing_2_0;
+    padding-bottom: $spacing_1_6;
 
     &__forgot-password {
       margin-left: 0;

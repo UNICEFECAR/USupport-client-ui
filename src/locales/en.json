@@ -69,7 +69,9 @@
       "new": "New",
       "read": "Read",
       "language_label": "Language",
-      "logout": "Logout"
+      "logout": "Logout",
+      "yesterday": "Yesterday",
+      "footer_text": "Your mental health matters—uSupport provides personalized, private, and safe psychological care."
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
@@ -238,6 +240,7 @@
       "psychiatrist": "Psychiatrist",
       "psychotherapist": "Psychotherapist",
       "no_match": "No providers matching your criteria",
+      "book_session": "Book session",
       "free": "Free",
       "coupon": "Coupon",
       "earliest_available_slot": "First available consultation:",
@@ -305,7 +308,10 @@
       "not_conducted": "Not conducted",
       "free": "Free",
       "coupon": "Coupon",
-      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time",
+      "psychologist": "Psychologist",
+      "psychiatrist": "Psychiatrist",
+      "psychotherapist": "Psychotherapist"
     },
     "login": {
       "email_label": "Email / Access Token",
@@ -337,7 +343,9 @@
       "min_read": "min read",
       "by": "By {{creator}}",
       "number_of_more_options": "{{count}} more",
-      "read": "Read"
+      "read": "Read",
+      "grid_toggle_featured": "Featured layout",
+      "grid_toggle_compact": "Compact layout"
     },
     "give-suggestion": {
       "heading": "Give us your suggestions",
@@ -526,7 +534,10 @@
       "dummy_provider_2": "Dr. Johnson",
       "dummy_provider_3": "Dr. Williams",
       "explore_resources_label": "Explore resources",
-      "heading_need_support": "Need support?"
+      "heading_need_support": "Need support?",
+      "psychologist": "Psychologist",
+      "psychiatrist": "Psychiatrist",
+      "psychotherapist": "Psychotherapist"
     },
     "mood-tracker": {
       "happy": "Happy",
@@ -539,7 +550,8 @@
       "heading": "How are you feeling today?",
       "mood_tracker": "Mood Tracker",
       "mood_tracker_long": "Study your mood tracker",
-      "additional_comment_placeholder": "What made you feel this way?",
+      "additional_comment_label": "What made you feel this way?",
+      "additional_comment_placeholder": "Write your comment here ... (optional)",
       "submit_mood_track": "Submit",
       "add_mood_tracker_success": "Your daily mood was added successfully",
       "emergency_label": "Does this relate to a life event or critical situation?",
@@ -844,6 +856,7 @@
       "view_organization_details": "Read more",
       "address": "Address",
       "phone": "Phone",
+      "services": "Services",
       "email": "Email",
       "any": "Any",
       "personalize": "Personalize",
@@ -1065,7 +1078,8 @@
       "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
     },
     "download-app": {
-      "heading": "Download our mobile app",
+      "heading": "Download the uSupport <0>Mobile App</0>",
+      "text": "Get support anytime, anywhere - fast, secure and easy to use.",
       "paragraph": "Now available for iOS and Android",
       "download_text": "Download from"
     },
@@ -1505,8 +1519,20 @@
     },
     "confirm-consultation": {
       "heading": "Your appointment was booked",
+      "subheading": "Your session with {{providerName}} has been booked successfully.",
+      "subheading_no_name": "Your session has been booked successfully.",
       "ctaLabel": "Continue",
-      "text": "for {{startDate}}th of {{month}} {{year}} for the slot from {{startTime}} to {{endTime}}. You can change it at any time through the app.",
+      "providerLabel": "Provider",
+      "psychologist": "Psychologist",
+      "psychiatrist": "Psychiatrist",
+      "psychotherapist": "Psychotherapist",
+      "appointmentDetailsHeading": "Appointment details",
+      "reminderText": "You will receive a reminder before the session.",
+      "manageText": "You can manage your bookings from My Consultations.",
+      "dateLabel": "Date",
+      "timeLabel": "Time",
+      "dateText": "{{startDate}}th of {{month}} {{year}}",
+      "timeText": "From {{startTime}} to {{endTime}}",
       "january": "January",
       "february": "February",
       "march": "March",
@@ -1541,7 +1567,7 @@
       "heading": "Change consultation",
       "subheading": "Select the communication form which fits your needs the best and receive the help you want.",
       "specialist_button_label": "Change the specialist",
-      "date_button_label": "Change the date and time",
+      "date_button_label": "Change date and time",
       "cancel_button_label": "Cancel the consultation",
       "sunday": "Sun",
       "monday": "Mon",

@@ -183,8 +183,10 @@ export const MoodTracker = ({
       handleRegistrationModalOpen();
     } else if (!clientData.dataProcessing) {
       openRequireDataAgreement(true);
-    } else {
+    } else if (hasCompletedMoodTrackerEver) {
       navigate("/mood-tracker");
+    } else {
+      setIsHowItWorksMoodTrackOpen(true);
     }
   };
 
@@ -296,31 +298,34 @@ export const MoodTracker = ({
             !hasSelectedMoodtracker() || addMoodTrackMutation.isLoading
           }
         >
-          <div className={"mood-tracker__rating-box__rating"}>
-            {renderEmoticons()}
-          </div>
-          {hasSelectedMoodtracker() && (
-            <div className="mood-tracker__additional-comment">
-              <Textarea
-                value={comment}
-                onChange={(value) => setComment(value)}
-                placeholder={t("additional_comment_placeholder")}
-                size="md"
-                classes="mood-tracker__additional-comment__textarea"
-              />
-              {country === "RO" && (
-                <div className="mood-tracker__additional-comment__toggle-container">
-                  <p className="mood-tracker__additional-comment__toggle-container__text">
-                    {t("emergency_label")}
-                  </p>
-                  <Toggle
-                    isToggled={isEmergency}
-                    setParentState={(toggled) => setIsEmergency(toggled)}
-                  />
-                </div>
-              )}
+          <div className="mood-tracker__modal__content">
+            <div className="mood-tracker__rating-box__rating mood-tracker__rating-box__rating--modal">
+              {renderEmoticons()}
             </div>
-          )}
+            {hasSelectedMoodtracker() && (
+              <div className="mood-tracker__modal__content__additional-comment">
+                <Textarea
+                  value={comment}
+                  onChange={(value) => setComment(value)}
+                  label={t("additional_comment_label")}
+                  placeholder={t("additional_comment_placeholder")}
+                  size="md"
+                  classes="mood-tracker__modal__content__additional-comment__textarea"
+                />
+                {country === "RO" && (
+                  <div className="mood-tracker__modal__content__additional-comment__toggle-container">
+                    <p className="text mood-tracker__additional-comment__toggle-container__text">
+                      {t("emergency_label")}
+                    </p>
+                    <Toggle
+                      isToggled={isEmergency}
+                      setParentState={(toggled) => setIsEmergency(toggled)}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </Modal>
       </Block>
     </React.Fragment>

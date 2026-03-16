@@ -3,8 +3,6 @@
 .page__article-information {
   @include full-height-page-navbar;
 
-  background-image: url("../InformationPortal/assets/hero.png");
-
   &__block {
     overflow: visible;
   }

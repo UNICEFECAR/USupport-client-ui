@@ -95,7 +95,7 @@ export const Login = ({
 
   return (
     <Backdrop
-      classes="login-modal"
+      classes="backdrop--auth backdrop--from-bottom login-modal"
       isOpen={isOpen}
       onClose={() => {}}
       hasGoBackArrow={true}

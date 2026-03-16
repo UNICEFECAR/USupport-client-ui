@@ -5,10 +5,7 @@ import { toast } from "react-toastify";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { RootContext } from "#routes";
 
-import {
-  useWindowDimensions,
-  ThemeContext,
-} from "@USupport-components-library/utils";
+import { ThemeContext } from "@USupport-components-library/utils";
 import {
   Block,
   Box,
@@ -122,6 +119,7 @@ export const ConsultationsDashboard = ({
             t={t}
             toast={toast}
             liquidGlass
+            buttonSize="lg"
           />
         </div>
       );

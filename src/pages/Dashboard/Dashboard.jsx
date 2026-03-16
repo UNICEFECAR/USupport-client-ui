@@ -145,6 +145,7 @@ export const Dashboard = () => {
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  const [rescheduledConsultation, setRescheduledConsultation] = useState();
 
   // Modal state variables
   const [
@@ -187,9 +188,12 @@ export const Dashboard = () => {
   };
 
   // Schedule consultation logic
-  const onRescheduleConsultationSuccess = () => {
+  const onRescheduleConsultationSuccess = (data) => {
     setIsBlockSlotSubmitting(false);
     setConsultationId(consultationId);
+    if (data?.consultation) {
+      setRescheduledConsultation(data.consultation);
+    }
     closeSelectConsultationBackdrop();
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);
@@ -390,6 +394,10 @@ export const Dashboard = () => {
                   new Date(selectedSlot?.time || selectedSlot).getHours() + 1,
                 ),
               ),
+              providerName: rescheduledConsultation?.provider_name,
+              providerImage: rescheduledConsultation?.provider_image,
+              providerSpecializations:
+                rescheduledConsultation?.provider_specializations,
             }}
           />
         )}

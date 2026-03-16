@@ -2,16 +2,27 @@
 
 .edit-consultation {
   align-items: center;
-
-  & .base-modal__body {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-  }
+  padding-bottom: 0;
 
   &__provider-consultation {
-    max-width: calc(36.8rem - 2 * $spacing_1_6);
-    margin-top: $spacing_2_4;
+    .consultation-information__content__details__name {
+      font-weight: 600;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: $spacing_2_4;
+  }
+
+  &__buttons {
+    width: 100%;
+    margin-top: $spacing_1_6;
+    display: flex;
+    flex-direction: column;
   }
 
   &__button {

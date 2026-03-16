@@ -83,6 +83,7 @@ export const ActivityHistory = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "activity-history" });
+  const { t: tPage } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [search, setSearch] = useState("");
   const [showSystemMessages, setShowSystemMessages] = useState(true);
@@ -168,23 +169,23 @@ export const ActivityHistory = ({
   ) : (
     <Block classes="activity-history">
       <Box classes="activity-history__box" liquidGlass>
+        <div
+          className="page__header__text-container__go-back"
+          onClick={() => navigate(-1)}
+        >
+          <Icon name="arrow-chevron-back" size="md" color="#20809E" />
+          <p>{tPage("go_back")}</p>
+        </div>
         <div className="activity-history__header">
           <div className="activity-history__header__provider-info">
-            <Icon
-              name="arrow-chevron-back"
-              classes="activity-history__header__back-icon"
-              size="md"
-              color="#20809E"
-              onClick={() => navigate(-1)}
-            />
             <Avatar image={providerImage} />
             <div className="activity-history__header__provider-details">
-              <h4 className="activity-history__header__provider-name">
-                {consultation.providerName}
-              </h4>
               <span className="activity-history__header__subtitle text">
                 {t("chat_history")}
               </span>
+              <h4 className="activity-history__header__provider-name">
+                {consultation.providerName}
+              </h4>
             </div>
           </div>
 
@@ -241,14 +242,14 @@ export const ActivityHistory = ({
           />
           <div className="activity-history__controls__toggles">
             <div className="activity-history__controls__toggle">
-              <span>{t("show_system_messages")}</span>
+              <p className="text">{t("show_system_messages")}</p>
               <Toggle
                 isToggled={showSystemMessages}
                 setParentState={handleToggleSystemMessages}
               />
             </div>
             <div className="activity-history__controls__toggle">
-              <span>{t("show_previous_consultations")}</span>
+              <p className="text">{t("show_previous_consultations")}</p>
               <Toggle
                 isToggled={showAllConsultations}
                 setParentState={setShowAllConsultations}

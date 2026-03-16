@@ -386,7 +386,7 @@ export const ArticleInformation = () => {
   };
 
   return (
-    <Page classes="page__article-information">
+    <Page classes="page__article-information" darkBackground>
       <Block classes="page__article-information__block">
         <div className="page__article-information__layout">
           <div className="page__article-information__main" ref={mainScrollRef}>

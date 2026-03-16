@@ -305,7 +305,10 @@
       "not_conducted": "Nie przeprowadzono",
       "free": "Bezpłatne",
       "coupon": "Kupon",
-      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem",
+      "psychologist": "Psycholog/żka",
+      "psychiatrist": "Psychiatra",
+      "psychotherapist": "Psychoterapeuta/ka"
     },
     "login": {
       "email_label": "Email / token dostępu",
@@ -525,8 +528,8 @@
       "not_conducted": "Nie przeprowadzono",
       "free": "Bezpłatne",
       "coupon": "Kupon",
-      "explore_resources_label": "Explore resources",
-      "heading_need_support": "Need support?"
+      "explore_resources_label": "Poznaj zasoby",
+      "heading_need_support": "Potrzebujesz wsparcia?"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",
@@ -729,7 +732,7 @@
       "by": "autor: {{creator}}",
       "min_read": "min czytania",
       "no_recommendations": "Nie znaleziono rekomendacji",
-      "select_year": "Select year"
+      "select_year": "Wybierz rok"
     },
     "mascot-header-MyQA": {
       "heading": "Moje Pytania i odpowiedzi",
@@ -1069,10 +1072,10 @@
       "explore_button_label": "Przeglądaj"
     },
     "most-read-articles": {
-      "heading": "Most Read Article",
-      "read_more_button": "Click to read more",
-      "min_read": "min read",
-      "by": "by {{creator}}"
+      "heading": "Najczęściej czytany artykuł",
+      "read_more_button": "Kliknij, aby przeczytać więcej",
+      "min_read": "min czytania",
+      "by": "autor: {{creator}}"
     }
   },
   "pages": {

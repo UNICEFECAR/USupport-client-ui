@@ -27,6 +27,7 @@ export const ScheduleConsultationGroup = ({
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  const [scheduledConsultation, setScheduledConsultation] = useState();
   const consultationPrice = useRef();
 
   const openConfirmConsultationBackdrop = () => setIsConfirmBackdropOpen(true);
@@ -49,8 +50,11 @@ export const ScheduleConsultationGroup = ({
   };
   const blockSlotMutation = useBlockSlot(onBlockSlotSuccess, onBlockSlotError);
 
-  const onScheduleConsultationSuccess = () => {
+  const onScheduleConsultationSuccess = (data) => {
     setIsBlockSlotSubmitting(false);
+    if (data?.consultation) {
+      setScheduledConsultation(data.consultation);
+    }
     window.dispatchEvent(new Event("new-notification"));
     closeSelectConsultation();
     openConfirmConsultationBackdrop();
@@ -96,6 +100,8 @@ export const ScheduleConsultationGroup = ({
                 new Date(selectedSlot).getHours() + 1
               )
             ),
+            providerName: scheduledConsultation?.provider_name,
+            providerImage: scheduledConsultation?.provider_image,
           }}
         />
       )}

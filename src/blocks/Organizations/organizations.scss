@@ -123,6 +123,13 @@
     gap: $spacing_2_6;
   }
 
+  &__loading {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__reset-filters-btn {
     margin: 0 auto;
     margin-bottom: $spacing_1_2;

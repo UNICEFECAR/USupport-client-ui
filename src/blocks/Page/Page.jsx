@@ -669,6 +669,7 @@ export const Page = ({
       )}
       {isFooterShown && (
         <Footer
+          t={t}
           renderIn="client"
           lists={footerLists}
           navigate={navigateTo}

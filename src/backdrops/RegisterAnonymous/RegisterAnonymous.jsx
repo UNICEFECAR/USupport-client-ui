@@ -190,7 +190,7 @@ export const RegisterAnonymous = ({
   return (
     <>
       <Backdrop
-        classes="register-anonymous-modal"
+        classes="backdrop--auth backdrop--from-bottom register-anonymous-modal"
         isOpen={isOpen}
         onClose={() => {}}
         handleGoBack={handleGoBack}

@@ -138,28 +138,46 @@ export const SOSCenter = ({ description }) => {
             <Box classes="soscenter__box" liquidGlass>
               {description && (
                 <div className="soscenter__box-heading">
-                  <h3>{description}</h3>
+                  <p className="soscenter__box-heading-text text">
+                    {description}
+                  </p>
                 </div>
               )}
               <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
                 {IS_RO && emergencyServiceSpecialization && loggedIn && (
                   <GridItem
-                    classes="soscenter__secondary-grid__item soscenter__secondary-grid__item--romania-button"
-                    md={8}
-                    lg={12}
+                    classes="soscenter__secondary-grid__item"
+                    md={4}
+                    lg={6}
                   >
-                    <p>{t("other_emergency_services")}</p>
-                    <NewButton
-                      onClick={() =>
-                        navigate(
-                          `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`,
-                        )
-                      }
-                      label={t("browse")}
-                    />
+                    <div className="soscenter__card soscenter__card--romania">
+                      <div className="soscenter__card__content">
+                        <div className="soscenter__card__text">
+                          <p className="soscenter__card__title paragraph">
+                            {t("other_emergency_services")}
+                          </p>
+                          <div className="soscenter__card__actions">
+                            <NewButton
+                              size="sm"
+                              type="gradient"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(
+                                  `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`,
+                                );
+                              }}
+                              label={t("browse")}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </GridItem>
                 )}
                 {SOSCentersData.map((sosCenter, index) => {
+                  const { title, text, url, phone, image } =
+                    sosCenter.attributes;
+
                   return (
                     <GridItem
                       classes="soscenter__secondary-grid__item"
@@ -167,19 +185,64 @@ export const SOSCenter = ({ description }) => {
                       lg={6}
                       key={index}
                     >
-                      <EmergencyCenter
-                        title={sosCenter.attributes.title}
-                        text={sosCenter.attributes.text}
-                        link={sosCenter.attributes.url}
-                        phone={sosCenter.attributes.phone}
-                        btnLabelLink={t("button_link")}
-                        btnLabelCall={t("button_call")}
+                      <div
+                        className="soscenter__card"
                         onClick={() => handleSosCenterClick(sosCenter)}
-                        image={
-                          sosCenter.attributes.image?.data?.attributes?.formats
-                            ?.medium?.url
-                        }
-                      />
+                      >
+                        <div className="soscenter__card__content">
+                          {image?.data?.attributes?.formats?.medium?.url && (
+                            <div className="soscenter__card__image">
+                              <img
+                                src={image.data.attributes.formats.medium.url}
+                                alt={title}
+                              />
+                            </div>
+                          )}
+
+                          <div className="soscenter__card__text">
+                            <p className="soscenter__card__title paragraph">
+                              {title}
+                            </p>
+
+                            {text ? (
+                              <p className="soscenter__card__description text">
+                                {text}
+                              </p>
+                            ) : (
+                              (phone || url) && (
+                                <div className="soscenter__card__divider" />
+                              )
+                            )}
+
+                            {(phone || url) && (
+                              <div className="soscenter__card__actions">
+                                {phone && (
+                                  <NewButton
+                                    size="sm"
+                                    type="outline"
+                                    label={t("button_call")}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      window.open(`tel:${phone}`, "_self");
+                                    }}
+                                  />
+                                )}
+                                {url && (
+                                  <NewButton
+                                    size="sm"
+                                    type="gradient"
+                                    label={t("button_link")}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      window.open(url, "_blank", "noopener");
+                                    }}
+                                  />
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
                     </GridItem>
                   );
                 })}

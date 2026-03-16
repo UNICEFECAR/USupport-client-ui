@@ -281,9 +281,14 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
             paymentMethods={organization.paymentMethods}
             specialisations={organization.specialisations}
             address={organization.address}
+            phone={organization.phone}
             onClick={() => handleOrganizationClick(organization)}
             t={t}
-            iconColor={theme === "dark" || theme === "highContrast" ? "#ededed" : "#20809E"}
+            iconColor={
+              theme === "dark" || theme === "highContrast"
+                ? "#ededed"
+                : "#20809E"
+            }
           />
         </GridItem>
       );
@@ -483,7 +488,13 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
           )}
 
           <Grid md={8} lg={12} classes="organizations__grid">
-            {isLoading ? <Loading /> : renderOrganizations()}
+            {isLoading ? (
+              <GridItem md={8} lg={12} classes="organizations__loading">
+                <Loading />
+              </GridItem>
+            ) : (
+              renderOrganizations()
+            )}
           </Grid>
         </Box>
       </Block>
