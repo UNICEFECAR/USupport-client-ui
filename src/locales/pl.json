@@ -69,7 +69,9 @@
       "new": "Nowe",
       "read": "Przeczytane",
       "language_label": "Język",
-      "logout": "Wyloguj"
+      "logout": "Wyloguj",
+      "yesterday": "Wczoraj",
+      "footer_text": "Twoje zdrowie psychiczne ma znaczenie — uSupport zapewnia spersonalizowaną, prywatną i bezpieczną opiekę psychologiczną."
     },
     "provider-overview": {
       "earliest_slot_label": "Najwcześniejszy dostępny termin konsultacji",
@@ -247,7 +249,8 @@
       "wednesday": "Śr.",
       "thursday": "Czw.",
       "friday": "Pt.",
-      "saturday": "Sob."
+      "saturday": "Sob.",
+      "book_session": "Umów sesję"
     },
     "notification-preferences": {
       "email": "Powiadomienia email",
@@ -340,7 +343,9 @@
       "min_read": "min. czytania",
       "by": "Przez {{creator}}",
       "number_of_more_options": "jeszcze {{count}}",
-      "read": "Przeczytane"
+      "read": "Przeczytane",
+      "grid_toggle_featured": "Układ wyróżniony",
+      "grid_toggle_compact": "Układ kompaktowy"
     },
     "give-suggestion": {
       "heading": "Przekaż nam swoje sugestie",
@@ -529,7 +534,10 @@
       "free": "Bezpłatne",
       "coupon": "Kupon",
       "explore_resources_label": "Poznaj zasoby",
-      "heading_need_support": "Potrzebujesz wsparcia?"
+      "heading_need_support": "Potrzebujesz wsparcia?",
+      "psychologist": "Psycholog/żka",
+      "psychiatrist": "Psychiatra",
+      "psychotherapist": "Psychoterapeuta/ka"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",
@@ -550,7 +558,8 @@
       "check_out": "Zobacz",
       "mood_tracker_long": "Przeanalizuj swój dziennik nastroju",
       "welcome-heading": "Welcome",
-      "user_guide": "User Guide"
+      "user_guide": "User Guide",
+      "additional_comment_label": "Co sprawiło, że tak się poczułeś/aś?"
     },
     "mascot-welcome-header": {
       "welcome": "Witamy z powrotem {{name}}!",
@@ -847,7 +856,8 @@
       "personalize": "Personalizuj",
       "personalization": "Personalizacja",
       "personalization_modal_text": "Aby otrzymać spersonalizowane rekomendacje organizacyjne dostosowane do Twoich potrzeb, najpierw wypełnij naszą szybką ocenę bazową. Pomoże nam to zrozumieć Twoje preferencje i cele, aby zapewnić najbardziej odpowiednie sugestie.",
-      "personalization_modal_cta_label": "Wypełnij ocenę"
+      "personalization_modal_cta_label": "Wypełnij ocenę",
+      "services": "Usługi"
     },
     "organization-overview": {
       "error_loading_data": "Wystąpił błąd podczas ładowania danych organizacji",
@@ -1065,7 +1075,8 @@
     "download-app": {
       "heading": "Pobierz naszą aplikację mobilną",
       "paragraph": "Teraz dostępna na iOS i Android",
-      "download_text": "Pobierz z"
+      "download_text": "Pobierz z",
+      "text": "Uzyskaj wsparcie zawsze i wszędzie - szybko, bezpiecznie i łatwo."
     },
     "find-support-near-you": {
       "heading": "Znajdź wsparcie w pobliżu",
@@ -1487,7 +1498,20 @@
       "september": "Wrzesień",
       "october": "Październik",
       "november": "Listopad",
-      "december": "Grudzień"
+      "december": "Grudzień",
+      "subheading": "Twoja sesja z {{providerName}} została pomyślnie zarezerwowana.",
+      "subheading_no_name": "Twoja sesja została pomyślnie zarezerwowana.",
+      "providerLabel": "Specjalista/ka",
+      "psychologist": "Psycholog/żka",
+      "psychiatrist": "Psychiatra",
+      "psychotherapist": "Psychoterapeuta/ka",
+      "appointmentDetailsHeading": "Szczegóły wizyty",
+      "reminderText": "Przed sesją otrzymasz przypomnienie.",
+      "manageText": "Możesz zarządzać rezerwacjami w sekcji Moje konsultacje.",
+      "dateLabel": "Data",
+      "timeLabel": "Godzina",
+      "dateText": "{{startDate}} {{month}} {{year}}",
+      "timeText": "Od {{startTime}} do {{endTime}}"
     },
     "cancel-consultation": {
       "heading": "Czy na pewno chcesz odwołać konsultację?",

@@ -69,7 +69,9 @@
       "new": "Noi",
       "read": "Citite",
       "language_label": "Limbă",
-      "logout": "Deconectare"
+      "logout": "Deconectare",
+      "yesterday": "Ieri",
+      "footer_text": "Sănătatea ta mintală contează — uSupport oferă îngrijire psihologică personalizată, privată și sigură."
     },
     "provider-overview": {
       "earliest_slot_label": "Primul interval disponibil pentru consultație",
@@ -247,7 +249,8 @@
       "wednesday": "mi",
       "thursday": "joi",
       "friday": "vineri",
-      "saturday": "sâ"
+      "saturday": "sâ",
+      "book_session": "Rezervă sesiunea"
     },
     "notification-preferences": {
       "email": "Notificări prin e-mail",
@@ -340,7 +343,9 @@
       "min_read": "durata lecturii",
       "by": "de {{creator}}",
       "number_of_more_options": "încă {{count}}",
-      "read": "Citește"
+      "read": "Citește",
+      "grid_toggle_featured": "Aspect evidențiat",
+      "grid_toggle_compact": "Aspect compact"
     },
     "give-suggestion": {
       "heading": "Sugestiile dvs.",
@@ -529,7 +534,10 @@
       "free": "Gratuit",
       "coupon": "Cupon",
       "explore_resources_label": "Explorați resursele",
-      "heading_need_support": "Ai nevoie de sprijin?"
+      "heading_need_support": "Ai nevoie de sprijin?",
+      "psychologist": "Psiholog",
+      "psychiatrist": "Psihiatru",
+      "psychotherapist": "Psihoterapeut"
     },
     "mood-tracker": {
       "happy": "Fericit",
@@ -550,7 +558,8 @@
       "check_out": "Vezi detalii",
       "mood_tracker_long": "Studiați jurnalul stării de spirit",
       "welcome-heading": "Welcome",
-      "user_guide": "User Guide"
+      "user_guide": "User Guide",
+      "additional_comment_label": "Ce te-a făcut să te simți astfel?"
     },
     "mascot-welcome-header": {
       "welcome": "Bine ați revenit {{name}}!",
@@ -847,7 +856,8 @@
       "personalize": "Personalizați",
       "personalization": "Personalizare",
       "personalization_modal_text": "Pentru a primi recomandări personalizate de organizații adaptate nevoilor dvs., vă rugăm să completați mai întâi evaluarea inițială scurtă. Acest lucru ne ajută să vă înțelegem preferințele și obiectivele pentru a vă oferi cele mai relevante sugestii.",
-      "personalization_modal_cta_label": "Completați evaluarea"
+      "personalization_modal_cta_label": "Completați evaluarea",
+      "services": "Servicii"
     },
     "organization-overview": {
       "error_loading_data": "A apărut o eroare la încărcarea datelor organizației",
@@ -1065,7 +1075,8 @@
     "download-app": {
       "heading": "Descărcați aplicația noastră mobilă",
       "paragraph": "Acum disponibil pentru iOS și Android",
-      "download_text": "Descarcă din"
+      "download_text": "Descarcă din",
+      "text": "Primește sprijin oricând, oriunde - rapid, sigur și ușor de utilizat."
     },
     "find-support-near-you": {
       "heading": "Găsiți sprijin în apropiere",
@@ -1487,7 +1498,20 @@
       "september": "septembrie",
       "october": "octombrie",
       "november": "noiembrie",
-      "december": "decembrie"
+      "december": "decembrie",
+      "subheading": "Sesiunea ta cu {{providerName}} a fost rezervată cu succes.",
+      "subheading_no_name": "Sesiunea ta a fost rezervată cu succes.",
+      "providerLabel": "Furnizor",
+      "psychologist": "Psiholog",
+      "psychiatrist": "Psihiatru",
+      "psychotherapist": "Psihoterapeut",
+      "appointmentDetailsHeading": "Detalii programare",
+      "reminderText": "Vei primi un memento înainte de sesiune.",
+      "manageText": "Îți poți gestiona rezervările din Consultațiile mele.",
+      "dateLabel": "Data",
+      "timeLabel": "Ora",
+      "dateText": "{{startDate}} {{month}} {{year}}",
+      "timeText": "De la {{startTime}} la {{endTime}}"
     },
     "cancel-consultation": {
       "heading": "Sunteți sigur că doriți să anulați consultația",

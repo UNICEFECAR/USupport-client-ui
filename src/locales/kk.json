@@ -69,7 +69,9 @@
       "new": "Жаңа",
       "read": "Оқылған",
       "language_label": "Тіл",
-      "logout": "Шығу"
+      "logout": "Шығу",
+      "yesterday": "Кеше",
+      "footer_text": "Сіздің психикалық денсаулығыңыз маңызды — uSupport жекелендірілген, құпия және қауіпсіз психологиялық көмек ұсынады."
     },
     "provider-overview": {
       "earliest_slot_label": "Консультация алу үшін жақын арадағы бос уақыт",
@@ -247,7 +249,8 @@
       "wednesday": "Ср",
       "thursday": "Бс",
       "friday": "Жм",
-      "saturday": "Сб"
+      "saturday": "Сб",
+      "book_session": "Сеансты брондау"
     },
     "notification-preferences": {
       "email": "Электрондық пошта арқылы хабарландырулар",
@@ -340,7 +343,9 @@
       "min_read": "минут оқуға",
       "by": "Дайындаушы {{creator}}",
       "number_of_more_options": "тағы {{count}}",
-      "read": "Оқылды"
+      "read": "Оқылды",
+      "grid_toggle_featured": "Таңдаулы көрініс",
+      "grid_toggle_compact": "Ықшам көрініс"
     },
     "give-suggestion": {
       "heading": "Бізге ұсыныстарыңызды беріңіз",
@@ -529,7 +534,10 @@
       "free": "Тегін",
       "coupon": "Купон",
       "explore_resources_label": "Ресурстарды қарау",
-      "heading_need_support": "Қолдау керек пе?"
+      "heading_need_support": "Қолдау керек пе?",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт"
     },
     "mood-tracker": {
       "happy": "Керемет",
@@ -550,7 +558,8 @@
       "check_out": "Қарап шығу",
       "mood_tracker_long": "Көңіл-күй трекеріңізді зерттеңіз",
       "welcome-heading": "Welcome",
-      "user_guide": "User Guide"
+      "user_guide": "User Guide",
+      "additional_comment_label": "Сізді бұлай сезінуге не себеп болды?"
     },
     "mascot-welcome-header": {
       "welcome": "Қайта оралуыңызбен, {{name}}!",
@@ -847,7 +856,8 @@
       "personalize": "Дараландыру",
       "personalization": "Дараландыру",
       "personalization_modal_text": "Сіздің қажеттіліктеріңізге сәйкес дараланған ұйымдастырушылық ұсыныстарды алу үшін, алдымен біздің жылдам базалық бағалауды толтырыңыз. Бұл бізге сіздің қалауларыңыз бен мақсаттарыңызды түсінуге көмектеседі және ең маңызды ұсыныстарды ұсынады.",
-      "personalization_modal_cta_label": "Бағалауды толтыру"
+      "personalization_modal_cta_label": "Бағалауды толтыру",
+      "services": "Қызметтер"
     },
     "organization-overview": {
       "error_loading_data": "Ұйым деректерін жүктеу кезінде қате орын алды",
@@ -1065,7 +1075,8 @@
     "download-app": {
       "heading": "Мобильді қолданбамызды жүктеп алыңыз",
       "paragraph": "Енді iOS және Android үшін қол жетімді",
-      "download_text": "Жүктеп алу"
+      "download_text": "Жүктеп алу",
+      "text": "Кез келген уақытта, кез келген жерде қолдау алыңыз - жылдам, қауіпсіз және қолдануға оңай."
     },
     "find-support-near-you": {
       "heading": "Жақын маңнан қолдау табыңыз",
@@ -1487,7 +1498,20 @@
       "september": "қыркүйек",
       "october": "қазан",
       "november": "қараша",
-      "december": "желтоқсан"
+      "december": "желтоқсан",
+      "subheading": "{{providerName}} маманымен сеансыңыз сәтті брондалды.",
+      "subheading_no_name": "Сеансыңыз сәтті брондалды.",
+      "providerLabel": "Маман",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт",
+      "appointmentDetailsHeading": "Кездесу мәліметтері",
+      "reminderText": "Сеанс алдында еске салу аласыз.",
+      "manageText": "Брондауларыңызды «Менің консультацияларым» бөлімінен басқара аласыз.",
+      "dateLabel": "Күні",
+      "timeLabel": "Уақыты",
+      "dateText": "{{startDate}} {{month}} {{year}}",
+      "timeText": "{{startTime}}-дан {{endTime}}-ге дейін"
     },
     "cancel-consultation": {
       "heading": "Консультациядан шынымен бас тартқыңыз келе ме?",

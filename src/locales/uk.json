@@ -69,7 +69,9 @@
       "new": "Нові",
       "read": "Прочитані",
       "language_label": "Мова",
-      "logout": "Вийти"
+      "logout": "Вийти",
+      "yesterday": "Вчора",
+      "footer_text": "Ваше ментальне здоровʼя важливе — uSupport надає персоналізовану, приватну та безпечну психологічну допомогу."
     },
     "provider-overview": {
       "earliest_slot_label": "Найближчий вільний часовий слот для консультації",
@@ -247,7 +249,8 @@
       "wednesday": "Ср",
       "thursday": "Чт",
       "friday": "Пт",
-      "saturday": "Сб"
+      "saturday": "Сб",
+      "book_session": "Забронювати сесію"
     },
     "notification-preferences": {
       "email": "Сповіщення електронною поштою",
@@ -340,7 +343,9 @@
       "min_read": "хв. читання",
       "by": "Від {{creator}}",
       "number_of_more_options": "ще {{count}}",
-      "read": "Читати"
+      "read": "Читати",
+      "grid_toggle_featured": "Рекомендований вигляд",
+      "grid_toggle_compact": "Компактний вигляд"
     },
     "give-suggestion": {
       "heading": "Надішли нам свої пропозиції",
@@ -529,7 +534,10 @@
       "free": "Безкоштовно",
       "coupon": "Купон",
       "explore_resources_label": "Переглянути ресурси",
-      "heading_need_support": "Потрібна підтримка?"
+      "heading_need_support": "Потрібна підтримка?",
+      "psychologist": "Психолог/иня",
+      "psychiatrist": "Психіатр/иня",
+      "psychotherapist": "Психотерапевт/ка"
     },
     "mood-tracker": {
       "happy": "Щасливим/ою",
@@ -550,7 +558,8 @@
       "check_out": "Переглянути",
       "mood_tracker_long": "Вивчіть свій трекер настрою",
       "welcome-heading": "Welcome",
-      "user_guide": "User Guide"
+      "user_guide": "User Guide",
+      "additional_comment_label": "Що змусило вас так почуватися?"
     },
     "mascot-welcome-header": {
       "welcome": "З поверненням, {{name}}!",
@@ -847,7 +856,8 @@
       "personalize": "Персоналізувати",
       "personalization": "Персоналізація",
       "personalization_modal_text": "Щоб отримати персоналізовані рекомендації з організації, адаптовані до ваших потреб, будь ласка, спочатку пройдіть нашу швидку базову оцінку. Це допоможе нам зрозуміти ваші вподобання та цілі, щоб надати найбільш відповідні пропозиції.",
-      "personalization_modal_cta_label": "Пройти оцінку"
+      "personalization_modal_cta_label": "Пройти оцінку",
+      "services": "Послуги"
     },
     "organization-overview": {
       "error_loading_data": "Під час завантаження даних організації сталася помилка",
@@ -1065,7 +1075,8 @@
     "download-app": {
       "heading": "Завантажте наш мобільний додаток",
       "paragraph": "Тепер доступно для iOS та Android",
-      "download_text": "Завантажити з"
+      "download_text": "Завантажити з",
+      "text": "Отримуйте підтримку будь-коли й будь-де - швидко, безпечно та зручно."
     },
     "find-support-near-you": {
       "heading": "Знайдіть підтримку поруч",
@@ -1487,7 +1498,20 @@
       "september": "Вересень",
       "october": "Жовтень",
       "november": "Листопад",
-      "december": "Грудень"
+      "december": "Грудень",
+      "subheading": "Вашу сесію з {{providerName}} успішно заброньовано.",
+      "subheading_no_name": "Вашу сесію успішно заброньовано.",
+      "providerLabel": "Фахівець/чиня",
+      "psychologist": "Психолог/иня",
+      "psychiatrist": "Психіатр/иня",
+      "psychotherapist": "Психотерапевт/ка",
+      "appointmentDetailsHeading": "Деталі зустрічі",
+      "reminderText": "Перед сесією ви отримаєте нагадування.",
+      "manageText": "Ви можете керувати бронюваннями у розділі «Мої консультації».",
+      "dateLabel": "Дата",
+      "timeLabel": "Час",
+      "dateText": "{{startDate}} {{month}} {{year}}",
+      "timeText": "З {{startTime}} до {{endTime}}"
     },
     "cancel-consultation": {
       "heading": "Ви впевнені, що хочете скасувати консультацію?",

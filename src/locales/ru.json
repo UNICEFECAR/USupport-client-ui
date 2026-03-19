@@ -69,7 +69,9 @@
       "new": "Новые",
       "read": "Прочитанные",
       "language_label": "Язык",
-      "logout": "Выйти"
+      "logout": "Выйти",
+      "yesterday": "Вчера",
+      "footer_text": "Ваше психическое здоровье важно — uSupport предоставляет персонализированную, конфиденциальную и безопасную психологическую помощь."
     },
     "provider-overview": {
       "earliest_slot_label": "Самый ранний доступный слот свободного времени для консультации",
@@ -247,7 +249,8 @@
       "wednesday": "Ср",
       "thursday": "Чт",
       "friday": "Пт",
-      "saturday": "Сб"
+      "saturday": "Сб",
+      "book_session": "Забронировать сессию"
     },
     "notification-preferences": {
       "email": "Уведомления по электронной почте",
@@ -340,7 +343,9 @@
       "min_read": "минут на прочтение",
       "by": "От {{creator}}",
       "number_of_more_options": "еще {{count}}",
-      "read": "Прочитано"
+      "read": "Прочитано",
+      "grid_toggle_featured": "Выделенный вид",
+      "grid_toggle_compact": "Компактный вид"
     },
     "give-suggestion": {
       "heading": "Дайте нам свои предложения",
@@ -529,7 +534,10 @@
       "free": "Бесплатно",
       "coupon": "Купон",
       "explore_resources_label": "Изучить ресурсы",
-      "heading_need_support": "Нужна поддержка?"
+      "heading_need_support": "Нужна поддержка?",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт"
     },
     "mood-tracker": {
       "happy": "Отлично",
@@ -550,7 +558,8 @@
       "check_out": "Посмотреть",
       "mood_tracker_long": "Изучите свой трекер настроения",
       "welcome-heading": "Welcome",
-      "user_guide": "User Guide"
+      "user_guide": "User Guide",
+      "additional_comment_label": "Что заставило вас почувствовать себя так?"
     },
     "mascot-welcome-header": {
       "welcome": "С возвращением, {{name}}!",
@@ -847,7 +856,8 @@
       "personalize": "Персонализировать",
       "personalization": "Персонализация",
       "personalization_modal_text": "Чтобы получить персонализированные рекомендации по организации, адаптированные к вашим потребностям, пожалуйста, сначала пройдите нашу быструю базовую оценку. Это поможет нам понять ваши предпочтения и цели, чтобы предоставить наиболее актуальные предложения.",
-      "personalization_modal_cta_label": "Пройти оценку"
+      "personalization_modal_cta_label": "Пройти оценку",
+      "services": "Услуги"
     },
     "organization-overview": {
       "error_loading_data": "При загрузке данных организации возникла ошибка",
@@ -1065,7 +1075,8 @@
     "download-app": {
       "heading": "Скачайте наше мобильное приложение",
       "paragraph": "Теперь доступно для iOS и Android",
-      "download_text": "Скачать из"
+      "download_text": "Скачать из",
+      "text": "Получайте поддержку в любое время и в любом месте — быстро, безопасно и удобно."
     },
     "find-support-near-you": {
       "heading": "Найдите поддержку рядом",
@@ -1487,7 +1498,20 @@
       "september": "сентябрь",
       "october": "октябрь",
       "november": "ноябрь",
-      "december": "декабрь"
+      "december": "декабрь",
+      "subheading": "Ваша сессия с {{providerName}} успешно забронирована.",
+      "subheading_no_name": "Ваша сессия успешно забронирована.",
+      "providerLabel": "Специалист",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт",
+      "appointmentDetailsHeading": "Детали встречи",
+      "reminderText": "Вы получите напоминание перед сессией.",
+      "manageText": "Вы можете управлять бронированиями в разделе «Мои консультации».",
+      "dateLabel": "Дата",
+      "timeLabel": "Время",
+      "dateText": "{{startDate}} {{month}} {{year}}",
+      "timeText": "С {{startTime}} до {{endTime}}"
     },
     "cancel-consultation": {
       "heading": "Уверены, что хотите отменить консультацию?",

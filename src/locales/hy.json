@@ -69,7 +69,9 @@
       "new": "Նոր",
       "read": "Կարդացված",
       "language_label": "Լեզու",
-      "logout": "Դուրս գալ"
+      "logout": "Դուրս գալ",
+      "yesterday": "Երեկ",
+      "footer_text": "Ձեր հոգեկան առողջությունը կարևոր է. uSupport-ը տրամադրում է անհատական, անձնական և անվտանգ հոգեբանական աջակցություն։"
     },
     "provider-overview": {
       "earliest_slot_label": "Խորհրդատվության ամենամոտ հասանելի ժամանակը",
@@ -247,7 +249,8 @@
       "wednesday": "Չորք․",
       "thursday": "Հնգշ․",
       "friday": "Ուրբ․",
-      "saturday": "Շաբ․"
+      "saturday": "Շաբ․",
+      "book_session": "Ամրագրել հանդիպում"
     },
     "notification-preferences": {
       "email": "Ծանուցումներ՝ էլեկտրոնային փոստով",
@@ -340,7 +343,9 @@
       "min_read": "րոպե կարդալու համար",
       "by": "ի կողմից {{creator}}",
       "number_of_more_options": "{{count}} ավելին",
-      "read": "Կարդալ"
+      "read": "Կարդալ",
+      "grid_toggle_featured": "Առանձնացված դասավորություն",
+      "grid_toggle_compact": "Խիտ դասավորություն"
     },
     "give-suggestion": {
       "heading": "Ներկայացրեք մեզ ձեր առաջարկությունները",
@@ -529,7 +534,10 @@
       "free": "Անվճար",
       "coupon": "Կուպոն",
       "explore_resources_label": "Ուսումնասիրեք ռեսուրսները",
-      "heading_need_support": "Օգնության կարիք ունե՞ք"
+      "heading_need_support": "Օգնության կարիք ունե՞ք",
+      "psychologist": "Հոգեբան",
+      "psychiatrist": "Հոգեբույժ",
+      "psychotherapist": "Հոգեթերապևտ"
     },
     "mood-tracker": {
       "happy": "Ուրախ եմ",
@@ -550,7 +558,8 @@
       "check_out": "Դիտել",
       "mood_tracker_long": "Ուսումնասիրեք ձեր տրամադրության ստուգիչը",
       "welcome-heading": "Welcome",
-      "user_guide": "User Guide"
+      "user_guide": "User Guide",
+      "additional_comment_label": "Ի՞նչն է Ձեզ ստիպել այսպես զգալ։"
     },
     "mascot-welcome-header": {
       "welcome": "Բարի վերադարձ {{հաճախորդի անունը}}",
@@ -847,7 +856,8 @@
       "personalize": "Անհատականացնել",
       "personalization": "Անհատականացում",
       "personalization_modal_text": "Ձեր կարիքներին համապատասխան անհատականացված կազմակերպական առաջարկություններ ստանալու համար, խնդրում ենք նախ լրացնել մեր արագ բազային գնահատումը: Սա օգնում է մեզ հասկանալ ձեր նախասիրությունները և նպատակները՝ ամենակարևոր առաջարկությունները տրամադրելու համար:",
-      "personalization_modal_cta_label": "Լրացնել գնահատումը"
+      "personalization_modal_cta_label": "Լրացնել գնահատումը",
+      "services": "Ծառայություններ"
     },
     "organization-overview": {
       "error_loading_data": "An error occurred while loading the organization data",
@@ -1065,7 +1075,8 @@
     "download-app": {
       "heading": "Ներբեռնեք մեր բջջային հավելվածը",
       "paragraph": "Այժմ հասանելի iOS և Android-ի համար",
-      "download_text": "Ներբեռնել"
+      "download_text": "Ներբեռնել",
+      "text": "Ստացիր աջակցություն ցանկացած պահի, ցանկացած վայրում՝ արագ, անվտանգ և հեշտ։"
     },
     "find-support-near-you": {
       "heading": "Գտեք աջակցություն ձեր մոտ",
@@ -1487,7 +1498,20 @@
       "september": "Սեպտեմբեր",
       "october": "Հոկտեմբեր",
       "november": "Նոյեմբեր",
-      "december": "Դեկտեմբեր"
+      "december": "Դեկտեմբեր",
+      "subheading": "Ձեր հանդիպումը {{providerName}}-ի հետ հաջողությամբ ամրագրվել է։",
+      "subheading_no_name": "Ձեր հանդիպումը հաջողությամբ ամրագրվել է։",
+      "providerLabel": "Մասնագետ",
+      "psychologist": "Հոգեբան",
+      "psychiatrist": "Հոգեբույժ",
+      "psychotherapist": "Հոգեթերապևտ",
+      "appointmentDetailsHeading": "Հանդիպման մանրամասներ",
+      "reminderText": "Հանդիպումից առաջ Դուք կհիշեցում ստանաք։",
+      "manageText": "Դուք կարող եք կառավարել ամրագրումները «Իմ խորհրդատվությունները» բաժնում։",
+      "dateLabel": "Ամսաթիվ",
+      "timeLabel": "Ժամ",
+      "dateText": "{{startDate}}-ը {{month}} {{year}}",
+      "timeText": "{{startTime}}-ից մինչև {{endTime}}"
     },
     "cancel-consultation": {
       "heading": "Համոզվա՞ծ եք, որ ուզում եք չեղարկել ձեր խորհրդատվությունը",

@@ -69,7 +69,9 @@
       "new": "Νέες",
       "read": "Διαβασμένες",
       "language_label": "Γλώσσα",
-      "logout": "Αποσύνδεση"
+      "logout": "Αποσύνδεση",
+      "yesterday": "Χθες",
+      "footer_text": "Η ψυχική σας υγεία έχει σημασία — το uSupport προσφέρει εξατομικευμένη, ιδιωτική και ασφαλή ψυχολογική φροντίδα."
     },
     "provider-overview": {
       "earliest_slot_label": "Συντομότερο διαθέσιμο ραντεβού για συνεδρία",
@@ -247,7 +249,8 @@
       "wednesday": "Τετ",
       "thursday": "Πεμ",
       "friday": "Παρ",
-      "saturday": "Σαβ"
+      "saturday": "Σαβ",
+      "book_session": "Κλείστε συνεδρία"
     },
     "notification-preferences": {
       "email": "Ειδοποιήσεις μέσω email",
@@ -340,7 +343,9 @@
       "min_read": "λεπτά ανάγνωσης",
       "by": "Από {{creator}}\n",
       "number_of_more_options": "{{count}} περισσότερα",
-      "read": "Διαβάστε"
+      "read": "Διαβάστε",
+      "grid_toggle_featured": "Προβεβλημένη διάταξη",
+      "grid_toggle_compact": "Συμπαγής διάταξη"
     },
     "give-suggestion": {
       "heading": "Στείλτε μας τις εισηγήσεις σας",
@@ -529,7 +534,10 @@
       "free": "Δωρεάν",
       "coupon": "Κουπόνι",
       "explore_resources_label": "Εξερευνήστε πόρους",
-      "heading_need_support": "Χρειάζεστε υποστήριξη;"
+      "heading_need_support": "Χρειάζεστε υποστήριξη;",
+      "psychologist": "Ψυχολόγος",
+      "psychiatrist": "Ψυχίατρος",
+      "psychotherapist": "Ψυχοθεραπευτής"
     },
     "mood-tracker": {
       "happy": "Χαρούμενος/η",
@@ -550,7 +558,8 @@
       "check_out": "Έλεγχος",
       "mood_tracker_long": "Μελετήστε την καταγραφή της διάθεσής σας",
       "welcome-heading": "Welcome",
-      "user_guide": "User Guide"
+      "user_guide": "User Guide",
+      "additional_comment_label": "Τι σας έκανε να νιώσετε έτσι;"
     },
     "mascot-welcome-header": {
       "welcome": "Καλωσόρισες πίσω, {{name}}!",
@@ -847,7 +856,8 @@
       "personalize": "Εξατομίκευση",
       "personalization": "Εξατομίκευση",
       "personalization_modal_text": "Για να λάβετε εξατομικευμένες προτάσεις προσαρμοσμένες στις ανάγκες σας, ολοκληρώστε πρώτα τη σύντομη αρχική αξιολόγηση. Αυτό θα μας βοηθήσει να κατανοήσουμε καλύτερα τις προτιμήσεις και τους στόχους σας, ώστε να σας προτείνουμε τις κατάλληλες επιλογές.",
-      "personalization_modal_cta_label": "Ολοκλήρωση αξιολόγησης"
+      "personalization_modal_cta_label": "Ολοκλήρωση αξιολόγησης",
+      "services": "Υπηρεσίες"
     },
     "organization-overview": {
       "error_loading_data": "Παρουσιάστηκε σφάλμα κατά τη φόρτωση των στοιχείων του οργανισμού",
@@ -1065,7 +1075,8 @@
     "download-app": {
       "heading": "Κατεβάστε την εφαρμογή μας",
       "paragraph": "Τώρα διαθέσιμη για iOS και Android",
-      "download_text": "Λήψη από"
+      "download_text": "Λήψη από",
+      "text": "Λάβετε υποστήριξη οποιαδήποτε στιγμή, οπουδήποτε - γρήγορα, ασφαλώς και εύκολα."
     },
     "find-support-near-you": {
       "heading": "Βρείτε υποστήριξη κοντά σας",
@@ -1487,7 +1498,20 @@
       "september": "Σεπτέμβριος",
       "october": "Οκτώβριος",
       "november": "Νοέμβριος",
-      "december": "Δεκέμβριος"
+      "december": "Δεκέμβριος",
+      "subheading": "Η συνεδρία σας με τον/την {{providerName}} έχει κλειστεί με επιτυχία.",
+      "subheading_no_name": "Η συνεδρία σας έχει κλειστεί με επιτυχία.",
+      "providerLabel": "Πάροχος",
+      "psychologist": "Ψυχολόγος",
+      "psychiatrist": "Ψυχίατρος",
+      "psychotherapist": "Ψυχοθεραπευτής",
+      "appointmentDetailsHeading": "Στοιχεία ραντεβού",
+      "reminderText": "Θα λάβετε υπενθύμιση πριν από τη συνεδρία.",
+      "manageText": "Μπορείτε να διαχειρίζεστε τις κρατήσεις σας από τις Συνεδρίες μου.",
+      "dateLabel": "Ημερομηνία",
+      "timeLabel": "Ώρα",
+      "dateText": "{{startDate}}η του {{month}} {{year}}",
+      "timeText": "Από {{startTime}} έως {{endTime}}"
     },
     "cancel-consultation": {
       "heading": "Είστε σίγουροι ότι θέλετε να ακυρώσετε τη συνεδρία σας;",
