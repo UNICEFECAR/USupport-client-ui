@@ -116,7 +116,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       onSuccess: (data) => {
         setAgeGroups([...data]);
       },
-    }
+    },
   );
 
   const handleAgeGroupOnPress = (index) => {
@@ -153,7 +153,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
           value: category.attributes.name,
           id: category.id,
           isSelected: false,
-        })
+        }),
       );
 
       setSelectedCategory(categoriesData[0]);
@@ -171,7 +171,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       onSuccess: (data) => {
         setCategories([...data]);
       },
-    }
+    },
   );
 
   const handleCategoryOnPress = (index) => {
@@ -198,7 +198,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
 
   const handler = useCallback(() => {
@@ -224,7 +224,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   const articleIdsQuery = useQuery(
     ["articleIds", currentCountry],
-    getArticlesIds
+    getArticlesIds,
   );
 
   const { data: articleCategoryIdsToShow } = useQuery(
@@ -239,7 +239,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       return cmsSvc.getArticleCategoryIds(
         usersLanguage,
         selectedAgeGroup.id,
-        articleIdsQuery.data?.length > 0 ? articleIdsQuery.data : undefined
+        articleIdsQuery.data?.length > 0 ? articleIdsQuery.data : undefined,
       );
     },
     {
@@ -247,7 +247,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
         !!selectedAgeGroup?.id &&
         !articleIdsQuery.isLoading &&
         !!articleIdsQuery.data?.length,
-    }
+    },
   );
 
   const categoriesToShow = useMemo(() => {
@@ -256,7 +256,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     return categories.filter(
       (category) =>
         articleCategoryIdsToShow.includes(category.id) ||
-        category.value === "all"
+        category.value === "all",
     );
   }, [categories, articleCategoryIdsToShow]);
 
@@ -270,17 +270,18 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       categoryId = selectedCategory.id;
     }
 
-    let { data } = await cmsSvc.getArticles({
+    const queryParams = {
       limit: 6,
       contains: debouncedSearchValue,
-      ageGroupId,
-      categoryId,
       // sortBy: sort ? sort : "createdAt",
       // sortOrder: sort ? "desc" : "desc",
       locale: usersLanguage,
       populate: true,
       ids: articleIdsQuery.data,
-    });
+      ...(debouncedSearchValue ? {} : { ageGroupId, categoryId }),
+    };
+
+    let { data } = await cmsSvc.getArticles(queryParams);
 
     const articles = data.data;
     const numberOfArticles = data.meta.pagination.total;
@@ -317,7 +318,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
           setArticles([...data.articles]);
           setNumberOfArticles(data.numberOfArticles);
         },
-      }
+      },
     );
 
   useEffect(() => {
@@ -339,18 +340,19 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       categoryId = selectedCategory.id;
     }
 
-    const { data } = await cmsSvc.getArticles({
+    const queryParams = {
       startFrom: guestArticles?.length,
       limit: 6,
       contains: searchValue,
-      ageGroupId: ageGroupId,
-      categoryId,
       locale: usersLanguage,
       sortBy: sort,
       sortOrder: sort ? "desc" : null,
       populate: true,
       ids: articleIdsQuery.data,
-    });
+      ...(debouncedSearchValue ? {} : { ageGroupId, categoryId }),
+    };
+
+    const { data } = await cmsSvc.getArticles(queryParams);
 
     const newArticles = data.data;
 
@@ -372,11 +374,13 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     readArticleIds,
   } = useRecommendedArticles({
     limit: 16,
-    ageGroupId: selectedAgeGroup?.id,
+    ageGroupId: debouncedSearchValue ? null : selectedAgeGroup?.id,
     enabled: isTmpUser
       ? false
       : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
-    categoryIdFilter: selectedCategory?.id || null,
+    categoryIdFilter: debouncedSearchValue
+      ? null
+      : selectedCategory?.id || null,
     searchValue: debouncedSearchValue,
     availableCategories,
   });
@@ -395,7 +399,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         articleIds,
-        "article"
+        "article",
       );
 
       setArticlesLikes((prevArticlesLikes) => {
@@ -449,21 +453,24 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
           // endMessage={} // Add end message here if required
         >
           <Grid classes="articles__main-grid">
-            {showAgeGroups &&
-              categoriesToShow?.length > 1 &&
-              ageGroupsQuery?.data?.length > 0 && (
-                <GridItem md={4} lg={6} classes="articles__age-groups-item">
-                  {ageGroups && (
-                    <div className="articles__age-groups-tabs__container">
-                      <TabsUnderlined
-                        options={ageGroups}
-                        handleSelect={handleAgeGroupOnPress}
-                        textType="h3"
-                      />
-                    </div>
-                  )}
-                </GridItem>
-              )}
+            {!debouncedSearchValue &&
+            showAgeGroups &&
+            categoriesToShow?.length > 1 &&
+            ageGroupsQuery?.data?.length > 0 ? (
+              <GridItem md={4} lg={6} classes="articles__age-groups-item">
+                {ageGroups && (
+                  <div className="articles__age-groups-tabs__container">
+                    <TabsUnderlined
+                      options={ageGroups}
+                      handleSelect={handleAgeGroupOnPress}
+                      textType="h3"
+                    />
+                  </div>
+                )}
+              </GridItem>
+            ) : (
+              <GridItem xs={0} md={4} lg={6}></GridItem>
+            )}
             {showSearch && areCategoriesAndAgeGroupsReady && (
               <GridItem md={4} lg={6} classes="articles__search-item">
                 <InputSearch onChange={handleInputChange} value={searchValue} />
@@ -472,7 +479,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
             {showCategories && areCategoriesAndAgeGroupsReady && (
               <GridItem md={8} lg={12} classes="articles__categories-item">
-                {categoriesToShow && (
+                {!debouncedSearchValue && categoriesToShow && (
                   <Tabs
                     options={categoriesToShow}
                     handleSelect={handleCategoryOnPress}
