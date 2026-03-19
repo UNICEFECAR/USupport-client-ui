@@ -207,6 +207,7 @@ export const Articles = ({
     externalSearchValue !== undefined
       ? externalSearchValue
       : internalDebouncedSearchValue;
+  const hasSearch = !!debouncedSearchValue?.trim();
 
   const handleInputChange = (newValue) => {
     setSearchValue(newValue);
@@ -290,7 +291,7 @@ export const Articles = ({
       limit: 6,
       contains: debouncedSearchValue,
       ageGroupId,
-      categoryId,
+      ...(!hasSearch && { categoryId }),
       // sortBy: sort ? sort : "createdAt",
       // sortOrder: sort ? "desc" : "desc",
       locale: usersLanguage,
@@ -360,7 +361,7 @@ export const Articles = ({
       limit: 6,
       contains: searchValue,
       ageGroupId: ageGroupId,
-      categoryId,
+      ...(!hasSearch && { categoryId }),
       locale: usersLanguage,
       sortBy: sort,
       sortOrder: sort ? "desc" : null,
@@ -388,11 +389,11 @@ export const Articles = ({
     readArticleIds,
   } = useRecommendedArticles({
     limit: 16,
-    ageGroupId: debouncedSearchValue ? null : selectedAgeGroup?.id,
+    ageGroupId: hasSearch ? null : selectedAgeGroup?.id,
     enabled: isTmpUser
       ? false
       : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
-    categoryIdFilter: selectedCategory?.id || null,
+    categoryIdFilter: hasSearch ? null : selectedCategory?.id || null,
     searchValue: debouncedSearchValue,
     availableCategories,
   });
@@ -469,7 +470,7 @@ export const Articles = ({
         >
           <Grid classes="articles__main-grid">
             {showAgeGroups &&
-              !debouncedSearchValue &&
+              !hasSearch &&
               categoriesToShow?.length > 1 &&
               ageGroupsQuery?.data?.length > 0 && (
                 <GridItem md={8} lg={12} classes="articles__age-groups-item">
@@ -490,7 +491,7 @@ export const Articles = ({
               </GridItem>
             )}
 
-            {showCategories && !debouncedSearchValue && areCategoriesAndAgeGroupsReady && (
+            {showCategories && !hasSearch && areCategoriesAndAgeGroupsReady && (
               <GridItem md={8} lg={12} classes="articles__categories-item">
                 {categoriesToShow && (
                   <Tabs
