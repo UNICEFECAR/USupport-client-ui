@@ -388,7 +388,7 @@ export const Articles = ({
     readArticleIds,
   } = useRecommendedArticles({
     limit: 16,
-    ageGroupId: selectedAgeGroup?.id,
+    ageGroupId: debouncedSearchValue ? null : selectedAgeGroup?.id,
     enabled: isTmpUser
       ? false
       : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
@@ -469,6 +469,7 @@ export const Articles = ({
         >
           <Grid classes="articles__main-grid">
             {showAgeGroups &&
+              !debouncedSearchValue &&
               categoriesToShow?.length > 1 &&
               ageGroupsQuery?.data?.length > 0 && (
                 <GridItem md={8} lg={12} classes="articles__age-groups-item">
@@ -489,7 +490,7 @@ export const Articles = ({
               </GridItem>
             )}
 
-            {showCategories && areCategoriesAndAgeGroupsReady && (
+            {showCategories && !debouncedSearchValue && areCategoriesAndAgeGroupsReady && (
               <GridItem md={8} lg={12} classes="articles__categories-item">
                 {categoriesToShow && (
                   <Tabs
