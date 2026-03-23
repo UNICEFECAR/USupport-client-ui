@@ -115,4 +115,13 @@
       padding-block: 100px;
     }
   }
+
+  &__empty-card {
+    width: 100%;
+    padding-top: $spacing_2_0;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_3_2;
+    }
+  }
 }

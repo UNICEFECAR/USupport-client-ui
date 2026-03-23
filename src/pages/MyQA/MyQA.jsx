@@ -237,6 +237,7 @@ export const MyQA = () => {
         setSelectedLanguage={setSelectedLanguage}
         setShouldFetchQuestions={setShouldFetchQuestions}
         setIsHowItWorksOpen={setIsHowItWorksOpen}
+        onResetSearch={() => setSearchValue("")}
         searchValue={searchValue}
       />
       {/* <GiveSuggestion type="my-qa" /> */}

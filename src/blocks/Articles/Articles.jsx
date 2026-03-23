@@ -19,6 +19,7 @@ import {
   Tabs,
   Loading,
   ArticlesGrid,
+  NotFoundCard,
 } from "@USupport-components-library/src";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import {
@@ -64,6 +65,7 @@ export const Articles = ({
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { isTmpUser } = useContext(RootContext);
+  const IS_RTL = localStorage.getItem("language") === "ar";
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
@@ -452,6 +454,32 @@ export const Articles = ({
     navigate(`/information-portal/article/${id}/${createArticleSlug(title)}`);
   };
 
+  const handleResetAllFilters = () => {
+    if (externalSearchValue === undefined) {
+      setSearchValue("");
+    }
+
+    if (ageGroups?.length) {
+      handleAgeGroupOnPress(0);
+    }
+
+    const allIdx = categoriesToShow?.findIndex((c) => c.value === "all");
+    if (allIdx >= 0) {
+      handleCategoryOnPress(allIdx);
+    }
+  };
+
+  const handleClearSearchAndBrowse = () => {
+    if (externalSearchValue === undefined) {
+      setSearchValue("");
+    }
+
+    const allIdx = categoriesToShow?.findIndex((c) => c.value === "all");
+    if (allIdx >= 0) {
+      handleCategoryOnPress(allIdx);
+    }
+  };
+
   let areCategoriesAndAgeGroupsReady =
     categoriesToShow?.length > 1 && ageGroupsQuery?.data?.length > 0;
 
@@ -520,7 +548,25 @@ export const Articles = ({
               ageGroupsQuery?.data?.length > 0 && (
                 <GridItem md={8} lg={12} classes="articles__articles-item">
                   <div className="articles__no-results-container">
-                    <p>{t("no_results")}</p>
+                    <NotFoundCard
+                      mode="illustrated"
+                      headingText={
+                        hasSearch
+                          ? t("no_results_heading", {
+                              query: debouncedSearchValue.trim(),
+                            })
+                          : t("no_results")
+                      }
+                      descriptionLine1={t("no_results_line1")}
+                      descriptionLine2={t("no_results_line2")}
+                      primaryLabel={t("reset_filters")}
+                      secondaryLabel={t("browse_all_articles")}
+                      onPrimaryClick={handleResetAllFilters}
+                      onSecondaryClick={handleClearSearchAndBrowse}
+                      imageAlt={t("no_results_image_alt")}
+                      isRtl={IS_RTL}
+                      radialColor="blue"
+                    />
                   </div>
                 </GridItem>
               )}
@@ -534,8 +580,13 @@ export const Articles = ({
 
       {error && (
         <div className="articles__no-results-container">
-          <h3>{t("could_not_load_content")}</h3>
-          <p>{error.message}</p>
+          <NotFoundCard
+            mode="simple"
+            iconName="info"
+            title={t("could_not_load_content")}
+            subtitle={t("could_not_load_hint")}
+            radialColor="purple"
+          />
         </div>
       )}
     </Block>
