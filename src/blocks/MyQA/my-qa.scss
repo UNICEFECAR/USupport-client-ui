@@ -18,25 +18,6 @@
     }
   }
 
-  &__categories-item {
-    overflow-x: auto;
-    padding-top: $spacing_1_0;
-
-    @media screen and (min-width: $screen-md) {
-      width: auto;
-      padding-top: $spacing_2_0;
-    }
-
-    &__language-dropdown {
-      @media screen and (min-width: $screen-md) {
-        width: 34.4rem;
-      }
-      text-align: left;
-      margin-bottom: $spacing_1_2;
-      margin-top: $spacing_1_2;
-    }
-  }
-
   &__tabs-grid {
     align-items: center;
     justify-items: stretch;
@@ -47,10 +28,23 @@
       }
 
       &__dropdown {
+        text-align: left;
+        margin-bottom: $spacing_1_2;
+        margin-top: $spacing_1_2;
         max-width: 35rem;
+
+        @media screen and (min-width: $screen-md) {
+          width: 34.4rem;
+        }
+
         @media screen and (min-width: $screen-lg) {
           margin-left: auto;
           margin-right: 0;
+        }
+
+        .dropdown .dropdown-content {
+          width: 100%;
+          box-sizing: border-box;
         }
       }
     }

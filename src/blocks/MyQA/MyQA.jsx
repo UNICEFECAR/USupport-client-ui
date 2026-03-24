@@ -291,7 +291,6 @@ export const MyQA = ({
                         setSelectedLanguage(lang);
                       }}
                       placeholder={t("placeholder")}
-                      classes="my-qa__categories-item__language-dropdown"
                     />
                   </div>
                 </GridItem>
