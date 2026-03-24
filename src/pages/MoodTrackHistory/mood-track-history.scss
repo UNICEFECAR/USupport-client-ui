@@ -1,4 +1,3 @@
-/* MoodTrackHistory styles */
 @import "@USupport-components-library/styles";
 
 .page__mood-track-history {
@@ -14,5 +13,11 @@
     display: flex;
     flex-direction: column;
     gap: $spacing_0_8;
+  }
+
+  & .page__subheading-text {
+    @media screen and (max-width: $screen_md) {
+      margin: $spacing_1_2 0;
+    }
   }
 }
