@@ -218,9 +218,18 @@
   &__body {
     padding-top: $spacing_3_2;
     padding-bottom: $spacing_4_0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 
     .text {
       line-height: $line_height_2_8;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    a {
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
   }
 }
