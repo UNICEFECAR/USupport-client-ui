@@ -28,22 +28,24 @@
       }
 
       &__dropdown {
+        padding: $spacing_1_2 0;
         text-align: left;
         margin-bottom: $spacing_1_2;
         margin-top: $spacing_1_2;
-        max-width: 35rem;
 
         @media screen and (min-width: $screen-md) {
           width: 34.4rem;
         }
 
         @media screen and (min-width: $screen-lg) {
+          max-width: 35rem;
+          padding: 0;
           margin-left: auto;
           margin-right: 0;
         }
 
         .dropdown .dropdown-content {
-          width: 100%;
+          width: calc(100%);
           box-sizing: border-box;
         }
       }
