@@ -4,9 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import {
   Page,
-  // MascotHeaderMyQA,
   MyQA as MyQABlock,
-  // GiveSuggestion,
   DownloadApp,
   InformationPortalHero,
 } from "#blocks";

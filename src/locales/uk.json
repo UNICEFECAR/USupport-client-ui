@@ -783,8 +783,8 @@
       "language": "Мова",
       "all_languages": "Усі мови",
       "date_answered": "від {{date}}",
-      "go_back": "Go back",
-      "how_it_works": "See how it works"
+      "go_back": "Назад",
+      "how_it_works": "Як це працює"
     },
     "videos": {
       "view_more": "Переглянути більше",
