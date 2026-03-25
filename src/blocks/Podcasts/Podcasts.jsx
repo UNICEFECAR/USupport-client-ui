@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -8,7 +8,7 @@ import {
   Grid,
   GridItem,
   Block,
-  CardMedia,
+  CardMediaVideo,
   InputSearch,
   Tabs,
   Loading,
@@ -18,12 +18,10 @@ import {
   destructurePodcastData,
   createArticleSlug,
   getLikesAndDislikesForContent,
-  isLikedOrDislikedByUser,
   useWindowDimensions,
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
-import { useDebounce, useGetUserContentEngagements } from "#hooks";
-import { RootContext } from "#routes";
+import { useDebounce } from "#hooks";
 
 import "./podcasts.scss";
 
@@ -62,7 +60,6 @@ export const Podcasts = ({
 }) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "videos" });
-  const { isTmpUser } = useContext(RootContext);
   const { width } = useWindowDimensions();
   const isNotDesktop = width < 1366;
 
@@ -80,8 +77,6 @@ export const Podcasts = ({
       setUsersLanguage(i18n.language);
     }
   }, [i18n.language]);
-
-  const { data: contentEngagements } = useGetUserContentEngagements(!isTmpUser);
 
   //--------------------- Categories ----------------------//
   const [categories, setCategories] = useState();
@@ -328,14 +323,6 @@ export const Podcasts = ({
         podcasts?.length > 0 &&
         podcasts.some((podcast) => podcast.id !== newestPodcast?.id);
 
-  const newestPodcastLikeData = newestPodcast
-    ? isLikedOrDislikedByUser({
-        contentType: "podcast",
-        contentData: newestPodcast,
-        userEngagements: contentEngagements,
-      })
-    : { isLiked: false, isDisliked: false };
-
   return (
     <>
       {podcastToPlay && (
@@ -361,7 +348,7 @@ export const Podcasts = ({
               {isNewestPodcastLoading ? (
                 <Loading />
               ) : newestPodcast ? (
-                <CardMedia
+                <CardMediaVideo
                   type={isNotDesktop ? "portrait" : "landscape"}
                   size="lg"
                   title={newestPodcast.title}
@@ -372,8 +359,6 @@ export const Podcasts = ({
                   categoryName={newestPodcast.categoryName}
                   contentType="podcasts"
                   showDescription={true}
-                  isLikedByUser={newestPodcastLikeData.isLiked}
-                  isDislikedByUser={newestPodcastLikeData.isDisliked}
                   likes={podcastsLikes.get(newestPodcast.id) || 0}
                   dislikes={podcastsDislikes.get(newestPodcast.id) || 0}
                   t={t}
@@ -397,11 +382,13 @@ export const Podcasts = ({
             hasPodcastsDifferentThanNewest && (
               <GridItem md={8} lg={12} classes="podcasts__categories-item">
                 {categoriesToShow && (
-                  <Tabs
-                    options={categoriesToShow}
-                    handleSelect={handleCategoryOnPress}
-                    t={t}
-                  />
+                  <div className="podcasts__categories-item__container">
+                    <Tabs
+                      options={categoriesToShow}
+                      handleSelect={handleCategoryOnPress}
+                      t={t}
+                    />
+                  </div>
                 )}
               </GridItem>
             )}
@@ -425,13 +412,8 @@ export const Podcasts = ({
                   >
                     <div className="podcasts__custom-grid">
                       {podcasts.map((podcast, index) => {
-                        const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
-                        const { isLiked, isDisliked } =
-                          isLikedOrDislikedByUser({
-                            contentType: "podcast",
-                            contentData: podcast,
-                            userEngagements: contentEngagements,
-                          });
+                        // Match Videos layout: 3 cards per row (12-column grid -> span 4 each)
+                        const gridSpan = getGridSpanForIndex(index, [3, 3, 3]);
 
                         return (
                           <div
@@ -439,7 +421,7 @@ export const Podcasts = ({
                             className="podcasts__card-wrapper"
                             style={{ gridColumn: `span ${gridSpan}` }}
                           >
-                            <CardMedia
+                            <CardMediaVideo
                               type={
                                 gridSpan === 12 && !isNotDesktop
                                   ? "landscape"
@@ -457,8 +439,6 @@ export const Podcasts = ({
                               creator={podcast.creator}
                               categoryName={podcast.categoryName}
                               contentType="podcasts"
-                              isLikedByUser={isLiked}
-                              isDislikedByUser={isDisliked}
                               likes={podcastsLikes.get(podcast.id) || 0}
                               dislikes={podcastsDislikes.get(podcast.id) || 0}
                               t={t}

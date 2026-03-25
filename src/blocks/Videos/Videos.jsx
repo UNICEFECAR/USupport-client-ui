@@ -7,7 +7,7 @@ import {
   Grid,
   GridItem,
   Block,
-  CardMedia,
+  CardMediaVideo,
   InputSearch,
   Tabs,
   Loading,
@@ -17,7 +17,6 @@ import {
   destructureVideoData,
   createArticleSlug,
   getLikesAndDislikesForContent,
-  isLikedOrDislikedByUser,
   useWindowDimensions,
   ThemeContext,
 } from "@USupport-components-library/utils";
@@ -26,9 +25,7 @@ import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import {
   useCustomNavigate as useNavigate,
   useDebounce,
-  useGetUserContentEngagements,
 } from "#hooks";
-import { RootContext } from "#routes";
 
 import "./videos.scss";
 
@@ -66,7 +63,6 @@ export const Videos = ({
   externalSearchValue,
 }) => {
   const navigate = useNavigate();
-  const { isTmpUser } = useContext(RootContext);
   const { width } = useWindowDimensions();
   const { cookieState, setCookieState } = useContext(ThemeContext);
   const isNotDesktop = width < 1366;
@@ -87,8 +83,6 @@ export const Videos = ({
       setUsersLanguage(i18n.language);
     }
   }, [i18n.language]);
-
-  const { data: contentEngagements } = useGetUserContentEngagements(!isTmpUser);
 
   //--------------------- Categories ----------------------//
   const [categories, setCategories] = useState();
@@ -216,8 +210,8 @@ export const Videos = ({
       limit: 6,
       contains: debouncedSearchValue,
       categoryId,
-      sortBy: sort || undefined,
-      sortOrder: sort ? "desc" : undefined,
+      sortBy: sort || "title",
+      sortOrder: sort ? "desc" : "asc",
       locale: usersLanguage,
       populate: true,
       ids: videoIdsQuery.data,
@@ -268,8 +262,8 @@ export const Videos = ({
       limit: 6,
       contains: debouncedSearchValue,
       categoryId,
-      sortBy: sort || undefined,
-      sortOrder: sort ? "desc" : undefined,
+      sortBy: sort || "title",
+      sortOrder: sort ? "desc" : "asc",
       locale: usersLanguage,
       populate: true,
       ids: videoIdsQuery.data,
@@ -328,14 +322,6 @@ export const Videos = ({
         videos?.length > 0 &&
         videos.some((video) => video.id !== newestVideo?.id);
 
-  const newestVideoLikeData = newestVideo
-    ? isLikedOrDislikedByUser({
-        contentType: "video",
-        contentData: newestVideo,
-        userEngagements: contentEngagements,
-      })
-    : { isLiked: false, isDisliked: false };
-
   return (
     <>
       {videoToPlayUrl && (
@@ -362,7 +348,7 @@ export const Videos = ({
               {isNewestVideoLoading ? (
                 <Loading />
               ) : newestVideo ? (
-                <CardMedia
+                <CardMediaVideo
                   type={isNotDesktop ? "portrait" : "landscape"}
                   size="lg"
                   title={newestVideo.title}
@@ -377,8 +363,6 @@ export const Videos = ({
                   categoryName={newestVideo.categoryName}
                   contentType="videos"
                   showDescription={true}
-                  isLikedByUser={newestVideoLikeData.isLiked}
-                  isDislikedByUser={newestVideoLikeData.isDisliked}
                   likes={videosLikes.get(newestVideo.id) || 0}
                   dislikes={videosDislikes.get(newestVideo.id) || 0}
                   t={t}
@@ -402,11 +386,13 @@ export const Videos = ({
             hasVideosDifferentThanNewest && (
               <GridItem md={8} lg={12} classes="videos__categories-item">
                 {categoriesToShow && (
-                  <Tabs
-                    options={categoriesToShow}
-                    handleSelect={handleCategoryOnPress}
-                    t={t}
-                  />
+                  <div className="videos__categories-item__container">
+                    <Tabs
+                      options={categoriesToShow}
+                      handleSelect={handleCategoryOnPress}
+                      t={t}
+                    />
+                  </div>
                 )}
               </GridItem>
             )}
@@ -431,13 +417,7 @@ export const Videos = ({
                     <div className="videos__custom-grid">
                       {videos.map((video, index) => {
                         const videoData = destructureVideoData(video);
-                        const gridSpan = getGridSpanForIndex(index, [2, 3, 1]);
-                        const { isLiked, isDisliked } =
-                          isLikedOrDislikedByUser({
-                            contentType: "video",
-                            contentData: video,
-                            userEngagements: contentEngagements,
-                          });
+                        const gridSpan = getGridSpanForIndex(index, [3, 3, 3]);
 
                         return (
                           <div
@@ -445,7 +425,7 @@ export const Videos = ({
                             className="videos__card-wrapper"
                             style={{ gridColumn: `span ${gridSpan}` }}
                           >
-                            <CardMedia
+                            <CardMediaVideo
                               type={
                                 gridSpan === 12 && !isNotDesktop
                                   ? "landscape"
@@ -464,8 +444,6 @@ export const Videos = ({
                               labels={videoData.labels}
                               categoryName={videoData.categoryName}
                               contentType="videos"
-                              isLikedByUser={isLiked}
-                              isDislikedByUser={isDisliked}
                               likes={videosLikes.get(videoData.id) || 0}
                               dislikes={videosDislikes.get(videoData.id) || 0}
                               t={t}
