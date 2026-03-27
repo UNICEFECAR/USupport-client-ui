@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useMemo } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -22,10 +22,7 @@ import {
 } from "@USupport-components-library/utils";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
-import {
-  useCustomNavigate as useNavigate,
-  useDebounce,
-} from "#hooks";
+import { useCustomNavigate as useNavigate, useDebounce } from "#hooks";
 
 import "./videos.scss";
 
@@ -100,7 +97,7 @@ export const Videos = ({
           value: category.attributes.name,
           id: category.id,
           isSelected: false,
-        })
+        }),
       );
 
       setSelectedCategory(categoriesData[0]);
@@ -119,7 +116,7 @@ export const Videos = ({
       onSuccess: (data) => {
         setCategories([...data]);
       },
-    }
+    },
   );
 
   const handleCategoryOnPress = (index) => {
@@ -160,11 +157,11 @@ export const Videos = ({
     () =>
       cmsSvc.getVideoCategoryIds(
         usersLanguage,
-        videoIdsQuery.data?.length > 0 ? videoIdsQuery.data : undefined
+        videoIdsQuery.data?.length > 0 ? videoIdsQuery.data : undefined,
       ),
     {
       enabled: !!videoIdsQuery.data?.length,
-    }
+    },
   );
 
   const categoriesToShow = useMemo(() => {
@@ -172,7 +169,8 @@ export const Videos = ({
 
     return categories.filter(
       (category) =>
-        videoCategoryIdsToShow.includes(category.id) || category.value === "all"
+        videoCategoryIdsToShow.includes(category.id) ||
+        category.value === "all",
     );
   }, [categories, videoCategoryIdsToShow]);
 
@@ -196,7 +194,7 @@ export const Videos = ({
     {
       enabled: !videoIdsQuery.isLoading && videoIdsQuery.data?.length > 0,
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   //--------------------- Videos List ----------------------//
@@ -248,7 +246,7 @@ export const Videos = ({
         selectedCategory !== null &&
         categoriesToShow?.length > 0,
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   const getMoreVideos = async () => {
@@ -297,7 +295,7 @@ export const Videos = ({
 
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         videoIds,
-        "video"
+        "video",
       );
 
       setVideosLikes((prev) => new Map([...prev, ...likes]));
@@ -365,16 +363,13 @@ export const Videos = ({
                   showDescription={true}
                   likes={videosLikes.get(newestVideo.id) || 0}
                   dislikes={videosDislikes.get(newestVideo.id) || 0}
+                  viewCount={newestVideo.viewCount}
                   t={t}
                   onClick={() =>
-                    navigate(
-                      `/information-portal/video/${
-                        newestVideo.id
-                      }/${createArticleSlug(newestVideo.title)}`
-                    )
+                    handlePlay(newestVideo.originalUrl || newestVideo.awsUrl)
                   }
                   handlePlay={() =>
-                    handlePlay(newestVideo.originalUrl || newestVideo.url)
+                    handlePlay(newestVideo.originalUrl || newestVideo.awsUrl)
                   }
                 />
               ) : null}
@@ -448,17 +443,16 @@ export const Videos = ({
                               dislikes={videosDislikes.get(videoData.id) || 0}
                               t={t}
                               onClick={() =>
-                                navigate(
-                                  `/information-portal/video/${
-                                    videoData.id
-                                  }/${createArticleSlug(videoData.title)}`
+                                handlePlay(
+                                  videoData.originalUrl || videoData.awsUrl,
                                 )
                               }
                               handlePlay={() =>
                                 handlePlay(
-                                  videoData.originalUrl || videoData.url
+                                  videoData.originalUrl || videoData.awsUrl,
                                 )
                               }
+                              viewCount={videoData.viewCount}
                             />
                           </div>
                         );

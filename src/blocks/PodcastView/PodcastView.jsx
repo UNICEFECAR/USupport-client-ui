@@ -234,67 +234,69 @@ export const PodcastView = ({ podcastData, t, language, isTmpUser }) => {
 
   return (
     <Block classes="podcast-view">
-      <Grid classes="podcast-view__main-grid">
-        <GridItem md={8} lg={12} classes="podcast-view__title-item">
-          <div className="podcast-view__title-item__container">
-            <h3>{podcastData.title}</h3>
-            <ActionButton iconName="share" onClick={handleCopyLink} />
-          </div>
-        </GridItem>
+      <div className="podcast-view__content">
+        <Grid classes="podcast-view__main-grid">
+          <GridItem md={8} lg={12} classes="podcast-view__title-item">
+            <div className="podcast-view__title-item__container">
+              <h3>{podcastData.title}</h3>
+              <ActionButton iconName="share" onClick={handleCopyLink} />
+            </div>
+          </GridItem>
 
-        <GridItem md={8} lg={12} classes="podcast-view__details-item">
-          {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
+          <GridItem md={8} lg={12} classes="podcast-view__details-item">
+            {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
 
-          <div className="podcast-view__details-item__category">
-            <p className="small-text ">{podcastData.categoryName}</p>
-          </div>
-        </GridItem>
+            <div className="podcast-view__details-item__category">
+              <p className="small-text ">{podcastData.categoryName}</p>
+            </div>
+          </GridItem>
 
-        <GridItem xs={3} md={6} lg={8} classes="podcast-view__labels-item">
-          {podcastData.labels &&
-            podcastData.labels.map((label, index) => {
-              return (
-                <Label
-                  classes={"podcast-view__label"}
-                  text={label.name}
-                  key={index}
-                />
-              );
-            })}
-        </GridItem>
+          <GridItem xs={3} md={6} lg={8} classes="podcast-view__labels-item">
+            {podcastData.labels &&
+              podcastData.labels.map((label, index) => {
+                return (
+                  <Label
+                    classes={"podcast-view__label"}
+                    text={label.name}
+                    key={index}
+                  />
+                );
+              })}
+          </GridItem>
 
-        <GridItem xs={1} md={2} lg={4} classes="podcast-view__like-item">
-          <Like
-            renderInClient
-            handleClick={handleAddRating}
-            likes={contentRating?.likes || 0}
-            isLiked={contentRating?.isLikedByUser || false}
-            dislikes={contentRating?.dislikes || 0}
-            isDisliked={contentRating?.isDislikedByUser || false}
-            answerId={podcastData.id}
-            isTmpUser={isTmpUser}
-          />
-        </GridItem>
-
-        <GridItem md={8} lg={12} classes="podcast-view__player-item">
-          <div className="podcast-view__player-container">
-            <iframe
-              src={`https://open.spotify.com/embed/${podcastData.spotifyId}`}
-              width="100%"
-              height="232"
-              frameBorder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-              title="Spotify Podcast Player"
+          <GridItem xs={1} md={2} lg={4} classes="podcast-view__like-item">
+            <Like
+              renderInClient
+              handleClick={handleAddRating}
+              likes={contentRating?.likes || 0}
+              isLiked={contentRating?.isLikedByUser || false}
+              dislikes={contentRating?.dislikes || 0}
+              isDisliked={contentRating?.isDislikedByUser || false}
+              answerId={podcastData.id}
+              isTmpUser={isTmpUser}
             />
-          </div>
-        </GridItem>
-        <GridItem md={8} lg={12} classes="podcast-view__description-item">
-          <p className="podcast-view__description-text">
-            {podcastData.description}
-          </p>
-        </GridItem>
-      </Grid>
+          </GridItem>
+
+          <GridItem md={8} lg={12} classes="podcast-view__player-item">
+            <div className="podcast-view__player-container">
+              <iframe
+                src={`https://open.spotify.com/embed/${podcastData.spotifyId}`}
+                width="100%"
+                height="232"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                title="Spotify Podcast Player"
+              />
+            </div>
+          </GridItem>
+          <GridItem md={8} lg={12} classes="podcast-view__description-item">
+            <p className="podcast-view__description-text">
+              {podcastData.description}
+            </p>
+          </GridItem>
+        </Grid>
+      </div>
     </Block>
   );
 };
