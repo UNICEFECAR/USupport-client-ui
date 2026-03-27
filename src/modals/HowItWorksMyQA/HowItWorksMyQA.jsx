@@ -5,8 +5,8 @@ import { Modal, CustomCarousel } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 
 // English
-import howItWorks1 from "./assets/HowItWorks3.png";
-import howItWorks2 from "./assets/HowItWorks2.png";
+import howItWorks1 from "./assets/HowItWorks3-new.png";
+import howItWorks2 from "./assets/HowItWorks2-new.png";
 import howItWorks3 from "./assets/HowItWorks1.png";
 
 import howItWorks1Mobile from "./assets/HowItWorks1Mobile.png";
@@ -33,7 +33,7 @@ import howItWorks3KZMobile from "./assets/HowItWorks3KZMobile.png";
 
 // Ukranian
 import howItWorks1UK from "./assets/HowItWorksUK1.png";
-import howItWorks2UK from "./assets/HowItWorksUK2.png";
+import howItWorks2UK from "./assets/HowItWorksUK2-new.png";
 import howItWorks3UK from "./assets/HowItWorksUK3.png";
 
 import howItWorks1UAMobile from "./assets/HowItWorks1UAMobile.png";
