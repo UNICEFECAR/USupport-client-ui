@@ -26,6 +26,19 @@
     }
   }
 
+  &__date {
+    margin-top: -$spacing_1_2;
+    color: $color_gray_92989b;
+    @include themify($themes, "color", "color_gray_92989b_c1d7e0");
+  }
+
+  &__download {
+    display: flex;
+    justify-content: center;
+    margin-top: $spacing_1_6;
+    margin-bottom: $spacing_1_6;
+  }
+
   &__compare-grid {
     align-items: center;
 
@@ -85,6 +98,150 @@
 
     h4 {
       margin-bottom: $spacing_2_0;
+    }
+  }
+
+  // PDF export template (hidden on screen)
+  &__pdf {
+    position: absolute;
+    left: -99999px;
+    top: 0;
+    width: 210mm; // A4 width
+    background: #ffffff;
+    color: #111827;
+
+    &__page {
+      padding: 18mm 16mm;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+        Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    &__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12mm;
+      padding-bottom: 8mm;
+      border-bottom: 1px solid #e5e7eb;
+      margin-bottom: 8mm;
+    }
+
+    &__title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    &__meta {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    &__logo {
+      width: 110px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    &__section {
+      margin-bottom: 8mm;
+      page-break-inside: avoid;
+    }
+
+    &__sectionTitle {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    &__subtitle {
+      font-size: 12px;
+      color: #374151;
+      margin-bottom: 10px;
+    }
+
+    &__stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    &__stat {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: #ffffff;
+    }
+
+    &__statLabel {
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    &__statValue {
+      font-size: 20px;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1;
+    }
+
+    &__markdown {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #111827;
+
+      // normalize Markdown component output for PDF
+      .text {
+        color: #111827;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 10px 0 6px;
+      }
+
+      p {
+        margin: 0 0 8px;
+      }
+
+      ul {
+        padding-left: 18px;
+        margin: 0 0 8px;
+      }
+    }
+
+    &__list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    &__li {
+      margin: 0 0 6px;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    &__liTitle {
+      font-weight: 700;
+    }
+
+    &__liMeta {
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    &__footer {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 6mm;
+      font-size: 10px;
+      color: #9ca3af;
     }
   }
 }
