@@ -50,6 +50,7 @@ export const BaselineAssesment = ({
     answers: {},
     baselineAssessmentId: null,
     isNewSession: false,
+    assessmentDate: null,
   });
 
   const {
@@ -77,6 +78,11 @@ export const BaselineAssesment = ({
         currentStep:
           selectedSession.status === "completed" ? "completed" : "questions",
         finalResult: selectedSession.finalResult,
+        assessmentDate:
+          selectedSession.completedAt ||
+          selectedSession.startedAt ||
+          selectedSession.createdAt ||
+          null,
       }));
       setHasSetInitially(true);
     }
@@ -195,6 +201,11 @@ export const BaselineAssesment = ({
               ...prev,
               currentStep: "completed",
               finalResult: data.finalResult,
+              assessmentDate:
+                data.completedAt ||
+                data.startedAt ||
+                data.createdAt ||
+                new Date().toISOString(),
             }));
             queryClient.invalidateQueries({
               queryKey: ["baseline-assessments"],
@@ -398,7 +409,10 @@ export const BaselineAssesment = ({
 
         {/* Completed Step */}
         {state.currentStep === "completed" && (
-          <BaselineAssesmentResult result={state.finalResult} t={t} />
+          <BaselineAssesmentResult
+            result={state.finalResult}
+            assessmentDate={state.assessmentDate}
+          />
         )}
       </Grid>
     </Block>
