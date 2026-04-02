@@ -13,7 +13,7 @@ import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle, ButtonWithIcon } from "@USupport-components-library/src";
 import { countrySvc, clientSvc } from "@USupport-components-library/services";
 
-import { useGetProvidersData, useError } from "#hooks";
+import { useGetProvidersData, useError, useCheckActiveCampaign } from "#hooks";
 import { FilterProviders } from "#backdrops";
 import { RootContext } from "#routes";
 import { Page, SelectProvider as SelectProviderBlock } from "#blocks";
@@ -44,12 +44,16 @@ export const SelectProvider = () => {
     useContext(RootContext);
 
   const { data: isKzCountry } = useQuery(["country-min-price"], fetchCountry);
+  const { data: hasActiveCampaign, isLoading: isActiveCampaignLoading } =
+    useCheckActiveCampaign(!!selectedCountry?.hasCoupons);
+  const canUseCoupons =
+    !!selectedCountry?.hasCoupons && hasActiveCampaign === true;
 
   // Validate URL coupon if present (takes priority over country default when valid)
   const urlCouponQuery = useQuery(
     ["url-coupon", urlCoupon],
     () => clientSvc.checkIsCouponAvailable(urlCoupon).then((res) => res.data),
-    { enabled: !!urlCoupon, retry: false }
+    { enabled: !!urlCoupon && canUseCoupons, retry: false }
   );
   // Determine the default billing type based on country settings (or URL coupon)
   const getDefaultBillingType = useCallback(() => {
@@ -61,39 +65,62 @@ export const SelectProvider = () => {
       hasFreeConsultations,
       defaultBillingType,
     } = selectedCountry;
+    const canUseCoupons = hasCoupons && hasActiveCampaign === true;
 
     // If URL has a coupon param, show the coupon tab (so user sees the coupon form)
-    if (urlCoupon && hasCoupons) return "coupon";
+    if (urlCoupon && canUseCoupons) return "coupon";
 
     // If defaultBillingType is set and the corresponding option is available, use it
     if (defaultBillingType) {
       if (defaultBillingType === "paid" && hasPayments) return "paid";
-      if (defaultBillingType === "coupon" && hasCoupons) return "coupon";
+      if (defaultBillingType === "coupon" && canUseCoupons) return "coupon";
       if (defaultBillingType === "free" && hasFreeConsultations) return "free";
     }
 
     // Fallback to first available option
     if (hasPayments) return "paid";
-    if (hasCoupons) return "coupon";
+    if (canUseCoupons) return "coupon";
     if (hasFreeConsultations) return "free";
 
     return null;
-  }, [selectedCountry, urlCoupon]);
+  }, [selectedCountry, urlCoupon, hasActiveCampaign]);
 
   const [selectedBillingType, setSelectedBillingType] = useState(null);
 
   // Set default billing type when country is loaded (coupon tab when ?coupon= is in URL)
   useEffect(() => {
     if (!selectedCountry || selectedBillingType !== null) return;
+    if (selectedCountry.hasCoupons && isActiveCampaignLoading) return;
     const defaultType = getDefaultBillingType();
     if (defaultType) setSelectedBillingType(defaultType);
-  }, [selectedCountry, getDefaultBillingType, selectedBillingType]);
+  }, [
+    selectedCountry,
+    getDefaultBillingType,
+    selectedBillingType,
+    isActiveCampaignLoading,
+  ]);
 
   useEffect(() => {
     if (selectedBillingType !== "coupon") {
       setActiveCoupon(null);
     }
   }, [selectedBillingType, setActiveCoupon]);
+
+  useEffect(() => {
+    if (!selectedCountry || selectedBillingType !== "coupon") return;
+
+    if (!selectedCountry.hasCoupons || !hasActiveCampaign) {
+      const fallbackType = getDefaultBillingType();
+      if (fallbackType && fallbackType !== "coupon") {
+        setSelectedBillingType(fallbackType);
+      }
+    }
+  }, [
+    selectedCountry,
+    selectedBillingType,
+    hasActiveCampaign,
+    getDefaultBillingType,
+  ]);
 
   const defaultCouponCode = selectedCountry?.defaultCouponCode;
   const defaultCouponQuery = useQuery(
@@ -102,7 +129,10 @@ export const SelectProvider = () => {
       clientSvc
         .checkIsCouponAvailable(defaultCouponCode)
         .then((res) => res.data),
-    { enabled: !!defaultCouponCode && !urlCoupon }
+    {
+      enabled: !!defaultCouponCode && !urlCoupon && canUseCoupons,
+      retry: false,
+    }
   );
 
   const safeUrlCouponError = urlCouponQuery.error ?? {
@@ -278,6 +308,7 @@ export const SelectProvider = () => {
         isFiltering={isFiltering}
         selectedBillingType={selectedBillingType}
         setSelectedBillingType={setSelectedBillingType}
+        hasActiveCampaign={canUseCoupons}
         width={width}
       />
 
