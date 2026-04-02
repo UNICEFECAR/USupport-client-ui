@@ -37,6 +37,8 @@ export const SelectProvider = ({
   isFiltering,
   selectedBillingType,
   setSelectedBillingType,
+  hasActiveCampaign,
+  isActiveCampaignLoading,
   width,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "select-provider" });
@@ -98,7 +100,7 @@ export const SelectProvider = ({
       });
     }
 
-    if (hasCoupons) {
+    if (hasCoupons && hasActiveCampaign) {
       tabs.push({
         label: t("tab_coupon"),
         value: "coupon",
@@ -115,7 +117,7 @@ export const SelectProvider = ({
     }
 
     return tabs;
-  }, [selectedCountry, selectedBillingType, t]);
+  }, [selectedCountry, selectedBillingType, hasActiveCampaign, t]);
 
   const handleTabSelect = (index) => {
     const selectedTab = billingTabs[index];
@@ -222,7 +224,11 @@ export const SelectProvider = ({
       return null;
     }
 
-    if ((isFiltering && providersQuery.isFetching) || providersQuery.isLoading)
+    if (
+      (isFiltering && providersQuery.isFetching) ||
+      providersQuery.isLoading ||
+      isActiveCampaignLoading
+    )
       return (
         <GridItem classes="select-provider__grid__item-no-match" md={8} lg={12}>
           <Loading />
@@ -269,7 +275,7 @@ export const SelectProvider = ({
   return (
     <Block classes="select-provider">
       <div className="select-provider__content-container">
-        {billingTabs.length > 1 && (
+        {!isActiveCampaignLoading && billingTabs.length > 1 && (
           <Tabs options={billingTabs} handleSelect={handleTabSelect} t={t} />
         )}
 

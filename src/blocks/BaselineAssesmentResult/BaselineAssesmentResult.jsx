@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -18,7 +18,11 @@ import {
   useGetAssessmentResult,
 } from "#hooks";
 
+import { logoVerticalRomaniaPng } from "@USupport-components-library/assets";
+
 import "./baseline-assesment-result.scss";
+
+const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
 /**
  * BaselineAssesmentResult
@@ -27,17 +31,90 @@ import "./baseline-assesment-result.scss";
  *
  * @return {jsx}
  */
-export const BaselineAssesmentResult = ({ result }) => {
+export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
   const { t, i18n } = useTranslation("blocks", {
     keyPrefix: "baseline-assesment-result",
   });
   const language = i18n.language;
   const navigate = useNavigate();
+  const pdfRef = useRef(null);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [exportLogoDataUrl, setExportLogoDataUrl] = useState(null);
 
   const { isFetching, data } = useGetAssessmentResult({
     ...result,
     language,
   });
+
+  // Use the same Romania auth-screen logo variant.
+  // Keep it bundled (local) to avoid CORS issues during PDF generation.
+  const IS_RO = localStorage.getItem("country") === "RO";
+  const logoUrl = IS_RO ? logoVerticalRomaniaPng : `${AMAZON_S3_BUCKET}/logo-horizontal`;
+
+  const loadImageAsDataUrl = async (url) => {
+    const res = await fetch(url, { mode: "cors", cache: "force-cache" });
+    if (!res.ok) throw new Error(`Failed to load image: ${res.status}`);
+    const blob = await res.blob();
+    return await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  };
+
+  const formattedDate = useMemo(() => {
+    if (!assessmentDate) return "";
+    const d = new Date(assessmentDate);
+    if (Number.isNaN(d.getTime())) return "";
+    try {
+      return new Intl.DateTimeFormat(language, {
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+      }).format(d);
+    } catch {
+      return d.toLocaleDateString();
+    }
+  }, [assessmentDate, language]);
+
+  const handleDownloadPdf = async () => {
+    if (!pdfRef.current || isDownloading) return;
+    setIsDownloading(true);
+    try {
+      // Inline logo to avoid CORS-tainted canvas in html2canvas/html2pdf
+      try {
+        const dataUrl = await loadImageAsDataUrl(logoUrl);
+        setExportLogoDataUrl(dataUrl);
+      } catch {
+        setExportLogoDataUrl(null);
+      }
+
+      const html2pdfModule = await import("html2pdf.js");
+      const html2pdf = html2pdfModule?.default || html2pdfModule;
+
+      const safeDate = formattedDate
+        ? formattedDate.replaceAll("/", "-").replaceAll(" ", "_")
+        : "date-unknown";
+      const filename = `baseline-assessment-result_${safeDate}.pdf`;
+
+      await html2pdf()
+        .set({
+          margin: [14, 14, 14, 14],
+          filename,
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+          pagebreak: { mode: ["css", "legacy"] },
+        })
+        .from(pdfRef.current)
+        .save();
+    } finally {
+      setIsDownloading(false);
+      setExportLogoDataUrl(null);
+    }
+  };
+
   const renderIcon = (result) => {
     if (!result) return null;
     const color =
@@ -71,6 +148,11 @@ export const BaselineAssesmentResult = ({ result }) => {
       <Grid>
         <GridItem md={8} lg={12} classes="baseline-assesment-result">
           <h1>{t("assessment_completed")}</h1>
+          {formattedDate && (
+            <p className="baseline-assesment-result__date">
+              {t("date", { defaultValue: "Date" })}: {formattedDate}
+            </p>
+          )}
           <div className="baseline-assesment-result__stats">
             <ProgressBar progress={100} height="lg" showPercentage />
           </div>
@@ -106,6 +188,18 @@ export const BaselineAssesmentResult = ({ result }) => {
             </Grid>
           </GridItem>
         )}
+
+        <GridItem md={8} lg={12} classes="baseline-assesment-result__download">
+          <Button
+            onClick={handleDownloadPdf}
+            size="lg"
+            color="purple"
+            loading={isDownloading}
+            disabled={isDownloading || isFetching}
+          >
+            {t("download_pdf", { defaultValue: "Download results (PDF)" })}
+          </Button>
+        </GridItem>
 
         {isFetching && (
           <GridItem md={8} lg={12}>
@@ -261,6 +355,155 @@ export const BaselineAssesmentResult = ({ result }) => {
             </Grid>
           </GridItem>
         )}
+
+        {/* Hidden export template for PDF */}
+        <div className="baseline-assesment-result__pdf" aria-hidden="true">
+          <div className="baseline-assesment-result__pdf__page" ref={pdfRef}>
+            <div className="baseline-assesment-result__pdf__header">
+              <div>
+                <div className="baseline-assesment-result__pdf__title">
+                  {t("assessment_completed")}
+                </div>
+                {formattedDate && (
+                  <div className="baseline-assesment-result__pdf__meta">
+                    {t("date", { defaultValue: "Date" })}: {formattedDate}
+                  </div>
+                )}
+              </div>
+              <img
+                className="baseline-assesment-result__pdf__logo"
+                src={exportLogoDataUrl || logoUrl}
+                alt="USupport"
+                crossOrigin="anonymous"
+              />
+            </div>
+
+            {result && (
+              <div className="baseline-assesment-result__pdf__section">
+                <div className="baseline-assesment-result__pdf__sectionTitle">
+                  {t("summary_heading")}
+                </div>
+                {result?.comparePrevious && (
+                  <div className="baseline-assesment-result__pdf__subtitle">
+                    {resultText}
+                  </div>
+                )}
+                <div className="baseline-assesment-result__pdf__stats">
+                  <div className="baseline-assesment-result__pdf__stat">
+                    <div className="baseline-assesment-result__pdf__statLabel">
+                      {t("psychological")}
+                    </div>
+                    <div className="baseline-assesment-result__pdf__statValue">
+                      {result.psychologicalScore}
+                    </div>
+                  </div>
+                  <div className="baseline-assesment-result__pdf__stat">
+                    <div className="baseline-assesment-result__pdf__statLabel">
+                      {t("biological")}
+                    </div>
+                    <div className="baseline-assesment-result__pdf__statValue">
+                      {result.biologicalScore}
+                    </div>
+                  </div>
+                  <div className="baseline-assesment-result__pdf__stat">
+                    <div className="baseline-assesment-result__pdf__statLabel">
+                      {t("social")}
+                    </div>
+                    <div className="baseline-assesment-result__pdf__statValue">
+                      {result.socialScore}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {data?.summaryCK && (
+              <div className="baseline-assesment-result__pdf__section">
+                <div className="baseline-assesment-result__pdf__sectionTitle">
+                  {t("summary_heading")}
+                </div>
+                <div className="baseline-assesment-result__pdf__markdown">
+                  <Markdown markDownText={data.summaryCK} className={"text"} />
+                </div>
+              </div>
+            )}
+
+            {!!data?.articles?.length && (
+              <div className="baseline-assesment-result__pdf__section">
+                <div className="baseline-assesment-result__pdf__sectionTitle">
+                  {t("recommended_articles")}
+                </div>
+                <ul className="baseline-assesment-result__pdf__list">
+                  {data.articles.slice(0, 10).map((a) => (
+                    <li key={a.id} className="baseline-assesment-result__pdf__li">
+                      <span className="baseline-assesment-result__pdf__liTitle">
+                        {a.title}
+                      </span>
+                      {a.creator ? (
+                        <span className="baseline-assesment-result__pdf__liMeta">
+                          {" "}
+                          — {a.creator}
+                        </span>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {!!data?.videos?.length && (
+              <div className="baseline-assesment-result__pdf__section">
+                <div className="baseline-assesment-result__pdf__sectionTitle">
+                  {t("recommended_videos")}
+                </div>
+                <ul className="baseline-assesment-result__pdf__list">
+                  {data.videos.slice(0, 10).map((v) => (
+                    <li key={v.id} className="baseline-assesment-result__pdf__li">
+                      <span className="baseline-assesment-result__pdf__liTitle">
+                        {v.title}
+                      </span>
+                      {v.creator ? (
+                        <span className="baseline-assesment-result__pdf__liMeta">
+                          {" "}
+                          — {v.creator}
+                        </span>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {!!data?.podcasts?.length && (
+              <div className="baseline-assesment-result__pdf__section">
+                <div className="baseline-assesment-result__pdf__sectionTitle">
+                  {t("recommended_podcasts")}
+                </div>
+                <ul className="baseline-assesment-result__pdf__list">
+                  {data.podcasts.slice(0, 10).map((p) => (
+                    <li key={p.id} className="baseline-assesment-result__pdf__li">
+                      <span className="baseline-assesment-result__pdf__liTitle">
+                        {p.title}
+                      </span>
+                      {p.creator ? (
+                        <span className="baseline-assesment-result__pdf__liMeta">
+                          {" "}
+                          — {p.creator}
+                        </span>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="baseline-assesment-result__pdf__footer">
+              {t("download_pdf_footer", {
+                defaultValue: "Generated by USupport client app",
+              })}
+            </div>
+          </div>
+        </div>
       </Grid>
     </GridItem>
   );
