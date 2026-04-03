@@ -4,6 +4,7 @@ import { useQueryClient, useQuery } from "@tanstack/react-query";
 import propTypes from "prop-types";
 
 import {
+  AudioPlayer,
   Block,
   Grid,
   GridItem,
@@ -387,6 +388,12 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
             alt=""
           />
         </GridItem>
+
+        {articleData.ttsUrl && (
+          <GridItem md={8} lg={12} classes="article-view__audio-item">
+            <AudioPlayer src={articleData.ttsUrl} />
+          </GridItem>
+        )}
 
         <GridItem md={8} lg={12} classes="article-view__body-item">
           <Markdown
