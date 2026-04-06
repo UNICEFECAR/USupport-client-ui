@@ -19,7 +19,10 @@
 
   &__box {
     &--no-consultations {
-      width: 50%;
+      // Match two-column row layout on tablet+ only; full width on mobile
+      @media screen and (min-width: $screen-md) {
+        width: 50%;
+      }
     }
 
     &__content {
