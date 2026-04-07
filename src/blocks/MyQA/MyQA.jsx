@@ -287,7 +287,6 @@ export const MyQA = ({
                       options={languageOptions}
                       selected={selectedLanguage}
                       setSelected={(lang) => {
-                        console.log(lang);
                         setSelectedLanguage(lang);
                       }}
                       placeholder={t("language")}
