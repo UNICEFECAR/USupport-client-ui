@@ -290,7 +290,7 @@ export const MyQA = ({
                         console.log(lang);
                         setSelectedLanguage(lang);
                       }}
-                      placeholder={t("placeholder")}
+                      placeholder={t("language")}
                     />
                   </div>
                 </GridItem>
