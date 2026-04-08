@@ -243,17 +243,21 @@
     position: fixed;
     right: $spacing_1_6;
     z-index: $z_index_emergency_button;
+    opacity: 0.9;
     box-shadow:
       0 0 20px rgba(235, 87, 87, 0.6),
       0 4px 12px rgba(235, 87, 87, 0.4);
-    transition: box-shadow 0.3s ease;
+    transition:
+      box-shadow 0.3s ease,
+      opacity 0.2s ease;
 
-    // &:hover {
-    //   box-shadow: 0 0 30px rgba(235, 87, 87, 0.8), 0 6px 16px rgba(235, 87, 87, 0.5);
-    // }
+    &:hover,
+    &:focus-visible {
+      opacity: 1;
+    }
 
     @media screen and (min-width: $screen-md) {
-      right: $spacing_3_2;
+      right: $spacing_4_8;
     }
   }
 
@@ -265,11 +269,18 @@
     max-width: 10rem;
     cursor: pointer;
     background-color: $color_primary_20809e;
+    opacity: 0.9;
     padding: 1rem;
     border-radius: 5rem;
+    transition: opacity 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 1;
+    }
 
     @media screen and (min-width: $screen-md) {
-      right: $spacing_3_2;
+      left: $spacing_4_8;
     }
   }
 }
