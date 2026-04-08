@@ -155,6 +155,9 @@
     display: flex;
     flex-direction: column;
     padding: $spacing_1_6 0;
+    padding-right: $spacing_1_2;
+    margin-right: -$spacing_1_2;
+    scrollbar-gutter: stable;
 
     &::-webkit-scrollbar {
       width: 0.4rem;
