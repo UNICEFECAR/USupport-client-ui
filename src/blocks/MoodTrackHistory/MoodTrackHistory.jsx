@@ -5,6 +5,7 @@ import {
   Block,
   Dropdown,
   Icon,
+  Emoticon,
   MoodTrackDetails,
   Loading,
   LineChart,
@@ -23,13 +24,6 @@ import {
   useGetMoodTrackerRecommendations,
   useCustomNavigate as useNavigate,
 } from "#hooks";
-import {
-  moodTrackHappy,
-  moodTrackGood,
-  moodTrackSad,
-  moodTrackDepressed,
-  moodTrackWorried,
-} from "@USupport-components-library/assets";
 
 import "./mood-track-history.scss";
 
@@ -117,30 +111,24 @@ export const MoodTrackHistory = () => {
   );
 
   const emoticons = [
-    { name: "happy", label: "Happy", value: 4, image: moodTrackHappy },
-    { name: "good", label: "Good", value: 3, image: moodTrackGood },
-    { name: "sad", label: "Sad", value: 2, image: moodTrackSad },
+    { name: "happy", label: "Happy", value: 4 },
+    { name: "good", label: "Good", value: 3 },
+    { name: "sad", label: "Sad", value: 2 },
     {
       name: "depressed",
       label: "Depressed",
       value: 1,
-      image: moodTrackDepressed,
     },
-    { name: "worried", label: "Worried", value: 0, image: moodTrackWorried },
+    { name: "worried", label: "Worried", value: 0 },
   ];
 
   const renderAllEmoticons = () => {
     return emoticons.map((emoticon, index) => {
       return (
         <div className="mood-track-history__emoticon-container" key={index}>
-          <img
-            src={emoticon.image}
-            alt={emoticon.name}
-            className="mood-track-history__emoticon-image"
-            style={{
-              width: width < 768 ? "3.2rem" : "4.8rem",
-              height: width < 768 ? "3.2rem" : "4.8rem",
-            }}
+          <Emoticon
+            name={`emoticon-${emoticon.name}`}
+            size={width < 768 ? "sm" : "lg"}
           />
           <p className="small-text">
             {width >= 768 ? t(emoticon.label.toLowerCase()) : ""}
