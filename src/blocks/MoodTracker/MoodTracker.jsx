@@ -81,7 +81,10 @@ export const MoodTracker = ({
 
     return (
       <div
-        className="mood-tracker__rating-box__rating__emoticon-container"
+        className={[
+          "mood-tracker__rating-box__rating__emoticon-container",
+          "mood-tracker__rating-box__rating__emoticon-container--extra",
+        ].join(" ")}
         onClick={handleMoodtrackClick}
       >
         <Emoticon
@@ -92,7 +95,14 @@ export const MoodTracker = ({
           }
           size="sm"
         />
-        <p className={labelClasses}>
+        <p
+          className={[
+            labelClasses,
+            "mood-tracker__rating-box__rating__emoticon-container__text--extra",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
           {hasCompletedMoodTrackerEver ? t("history") : t("how_it_works")}
         </p>
       </div>
