@@ -2,7 +2,13 @@ import React, { useState, useEffect, useCallback, useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
-import { useNavigate, Link, NavLink, useLocation } from "react-router-dom";
+import {
+  useNavigate,
+  Link,
+  NavLink,
+  useLocation,
+  useSearchParams,
+} from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import OutsideClickHandler from "react-outside-click-handler";
 
@@ -90,6 +96,7 @@ export const Page = ({
     useContext(RootContext);
   const { width } = useWindowDimensions();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
@@ -97,6 +104,7 @@ export const Page = ({
     useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
+  const nextPath = searchParams.get("next");
 
   const token = localStorage.getItem("token");
 
@@ -501,7 +509,10 @@ export const Page = ({
 
   return (
     <>
-      <Authentication isOpen={showAuthenticationBackdrop} />
+      <Authentication
+        isOpen={showAuthenticationBackdrop}
+        onRequireRegisterAboutYou={() => setIsRegisterAboutYouModalOpen(true)}
+      />
       <RegisterAboutYou
         isLoggedIn={isLoggedIn}
         isOpen={isRegisterAboutYouModalOpen}
@@ -509,6 +520,9 @@ export const Page = ({
         handleGoBack={undefined}
         onSuccess={() => {
           setIsRegisterAboutYouModalOpen(false);
+          if (nextPath && nextPath.startsWith("/client/")) {
+            navigateTo(nextPath);
+          }
         }}
         handleLogout={handleLogout}
       />
