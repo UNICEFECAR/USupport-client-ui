@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { RootContext } from "#routes";
-import { ThemeContext } from "@USupport-components-library/utils";
 
+import { ThemeContext } from "@USupport-components-library/utils";
 import {
   Block,
-  Button,
+  Box,
   Loading,
-  CustomCarousel,
-  ConsultationBig,
+  Consultation,
   VideoPlayer,
+  NewButton,
 } from "@USupport-components-library/src";
 
 import "./consultations-dashboard.scss";
@@ -30,8 +31,10 @@ export const ConsultationsDashboard = ({
   handleSchedule,
   upcomingConsultations,
   isLoading,
+  isLoggedIn,
 }) => {
   const navigate = useNavigate();
+  // const { width } = useWindowDimensions();
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
   const { cookieState, setCookieState } = useContext(ThemeContext);
 
@@ -49,40 +52,74 @@ export const ConsultationsDashboard = ({
     (language === "kk" || language === "ru") &&
     (!upcomingConsultations || upcomingConsultations.length === 0);
 
-  const breakpointsItem = {
-    desktop: {
-      breakpoint: { max: 5000, min: 1366 }, // 5000 is a hack to make sure it's the last breakpoint
-      items: 3,
-    },
-    smallLaptop: {
-      breakpoint: { max: 1366, min: 768 },
-      items: 2,
-    },
-    tablet: {
-      breakpoint: { max: 768, min: 375 },
-      items: 1,
-    },
-    mobile: {
-      breakpoint: { max: 375, min: 0 },
-      items: 1,
-    },
-  };
+  // Generate dummy consultations for non-logged-in users
+  const dummyConsultations = useMemo(() => {
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(10, 0, 0, 0);
+
+    const dayAfter = new Date(now);
+    dayAfter.setDate(dayAfter.getDate() + 2);
+    dayAfter.setHours(14, 0, 0, 0);
+
+    const nextWeek = new Date(now);
+    nextWeek.setDate(nextWeek.getDate() + 5);
+    nextWeek.setHours(11, 0, 0, 0);
+
+    return [
+      {
+        consultationId: "dummy-1",
+        timestamp: tomorrow.getTime(),
+        image: "default",
+        status: "scheduled",
+        providerName: t("dummy_provider_1") || "Dr. Smith",
+        price: 0,
+      },
+      {
+        consultationId: "dummy-2",
+        timestamp: dayAfter.getTime(),
+        image: "default",
+        status: "scheduled",
+        providerName: t("dummy_provider_2") || "Dr. Johnson",
+        price: 0,
+      },
+      {
+        consultationId: "dummy-3",
+        timestamp: nextWeek.getTime(),
+        image: "default",
+        status: "scheduled",
+        providerName: t("dummy_provider_3") || "Dr. Williams",
+        price: 0,
+      },
+    ];
+  }, [t]);
+
+  const consultationsToShow =
+    !isLoggedIn &&
+    (!upcomingConsultations || upcomingConsultations.length === 0)
+      ? dummyConsultations
+      : upcomingConsultations;
 
   const renderConsultations = () => {
-    return upcomingConsultations?.map((consultation) => {
+    return consultationsToShow?.slice(0, 1).map((consultation) => {
       return (
         <div
-          className="consultations-dashboard__consultation-container"
           key={consultation.consultationId}
+          className="consultations-dashboard__box__content__part__consultation"
         >
-          <ConsultationBig
+          <Consultation
+            renderIn="client"
             consultation={consultation}
-            handleJoin={openJoinConsultation}
-            handleChange={openEditConsultation}
-            handleAcceptSuggestion={handleAcceptSuggestion}
-            handleSchedule={handleSchedule}
+            handleJoinClick={openJoinConsultation}
+            handleOpenEdit={openEditConsultation}
+            handleAcceptConsultation={handleAcceptSuggestion}
+            suggested={consultation.status === "suggested"}
+            overview={!isLoggedIn ? true : false}
             t={t}
             toast={toast}
+            liquidGlass
+            buttonSize="lg"
           />
         </div>
       );
@@ -107,11 +144,66 @@ export const ConsultationsDashboard = ({
 
   return (
     <Block classes="consultations-dashboard">
-      <div className="consultations-dashboard__heading">
+      <Box
+        classes={[
+          "consultations-dashboard__box",
+          !upcomingConsultations ||
+            (upcomingConsultations.length === 0 &&
+              "consultations-dashboard__box--no-consultations"),
+        ]}
+        liquidGlass
+      >
+        <div className="consultations-dashboard__box__content">
+          {(isLoading ||
+            !isLoggedIn ||
+            (upcomingConsultations && upcomingConsultations.length > 0)) && (
+            <div className={["consultations-dashboard__box__content__part"]}>
+              <h3 className="">{t("heading")}</h3>
+              {isLoading ? <Loading size="lg" /> : renderConsultations()}
+            </div>
+          )}
+          <div
+            className={[
+              "consultations-dashboard__box__content__part",
+              !upcomingConsultations ||
+                (upcomingConsultations.length === 0 &&
+                  "consultations-dashboard__box__content__part--no-consultations"),
+            ].join(" ")}
+          >
+            <h3 className="">{t("heading_need_support")}</h3>
+            <Box
+              classes="consultations-dashboard__box__content__part__need-support-box"
+              liquidGlass
+            >
+              <NewButton
+                label={t("schedule_consultation_label")}
+                onClick={handleScheduleConsultation}
+                iconName="calendar"
+                size="lg"
+                isFullWidth
+              />
+              <NewButton
+                label={t("explore_resources_label")}
+                onClick={() => navigate("/information-portal")}
+                size="lg"
+                type="outline"
+                isFullWidth
+              />
+            </Box>
+          </div>
+        </div>
+      </Box>
+      {/* <div className="consultations-dashboard__heading">
         <h4>{t("heading")}</h4>
-        <p className="small-text view-all-button" onClick={handleViewAll}>
-          {t("view_all")}
-        </p>
+        {width < 768 ? (
+          <p className="small-text view-all-button" onClick={handleViewAll}>
+            {t("view_all")}
+          </p>
+        ) : (
+          <h5 className="view-all-button" onClick={handleViewAll}>
+            {t("view_all")}
+          </h5>
+        )}
       </div>
       {shouldShowVideo && (
         <div className="consultations-dashboard__video-container">
@@ -130,22 +222,22 @@ export const ConsultationsDashboard = ({
       )}
       {isLoading ? (
         <Loading size="lg" />
-      ) : !upcomingConsultations || upcomingConsultations.length === 0 ? (
-        <div className="consultations-dashboard__button-container">
-          <Button
-            label={t("schedule_consultation_label")}
-            type="secondary"
-            size="lg"
-            onClick={handleScheduleConsultation}
-          />
-        </div>
+      ) : !consultationsToShow || consultationsToShow.length === 0 ? (
+        <></>
       ) : (
-        <div className="consultations-dashboard__carousel-container">
-          <CustomCarousel breakpointItems={breakpointsItem} speed={5000}>
-            {renderConsultations()}
-          </CustomCarousel>
+        <div className="consultations-dashboard__scroll-container">
+          {renderConsultations()}
         </div>
       )}
+      <NewButton
+        label={t("schedule_consultation_label")}
+        type="gradient"
+        size="lg"
+        isFullWidth={true}
+        onClick={handleScheduleConsultation}
+        iconName="calendar"
+        classes="consultations-dashboard__schedule-consultation-button"
+      /> */}
     </Block>
   );
 };

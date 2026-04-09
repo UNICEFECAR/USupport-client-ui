@@ -30,7 +30,48 @@
       "reject_all_cookies": "Reject all",
       "accept_necessary_cookies": "Accept only necessary",
       "save": "Save",
-      "high_contrast": "High Contrast"
+      "high_contrast": "High Contrast",
+      "your_profile": "Your profile",
+      "guest": "Guest",
+      "application_settings": "Application settings",
+      "rate_share": "Rate",
+      "other": "Other",
+      "notifications_settings_button_label": "Notification settings",
+      "rate_us_button_label": "Give us a rating",
+      "share_button_label": "Share the application",
+      "contact_us_button_label": "Contact us",
+      "privacy_policy_button_label": "Privacy Policy",
+      "FAQ_button_label": "FAQ",
+      "mood_tracker_button_label": "Mood tracker",
+      "payments_history_button_label": "Payment History",
+      "terms_of_use": "Terms of use",
+      "cookie_policy": "Cookie policy",
+      "user_guide": "Platform usage",
+      "edit_profile": "Edit profile",
+      "go_back": "Go back",
+      "notifications_heading": "Notifications",
+      "notifications_mark_read": "Mark all as read",
+      "notifications_empty": "No notifications yet",
+      "notifications_load_more": "Load more",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> booked a consultation on {{date}} from {{startHour}} to {{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> rescheduled your consultation from {{date}} {{startHour}}-{{endHour}} to {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Your consultation with <0>{{providerName}}</0> on {{date}} from {{startHour}} to {{endHour}} has been cancelled",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> cancelled your consultation on {{date}} from {{startHour}} to {{endHour}}",
+      "notifications_consultation_remind_start": "Your consultation starts in <0>{{minutes}}</0> minutes",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> suggested a consultation on {{date}} from {{startHour}} to {{endHour}}",
+      "notifications_consultation_suggestion_booking": "You accepted a consultation suggestion from <0>{{providerName}}</0> on {{date}} from {{startHour}} to {{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Consultation suggestion from <0>{{providerName}}</0> on {{date}} from {{startHour}} to {{endHour}} has been cancelled",
+      "notifications_consultation_started": "Your consultation with <0>{{providerName}}</0> has started",
+      "notifications_question_answered": "<0>{{providerName}}</0> answered your question",
+      "notifications_consultation_remind_start_24_hours_before": "Your consultation with <0>{{providerName}}</0> is starting in 24 hours",
+      "notifications_consultation_remind_start_48_hours_before": "Your consultation with <0>{{providerName}}</0> is starting in 48 hours",
+      "all": "All",
+      "new": "New",
+      "read": "Read",
+      "language_label": "Language",
+      "logout": "Logout",
+      "yesterday": "Yesterday",
+      "footer_text": "Your mental health matters—uSupport provides personalized, private, and safe psychological care."
     },
     "provider-overview": {
       "earliest_slot_label": "Earliest available slot for consultation",
@@ -82,7 +123,14 @@
       "video_label": "Video representation",
       "button_label": "Schedule consultation",
       "hour_consultation": "for 1 hour consultation",
-      "free": "free of charge"
+      "free": "free of charge",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
     },
     "user-profile": {
       "your_profile": "Your profile",
@@ -130,7 +178,9 @@
       "sex_placeholder": "Enter your sex",
       "year_of_birth_placeholder": "Enter your year of birth",
       "living_place_placeholder": "Enter your living place",
-      "parent": "Parent"
+      "parent": "Parent",
+      "logout_button_label": "Logout",
+      "heading": "Welcome to"
     },
     "register-anonymous": {
       "nickname_label": "Nickname *",
@@ -147,9 +197,10 @@
       "login_button_label": "I already have an account",
       "copy_text": "Copy and save or write down your anonymous code, if you lose it you cannot get access to your account anymore",
       "copy_success": "Code copied successfully",
-      "confirm_password_label": "Confirm password",
+      "confirm_password_label": "Confirm password *",
       "password_match_error": "The Password and Confirm Password fields do not match",
-      "age_terms_agreement_text_1": "I am over {{age}} years old"
+      "age_terms_agreement_text_1": "I am over {{age}} years old",
+      "heading": "Welcome to Client Portal"
     },
     "register-support": {
       "button_continue_label": "Continue",
@@ -189,6 +240,7 @@
       "psychiatrist": "Psychiatrist",
       "psychotherapist": "Psychotherapist",
       "no_match": "No providers matching your criteria",
+      "book_session": "Book session",
       "free": "Free",
       "coupon": "Coupon",
       "earliest_available_slot": "First available consultation:",
@@ -229,18 +281,21 @@
       "modal_heading": "Check your email",
       "modal_text": "If you are registered in the platform you will receive a link to reset your password.",
       "client": "Client",
-      "heading": "Welcome to"
+      "heading": "Welcome to",
+      "heading_modal": "Forgot password",
+      "go_back_to_login": "Go back to login"
     },
     "consultations": {
       "upcoming_tab_label": "Upcoming",
       "past_tab_label": "Past",
-      "sunday": "Sun",
-      "monday": "Mon",
-      "tuesday": "Tue",
-      "wednesday": "Wed",
-      "thursday": "Thu",
-      "friday": "Fri",
-      "saturday": "Sat",
+      "schedule_button_label": "Schedule a consultation",
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
       "no_upcoming_consultations": "You have no upcoming consultations",
       "no_past_consultations": "You have no past consultations",
       "reject_consultation_success": "Consultation rejected successfully",
@@ -259,7 +314,10 @@
       "not_conducted": "Not conducted",
       "free": "Free",
       "coupon": "Coupon",
-      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time",
+      "psychologist": "Psychologist",
+      "psychiatrist": "Psychiatrist",
+      "psychotherapist": "Psychotherapist"
     },
     "login": {
       "email_label": "Email / Access Token",
@@ -285,13 +343,22 @@
     "articles": {
       "heading": "Information portal",
       "no_results": "No Results Found",
+      "no_results_heading": "We couldn't find anything for \"{{query}}\"",
+      "no_results_line1": "Try adjusting your search or explore topics below.",
+      "no_results_line2": "You can also reset your filters to see more results.",
+      "reset_filters": "Reset filters",
+      "browse_all_articles": "Browse all articles",
+      "no_results_image_alt": "Illustration: people searching, no results",
       "could_not_load_content": "There are no results for the current selected country and language.",
+      "could_not_load_hint": "You can change country or language from the menu, or check back later as new resources are added often.",
       "all": "All",
       "read_more_button": "Click to read more",
       "min_read": "min read",
       "by": "By {{creator}}",
       "number_of_more_options": "{{count}} more",
-      "read": "Read"
+      "read": "Read",
+      "grid_toggle_featured": "Featured layout",
+      "grid_toggle_compact": "Compact layout"
     },
     "give-suggestion": {
       "heading": "Give us your suggestions",
@@ -318,6 +385,7 @@
       "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
+      "heading": "Welcome to",
       "email_error": "Please enter a valid email",
       "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
       "email_label": "Email *",
@@ -332,7 +400,7 @@
       "register_button": "Register",
       "paragraph": "Or register with:",
       "login_button_label": "I already have an account",
-      "confirm_password_label": "Confirm password",
+      "confirm_password_label": "Confirm password *",
       "password_match_error": "The Password and Confirm Password fields do not match",
       "age_terms_agreement_text_1": "I am over {{age}} years old"
     },
@@ -423,7 +491,7 @@
       "exported_at": "Exported at: {{time}}"
     },
     "consultations-dashboard": {
-      "heading": "My Consultations",
+      "heading": "Upcoming consultations",
       "view_all": "View all",
       "schedule_consultation_label": "Schedule a consultation",
       "live_text": "Now",
@@ -448,7 +516,41 @@
       "december": "December",
       "require_cookies": "To view this video, please accept all cookies.",
       "cookie_preferences": "Cookie preferences",
-      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
+      "upcoming_tab_label": "Upcoming",
+      "past_tab_label": "Past",
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "no_upcoming_consultations": "You have no upcoming consultations",
+      "no_past_consultations": "You have no past consultations",
+      "reject_consultation_success": "Consultation rejected successfully",
+      "accept_consultation_success": "Consultation accepted successfully",
+      "join": "Join",
+      "edit": "Edit",
+      "details": "See details",
+      "active": "Now",
+      "reject": "Reject suggestion",
+      "accept": "Accept consultation",
+      "cancel_consultation": "Cancel consultation",
+      "suggested": "Suggested",
+      "view_profile": "View personal profile",
+      "conducted": "Consultation ended",
+      "not_conducted": "Not conducted",
+      "free": "Free",
+      "coupon": "Coupon",
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time",
+      "dummy_provider_1": "Dr. Smith",
+      "dummy_provider_2": "Dr. Johnson",
+      "dummy_provider_3": "Dr. Williams",
+      "explore_resources_label": "Explore resources",
+      "heading_need_support": "Need support?",
+      "psychologist": "Psychologist",
+      "psychiatrist": "Psychiatrist",
+      "psychotherapist": "Psychotherapist"
     },
     "mood-tracker": {
       "happy": "Happy",
@@ -456,19 +558,24 @@
       "sad": "Sad",
       "depressed": "Depressed",
       "worried": "Worried",
+      "history": "History",
+      "welcome-heading": "Welcome",
       "heading": "How are you feeling today?",
       "mood_tracker": "Mood Tracker",
-      "additional_comment_placeholder": "What made you feel this way?",
+      "mood_tracker_long": "Study your mood tracker",
+      "additional_comment_label": "What made you feel this way?",
+      "additional_comment_placeholder": "Write your comment here ... (optional)",
       "submit_mood_track": "Submit",
       "add_mood_tracker_success": "Your daily mood was added successfully",
       "emergency_label": "Does this relate to a life event or critical situation?",
       "how_it_works": "How it works",
       "recommendations": "Recommendations",
       "recommendations_text": "Do you want to check out your mood graph and see recommended content?",
-      "check_out": "Check out"
+      "check_out": "Check out",
+      "user_guide": "User Guide"
     },
     "mascot-welcome-header": {
-      "welcome": "Welcome back {{name}}!",
+      "welcome": "Welcome {{name}}!",
       "no_registration_heading": "You are using the app without registration",
       "no_registration_subheading": "To use all the features of the app you need to have an anonymous or regular account.",
       "create_account_button": "Create an account",
@@ -498,8 +605,7 @@
       "december": "December",
       "coupon": "Coupon",
       "explore_button_label": "Explore map",
-      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time",
-      "user_guide": "User Guide"
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
     },
     "activity-log-dashboard": {
       "heading": "Activity Log",
@@ -514,7 +620,14 @@
       "min_read": "min read",
       "by": "by {{creator}}",
       "number_of_more_options": "{{count}} more",
-      "read": "Read"
+      "read": "Read",
+      "show_more": "Show more"
+    },
+    "most-read-articles": {
+      "heading": "Most Read Article",
+      "read_more_button": "Click to read more",
+      "min_read": "min read",
+      "by": "by {{creator}}"
     },
     "mood-tracker-history": {
       "heading": "Overall you felt {{feeling}} in the last 30 days",
@@ -611,6 +724,19 @@
       "try_again_button_label": "Try again"
     },
     "mood-track-history": {
+      "all": "All",
+      "month_1": "Jan",
+      "month_2": "Feb",
+      "month_3": "Mar",
+      "month_4": "Apr",
+      "month_5": "May",
+      "month_6": "Jun",
+      "month_7": "Jul",
+      "month_8": "Aug",
+      "month_9": "Sep",
+      "month_10": "Oct",
+      "month_11": "Nov",
+      "month_12": "Dec",
       "happy": "Happy",
       "good": "Good",
       "sad": "Sad",
@@ -632,7 +758,8 @@
       "read_more_button": "Read more",
       "by": "by {{creator}}",
       "min_read": "min read",
-      "no_recommendations": "No recommendations found"
+      "no_recommendations": "No recommendations found",
+      "select_year": "Select year"
     },
     "mascot-header-MyQA": {
       "heading": "My Q&A",
@@ -658,9 +785,17 @@
       "search_placeholder": "Search",
       "filter": "Filter tags",
       "no_answers_found": "There are no answered questions",
+      "no_results_heading": "We couldn't find anything for \"{{query}}\"",
+      "no_results_line1": "Try adjusting your search or choosing a different tag.",
+      "no_results_line2": "You can reset filters to see all questions again.",
+      "reset_filters": "Reset filters",
+      "browse_all_questions": "Show all questions",
+      "no_results_image_alt": "Illustration: no matching questions",
       "language": "Language",
       "all_languages": "All languages",
-      "date_answered": "on {{date}}"
+      "date_answered": "on {{date}}",
+      "go_back": "Go back",
+      "how_it_works": "See how it works"
     },
     "videos": {
       "view_more": "View more",
@@ -740,6 +875,7 @@
       "view_organization_details": "Read more",
       "address": "Address",
       "phone": "Phone",
+      "services": "Services",
       "email": "Email",
       "any": "Any",
       "personalize": "Personalize",
@@ -850,7 +986,7 @@
       "frequent_headaches": "I have frequent headaches for no reason.",
       "question": "Question {{number}} of {{total}}",
       "completed": "{{percentage}}% completed",
-      "back": "Back",
+      "back": "Go back",
       "next": "Next",
       "start_assessment": "Start Assessment",
       "finish_assessment": "Finish Assessment",
@@ -866,7 +1002,9 @@
     },
     "baseline-assessment-dashboard": {
       "heading": "Your Baseline Assessment",
+      "heading_completed": "Your Latest Assessment",
       "no_assessment_text": "You haven't completed a baseline assessment yet. Complete one to get personalized insights about your mental health.",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
       "start_new_assessment": "Start Assessment",
       "completed": "Completed",
       "in_progress": "In Progress",
@@ -879,7 +1017,11 @@
       "social": "Social",
       "latest_results": "Latest Results",
       "how_it_works": "How it works",
-      "see_last_result": "Latest results"
+      "see_last_result": "View Results",
+      "explore_button_label": "Explore Organizations",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",
@@ -923,6 +1065,46 @@
       "summary_heading": "Recommendations generated based on the score obtained",
       "organizations": "Recommended organizations",
       "view_more": "View more"
+    },
+    "dashboard-hero": {
+      "heading": "Welcome",
+      "user_guide": "User Guide",
+      "next_consultation": "Next consultation:",
+      "change_button_label": "Change",
+      "accept_button_label": "Accept consultation",
+      "join_button_label": "Join",
+      "schedule_button_label": "Schedule",
+      "live_label": "Now",
+      "no_consultations": "Currently you do not have upcoming consultations",
+      "free": "Free",
+      "ordinal_st": "st",
+      "ordinal_nd": "nd",
+      "ordinal_rd": "rd",
+      "ordinal_th": "th",
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December",
+      "coupon": "Coupon",
+      "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time"
+    },
+    "download-app": {
+      "heading": "Download the uSupport <0>Mobile App</0>",
+      "text": "Get support anytime, anywhere - fast, secure and easy to use.",
+      "paragraph": "Now available for iOS and Android",
+      "download_text": "Download from"
+    },
+    "find-support-near-you": {
+      "heading": "Find support near you",
+      "explore_button_label": "Explore"
     }
   },
   "pages": {
@@ -1012,7 +1194,8 @@
       "subheading_default": "You can find all articles here",
       "subheading_newest": "Here you can find newest articles",
       "subheading_most_read": "Here you can find the most read articles from all categories",
-      "heading": "Articles"
+      "heading": "Articles",
+      "search": "Search"
     },
     "article-information": {
       "heading": "More Articles",
@@ -1026,8 +1209,10 @@
       "export_failed": "Export failed. Please try again."
     },
     "information-portal": {
+      "go_back": "Go back",
       "heading": "Information portal",
       "subheading": "Here you can explore everything you need to improve your mental health",
+      "search": "Search",
       "heading_newest": "Newest Articles",
       "heading_popular": "Most popular",
       "heading_no_language_results": "We could not find any articles based on your selected language.",
@@ -1146,7 +1331,8 @@
       "subheading_newest": "Watch our newest videos.",
       "heading_most_viewed": "Most Viewed Videos",
       "subheading_most_viewed": "Watch our most viewed videos.",
-      "all": "All"
+      "all": "All",
+      "search": "Search"
     },
     "video-information-page": {
       "more_videos": "More videos",
@@ -1169,7 +1355,8 @@
       "subheading_newest": "Listen to our newest podcasts.",
       "heading_most_viewed": "Most Viewed Podcasts",
       "subheading_most_viewed": "Listen to our most viewed podcasts.",
-      "all": "All"
+      "all": "All",
+      "search": "Search"
     },
     "organizations-page": {
       "heading": "Organizations"
@@ -1182,7 +1369,7 @@
       "login": ""
     },
     "children-rights-page": {
-      "back": "Back",
+      "back": "Go back",
       "continue": "Continue",
       "submit": "Submit",
       "view_content": "View more content",
@@ -1316,6 +1503,19 @@
     }
   },
   "backdrops": {
+    "welcome": {
+      "heading": "Welcome to Client Portal",
+      "country": "Country",
+      "language": "Language",
+      "placeholder": "Select",
+      "register_email": "Register with email",
+      "register_anonymously": "Register anonymously",
+      "continue_as_guest": "Continue without registration",
+      "already_have_account": "Already have an account?",
+      "log_in": "Log in",
+      "client": "Client",
+      "poland_description": "uSupport is a mental health and well-being platform designed for youth (16–24)."
+    },
     "filter-providers": {
       "heading": "Filter providers",
       "subheading": "Choose the provider you want to talk to in an audio/video/text consultation",
@@ -1340,8 +1540,20 @@
     },
     "confirm-consultation": {
       "heading": "Your appointment was booked",
+      "subheading": "Your session with {{providerName}} has been booked successfully.",
+      "subheading_no_name": "Your session has been booked successfully.",
       "ctaLabel": "Continue",
-      "text": "for {{startDate}}th of {{month}} {{year}} for the slot from {{startTime}} to {{endTime}}. You can change it at any time through the app.",
+      "providerLabel": "Provider",
+      "psychologist": "Psychologist",
+      "psychiatrist": "Psychiatrist",
+      "psychotherapist": "Psychotherapist",
+      "appointmentDetailsHeading": "Appointment details",
+      "reminderText": "You will receive a reminder before the session.",
+      "manageText": "You can manage your bookings from My Consultations.",
+      "dateLabel": "Date",
+      "timeLabel": "Time",
+      "dateText": "{{startDate}}th of {{month}} {{year}}",
+      "timeText": "From {{startTime}} to {{endTime}}",
       "january": "January",
       "february": "February",
       "march": "March",
@@ -1376,7 +1588,7 @@
       "heading": "Change consultation",
       "subheading": "Select the communication form which fits your needs the best and receive the help you want.",
       "specialist_button_label": "Change the specialist",
-      "date_button_label": "Change the date and time",
+      "date_button_label": "Change date and time",
       "cancel_button_label": "Cancel the consultation",
       "sunday": "Sun",
       "monday": "Mon",

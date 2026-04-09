@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
@@ -7,7 +8,7 @@ import {
   Loading,
 } from "@USupport-components-library/src";
 
-import { constructShareUrl } from "@USupport-components-library/utils";
+import { constructShareUrl, ThemeContext } from "@USupport-components-library/utils";
 
 import { useGetOrganizationById } from "#hooks";
 
@@ -26,6 +27,7 @@ export const OrganizationOverview = ({ organizationId }) => {
   const { t } = useTranslation("blocks", {
     keyPrefix: "organization-overview",
   });
+  const { theme } = useContext(ThemeContext);
 
   const {
     data: organization,
@@ -54,6 +56,7 @@ export const OrganizationOverview = ({ organizationId }) => {
           organization={organization}
           t={t}
           handleCopyLink={handleCopyLink}
+          iconColor={theme === "dark" || theme === "highContrast" ? "#ededed" : "#66768D"}
         />
       )}
     </Block>

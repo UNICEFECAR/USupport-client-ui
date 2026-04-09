@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import {
   Block,
-  Button,
+  NewButton,
   ProviderDetails,
   Loading,
 } from "@USupport-components-library/src";
@@ -26,11 +26,11 @@ import "./provider-overview.scss";
 export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "provider-overview" });
   const { activeCoupon } = useContext(RootContext);
-  const { cookieState, setCookieState } = useContext(ThemeContext);
+  const { cookieState, setCookieState, theme } = useContext(ThemeContext);
 
   const { data: provider } = useGetProviderDataById(
     providerId,
-    activeCoupon?.campaignId
+    activeCoupon?.campaignId,
   );
 
   const image = AMAZON_S3_BUCKET + "/" + (provider?.image || "default");
@@ -45,17 +45,21 @@ export const ProviderOverview = ({ providerId, openScheduleBackdrop }) => {
           t={t}
           image={image}
           renderIn="client"
+          activeCoupon={activeCoupon}
           cookieState={cookieState}
           setCookieState={setCookieState}
+          iconColor={theme === "dark" || theme === "highContrast" ? "#ededed" : "#66768D"}
+          buttonComponent={
+            <NewButton
+              label={t("button_label")}
+              iconName="calendar"
+              iconColor="#ffffff"
+              size="lg"
+              onClick={openScheduleBackdrop}
+            />
+          }
         />
       )}
-      <div className="provider-profile__button-container">
-        <Button
-          label={t("button_label")}
-          size="lg"
-          onClick={openScheduleBackdrop}
-        />
-      </div>
     </Block>
   );
 };

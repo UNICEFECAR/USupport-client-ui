@@ -1,6 +1,14 @@
 @import "@USupport-components-library/styles";
 
 .mood-track-history {
+  padding-bottom: $spacing_3_2;
+
+  &__year-dropdown {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
   &__content-container {
     display: flex;
     flex-direction: row;
@@ -20,8 +28,15 @@
         align-items: center;
         cursor: pointer;
 
+        &--right {
+          height: 100%;
+          display: flex;
+          align-items: flex-end;
+        }
+
         &__right {
           margin-left: $spacing_0_8;
+          margin-bottom: $spacing_1_2;
           @media screen and (min-width: screen_md) {
             margin-left: $spacing_2_4;
           }
@@ -45,9 +60,12 @@
 
     &__chart-wrapper {
       margin-top: $spacing_1_6;
-      padding: $spacing_0_8 0;
       height: 28rem;
       cursor: pointer;
+
+      @media screen and (min-width: $screen-lg) {
+        height: 50rem;
+      }
 
       &__dates {
         display: flex;
@@ -63,14 +81,10 @@
     align-items: center;
     min-height: 4rem;
     justify-content: center;
-  }
 
-  &__information-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 24rem;
-    padding-bottom: $spacing_3_2;
+    @media screen and (min-width: $screen-lg) {
+      height: 10rem;
+    }
   }
 
   &__icon-container {
@@ -115,6 +129,7 @@
       & .card-media {
         margin: unset;
         @media screen and (min-width: $screen-md) {
+          width: 100%;
           max-width: 45%;
         }
       }

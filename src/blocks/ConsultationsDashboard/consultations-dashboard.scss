@@ -4,46 +4,175 @@
   padding-top: $spacing_4_8;
   padding-bottom: $spacing_6_4;
 
-  &__heading {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    > h4 {
-      text-align: left;
-    }
-
-    .view-all-button {
-      color: $color_secondary_9749fa;
-      cursor: pointer;
-      padding: $spacing_1_6 0;
+  .theme-light & {
+    .box--liquid-glass,
+    .card--liquid-glass {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.44),
+        rgba(235, 243, 255, 0.3)
+      );
+      border: 1px solid rgba(224, 233, 255, 0.72);
+      box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.14);
     }
   }
 
-  &__button-container {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    margin-top: $spacing_2_0;
-    padding-bottom: $spacing_1_6;
+  &__box {
+    &--no-consultations {
+      // Match two-column row layout on tablet+ only; full width on mobile
+      @media screen and (min-width: $screen-md) {
+        width: 50%;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+
+      @media screen and (min-width: $screen-md) {
+        flex-direction: row;
+      }
+
+      &__part {
+        padding: $spacing_3_2;
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (min-width: $screen-md) {
+          width: 100%;
+
+          &:not(
+            .consultations-dashboard__box__content__part--no-consultations
+          ) {
+            width: calc(50% - 2 * $spacing_3_2);
+          }
+        }
+
+        & > h3 {
+          text-align: left;
+          font-weight: 300;
+          letter-spacing: 0.01em;
+        }
+
+        &:first-child {
+          border-bottom: 2px solid $color_gray_ea;
+          @include themifyCustom(
+            $themes,
+            "border-bottom-color",
+            "color_gray_ea",
+            "color_gray_344054"
+          );
+
+          @media screen and (min-width: $screen-md) {
+            border-bottom: none;
+            border-right: 2px solid $color_gray_ea;
+            @include themifyCustom(
+              $themes,
+              "border-right-color",
+              "color_gray_ea",
+              "color_gray_344054"
+            );
+          }
+        }
+
+        &--no-consultations {
+          &:first-child {
+            border-bottom: none;
+
+            @media screen and (min-width: $screen-md) {
+              border-right: none;
+            }
+          }
+        }
+
+        &__need-support-box {
+          margin-top: $spacing_2_4;
+          padding: $spacing_2_4;
+          display: flex;
+          flex-direction: column;
+          gap: $spacing_2_0;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+
+          @media screen and (min-width: $screen-lg) {
+            padding: $spacing_3_2 $spacing_7_2;
+          }
+        }
+
+        &__consultation {
+          width: 100%;
+          padding-top: $spacing_2_4;
+
+          & .consultation {
+            width: calc(100% - $spacing_2_4);
+          }
+        }
+      }
+    }
   }
 
-  &__video-container {
-    margin: $spacing_2_0 auto;
-    width: 100%;
-    max-width: $screen-md;
-  }
+  // &__heading {
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: space-between;
+  //   align-items: center;
 
-  &__carousel-container {
-    margin-top: $spacing_2_0;
-  }
+  //   > h4 {
+  //     text-align: left;
+  //   }
 
-  &__consultation-container {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
+  //   > h5 {
+  //     font-weight: 500;
+  //   }
+
+  //   .view-all-button {
+  //     @include themify($themes, "color", "color_6a4ffb_8c90eb");
+  //     cursor: pointer;
+  //     padding: $spacing_1_6 0;
+  //   }
+  // }
+
+  // &__button-container {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-items: center;
+  //   align-items: center;
+  //   margin-top: $spacing_2_0;
+  //   padding-bottom: $spacing_1_6;
+  // }
+
+  // &__video-container {
+  //   margin: $spacing_2_0 auto;
+  //   width: 100%;
+  //   max-width: $screen-md;
+  // }
+
+  // &__scroll-container {
+  //   display: flex;
+  //   overflow-x: auto;
+  //   gap: $spacing_1_6;
+  //   padding-bottom: $spacing_0_8;
+  //   -webkit-overflow-scrolling: touch;
+  //   scrollbar-width: none;
+
+  //   &::-webkit-scrollbar {
+  //     display: none;
+  //   }
+
+  //   &__item {
+  //     flex: 0 0 auto;
+  //   }
+  // }
+
+  // &__schedule-consultation-button {
+  //   margin: $spacing_2_0 auto 0;
+  // }
+
+  &__no-consultations {
+    padding-top: $spacing_2_4;
+    margin: 0;
+    @include themify($themes, "color", "color_6a4ffb_8c90eb");
+    font-size: 0.875rem;
   }
 }

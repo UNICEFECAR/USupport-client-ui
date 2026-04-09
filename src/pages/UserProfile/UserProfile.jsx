@@ -27,13 +27,14 @@ export const UserProfile = () => {
 
   const handleRegisterRedirection = () => {
     userSvc.logout();
-    navigate("/register-preview");
+    navigate("/dashboard");
   };
 
   const handleLogout = () => {
     userSvc.logout();
 
-    navigate("/");
+    const language = localStorage.getItem("language");
+    window.location.href = `/client/${language}/dashboard`;
   };
 
   const openModal = () => setIsModalOpen(true);

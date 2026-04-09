@@ -8,7 +8,7 @@ import {
   ProgressBar,
   Loading,
   Icon,
-  Button,
+  NewButton,
 } from "@USupport-components-library/src";
 import { createArticleSlug } from "@USupport-components-library/utils";
 import { CardMedia, Markdown } from "@USupport-components-library/src";
@@ -218,7 +218,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                 {t("summary_heading")}
               </h4>
               <Markdown markDownText={data.summaryCK} className={"text"} />
-              <Button
+              <NewButton
                 onClick={() =>
                   navigate("/organizations", {
                     state: { personalizeFromAssessment: true },
@@ -229,7 +229,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                 classes="baseline-assesment-result__summary__interactive-map-button"
               >
                 {t("organizations")}
-              </Button>
+              </NewButton>
             </GridItem>
           </>
         )}
@@ -269,7 +269,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                       navigate(
                         `/information-portal/article/${
                           articleData.id
-                        }/${createArticleSlug(articleData.title)}`
+                        }/${createArticleSlug(articleData.title)}`,
                       );
                     }}
                   />
@@ -306,7 +306,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                       navigate(
                         `/information-portal/video/${
                           videoData.id
-                        }/${createArticleSlug(videoData.title)}`
+                        }/${createArticleSlug(videoData.title)}`,
                       );
                     }}
                   />
@@ -346,7 +346,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                       navigate(
                         `/information-portal/podcast/${
                           podcastData.id
-                        }/${createArticleSlug(podcastData.title)}`
+                        }/${createArticleSlug(podcastData.title)}`,
                       );
                     }}
                   />

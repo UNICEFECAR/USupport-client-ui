@@ -1,0 +1,83 @@
+@import "@USupport-components-library/styles";
+
+.ReactModal__Overlay:has(.welcome-modal) {
+  background: rgba(18, 18, 24, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+body:has(.welcome-modal) {
+  overflow: hidden;
+}
+
+.welcome-modal {
+  &__content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding-bottom: $spacing_2_0;
+    gap: $spacing_2_0;
+
+    &__pl-description {
+      text-align: center;
+    }
+
+    &__dropdown {
+      width: 100%;
+    }
+
+    &__buttons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: $spacing_1_6;
+      margin-top: auto;
+    }
+
+    &__buttons-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: $spacing_2_0;
+      width: 100%;
+
+      & > button,
+      & > .button {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+
+      @media screen and (max-width: $screen-md) {
+        padding-inline: $spacing_1_6;
+        width: calc(100% - 2 * #{$spacing_1_6});
+      }
+    }
+
+    &__login-text {
+      font-size: 18px;
+      color: #373737;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+      width: 100%;
+      padding-bottom: $spacing_1_6;
+
+      &--disabled {
+        opacity: 0.45;
+        pointer-events: none;
+      }
+    }
+
+    &__login-link {
+      color: #9749fa;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

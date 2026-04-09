@@ -30,7 +30,48 @@
       "reject_all_cookies": "Odrzuć wszystkie",
       "accept_necessary_cookies": "Akceptuj tylko wymagane",
       "save": "Zapisz",
-      "high_contrast": "Wysoki kontrast"
+      "high_contrast": "Wysoki kontrast",
+      "your_profile": "Twój profil",
+      "guest": "Gość",
+      "application_settings": "Ustawienia aplikacji",
+      "rate_share": "Oceń",
+      "other": "Inne",
+      "notifications_settings_button_label": "Ustawienia powiadomień",
+      "rate_us_button_label": "Wystaw nam ocenę",
+      "share_button_label": "Udostępnianie aplikacji",
+      "contact_us_button_label": "Skontaktuj się z nami",
+      "privacy_policy_button_label": "Polityką prywatności",
+      "FAQ_button_label": "Najczęściej zadawane pytania",
+      "mood_tracker_button_label": "Monitor nastroju",
+      "payments_history_button_label": "Historia płatności",
+      "terms_of_use": "Regulaminem",
+      "cookie_policy": "Polityka plików cookies",
+      "user_guide": "Wykorzystanie platformy",
+      "edit_profile": "Edytuj profil",
+      "go_back": "Wróć",
+      "notifications_heading": "Powiadomienia",
+      "notifications_mark_read": "Oznacz wszystkie jako przeczytane",
+      "notifications_empty": "Brak powiadomień",
+      "notifications_load_more": "Załaduj więcej",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> zarezerwował(a) konsultację na {{date}} w godz. {{startHour}}–{{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> przełożył(a) Twoją konsultację z {{date}} {{startHour}}-{{endHour}} na {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Twoja konsultacja z <0>{{providerName}}</0> w dniu {{date}} w godz. {{startHour}}–{{endHour}} została anulowana",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> anulował(a) Twoją konsultację w dniu {{date}} w godz. {{startHour}}–{{endHour}}",
+      "notifications_consultation_remind_start": "Twoja konsultacja rozpocznie się za <0>{{minutes}}</0> min",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> zaproponował(a) konsultację na {{date}} w godz. {{startHour}}–{{endHour}}",
+      "notifications_consultation_suggestion_booking": "Zaakceptowałeś(-aś) propozycję konsultacji od <0>{{providerName}}</0> na {{date}} w godz. {{startHour}}–{{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Propozycja konsultacji od <0>{{providerName}}</0> na {{date}} w godz. {{startHour}}–{{endHour}} została anulowana",
+      "notifications_consultation_started": "Twoja konsultacja z <0>{{providerName}}</0> rozpoczęła się",
+      "notifications_question_answered": "<0>{{providerName}}</0> odpowiedział(a) na Twoje pytanie",
+      "notifications_consultation_remind_start_24_hours_before": "Twoja konsultacja z <0>{{providerName}}</0> rozpocznie się za 24 godziny",
+      "notifications_consultation_remind_start_48_hours_before": "Twoja konsultacja z <0>{{providerName}}</0> rozpocznie się za 48 godzin",
+      "all": "Wszystkie",
+      "new": "Nowe",
+      "read": "Przeczytane",
+      "language_label": "Język",
+      "logout": "Wyloguj",
+      "yesterday": "Wczoraj",
+      "footer_text": "Twoje zdrowie psychiczne ma znaczenie — uSupport zapewnia spersonalizowaną, prywatną i bezpieczną opiekę psychologiczną."
     },
     "provider-overview": {
       "earliest_slot_label": "Najwcześniejszy dostępny termin konsultacji",
@@ -82,7 +123,14 @@
       "video_label": "Prezentacja wideo",
       "button_label": "Zaplanuj konsultację",
       "hour_consultation": "za 1 godzinę konsultacji",
-      "free": "Bezpłatne"
+      "free": "Bezpłatne",
+      "monday": "Poniedziałek",
+      "tuesday": "Wtorek",
+      "wednesday": "Środa",
+      "thursday": "Czwartek",
+      "friday": "Piątek",
+      "saturday": "Sobota",
+      "sunday": "Niedziela"
     },
     "user-profile": {
       "your_profile": "Twój profil",
@@ -106,8 +154,8 @@
       "button_link": "Odwiedź stronę",
       "button_call": "Skontaktuj się teraz",
       "no_results": "Brak wyników dla aktualnie wybranego kraju i języka.",
-      "other_emergency_services": "Other emergency service providers",
-      "browse": "Browse"
+      "other_emergency_services": "Inni dostawcy usług w nagłych wypadkach",
+      "browse": "Przeglądaj"
     },
     "register-about-you": {
       "input_name_label": "Imię",
@@ -130,7 +178,9 @@
       "sex_placeholder": "Wprowadź swoją płeć",
       "year_of_birth_placeholder": "Wprowadź swój rok urodzenia",
       "living_place_placeholder": "Wprowadź swoje miejsce zamieszkania",
-      "parent": "Rodzic"
+      "parent": "Rodzic",
+      "logout_button_label": "Wyloguj",
+      "heading": "Witamy w"
     },
     "register-anonymous": {
       "nickname_label": "Nick *",
@@ -147,9 +197,10 @@
       "login_button_label": "Już posiadam konto",
       "copy_text": "Skopiuj i zapisz lub zanotuj swój anonimowy token. Jeśli go zgubisz, nie zalogujesz się na swoje konto i nie połączysz się na konsultację z psychologiem! Do odbycia sesji z psychologiem potrzebujesz tokenu dostępu i hasła do konta.",
       "copy_success": "Token został pomyślnie skopiowany",
-      "confirm_password_label": "Potwierdź hasło",
+      "confirm_password_label": "Potwierdź hasło *",
       "password_match_error": "Pola Hasło i Potwierdź hasło nie są zgodne",
-      "age_terms_agreement_text_1": "Mam ponad {{age}} lat"
+      "age_terms_agreement_text_1": "Mam ponad {{age}} lat",
+      "heading": "Witamy w"
     },
     "register-support": {
       "button_continue_label": "Kontynuuj",
@@ -203,7 +254,8 @@
       "tab_coupon": "Kupon",
       "tab_free": "Bezpłatne",
       "choose-the-provider": "Wybierz specjalistę, z którym chcesz rozmawiać przez wideo, audio lub czat. Czasami może minąć kilka sesji, zanim znajdziesz specjalistę odpowiedniego do Twoich potrzeb i preferowanego podejścia.",
-      "coupon_note": "Tym razem wpisaliśmy dla Ciebie kod na darmową sesję! Umów się na wizytę u jednego z naszych konsultantów i zrób pierwszy krok ku lepszemu samopoczuciu."
+      "coupon_note": "Tym razem wpisaliśmy dla Ciebie kod na darmową sesję! Umów się na wizytę u jednego z naszych konsultantów i zrób pierwszy krok ku lepszemu samopoczuciu.",
+      "book_session": "Umów sesję"
     },
     "notification-preferences": {
       "email": "Powiadomienia email",
@@ -229,11 +281,14 @@
       "modal_heading": "Sprawdź swoją skrzynkę email",
       "modal_text": "Jeśli jesteś zarejestrowany na platformie, otrzymasz link do zresetowania hasła.",
       "client": "Klient/ka",
-      "heading": "Witamy w"
+      "heading": "Witamy w",
+      "heading_modal": "Zapomniałeś hasła?",
+      "go_back_to_login": "Wróć do logowania"
     },
     "consultations": {
       "upcoming_tab_label": "Nadchodzące",
       "past_tab_label": "Wcześniejsze",
+      "schedule_button_label": "Zaplanuj konsultację",
       "sunday": "Niedz.",
       "monday": "Pon.",
       "tuesday": "Wt.",
@@ -258,7 +313,10 @@
       "not_conducted": "Nie przeprowadzono",
       "free": "Bezpłatne",
       "coupon": "Kupon",
-      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem",
+      "psychologist": "Psycholog/żka",
+      "psychiatrist": "Psychiatra",
+      "psychotherapist": "Psychoterapeuta/ka"
     },
     "login": {
       "email_label": "Email / token dostępu",
@@ -284,13 +342,22 @@
     "articles": {
       "heading": "Wiedza",
       "no_results": "Nie znaleziono wyników",
+      "no_results_heading": "Nie znaleziono nic dla „{{query}}”",
+      "no_results_line1": "Spróbuj zmienić wyszukiwanie lub przejrzyj poniższe tematy.",
+      "no_results_line2": "Możesz też zresetować filtry, aby zobaczyć więcej wyników.",
+      "reset_filters": "Resetuj filtry",
+      "browse_all_articles": "Przeglądaj wszystkie artykuły",
+      "no_results_image_alt": "Ilustracja: brak wyników wyszukiwania",
       "could_not_load_content": "Brak wyników dla aktualnie wybranego kraju i języka.",
+      "could_not_load_hint": "Możesz zmienić kraj lub język w menu albo sprawdzić ponownie później — nowe materiały pojawiają się regularnie.",
       "all": "Wszystkie",
       "read_more_button": "Czytaj więcej",
       "min_read": "min. czytania",
       "by": "Przez {{creator}}",
       "number_of_more_options": "jeszcze {{count}}",
-      "read": "Przeczytane"
+      "read": "Przeczytane",
+      "grid_toggle_featured": "Układ wyróżniony",
+      "grid_toggle_compact": "Układ kompaktowy"
     },
     "give-suggestion": {
       "heading": "Przekaż nam swoje sugestie",
@@ -317,6 +384,7 @@
       "pl_text": "uSupport to platforma zdrowia psychicznego i dobrego samopoczucia przeznaczona dla młodych osób (16-24)"
     },
     "register-email": {
+      "heading": "Witamy w",
       "email_error": "Wprowadź poprawny adres email",
       "password_error": "Hasło powinno zawierać co najmniej 8 znaków, 1 wielką literę, 1 małą literę i 1 cyfrę.",
       "email_label": "Email *",
@@ -331,7 +399,7 @@
       "register_button": "Rejestracja",
       "paragraph": "Lub zarejestruj się za pomocą:",
       "login_button_label": "Już posiadam konto",
-      "confirm_password_label": "Potwierdź hasło",
+      "confirm_password_label": "Potwierdź hasło *",
       "password_match_error": "Pola Hasło i Potwierdź hasło nie są zgodne",
       "age_terms_agreement_text_1": "Mam ponad {{age}} lat"
     },
@@ -447,7 +515,41 @@
       "december": "Grudzień",
       "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
       "cookie_preferences": "Preferencje plików cookie",
-      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem",
+      "dummy_provider_1": "Dr Kowalski",
+      "dummy_provider_2": "Dr Nowak",
+      "dummy_provider_3": "Dr Wiśniewski",
+      "upcoming_tab_label": "Nadchodzące",
+      "past_tab_label": "Wcześniejsze",
+      "sunday": "Niedz.",
+      "monday": "Pon.",
+      "tuesday": "Wt.",
+      "wednesday": "Śr.",
+      "thursday": "Czw.",
+      "friday": "Pt.",
+      "saturday": "Sob.",
+      "no_upcoming_consultations": "Nie masz żadnych nadchodzących konsultacji",
+      "no_past_consultations": "Nie masz żadnych wcześniejszych konsultacji",
+      "reject_consultation_success": "Konsultacja została pomyślnie odrzucona",
+      "accept_consultation_success": "Konsultacja została pomyślnie zaakceptowana",
+      "join": "Dołącz",
+      "edit": "Edytuj",
+      "details": "Zobacz szczegóły",
+      "active": "Teraz",
+      "reject": "Odrzuć sugestię",
+      "accept": "Zaakceptuj konsultację",
+      "cancel_consultation": "Anuluj konsultację",
+      "suggested": "Sugerowane",
+      "view_profile": "Wyświetl profil osobisty",
+      "conducted": "Konsultacja zakończona",
+      "not_conducted": "Nie przeprowadzono",
+      "free": "Bezpłatne",
+      "coupon": "Kupon",
+      "explore_resources_label": "Poznaj zasoby",
+      "heading_need_support": "Potrzebujesz wsparcia?",
+      "psychologist": "Psycholog/żka",
+      "psychiatrist": "Psychiatra",
+      "psychotherapist": "Psychoterapeuta/ka"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",
@@ -455,6 +557,7 @@
       "sad": "Smutny/a",
       "depressed": "Przygnębiony/a",
       "worried": "Zmartwiony/a",
+      "history": "Historia",
       "heading": "Jak się dziś czujesz?",
       "mood_tracker": "Monitor nastroju",
       "additional_comment_placeholder": "Co sprawiło, że tak się poczułeś/aś?",
@@ -464,7 +567,11 @@
       "how_it_works": "Jak to działa",
       "recommendations": "Rekomendacje",
       "recommendations_text": "Chcesz zobaczyć wykres swojego nastroju i polecane treści?",
-      "check_out": "Zobacz"
+      "check_out": "Zobacz",
+      "mood_tracker_long": "Przeanalizuj swój dziennik nastroju",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide",
+      "additional_comment_label": "Co sprawiło, że tak się poczułeś/aś?"
     },
     "mascot-welcome-header": {
       "welcome": "Witamy z powrotem {{name}}!",
@@ -497,7 +604,8 @@
       "december": "Grudzień",
       "coupon": "Kupon",
       "explore_button_label": "Odkryj",
-      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem",
+      "user_guide": "Poradnik użytkownika"
     },
     "activity-log-dashboard": {
       "heading": "Rejestr aktywności",
@@ -512,7 +620,8 @@
       "min_read": "min. czytania",
       "by": "Przez {{creator}}",
       "number_of_more_options": "jeszcze {{count}}",
-      "read": "Czytać"
+      "read": "Czytać",
+      "show_more": "Pokaż więcej"
     },
     "mood-tracker-history": {
       "heading": "Ogólnie rzecz biorąc, czułeś się/aś się {{feeling}} w ciągu ostatnich 30 dni",
@@ -609,6 +718,19 @@
       "try_again_button_label": "Spróbuj ponownie"
     },
     "mood-track-history": {
+      "all": "Wszystkie",
+      "month_1": "Sty",
+      "month_2": "Lut",
+      "month_3": "Mar",
+      "month_4": "Kwi",
+      "month_5": "Maj",
+      "month_6": "Cze",
+      "month_7": "Lip",
+      "month_8": "Sie",
+      "month_9": "Wrz",
+      "month_10": "Paź",
+      "month_11": "Lis",
+      "month_12": "Gru",
       "happy": "Szczęśliwy/a",
       "good": "Zadowolony/a",
       "sad": "Smutny/a",
@@ -630,7 +752,8 @@
       "read_more_button": "Czytaj więcej",
       "by": "autor: {{creator}}",
       "min_read": "min czytania",
-      "no_recommendations": "Nie znaleziono rekomendacji"
+      "no_recommendations": "Nie znaleziono rekomendacji",
+      "select_year": "Wybierz rok"
     },
     "mascot-header-MyQA": {
       "heading": "Zapytaj psychologa",
@@ -656,9 +779,17 @@
       "search_placeholder": "Wyszukiwanie",
       "filter": "Filtruj tagi",
       "no_answers_found": "Brak odpowiedzi",
+      "no_results_heading": "Nie znaleziono nic dla „{{query}}”",
+      "no_results_line1": "Spróbuj zmienić wyszukiwanie lub wybierz inny tag.",
+      "no_results_line2": "Możesz zresetować filtry, aby zobaczyć wszystkie pytania.",
+      "reset_filters": "Resetuj filtry",
+      "browse_all_questions": "Pokaż wszystkie pytania",
+      "no_results_image_alt": "Ilustracja: brak pasujących pytań",
       "language": "Język",
       "all_languages": "Wszystkie języki",
-      "date_answered": "dnia {{date}}"
+      "date_answered": "dnia {{date}}",
+      "go_back": "Wróć",
+      "how_it_works": "Jak to działa"
     },
     "videos": {
       "view_more": "Zobacz więcej",
@@ -743,7 +874,8 @@
       "personalize": "Personalizuj",
       "personalization": "Personalizacja",
       "personalization_modal_text": "Aby otrzymać spersonalizowane rekomendacje organizacyjne dostosowane do Twoich potrzeb, najpierw wypełnij naszą szybką ocenę bazową. Pomoże nam to zrozumieć Twoje preferencje i cele, aby zapewnić najbardziej odpowiednie sugestie.",
-      "personalization_modal_cta_label": "Wypełnij ocenę"
+      "personalization_modal_cta_label": "Wypełnij ocenę",
+      "services": "Usługi"
     },
     "organization-overview": {
       "error_loading_data": "Wystąpił błąd podczas ładowania danych organizacji",
@@ -855,12 +987,12 @@
       "assessment_completed": "Ocena zakończona",
       "assessment_completed_description": "Dziękujemy za wypełnienie oceny. Twoje odpowiedzi zostały zapisane i zostaną wykorzystane, aby Ci pomóc.",
       "assessment_completed_button": "Powrót do strony głównej",
-      "save_button_label": "Save for later",
-      "sontrgly_disagree": "Strongly Disagree",
-      "disagree": "Disagree",
-      "neutral": "Neutral",
-      "agree": "Agree",
-      "strongly_agree": "Strongly Agree"
+      "save_button_label": "Zapisz na później",
+      "sontrgly_disagree": "Zdecydowanie się nie zgadzam",
+      "disagree": "Nie zgadzam się",
+      "neutral": "Neutralnie",
+      "agree": "Zgadzam się",
+      "strongly_agree": "Zdecydowanie się zgadzam"
     },
     "baseline-assessment-dashboard": {
       "heading": "Twoja podstawowa ocena",
@@ -872,12 +1004,18 @@
       "view": "Zobacz wyniki",
       "view_detailed_results": "Zobacz szczegółowe wyniki",
       "started_at": "Rozpoczęto {{date}}",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
-      "latest_results": "Latest Results",
-      "how_it_works": "How it works",
-      "see_last_result": "Latest results"
+      "psychological": "Psychologiczny",
+      "biological": "Biologiczny",
+      "social": "Społeczny",
+      "latest_results": "Ostatnie wyniki",
+      "how_it_works": "Jak to działa",
+      "see_last_result": "Ostatnie wyniki",
+      "explore_button_label": "Odkryj mapę",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
     },
     "baseline-assesment-result": {
       "assessment_completed": "Ocena zakończona",
@@ -888,9 +1026,9 @@
       "read_more_button": "Czytaj więcej",
       "by": "autor: {{creator}}",
       "min_read": "min czytania",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
+      "psychological": "Psychologiczny",
+      "biological": "Biologiczny",
+      "social": "Społeczny",
       "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
       "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
       "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
@@ -920,7 +1058,53 @@
       "same_same_same": "Twoje wyniki są takie same jak w poprzedniej ocenie.",
       "organizations": "Organizacje zalecane",
       "summary_heading": "Recommendations generated based on the score obtained",
-      "view_more": "View more"
+      "view_more": "Zobacz więcej"
+    },
+    "dashboard-hero": {
+      "heading": "Witaj ponownie",
+      "user_guide": "Przewodnik",
+      "next_consultation": "Następna konsultacja:",
+      "change_button_label": "Zmiana",
+      "accept_button_label": "Zaakceptuj konsulatcję",
+      "join_button_label": "Dołącz",
+      "schedule_button_label": "Kalendarz",
+      "live_label": "Teraz",
+      "no_consultations": "Obecnie nie masz nadchodzących konsultacji",
+      "free": "Bezpłatne",
+      "ordinal_st": ".",
+      "ordinal_nd": ".",
+      "ordinal_rd": ".",
+      "ordinal_th": ".",
+      "january": "Styczeń",
+      "february": "Luty",
+      "march": "Marzec",
+      "april": "Kwiecień",
+      "may": "Maj",
+      "june": "Czerwiec",
+      "july": "Lipiec",
+      "august": "Sierpień",
+      "september": "Wrzesień",
+      "october": "Październik",
+      "november": "Listopad",
+      "december": "Grudzień",
+      "coupon": "Kupon",
+      "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
+    },
+    "download-app": {
+      "heading": "Pobierz naszą aplikację mobilną",
+      "paragraph": "Teraz dostępna na iOS i Android",
+      "download_text": "Pobierz z",
+      "text": "Uzyskaj wsparcie zawsze i wszędzie - szybko, bezpiecznie i łatwo."
+    },
+    "find-support-near-you": {
+      "heading": "Znajdź wsparcie w pobliżu",
+      "explore_button_label": "Przeglądaj"
+    },
+    "most-read-articles": {
+      "heading": "Najczęściej czytany artykuł",
+      "read_more_button": "Kliknij, aby przeczytać więcej",
+      "min_read": "min czytania",
+      "by": "autor: {{creator}}"
     }
   },
   "pages": {
@@ -1010,7 +1194,8 @@
       "subheading_default": "Wszystkie artykuły można znaleźć tutaj",
       "subheading_newest": "Tutaj możesz znaleźć najnowsze artykuły",
       "subheading_most_read": "Tutaj możesz znaleźć najczęściej czytane artykuły ze wszystkich kategorii",
-      "heading": "Artykuły"
+      "heading": "Artykuły",
+      "search": "Szukaj"
     },
     "article-information": {
       "heading": "Więcej artykułów",
@@ -1043,7 +1228,9 @@
       "podcasts": "Audiodyski",
       "view_more": "Zobacz więcej",
       "require_cookies": "Aby obejrzeć ten film, zaakceptuj wszystkie pliki cookie.",
-      "cookie_preferences": "Preferencje plików cookie"
+      "cookie_preferences": "Preferencje plików cookie",
+      "search": "Szukaj",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "Zarejestruj się w uSupport za pomocą adresu email"
@@ -1144,7 +1331,8 @@
       "subheading_newest": "Obejrzyj nasze najnowsze filmy.",
       "heading_most_viewed": "Najczęściej oglądane filmy",
       "subheading_most_viewed": "Obejrzyj nasze najczęściej oglądane filmy.",
-      "all": "Wszystkie"
+      "all": "Wszystkie",
+      "search": "Szukaj"
     },
     "video-information-page": {
       "more_videos": "Więcej filmów",
@@ -1167,7 +1355,8 @@
       "subheading_newest": "Posłuchaj naszych najnowszych podcastów.",
       "heading_most_viewed": "Najczęściej oglądane podcasty",
       "subheading_most_viewed": "Posłuchaj naszych najczęściej oglądanych podcastów.",
-      "all": "All"
+      "all": "All",
+      "search": "Szukaj"
     },
     "organizations-page": {
       "heading": "Organizacje"
@@ -1184,6 +1373,7 @@
       "continue": "Kontynuuj",
       "submit": "Prześlij",
       "view_content": "Zobacz więcej treści",
+      "read_more_button": "Czytaj więcej",
       "no_articles_found": "Nie znaleziono artykułów na ten temat.",
       "non_emergency_title": "Sytuacje niepilne",
       "non_emergency_paragraph": "Każda sytuacja, która obecnie nie zagraża życiu lub bezpieczeństwu dziecka lub nastolatka.",
@@ -1328,7 +1518,20 @@
       "september": "Wrzesień",
       "october": "Październik",
       "november": "Listopad",
-      "december": "Grudzień"
+      "december": "Grudzień",
+      "subheading": "Twoja sesja z {{providerName}} została pomyślnie zarezerwowana.",
+      "subheading_no_name": "Twoja sesja została pomyślnie zarezerwowana.",
+      "providerLabel": "Specjalista/ka",
+      "psychologist": "Psycholog/żka",
+      "psychiatrist": "Psychiatra",
+      "psychotherapist": "Psychoterapeuta/ka",
+      "appointmentDetailsHeading": "Szczegóły wizyty",
+      "reminderText": "Przed sesją otrzymasz przypomnienie.",
+      "manageText": "Możesz zarządzać rezerwacjami w sekcji Moje konsultacje.",
+      "dateLabel": "Data",
+      "timeLabel": "Godzina",
+      "dateText": "{{startDate}} {{month}} {{year}}",
+      "timeText": "Od {{startTime}} do {{endTime}}"
     },
     "cancel-consultation": {
       "heading": "Czy na pewno chcesz odwołać konsultację?",
@@ -1464,6 +1667,35 @@
       "start_date": "Data rozpoczęcia",
       "end_date": "Data zakończenia",
       "end_date_before_start_error": "Data zakończenia musi być po dacie rozpoczęcia"
+    },
+    "welcome": {
+      "heading": "Witamy w",
+      "country": "Kraj",
+      "language": "Język",
+      "placeholder": "Wybierz",
+      "register_email": "Zarejestruj się za pomocą adresu e-mail",
+      "register_anonymously": "Rejestracja anonimowa",
+      "continue_as_guest": "Kontynuuj bez rejestracji",
+      "already_have_account": "Masz już konto?",
+      "log_in": "Zaloguj się",
+      "client": "Klient",
+      "poland_description": "uSupport to platforma zdrowia psychicznego i dobrostanu zaprojektowana dla młodzieży (16–24)."
+    },
+    "user-guide": {
+      "heading": "Chcesz dowiedzieć się więcej o:",
+      "emergency_services": "Służbach ratunkowych",
+      "map": "Mapie usług wsparcia zdrowia psychicznego i psychoemocjonalnego dostępnych w Bukareszcie",
+      "rights": "Prawach dzieci i młodzieży do dostępu do usług wsparcia zdrowia psychicznego i psychoemocjonalnego"
+    },
+    "emergency-situation": {
+      "heading": "Mapa usług wsparcia zdrowia psychicznego i psychospołecznego dla dzieci i młodzieży w Bukareszcie",
+      "paragraph": "Ta interaktywna mapa przedstawia usługi zdrowia psychicznego i dobrostanu psychospołecznego dostępne dla dzieci i młodzieży w Bukareszcie. Postaramy się poprowadzić Cię tak, aby zaproponować opcje najlepiej dopasowane do Twoich potrzeb.",
+      "paragraph_two": "<0>Zastrzeżenie:</0> Ta mapa została opracowana na podstawie opisów znajdujących się na stronach internetowych dostawców usług. Nie możemy zagwarantować aktualności i dokładności informacji w momencie korzystania z mapy. Usługi i dostawcy stale się zmieniają, dlatego zalecamy, aby po wyborze dostawcy skontaktować się z nim telefonicznie i szczegółowo opisać sytuację, w której potrzebujesz profesjonalnej pomocy.",
+      "question": "Szukasz usług w sytuacji nagłej?",
+      "subquestion": "Na przykład: samookaleczenie, próba samobójcza, przemoc szkolna lub domowa, wykorzystanie seksualne itp.",
+      "yes": "Tak",
+      "no": "Nie",
+      "dont_know": "Nie wiem, czy to pilne"
     }
   },
   "modals": {
@@ -1589,6 +1821,22 @@
       "subheading_5": "When you complete the assessment, you’ll see your psychological, biological, and social results. You can retake it later to compare changes in your well-being, and related content based on your results will appear below.",
       "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
       "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
+    },
+    "user-guide": {
+      "heading": "Chcesz dowiedzieć się więcej o:",
+      "emergency_services": "Służbach ratunkowych",
+      "map": "Mapie usług wsparcia zdrowia psychicznego i psychoemocjonalnego dostępnych w Bukareszcie",
+      "rights": "Prawach dzieci i młodzieży do dostępu do usług wsparcia zdrowia psychicznego i psychoemocjonalnego"
+    },
+    "emergency-situation": {
+      "heading": "Mapa usług wsparcia zdrowia psychicznego i psychospołecznego dla dzieci i młodzieży w Bukareszcie",
+      "paragraph": "Ta interaktywna mapa przedstawia usługi zdrowia psychicznego i dobrostanu psychospołecznego dostępne dla dzieci i młodzieży w Bukareszcie. Postaramy się poprowadzić Cię tak, aby zaproponować opcje najlepiej dopasowane do Twoich potrzeb.",
+      "paragraph_two": "<0>Zastrzeżenie:</0> Ta mapa została opracowana na podstawie opisów znajdujących się na stronach internetowych dostawców usług. Nie możemy zagwarantować aktualności i dokładności informacji w momencie korzystania z mapy. Usługi i dostawcy stale się zmieniają, dlatego zalecamy, aby po wyborze dostawcy skontaktować się z nim telefonicznie i szczegółowo opisać sytuację, w której potrzebujesz profesjonalnej pomocy.",
+      "question": "Szukasz usług w sytuacji nagłej?",
+      "subquestion": "Na przykład: samookaleczenie, próba samobójcza, przemoc szkolna lub domowa, wykorzystanie seksualne itp.",
+      "yes": "Tak",
+      "no": "Nie",
+      "dont_know": "Nie wiem, czy to pilne"
     }
   },
   "routes": {

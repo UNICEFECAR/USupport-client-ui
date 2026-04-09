@@ -19,6 +19,7 @@ import {
   Tabs,
   Loading,
   ArticlesGrid,
+  NotFoundCard,
 } from "@USupport-components-library/src";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 import {
@@ -48,12 +49,23 @@ const PL_LANGUAGE_AGE_GROUP_IDS = {
  *
  * Articles block
  *
+ * @param {Object} props
+ * @param {boolean} props.showSearch - Whether to show internal search input
+ * @param {boolean} props.showCategories - Whether to show categories
+ * @param {string} props.sort - Sort option
+ * @param {string} props.externalSearchValue - External search value from parent
  * @return {jsx}
  */
-export const Articles = ({ showSearch, showCategories, sort }) => {
+export const Articles = ({
+  showSearch,
+  showCategories,
+  sort,
+  externalSearchValue,
+}) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "articles" });
   const { isTmpUser } = useContext(RootContext);
+  const IS_RTL = localStorage.getItem("language") === "ar";
 
   const [usersLanguage, setUsersLanguage] = useState(i18n.language);
 
@@ -116,7 +128,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       onSuccess: (data) => {
         setAgeGroups([...data]);
       },
-    },
+    }
   );
 
   const handleAgeGroupOnPress = (index) => {
@@ -153,7 +165,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
           value: category.attributes.name,
           id: category.id,
           isSelected: false,
-        }),
+        })
       );
 
       setSelectedCategory(categoriesData[0]);
@@ -171,7 +183,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       onSuccess: (data) => {
         setCategories([...data]);
       },
-    },
+    }
   );
 
   const handleCategoryOnPress = (index) => {
@@ -190,7 +202,14 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   //--------------------- Search Input ----------------------//
   const [searchValue, setSearchValue] = useState("");
-  const debouncedSearchValue = useDebounce(searchValue, 500);
+  const internalDebouncedSearchValue = useDebounce(searchValue, 500);
+
+  // Use external search value if provided, otherwise use internal
+  const debouncedSearchValue =
+    externalSearchValue !== undefined
+      ? externalSearchValue
+      : internalDebouncedSearchValue;
+  const hasSearch = !!debouncedSearchValue?.trim();
 
   const handleInputChange = (newValue) => {
     setSearchValue(newValue);
@@ -198,7 +217,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country"),
+    localStorage.getItem("country")
   );
 
   const handler = useCallback(() => {
@@ -224,7 +243,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
   const articleIdsQuery = useQuery(
     ["articleIds", currentCountry],
-    getArticlesIds,
+    getArticlesIds
   );
 
   const { data: articleCategoryIdsToShow } = useQuery(
@@ -239,7 +258,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       return cmsSvc.getArticleCategoryIds(
         usersLanguage,
         selectedAgeGroup.id,
-        articleIdsQuery.data?.length > 0 ? articleIdsQuery.data : undefined,
+        articleIdsQuery.data?.length > 0 ? articleIdsQuery.data : undefined
       );
     },
     {
@@ -247,7 +266,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
         !!selectedAgeGroup?.id &&
         !articleIdsQuery.isLoading &&
         !!articleIdsQuery.data?.length,
-    },
+    }
   );
 
   const categoriesToShow = useMemo(() => {
@@ -256,7 +275,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     return categories.filter(
       (category) =>
         articleCategoryIdsToShow.includes(category.id) ||
-        category.value === "all",
+        category.value === "all"
     );
   }, [categories, articleCategoryIdsToShow]);
 
@@ -273,6 +292,8 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     const queryParams = {
       limit: 6,
       contains: debouncedSearchValue,
+      ageGroupId,
+      ...(!hasSearch && { categoryId }),
       // sortBy: sort ? sort : "createdAt",
       // sortOrder: sort ? "desc" : "desc",
       locale: usersLanguage,
@@ -318,7 +339,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
           setArticles([...data.articles]);
           setNumberOfArticles(data.numberOfArticles);
         },
-      },
+      }
     );
 
   useEffect(() => {
@@ -344,6 +365,8 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
       startFrom: guestArticles?.length,
       limit: 6,
       contains: searchValue,
+      ageGroupId: ageGroupId,
+      ...(!hasSearch && { categoryId }),
       locale: usersLanguage,
       sortBy: sort,
       sortOrder: sort ? "desc" : null,
@@ -374,13 +397,11 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     readArticleIds,
   } = useRecommendedArticles({
     limit: 16,
-    ageGroupId: debouncedSearchValue ? null : selectedAgeGroup?.id,
+    ageGroupId: hasSearch ? null : selectedAgeGroup?.id,
     enabled: isTmpUser
       ? false
       : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
-    categoryIdFilter: debouncedSearchValue
-      ? null
-      : selectedCategory?.id || null,
+    categoryIdFilter: hasSearch ? null : selectedCategory?.id || null,
     searchValue: debouncedSearchValue,
     availableCategories,
   });
@@ -399,7 +420,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         articleIds,
-        "article",
+        "article"
       );
 
       setArticlesLikes((prevArticlesLikes) => {
@@ -439,8 +460,36 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
     navigate(`/information-portal/article/${id}/${createArticleSlug(title)}`);
   };
 
+  const handleResetAllFilters = () => {
+    if (externalSearchValue === undefined) {
+      setSearchValue("");
+    }
+
+    if (ageGroups?.length) {
+      handleAgeGroupOnPress(0);
+    }
+
+    const allIdx = categoriesToShow?.findIndex((c) => c.value === "all");
+    if (allIdx >= 0) {
+      handleCategoryOnPress(allIdx);
+    }
+  };
+
+  const handleClearSearchAndBrowse = () => {
+    if (externalSearchValue === undefined) {
+      setSearchValue("");
+    }
+
+    const allIdx = categoriesToShow?.findIndex((c) => c.value === "all");
+    if (allIdx >= 0) {
+      handleCategoryOnPress(allIdx);
+    }
+  };
+
   let areCategoriesAndAgeGroupsReady =
     categoriesToShow?.length > 1 && ageGroupsQuery?.data?.length > 0;
+
+  const currentGridPattern = [2, 2, 2];
 
   return (
     <Block classes="articles">
@@ -450,6 +499,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
           next={isTmpUser ? getMoreArticles : loadMore}
           hasMore={isTmpUser ? hasMoreGuest : hasMore}
           loader={<Loading />}
+          style={{ overflow: "visible" }}
           // endMessage={} // Add end message here if required
         >
           <Grid classes="articles__main-grid">
@@ -477,7 +527,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
               </GridItem>
             )}
 
-            {showCategories && areCategoriesAndAgeGroupsReady && (
+            {showCategories && !hasSearch && areCategoriesAndAgeGroupsReady && (
               <GridItem md={8} lg={12} classes="articles__categories-item">
                 {!debouncedSearchValue && categoriesToShow && (
                   <Tabs
@@ -495,7 +545,7 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
                   articles={transformedArticles}
                   onArticleClick={handleArticleClick}
                   t={t}
-                  pattern={[2, 3, 1]}
+                  pattern={currentGridPattern}
                 />
               )}
 
@@ -506,7 +556,25 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
               ageGroupsQuery?.data?.length > 0 && (
                 <GridItem md={8} lg={12} classes="articles__articles-item">
                   <div className="articles__no-results-container">
-                    <p>{t("no_results")}</p>
+                    <NotFoundCard
+                      mode="illustrated"
+                      headingText={
+                        hasSearch
+                          ? t("no_results_heading", {
+                              query: debouncedSearchValue.trim(),
+                            })
+                          : t("no_results")
+                      }
+                      descriptionLine1={t("no_results_line1")}
+                      descriptionLine2={t("no_results_line2")}
+                      primaryLabel={t("reset_filters")}
+                      secondaryLabel={t("browse_all_articles")}
+                      onPrimaryClick={handleResetAllFilters}
+                      onSecondaryClick={handleClearSearchAndBrowse}
+                      imageAlt={t("no_results_image_alt")}
+                      isRtl={IS_RTL}
+                      radialColor="blue"
+                    />
                   </div>
                 </GridItem>
               )}
@@ -520,8 +588,13 @@ export const Articles = ({ showSearch, showCategories, sort }) => {
 
       {error && (
         <div className="articles__no-results-container">
-          <h3>{t("could_not_load_content")}</h3>
-          <p>{error.message}</p>
+          <NotFoundCard
+            mode="simple"
+            iconName="info"
+            title={t("could_not_load_content")}
+            subtitle={t("could_not_load_hint")}
+            radialColor="purple"
+          />
         </div>
       )}
     </Block>

@@ -50,3 +50,8 @@ export * from "./OrganizationOverview";
 export * from "./BaselineAssesment";
 export * from "./BaselineAssesmentResult";
 export * from "./BaselineAssessmentDashboard";
+export * from "./DashboardHero";
+export * from "./DownloadApp";
+export * from "./InformationPortalHero";
+export * from "./FindSupportNearYou";
+export * from "./MostReadArticles";

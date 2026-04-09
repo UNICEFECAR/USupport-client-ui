@@ -3,29 +3,206 @@
 .confirm-consultation {
   align-items: center;
 
+  &__heading {
+    margin-top: $spacing_5_4;
+    color: $color_blue_3d527b;
+
+    &--dark {
+      color: $color_gray_d2dcde;
+    }
+  }
+
+  &__subheading {
+    margin-top: $spacing_1_6;
+    text-align: center;
+  }
+
   &__content {
     align-items: center;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    padding: $spacing_4_4 0;
+    padding-top: $spacing_1_6;
+    padding-bottom: $spacing_1_6;
+    width: 100%;
 
     &__mascot {
-      width: 20rem;
-      height: 15.9rem;
-    }
-
-    &__heading {
-      margin-top: $spacing_5_4;
-      color: $color_blue_3d527b;
-
-      &--dark {
-        color: $color_gray_d2dcde;
-      }
+      height: 13rem;
     }
 
     &__text {
       margin-top: $spacing_2_4;
+    }
+  }
+
+  &__info {
+    margin-top: $spacing_1_2;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__info-text {
+    margin-top: $spacing_0_8;
+  }
+
+  &__card {
+    margin: $spacing_2_4 auto 0;
+    padding: $spacing_2_4;
+    width: calc(100% - 2 * $spacing_3_2);
+    border-radius: $border_radius_2_4;
+    box-shadow: $shadow_1;
+    background-color: $color_white_ff;
+    text-align: left;
+
+    &--dark {
+      background-color: $color_black_37;
+      border: 0.1rem solid rgba(193, 215, 224, 0.25);
+    }
+
+    &--hc {
+      background-color: $color_black_37;
+      border: 0.1rem solid yellow;
+    }
+
+    &__heading {
+      padding-bottom: $spacing_1_6;
+      margin-bottom: $spacing_1_6;
+      border-bottom: 0.1rem solid $color_gray_ea;
+    }
+
+    &__heading-text {
+      font-weight: $font_semi_bold;
+      color: $color_blue_3d527b;
+    }
+
+    &__text {
+      margin-top: $spacing_2_4;
+      text-align: center;
+    }
+
+    &__provider {
+      display: flex;
+      align-items: center;
+      gap: $spacing_1_2;
+      margin-top: $spacing_1_6;
+      padding-bottom: $spacing_1_6;
+      margin-bottom: $spacing_2_0;
+      border-bottom: 0.1rem solid $color_gray_ea;
+
+      &__info {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing_0_4;
+      }
+
+      &__label {
+        color: #66768d;
+      }
+
+      &__name {
+        font-weight: $font_semi_bold;
+        color: #6a4ffb;
+      }
+
+      &__details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: $spacing_0_4;
+      }
+
+      &__date-row {
+        display: flex;
+        align-items: center;
+        gap: $spacing_0_8;
+      }
+
+      &__date {
+        color: #66768d;
+      }
+
+      &__time {
+        color: #66768d;
+      }
+    }
+
+    &__row {
+      display: flex;
+      align-items: flex-start;
+      gap: $spacing_1_6;
+
+      & + & {
+        margin-top: $spacing_1_6;
+      }
+
+      &__content {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing_0_4;
+      }
+    }
+
+    &__slot {
+      margin-top: $spacing_2_4;
+      border-top: 0.1rem solid #cdd8e1;
+      padding-top: $spacing_1_6;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_0_8;
+    }
+
+    &__slot-row {
+      display: flex;
+      align-items: center;
+      gap: $spacing_0_8;
+    }
+
+    &__details {
+      margin-top: $spacing_1_6;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_1_2;
+
+      @media screen and (min-width: $screen-lg) {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    &__details-row {
+      display: flex;
+      align-items: center;
+      gap: $spacing_0_8;
+
+      @media screen and (min-width: $screen-lg) {
+        flex: 1;
+        &:last-child {
+          justify-content: flex-end;
+        }
+      }
+    }
+
+    &__details-text {
+      color: #66768d;
+    }
+
+    &__label {
+      font-weight: 600;
+      color: $color_blue_3d527b;
+
+      .theme-dark & {
+        color: #d2dcde;
+      }
+    }
+
+    &__value {
+      color: #66768d;
+
+      .theme-dark & {
+        color: #c1d7e0;
+      }
     }
   }
 }

@@ -10,8 +10,8 @@ import { useTranslation } from "react-i18next";
 export const SOSCenter = () => {
   const { t } = useTranslation("pages", { keyPrefix: "sos-center-page" });
   return (
-    <Page heading={t("heading")} subheading={t("subheading")}>
-      <SOSCenterBlock />
+    <Page heading={t("heading")}>
+      <SOSCenterBlock description={t("subheading")} />
     </Page>
   );
 };

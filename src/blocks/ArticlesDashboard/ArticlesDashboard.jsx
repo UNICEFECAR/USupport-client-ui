@@ -11,6 +11,7 @@ import {
   Loading,
   Tabs,
   TabsUnderlined,
+  NewButton,
 } from "@USupport-components-library/src";
 import {
   destructureArticleData,
@@ -115,7 +116,7 @@ export const ArticlesDashboard = () => {
       onSuccess: (data) => {
         setAgeGroups([...data]);
       },
-    }
+    },
   );
 
   const handleAgeGroupOnPress = (index) => {
@@ -148,7 +149,7 @@ export const ArticlesDashboard = () => {
           value: category.attributes.name,
           id: category.id,
           isSelected: false,
-        })
+        }),
       );
 
       setSelectedCategory(categoriesData[0]);
@@ -166,7 +167,7 @@ export const ArticlesDashboard = () => {
       onSuccess: (data) => {
         setCategories([...data]);
       },
-    }
+    },
   );
 
   //--------------------- Articles ----------------------//
@@ -176,7 +177,7 @@ export const ArticlesDashboard = () => {
     queryFn: async () => {
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         articleIdsForRatings,
-        "article"
+        "article",
       );
 
       setArticlesLikes(likes);
@@ -199,7 +200,7 @@ export const ArticlesDashboard = () => {
 
   const articleIdsQuerry = useQuery(
     ["articleIds", selectedAgeGroupId],
-    getArticlesIds
+    getArticlesIds,
   );
 
   const { data: articleCategoryIdsToShow } = useQuery(
@@ -213,11 +214,11 @@ export const ArticlesDashboard = () => {
       cmsSvc.getArticleCategoryIds(
         usersLanguage,
         selectedAgeGroupId,
-        articleIdsQuerry.data
+        articleIdsQuerry.data,
       ),
     {
       enabled: !!articleIdsQuerry.data,
-    }
+    },
   );
 
   const categoriesToShow = useMemo(() => {
@@ -237,7 +238,7 @@ export const ArticlesDashboard = () => {
     const filtered = categories.filter(
       (category) =>
         articleCategoryIdsToShow.includes(category.id) ||
-        category.value === "all"
+        category.value === "all",
     );
 
     return filtered;
@@ -319,7 +320,7 @@ export const ArticlesDashboard = () => {
         (isTmpUser || shouldUseHardcodedAgeGroup),
 
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   const availableCategories = useMemo(() => {
@@ -391,18 +392,7 @@ export const ArticlesDashboard = () => {
   // Render helpers
   const renderHeading = () => (
     <GridItem xs={2} md={4} lg={6} classes="articles-dashboard__heading-item">
-      <h4>{t("heading")}</h4>
-    </GridItem>
-  );
-
-  const renderViewMore = () => (
-    <GridItem xs={2} md={4} lg={6} classes="articles-dashboard__view-more-item">
-      <p
-        className="small-text view-all-button"
-        onClick={() => navigate("/information-portal/articles")}
-      >
-        {t("view_all")}
-      </p>
+      <h1>{t("heading")}</h1>
     </GridItem>
   );
 
@@ -478,10 +468,12 @@ export const ArticlesDashboard = () => {
             onClick={() => {
               navigate(
                 `/information-portal/article/${article.id}/${createArticleSlug(
-                  article.attributes.title
-                )}`
+                  article.attributes.title,
+                )}`,
               );
             }}
+            classes="articles-dashboard__article-item__card-media"
+            isWhiteBackground={true}
           />
         </GridItem>
       );
@@ -500,17 +492,29 @@ export const ArticlesDashboard = () => {
         <Block classes="articles-dashboard">
           <Grid classes="articles-dashboard__block__grid">
             {renderHeading()}
-            {renderViewMore()}
-            {renderAgeGroups()}
+            {/* {renderAgeGroups()} */}
             <GridItem
               md={8}
               lg={12}
               classes="articles-dashboard__articles-item"
             >
               <Grid>
-                {renderCategories()}
+                {/* {renderCategories()} */}
                 {renderLoading()}
                 {renderArticles()}
+                <GridItem
+                  md={8}
+                  lg={12}
+                  classes="articles-dashboard__show-more-item"
+                >
+                  <NewButton
+                    size="lg"
+                    classes="articles-dashboard__show-more-button"
+                    onClick={() => navigate("/information-portal/articles")}
+                  >
+                    {t("show_more")}
+                  </NewButton>
+                </GridItem>
               </Grid>
             </GridItem>
             {renderNoResults()}
