@@ -420,7 +420,7 @@ export const JitsiRoom = () => {
 
               const roomInfo = rooms[0] || rooms?.rooms[0];
               const participants = roomInfo?.participants?.filter(
-                (x) => !!x && x.id !== userInfo.id && x.id !== "local"
+                (x) => !!x && x.id !== userInfo.id && x.id !== "local",
               );
               if (roomInfo) {
                 setInterfaceData({
@@ -433,7 +433,7 @@ export const JitsiRoom = () => {
               externalApi.executeCommand("joinConference");
               externalApi.executeCommand(
                 "avatarUrl",
-                `${AMAZON_S3_BUCKET}/${clientData.image || "default"}`
+                `${AMAZON_S3_BUCKET}/${clientData.image || "default"}`,
               );
 
               externalApi.addListener("cameraError", (error) => {
@@ -468,7 +468,7 @@ export const JitsiRoom = () => {
                       isProviderInSession: true,
                     }));
                   }
-                }
+                },
               );
               externalApi.addListener("toolbarButtonClicked", (event) => {
                 if (event.key === "settings") {

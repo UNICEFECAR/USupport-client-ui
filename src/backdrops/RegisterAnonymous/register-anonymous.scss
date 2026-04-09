@@ -1,0 +1,27 @@
+@import "@USupport-components-library/styles";
+
+.ReactModal__Overlay:has(.register-anonymous-modal) {
+  background: rgba(18, 18, 24, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+body:has(.register-anonymous-modal) {
+  overflow: hidden;
+}
+
+.register-anonymous-modal {
+  &__content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing_2_4;
+
+    &__access-token-container {
+      background-color: #edf0f9;
+      padding: $spacing_1_6;
+      border-radius: $border_radius_2_4;
+    }
+  }
+}

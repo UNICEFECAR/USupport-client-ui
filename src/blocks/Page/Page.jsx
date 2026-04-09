@@ -13,9 +13,8 @@ import {
   Icon,
   PasswordModal,
   Box,
+  Block,
   CookieBanner,
-  // WysaButton,
-  // Wysa,
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -30,6 +29,7 @@ import {
   getLanguageFromUrl,
 } from "@USupport-components-library/utils";
 import { RequireRegistration } from "#modals";
+import { Authentication, RegisterAboutYou } from "#backdrops";
 import {
   useIsLoggedIn,
   useEventListener,
@@ -37,15 +37,10 @@ import {
   useError,
   useAddSosCenterClick,
 } from "#hooks";
+import { NotificationMenu } from "./NotificationMenu";
 
 import "./page.scss";
 import { RootContext } from "../../routes/Root/Root";
-
-const kazakhstanCountry = {
-  value: "KZ",
-  label: "Kazakhstan",
-  iconName: "KZ",
-};
 
 /**
  * Page
@@ -69,6 +64,8 @@ export const Page = ({
   classes,
   children,
   renderLanguageSelector = false,
+  showAuthenticationBackdrop = false,
+  darkBackground = false,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,11 +77,6 @@ export const Page = ({
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_RO = localStorage.getItem("country") === "RO";
-
-  // const IS_DEV = import.meta.env.MODE === "development";
-  // const IS_STAGING = window.location.href.includes("staging");
-  // const IS_CY = localStorage.getItem("country") === "CY";
-  // const SHOW_WYSA = IS_STAGING || IS_DEV;
 
   const {
     theme,
@@ -101,7 +93,8 @@ export const Page = ({
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "page" });
 
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
-  // const [isWysaModalOpen, setIsWysaModalOpen] = useState(false);
+  const [isRegisterAboutYouModalOpen, setIsRegisterAboutYouModalOpen] =
+    useState(false);
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
@@ -291,8 +284,17 @@ export const Page = ({
   });
   useEventListener("all-notifications-read", allNotificationsReadHandler);
 
+  const renderNotificationsContent = (closePanel) => (
+    <NotificationMenu closePanel={closePanel} />
+  );
+
   const clientData = queryClient.getQueryData(["client-data"]);
   const image = clientData?.image;
+  const clientName = clientData
+    ? clientData.name && clientData.surname
+      ? `${clientData.name} ${clientData.surname}`
+      : clientData.nickname || clientData.name || ""
+    : "";
 
   useEffect(() => {
     if (clientData) {
@@ -303,14 +305,78 @@ export const Page = ({
         (!sex || !yearOfBirth || !urbanRural) &&
         pathnameWithoutLanguage !== "register/about-you"
       ) {
-        navigateTo(`/client/${localStorageLanguage}/register/about-you`, {
-          state: {
-            isAnonymous: !!clientData.accessToken,
-          },
-        });
+        setIsRegisterAboutYouModalOpen(true);
+      } else if (sex && yearOfBirth && urbanRural) {
+        setIsRegisterAboutYouModalOpen(false);
       }
     }
-  }, [clientData]);
+  }, [clientData, location.pathname]);
+
+  const menuPages = [
+    {
+      name: null,
+      pages: [
+        { name: t("page_1"), url: "/dashboard", exact: true, icon: "home" },
+        {
+          name: t(IS_RO ? "page_5" : "page_2"),
+          url: IS_RO ? "/organizations" : "/consultations",
+          icon: IS_RO ? "three-people" : "two-people",
+        },
+        {
+          name: t("page_3"),
+          url: "/information-portal?tab=articles",
+          icon: "activities",
+        },
+        {
+          name: t("mood_tracker_button_label"),
+          url: "/mood-tracker",
+          icon: "mood",
+        },
+      ],
+    },
+    {
+      name: t("application_settings"),
+      pages: [
+        {
+          name: t("notifications_settings_button_label"),
+          url: "/notification-preferences",
+          icon: "notifications",
+        },
+      ],
+      hasLanguageSelector: true,
+      hasDarkModeSeletor: true,
+      hasAccessibilityController: true,
+    },
+    {
+      name: t("rate_share"),
+      pages: [
+        {
+          name: t("rate_us_button_label"),
+          url: "/platform-rating",
+          icon: "star",
+        },
+      ],
+    },
+    {
+      name: t("other"),
+      pages: [
+        {
+          name: t("contact_us_button_label"),
+          url: "/contact-us",
+          icon: "comment",
+        },
+        {
+          name: t("privacy_policy_button_label"),
+          url: "/privacy-policy",
+          icon: "document",
+        },
+        { name: t("terms_of_use"), url: "/terms-of-use", icon: "document" },
+        { name: t("cookie_policy"), url: "/cookie-policy", icon: "document" },
+        { name: t("user_guide"), url: "/user-guide", icon: "document" },
+        { name: t("FAQ_button_label"), url: "/faq", icon: "info" },
+      ],
+    },
+  ];
 
   const pages = [
     { name: t("page_1"), url: "/dashboard", exact: true, icon: "home" },
@@ -325,6 +391,7 @@ export const Page = ({
       icon: "activities",
     },
   ];
+
   if (!IS_RO) {
     pages.push({ name: t("page_4"), url: "/my-qa", icon: "document" });
   }
@@ -385,7 +452,7 @@ export const Page = ({
     localStorage.removeItem("token");
     localStorage.removeItem("refresh-token");
     localStorage.removeItem("expires-in");
-    navigateTo(`/${localStorageLanguage}/register-preview`);
+    navigateTo(`/client/${localStorageLanguage}/dashboard`);
   };
 
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
@@ -424,8 +491,26 @@ export const Page = ({
     setLanguagesShown(!languagesShown);
   };
 
+  const handleLogout = () => {
+    userSvc.logout();
+
+    window.location.href = `/client/${localStorageLanguage}/dashboard`;
+  };
+
+  const isAnonymous = clientData?.accessToken ? true : false;
+
   return (
     <>
+      <Authentication isOpen={showAuthenticationBackdrop} />
+      <RegisterAboutYou
+        isOpen={isRegisterAboutYouModalOpen}
+        isAnonymous={isAnonymous}
+        handleGoBack={undefined}
+        onSuccess={() => {
+          setIsRegisterAboutYouModalOpen(false);
+        }}
+        handleLogout={handleLogout}
+      />
       <PasswordModal
         label={t("password")}
         btnLabel={t("submit")}
@@ -444,6 +529,7 @@ export const Page = ({
           navigate={navigateTo}
           NavLink={NavLink}
           pages={pages}
+          menuPages={menuPages}
           showProfile
           yourProfileText={t("your_profile_text")}
           languages={languages}
@@ -454,29 +540,35 @@ export const Page = ({
           renderIn="client"
           hasThemeButton
           t={t}
+          clientName={clientName}
+          handleLogout={handleLogout}
+          openRegistrationModal={() => setIsRegistrationModalOpen(true)}
+          renderNotificationsContent={renderNotificationsContent}
+          languageLabel={t("language_label")}
         />
       )}
       <div
         className={[
           "page",
           `${additionalPadding ? "" : "page--no-additional-top-padding"}`,
+          `${darkBackground ? "page--dark-background" : ""}`,
           `${classNames(classes)}`,
         ].join(" ")}
       >
         {(heading || showGoBackArrow || headingButton) && (
           <>
-            <div className="page__header">
+            <Block classes="page__header">
               <div className="page__header__text-container">
                 {showGoBackArrow && (
-                  <Icon
-                    classes="page__header-icon"
-                    name="arrow-chevron-back"
-                    size="md"
-                    color="#20809E"
+                  <div
+                    className="page__header__text-container__go-back"
                     onClick={handleGoBackArrowClick}
-                  />
+                  >
+                    <Icon name="arrow-chevron-back" size="md" color="#20809E" />
+                    <p>{t("go_back")}</p>
+                  </div>
                 )}
-                {heading && <h3 className="page__header-heading">{heading}</h3>}
+                {heading && <h1 className="page__header-heading">{heading}</h1>}
               </div>
               {headingButton &&
                 (width >= 768 || showHeadingButtonInline) &&
@@ -553,7 +645,7 @@ export const Page = ({
                   </OutsideClickHandler>
                 </div>
               )}
-            </div>
+            </Block>
             {headingButton && (
               <div className="page__mobile-button-container">
                 {width < 768 &&
@@ -566,7 +658,11 @@ export const Page = ({
             )}
           </>
         )}
-        <p className="page__subheading-text text">{subheading}</p>
+        {subheading && (
+          <Block classes="page__subheading">
+            <p className="page__subheading-text text">{subheading}</p>
+          </Block>
+        )}
         {showHeadingButtonBelow && headingButton && (
           <div className="page__header-button-container">{headingButton}</div>
         )}
@@ -576,15 +672,6 @@ export const Page = ({
       {themeButton()}
       {showEmergencyButton && (
         <>
-          {/* {IS_CY && SHOW_WYSA && (
-            <>
-              <WysaButton onClick={() => setIsWysaModalOpen(true)} />
-              <Wysa
-                isOpen={isWysaModalOpen}
-                onClose={() => setIsWysaModalOpen(false)}
-              />
-            </>
-          )} */}
           <CircleIconButton
             iconName="phone-emergency"
             classes={["page__emergency-button"].join(" ")}
@@ -601,6 +688,7 @@ export const Page = ({
       )}
       {isFooterShown && (
         <Footer
+          t={t}
           renderIn="client"
           lists={footerLists}
           navigate={navigateTo}
@@ -681,6 +769,11 @@ Page.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
+
+  /**
+   * Show authentication backdrop for unauthenticated users
+   */
+  showAuthenticationBackdrop: PropTypes.bool,
 };
 
 Page.defaultProps = {

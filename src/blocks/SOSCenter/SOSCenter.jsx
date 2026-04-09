@@ -10,7 +10,8 @@ import {
 
 import {
   Block,
-  Button,
+  Box,
+  NewButton,
   Grid,
   GridItem,
   EmergencyCenter,
@@ -33,7 +34,7 @@ import "./sos-center.scss";
  *
  * @return {jsx}
  */
-export const SOSCenter = () => {
+export const SOSCenter = ({ description }) => {
   const { i18n, t } = useTranslation("blocks", { keyPrefix: "sos-center" });
   const { loggedIn } = useContext(RootContext);
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export const SOSCenter = () => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country")
+    localStorage.getItem("country"),
   );
 
   const handler = useCallback(() => {
@@ -63,7 +64,7 @@ export const SOSCenter = () => {
 
   const sosCenterIdsQuerry = useQuery(
     ["sosCenterIds", currentCountry],
-    getSOSCenterIds
+    getSOSCenterIds,
   );
 
   const getOrganizationSpecializations = async () => {
@@ -76,11 +77,11 @@ export const SOSCenter = () => {
     getOrganizationSpecializations,
     {
       staleTime: 10 * 60 * 1000, // 10 minutes
-    }
+    },
   );
 
   const emergencyServiceSpecialization = specializationsData?.find(
-    (specialization) => specialization.name === "emergency_situations"
+    (specialization) => specialization.name === "emergency_situations",
   );
 
   const getSOSCenters = async () => {
@@ -105,7 +106,7 @@ export const SOSCenter = () => {
     {
       enabled:
         !sosCenterIdsQuerry.isLoading && sosCenterIdsQuerry.data?.length > 0,
-    }
+    },
   );
 
   const addSosCenterClickMutation = useAddSosCenterClick();
@@ -115,7 +116,7 @@ export const SOSCenter = () => {
     let id = sosCenter.id;
     if (attributes.locale !== "en") {
       const englishLocalization = attributes.localizations.data.find(
-        (x) => x.attributes.locale === "en"
+        (x) => x.attributes.locale === "en",
       );
       if (englishLocalization) {
         id = englishLocalization.id;
@@ -134,51 +135,119 @@ export const SOSCenter = () => {
       {SOSCentersData && (
         <Grid classes="soscenter__grid">
           <GridItem xs={4} md={8} lg={12} classes="soscenter__text-item">
-            <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
-              {IS_RO && emergencyServiceSpecialization && loggedIn && (
-                <GridItem
-                  classes="soscenter__secondary-grid__item soscenter__secondary-grid__item--romania-button"
-                  md={8}
-                  lg={12}
-                >
-                  <p>{t("other_emergency_services")}</p>
-                  <Button
-                    color="purple"
-                    onClick={() =>
-                      navigate(
-                        `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`
-                      )
-                    }
-                  >
-                    {t("browse")}
-                  </Button>
-                </GridItem>
+            <Box classes="soscenter__box" liquidGlass>
+              {description && (
+                <div className="soscenter__box-heading">
+                  <p className="soscenter__box-heading-text text">
+                    {description}
+                  </p>
+                </div>
               )}
-              {SOSCentersData.map((sosCenter, index) => {
-                return (
+              <Grid classes="soscenter__secondary-grid" xs={4} md={8} lg={12}>
+                {IS_RO && emergencyServiceSpecialization && loggedIn && (
                   <GridItem
                     classes="soscenter__secondary-grid__item"
                     md={4}
-                    lg={12}
-                    key={index}
+                    lg={6}
                   >
-                    <EmergencyCenter
-                      title={sosCenter.attributes.title}
-                      text={sosCenter.attributes.text}
-                      link={sosCenter.attributes.url}
-                      phone={sosCenter.attributes.phone}
-                      btnLabelLink={t("button_link")}
-                      btnLabelCall={t("button_call")}
-                      onClick={() => handleSosCenterClick(sosCenter)}
-                      image={
-                        sosCenter.attributes.image?.data?.attributes?.formats
-                          ?.medium?.url
-                      }
-                    />
+                    <div className="soscenter__card soscenter__card--romania">
+                      <div className="soscenter__card__content">
+                        <div className="soscenter__card__text">
+                          <p className="soscenter__card__title paragraph">
+                            {t("other_emergency_services")}
+                          </p>
+                          <div className="soscenter__card__actions">
+                            <NewButton
+                              size="sm"
+                              type="gradient"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(
+                                  `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`,
+                                );
+                              }}
+                              label={t("browse")}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </GridItem>
-                );
-              })}
-            </Grid>
+                )}
+                {SOSCentersData.map((sosCenter, index) => {
+                  const { title, text, url, phone, image } =
+                    sosCenter.attributes;
+
+                  return (
+                    <GridItem
+                      classes="soscenter__secondary-grid__item"
+                      md={4}
+                      lg={6}
+                      key={index}
+                    >
+                      <div
+                        className="soscenter__card"
+                        onClick={() => handleSosCenterClick(sosCenter)}
+                      >
+                        <div className="soscenter__card__content">
+                          {image?.data?.attributes?.formats?.medium?.url && (
+                            <div className="soscenter__card__image">
+                              <img
+                                src={image.data.attributes.formats.medium.url}
+                                alt={title}
+                              />
+                            </div>
+                          )}
+
+                          <div className="soscenter__card__text">
+                            <p className="soscenter__card__title paragraph">
+                              {title}
+                            </p>
+
+                            {text ? (
+                              <p className="soscenter__card__description text">
+                                {text}
+                              </p>
+                            ) : (
+                              (phone || url) && (
+                                <div className="soscenter__card__divider" />
+                              )
+                            )}
+
+                            {(phone || url) && (
+                              <div className="soscenter__card__actions">
+                                {phone && (
+                                  <NewButton
+                                    size="sm"
+                                    type="outline"
+                                    label={t("button_call")}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      window.open(`tel:${phone}`, "_self");
+                                    }}
+                                  />
+                                )}
+                                {url && (
+                                  <NewButton
+                                    size="sm"
+                                    type="gradient"
+                                    label={t("button_link")}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      window.open(url, "_blank", "noopener");
+                                    }}
+                                  />
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </GridItem>
+                  );
+                })}
+              </Grid>
+            </Box>
           </GridItem>
         </Grid>
       )}

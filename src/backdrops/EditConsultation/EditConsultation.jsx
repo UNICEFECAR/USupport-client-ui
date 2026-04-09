@@ -2,8 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   Backdrop,
-  ButtonSelector,
   ConsultationInformation,
+  NewButton,
 } from "@USupport-components-library/src";
 
 import { ONE_HOUR } from "@USupport-components-library/utils";
@@ -34,8 +34,7 @@ export const EditConsultation = ({
 
   const { t } = useTranslation("backdrops", { keyPrefix: "edit-consultation" });
 
-
-  const startsInLessThan24Hours = (startDate - today) < 24 * 60 * 60 * 1000;
+  const startsInLessThan24Hours = startDate - today < 24 * 60 * 60 * 1000;
 
   const handleCancelClick = () => {
     onClose();
@@ -54,28 +53,36 @@ export const EditConsultation = ({
       isOpen={isOpen}
       onClose={onClose}
       heading={t("heading")}
-      text={t("subheading")}
     >
-      <ConsultationInformation
-        startDate={startDate}
-        endDate={endDate}
-        providerName={providerName}
-        providerImage={imageUrl}
-        classes="edit-consultation__provider-consultation"
-        t={t}
-      />
-    {!startsInLessThan24Hours &&      <ButtonSelector
-        onClick={handleEditClick}
-        iconName="calendar"
-        label={t("date_button_label")}
-        classes="edit-consultation__button"
-      />}
-      <ButtonSelector
-        onClick={handleCancelClick}
-        iconName="close-x"
-        label={t("cancel_button_label")}
-        classes="edit-consultation__button"
-      />
+      <div className="edit-consultation__content">
+        <ConsultationInformation
+          startDate={startDate}
+          endDate={endDate}
+          providerName={providerName}
+          providerImage={imageUrl}
+          classes="edit-consultation__provider-consultation"
+          t={t}
+        />
+        <div className="edit-consultation__buttons">
+          {!startsInLessThan24Hours && (
+            <NewButton
+              label={t("date_button_label")}
+              size="lg"
+              classes="edit-consultation__button"
+              isFullWidth
+              onClick={handleEditClick}
+            />
+          )}
+          <NewButton
+            label={t("cancel_button_label")}
+            size="lg"
+            type="outline"
+            classes="edit-consultation__button"
+            isFullWidth
+            onClick={handleCancelClick}
+          />
+        </div>
+      </div>
     </Backdrop>
   );
 };

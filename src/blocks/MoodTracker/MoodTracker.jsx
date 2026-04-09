@@ -6,16 +6,19 @@ import { useTranslation } from "react-i18next";
 
 import {
   Block,
-  Button,
-  Emoticon,
+  NewButton,
   Textarea,
   Toggle,
   Modal,
+  Emoticon,
+  CircleIconButton,
 } from "@USupport-components-library/src";
+import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useAddMoodTrack, useGetHasCompletedMoodTrackerEver } from "#hooks";
+import { mascotHappyPurpleFull } from "@USupport-components-library/assets";
 import { ThemeContext } from "@USupport-components-library/utils";
-import { HowItWorksMoodTrack } from "#modals";
 
+import { HowItWorksMoodTrack } from "#modals";
 import { RootContext } from "#routes";
 
 import "./mood-tracker.scss";
@@ -32,9 +35,11 @@ export const MoodTracker = ({
   isTmpUser,
   clientData,
   openRequireDataAgreement,
+  openUserGuide,
 }) => {
   const { theme } = useContext(ThemeContext);
   const { handleRegistrationModalOpen } = useContext(RootContext);
+  const { width } = useWindowDimensions();
   const country = localStorage.getItem("country");
   const IS_RO = country === "RO";
 
@@ -55,18 +60,60 @@ export const MoodTracker = ({
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [isHowItWorksMoodTrackOpen, setIsHowItWorksMoodTrackOpen] =
     useState(false);
+  const [isMoodTrackModalOpen, setIsMoodTrackModalOpen] = useState(false);
 
   const { data: hasCompletedMoodTrackerEver } =
     useGetHasCompletedMoodTrackerEver(IS_RO);
+  const clientName = clientData
+    ? clientData.name && clientData.surname
+      ? `${clientData.name} ${clientData.surname}`
+      : clientData.nickname || clientData.name || ""
+    : "";
 
   const hasSelectedMoodtracker = useCallback(() => {
     return emoticons.some((emoticon) => emoticon.isSelected);
   }, [emoticons]);
 
+  const renderAdditionalButton = () => {
+    const labelClasses = [width < 768 && "small-text"]
+      .filter(Boolean)
+      .join(" ");
+
+    return (
+      <div
+        className={[
+          "mood-tracker__rating-box__rating__emoticon-container",
+          "mood-tracker__rating-box__rating__emoticon-container--extra",
+        ].join(" ")}
+        onClick={handleMoodtrackClick}
+      >
+        <Emoticon
+          name={
+            hasCompletedMoodTrackerEver
+              ? "emoticon-history"
+              : "emoticon-insight"
+          }
+          size="sm"
+        />
+        <p
+          className={[
+            labelClasses,
+            "mood-tracker__rating-box__rating__emoticon-container__text--extra",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          {hasCompletedMoodTrackerEver ? t("history") : t("how_it_works")}
+        </p>
+      </div>
+    );
+  };
+
   const onSuccess = () => {
     setComment("");
     setEmoticons(emoticonsArray);
     setIsEmergency(false);
+    setIsMoodTrackModalOpen(false);
     toast(t("add_mood_tracker_success"));
     if (IS_RO) {
       setIsSuccessModalOpen(true);
@@ -78,12 +125,22 @@ export const MoodTracker = ({
 
   const renderEmoticons = () => {
     return emoticons.map((emoticon, index) => {
+      const labelClasses = [
+        width < 768 && "small-text",
+        emoticon.isSelected &&
+          theme !== "dark" &&
+          "mood-tracker__rating-box__rating__emoticon-container__text--selected",
+      ]
+        .filter(Boolean)
+        .join(" ");
+
       return (
         <div
           className={[
-            "mood-tracker__rating__emoticon-container",
+            "mood-tracker__rating-box__rating__emoticon-container",
             !emoticon.isSelected &&
-              "mood-tracker__rating__emoticon-container--not-selected",
+              emoticons.find((item) => item.isSelected) &&
+              "mood-tracker__rating-box__rating__emoticon-container--not-selected",
           ].join(" ")}
           key={index}
           onClick={() => handleEmoticonClick(emoticon.value)}
@@ -92,16 +149,7 @@ export const MoodTracker = ({
             name={`emoticon-${emoticon.value}`}
             size={emoticon.isSelected ? "lg" : "sm"}
           />
-          <p
-            className={[
-              "small-text",
-              emoticon.isSelected &&
-                theme !== "dark" &&
-                "mood-tracker__rating__emoticon-container__text--selected",
-            ].join(" ")}
-          >
-            {t(emoticon.value)}
-          </p>
+          <p className={labelClasses}>{t(emoticon.value)}</p>
         </div>
       );
     });
@@ -128,6 +176,7 @@ export const MoodTracker = ({
       }
     }
     setEmoticons(newEmoticons);
+    setIsMoodTrackModalOpen(true);
   };
 
   const handleSubmit = () => {
@@ -144,9 +193,50 @@ export const MoodTracker = ({
       handleRegistrationModalOpen();
     } else if (!clientData.dataProcessing) {
       openRequireDataAgreement(true);
-    } else {
+    } else if (hasCompletedMoodTrackerEver) {
       navigate("/mood-tracker");
+    } else {
+      setIsHowItWorksMoodTrackOpen(true);
     }
+  };
+
+  const renderButton = () => {
+    if (!IS_RO || !openUserGuide) return null;
+    if (width <= 768) {
+      return (
+        <div>
+          <CircleIconButton
+            size="sm"
+            color="purple"
+            onClick={openUserGuide}
+            iconName="read-book"
+            iconColor="#fff"
+            iconSize="sm"
+          />
+        </div>
+      );
+    } else {
+      return (
+        <NewButton
+          size="sm"
+          label={t("user_guide")}
+          onClick={openUserGuide}
+          iconName="read-book"
+          iconColor="#fff"
+        />
+      );
+    }
+  };
+
+  const renderEmojiBox = () => {
+    return (
+      <div className="mood-tracker__rating-container">
+        <div className="mood-tracker__rating-box__rating">
+          {renderEmoticons()}
+          {renderAdditionalButton()}
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -168,56 +258,85 @@ export const MoodTracker = ({
         }}
       />
       <Block classes={["mood-tracker", classNames(classes)].join(" ")}>
-        <div className="mood-tracker__heading">
-          <h4>{t("heading")}</h4>
-          {!(IS_RO && !hasCompletedMoodTrackerEver) ? (
-            <p
-              className="small-text mood-tracker-button"
-              onClick={handleMoodtrackClick}
-            >
-              {t("mood_tracker")}
-            </p>
-          ) : (
-            <p
-              className="small-text mood-tracker-button"
-              onClick={() => setIsHowItWorksMoodTrackOpen(true)}
-            >
-              {t("how_it_works")}
-            </p>
-          )}
-        </div>
-        <>
-          <div className="mood-tracker__rating">{renderEmoticons()}</div>
-          {hasSelectedMoodtracker() && (
-            <div className="mood-tracker__additional-comment">
-              <Textarea
-                value={comment}
-                onChange={(value) => setComment(value)}
-                placeholder={t("additional_comment_placeholder")}
-                size="md"
-              />
-              {country === "RO" && (
-                <div className="mood-tracker__additional-comment__toggle-container">
-                  <p className="mood-tracker__additional-comment__toggle-container__text">
-                    {t("emergency_label")}
-                  </p>
-                  <Toggle
-                    isToggled={isEmergency}
-                    setParentState={(toggled) => setIsEmergency(toggled)}
-                  />
-                </div>
-              )}
-              <div className="mood-tracker__additional-comment__button-container">
-                <Button
-                  label={t("submit_mood_track")}
-                  size="lg"
-                  onClick={handleSubmit}
-                  loading={addMoodTrackMutation.isLoading}
-                />
+        <div className="mood-tracker__content">
+          <div className="mood-tracker__heading-row">
+            <div className="mood-tracker__heading-row__content">
+              <h1 className="mood-tracker__heading">
+                {t("welcome-heading")}
+                {clientName && (
+                  <>
+                    ,{" "}
+                    <span className="mood-tracker__heading__name">
+                      {clientName}
+                    </span>
+                  </>
+                )}
+              </h1>
+              <div className="mood-tracker__subheading-container">
+                {width < 1366 ? (
+                  <h2 className="mood-tracker__subheading-container__subheading">
+                    {t("heading")}
+                  </h2>
+                ) : (
+                  <h3 className="mood-tracker__subheading-container__subheading">
+                    {t("heading")}
+                  </h3>
+                )}
               </div>
+              {width > 768 ? renderEmojiBox() : null}
             </div>
-          )}
-        </>
+            {width <= 768 ? renderButton() : null}
+          </div>
+          {width <= 768 ? renderEmojiBox() : null}
+          <div className="mood-tracker__mascot-container">
+            <img
+              className="mood-tracker__mascot-container__image"
+              src={mascotHappyPurpleFull}
+              alt="Mascot"
+            />
+            {width > 768 ? renderButton() : null}
+          </div>
+        </div>
+        <Modal
+          heading={t("heading")}
+          isOpen={isMoodTrackModalOpen}
+          closeModal={() => setIsMoodTrackModalOpen(false)}
+          ctaLabel={t("submit_mood_track")}
+          ctaHandleClick={handleSubmit}
+          ctaLoading={addMoodTrackMutation.isLoading}
+          ctaDisabled={
+            !hasSelectedMoodtracker() || addMoodTrackMutation.isLoading
+          }
+        >
+          <div className="mood-tracker__modal__content">
+            <div className="mood-tracker__rating-box__rating mood-tracker__rating-box__rating--modal">
+              {renderEmoticons()}
+            </div>
+            {hasSelectedMoodtracker() && (
+              <div className="mood-tracker__modal__content__additional-comment">
+                <Textarea
+                  value={comment}
+                  onChange={(value) => setComment(value)}
+                  label={t("additional_comment_label")}
+                  placeholder={t("additional_comment_placeholder")}
+                  size="md"
+                  classes="mood-tracker__modal__content__additional-comment__textarea"
+                />
+                {country === "RO" && (
+                  <div className="mood-tracker__modal__content__additional-comment__toggle-container">
+                    <p className="text mood-tracker__additional-comment__toggle-container__text">
+                      {t("emergency_label")}
+                    </p>
+                    <Toggle
+                      isToggled={isEmergency}
+                      setParentState={(toggled) => setIsEmergency(toggled)}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </Modal>
       </Block>
     </React.Fragment>
   );

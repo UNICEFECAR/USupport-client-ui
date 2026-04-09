@@ -4,11 +4,11 @@ import { useCustomNavigate as useNavigate } from "#hooks";
 
 import {
   Block,
-  Button,
   Grid,
   GridItem,
   Icon,
-  RadioButtonSelector,
+  NewButton,
+  RadioButton,
   Textarea,
   Emoticon,
   Slider,
@@ -198,14 +198,6 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
           <h4>{t("heading")}</h4>
           <p className="text">{t("subheading")}</p>
         </GridItem>
-        <GridItem
-          md={8}
-          lg={12}
-          classes="safety-feedback__grid__warning-container"
-        >
-          <Icon name="warning" size="md" />
-          <p className="small-text">{t("warning")}</p>
-        </GridItem>
         {questions.map((question) => {
           if (questions[0].value === false && question.id !== 0) return null;
           return (
@@ -256,7 +248,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
           );
         })}
         <GridItem md={8} lg={12} classes="safety-feedback__grid__button">
-          <Button
+          <NewButton
             label={t("button")}
             size="lg"
             onClick={handleSubmit}
@@ -265,6 +257,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
               createConsultationSecurityCheckMutation.isLoading ||
               updateconsultationSecurityCheckMutation.isLoading
             }
+            isFullWidth={true}
           />
         </GridItem>
         {hasAnsweredBefore && (
@@ -273,16 +266,25 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
             lg={12}
             classes="safety-feedback__grid__continue-button"
           >
-            <Button
+            <NewButton
               label={t("continue_button")}
               size="lg"
-              type="secondary"
+              type="outline"
               disabled={!canSubmit}
               onClick={handleSubmit}
               loading={updateconsultationSecurityCheckMutation.isLoading}
+              isFullWidth={true}
             />
           </GridItem>
         )}
+        <GridItem
+          md={8}
+          lg={12}
+          classes="safety-feedback__grid__warning-container"
+        >
+          <Icon name="warning" size="md" />
+          <p className="small-text">{t("warning")}</p>
+        </GridItem>
       </Grid>
     </Block>
   );
@@ -291,9 +293,19 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
 const Question = ({ question, handleAnswerSelect, t }) => {
   return (
     <div className="safety-feedback__question">
-      <p className="text">{question.label}</p>
+      <p className="safety-feedback__question__text">{question.label}</p>
       <div className="safety-feedback__question__answers">
-        <RadioButtonSelector
+        <RadioButton
+          label={t("yes")}
+          isChecked={question.value === true}
+          setIsChecked={() => handleAnswerSelect(question.id, true)}
+        />
+        <RadioButton
+          label={t("no")}
+          isChecked={question.value === false}
+          setIsChecked={() => handleAnswerSelect(question.id, false)}
+        />
+        {/* <RadioButtonSelector
           label={t("yes")}
           isChecked={question.value === true}
           setIsChecked={() => handleAnswerSelect(question.id, true)}
@@ -302,7 +314,7 @@ const Question = ({ question, handleAnswerSelect, t }) => {
           label={t("no")}
           isChecked={question.value === false}
           setIsChecked={() => handleAnswerSelect(question.id, false)}
-        />
+        /> */}
       </div>
     </div>
   );
@@ -311,7 +323,7 @@ const Question = ({ question, handleAnswerSelect, t }) => {
 const QuestionTextarea = ({ question, handleAnswerSelect, t }) => {
   return (
     <div className="safety-feedback__question">
-      <p className="text">{question.label}</p>
+      <p className="safety-feedback__question__text">{question.label}</p>
       <div className="safety-feedback__question__answers">
         <Textarea
           value={question.value}
@@ -371,7 +383,7 @@ const QuestionEmoji = ({ question, handleAnswerSelect, t, theme }) => {
 
   return (
     <div className="safety-feedback__question">
-      <p className="text">{question.label}</p>
+      <p className="safety-feedback__question__text">{question.label}</p>
       <div className="safety-feedback__question__answers">
         {emoticons.map((emoticon, index) => (
           <div
@@ -408,7 +420,7 @@ const QuestionEmoji = ({ question, handleAnswerSelect, t, theme }) => {
 const QuestionSlider = ({ question, handleAnswerSelect }) => {
   return (
     <div className="safety-feedback__question">
-      <p className="text">{question.label}</p>
+      <p className="safety-feedback__question__text">{question.label}</p>
       <div className="safety-feedback__question__slider">
         <Slider
           value={question.value}

@@ -1,7 +1,8 @@
 @import "@USupport-components-library/styles";
 
 .podcasts {
-  padding-bottom: 100px;
+  @include full-height-page-navbar;
+  padding-bottom: $spacing_3_2;
   text-align: left;
 
   @media screen and (min-width: $screen-md) {
@@ -9,16 +10,8 @@
   }
 
   &__main-grid {
-    justify-items: center;
-  }
-
-  &__heading-text {
-    color: $color_white_ff !important;
-  }
-
-  &__most-important-item {
-    padding-top: $spacing_5_0;
-    padding-bottom: $spacing_4_0;
+    grid-gap: $spacing_3_2;
+    padding-inline: $spacing_1_2;
   }
 
   &__search-item {
@@ -29,13 +22,27 @@
     }
   }
 
+  &__most-important-item {
+    padding-top: $spacing_5_0;
+    padding-bottom: $spacing_4_0;
+  }
+
   &__categories-item {
-    padding-top: $spacing_3_0;
-    width: 100%;
-    justify-self: stretch;
+    overflow-x: auto;
+    width: 35rem;
+
+    @media screen and (min-width: $screen-md) {
+      width: auto;
+    }
 
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_5_4;
+    }
+
+    &__container {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
     }
   }
 
@@ -46,6 +53,68 @@
     @media screen and (min-width: $screen-lg) {
       padding-top: $spacing_2_4;
     }
+  }
+
+  &__custom-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: $spacing_1_2;
+
+    @media screen and (min-width: $screen-md) {
+      gap: $spacing_2_0;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      gap: $spacing_2_4;
+    }
+  }
+
+  &__card-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: calc($screen-md - 1px)) {
+    &__custom-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__card-wrapper {
+      grid-column: span 1 !important;
+    }
+  }
+
+  @media screen and (min-width: $screen-md) and (max-width: calc($screen-lg - 1px)) {
+    &__custom-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__card-wrapper {
+      grid-column: span 1 !important;
+    }
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    &__card-wrapper {
+      grid-column: span 4;
+    }
+  }
+
+  &__loader-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
   }
 
   &__loading-item {
