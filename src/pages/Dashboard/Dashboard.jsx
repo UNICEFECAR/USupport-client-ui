@@ -176,7 +176,7 @@ export const Dashboard = () => {
   };
   const acceptConsultationMutation = useAcceptConsultation(
     onAcceptConsultationSuccess,
-    onAcceptConsultationError,
+    onAcceptConsultationError
   );
 
   const handleAcceptSuggestion = (consultationId, price) => {
@@ -207,7 +207,7 @@ export const Dashboard = () => {
   };
   const rescheduleConsultationMutation = useRescheduleConsultation(
     onRescheduleConsultationSuccess,
-    onRescheduleConsultationError,
+    onRescheduleConsultationError
   );
 
   const onScheduleConsultationError = (error) => {
@@ -215,7 +215,7 @@ export const Dashboard = () => {
   };
   const scheduleConsultationMutation = useScheduleConsultation(
     onRescheduleConsultationSuccess,
-    onScheduleConsultationError,
+    onScheduleConsultationError
   );
 
   // Block slot logic
@@ -346,7 +346,7 @@ export const Dashboard = () => {
             t={t}
           />
         )}
-        <ArticlesDashboard />
+        {shouldEnableQueries && <ArticlesDashboard />}
         <DownloadApp />
         {/* <ActivityLogDashboard /> */}
         {selectedConsultation && (
@@ -391,8 +391,8 @@ export const Dashboard = () => {
               startDate: new Date(selectedSlot?.time || selectedSlot),
               endDate: new Date(
                 new Date(selectedSlot?.time || selectedSlot).setHours(
-                  new Date(selectedSlot?.time || selectedSlot).getHours() + 1,
-                ),
+                  new Date(selectedSlot?.time || selectedSlot).getHours() + 1
+                )
               ),
               providerName: rescheduledConsultation?.provider_name,
               providerImage: rescheduledConsultation?.provider_image,

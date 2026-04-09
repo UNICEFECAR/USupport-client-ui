@@ -449,6 +449,7 @@ export default function Root() {
   useEventListener("countryChanged", handler);
 
   const enabled = token && !isTmpUser && loggedIn;
+
   useGetClientData(!!enabled);
 
   const handleRegistrationModalClose = () => setIsRegistrationModalOpen(false);

@@ -7,7 +7,6 @@ export default function useGetHasCompletedMoodTrackerEver(enabled) {
     return data.hasCompleted;
   };
 
-  console.log("enabled", enabled);
   const getHasCompletedMoodTrackerEverQuery = useQuery({
     queryKey: ["getHasCompletedMoodTrackerEver"],
     queryFn: getHasCompletedMoodTrackerEver,
