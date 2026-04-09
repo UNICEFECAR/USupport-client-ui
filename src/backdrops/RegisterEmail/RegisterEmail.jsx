@@ -32,7 +32,12 @@ const SHOW_CAPTCHA = import.meta.env.MODE !== "development";
  *
  * @returns {jsx}
  */
-export const RegisterEmail = ({ isOpen, handleGoBack, handleLogin }) => {
+export const RegisterEmail = ({
+  isOpen,
+  handleGoBack,
+  handleLogin,
+  onRegistrationSuccess,
+}) => {
   const { t } = useTranslation("blocks", { keyPrefix: "register-email" });
   const queryClient = useQueryClient();
 
@@ -283,6 +288,7 @@ export const RegisterEmail = ({ isOpen, handleGoBack, handleLogin }) => {
         canRequestNewEmail={canRequestNewOTP}
         resendTimer={seconds}
         showTimer={showTimer}
+        onRegistrationSuccess={onRegistrationSuccess}
       />
     </>
   );

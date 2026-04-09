@@ -15,7 +15,10 @@ import {
  *
  * @returns {jsx}
  */
-export const Authentication = ({ isOpen = false }) => {
+export const Authentication = ({
+  isOpen = false,
+  onRequireRegisterAboutYou,
+}) => {
   const [isRegisterWithEmailModalOpen, setIsRegisterWithEmailModalOpen] =
     useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -63,6 +66,10 @@ export const Authentication = ({ isOpen = false }) => {
           setIsRegisterWithEmailModalOpen(false);
           setIsLoginModalOpen(true);
         }}
+        onRegistrationSuccess={() => {
+          setIsRegisterWithEmailModalOpen(false);
+          onRequireRegisterAboutYou?.();
+        }}
       />
       <Login
         isOpen={isLoginModalOpen}
@@ -103,6 +110,10 @@ export const Authentication = ({ isOpen = false }) => {
         handleWelcomeRedirect={() => {
           setIsRegisterAnonymousModalOpen(false);
           openWelcome?.();
+        }}
+        onRegistrationSuccess={() => {
+          setIsRegisterAnonymousModalOpen(false);
+          onRequireRegisterAboutYou?.();
         }}
       />
     </>

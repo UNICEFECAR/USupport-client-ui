@@ -33,6 +33,7 @@ export const RegisterAnonymous = ({
   handleGoBack,
   handleLoginRedirect,
   handleWelcomeRedirect,
+  onRegistrationSuccess,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "register-anonymous" });
   const queryClient = useQueryClient();
@@ -111,11 +112,15 @@ export const RegisterAnonymous = ({
 
       window.dispatchEvent(new Event("login"));
       window.dispatchEvent(new Event("token-changed"));
-      navigate("/register/about-you", {
-        state: {
-          isAnonymous: true,
-        },
-      });
+      if (onRegistrationSuccess) {
+        onRegistrationSuccess();
+      } else {
+        navigate("/register/about-you", {
+          state: {
+            isAnonymous: true,
+          },
+        });
+      }
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);
