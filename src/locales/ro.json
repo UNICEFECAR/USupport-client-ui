@@ -130,7 +130,8 @@
       "thursday": "Joi",
       "friday": "Vineri",
       "saturday": "Sâmbătă",
-      "sunday": "Duminică"
+      "sunday": "Duminică",
+      "coupon": "Cupon"
     },
     "user-profile": {
       "your_profile": "Profilul dvs.",

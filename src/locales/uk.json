@@ -130,7 +130,8 @@
       "thursday": "Четвер",
       "friday": "Пʼятниця",
       "saturday": "Субота",
-      "sunday": "Неділя"
+      "sunday": "Неділя",
+      "coupon": "Купон"
     },
     "user-profile": {
       "your_profile": "Твій профіль",

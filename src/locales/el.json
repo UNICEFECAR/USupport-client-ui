@@ -130,7 +130,8 @@
       "thursday": "Πέμπτη",
       "friday": "Παρασκευή",
       "saturday": "Σάββατο",
-      "sunday": "Κυριακή"
+      "sunday": "Κυριακή",
+      "coupon": "Κουπόνι"
     },
     "user-profile": {
       "your_profile": "Το προφίλ σας",

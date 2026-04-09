@@ -130,7 +130,8 @@
       "thursday": "Thursday",
       "friday": "Friday",
       "saturday": "Saturday",
-      "sunday": "Sunday"
+      "sunday": "Sunday",
+      "coupon": "Coupon"
     },
     "user-profile": {
       "your_profile": "Your profile",
