@@ -29,6 +29,7 @@ export const RegisterAboutYou = ({
   isAnonymous,
   onSuccess,
   handleLogout,
+  isLoggedIn,
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "register-about-you" });
@@ -43,7 +44,9 @@ export const RegisterAboutYou = ({
     urbanRural: Joi.string().invalid(null).label(t("place_of_living_error")),
   });
 
-  const clientDataQuery = useGetClientData(true, true)[0];
+  const clientDataQuery = useGetClientData(
+    !!isLoggedIn && isLoggedIn !== "loading"
+  )[0];
   const clientData = clientDataQuery?.data;
 
   const sexOptions = [
@@ -142,7 +145,7 @@ export const RegisterAboutYou = ({
   const updateClientDetailsMutation = useUpdateClientData(
     getDataToSend(),
     onMutateSuccess,
-    onMutateError,
+    onMutateError
   );
 
   const handleBlur = (field) => {

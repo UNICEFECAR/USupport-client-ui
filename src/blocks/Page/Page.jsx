@@ -503,6 +503,7 @@ export const Page = ({
     <>
       <Authentication isOpen={showAuthenticationBackdrop} />
       <RegisterAboutYou
+        isLoggedIn={isLoggedIn}
         isOpen={isRegisterAboutYouModalOpen}
         isAnonymous={isAnonymous}
         handleGoBack={undefined}

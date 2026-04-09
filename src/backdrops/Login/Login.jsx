@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useSearchParams,
+  useNavigate as useRawNavigate,
+} from "react-router-dom";
 
-import { useError } from "#hooks";
+import { useCustomNavigate as useNavigate, useError } from "#hooks";
 
 import {
   Backdrop,
@@ -31,6 +35,10 @@ export const Login = ({
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "login" });
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const rawNavigate = useRawNavigate();
+  const [searchParams] = useSearchParams();
+  const nextPath = searchParams.get("next");
 
   const [data, setData] = useState({
     email: "",
@@ -63,12 +71,17 @@ export const Login = ({
 
       queryClient.setQueryData(
         ["client-data"],
-        userSvc.transformUserData(userData),
+        userSvc.transformUserData(userData)
       );
 
       window.dispatchEvent(new Event("login"));
       window.dispatchEvent(new Event("token-changed"));
       setErrors({});
+      if (nextPath && nextPath.startsWith("/client/")) {
+        rawNavigate(nextPath);
+      } else {
+        navigate("/dashboard");
+      }
       const language = localStorage.getItem("language");
       userSvc.changeLanguage(language).catch((err) => {
         console.log(err, "Error when changing language");
