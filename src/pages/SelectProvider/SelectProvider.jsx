@@ -10,14 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import {
-  RadialCircle,
-  ButtonWithIcon,
-  NewButton,
-  Modal,
-  Input,
-  Block,
-} from "@USupport-components-library/src";
+import { RadialCircle, ButtonWithIcon } from "@USupport-components-library/src";
 import { clientSvc, countrySvc } from "@USupport-components-library/services";
 
 import { useGetProvidersData, useError, useCheckActiveCampaign } from "#hooks";
