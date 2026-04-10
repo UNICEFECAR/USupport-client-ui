@@ -510,6 +510,15 @@ export const Page = ({
 
   return (
     <>
+      <PasswordModal
+        label={t("password")}
+        btnLabel={t("submit")}
+        isOpen={isPasswordModalOpen}
+        isLoading={validatePlatformPasswordMutation.isLoading}
+        error={passwordError}
+        handleSubmit={handlePasswordCheck}
+        placeholder={t("password_placeholder")}
+      />
       <Authentication
         isOpen={showAuthenticationBackdrop}
         onRequireRegisterAboutYou={() => setIsRegisterAboutYouModalOpen(true)}
@@ -526,15 +535,6 @@ export const Page = ({
           }
         }}
         handleLogout={handleLogout}
-      />
-      <PasswordModal
-        label={t("password")}
-        btnLabel={t("submit")}
-        isOpen={isPasswordModalOpen}
-        isLoading={validatePlatformPasswordMutation.isLoading}
-        error={passwordError}
-        handleSubmit={handlePasswordCheck}
-        placeholder={t("password_placeholder")}
       />
       {isNavbarShown === true && (
         <Navbar
