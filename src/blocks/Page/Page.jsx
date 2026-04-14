@@ -519,10 +519,12 @@ export const Page = ({
         handleSubmit={handlePasswordCheck}
         placeholder={t("password_placeholder")}
       />
-      <Authentication
-        isOpen={showAuthenticationBackdrop}
-        onRequireRegisterAboutYou={() => setIsRegisterAboutYouModalOpen(true)}
-      />
+      {isPasswordModalOpen && (
+        <Authentication
+          isOpen={showAuthenticationBackdrop}
+          onRequireRegisterAboutYou={() => setIsRegisterAboutYouModalOpen(true)}
+        />
+      )}
       <RegisterAboutYou
         isLoggedIn={isLoggedIn}
         isOpen={isRegisterAboutYouModalOpen}
