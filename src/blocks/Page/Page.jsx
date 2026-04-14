@@ -109,7 +109,7 @@ export const Page = ({
   const token = localStorage.getItem("token");
 
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(
-    !!token && !isTmpUser
+    !!token && !isTmpUser,
   );
 
   let localStorageCountry = localStorage.getItem("country");
@@ -117,7 +117,7 @@ export const Page = ({
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorageLanguage
       ? { value: localStorageLanguage.toUpperCase() }
-      : { value: "EN" }
+      : { value: "EN" },
   );
   const [selectedCountry, setSelectedCountry] = useState();
 
@@ -232,7 +232,7 @@ export const Page = ({
     });
 
     const foundLanguageFromUrl = languages.find(
-      (x) => x.value === languageFromUrl
+      (x) => x.value === languageFromUrl,
     );
     if (foundLanguageFromUrl) {
       localStorage.setItem("language", languageFromUrl);
@@ -255,13 +255,13 @@ export const Page = ({
       staleTime: Infinity,
       cacheTime: 1000 * 60 * 60 * 24, // Keep cached for 24 hours
       enabled: !!selectedCountry,
-    }
+    },
   );
 
   useEffect(() => {
     if (countries && selectedCountry) {
       const countryObject = countries.find(
-        (x) => x.value === selectedCountry.value
+        (x) => x.value === selectedCountry.value,
       );
       if (countryObject) {
         setSelectedCountryContext(countryObject);
@@ -469,7 +469,7 @@ export const Page = ({
     window.location.hostname === "romania.staging.usupport.online";
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
-    !hasPassedValidation && IS_RO_SUBDOMAIN
+    !hasPassedValidation && IS_RO_SUBDOMAIN,
   );
   const [passwordError, setPasswordError] = useState("");
 
@@ -486,7 +486,7 @@ export const Page = ({
         queryClient.setQueryData(["hasPassedValidation"], true);
         setIsPasswordModalOpen(false);
       },
-    }
+    },
   );
 
   const addSosCenterClickMutation = useAddSosCenterClick();
@@ -519,12 +519,10 @@ export const Page = ({
         handleSubmit={handlePasswordCheck}
         placeholder={t("password_placeholder")}
       />
-      {isPasswordModalOpen && (
-        <Authentication
-          isOpen={showAuthenticationBackdrop}
-          onRequireRegisterAboutYou={() => setIsRegisterAboutYouModalOpen(true)}
-        />
-      )}
+      <Authentication
+        isOpen={showAuthenticationBackdrop}
+        onRequireRegisterAboutYou={() => setIsRegisterAboutYouModalOpen(true)}
+      />
       <RegisterAboutYou
         isLoggedIn={isLoggedIn}
         isOpen={isRegisterAboutYouModalOpen}
