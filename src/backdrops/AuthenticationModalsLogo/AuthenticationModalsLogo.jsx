@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import {
   logoHorizontalSvg,
   logoVerticalDarkSvg,
-  logoVerticalRomaniaPng,
+  logoHorizontalRo,
 } from "@USupport-components-library/assets";
 import { Icon } from "@USupport-components-library/src";
 import { ThemeContext } from "@USupport-components-library/utils";
@@ -36,7 +36,7 @@ export const AuthenticationModalsLogo = ({
         <img
           src={
             IS_RO
-              ? logoVerticalRomaniaPng
+              ? logoHorizontalRo
               : theme !== "light"
                 ? logoVerticalDarkSvg
                 : logoHorizontalSvg
