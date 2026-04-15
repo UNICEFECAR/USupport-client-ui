@@ -62,15 +62,15 @@ export const ForgotPassword = ({ isOpen, handleGoBack }) => {
         heading={t("heading_modal")}
         isOpen={isOpen}
         onClose={() => {}}
-        handleGoBack={handleGoBack}
-        hasGoBackArrow={true}
         hasCloseIcon={false}
         ctaLabel={t("reset_password_button_label")}
         ctaHandleClick={handleResetPassword}
         isCtaDisabled={canContinue}
         isCtaLoading={loading}
         errorMessage={errors.submit}
-        topHeaderComponent={<AuthenticationModalsLogo />}
+        topHeaderComponent={
+          <AuthenticationModalsLogo showGoBackArrow onGoBack={handleGoBack} />
+        }
       >
         <div className="forgot-password-modal__content-container">
           <Input
