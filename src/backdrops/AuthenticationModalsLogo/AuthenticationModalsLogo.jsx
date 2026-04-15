@@ -7,6 +7,7 @@ import {
   logoVerticalDarkSvg,
   logoVerticalRomaniaPng,
 } from "@USupport-components-library/assets";
+import { Icon } from "@USupport-components-library/src";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./authentication-modal-logo.scss";
@@ -18,7 +19,11 @@ import "./authentication-modal-logo.scss";
  *
  * @returns {jsx}
  */
-export const AuthenticationModalsLogo = ({ classes }) => {
+export const AuthenticationModalsLogo = ({
+  classes,
+  showGoBackArrow = false,
+  onGoBack,
+}) => {
   const { t } = useTranslation("backdrops", { keyPrefix: "welcome" });
   const { theme } = useContext(ThemeContext);
   const IS_RO = localStorage.getItem("country") === "RO";
@@ -37,12 +42,19 @@ export const AuthenticationModalsLogo = ({ classes }) => {
                 : logoHorizontalSvg
           }
           alt="Logo"
-          className="authentication-modals-logo__logo"
+          className="authentication-modals-logo__logo-container__logo"
         />
       </div>
-      <h3 className="authentication-modals-logo__client-heading">
-        {t("heading")}
-      </h3>
+      <div className="authentication-modals-logo__heading-row">
+        <div className="authentication-modals-logo__heading-row__left">
+          {showGoBackArrow && (
+            <Icon name="arrow-chevron-back" size="md" onClick={onGoBack} />
+          )}
+        </div>
+        <h3 className="authentication-modals-logo__client-heading">
+          {t("heading")}
+        </h3>
+      </div>
     </div>
   );
 };

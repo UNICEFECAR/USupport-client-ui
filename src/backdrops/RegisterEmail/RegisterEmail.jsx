@@ -203,8 +203,6 @@ export const RegisterEmail = ({
         classes="backdrop--auth backdrop--from-bottom register-email-modal"
         isOpen={isOpen}
         onClose={() => {}}
-        hasGoBackArrow={true}
-        handleGoBack={handleGoBack}
         hasCloseIcon={false}
         ctaLabel={t("register_button")}
         ctaHandleClick={requestEmailOTPMutation.mutate}
@@ -212,7 +210,9 @@ export const RegisterEmail = ({
         isCtaLoading={requestEmailOTPMutation.isLoading}
         thirdCtaLabel={t("login_button_label")}
         thirdCtaHandleClick={handleLogin}
-        topHeaderComponent={<AuthenticationModalsLogo />}
+        topHeaderComponent={
+          <AuthenticationModalsLogo showGoBackArrow onGoBack={handleGoBack} />
+        }
       >
         <div className="register-email-modal__content-container">
           <Input

@@ -111,8 +111,6 @@ export const Login = ({
       classes="backdrop--auth backdrop--from-bottom login-modal"
       isOpen={isOpen}
       onClose={() => {}}
-      hasGoBackArrow={true}
-      handleGoBack={handleGoBack}
       thirdCtaLabel={t("register_button_label")}
       thirdCtaHandleClick={handleRegister}
       ctaLabel={t("login_label")}
@@ -121,7 +119,9 @@ export const Login = ({
       isCtaLoading={loginMutation.isLoading}
       errorMessage={errors.submit}
       hasCloseIcon={false}
-      topHeaderComponent={<AuthenticationModalsLogo />}
+      topHeaderComponent={
+        <AuthenticationModalsLogo showGoBackArrow onGoBack={handleGoBack} />
+      }
     >
       <form onSubmit={handleLogin} className="login-modal__content-form">
         <Input

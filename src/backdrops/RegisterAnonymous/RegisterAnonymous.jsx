@@ -198,8 +198,6 @@ export const RegisterAnonymous = ({
         classes="backdrop--auth backdrop--from-bottom register-anonymous-modal"
         isOpen={isOpen}
         onClose={() => {}}
-        handleGoBack={handleGoBack}
-        hasGoBackArrow={true}
         hasCloseIcon={false}
         errorMessage={errors.submit}
         ctaLabel={t("register_button_label")}
@@ -208,7 +206,9 @@ export const RegisterAnonymous = ({
         isCtaLoading={registerMutation.isLoading}
         thirdCtaLabel={t("login_button_label")}
         thirdCtaHandleClick={() => handleLoginRedirect()}
-        topHeaderComponent={<AuthenticationModalsLogo />}
+        topHeaderComponent={
+          <AuthenticationModalsLogo showGoBackArrow onGoBack={handleGoBack} />
+        }
       >
         <form
           className="register-anonymous-modal__content-container"
