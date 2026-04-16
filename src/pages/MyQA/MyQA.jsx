@@ -215,6 +215,7 @@ export const MyQA = () => {
         showSearch={true}
         searchValue={searchValue}
         onSearchChange={setSearchValue}
+        heroType="my-qa"
       />
       <MyQABlock
         handleAskAnonymous={handleAskAnonymous}

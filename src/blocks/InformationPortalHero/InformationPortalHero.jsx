@@ -15,6 +15,9 @@ import informationPortalPsDark from "../../pages/InformationPortal/assets/inform
 import informationPortalPsMobile from "../../pages/InformationPortal/assets/information-portal-ps-mobile.png";
 import informationPortalPsMobileDark from "../../pages/InformationPortal/assets/information-portal-ps-mobile-dark.png";
 
+import myQaMobile from "../../pages/InformationPortal/assets/my-qa-mobile.png";
+import myQaDesktop from "../../pages/InformationPortal/assets/my-qa.png";
+
 import "./information-portal-hero.scss";
 
 /**
@@ -32,6 +35,7 @@ export const InformationPortalHero = ({
   showGoBackArrow = false,
   buttonLabel,
   buttonOnClick,
+  heroType = "information-portal",
 }) => {
   const { theme } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
@@ -57,6 +61,17 @@ export const InformationPortalHero = ({
       : informationPortalPs
     : informationPortalDark;
 
+  const heroImageSrc =
+    heroType === "my-qa"
+      ? width < 768
+        ? myQaMobile
+        : myQaDesktop
+      : width < 768
+        ? informationPortalMobileImage
+        : informationPortalImage;
+
+  const altText = heroType === "my-qa" ? "My Q&A" : "Information Portal";
+
   return (
     <div className="information-portal-hero">
       {showGoBackArrow && (
@@ -68,10 +83,8 @@ export const InformationPortalHero = ({
         </div>
       )}
       <img
-        src={
-          width < 768 ? informationPortalMobileImage : informationPortalImage
-        }
-        alt="Information Portal"
+        src={heroImageSrc}
+        alt={altText}
         className={`information-portal-hero__image ${
           width < 768
             ? "information-portal-hero__image--mobile"
