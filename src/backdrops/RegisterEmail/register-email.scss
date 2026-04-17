@@ -17,5 +17,21 @@ body:has(.register-email-modal) {
     flex-direction: column;
     padding-bottom: $spacing_4_0;
     gap: $spacing_1_6;
+
+    &__actions {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_1_6;
+      margin-top: $spacing_0_8;
+    }
+
+    &__submit-error {
+      width: 100%;
+    }
+
+    &__login-cta {
+      margin-top: $spacing_0_8;
+    }
   }
 }

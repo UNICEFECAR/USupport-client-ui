@@ -7,10 +7,12 @@ import Joi from "joi";
 
 import {
   AccessToken,
+  Error,
   Input,
   InputPassword,
   TermsAgreement,
   Backdrop,
+  NewButton,
 } from "@USupport-components-library/src";
 import { validate, validateProperty } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
@@ -199,13 +201,6 @@ export const RegisterAnonymous = ({
         isOpen={isOpen}
         onClose={() => {}}
         hasCloseIcon={false}
-        errorMessage={errors.submit}
-        ctaLabel={t("register_button_label")}
-        ctaHandleClick={handleRegisterButtonClick}
-        isCtaDisabled={!canContinue}
-        isCtaLoading={registerMutation.isLoading}
-        thirdCtaLabel={t("login_button_label")}
-        thirdCtaHandleClick={() => handleLoginRedirect()}
         topHeaderComponent={
           <AuthenticationModalsLogo showGoBackArrow onGoBack={handleGoBack} />
         }
@@ -276,6 +271,24 @@ export const RegisterAnonymous = ({
             isChecked={data.isAgeTermsSelected}
             setIsChecked={(val) => handleChange("isAgeTermsSelected", val)}
             textOne={t("age_terms_agreement_text_1", { age: minAge })}
+          />
+
+          <div className="register-anonymous-modal__content-container__actions">
+            {errors.submit ? <Error message={errors.submit} /> : null}
+            <NewButton
+              label={t("register_button_label")}
+              disabled={!canContinue}
+              onClick={handleRegisterButtonClick}
+              loading={registerMutation.isLoading}
+              isFullWidth={true}
+              size="lg"
+            />
+          </div>
+          <NewButton
+            label={t("login_button_label")}
+            onClick={() => handleLoginRedirect()}
+            classes="register-anonymous-modal__content-container__login-cta"
+            type="text"
           />
         </form>
       </Backdrop>
