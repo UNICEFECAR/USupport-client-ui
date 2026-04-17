@@ -14,6 +14,7 @@ import {
   InputPassword,
   TermsAgreement,
   Error,
+  NewButton,
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 import { validateProperty } from "@USupport-components-library/utils";
@@ -204,12 +205,6 @@ export const RegisterEmail = ({
         isOpen={isOpen}
         onClose={() => {}}
         hasCloseIcon={false}
-        ctaLabel={t("register_button")}
-        ctaHandleClick={requestEmailOTPMutation.mutate}
-        isCtaDisabled={!canContinue}
-        isCtaLoading={requestEmailOTPMutation.isLoading}
-        thirdCtaLabel={t("login_button_label")}
-        thirdCtaHandleClick={handleLogin}
         topHeaderComponent={
           <AuthenticationModalsLogo showGoBackArrow onGoBack={handleGoBack} />
         }
@@ -272,12 +267,29 @@ export const RegisterEmail = ({
               onExpired={() => handleCaptchaChange("expired")}
             />
           )}
-          {errors.submit || submitError ? (
-            <Error
-              classes="register-email__grid__submit-error"
-              message={errors.submit || submitError}
+
+          <div className="register-email-modal__content-container__actions">
+            {errors.submit || submitError ? (
+              <Error
+                classes="register-email-modal__content-container__submit-error"
+                message={errors.submit || submitError}
+              />
+            ) : null}
+            <NewButton
+              label={t("register_button")}
+              disabled={!canContinue}
+              onClick={requestEmailOTPMutation.mutate}
+              loading={requestEmailOTPMutation.isLoading}
+              isFullWidth={true}
+              size="lg"
             />
-          ) : null}
+          </div>
+          <NewButton
+            label={t("login_button_label")}
+            onClick={handleLogin}
+            classes="register-email-modal__content-container__login-cta"
+            type="text"
+          />
         </div>
       </Backdrop>
       <CodeVerification
