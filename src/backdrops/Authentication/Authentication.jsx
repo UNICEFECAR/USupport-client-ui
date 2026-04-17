@@ -55,67 +55,74 @@ export const Authentication = ({
         onLogin={() => setIsLoginModalOpen(true)}
         onOpenRequest={setOpenWelcome}
       />
-      <RegisterEmail
-        isOpen={isRegisterWithEmailModalOpen}
-        handleGoBack={() => {
-          setIsRegisterWithEmailModalOpen(false);
-          openWelcome?.();
-        }}
-        handleLogin={() => {
-          console.log("handleLogin");
-          setIsRegisterWithEmailModalOpen(false);
-          setIsLoginModalOpen(true);
-        }}
-        onRegistrationSuccess={() => {
-          setIsRegisterWithEmailModalOpen(false);
-          onRequireRegisterAboutYou?.();
-        }}
-      />
-      <Login
-        isOpen={isLoginModalOpen}
-        handleGoBack={() => {
-          setIsLoginModalOpen(false);
-          openWelcome?.();
-        }}
-        handleRegister={() => {
-          setIsLoginModalOpen(false);
-          setIsRegisterWithEmailModalOpen(true);
-        }}
-        handleForgotPassword={() => {
-          setIsLoginModalOpen(false);
-          setIsForgotPasswordModalOpen(true);
-        }}
-      />
-      <ForgotPassword
-        isOpen={isForgotPasswordModalOpen}
-        handleGoBack={() => {
-          setIsForgotPasswordModalOpen(false);
-          setIsLoginModalOpen(true);
-        }}
-      />
-      <RegisterAnonymous
-        isOpen={isRegisterAnonymousModalOpen}
-        handleGoBack={() => {
-          setIsRegisterAnonymousModalOpen(false);
-          openWelcome?.();
-        }}
-        handleLoginRedirect={() => {
-          setIsRegisterAnonymousModalOpen(false);
-          setIsLoginModalOpen(true);
-        }}
-        handleRegisterRedirect={() => {
-          setIsRegisterAnonymousModalOpen(false);
-          setIsRegisterWithEmailModalOpen(true);
-        }}
-        handleWelcomeRedirect={() => {
-          setIsRegisterAnonymousModalOpen(false);
-          openWelcome?.();
-        }}
-        onRegistrationSuccess={() => {
-          setIsRegisterAnonymousModalOpen(false);
-          onRequireRegisterAboutYou?.();
-        }}
-      />
+      {isRegisterWithEmailModalOpen && (
+        <RegisterEmail
+          isOpen={isRegisterWithEmailModalOpen}
+          handleGoBack={() => {
+            setIsRegisterWithEmailModalOpen(false);
+            openWelcome?.();
+          }}
+          handleLogin={() => {
+            setIsRegisterWithEmailModalOpen(false);
+            setIsLoginModalOpen(true);
+          }}
+          onRegistrationSuccess={() => {
+            setIsRegisterWithEmailModalOpen(false);
+            onRequireRegisterAboutYou?.();
+          }}
+        />
+      )}
+      {isLoginModalOpen && (
+        <Login
+          isOpen={isLoginModalOpen}
+          handleGoBack={() => {
+            setIsLoginModalOpen(false);
+            openWelcome?.();
+          }}
+          handleRegister={() => {
+            setIsLoginModalOpen(false);
+            setIsRegisterWithEmailModalOpen(true);
+          }}
+          handleForgotPassword={() => {
+            setIsLoginModalOpen(false);
+            setIsForgotPasswordModalOpen(true);
+          }}
+        />
+      )}
+      {isForgotPasswordModalOpen && (
+        <ForgotPassword
+          isOpen={isForgotPasswordModalOpen}
+          handleGoBack={() => {
+            setIsForgotPasswordModalOpen(false);
+            setIsLoginModalOpen(true);
+          }}
+        />
+      )}
+      {isRegisterAnonymousModalOpen && (
+        <RegisterAnonymous
+          isOpen={isRegisterAnonymousModalOpen}
+          handleGoBack={() => {
+            setIsRegisterAnonymousModalOpen(false);
+            openWelcome?.();
+          }}
+          handleLoginRedirect={() => {
+            setIsRegisterAnonymousModalOpen(false);
+            setIsLoginModalOpen(true);
+          }}
+          handleRegisterRedirect={() => {
+            setIsRegisterAnonymousModalOpen(false);
+            setIsRegisterWithEmailModalOpen(true);
+          }}
+          handleWelcomeRedirect={() => {
+            setIsRegisterAnonymousModalOpen(false);
+            openWelcome?.();
+          }}
+          onRegistrationSuccess={() => {
+            setIsRegisterAnonymousModalOpen(false);
+            onRequireRegisterAboutYou?.();
+          }}
+        />
+      )}
     </>
   );
 };
