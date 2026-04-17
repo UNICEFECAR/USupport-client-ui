@@ -243,7 +243,7 @@
     position: fixed;
     right: $spacing_1_6;
     z-index: $z_index_emergency_button;
-    opacity: 0.9;
+    opacity: 0.83;
     box-shadow:
       0 0 20px rgba(235, 87, 87, 0.6),
       0 4px 12px rgba(235, 87, 87, 0.4);
@@ -257,7 +257,7 @@
     }
 
     @media screen and (min-width: $screen-md) {
-      right: $spacing_4_8;
+      right: $spacing_7_2;
     }
   }
 
@@ -269,7 +269,7 @@
     max-width: 10rem;
     cursor: pointer;
     background-color: $color_primary_20809e;
-    opacity: 0.9;
+    opacity: 0.83;
     padding: 1rem;
     border-radius: 5rem;
     transition: opacity 0.2s ease;
@@ -280,7 +280,7 @@
     }
 
     @media screen and (min-width: $screen-md) {
-      left: $spacing_4_8;
+      left: $spacing_8_0;
     }
   }
 }
