@@ -54,6 +54,41 @@ body:has(.welcome-modal) {
         padding-inline: $spacing_1_6;
         width: calc(100% - 2 * #{$spacing_1_6});
       }
+
+      // Welcome-only: "Register anonymously" is the only outline button in this row
+      & > .button.button--outline {
+        background-color: #6a90e9;
+        border-color: #6a90e9;
+        color: #ffffff;
+
+        &:hover:enabled {
+          background-color: #5d83dc;
+          border-color: #5d83dc;
+        }
+
+        &:active:enabled {
+          background-color: #4f76cf;
+          border-color: #4f76cf;
+        }
+      }
+    }
+
+    &__register-anonymously {
+      &.button--outline {
+        background-color: #6a90e9;
+        border-color: #6a90e9;
+        color: #ffffff;
+
+        &:hover:enabled {
+          background-color: #5d83dc;
+          border-color: #5d83dc;
+        }
+
+        &:active:enabled {
+          background-color: #4f76cf;
+          border-color: #4f76cf;
+        }
+      }
     }
 
     &__login-text {
