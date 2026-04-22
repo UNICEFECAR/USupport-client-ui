@@ -289,6 +289,7 @@ export const Welcome = ({
               onClick={() => handleRedirect("anonymously")}
               type="outline"
               size="lg"
+              classes="welcome-modal__content-container__register-anonymously"
             />
           </div>
 
