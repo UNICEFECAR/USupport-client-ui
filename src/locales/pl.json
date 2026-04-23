@@ -1092,10 +1092,10 @@
       "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem"
     },
     "download-app": {
-      "heading": "Pobierz naszą aplikację mobilną",
-      "paragraph": "Teraz dostępna na iOS i Android",
+      "heading": "Pobierz aplikację",
+      "paragraph": "Teraz dostępne dla systemów iOS i Android",
       "download_text": "Pobierz z",
-      "text": "Uzyskaj wsparcie zawsze i wszędzie - szybko, bezpiecznie i łatwo."
+      "text": "Otrzymaj wsparcie zawsze i wszędzie - szybko, bezpiecznie i łatwo w użyciu."
     },
     "find-support-near-you": {
       "heading": "Znajdź wsparcie w pobliżu",
