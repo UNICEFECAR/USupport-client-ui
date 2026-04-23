@@ -1016,7 +1016,14 @@
       "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
       "explore_heading": "Find Support Near You",
       "explore_card_title": "Discover Local Support",
-      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you.",
+      "user_guide_heading": "Θέλετε να μάθετε περισσότερα για:",
+      "emergency_services": "Υπηρεσίες έκτακτης ανάγκης",
+      "emergency_services_description": "Υπηρεσίες έκτακτης ανάγκης",
+      "map": "Χάρτης υπηρεσιών ψυχικής υγείας και ψυχοσυναισθηματικής υποστήριξης που είναι διαθέσιμες στο Βουκουρέστι",
+      "map_description": "Χάρτης υπηρεσιών υποστήριξης (Βουκουρέστι)",
+      "rights": "Τα δικαιώματα των παιδιών και των εφήβων να έχουν πρόσβαση σε υπηρεσίες ψυχικής υγείας και ψυχοσυναισθηματικής υποστήριξης",
+      "rights_description": "Δικαιώματα παιδιών & εφήβων"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Η αξιολόγηση ολοκληρώθηκε",
@@ -1685,8 +1692,8 @@
     "user-guide": {
       "heading": "Θέλετε να μάθετε περισσότερα για:",
       "emergency_services": "Υπηρεσίες έκτακτης ανάγκης",
-      "map": "Χάρτης υπηρεσιών ψυχικής υγείας και ψυχοσυναισθηματικής υποστήριξης που είναι διαθέσιμες στο Βουκουρέστι",
-      "rights": "Τα δικαιώματα των παιδιών και των εφήβων να έχουν πρόσβαση σε υπηρεσίες ψυχικής υγείας και ψυχοσυναισθηματικής υποστήριξης"
+      "map": "Χάρτης υπηρεσιών υποστήριξης (Βουκουρέστι)",
+      "rights": "Δικαιώματα παιδιών & εφήβων"
     },
     "emergency-situation": {
       "heading": "Χάρτης Υπηρεσιών Ψυχικής Υγείας και Ψυχοκοινωνικής Υποστήριξης για Παιδιά και Εφήβους στο Βουκουρέστι",

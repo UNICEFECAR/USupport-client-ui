@@ -19,8 +19,6 @@ import {
   JoinConsultation,
   ConfirmConsultation,
   SelectConsultation,
-  UserGuide,
-  EmergencySituation,
 } from "#backdrops";
 
 import {
@@ -99,9 +97,6 @@ export const Dashboard = () => {
   const [redirectToSelectProvider, setRedirectToSelectProvider] =
     useState(true);
   const [isBaselineAssesmentModalOpen, setIsBaselineAssesmentModalOpen] =
-    useState(false);
-  const [isUserGuideOpen, setIsUserGuideOpen] = useState(false);
-  const [isEmergencySituationOpen, setIsEmergencySituationOpen] =
     useState(false);
 
   const openRequireDataAgreement = (successAction) => {
@@ -275,20 +270,6 @@ export const Dashboard = () => {
   // Show authentication backdrop when user is not authenticated (and not loading)
   const showAuthBackdrop = !isAuthenticated && !isAuthLoading;
 
-  const openUserGuide = () => {
-    setIsUserGuideOpen(true);
-  };
-  const closeUserGuide = () => {
-    setIsUserGuideOpen(false);
-  };
-
-  const openEmergencySituation = () => {
-    setIsEmergencySituationOpen(true);
-  };
-  const closeEmergencySituation = () => {
-    setIsEmergencySituationOpen(false);
-  };
-
   return (
     <Page
       classes="page__dashboard"
@@ -316,14 +297,12 @@ export const Dashboard = () => {
           handleSchedule={handleScheduleConsultation}
           handleAcceptSuggestion={handleAcceptSuggestion}
           name={clientName}
-          handleOpenUserGuide={openUserGuide}
           t={t}
         /> */}
         <MoodTracker
           isTmpUser={isTmpUser || !isAuthenticated}
           clientData={clientData || {}}
           openRequireDataAgreement={openRequireDataAgreement}
-          openUserGuide={openUserGuide}
         />
         {IS_RO ? (
           <>
@@ -406,15 +385,6 @@ export const Dashboard = () => {
         isOpen={isRequireDataAgreementOpen}
         onClose={closeRequireDataAgreement}
         onSuccess={handleDataAgreementSucess}
-      />
-      <UserGuide
-        isOpen={isUserGuideOpen}
-        handleOpenEmergencySituation={openEmergencySituation}
-        onClose={closeUserGuide}
-      />
-      <EmergencySituation
-        isOpen={isEmergencySituationOpen}
-        onClose={closeEmergencySituation}
       />
     </Page>
   );

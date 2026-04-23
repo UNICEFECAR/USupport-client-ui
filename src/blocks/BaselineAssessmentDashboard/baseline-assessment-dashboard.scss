@@ -4,6 +4,116 @@
   padding-top: $spacing_4_8;
   padding-bottom: $spacing_6_4;
 
+  &__user-guide {
+    margin-top: $spacing_2_4;
+    width: 100%;
+
+    &__wrapper {
+      padding: $spacing_3_2;
+    }
+
+    &__heading {
+      text-align: left;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      margin: 0 0 $spacing_1_6;
+    }
+
+    &__options {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_1_0;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      &__options {
+        flex-direction: row;
+        gap: $spacing_1_6;
+      }
+    }
+
+    &__option-card {
+      display: flex;
+      align-items: center;
+      gap: $spacing_1_6;
+      padding: $spacing_1_4 $spacing_1_6;
+      border-radius: 16px;
+      border: 1px solid rgba(224, 233, 255, 0.72);
+      box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.14);
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+
+      @include themifyNormal($themes) {
+        background: themed(glass_panel_background);
+        background-color: themed(glass_panel_background);
+        border: 1px solid themed(glass_border_color);
+        box-shadow: themed(glass_shadow);
+      }
+
+      .theme-light & {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.44),
+          rgba(235, 243, 255, 0.3)
+        );
+        border: 1px solid rgba(224, 233, 255, 0.72);
+        box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.14);
+      }
+
+      @media screen and (min-width: $screen-lg) {
+        flex: 1 1 0;
+      }
+
+      &:hover {
+        box-shadow: 0 0.8rem 1.2rem rgba(95, 108, 145, 0.18);
+        transform: translateY(-1px);
+      }
+
+      &:focus-visible {
+        outline: 2px solid $color_primary_20809e;
+        outline-offset: 2px;
+      }
+
+      &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        background: linear-gradient(
+          135.77deg,
+          #a597d9 9.72%,
+          #9f90dc 16.15%,
+          #775ff3 65.14%,
+          #684dfd 90.04%
+        );
+      }
+
+      &__text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      &__description {
+        line-height: $line_height_2_2;
+        font-weight: $font_regular;
+        color: #6b7280;
+        margin: 0;
+      }
+
+      &__chevron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #9ca3af;
+      }
+    }
+  }
+
   .theme-light & {
     .box--liquid-glass,
     .card--liquid-glass {

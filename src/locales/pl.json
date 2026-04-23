@@ -1016,7 +1016,14 @@
       "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
       "explore_heading": "Find Support Near You",
       "explore_card_title": "Discover Local Support",
-      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you.",
+      "user_guide_heading": "Chcesz dowiedzieć się więcej o:",
+      "emergency_services": "Służbach ratunkowych",
+      "emergency_services_description": "Służbach ratunkowych",
+      "map": "Mapie usług wsparcia zdrowia psychicznego i psychoemocjonalnego dostępnych w Bukareszcie",
+      "map_description": "Mapa usług wsparcia (Bukareszt)",
+      "rights": "Prawach dzieci i młodzieży do dostępu do usług wsparcia zdrowia psychicznego i psychoemocjonalnego",
+      "rights_description": "Prawa dzieci i młodzieży"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Ocena zakończona",
@@ -1685,8 +1692,8 @@
     "user-guide": {
       "heading": "Chcesz dowiedzieć się więcej o:",
       "emergency_services": "Służbach ratunkowych",
-      "map": "Mapie usług wsparcia zdrowia psychicznego i psychoemocjonalnego dostępnych w Bukareszcie",
-      "rights": "Prawach dzieci i młodzieży do dostępu do usług wsparcia zdrowia psychicznego i psychoemocjonalnego"
+      "map": "Mapa usług wsparcia (Bukareszt)",
+      "rights": "Prawa dzieci i młodzieży"
     },
     "emergency-situation": {
       "heading": "Mapa usług wsparcia zdrowia psychicznego i psychospołecznego dla dzieci i młodzieży w Bukareszcie",

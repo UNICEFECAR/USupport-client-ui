@@ -1016,7 +1016,14 @@
       "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
       "explore_heading": "Find Support Near You",
       "explore_card_title": "Discover Local Support",
-      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you.",
+      "user_guide_heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",
+      "emergency_services": "Жедел қызметтер",
+      "emergency_services_description": "Жедел қызметтер",
+      "map": "Бухарестте қолжетімді психикалық денсаулық және психо-эмоционалдық қолдау қызметтерінің картасы",
+      "map_description": "Қолдау қызметтер картасы (Бухарест)",
+      "rights": "Балалар мен жасөспірімдердің психикалық денсаулық және психо-эмоционалдық қолдау қызметтеріне қол жеткізу құқықтары",
+      "rights_description": "Балалар мен жасөспірімдердің құқықтары"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Бағалау аяқталды",
@@ -1685,8 +1692,8 @@
     "user-guide": {
       "heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",
       "emergency_services": "Жедел қызметтер",
-      "map": "Бухарестте қолжетімді психикалық денсаулық және психо-эмоционалдық қолдау қызметтерінің картасы",
-      "rights": "Балалар мен жасөспірімдердің психикалық денсаулық және психо-эмоционалдық қолдау қызметтеріне қол жеткізу құқықтары"
+      "map": "Қолдау қызметтер картасы (Бухарест)",
+      "rights": "Балалар мен жасөспірімдердің құқықтары"
     },
     "emergency-situation": {
       "heading": "Бухаресттегі балалар мен жасөспірімдерге арналған психикалық денсаулық және психоәлеуметтік қолдау қызметтерінің картасы",
