@@ -3,7 +3,8 @@ import { clientSvc } from "@USupport-components-library/services";
 import { useTranslation } from "react-i18next";
 
 export default function useGetAllConsultations(enabled = true) {
-  const { t } = useTranslation("blocks", { keyPrefix: "consultations" });
+  const { i18n } = useTranslation("blocks", { keyPrefix: "consultations" });
+  const language = i18n.language;
 
   const getAllConsultations = async () => {
     const response = await clientSvc.getAllConsultations();
@@ -33,9 +34,9 @@ export default function useGetAllConsultations(enabled = true) {
   };
 
   const getAllConsultationsQuery = useQuery(
-    ["all-consultations"],
+    ["all-consultations", language],
     getAllConsultations,
-    { enabled: !!enabled },
+    { enabled: !!enabled }
   );
 
   return getAllConsultationsQuery;

@@ -68,6 +68,20 @@
     @media screen and (min-width: $screen-md) {
       padding: $spacing_3_2;
     }
+
+    &__providers-item {
+      &__grid {
+        justify-items: stretch;
+
+        & .grid-item {
+          width: 100%;
+        }
+
+        &__provider {
+          width: 100%;
+        }
+      }
+    }
   }
 
   @media screen and (min-width: $screen_md) {

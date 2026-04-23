@@ -256,7 +256,8 @@
       "tab_free": "Bezpłatne",
       "choose-the-provider": "Wybierz specjalistę, z którym chcesz rozmawiać przez wideo, audio lub czat. Czasami może minąć kilka sesji, zanim znajdziesz specjalistę odpowiedniego do Twoich potrzeb i preferowanego podejścia.",
       "coupon_note": "Tym razem wpisaliśmy dla Ciebie kod na darmową sesję! Umów się na wizytę u jednego z naszych konsultantów i zrób pierwszy krok ku lepszemu samopoczuciu.",
-      "book_session": "Umów sesję"
+      "book_session": "Umów sesję",
+      "view_profile": "Wyświetl profil osobisty"
     },
     "notification-preferences": {
       "email": "Powiadomienia email",

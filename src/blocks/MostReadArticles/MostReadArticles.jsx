@@ -6,8 +6,8 @@ import {
   Block,
   Grid,
   GridItem,
-  Loading,
   CardMedia,
+  CardMediaSkeleton,
 } from "@USupport-components-library/src";
 import {
   destructureArticleData,
@@ -33,7 +33,7 @@ export const MostReadArticles = () => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country"),
+    localStorage.getItem("country")
   );
   const shouldFetchIds = !!(currentCountry && currentCountry !== "global");
 
@@ -55,7 +55,7 @@ export const MostReadArticles = () => {
     getArticlesIds,
     {
       enabled: shouldFetchIds,
-    },
+    }
   );
 
   //--------------------- Most Read Articles ----------------------//
@@ -83,7 +83,7 @@ export const MostReadArticles = () => {
     const ids = rawArticles.map((article) => article.id);
     const { likes, dislikes } = await getLikesAndDislikesForContent(
       ids,
-      "article",
+      "article"
     );
 
     const processedArticles = rawArticles.map((article) => {
@@ -109,7 +109,7 @@ export const MostReadArticles = () => {
       onSuccess: (data) => {
         setShowBlock(data.length > 0);
       },
-    },
+    }
   );
 
   const handleRedirect = (id, title) => {
@@ -131,7 +131,10 @@ export const MostReadArticles = () => {
                 lg={12}
                 classes="most-read-articles__loading-item"
               >
-                <Loading />
+                <CardMediaSkeleton
+                  size="lg"
+                  type={!isNotDescktop ? "landscape" : "portrait"}
+                />
               </GridItem>
             ) : null}
 
@@ -159,7 +162,7 @@ export const MostReadArticles = () => {
                     onClick={() =>
                       handleRedirect(
                         mostReadArticlesQuery.data[0].id,
-                        mostReadArticlesQuery.data[0].title,
+                        mostReadArticlesQuery.data[0].title
                       )
                     }
                   />
