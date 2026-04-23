@@ -16,7 +16,6 @@ import {
 import {
   Block,
   NewButton,
-  ButtonWithIcon,
   Grid,
   GridItem,
   RadioButtonSelector,
@@ -396,8 +395,9 @@ export const BaselineAssesment = ({
               <NewButton
                 iconName="save"
                 iconColor="#ffffff"
-                size="md"
+                size="lg"
                 type="solid"
+                isFullWidth
                 label={t("save_button_label")}
                 classes="baseline-assesment__navigation__save-for-later"
                 onClick={handleRedirectToDashboard}
