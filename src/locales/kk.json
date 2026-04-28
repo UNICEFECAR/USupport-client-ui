@@ -453,7 +453,11 @@
       "year_of_birth_placeholder": "Туған жылыңызды енгізіңіз",
       "living_place_placeholder": "Тұрғылықты жеріңізді енгізіңіз",
       "parent": "Ата-ана",
-      "delete_mood_tracker": "Көңіл-күй трекерінің тарихын тазалау"
+      "delete_mood_tracker": "Көңіл-күй трекерінің тарихын тазалау",
+      "account_section": "Аккаунт",
+      "data_management_section": "Деректерді басқару",
+      "danger_zone_section": "Қауіпті аймақ",
+      "delete_account_description": "Бұл әрекет тұрақты және қайтарылмайды."
     },
     "reset-password": {
       "label": "Жаңа құпия сөз",
@@ -1016,7 +1020,14 @@
       "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
       "explore_heading": "Find Support Near You",
       "explore_card_title": "Discover Local Support",
-      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you.",
+      "user_guide_heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",
+      "emergency_services": "Жедел қызметтер",
+      "emergency_services_description": "Жедел қызметтер",
+      "map": "Бухарестте қолжетімді психикалық денсаулық және психо-эмоционалдық қолдау қызметтерінің картасы",
+      "map_description": "Қолдау қызметтер картасы (Бухарест)",
+      "rights": "Балалар мен жасөспірімдердің психикалық денсаулық және психо-эмоционалдық қолдау қызметтеріне қол жеткізу құқықтары",
+      "rights_description": "Балалар мен жасөспірімдердің құқықтары"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Бағалау аяқталды",
@@ -1092,10 +1103,10 @@
       "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
     },
     "download-app": {
-      "heading": "Мобильді қолданбамызды жүктеп алыңыз",
-      "paragraph": "Енді iOS және Android үшін қол жетімді",
-      "download_text": "Жүктеп алу",
-      "text": "Кез келген уақытта, кез келген жерде қолдау алыңыз - жылдам, қауіпсіз және қолдануға оңай."
+      "heading": "Қосымшаны жүктеп алу",
+      "paragraph": "Енді iOS және Android үшін қолжетімді",
+      "download_text": "Жүктеп алыңыз:",
+      "text": "Қолдауды кез келген уақытта, кез келген жерден алыңыз - жылдам, қауіпсіз және қолдануға оңай."
     },
     "find-support-near-you": {
       "heading": "Жақын маңнан қолдау табыңыз",
@@ -1685,8 +1696,8 @@
     "user-guide": {
       "heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",
       "emergency_services": "Жедел қызметтер",
-      "map": "Бухарестте қолжетімді психикалық денсаулық және психо-эмоционалдық қолдау қызметтерінің картасы",
-      "rights": "Балалар мен жасөспірімдердің психикалық денсаулық және психо-эмоционалдық қолдау қызметтеріне қол жеткізу құқықтары"
+      "map": "Қолдау қызметтер картасы (Бухарест)",
+      "rights": "Балалар мен жасөспірімдердің құқықтары"
     },
     "emergency-situation": {
       "heading": "Бухаресттегі балалар мен жасөспірімдерге арналған психикалық денсаулық және психоәлеуметтік қолдау қызметтерінің картасы",

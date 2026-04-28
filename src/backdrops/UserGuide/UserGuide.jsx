@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
 
-import { Backdrop, Button, Icon } from "@USupport-components-library/src";
+import { Backdrop, Icon } from "@USupport-components-library/src";
 
 import "./user-guide.scss";
 

@@ -454,7 +454,11 @@
       "year_of_birth_placeholder": "Введіть свій рік народження",
       "living_place_placeholder": "Введіть своє місце проживання",
       "parent": "Мати/Батько/Опікун",
-      "delete_mood_tracker": "Очистити історію монітора настрою"
+      "delete_mood_tracker": "Очистити історію монітора настрою",
+      "account_section": "Обліковий запис",
+      "data_management_section": "Управління даними",
+      "danger_zone_section": "Небезпечна зона",
+      "delete_account_description": "Ця дія є постійною і не може бути скасована."
     },
     "reset-password": {
       "label": "Новий пароль",
@@ -1017,7 +1021,14 @@
       "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
       "explore_heading": "Find Support Near You",
       "explore_card_title": "Discover Local Support",
-      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you.",
+      "user_guide_heading": "Хочеш дізнатися більше про:",
+      "emergency_services": "Екстрені служби",
+      "emergency_services_description": "Екстрені служби",
+      "map": "Карта послуг з психічного здоров’я та психо-емоційної підтримки, доступних у Бухаресті",
+      "map_description": "Карта служб підтримки (Бухарест)",
+      "rights": "Права дітей та підлітків на доступ до послуг з психічного здоров’я та психо-емоційної підтримки",
+      "rights_description": "Права дітей і підлітків"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Оцінювання завершено",
@@ -1093,10 +1104,10 @@
       "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
     },
     "download-app": {
-      "heading": "Завантажте наш мобільний додаток",
-      "paragraph": "Тепер доступно для iOS та Android",
+      "heading": "Завантаж додаток",
+      "paragraph": "Додаток тепер доступний для iOS і Android",
       "download_text": "Завантажити з",
-      "text": "Отримуйте підтримку будь-коли й будь-де - швидко, безпечно та зручно."
+      "text": "Отримуй підтримку будь-коли й будь-де — швидко, безпечно та зручно у використанні."
     },
     "find-support-near-you": {
       "heading": "Знайдіть підтримку поруч",
@@ -1686,8 +1697,8 @@
     "user-guide": {
       "heading": "Хочеш дізнатися більше про:",
       "emergency_services": "Екстрені служби",
-      "map": "Карта послуг з психічного здоров’я та психо-емоційної підтримки, доступних у Бухаресті",
-      "rights": "Права дітей та підлітків на доступ до послуг з психічного здоров’я та психо-емоційної підтримки"
+      "map": "Карта служб підтримки (Бухарест)",
+      "rights": "Права дітей і підлітків"
     },
     "emergency-situation": {
       "heading": "Карта послуг з психічного здоров’я та психосоціальної підтримки для дітей і підлітків у Бухаресті",

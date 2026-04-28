@@ -454,7 +454,11 @@
       "year_of_birth_placeholder": "Նշիր քո ծննդյան տարեթիվը",
       "living_place_placeholder": "Նշիր քո բնակության վայրը",
       "parent": "Ծնող",
-      "delete_mood_tracker": "Ջնջել տրամադրության ստուգիչի պատմությունը"
+      "delete_mood_tracker": "Ջնջել տրամադրության ստուգիչի պատմությունը",
+      "account_section": "Հաշիվ",
+      "data_management_section": "Տվյալների կառավարում",
+      "danger_zone_section": "Վտանգավոր գոտի",
+      "delete_account_description": "Այս գործողությունը մշտական է և չի կարող հետ շրջվել։"
     },
     "reset-password": {
       "label": "Նոր գաղտնաբառ",
@@ -1017,7 +1021,14 @@
       "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
       "explore_heading": "Find Support Near You",
       "explore_card_title": "Discover Local Support",
-      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you."
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you.",
+      "user_guide_heading": "Ցանկանու՞մ եք ավելին իմանալ հետևյալի մասին․",
+      "emergency_services": "Արտակարգ ծառայություններ",
+      "emergency_services_description": "Արտակարգ ծառայություններ",
+      "map": "Բուխարեստում հասանելի հոգեկան առողջության և հոգե-հուզական աջակցության ծառայությունների քարտեզ",
+      "map_description": "Աջակցության ծառայությունների քարտեզ (Բուխարեստ)",
+      "rights": "Երեխաների և դեռահասների իրավունքները՝ հոգեկան առողջության և հոգե-հուզական աջակցության ծառայություններից օգտվելու համար",
+      "rights_description": "Երեխաների և դեռահասների իրավունքները"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Assessment completed",
@@ -1093,10 +1104,10 @@
       "join_button_label_tooltip": "Դուք կարող եք միանալ խորհրդատվությանը սկսելուց 5 րոպե առաջ"
     },
     "download-app": {
-      "heading": "Ներբեռնեք մեր բջջային հավելվածը",
-      "paragraph": "Այժմ հասանելի iOS և Android-ի համար",
-      "download_text": "Ներբեռնել",
-      "text": "Ստացիր աջակցություն ցանկացած պահի, ցանկացած վայրում՝ արագ, անվտանգ և հեշտ։"
+      "heading": "Ներբեռնել հավելվածը",
+      "paragraph": "Այժմ հասանելի է iOS և Android համակարգերի համար",
+      "download_text": "Ներբեռնել ձևաթուղթը",
+      "text": "Ստացեք աջակցություն ցանկացած ժամանակ, ցանկացած վայրում՝ արագ, անվտանգ և հեշտ օգտագործվող։"
     },
     "find-support-near-you": {
       "heading": "Գտեք աջակցություն ձեր մոտ",
@@ -1686,8 +1697,8 @@
     "user-guide": {
       "heading": "Ցանկանու՞մ եք ավելին իմանալ հետևյալի մասին․",
       "emergency_services": "Արտակարգ ծառայություններ",
-      "map": "Բուխարեստում հասանելի հոգեկան առողջության և հոգե-հուզական աջակցության ծառայությունների քարտեզ",
-      "rights": "Երեխաների և դեռահասների իրավունքները՝ հոգեկան առողջության և հոգե-հուզական աջակցության ծառայություններից օգտվելու համար"
+      "map": "Աջակցության ծառայությունների քարտեզ (Բուխարեստ)",
+      "rights": "Երեխաների և դեռահասների իրավունքները"
     },
     "emergency-situation": {
       "heading": "Բուխարեստում երեխաների և դեռահասների համար հոգեկան առողջության և հոգեսոցիալական աջակցության ծառայությունների քարտեզ",

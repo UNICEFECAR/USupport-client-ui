@@ -44,6 +44,70 @@ export const BaselineAssessmentDashboard = ({
     }
   };
 
+  const options = [
+    {
+      name: "emergency_services",
+      icon: "phone-emergency",
+      path: "/sos-center",
+      descriptionKey: "emergency_services_description",
+    },
+    {
+      name: "map",
+      icon: "location",
+      path: "/children-rights?start=non-emergency",
+      descriptionKey: "map_description",
+    },
+    {
+      name: "rights",
+      icon: "read-book",
+      path: "/children-rights?start=rights-intro",
+      descriptionKey: "rights_description",
+    },
+  ];
+
+  const renderUserGuideOptions = () => {
+    return (
+      <div className="baseline-assessment-dashboard__user-guide">
+        <Box
+          classes="baseline-assessment-dashboard__user-guide__wrapper"
+          liquidGlass
+        >
+          <h3 className="baseline-assessment-dashboard__user-guide__heading">
+            {t("user_guide_heading", {
+              defaultValue: "Do you want to know more about:",
+            })}
+          </h3>
+          <div className="baseline-assessment-dashboard__user-guide__options">
+            {options.map((option) => (
+              <button
+                key={option.name}
+                type="button"
+                className="baseline-assessment-dashboard__user-guide__option-card"
+                onClick={() => navigate(option.path)}
+              >
+                <div className="baseline-assessment-dashboard__user-guide__option-card__icon">
+                  <Icon name={option.icon} size="md" color="#ffffff" />
+                </div>
+
+                <div className="baseline-assessment-dashboard__user-guide__option-card__text">
+                  <p className="text baseline-assessment-dashboard__user-guide__option-card__description">
+                    {t(option.descriptionKey, {
+                      defaultValue: t(option.name),
+                    })}
+                  </p>
+                </div>
+
+                <div className="baseline-assessment-dashboard__user-guide__option-card__chevron">
+                  <Icon name="chevron-right" size="sm" />
+                </div>
+              </button>
+            ))}
+          </div>
+        </Box>
+      </div>
+    );
+  };
+
   const renderAssessmentContent = () => {
     if (isFetching) {
       return <Loading />;
@@ -183,6 +247,7 @@ export const BaselineAssessmentDashboard = ({
             </div>
           </div>
         </Box>
+        {renderUserGuideOptions()}
       </Block>
     </React.Fragment>
   );

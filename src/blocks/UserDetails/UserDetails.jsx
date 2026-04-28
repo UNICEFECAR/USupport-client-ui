@@ -17,6 +17,7 @@ import {
   ProfilePicturePreview,
   CheckBox,
   NewButton,
+  ActionRow,
 } from "@USupport-components-library/src";
 import {
   validateProperty,
@@ -426,53 +427,57 @@ export const UserDetails = ({
                 </div>
               </GridItem>
               <GridItem md={8} lg={12}>
-                <Grid classes="user-details__grid__delete-buttons-container">
-                  <GridItem md={4} lg={6}>
-                    <NewButton
-                      size="lg"
-                      type="text"
-                      label={t("change_password")}
-                      onClick={openChangePasswordBackdrop}
-                    />
-                  </GridItem>
-                  <GridItem md={4} lg={6}>
-                    <NewButton
-                      size="lg"
-                      type="text"
-                      label={t("delete_account")}
-                      onClick={openDeleteAccountBackdrop}
-                    />
-                  </GridItem>
-                  <GridItem md={4} lg={6}>
-                    <NewButton
-                      size="lg"
-                      type="text"
-                      label={t("delete_mood_tracker")}
-                      onClick={openDeleteMoodTrackerHistory}
-                    />
-                  </GridItem>
-                  {!IS_RO && (
-                    <GridItem md={4} lg={6}>
-                      <NewButton
-                        size="lg"
-                        type="text"
-                        label={t("delete_chat")}
-                        onClick={openDeleteChatHistory}
+                <div className="user-details__actions">
+                  <div className="user-details__action-section">
+                    <p className="user-details__action-section__heading text">
+                      {t("account_section")}
+                    </p>
+                    <div className="user-details__action-card">
+                      <ActionRow
+                        iconName="fingerprint"
+                        label={t("change_password")}
+                        onClick={openChangePasswordBackdrop}
                       />
-                    </GridItem>
-                  )}
-                  <GridItem md={4} lg={6}>
-                    <NewButton
-                      size="lg"
-                      type="text"
-                      label={t("logout")}
-                      onClick={handleLogout}
-                      iconName="exit"
-                      iconColor="#6989A4"
-                      classes="user-details__grid__logout-button"
-                    />
-                  </GridItem>
-                </Grid>
+                    </div>
+                  </div>
+
+                  <div className="user-details__action-section">
+                    <p className="user-details__action-section__heading text">
+                      {t("data_management_section")}
+                    </p>
+                    <div className="user-details__action-card">
+                      <ActionRow
+                        iconName="mood"
+                        label={t("delete_mood_tracker")}
+                        onClick={openDeleteMoodTrackerHistory}
+                      />
+                      {!IS_RO ? (
+                        <>
+                          <ActionRow
+                            iconName="comment"
+                            label={t("delete_chat")}
+                            onClick={openDeleteChatHistory}
+                          />
+                        </>
+                      ) : null}
+                    </div>
+                  </div>
+
+                  <div className="user-details__action-section">
+                    <p className="user-details__action-section__heading text user-details__action-section__heading--danger">
+                      {t("danger_zone_section")}
+                    </p>
+                    <div className="user-details__action-card">
+                      <ActionRow
+                        iconName="circle-actions-close"
+                        label={t("delete_account")}
+                        description={t("delete_account_description")}
+                        onClick={openDeleteAccountBackdrop}
+                        isDanger
+                      />
+                    </div>
+                  </div>
+                </div>
               </GridItem>
             </Grid>
           )}

@@ -453,7 +453,11 @@
       "year_of_birth_placeholder": "Introduceți anul nașterii",
       "living_place_placeholder": "Introduceți locul dvs. de reședință",
       "parent": "Părinte",
-      "delete_mood_tracker": "Clear mood tracker data"
+      "delete_mood_tracker": "Clear mood tracker data",
+      "account_section": "Cont",
+      "data_management_section": "Gestionarea datelor",
+      "danger_zone_section": "Zonă periculoasă",
+      "delete_account_description": "Această acțiune este permanentă și nu poate fi anulată."
     },
     "reset-password": {
       "label": "Parolă nouă",
@@ -1016,7 +1020,14 @@
       "explore_button_label": "Explorați organizațiile",
       "explore_heading": "Găsiți sprijin în apropierea dvs.",
       "explore_card_title": "Descoperiți sprijin local",
-      "explore_card_description": "Găsiți organizații și resurse de sănătate mintală în zona dvs."
+      "explore_card_description": "Găsiți organizații și resurse de sănătate mintală în zona dvs.",
+      "user_guide_heading": "Vrei sa afli mai multe despre:",
+      "emergency_services": "Sevicii de urgenta",
+      "emergency_services_description": "Sevicii de urgenta",
+      "map": "Harta serviciilor de sanatate mintala si suport psiho-emotional disponibile in Bucuresti",
+      "map_description": "Harta serviciilor de suport (București)",
+      "rights": "Drepturile copiilor si adolescentilor de a accesa servicii pentru sanatate mintala si suport psiho-emotional",
+      "rights_description": "Drepturile copiilor și adolescenților"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Evaluare finalizată",
@@ -1092,10 +1103,10 @@
       "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere"
     },
     "download-app": {
-      "heading": "Descărcați aplicația noastră mobilă",
-      "paragraph": "Acum disponibil pentru iOS și Android",
-      "download_text": "Descarcă din",
-      "text": "Primește sprijin oricând, oriunde - rapid, sigur și ușor de utilizat."
+      "heading": "Descărcați aplicația",
+      "paragraph": "Acum disponibilă pentru iOS și Android",
+      "download_text": "Descarcă de la",
+      "text": "Primește sprijin oricând, oriunde - rapid, sigur și ușor de folosit."
     },
     "find-support-near-you": {
       "heading": "Găsiți sprijin în apropiere",
@@ -1685,8 +1696,8 @@
     "user-guide": {
       "heading": "Vrei sa afli mai multe despre:",
       "emergency_services": "Sevicii de urgenta",
-      "map": "Harta serviciilor de sanatate mintala si suport psiho-emotional disponibile in Bucuresti",
-      "rights": "Drepturile copiilor si adolescentilor de a accesa servicii pentru sanatate mintala si suport psiho-emotional"
+      "map": "Harta serviciilor de suport (București)",
+      "rights": "Drepturile copiilor și adolescenților"
     },
     "emergency-situation": {
       "heading": "Harta serviciilor de sănătate mintală şi sprijin psihosocial pentru copiii și adolescenții din București",
