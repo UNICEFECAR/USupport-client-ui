@@ -4,7 +4,7 @@
   &__content-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: $spacing_2_4;
     width: 100%;
@@ -23,6 +23,21 @@
       &__year-dropdown {
         z-index: 2;
       }
+    }
+
+    &__actions {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-top: $spacing_1_2;
+
+      & .button {
+        max-width: none;
+      }
+    }
+
+    &__submit-error {
+      width: 100%;
     }
   }
 }
