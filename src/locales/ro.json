@@ -453,7 +453,11 @@
       "year_of_birth_placeholder": "Introduceți anul nașterii",
       "living_place_placeholder": "Introduceți locul dvs. de reședință",
       "parent": "Părinte",
-      "delete_mood_tracker": "Clear mood tracker data"
+      "delete_mood_tracker": "Clear mood tracker data",
+      "account_section": "Cont",
+      "data_management_section": "Gestionarea datelor",
+      "danger_zone_section": "Zonă periculoasă",
+      "delete_account_description": "Această acțiune este permanentă și nu poate fi anulată."
     },
     "reset-password": {
       "label": "Parolă nouă",

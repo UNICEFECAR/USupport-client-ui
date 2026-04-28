@@ -453,7 +453,11 @@
       "year_of_birth_placeholder": "Введите свой год рождения",
       "living_place_placeholder": "Введите место вашего жительства",
       "parent": "Родитель",
-      "delete_mood_tracker": "Очистить историю трекера настроения"
+      "delete_mood_tracker": "Очистить историю трекера настроения",
+      "account_section": "Аккаунт",
+      "data_management_section": "Управление данными",
+      "danger_zone_section": "Опасная зона",
+      "delete_account_description": "Это действие необратимо и не может быть отменено."
     },
     "reset-password": {
       "label": "Новый пароль",

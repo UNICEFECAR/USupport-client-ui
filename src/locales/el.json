@@ -453,7 +453,11 @@
       "year_of_birth_placeholder": "Εισαγάγετε το έτος γέννησής σας",
       "living_place_placeholder": "Εισαγάγετε τον τόπο διαμονής σας",
       "parent": "Γονέας",
-      "delete_mood_tracker": "Εκκαθάριση δεδομένων καταγραφής διάθεσης"
+      "delete_mood_tracker": "Εκκαθάριση δεδομένων καταγραφής διάθεσης",
+      "account_section": "Λογαριασμός",
+      "data_management_section": "Διαχείριση δεδομένων",
+      "danger_zone_section": "Επικίνδυνη ζώνη",
+      "delete_account_description": "Αυτή η ενέργεια είναι μόνιμη και δεν μπορεί να αναιρεθεί."
     },
     "reset-password": {
       "label": "Νέος κωδικός πρόσβασης",

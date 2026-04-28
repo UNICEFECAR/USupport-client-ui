@@ -454,7 +454,11 @@
       "year_of_birth_placeholder": "Նշիր քո ծննդյան տարեթիվը",
       "living_place_placeholder": "Նշիր քո բնակության վայրը",
       "parent": "Ծնող",
-      "delete_mood_tracker": "Ջնջել տրամադրության ստուգիչի պատմությունը"
+      "delete_mood_tracker": "Ջնջել տրամադրության ստուգիչի պատմությունը",
+      "account_section": "Հաշիվ",
+      "data_management_section": "Տվյալների կառավարում",
+      "danger_zone_section": "Վտանգավոր գոտի",
+      "delete_account_description": "Այս գործողությունը մշտական է և չի կարող հետ շրջվել։"
     },
     "reset-password": {
       "label": "Նոր գաղտնաբառ",

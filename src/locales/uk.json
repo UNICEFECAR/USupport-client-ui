@@ -454,7 +454,11 @@
       "year_of_birth_placeholder": "Введіть свій рік народження",
       "living_place_placeholder": "Введіть своє місце проживання",
       "parent": "Мати/Батько/Опікун",
-      "delete_mood_tracker": "Очистити історію монітора настрою"
+      "delete_mood_tracker": "Очистити історію монітора настрою",
+      "account_section": "Обліковий запис",
+      "data_management_section": "Управління даними",
+      "danger_zone_section": "Небезпечна зона",
+      "delete_account_description": "Ця дія є постійною і не може бути скасована."
     },
     "reset-password": {
       "label": "Новий пароль",

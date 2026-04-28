@@ -137,6 +137,53 @@
     }
   }
 
+  &__actions {
+    max-width: 58.4rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_2_4;
+
+    @media screen and (min-width: $screen_lg) {
+      margin-left: 0;
+      margin-right: auto;
+    }
+  }
+
+  &__action-section {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_8;
+
+    &__heading {
+      text-align: left;
+
+      &--danger {
+        color: $color_red_eb5757;
+      }
+    }
+  }
+
+  &__action-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: $color_white_ff;
+    border: 1px solid rgba(224, 233, 255, 0.72);
+    box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.08);
+  }
+
+  &__action-card {
+    .action-row:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 0;
+      height: 1px;
+      background: rgba(232, 236, 240, 1);
+    }
+  }
+
   &__modal-heading {
     color: #7f2ee5;
     cursor: pointer;
