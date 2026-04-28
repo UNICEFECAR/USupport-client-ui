@@ -7,6 +7,8 @@ import {
   Backdrop,
   Input,
   DropdownWithLabel,
+  Error,
+  NewButton,
 } from "@USupport-components-library/src";
 import { validateProperty, validate } from "@USupport-components-library/utils";
 import { useUpdateClientData, useGetClientData } from "#hooks";
@@ -185,13 +187,6 @@ export const RegisterAboutYou = ({
       onClose={() => {}}
       hasCloseIcon={false}
       heading={t("heading") || "Tell us about yourself"}
-      errorMessage={errors.submit}
-      ctaLabel={t("button_continue_label")}
-      ctaHandleClick={handleContinue}
-      isCtaDisabled={!canContinue}
-      isCtaLoading={updateClientDetailsMutation.isLoading}
-      thirdCtaLabel={t("logout_button_label")}
-      thirdCtaHandleClick={handleLogout}
       topHeaderComponent={<AuthenticationModalsLogo />}
     >
       <div className="register-about-you-modal__content-container">
@@ -248,6 +243,29 @@ export const RegisterAboutYou = ({
             placeholder={t("living_place_placeholder")}
           />
         </div>
+
+        <div className="register-about-you-modal__content-container__actions">
+          {errors.submit ? (
+            <Error
+              classes="register-about-you-modal__content-container__submit-error"
+              message={errors.submit}
+            />
+          ) : null}
+          <NewButton
+            label={t("button_continue_label")}
+            disabled={!canContinue}
+            onClick={handleContinue}
+            loading={updateClientDetailsMutation.isLoading}
+            isFullWidth={true}
+            size="lg"
+          />
+        </div>
+        <NewButton
+          label={t("logout_button_label")}
+          onClick={handleLogout}
+          classes="register-about-you-modal__content-container__logout-cta"
+          type="text"
+        />
       </div>
     </Backdrop>
   );
