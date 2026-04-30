@@ -49,6 +49,7 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
   });
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
   const [isShared, setIsShare] = useState(false);
+  const [hasTrackedAudioPlay, setHasTrackedAudioPlay] = useState(false);
   const { theme } = useContext(ThemeContext);
 
   const url = constructShareUrl({
@@ -60,6 +61,10 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
   useEffect(() => {
     setHasUpdatedUrl(false);
   }, [language]);
+
+  useEffect(() => {
+    setHasTrackedAudioPlay(false);
+  }, [articleData?.id]);
 
   useEffect(() => {
     if (articleData?.title && !hasUpdatedUrl) {
@@ -294,6 +299,17 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
     }
   };
 
+  const handleAudioPlay = () => {
+    if (isTmpUser || hasTrackedAudioPlay) return;
+
+    addContentEngagementMutation({
+      contentId: articleData.id,
+      contentType: "article",
+      action: "listen",
+    });
+    setHasTrackedAudioPlay(true);
+  };
+
   return (
     <Block classes="article-view">
       <div className="article-view__content">
@@ -396,7 +412,7 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
 
         {articleData.ttsUrl && (
           <div className="article-view__audio-item">
-            <AudioPlayer src={articleData.ttsUrl} />
+            <AudioPlayer src={articleData.ttsUrl} onPlay={handleAudioPlay} />
           </div>
         )}
 
