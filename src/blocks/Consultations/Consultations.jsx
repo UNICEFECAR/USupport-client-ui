@@ -14,6 +14,7 @@ import {
 import { ONE_HOUR } from "@USupport-components-library/utils";
 
 import { useGetAllConsultations, useRejectConsultation } from "#hooks";
+import { ConsultationSkeletonCard } from "../ConsultationSkeleton";
 
 import "./consultations.scss";
 
@@ -81,7 +82,7 @@ export const Consultations = ({
   const consultations = consultationsQuery.data || [];
   const upcomingConsultations = getUpcomingConsultations(
     consultations,
-    currentDateTs,
+    currentDateTs
   );
   const pastConsultations = getPastConsultations(consultations, currentDateTs);
   const hasUpcoming = upcomingConsultations?.length > 0;
@@ -128,11 +129,72 @@ export const Consultations = ({
   };
   const rejectConsultationMutation = useRejectConsultation(
     onRejectConsultationSuccess,
-    onRejectConsultationError,
+    onRejectConsultationError
   );
   const rejectConsultation = (consultationId) => {
     rejectConsultationMutation.mutate(consultationId);
   };
+
+  const renderConsultationSkeletons = (count, withActions = false) =>
+    Array.from({ length: count }, (_, index) => (
+      <GridItem
+        key={`consultation-skeleton-${
+          withActions ? "upcoming" : "past"
+        }-${index}`}
+        md={8}
+        lg={6}
+        classes="consultations__grid__consultations-item__grid__consultation"
+      >
+        <ConsultationSkeletonCard withActions={withActions} />
+      </GridItem>
+    ));
+
+  const renderLoadingSkeletonState = () => (
+    <div className="consultations__loading">
+      <div className="consultations__section consultations__section--upcoming">
+        <div className="consultations__heading">
+          <div className="consultations__heading-main">
+            <h3 className="consultations__heading-title">
+              {t("upcoming_tab_label")}
+            </h3>
+          </div>
+          {onScheduleConsultationClick && (
+            <NewButton
+              label={t("schedule_button_label")}
+              onClick={onScheduleConsultationClick}
+              iconName="calendar"
+              size="lg"
+              classes="consultations__heading-button--inline"
+            />
+          )}
+        </div>
+        <Grid
+          md={8}
+          lg={12}
+          classes="consultations__grid__consultations-item__grid"
+        >
+          {renderConsultationSkeletons(1, true)}
+        </Grid>
+      </div>
+
+      <div className="consultations__section consultations__section--past">
+        <div className="consultations__heading">
+          <div className="consultations__heading-main">
+            <h3 className="consultations__heading-title">
+              {t("past_tab_label")}
+            </h3>
+          </div>
+        </div>
+        <Grid
+          md={8}
+          lg={12}
+          classes="consultations__grid__consultations-item__grid"
+        >
+          {renderConsultationSkeletons(4)}
+        </Grid>
+      </div>
+    </div>
+  );
 
   const renderAllConsultations = useCallback(() => {
     const nowTs = new Date().getTime();
@@ -229,7 +291,7 @@ export const Consultations = ({
           >
             {renderList(upcoming)}
           </Grid>
-        </div>,
+        </div>
       );
     }
 
@@ -262,7 +324,7 @@ export const Consultations = ({
           >
             {renderList(past)}
           </Grid>
-        </div>,
+        </div>
       );
     }
 
@@ -287,7 +349,9 @@ export const Consultations = ({
           classes="consultations__grid__consultations-item"
         >
           <Box classes="consultations__box" liquidGlass>
-            {renderAllConsultations()}
+            {consultationsQuery.isLoading
+              ? renderLoadingSkeletonState()
+              : renderAllConsultations()}
           </Box>
         </GridItem>
       </Grid>

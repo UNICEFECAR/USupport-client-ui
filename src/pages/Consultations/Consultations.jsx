@@ -162,7 +162,7 @@ export const Consultations = () => {
   };
   const rescheduleConsultationMutation = useRescheduleConsultation(
     onRescheduleConsultationSuccess,
-    onRescheduleConsultationError,
+    onRescheduleConsultationError
   );
 
   // Block slot logic
@@ -197,7 +197,7 @@ export const Consultations = () => {
   };
   const acceptConsultationMutation = useAcceptConsultation(
     onAcceptConsultationSuccess,
-    onAcceptConsultationError,
+    onAcceptConsultationError
   );
   const acceptConsultation = (consultationId, price) => {
     if (!clientDataQuery.data?.dataProcessing) {
@@ -208,6 +208,9 @@ export const Consultations = () => {
   };
 
   const handleScheduleConsultationClick = () => {
+    if (clientDataQuery.isLoading || clientDataQuery.isFetching) {
+      return;
+    }
     if (!clientDataQuery.data?.dataProcessing) {
       openRequireDataAgreement();
     } else {
@@ -241,17 +244,13 @@ export const Consultations = () => {
       //   />
       // }
     >
-      {clientDataQuery.isLoading || clientDataQuery.isFetching ? (
-        <Loading />
-      ) : (
-        <ConsultationsBlock
-          openJoinConsultation={openJoinConsultation}
-          openEditConsultation={openEditConsultation}
-          acceptConsultation={acceptConsultation}
-          openRequireDataAgreement={openRequireDataAgreement}
-          onScheduleConsultationClick={handleScheduleConsultationClick}
-        />
-      )}
+      <ConsultationsBlock
+        openJoinConsultation={openJoinConsultation}
+        openEditConsultation={openEditConsultation}
+        acceptConsultation={acceptConsultation}
+        openRequireDataAgreement={openRequireDataAgreement}
+        onScheduleConsultationClick={handleScheduleConsultationClick}
+      />
       {selectedConsultation && (
         <>
           <EditConsultation
@@ -295,8 +294,8 @@ export const Consultations = () => {
             startDate: new Date(selectedSlot?.time || selectedSlot),
             endDate: new Date(
               new Date(selectedSlot?.time || selectedSlot).setHours(
-                new Date(selectedSlot?.time || selectedSlot).getHours() + 1,
-              ),
+                new Date(selectedSlot?.time || selectedSlot).getHours() + 1
+              )
             ),
             providerName: rescheduledConsultation?.provider_name,
             providerImage: rescheduledConsultation?.provider_image,

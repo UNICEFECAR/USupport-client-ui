@@ -256,7 +256,8 @@
       "tab_coupon": "Coupon",
       "tab_free": "Free",
       "choose-the-provider": "Choose the provider you want to talk to using video, audio or text. It may sometimes take a few sesions to find a provider that is a good fit for your needs and your preferred approach.",
-      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being."
+      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being.",
+      "view_profile": "View personal profile"
     },
     "notification-preferences": {
       "email": "Email notifications",

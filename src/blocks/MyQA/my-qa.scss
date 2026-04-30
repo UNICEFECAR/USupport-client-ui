@@ -3,6 +3,17 @@
 .my-qa {
   padding-top: $spacing_3_2;
 
+  &__controls-item {
+    position: relative;
+    z-index: $z_index_modal;
+    overflow: visible;
+  }
+
+  &__answers-item {
+    position: relative;
+    z-index: $z_index_1;
+  }
+
   &__header {
     display: flex;
     flex-direction: row;
@@ -21,6 +32,13 @@
   &__tabs-grid {
     align-items: center;
     justify-items: stretch;
+    overflow: visible;
+
+    &__search-container {
+      position: relative;
+      z-index: $z_index_modal;
+      overflow: visible;
+    }
 
     &__search-container {
       &__tabs {
@@ -32,21 +50,33 @@
         text-align: left;
         margin-bottom: $spacing_1_2;
         margin-top: $spacing_1_2;
+        position: relative;
+        z-index: $z_index_modal;
+        overflow: visible;
 
         @media screen and (min-width: $screen-md) {
           width: 34.4rem;
         }
 
         @media screen and (min-width: $screen-lg) {
-          max-width: 35rem;
+          max-width: 36rem;
           padding: 0;
           margin-left: auto;
           margin-right: 0;
         }
 
+        .dropdown-container,
+        .dropdown {
+          overflow: visible;
+        }
+
         .dropdown .dropdown-content {
-          width: calc(100%);
-          box-sizing: border-box;
+          width: calc(100% - #{$spacing_1_6});
+          max-width: 100%;
+          margin-right: 0;
+          left: auto;
+          right: 0;
+          overflow: hidden;
         }
       }
     }

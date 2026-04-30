@@ -12,12 +12,12 @@ import {
   Loading,
   Tabs,
   Input,
-  Button,
   NewButton,
 } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
 
 import { RootContext } from "../../routes/Root/Root";
+import { ProviderOverviewSkeleton } from "../ProviderOverviewSkeleton";
 
 import "./select-provider.scss";
 
@@ -173,6 +173,17 @@ export const SelectProvider = ({
   };
 
   const providers = providersQuery.data?.pages.flat() || [];
+  const renderProviderSkeletons = (count = 4) =>
+    Array.from({ length: count }, (_, index) => (
+      <GridItem
+        md={4}
+        lg={6}
+        key={`provider-skeleton-${index}`}
+        classes="select-provider__grid__providers-item__grid__provider"
+      >
+        <ProviderOverviewSkeleton t={t} />
+      </GridItem>
+    ));
 
   const renderCouponInput = () => {
     return (
@@ -239,15 +250,7 @@ export const SelectProvider = ({
       providersQuery.isLoading ||
       isActiveCampaignLoading
     )
-      return (
-        <GridItem
-          classes="select-provider__grid__providers-item__grid__empty"
-          md={8}
-          lg={12}
-        >
-          <Loading />
-        </GridItem>
-      );
+      return renderProviderSkeletons();
     if (providers?.length === 0)
       return (
         <GridItem
@@ -287,6 +290,7 @@ export const SelectProvider = ({
             liquidGlass
             handleViewProfile={() => handleProviderClick(provider)}
             handleBookSession={() => handleBookSessionClick(provider)}
+            viewProfileLabel={t("view_profile")}
           />
         </GridItem>
       );

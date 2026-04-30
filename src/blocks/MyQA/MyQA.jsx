@@ -10,7 +10,7 @@ import {
   Tabs,
   NewButton,
   Answer,
-  Loading,
+  AnswerSkeleton,
   Dropdown,
   Icon,
   NotFoundCard,
@@ -189,7 +189,7 @@ export const MyQA = ({
           ?.toLowerCase()
           .includes(value);
         const isTagMatching = question.tags?.find((x) =>
-          x.toLowerCase().includes(value),
+          x.toLowerCase().includes(value)
         );
         const isQuestionMatching = question.question
           ?.toLowerCase()
@@ -238,6 +238,13 @@ export const MyQA = ({
     });
   };
 
+  const renderLoadingSkeletons = () =>
+    [0, 1, 2, 3].map((index) => (
+      <GridItem key={`my-qa-skeleton-${index}`} md={8} lg={6}>
+        <AnswerSkeleton />
+      </GridItem>
+    ));
+
   return (
     <Block classes="my-qa">
       <div>
@@ -258,7 +265,7 @@ export const MyQA = ({
         </div>
       </div>
       <Grid>
-        <GridItem xs={4} md={8} lg={12}>
+        <GridItem xs={4} md={8} lg={12} classes="my-qa__controls-item">
           <Grid classes="my-qa__tabs-grid">
             <GridItem
               md={8}
@@ -319,16 +326,18 @@ export const MyQA = ({
             </GridItem>
           </Grid>
         </GridItem>
-        <GridItem xs={4} md={8} lg={12}>
-          {questions?.length > 0 ? (
+        <GridItem xs={4} md={8} lg={12} classes="my-qa__answers-item">
+          {isQuestionsDataLoading ? (
+            <Grid classes="my-qa__answers-container">
+              {renderLoadingSkeletons()}
+            </Grid>
+          ) : questions?.length > 0 ? (
             <Grid classes="my-qa__answers-container">{renderQuestions()}</Grid>
-          ) : isQuestionsDataLoading ? (
-            <Loading />
           ) : (
             renderEmptyCard(
               searchValue?.trim()?.length > 0
                 ? t("no_results_heading", { query: searchValue.trim() })
-                : t("no_answers_found"),
+                : t("no_answers_found")
             )
           )}
         </GridItem>

@@ -124,6 +124,12 @@
     }
   }
 
+  &__loading {
+    .consultations__heading {
+      margin-bottom: $spacing_2_0;
+    }
+  }
+
   &__empty {
     padding: $spacing_2_4 0;
     display: flex;
