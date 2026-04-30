@@ -18,6 +18,7 @@ import {
   InputSearch,
   Tabs,
   Loading,
+  CardMediaSkeleton,
   ArticlesGrid,
   NotFoundCard,
 } from "@USupport-components-library/src";
@@ -490,6 +491,17 @@ export const Articles = ({
     categoriesToShow?.length > 1 && ageGroupsQuery?.data?.length > 0;
 
   const currentGridPattern = [2, 2, 2];
+  const renderInitialSkeletons = () =>
+    [0, 1, 2].map((index) => (
+      <GridItem
+        md={4}
+        lg={6}
+        key={`articles-skeleton-${index}`}
+        classes="articles__articles-item"
+      >
+        <CardMediaSkeleton type="portrait" size="lg" />
+      </GridItem>
+    ));
 
   return (
     <Block classes="articles">
@@ -584,7 +596,9 @@ export const Articles = ({
 
       {/* Only show loading on initial load when no articles exist */}
       {(isTmpUser ? isGuestArticlesLoading : isArticlesLoading) &&
-        !transformedArticles?.length && <Loading />}
+        !transformedArticles?.length && (
+          <Grid classes="articles__main-grid">{renderInitialSkeletons()}</Grid>
+        )}
 
       {error && (
         <div className="articles__no-results-container">

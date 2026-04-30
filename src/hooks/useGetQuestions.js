@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+
 import { clientSvc } from "@USupport-components-library/services";
 
 export function useGetQuestions(orderBy = "all", enabled, languageId) {
-  /**
-   *
-   * @returns
-   */
+  const { i18n } = useTranslation();
+  const language = i18n.language;
   const getQuestions = async () => {
     const { data } = await clientSvc.getQuestions(orderBy, languageId);
 
@@ -34,7 +34,7 @@ export function useGetQuestions(orderBy = "all", enabled, languageId) {
   };
 
   const getQuestionsQuery = useQuery(
-    ["getQuestions", orderBy, languageId],
+    ["getQuestions", orderBy, languageId, language],
     getQuestions,
     {
       enabled: enabled && !!languageId,

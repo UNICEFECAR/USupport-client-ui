@@ -9,11 +9,11 @@ import { ThemeContext } from "@USupport-components-library/utils";
 import {
   Block,
   Box,
-  Loading,
   Consultation,
   VideoPlayer,
   NewButton,
 } from "@USupport-components-library/src";
+import { ConsultationSkeletonCard } from "../ConsultationSkeleton";
 
 import "./consultations-dashboard.scss";
 
@@ -38,18 +38,20 @@ export const ConsultationsDashboard = ({
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
   const { cookieState, setCookieState } = useContext(ThemeContext);
 
-  const { t } = useTranslation("blocks", {
+  const { t, i18n } = useTranslation("blocks", {
     keyPrefix: "consultations-dashboard",
   });
 
   // Get country and language from localStorage
   const country = localStorage.getItem("country");
-  const language = localStorage.getItem("language");
+  const currentLanguage = (i18n.resolvedLanguage || i18n.language || "")
+    .toLowerCase()
+    .split("-")[0];
 
   // Check if video should be displayed (KZ country, kk or ru language, and no consultations)
   const shouldShowVideo =
     country === "KZ" &&
-    (language === "kk" || language === "ru") &&
+    (currentLanguage === "kk" || currentLanguage === "ru") &&
     (!upcomingConsultations || upcomingConsultations.length === 0);
 
   // Generate dummy consultations for non-logged-in users
@@ -93,7 +95,7 @@ export const ConsultationsDashboard = ({
         price: 0,
       },
     ];
-  }, [t]);
+  }, [i18n.resolvedLanguage, i18n.language, t]);
 
   const consultationsToShow =
     !isLoggedIn &&
@@ -159,7 +161,13 @@ export const ConsultationsDashboard = ({
             (upcomingConsultations && upcomingConsultations.length > 0)) && (
             <div className={["consultations-dashboard__box__content__part"]}>
               <h3 className="">{t("heading")}</h3>
-              {isLoading ? <Loading size="lg" /> : renderConsultations()}
+              {isLoading ? (
+                <div className="consultations-dashboard__box__content__part__consultation">
+                  <ConsultationSkeletonCard withActions />
+                </div>
+              ) : (
+                renderConsultations()
+              )}
             </div>
           )}
           <div

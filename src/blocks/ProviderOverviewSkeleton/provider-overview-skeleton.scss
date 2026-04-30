@@ -1,0 +1,209 @@
+@import "@USupport-components-library/styles";
+
+.provider-overview-skeleton {
+  position: relative;
+  width: calc(100% - 2 * $spacing_1_6);
+  border: 1px solid $color_gray_ea;
+  border-radius: $border_radius_1_2;
+  padding: $spacing_1_6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_1_4;
+
+  @include themifyCustom(
+    $themes,
+    "border-color",
+    "color_gray_ea",
+    "color_gray_344054"
+  );
+
+  &__top {
+    display: flex;
+    align-items: center;
+    gap: $spacing_1_2;
+  }
+
+  &__tag {
+    position: absolute !important;
+    top: 0;
+    right: $spacing_2_4 !important;
+    left: auto !important;
+    transform: translateY(-50%);
+    z-index: $z_index_1;
+    width: 8.4rem;
+    height: 2rem;
+    border-radius: 999rem;
+    background: rgba(151, 107, 255, 0.25);
+  }
+
+  &__avatar {
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: $color_gray_d2dcde;
+
+    @include themifyCustom(
+      $themes,
+      "background",
+      "color_gray_d2dcde",
+      "color_gray_66768d"
+    );
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_8;
+    width: 100%;
+  }
+
+  &__line {
+    height: 1.2rem;
+    border-radius: $border_radius_0_8;
+    background: $color_blue_c1d7e0;
+
+    @include themifyCustom(
+      $themes,
+      "background",
+      "color_blue_c1d7e0",
+      "color_gray_66768d"
+    );
+
+    &--title {
+      width: 54%;
+      height: 1.6rem;
+      background: $color_secondary_9749fa;
+
+      @include themifyCustom(
+        $themes,
+        "background",
+        "color_secondary_9749fa",
+        "color_secondary_9749fa"
+      );
+    }
+
+    &--subtitle {
+      width: 76%;
+    }
+
+    &--date {
+      width: 9.4rem;
+    }
+
+    &--time {
+      width: 8.8rem;
+    }
+  }
+
+  &__earliest-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: left;
+    color: $color_gray_66768d;
+
+    @include themifyCustom(
+      $themes,
+      "color",
+      "color_gray_66768d",
+      "color_gray_344054"
+    );
+  }
+
+  &__date-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing_1_2;
+  }
+
+  &__date-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing_0_7;
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $spacing_1_2;
+  }
+
+  &__button {
+    height: 3.6rem;
+    border-radius: $border_radius_0_8;
+    background: $color_blue_c1d7e0;
+
+    @include themifyCustom(
+      $themes,
+      "background",
+      "color_blue_c1d7e0",
+      "color_gray_66768d"
+    );
+
+    &--primary {
+      background: $color_secondary_9749fa;
+
+      @include themifyCustom(
+        $themes,
+        "background",
+        "color_secondary_9749fa",
+        "color_secondary_9749fa"
+      );
+    }
+  }
+
+  &__separator {
+    width: calc(100% + (2 * $spacing_1_6));
+    height: 0.1rem;
+    margin-left: -$spacing_1_6;
+    margin-right: -$spacing_1_6;
+    background: $color_gray_ea;
+
+    @include themifyCustom(
+      $themes,
+      "background",
+      "color_gray_ea",
+      "color_gray_344054"
+    );
+  }
+}
+
+.provider-overview-skeleton .shimmer {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.36) 45%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: translateX(-100%);
+    animation: providerOverviewSkeletonShimmer 1.4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .theme-dark &::after,
+  .theme-highContrast &::after {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 45%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+
+@keyframes providerOverviewSkeletonShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
