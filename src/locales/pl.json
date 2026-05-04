@@ -1220,14 +1220,14 @@
       "share_success": "Link skopiowany do schowka!",
       "copy_link": "Skopiuj link",
       "export_failed": "Eksportowanie nie powiodło się. Proszę spróbować ponownie.",
-      "audio_player_title_listen_to_article": "Listen to this article",
-      "audio_player_subtitle_narrated_version": "Prefer audio? Play the narrated version.",
-      "audio_player_badge_listen_time": "{{minutes}} min listen",
-      "audio_player_play_label": "Play audio",
-      "audio_player_pause_label": "Pause audio",
-      "audio_player_seek_back_label": "Seek back {{seconds}} seconds",
-      "audio_player_seek_forward_label": "Seek forward {{seconds}} seconds",
-      "audio_player_helper_read_along": "You can read along while listening or just relax and enjoy."
+      "audio_player_title_listen_to_article": "Posłuchaj tego artykułu",
+      "audio_player_subtitle_narrated_version": "Wolisz audio? Odtwórz wersję nagraną głosem.",
+      "audio_player_badge_listen_time": "{{minutes}} min słuchania",
+      "audio_player_play_label": "Odtwórz",
+      "audio_player_pause_label": "Wstrzymaj",
+      "audio_player_seek_back_label": "Przewiń do tyłu o {{seconds}} s",
+      "audio_player_seek_forward_label": "Przewiń do przodu o {{seconds}} s",
+      "audio_player_helper_read_along": "Możesz czytać równolegle ze słuchaniem lub po prostu słuchać i się zrelaksować."
     },
     "information-portal": {
       "heading": "Wiedza",
