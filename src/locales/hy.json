@@ -1220,14 +1220,14 @@
       "share_success": "Հղումը պատճենվել է պահոցում։",
       "copy_link": "Պատճենել հղումը",
       "export_failed": "Գործողությունը չհաջողվեց։ Խնդրում ենք կրկին փորձել։",
-      "audio_player_title_listen_to_article": "Listen to this article",
-      "audio_player_subtitle_narrated_version": "Prefer audio? Play the narrated version.",
-      "audio_player_badge_listen_time": "{{minutes}} min listen",
-      "audio_player_play_label": "Play audio",
-      "audio_player_pause_label": "Pause audio",
-      "audio_player_seek_back_label": "Seek back {{seconds}} seconds",
-      "audio_player_seek_forward_label": "Seek forward {{seconds}} seconds",
-      "audio_player_helper_read_along": "You can read along while listening or just relax and enjoy."
+      "audio_player_title_listen_to_article": "Լսեք այս հոդվածը",
+      "audio_player_subtitle_narrated_version": "Նախընտրու՞մ եք աուդիո՞ն․ Միացրեք հնչյունավորված տարբերակը։",
+      "audio_player_badge_listen_time": "{{minutes}} ր լսելու համար",
+      "audio_player_play_label": "Նվագարկել",
+      "audio_player_pause_label": "Դադար",
+      "audio_player_seek_back_label": "Հետ {{seconds}} վրկ",
+      "audio_player_seek_forward_label": "Առաջ {{seconds}} վրկ",
+      "audio_player_helper_read_along": "Կարող եք կարդալ լսելիս կամ պարզապես հանգստանալ ու լսել։"
     },
     "information-portal": {
       "heading": "Տեղեկատվական պորտալ",

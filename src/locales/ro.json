@@ -1220,14 +1220,14 @@
       "share_success": "Link copiat în clipboard!",
       "copy_link": "Copiază Link",
       "export_failed": "Exportul a eșuat. Vă rugăm să încercați din nou.",
-      "audio_player_title_listen_to_article": "Listen to this article",
-      "audio_player_subtitle_narrated_version": "Prefer audio? Play the narrated version.",
-      "audio_player_badge_listen_time": "{{minutes}} min listen",
-      "audio_player_play_label": "Play audio",
-      "audio_player_pause_label": "Pause audio",
-      "audio_player_seek_back_label": "Seek back {{seconds}} seconds",
-      "audio_player_seek_forward_label": "Seek forward {{seconds}} seconds",
-      "audio_player_helper_read_along": "You can read along while listening or just relax and enjoy."
+      "audio_player_title_listen_to_article": "Ascultă acest articol",
+      "audio_player_subtitle_narrated_version": "Preferi audio? Redă versiunea narativă.",
+      "audio_player_badge_listen_time": "{{minutes}} min ascultare",
+      "audio_player_play_label": "Redă audio",
+      "audio_player_pause_label": "Pauză",
+      "audio_player_seek_back_label": "Derulează înapoi cu {{seconds}} secunde",
+      "audio_player_seek_forward_label": "Derulează înainte cu {{seconds}} secunde",
+      "audio_player_helper_read_along": "Poți citi în timp ce asculți sau te poți relaxa pur și simplu ascultând."
     },
     "information-portal": {
       "heading": "Portal de informații",
