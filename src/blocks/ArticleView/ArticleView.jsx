@@ -412,7 +412,11 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
 
         {articleData.ttsUrl && (
           <div className="article-view__audio-item">
-            <AudioPlayer src={articleData.ttsUrl} onPlay={handleAudioPlay} />
+            <AudioPlayer
+              src={articleData.ttsUrl}
+              onPlay={handleAudioPlay}
+              t={t}
+            />
           </div>
         )}
 
