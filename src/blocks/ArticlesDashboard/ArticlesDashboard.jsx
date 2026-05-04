@@ -348,7 +348,7 @@ export const ArticlesDashboard = () => {
   );
 
   const renderLoading = () =>
-    true &&
+    isContentLoading &&
     [0, 1].map((index) => (
       <GridItem
         md={4}
