@@ -200,7 +200,7 @@
       "copy_success": "Codul a fost copiat",
       "confirm_password_label": "Confirmați parola *",
       "password_match_error": "Câmpurile Parolă nouă și Confirmare parolă nu corespund",
-      "age_terms_agreement_text_1": "Am peste 10 ani",
+      "age_terms_agreement_text_1": "Am peste {{age}} ani",
       "heading": "Bine ați venit la"
     },
     "register-support": {
@@ -403,7 +403,7 @@
       "login_button_label": "Am deja un cont",
       "confirm_password_label": "Confirmați parola *",
       "password_match_error": "Câmpurile Parolă nouă și Confirmare parolă nu corespund",
-      "age_terms_agreement_text_1": "Am peste 13 ani"
+      "age_terms_agreement_text_1": "Am peste {{age}} ani"
     },
     "privacy-policy": {
       "no_results": "Nu există rezultate pentru țara și limba selectate"
