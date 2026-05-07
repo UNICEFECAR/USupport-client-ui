@@ -15,7 +15,10 @@ import {
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useAddMoodTrack, useGetHasCompletedMoodTrackerEver } from "#hooks";
-import { mascotHappyPurpleFull } from "@USupport-components-library/assets";
+import {
+  mascotHappyPurpleFull,
+  mascotHappyPurpleFullLight,
+} from "@USupport-components-library/assets";
 import { ThemeContext } from "@USupport-components-library/utils";
 
 import { HowItWorksMoodTrack } from "#modals";
@@ -291,7 +294,11 @@ export const MoodTracker = ({
           <div className="mood-tracker__mascot-container">
             <img
               className="mood-tracker__mascot-container__image"
-              src={mascotHappyPurpleFull}
+              src={
+                theme === "dark" || theme === "highContrast"
+                  ? mascotHappyPurpleFullLight
+                  : mascotHappyPurpleFull
+              }
               alt="Mascot"
             />
             {width > 768 ? renderButton() : null}

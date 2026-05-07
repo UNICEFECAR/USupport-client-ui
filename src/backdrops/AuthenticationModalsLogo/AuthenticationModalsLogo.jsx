@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next";
 
 import {
   logoHorizontalSvg,
-  logoVerticalDarkSvg,
   logoHorizontalRo,
+  logoHorizontalDarkWebp,
+  logoHorizontalDarkRo,
 } from "@USupport-components-library/assets";
 import { Icon } from "@USupport-components-library/src";
 import { ThemeContext } from "@USupport-components-library/utils";
-
 import "./authentication-modal-logo.scss";
 
 /**
@@ -25,8 +25,17 @@ export const AuthenticationModalsLogo = ({
   onGoBack,
 }) => {
   const { t } = useTranslation("backdrops", { keyPrefix: "welcome" });
-  const { theme } = useContext(ThemeContext);
   const IS_RO = localStorage.getItem("country") === "RO";
+
+  const { theme } = useContext(ThemeContext);
+  const useDarkLogo = theme === "dark" || theme === "highContrast";
+
+  let logoSrc;
+  if (IS_RO) {
+    logoSrc = useDarkLogo ? logoHorizontalDarkRo : logoHorizontalRo;
+  } else {
+    logoSrc = useDarkLogo ? logoHorizontalDarkWebp : logoHorizontalSvg;
+  }
 
   return (
     <div
@@ -34,13 +43,7 @@ export const AuthenticationModalsLogo = ({
     >
       <div className="authentication-modals-logo__logo-container">
         <img
-          src={
-            IS_RO
-              ? logoHorizontalRo
-              : theme !== "light"
-                ? logoVerticalDarkSvg
-                : logoHorizontalSvg
-          }
+          src={logoSrc}
           alt="Logo"
           className="authentication-modals-logo__logo-container__logo"
         />
