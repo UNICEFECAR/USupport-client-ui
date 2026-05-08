@@ -30,6 +30,8 @@ export const AuthenticationModalsLogo = ({
   const { theme } = useContext(ThemeContext);
   const useDarkLogo = theme === "dark" || theme === "highContrast";
 
+  const backIconColor = useDarkLogo ? "#c1d7e0" : "#20809E";
+
   let logoSrc;
   if (IS_RO) {
     logoSrc = useDarkLogo ? logoHorizontalDarkRo : logoHorizontalRo;
@@ -51,7 +53,12 @@ export const AuthenticationModalsLogo = ({
       <div className="authentication-modals-logo__heading-row">
         <div className="authentication-modals-logo__heading-row__left">
           {showGoBackArrow && (
-            <Icon name="arrow-chevron-back" size="md" onClick={onGoBack} />
+            <Icon
+              name="arrow-chevron-back"
+              size="md"
+              color={backIconColor}
+              onClick={onGoBack}
+            />
           )}
         </div>
         <h3 className="authentication-modals-logo__client-heading">
