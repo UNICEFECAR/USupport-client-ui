@@ -30,17 +30,13 @@ import {
   ChildrenRights,
   Dashboard,
   FAQ,
-  ForgotPassword,
   InformationPortal,
-  Login,
   NotFound,
   NotificationPreferencesPage,
   PlatformRating,
   PrivacyPolicy,
   ProviderOverview,
   RegisterAboutYou,
-  RegisterAnonymous,
-  RegisterEmail,
   RegisterPreview,
   RegisterSupport,
   ResetPassword,
@@ -83,14 +79,14 @@ const LanguageLayout = () => {
   }
   return (
     <Routes>
-      <Route
+      {/* <Route
         path="login"
         element={
           <CountryValidationRoute>
             <Login />
           </CountryValidationRoute>
         }
-      />
+      /> */}
       <Route path="dashboard" element={<Dashboard />} />
       <Route
         path="consultation"
@@ -117,30 +113,30 @@ const LanguageLayout = () => {
           </CountryValidationRoute>
         }
       />
-      <Route
+      {/* <Route
         path="register"
         element={
           <CountryValidationRoute>
             <RegisterEmail />
           </CountryValidationRoute>
         }
-      />
-      <Route
+      /> */}
+      {/* <Route
         path="register-anonymous"
         element={
           <CountryValidationRoute>
             <RegisterAnonymous />
           </CountryValidationRoute>
         }
-      />
-      <Route
+      /> */}
+      {/* <Route
         path="forgot-password"
         element={
           <CountryValidationRoute>
             <ForgotPassword />
           </CountryValidationRoute>
         }
-      />
+      /> */}
       <Route
         path="mood-tracker"
         element={
@@ -431,7 +427,7 @@ export default function Root() {
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
   const [country, setCountry] = useState(
-    localStorage.getItem("country") || null
+    localStorage.getItem("country") || null,
   );
   const [loggedIn, setLoggedIn] = useState(!!token);
   const [activeCoupon, setActiveCoupon] = useState();
