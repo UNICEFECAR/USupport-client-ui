@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import propTypes from "prop-types";
+import classNames from "classnames";
 
 import {
   AudioPlayer,
@@ -16,10 +17,12 @@ import {
   useAddContentRating,
   useAddContentEngagement,
   useRemoveContentEngagement,
+  useEventListener,
 } from "#hooks";
 import {
   createArticleSlug,
   constructShareUrl,
+  getBrandingLogoUrl,
 } from "@USupport-components-library/utils";
 
 import { cmsSvc, userSvc } from "@USupport-components-library/services";
@@ -51,6 +54,29 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
   const [isShared, setIsShare] = useState(false);
   const [hasTrackedAudioPlay, setHasTrackedAudioPlay] = useState(false);
   const { theme } = useContext(ThemeContext);
+
+  const readCountryFromStorage = useCallback(
+    () =>
+      typeof localStorage !== "undefined"
+        ? localStorage.getItem("country") || "KZ"
+        : "KZ",
+    [],
+  );
+
+  const [syncedCountry, setSyncedCountry] = useState(readCountryFromStorage);
+
+  const onCountryChanged = useCallback(() => {
+    setSyncedCountry(readCountryFromStorage());
+  }, [readCountryFromStorage]);
+
+  useEventListener("countryChanged", onCountryChanged);
+
+  const hasHeroImage = Boolean(articleData.imageMedium);
+
+  const heroBrandingFallbackUrl = useMemo(
+    () => getBrandingLogoUrl({ theme, countryCode: syncedCountry }),
+    [theme, syncedCountry],
+  );
 
   const url = constructShareUrl({
     contentType: "article",
@@ -400,15 +426,21 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
         <div className="article-view__separator" />
 
         {/* Hero image */}
-        <img
-          className="article-view__image"
-          src={
-            articleData.imageMedium
-              ? articleData.imageMedium
-              : "https://picsum.photos/300/400"
-          }
-          alt={articleData.title}
-        />
+        <div
+          className={classNames("article-view__hero-slot", {
+            "article-view__hero-slot--branding-fallback": !hasHeroImage,
+          })}
+        >
+          <img
+            className={classNames("article-view__image", {
+              "article-view__image--branding-fallback": !hasHeroImage,
+            })}
+            src={
+              hasHeroImage ? articleData.imageMedium : heroBrandingFallbackUrl
+            }
+            alt={hasHeroImage ? articleData.title : "Logo"}
+          />
+        </div>
 
         {articleData.ttsUrl && (
           <div className="article-view__audio-item">

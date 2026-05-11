@@ -202,17 +202,64 @@
     }
   }
 
+  &__hero-slot {
+    width: 100%;
+    margin-top: $spacing_2_5;
+
+    &--branding-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-height: 46rem;
+      aspect-ratio: 16 / 10;
+      border-radius: $border_radius_1_2;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: $spacing_2_4;
+      @include themifyNormal($themes) {
+        background: themed(glass_card_background);
+        border: 1px solid themed(glass_border_color);
+        box-shadow: themed(glass_shadow);
+      }
+
+      .theme-light & {
+        background: linear-gradient(
+          150deg,
+          rgba(255, 255, 255, 0.72),
+          rgba(238, 245, 255, 0.48)
+        );
+        border-color: rgba(224, 233, 255, 0.78);
+        box-shadow: 0 0.35rem 0.85rem rgba(95, 108, 145, 0.09),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      }
+
+      @media screen and (min-width: $screen-md) {
+        max-height: 50rem;
+      }
+    }
+  }
+
   &__image {
     width: 100%;
     height: auto;
     max-height: 46rem;
     border-radius: $border_radius_1_2;
     object-fit: cover;
-    margin-top: $spacing_2_5;
 
     @media screen and (min-width: $screen-md) {
       max-height: 50rem;
     }
+  }
+
+  &__image--branding-fallback {
+    object-fit: contain;
+    object-position: center;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 80px;
+    min-height: 0;
   }
 
   &__body {
