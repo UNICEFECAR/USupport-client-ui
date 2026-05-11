@@ -180,6 +180,21 @@
         &--assessment {
           display: flex;
           flex-direction: column;
+          min-height: 0;
+
+          // Match left column: map area fills available height: full width of the part
+          // (BaselineAssesmentBox otherwise caps at 40rem and does not grow with the row).
+          .baseline-assesment-box {
+            align-self: stretch;
+            width: 100%;
+            max-width: none;
+
+            @media screen and (min-width: $screen-lg) {
+              flex: 1 1 auto;
+              min-height: 0;
+              justify-content: center;
+            }
+          }
         }
 
         &__header {
