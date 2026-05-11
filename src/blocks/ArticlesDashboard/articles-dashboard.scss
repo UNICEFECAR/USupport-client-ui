@@ -3,6 +3,15 @@
 .articles-dashboard {
   text-align: left;
   padding-bottom: $spacing_0_8;
+  background-color: #eaf7f9;
+  background: linear-gradient(180deg, #e6e1f5 0%, #dcd5f2 100%);
+
+  .theme-dark &,
+  .theme-highContrast & {
+    background-color: #193246;
+    background: linear-gradient(180deg, #193246 0%, #101b26 100%);
+  }
+  padding-bottom: $spacing_4_2;
 
   &__headings-item {
     padding: $spacing_4_0 0 0 $spacing_6_0;
@@ -22,6 +31,7 @@
     min-width: 0;
     overflow: hidden;
     width: 100%;
+    padding-bottom: $spacing_3_2;
   }
 
   &__categories-item {
@@ -46,6 +56,24 @@
 
   &__article-item {
     margin-top: $spacing_1_6;
+
+    @media screen and (min-width: $screen-md) {
+      padding-inline: $spacing_1_2;
+    }
+
+    &__card-media {
+      &.card-media {
+        background-color: #ffffff;
+
+        .theme-light & {
+          background-color: #ffffff;
+        }
+
+        .theme-dark & {
+          background-color: #0e202f;
+        }
+      }
+    }
   }
 
   &__heading-item {
@@ -60,5 +88,10 @@
     color: $color_secondary_9749fa;
     cursor: pointer;
     padding: $spacing_1_6 0;
+  }
+
+  &__show-more-button {
+    margin-top: $spacing_3_2;
+    margin-inline: auto;
   }
 }

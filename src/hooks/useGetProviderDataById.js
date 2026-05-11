@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+
 import { providerSvc } from "@USupport-components-library/services";
 
 /**
  * Reuseable hook to get and transform the provider data in a desired format
  */
 export default function useGetProviderDataById(id, campaignId) {
-  //   const queryClient = useQueryClient();
+  const { i18n } = useTranslation();
+  const language = i18n.language;
   const fetchProvidersData = async () => {
     let data;
     const response = await providerSvc.getProviderById(id, campaignId);
@@ -33,7 +36,7 @@ export default function useGetProviderDataById(id, campaignId) {
   };
 
   const providersDataQuery = useQuery(
-    ["provider-data", id, campaignId],
+    ["provider-data", id, campaignId, language],
     fetchProvidersData,
     {
       enabled: !!id,

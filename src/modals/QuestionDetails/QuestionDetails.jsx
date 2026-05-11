@@ -24,20 +24,19 @@ import "./question-details.scss";
  */
 export const QuestionDetails = ({
   question,
-  handleLike,
   isOpen,
   onClose,
   handleScheduleClick,
   handleProviderClick,
+  handleLike = () => {},
 }) => {
   const { t } = useTranslation("modals", { keyPrefix: "question-details" });
 
-  const isInMyQuestions = question.isAskedByCurrentClient;
-
+  const isInMyQuestions = question?.isAskedByCurrentClient;
   const providerInfo = question.providerData;
 
   const getDateText = () => {
-    const date = new Date(question.answerCreatedAt);
+    const date = new Date(question.answerCreatedAt || question.questionCreatedAt);
 
     if (isDateToday(date)) {
       return t("today");
@@ -79,11 +78,6 @@ export const QuestionDetails = ({
           />
         ) : null}
       </div>
-      {/* {question.answerId && isInMyQuestions && (
-        <h4 className="question-details__heading__text">
-          {question.answerTitle}
-        </h4>
-      )} */}
       {question.tags ? (
         <div className="question-details__labels-container">
           {question.tags.map((label, index) => {
@@ -109,11 +103,19 @@ export const QuestionDetails = ({
               alt="Specialist avatar"
               size="xs"
               classes="question-details__answered-by-container__avatar"
-              onClick={() => handleProviderClick(providerInfo.providerId)}
+              onClick={() =>
+                handleProviderClick(
+                  providerInfo.providerId || providerInfo.provider_detail_id,
+                )
+              }
             />
             <p
               className="text question-details__answered-by-container__provider-name"
-              onClick={() => handleProviderClick(providerInfo.providerId)}
+              onClick={() =>
+                handleProviderClick(
+                  providerInfo.providerId || providerInfo.provider_detail_id,
+                )
+              }
             >
               {providerInfo.name} {providerInfo.surname}
             </p>

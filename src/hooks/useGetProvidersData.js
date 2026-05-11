@@ -1,4 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+
 import { providerSvc } from "@USupport-components-library/services";
 import {
   getStartAndEndOfWeek,
@@ -66,6 +68,9 @@ export default function useGetProvidersData(
   onSuccess = () => {},
   billingType = null
 ) {
+  const { i18n } = useTranslation();
+  const language = i18n.language;
+
   const fetchProvidersData = async ({ pageParam = 1 }) => {
     const today = new Date();
     const { first } = getStartAndEndOfWeek(today);
@@ -125,7 +130,7 @@ export default function useGetProvidersData(
   })();
 
   const providersDataQuery = useInfiniteQuery(
-    ["all-providers-data", activeCoupon, filters, billingType],
+    ["all-providers-data", activeCoupon, filters, billingType, language],
     fetchProvidersData,
     {
       getNextPageParam: (lastPage, pages) => {

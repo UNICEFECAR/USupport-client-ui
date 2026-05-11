@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Page, UserDetails as UserDetailsBlock } from "#blocks";
+import { Page, UserDetails as UserDetailsBlock, DownloadApp } from "#blocks";
 import {
   ChangePassword,
   DeleteAccount,
@@ -59,6 +59,7 @@ export const UserDetails = () => {
           openDeleteMoodTrackerHistory,
         }}
       />
+      <DownloadApp />
       <ChangePassword
         isOpen={isChangePasswordOpen}
         onClose={closeChangePasswordBackdrop}

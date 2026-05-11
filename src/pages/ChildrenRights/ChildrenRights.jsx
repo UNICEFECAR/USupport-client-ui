@@ -1,21 +1,22 @@
-
 import React, { useState, useCallback, useMemo, useEffect } from "react";
-import { useTranslation,Trans } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
 import { Page } from "#blocks";
-import { useCustomNavigate as useNavigate, useGetOrganizationMetadata } from "#hooks";
+import {
+  useCustomNavigate as useNavigate,
+  useGetOrganizationMetadata,
+} from "#hooks";
 
 import {
   Block,
-  Button,
   Grid,
   GridItem,
   RadioButtonSelector,
   CheckBox,
   Loading,
   ArticlesGrid,
-  
+  NewButton,
 } from "@USupport-components-library/src";
 import { cmsSvc } from "@USupport-components-library/services";
 import { createArticleSlug } from "@USupport-components-library/utils";
@@ -34,9 +35,21 @@ const SCREENS = {
     paragraphKey: "non_emergency_paragraph",
     questionKey: "non_emergency_question",
     answers: [
-      { id: "new", labelKey: "non_emergency_answer_1", nextScreen: "untitled-q1" },
-      { id: "recurring-no-pro", labelKey: "non_emergency_answer_2", nextScreen: "untitled-q1" },
-      { id: "recurring-pro", labelKey: "non_emergency_answer_3", nextScreen: "final-q1" },
+      {
+        id: "new",
+        labelKey: "non_emergency_answer_1",
+        nextScreen: "untitled-q1",
+      },
+      {
+        id: "recurring-no-pro",
+        labelKey: "non_emergency_answer_2",
+        nextScreen: "untitled-q1",
+      },
+      {
+        id: "recurring-pro",
+        labelKey: "non_emergency_answer_3",
+        nextScreen: "final-q1",
+      },
     ],
   },
 
@@ -46,7 +59,8 @@ const SCREENS = {
     inputType: "multi",
     questionKey: "untitled_q1_question",
     formField: "specialisation",
-    filterSpecialisations: [ // Show only some specialisations for this section
+    filterSpecialisations: [
+      // Show only some specialisations for this section
       "pediatric_psychiatry",
       "psychological_evaluation",
       "psychological_counseling",
@@ -141,9 +155,21 @@ const SCREENS = {
     paragraphKey: "rights_intro_paragraph",
     questionKey: "rights_intro_question",
     answers: [
-      { id: "schools", labelKey: "rights_intro_answer_1", nextScreen: "section-2" },
-      { id: "social_care", labelKey: "rights_intro_answer_2", nextScreen: "section-8" },
-      { id: "health_system", labelKey: "rights_intro_answer_3", nextScreen: "section-11" },
+      {
+        id: "schools",
+        labelKey: "rights_intro_answer_1",
+        nextScreen: "section-2",
+      },
+      {
+        id: "social_care",
+        labelKey: "rights_intro_answer_2",
+        nextScreen: "section-8",
+      },
+      {
+        id: "health_system",
+        labelKey: "rights_intro_answer_3",
+        nextScreen: "section-11",
+      },
     ],
   },
 
@@ -154,11 +180,31 @@ const SCREENS = {
     titleKey: "section_2_title",
     questionKey: "section_2_question",
     answers: [
-      { id: "all_students", labelKey: "section_2_answer_1", nextScreen: "section-3" },
-      { id: "sen_students", labelKey: "section_2_answer_2", nextScreen: "section-4" },
-      { id: "pregnant_students", labelKey: "section_2_answer_3", nextScreen: "section-5" },
-      { id: "violence_victims", labelKey: "section_2_answer_4", nextScreen: "section-6" },
-      { id: "disciplined_students", labelKey: "section_2_answer_5", nextScreen: "section-7" },
+      {
+        id: "all_students",
+        labelKey: "section_2_answer_1",
+        nextScreen: "section-3",
+      },
+      {
+        id: "sen_students",
+        labelKey: "section_2_answer_2",
+        nextScreen: "section-4",
+      },
+      {
+        id: "pregnant_students",
+        labelKey: "section_2_answer_3",
+        nextScreen: "section-5",
+      },
+      {
+        id: "violence_victims",
+        labelKey: "section_2_answer_4",
+        nextScreen: "section-6",
+      },
+      {
+        id: "disciplined_students",
+        labelKey: "section_2_answer_5",
+        nextScreen: "section-7",
+      },
     ],
   },
 
@@ -209,11 +255,31 @@ const SCREENS = {
     titleKey: "section_8_title",
     questionKey: "section_8_question",
     answers: [
-      { id: "violence_by_parents", labelKey: "section_8_answer_1", nextScreen: "section-9" },
-      { id: "day_care_centers", labelKey: "section_8_answer_2", nextScreen: "section-10" },
-      { id: "residential_centers", labelKey: "section_8_answer_3", nextScreen: "section-10" },
-      { id: "emergency_reception", labelKey: "section_8_answer_4", nextScreen: "section-10" },
-      { id: "night_shelters", labelKey: "section_8_answer_5", nextScreen: "section-10" },
+      {
+        id: "violence_by_parents",
+        labelKey: "section_8_answer_1",
+        nextScreen: "section-9",
+      },
+      {
+        id: "day_care_centers",
+        labelKey: "section_8_answer_2",
+        nextScreen: "section-10",
+      },
+      {
+        id: "residential_centers",
+        labelKey: "section_8_answer_3",
+        nextScreen: "section-10",
+      },
+      {
+        id: "emergency_reception",
+        labelKey: "section_8_answer_4",
+        nextScreen: "section-10",
+      },
+      {
+        id: "night_shelters",
+        labelKey: "section_8_answer_5",
+        nextScreen: "section-10",
+      },
     ],
   },
 
@@ -240,9 +306,21 @@ const SCREENS = {
     titleKey: "section_11_title",
     questionKey: "section_11_question",
     answers: [
-      { id: "children_0_18", labelKey: "section_11_answer_1", nextScreen: "section-12" },
-      { id: "various_conditions", labelKey: "section_11_answer_2", nextScreen: "section-13" },
-      { id: "mental_disorders", labelKey: "section_11_answer_3", nextScreen: "section-14" },
+      {
+        id: "children_0_18",
+        labelKey: "section_11_answer_1",
+        nextScreen: "section-12",
+      },
+      {
+        id: "various_conditions",
+        labelKey: "section_11_answer_2",
+        nextScreen: "section-13",
+      },
+      {
+        id: "mental_disorders",
+        labelKey: "section_11_answer_3",
+        nextScreen: "section-14",
+      },
     ],
   },
 
@@ -302,25 +380,35 @@ export const ChildrenRights = () => {
 
   // Fetch articles for content screens based on sectionNumber
   const { data: articlesData, isLoading: isArticlesLoading } = useQuery(
-    ["children-rights-articles", currentScreenData?.sectionNumber, i18n.language],
+    [
+      "children-rights-articles",
+      currentScreenData?.sectionNumber,
+      i18n.language,
+    ],
     async () => {
-      if (currentScreenData?.sectionNumber === undefined || currentScreenData?.sectionNumber === null) {
+      if (
+        currentScreenData?.sectionNumber === undefined ||
+        currentScreenData?.sectionNumber === null
+      ) {
         return { data: [], meta: { pagination: { total: 0 } } };
       }
-      
+
       // Search for articles that match the decision_tree_section field
       const { data } = await cmsSvc.getArticles({
         decisionTreeSection: currentScreenData.sectionNumber,
         locale: i18n.language,
         populate: true,
       });
-      
+
       return data;
     },
     {
-      enabled: currentScreenData?.type === "content" && currentScreenData?.sectionNumber !== undefined && currentScreenData?.sectionNumber !== null,
+      enabled:
+        currentScreenData?.type === "content" &&
+        currentScreenData?.sectionNumber !== undefined &&
+        currentScreenData?.sectionNumber !== null,
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   const articles = articlesData?.data || [];
@@ -329,7 +417,7 @@ export const ChildrenRights = () => {
   useEffect(() => {
     if (currentScreenData && state.currentScreen) {
       const savedAnswer = state.screenAnswers[state.currentScreen];
-      
+
       // Restore answer if we have a saved one and no current selection
       if (savedAnswer !== undefined) {
         if (currentScreenData.inputType === "multi") {
@@ -371,7 +459,7 @@ export const ChildrenRights = () => {
 
       if (screen.filterSpecialisations) {
         metadataItems = metadataItems.filter((item) =>
-          screen.filterSpecialisations.includes(item.name)
+          screen.filterSpecialisations.includes(item.name),
         );
       }
 
@@ -384,7 +472,7 @@ export const ChildrenRights = () => {
         }))
         .sort((a, b) => tOrg(a.labelKey).localeCompare(tOrg(b.labelKey)));
     },
-    [metadata, tOrg, getTranslationKey]
+    [metadata, tOrg, getTranslationKey],
   );
 
   // Get current screen answers (either static or from metadata)
@@ -398,7 +486,7 @@ export const ChildrenRights = () => {
 
   // Placeholder function for content redirection
   const handleRedirectToContent = useCallback(() => {
-    navigate("/information-portal/articles")
+    navigate("/information-portal/articles");
     // TODO: Implement actual content routing
   }, []);
 
@@ -430,7 +518,7 @@ export const ChildrenRights = () => {
     if (screen.type === "question") {
       // For question screens, find the selected answer and navigate to its nextScreen
       const selectedAnswerData = currentAnswers.find(
-        (a) => a.id === state.selectedAnswer
+        (a) => a.id === state.selectedAnswer,
       );
       if (selectedAnswerData?.nextScreen) {
         // Save the current answer before navigating
@@ -470,7 +558,12 @@ export const ChildrenRights = () => {
         selectedAnswers: [],
       }));
     }
-  }, [currentScreenData, currentAnswers, state.selectedAnswer, state.selectedAnswers]);
+  }, [
+    currentScreenData,
+    currentAnswers,
+    state.selectedAnswer,
+    state.selectedAnswers,
+  ]);
 
   // Navigate back
   const handleBack = useCallback(() => {
@@ -485,12 +578,13 @@ export const ChildrenRights = () => {
 
       // First check screenAnswers (works for all screen types)
       const savedAnswer = state.screenAnswers[previousScreen];
-      
+
       if (previousScreenData?.type === "form-question") {
         // For form questions, prefer formData but fallback to screenAnswers
         const formDataValue = state.formData[previousScreenData.formField];
-        const valueToUse = formDataValue !== undefined ? formDataValue : savedAnswer;
-        
+        const valueToUse =
+          formDataValue !== undefined ? formDataValue : savedAnswer;
+
         if (previousScreenData.inputType === "multi") {
           restoredAnswers = Array.isArray(valueToUse) ? valueToUse : [];
         } else {
@@ -511,7 +605,6 @@ export const ChildrenRights = () => {
     }
   }, [state.navigationHistory, state.formData, state.screenAnswers]);
 
-
   // Handle form submission (for untitled and final sections)
   const handleFormSubmit = useCallback(() => {
     const screen = currentScreenData;
@@ -531,7 +624,8 @@ export const ChildrenRights = () => {
     const params = new URLSearchParams();
 
     // Handle specialisations from both flows (untitled uses 'specialisation', final uses 'specialisations')
-    const specialisations = updatedFormData.specialisations || updatedFormData.specialisation;
+    const specialisations =
+      updatedFormData.specialisations || updatedFormData.specialisation;
     if (specialisations && specialisations.length > 0) {
       params.set("specialisations", `[${specialisations.join(",")}]`);
     }
@@ -549,7 +643,13 @@ export const ChildrenRights = () => {
     }
 
     navigate(`/organizations?${params.toString()}`);
-  }, [currentScreenData, state.formData, state.selectedAnswer, state.selectedAnswers, navigate]);
+  }, [
+    currentScreenData,
+    state.formData,
+    state.selectedAnswer,
+    state.selectedAnswers,
+    navigate,
+  ]);
 
   // Check if current answer is valid for continuing
   const canContinue =
@@ -568,7 +668,9 @@ export const ChildrenRights = () => {
           <GridItem md={8} lg={12} classes="children-rights__header">
             {screen.titleKey && <h2>{t(screen.titleKey)}</h2>}
             {screen.paragraphKey && (
-              <p style={{marginTop:"1.2rem"}} className="text">{t(screen.paragraphKey)}</p>
+              <p style={{ marginTop: "1.2rem" }} className="text">
+                {t(screen.paragraphKey)}
+              </p>
             )}
           </GridItem>
         )}
@@ -595,7 +697,11 @@ export const ChildrenRights = () => {
                   name={`question-${state.currentScreen}`}
                   isChecked={state.selectedAnswer === answer.id}
                   setIsChecked={() => {}}
-                  label={answer.isFromMetadata ? tOrg(answer.labelKey) : t(answer.labelKey)}
+                  label={
+                    answer.isFromMetadata
+                      ? tOrg(answer.labelKey)
+                      : t(answer.labelKey)
+                  }
                 />
               </div>
             ))}
@@ -605,14 +711,14 @@ export const ChildrenRights = () => {
         {/* Navigation */}
         <GridItem md={8} lg={12} classes="children-rights__navigation">
           <div className="children-rights__navigation__buttons">
-            <Button
+            <NewButton
               disabled={state.navigationHistory.length === 0}
               label={t("back")}
-              type="secondary"
+              type="outline"
               size="lg"
               onClick={handleBack}
             />
-            <Button
+            <NewButton
               label={t("continue")}
               size="lg"
               onClick={handleNext}
@@ -652,7 +758,11 @@ export const ChildrenRights = () => {
               ? currentAnswers.map((answer) => (
                   <CheckBox
                     key={answer.id}
-                    label={answer.isFromMetadata ? tOrg(answer.labelKey) : t(answer.labelKey)}
+                    label={
+                      answer.isFromMetadata
+                        ? tOrg(answer.labelKey)
+                        : t(answer.labelKey)
+                    }
                     isChecked={state.selectedAnswers.includes(answer.id)}
                     setIsChecked={() => handleMultiSelect(answer.id)}
                   />
@@ -667,7 +777,11 @@ export const ChildrenRights = () => {
                       name={`question-${state.currentScreen}`}
                       isChecked={state.selectedAnswer === answer.id}
                       setIsChecked={() => {}}
-                      label={answer.isFromMetadata ? tOrg(answer.labelKey) : t(answer.labelKey)}
+                      label={
+                        answer.isFromMetadata
+                          ? tOrg(answer.labelKey)
+                          : t(answer.labelKey)
+                      }
                     />
                   </div>
                 ))}
@@ -677,14 +791,14 @@ export const ChildrenRights = () => {
         {/* Navigation */}
         <GridItem md={8} lg={12} classes="children-rights__navigation">
           <div className="children-rights__navigation__buttons">
-            <Button
+            <NewButton
               disabled={state.navigationHistory.length === 0}
               label={t("back")}
-              type="secondary"
+              type="outline"
               size="lg"
               onClick={handleBack}
             />
-            <Button
+            <NewButton
               label={isLastQuestion ? t("submit") : t("continue")}
               size="lg"
               onClick={isLastQuestion ? handleFormSubmit : handleNext}
@@ -697,15 +811,17 @@ export const ChildrenRights = () => {
   };
 
   // Handle article click
-  const handleArticleClick = useCallback((id, title) => {
-
-    const articleSlug = createArticleSlug(title);
-    console.log(articleSlug);
-    const articleId = id;
-    if (articleSlug) {
-      navigate(`/information-portal/article/${articleId}/${articleSlug}`);
-    }
-  }, [navigate]);
+  const handleArticleClick = useCallback(
+    (id, title) => {
+      const articleSlug = createArticleSlug(title);
+      console.log(articleSlug);
+      const articleId = id;
+      if (articleSlug) {
+        navigate(`/information-portal/article/${articleId}/${articleSlug}`);
+      }
+    },
+    [navigate],
+  );
 
   // Render content screen
   const renderContentScreen = () => {
@@ -716,10 +832,10 @@ export const ChildrenRights = () => {
         <GridItem md={8} lg={12} classes="children-rights__content">
           {screen.titleKey && <h2>{t(screen.titleKey)}</h2>}
           {screen.paragraphKey && (
-              <p style={{ whiteSpace: "pre-line",width:"100%" }}>
-            <Trans t={t} components={[<strong/>, <br/>]}>
-            {t(screen.paragraphKey)}
-            </Trans>
+            <p style={{ whiteSpace: "pre-line", width: "100%" }}>
+              <Trans t={t} components={[<strong />, <br />]}>
+                {t(screen.paragraphKey)}
+              </Trans>
             </p>
           )}
         </GridItem>
@@ -742,24 +858,24 @@ export const ChildrenRights = () => {
           </GridItem>
         )}
 
-
         {/* Back button */}
         <GridItem md={8} lg={12} classes="children-rights__navigation">
           <div className="children-rights__navigation__buttons">
-            <Button
+            <NewButton
               disabled={state.navigationHistory.length === 0}
               label={t("back")}
-              type="secondary"
+              type="outline"
               size="lg"
               onClick={handleBack}
             />
-            {screen.sectionNumber !== undefined && screen.sectionNumber !== null && (
-              <Button
-                label={t("view_content")}
-                size="lg"
-                onClick={handleRedirectToContent}
-              />
-            )}
+            {screen.sectionNumber !== undefined &&
+              screen.sectionNumber !== null && (
+                <NewButton
+                  label={t("view_content")}
+                  size="lg"
+                  onClick={handleRedirectToContent}
+                />
+              )}
           </div>
         </GridItem>
       </>
@@ -799,4 +915,3 @@ export const ChildrenRights = () => {
     </Page>
   );
 };
-

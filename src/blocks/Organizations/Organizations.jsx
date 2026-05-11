@@ -21,17 +21,19 @@ import { BaselineAssesmentModal, RequireRegistration } from "#modals";
 import {
   Dropdown,
   Block,
+  Box,
   Input,
   InteractiveMap,
   Grid,
   GridItem,
   Loading,
-  Button,
+  NewButton,
   OrganizationOverview,
   Modal,
   Select,
 } from "@USupport-components-library/src";
 import { clientSvc, userSvc } from "@USupport-components-library/services";
+import { ThemeContext } from "@USupport-components-library/utils";
 
 import "./organizations.scss";
 
@@ -56,6 +58,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { isTmpUser } = useContext(RootContext);
+  const { theme } = useContext(ThemeContext);
   const [searchParams] = useSearchParams();
 
   // Parse URL params from children-rights flow
@@ -126,7 +129,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
     onSuccess: ({ data: specialisations }) => {
       if (specialisations.length) {
         const specialisationIds = specialisations.map(
-          (x) => x.organization_specialisation_id
+          (x) => x.organization_specialisation_id,
         );
         interactiveMapRef.current?.scrollIntoView({
           behavior: "smooth",
@@ -180,7 +183,12 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
       setHasAppliedSpecialisations(true);
       handleChange("specialisations", specialisationsArray);
     }
-  }, [specialisationsArray, data, hasAppliedSpecialisations, hasAppliedUrlFilters]);
+  }, [
+    specialisationsArray,
+    data,
+    hasAppliedSpecialisations,
+    hasAppliedUrlFilters,
+  ]);
 
   useEffect(() => {
     if (data && data.length && startPersonalization) {
@@ -216,6 +224,10 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
     });
   };
 
+  const handleResetFilters = () => {
+    setFilters(INITIAL_FILTERS);
+  };
+
   const handleOrganizationClick = (organization) => {
     // Scroll to map when organization is clicked
     interactiveMapRef.current?.scrollIntoView({
@@ -235,7 +247,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
         mapControls.zoomToLocation(
           organization.location.latitude,
           organization.location.longitude,
-          14 // Zoom level for organization location
+          14, // Zoom level for organization location
         );
       }
 
@@ -269,8 +281,14 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
             paymentMethods={organization.paymentMethods}
             specialisations={organization.specialisations}
             address={organization.address}
+            phone={organization.phone}
             onClick={() => handleOrganizationClick(organization)}
             t={t}
+            iconColor={
+              theme === "dark" || theme === "highContrast"
+                ? "#ededed"
+                : "#20809E"
+            }
           />
         </GridItem>
       );
@@ -284,7 +302,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
 
     return (
       <>
-        <div className="organizations__dropdowns-container">
+        <div className="organizations__filters">
           {metadata?.districts && metadata.districts.length > 0 && (
             <Dropdown
               selected={filters.district}
@@ -357,10 +375,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
               isSmall
             />
           )}
-        </div>
-
-        {metadata?.specialisations && metadata.specialisations.length > 0 && (
-          <div className="organizations__specialisations-container">
+          {metadata?.specialisations && metadata.specialisations.length > 0 && (
             <Select
               placeholder={t("specialisations_placeholder")}
               options={metadata.specialisations
@@ -368,7 +383,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
                   label: t(spec.name),
                   value: spec.organizationSpecialisationId,
                   selected: filters.specialisations.includes(
-                    spec.organizationSpecialisationId
+                    spec.organizationSpecialisationId,
                   ),
                 }))
                 .sort((a, b) => a.label.localeCompare(b.label))}
@@ -378,12 +393,12 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
                   .map((option) => option.value);
                 handleChange("specialisations", selectedValues);
               }}
-              classes="organizations__specialisations-select select-container--full-width"
               maxMenuHeight={250}
               isSearchable={true}
+              isSmall
             />
-          </div>
-        )}
+          )}
+        </div>
       </>
     );
   };
@@ -402,7 +417,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
 
   const handleRegisterRedirection = () => {
     userSvc.logout();
-    navigate("/register-preview");
+    navigate("/dashboard");
   };
 
   const handleModalCtaClick = () => {
@@ -418,7 +433,7 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
             queryKey: ["latest-baseline-assessment"],
           });
           navigate(
-            `/baseline-assesment/${assessmentData.baselineAssessmentId}`
+            `/baseline-assesment/${assessmentData.baselineAssessmentId}`,
           );
         },
       });
@@ -428,54 +443,60 @@ export const Organizations = ({ personalizeFromAssessment = false }) => {
   return (
     <>
       <Block classes="organizations">
-        <div className="organizations__search-container">
-          <Input
-            placeholder={t("search_placeholder")}
-            value={filters.search}
-            onChange={(e) => handleChange("search", e.target.value)}
-            classes="organizations__search-container__input"
-          />
-          <Button
-            onClick={() => setFilters(INITIAL_FILTERS)}
-            size="sm"
-            classes="organizations__search-container__reset-filters-btn"
-          >
-            {t("reset_filters")}
-          </Button>
-        </div>
-        <div ref={interactiveMapRef} />
-        {renderFilters()}
-        <Button
-          onClick={() => setFilters(INITIAL_FILTERS)}
-          size="sm"
-          classes="organizations__reset-filters-btn"
-        >
-          {t("reset_filters")}
-        </Button>
+        <Box classes="organizations__box" liquidGlass>
+          <div className="organizations__toolbar">
+            <Input
+              placeholder={t("search_placeholder")}
+              value={filters.search}
+              onChange={(e) => handleChange("search", e.target.value)}
+              classes="organizations__search"
+            />
+            <div className="organizations__toolbar-actions">
+              <NewButton
+                onClick={handleResetFilters}
+                classes="organizations__reset-btn"
+                label={t("reset_filters")}
+                type="outline"
+                size="sm"
+              />
+              <NewButton
+                classes="organizations__personalize-btn"
+                onClick={handlePersonalizeClick}
+                loading={personalizationMutation.isLoading}
+                label={t("personalize")}
+                size="sm"
+              />
+            </div>
+          </div>
 
-        <Button
-          // reference={interactiveMapRef}
-          classes="organizations__search-container__personalize-btn"
-          color="purple"
-          onClick={handlePersonalizeClick}
-          size="sm"
-          loading={personalizationMutation.isLoading}
-          label={t("personalize")}
-        />
-        {!isOrganizationsKeyLoading && (
-          <InteractiveMap
-            data={data}
-            userLocation={userLocation}
-            setUserLocation={setUserLocation}
-            onMapReady={handleMapReady}
-            t={t}
-            navigate={navigate}
-            organizationsKey={organizationsKey}
-          />
-        )}
-        <Grid md={8} lg={12} classes="organizations__grid">
-          {isLoading ? <Loading /> : renderOrganizations()}
-        </Grid>
+          {renderFilters()}
+
+          <div ref={interactiveMapRef} />
+
+          {!isOrganizationsKeyLoading && (
+            <div className="organizations__map">
+              <InteractiveMap
+                data={data}
+                userLocation={userLocation}
+                setUserLocation={setUserLocation}
+                onMapReady={handleMapReady}
+                t={t}
+                navigate={navigate}
+                organizationsKey={organizationsKey}
+              />
+            </div>
+          )}
+
+          <Grid md={8} lg={12} classes="organizations__grid">
+            {isLoading ? (
+              <GridItem md={8} lg={12} classes="organizations__loading">
+                <Loading />
+              </GridItem>
+            ) : (
+              renderOrganizations()
+            )}
+          </Grid>
+        </Box>
       </Block>
       <Modal
         isOpen={isPersonalizationModalOpen}

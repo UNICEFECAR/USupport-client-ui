@@ -30,7 +30,48 @@
       "reject_all_cookies": "Барлығын қабылдамау",
       "accept_necessary_cookies": "Тек қажеттілерін қабылдау",
       "save": "Сақтау",
-      "high_contrast": "Жоғары контраст"
+      "high_contrast": "Жоғары контраст",
+      "your_profile": "Сіздің парақшаңыз",
+      "guest": "Қонақ",
+      "application_settings": "Баптаулар",
+      "rate_share": "Бағалау",
+      "other": "Басқа",
+      "notifications_settings_button_label": "Хабарландыру баптаулары",
+      "rate_us_button_label": "Бізге баға беріңіз",
+      "share_button_label": "Қосымшамен бөлісу",
+      "contact_us_button_label": "Бізге хабарласыңыз",
+      "privacy_policy_button_label": "Құпиялық саясаты",
+      "FAQ_button_label": "Жиі қойылатын сұрақтар",
+      "mood_tracker_button_label": "Көңіл-күй трекері",
+      "payments_history_button_label": "Төлем тарихы",
+      "terms_of_use": "Пайдалану шарттары",
+      "cookie_policy": "Cookie саясаты",
+      "user_guide": "Платформа нұсқаулығы",
+      "edit_profile": "Профильді өңдеу",
+      "go_back": "Артқа",
+      "notifications_heading": "Хабарландырулар",
+      "notifications_mark_read": "Барлығын оқылған деп белгілеу",
+      "notifications_empty": "Әзірге хабарландыру жоқ",
+      "notifications_load_more": "Көбірек жүктеу",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> {{date}} күні {{startHour}}-ден {{endHour}}-ге дейін кеңеске жазды",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> сіздің кеңесіңізді {{date}} {{startHour}}-{{endHour}} уақытынан {{newDate}} {{newStartHour}}-{{newEndHour}} уақытына ауыстырды",
+      "notifications_consultation_cancellation": "<0>{{providerName}}</0> маманымен {{date}} күні {{startHour}}-ден {{endHour}}-ге дейінгі кеңесіңіз тоқтатылды",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> сіздің {{date}} күні {{startHour}}-ден {{endHour}}-ге дейінгі кеңесіңізді тоқтатты",
+      "notifications_consultation_remind_start": "Кеңесіңіз <0>{{minutes}}</0> минуттан кейін басталады",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> {{date}} күні {{startHour}}-ден {{endHour}}-ге дейін кеңес ұсынды",
+      "notifications_consultation_suggestion_booking": "Сіз <0>{{providerName}}</0> ұсынған {{date}} күні {{startHour}}-ден {{endHour}}-ге дейінгі кеңесті қабылдадыңыз",
+      "notifications_consultation_suggestion_cancellation": "<0>{{providerName}}</0> ұсынған {{date}} күні {{startHour}}-ден {{endHour}}-ге дейінгі кеңес тоқтатылды",
+      "notifications_consultation_started": "<0>{{providerName}}</0> маманымен кеңесіңіз басталды",
+      "notifications_question_answered": "<0>{{providerName}}</0> сұрағыңызға жауап берді",
+      "notifications_consultation_remind_start_24_hours_before": "<0>{{providerName}}</0> маманымен кеңесіңіз 24 сағаттан кейін басталады",
+      "notifications_consultation_remind_start_48_hours_before": "<0>{{providerName}}</0> маманымен кеңесіңіз 48 сағаттан кейін басталады",
+      "all": "Барлығы",
+      "new": "Жаңа",
+      "read": "Оқылған",
+      "language_label": "Тіл",
+      "logout": "Шығу",
+      "yesterday": "Кеше",
+      "footer_text": "Сіздің психикалық денсаулығыңыз маңызды — uSupport жекелендірілген, құпия және қауіпсіз психологиялық көмек ұсынады."
     },
     "provider-overview": {
       "earliest_slot_label": "Консультация алу үшін жақын арадағы бос уақыт",
@@ -82,7 +123,15 @@
       "video_label": "Бейне-таныстырылым",
       "button_label": "Консультацияны жоспарлау",
       "hour_consultation": "1 сағаттық консультация үшін",
-      "free": "тегін"
+      "free": "тегін",
+      "monday": "Дүйсенбі",
+      "tuesday": "Сейсенбі",
+      "wednesday": "Сәрсенбі",
+      "thursday": "Бейсенбі",
+      "friday": "Жұма",
+      "saturday": "Сенбі",
+      "sunday": "Жексенбі",
+      "coupon": "Купон"
     },
     "user-profile": {
       "your_profile": "Сіздің парақшаңыз",
@@ -106,8 +155,8 @@
       "button_link": "Веб-сайтқа кіру",
       "button_call": "Қазір хабарласу",
       "no_results": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
-      "other_emergency_services": "Other emergency service providers",
-      "browse": "Browse"
+      "other_emergency_services": "Төтенше жағдайлардың басқа сервистері",
+      "browse": "Шолу"
     },
     "register-about-you": {
       "input_name_label": "Аты",
@@ -130,7 +179,9 @@
       "sex_placeholder": "Жынысыңызды енгізіңіз",
       "year_of_birth_placeholder": "Туған жылыңызды енгізіңіз",
       "living_place_placeholder": "Тұрғылықты жеріңізді енгізіңіз",
-      "parent": "Ата-ана"
+      "parent": "Ата-ана",
+      "logout_button_label": "Шығу",
+      "heading": "Қош келдіңіз"
     },
     "register-anonymous": {
       "nickname_label": "Лақап аты *",
@@ -147,9 +198,10 @@
       "login_button_label": "Менің аккаунтым бар",
       "copy_text": "Анонимді кодты көшіріп алып, сақтап қойыңыз немесе жазып алыңыз, егер оны жоғалтып алсаңыз, аккаунтыңызға кіре алмайсыз.",
       "copy_success": "Сәтті көшірілген код",
-      "confirm_password_label": "Құпия сөзді растаңыз",
+      "confirm_password_label": "Құпия сөзді растаңыз *",
       "password_match_error": "Құпия сөз және Құпия сөзді растау өрістері сәйкес келмейді",
-      "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен"
+      "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен",
+      "heading": "Қош келдіңіз"
     },
     "register-support": {
       "button_continue_label": "Жалғастыру",
@@ -203,7 +255,9 @@
       "tab_coupon": "Купон",
       "tab_free": "Тегін",
       "choose-the-provider": "Бейне, аудио немесе мәтіндік чат арқылы сөйлескіңіз келетін маманды таңдаңыз. Қажеттіліктеріңізге және қалаған тәсіліңізге сәйкес маман табу үшін кейде бірнеше сеанс қажет болуы мүмкін.",
-      "coupon_note": "Осы жолы сізге тегін сеанс үшін код енгіздік! Біздің консультанттардың бірімен кездесуге жазылыңыз және жақсы өмір сүруге қарай алғашқы қадымыңызды жасаңыз."
+      "coupon_note": "Осы жолы сізге тегін сеанс үшін код енгіздік! Біздің консультанттардың бірімен кездесуге жазылыңыз және жақсы өмір сүруге қарай алғашқы қадымыңызды жасаңыз.",
+      "book_session": "Сеансты брондау",
+      "view_profile": "Жеке парақшаны қарап шығу"
     },
     "notification-preferences": {
       "email": "Электрондық пошта арқылы хабарландырулар",
@@ -229,11 +283,14 @@
       "modal_heading": "Электронды поштаңызды тексеріңіз",
       "modal_text": "Егер Сіз платформада тіркелген болсаңыз, құпия сөзді қалпына келтіруге сілтеме аласыз.",
       "client": "Клиент",
-      "heading": "Қош келдіңіз, бұл - "
+      "heading": "Қош келдіңіз, бұл - ",
+      "heading_modal": "Құпия сөзді ұмыттыңыз ба?",
+      "go_back_to_login": "Кіруге оралу"
     },
     "consultations": {
       "upcoming_tab_label": "Алдағы",
       "past_tab_label": "Бұрынғы",
+      "schedule_button_label": "Консультацияны жоспарлау",
       "sunday": "Жс",
       "monday": "Дс",
       "tuesday": "Сс",
@@ -258,7 +315,10 @@
       "not_conducted": "Өткізілмеді",
       "free": "Тегін",
       "coupon": "Купон",
-      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт"
     },
     "login": {
       "email_label": "Электронды пошта / кіру токені",
@@ -284,13 +344,22 @@
     "articles": {
       "heading": "Ақпараттық портал",
       "no_results": "Ештеңе табылмады",
+      "no_results_heading": "«{{query}}» бойынша ештеңе табылмады",
+      "no_results_line1": "Іздеуді өзгертіп көріңіз немесе төмендегі тақырыптарды ашыңыз.",
+      "no_results_line2": "Көбірек нәтиже көрсету үшін сүзгілерді де қалпына келтіруге болады.",
+      "reset_filters": "Сүзгілерді қалпына келтіру",
+      "browse_all_articles": "Барлық мақалалар",
+      "no_results_image_alt": "Сурет: іздеу нәтижесі жоқ",
       "could_not_load_content": "Таңдалған ел мен тіл үшін ештеңе табылмады.",
+      "could_not_load_hint": "Мәзірден елді немесе тілді өзгертуге болады немесе кейінірек қайта кіріңіз — жаңа материалдар жиі қосылады.",
       "all": "Барлығы",
       "read_more_button": "Ары қарай оқу",
       "min_read": "минут оқуға",
       "by": "Дайындаушы {{creator}}",
       "number_of_more_options": "тағы {{count}}",
-      "read": "Оқылды"
+      "read": "Оқылды",
+      "grid_toggle_featured": "Таңдаулы көрініс",
+      "grid_toggle_compact": "Ықшам көрініс"
     },
     "give-suggestion": {
       "heading": "Бізге ұсыныстарыңызды беріңіз",
@@ -317,6 +386,7 @@
       "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
+      "heading": "Қош келдіңіз",
       "email_error": "Өтінеміз қолданыстағы электронды поштаңызды енгізіңіз",
       "password_error": "Құпия сөз кемінде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен және 1 саннан тұруы керек.",
       "email_label": "Электронды пошта *",
@@ -331,7 +401,7 @@
       "register_button": "Тіркелу",
       "paragraph": "Немесе келесілер арқылы тіркеліңіз:",
       "login_button_label": "Менің аккаунтым бар",
-      "confirm_password_label": "Құпия сөзді растаңыз",
+      "confirm_password_label": "Құпия сөзді растаңыз *",
       "password_match_error": "Құпия сөз және Құпия сөзді растау өрістері сәйкес келмейді",
       "age_terms_agreement_text_1": "Менің жасым 10-нан үлкен"
     },
@@ -384,7 +454,11 @@
       "year_of_birth_placeholder": "Туған жылыңызды енгізіңіз",
       "living_place_placeholder": "Тұрғылықты жеріңізді енгізіңіз",
       "parent": "Ата-ана",
-      "delete_mood_tracker": "Көңіл-күй трекерінің тарихын тазалау"
+      "delete_mood_tracker": "Көңіл-күй трекерінің тарихын тазалау",
+      "account_section": "Аккаунт",
+      "data_management_section": "Деректерді басқару",
+      "danger_zone_section": "Қауіпті аймақ",
+      "delete_account_description": "Бұл әрекет тұрақты және қайтарылмайды."
     },
     "reset-password": {
       "label": "Жаңа құпия сөз",
@@ -447,7 +521,41 @@
       "december": "желтоқсан",
       "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
       "cookie_preferences": "Cookie параметрлері",
-      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз",
+      "dummy_provider_1": "Др. Нурланов",
+      "dummy_provider_2": "Др. Серсенов",
+      "dummy_provider_3": "Др. Жумабеков",
+      "upcoming_tab_label": "Алдағы",
+      "past_tab_label": "Бұрынғы",
+      "sunday": "Жс",
+      "monday": "Дс",
+      "tuesday": "Сс",
+      "wednesday": "Ср",
+      "thursday": "Бс",
+      "friday": "Жм",
+      "saturday": "Сб",
+      "no_upcoming_consultations": "Сізде алдағы консультациялар жоқ",
+      "no_past_consultations": "Сізде брынғы консультациялар жоқ",
+      "reject_consultation_success": "Консультациядан сәтті бас тарттыңыз",
+      "accept_consultation_success": "Консультация сәтті қабылданды",
+      "join": "Қосылу",
+      "edit": "Өзгерту",
+      "details": "Мәліметтерді қарау",
+      "active": "Қазір",
+      "reject": "Ұсынысты қабылдамау",
+      "accept": "Консультацияны қабылдау",
+      "cancel_consultation": "Консультациядан бас тарту",
+      "suggested": "Ұсынылды",
+      "view_profile": "Жеке парақшаны қарап шығу",
+      "conducted": "Консультация аяқталды",
+      "not_conducted": "Өткізілмеді",
+      "free": "Тегін",
+      "coupon": "Купон",
+      "explore_resources_label": "Ресурстарды қарау",
+      "heading_need_support": "Қолдау керек пе?",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт"
     },
     "mood-tracker": {
       "happy": "Керемет",
@@ -455,6 +563,7 @@
       "sad": "Көңілсіз",
       "depressed": "Депрессия",
       "worried": "Беймаза",
+      "history": "Тарих",
       "heading": "Бүгін жағдайыңыз қалай?",
       "mood_tracker": "Көңіл-күй трекері",
       "additional_comment_placeholder": "Сізді осылай сезінуге не себеп болды?",
@@ -464,7 +573,11 @@
       "how_it_works": "Қалай жұмыс істейді",
       "recommendations": "Ұсыныстар",
       "recommendations_text": "Көңіл-күй графигіңізді қарап, ұсынылған мазмұнды көргіңіз келе ме?",
-      "check_out": "Қарап шығу"
+      "check_out": "Қарап шығу",
+      "mood_tracker_long": "Көңіл-күй трекеріңізді зерттеңіз",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide",
+      "additional_comment_label": "Сізді бұлай сезінуге не себеп болды?"
     },
     "mascot-welcome-header": {
       "welcome": "Қайта оралуыңызбен, {{name}}!",
@@ -497,7 +610,8 @@
       "december": "желтоқсан",
       "coupon": "Купон",
       "explore_button_label": "Зерттеу",
-      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз",
+      "user_guide": "Пайдаланушы нұсқаулығы"
     },
     "activity-log-dashboard": {
       "heading": "Әрекеттер журналы",
@@ -512,7 +626,8 @@
       "min_read": "минут оқуға",
       "by": "Дайындаушы {{creator}}",
       "number_of_more_options": "тағы {{count}}",
-      "read": "Оқу"
+      "read": "Оқу",
+      "show_more": "Көбірек көрсету"
     },
     "mood-tracker-history": {
       "heading": "Жалпы сіз соңғы 30 күнде {{feeling}} сезіндіңіз",
@@ -609,6 +724,19 @@
       "try_again_button_label": "Қайталап көріңіз"
     },
     "mood-track-history": {
+      "all": "Барлығы",
+      "month_1": "Қаң",
+      "month_2": "Ақп",
+      "month_3": "Нау",
+      "month_4": "Сәу",
+      "month_5": "Мам",
+      "month_6": "Мау",
+      "month_7": "Шіл",
+      "month_8": "Там",
+      "month_9": "Қыр",
+      "month_10": "Қаз",
+      "month_11": "Қар",
+      "month_12": "Жел",
       "happy": "Керемет",
       "good": "Жақсы",
       "sad": "Көңілсіз",
@@ -630,7 +758,8 @@
       "read_more_button": "Толығырақ оқу",
       "by": "{{creator}} авторынан",
       "min_read": "мин оқу",
-      "no_recommendations": "Ұсыныстар табылмады"
+      "no_recommendations": "Ұсыныстар табылмады",
+      "select_year": "Жылды таңдаңыз"
     },
     "mascot-header-MyQA": {
       "heading": "Менің Q&A (Сұрақ/Жауап)",
@@ -656,9 +785,17 @@
       "search_placeholder": "Іздеу",
       "filter": "Тегтерді сүзгілеу",
       "no_answers_found": "Сұрақтарға жауап жоқ",
+      "no_results_heading": "«{{query}}» бойынша ештеңе табылмады",
+      "no_results_line1": "Іздеуді өзгертіңіз немесе басқа тегті таңдаңыз.",
+      "no_results_line2": "Барлық сұрақтарды қайта көру үшін сүзгілерді қалпына келтіруге болады.",
+      "reset_filters": "Сүзгілерді қалпына келтіру",
+      "browse_all_questions": "Барлық сұрақтарды көрсету",
+      "no_results_image_alt": "Сурет: сәйкес сұрақтар жоқ",
       "language": "Тіл",
       "all_languages": "Барлық тілдер",
-      "date_answered": "{{date}} күні"
+      "date_answered": "{{date}} күні",
+      "go_back": "Артқа",
+      "how_it_works": "Қалай жұмыс істейді"
     },
     "videos": {
       "view_more": "Көбірек көру",
@@ -743,7 +880,8 @@
       "personalize": "Дараландыру",
       "personalization": "Дараландыру",
       "personalization_modal_text": "Сіздің қажеттіліктеріңізге сәйкес дараланған ұйымдастырушылық ұсыныстарды алу үшін, алдымен біздің жылдам базалық бағалауды толтырыңыз. Бұл бізге сіздің қалауларыңыз бен мақсаттарыңызды түсінуге көмектеседі және ең маңызды ұсыныстарды ұсынады.",
-      "personalization_modal_cta_label": "Бағалауды толтыру"
+      "personalization_modal_cta_label": "Бағалауды толтыру",
+      "services": "Қызметтер"
     },
     "organization-overview": {
       "error_loading_data": "Ұйым деректерін жүктеу кезінде қате орын алды",
@@ -855,7 +993,12 @@
       "assessment_completed": "Бағалау аяқталды",
       "assessment_completed_description": "Бағалауды аяқтағаныңызға рахмет. Жауаптарыңыз сақталды және сізге көмектесу үшін пайдаланылады.",
       "assessment_completed_button": "Басты бетке қайту",
-      "save_button_label": "Save for later"
+      "save_button_label": "Кейінірек сақтау",
+      "sontrgly_disagree": "Толығымен келіспеймін",
+      "disagree": "Келіспеймін",
+      "neutral": "Бейтарап",
+      "agree": "Келісемін",
+      "strongly_agree": "Толығымен келісемін"
     },
     "baseline-assessment-dashboard": {
       "heading": "Сіздің базалық бағалауыңыз",
@@ -867,10 +1010,25 @@
       "view": "Нәтижелерді көру",
       "view_detailed_results": "Толық нәтижелерді көру",
       "started_at": "{{date}} басталды",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
-      "latest_results": "Latest Results"
+      "psychological": "Психологиялық",
+      "biological": "Биологиялық",
+      "social": "Әлеуметтік",
+      "latest_results": "Соңғы нәтижелер",
+      "how_it_works": "Қалай жұмыс істейді",
+      "see_last_result": "Соңғы нәтижелер",
+      "explore_button_label": "Картаны зерттеу",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you.",
+      "user_guide_heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",
+      "emergency_services": "Жедел қызметтер",
+      "emergency_services_description": "Жедел қызметтер",
+      "map": "Бухарестте қолжетімді психикалық денсаулық және психо-эмоционалдық қолдау қызметтерінің картасы",
+      "map_description": "Қолдау қызметтер картасы (Бухарест)",
+      "rights": "Балалар мен жасөспірімдердің психикалық денсаулық және психо-эмоционалдық қолдау қызметтеріне қол жеткізу құқықтары",
+      "rights_description": "Балалар мен жасөспірімдердің құқықтары"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Бағалау аяқталды",
@@ -881,9 +1039,9 @@
       "read_more_button": "Толығырақ",
       "by": "{{creator}} авторы",
       "min_read": "мин оқу",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
+      "psychological": "Психологиялық",
+      "biological": "Биологиялық",
+      "social": "Әлеуметтік",
       "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
       "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
       "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
@@ -911,7 +1069,55 @@
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
       "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
       "same_same_same": "Сіздің нәтижелеріңіз алдыңғы бағалаумен бірдей.",
-      "organizations": "Ұсынылған ұйымдар"
+      "organizations": "Ұсынылған ұйымдар",
+      "summary_heading": "Recommendations generated based on the score obtained",
+      "view_more": "Көбірек көру"
+    },
+    "dashboard-hero": {
+      "heading": "Қайта қош келдіңіз",
+      "user_guide": "Нұсқаулық",
+      "next_consultation": "Келесі консультация:",
+      "change_button_label": "Құпия сөзді өзгерту",
+      "accept_button_label": "Консультацияны қабылдау",
+      "join_button_label": "Қосылу",
+      "schedule_button_label": "Жоспарлау",
+      "live_label": "Қазір",
+      "no_consultations": "Қазіргі Сізде алдағы консультациялар жоқ",
+      "free": "Бос",
+      "ordinal_st": "-ші",
+      "ordinal_nd": "-ші",
+      "ordinal_rd": "-ші",
+      "ordinal_th": "-ші/-шы",
+      "january": "қаңтар",
+      "february": "ақпан",
+      "march": "наурыз",
+      "april": "сәуір",
+      "may": "мамыр",
+      "june": "маусым",
+      "july": "шілде",
+      "august": "тамыз",
+      "september": "қыркүйек",
+      "october": "қазан",
+      "november": "қараша",
+      "december": "желтоқсан",
+      "coupon": "Купон",
+      "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз"
+    },
+    "download-app": {
+      "heading": "Қосымшаны жүктеп алу",
+      "paragraph": "Енді iOS және Android үшін қолжетімді",
+      "download_text": "Жүктеп алыңыз:",
+      "text": "Қолдауды кез келген уақытта, кез келген жерден алыңыз - жылдам, қауіпсіз және қолдануға оңай."
+    },
+    "find-support-near-you": {
+      "heading": "Жақын маңнан қолдау табыңыз",
+      "explore_button_label": "Зерттеу"
+    },
+    "most-read-articles": {
+      "heading": "Ең көп оқылған мақала",
+      "read_more_button": "Толығырақ оқу",
+      "min_read": "мин оқу",
+      "by": "{{creator}} авторлығымен"
     }
   },
   "pages": {
@@ -1001,7 +1207,8 @@
       "subheading_default": "Барлық мақалаларды осы жерден таба аласыз",
       "subheading_newest": "Мұнда Сіз жаңа мақалаларды таба аласыз",
       "subheading_most_read": "Мұнда Сіз барлық категориялардағы ең көп оқылатын мақалаларды таба аласыз",
-      "heading": "Мақалалар"
+      "heading": "Мақалалар",
+      "search": "Іздеу"
     },
     "article-information": {
       "heading": "Көбірек мақалалар",
@@ -1012,7 +1219,15 @@
       "share_title": "Бұл контентті бөліс",
       "share_success": "Сілтемені көшіріп алдыңыз!",
       "copy_link": "Сілтемені көшіріңіз",
-      "export_failed": "Экспорт қатесі. Қайтадан қайталаңыз."
+      "export_failed": "Экспорт қатесі. Қайтадан қайталаңыз.",
+      "audio_player_title_listen_to_article": "Бұл мақаланы тыңдаңыз",
+      "audio_player_subtitle_narrated_version": "Аудио қалайсыз ба? Дыбысталған нұсқасын қосыңыз.",
+      "audio_player_badge_listen_time": "{{minutes}} мин тыңдау",
+      "audio_player_play_label": "Қосу",
+      "audio_player_pause_label": "Кідірту",
+      "audio_player_seek_back_label": "{{seconds}} с артқа айналдыру",
+      "audio_player_seek_forward_label": "{{seconds}} с алға айналдыру",
+      "audio_player_helper_read_along": "Аудиомен бірге оқи аласыз немесе тек тыңдап дем ала аласыз."
     },
     "information-portal": {
       "heading": "Құпия сөзді өзгерту",
@@ -1034,7 +1249,9 @@
       "podcasts": "Подкасттар",
       "view_more": "Көбірек көру",
       "require_cookies": "Бұл бейнені көру үшін барлық cookie файлдарын қабылдаңыз.",
-      "cookie_preferences": "Cookie параметрлері"
+      "cookie_preferences": "Cookie параметрлері",
+      "search": "Іздеу",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "uSupport сайтында электронды пошта арқылы тіркеліңіз"
@@ -1135,7 +1352,8 @@
       "subheading_newest": "Біздің жаңа бейнелерімізді көріңіз.",
       "heading_most_viewed": "Ең көп қаралған бейнелер",
       "subheading_most_viewed": "Біздің ең көп қаралған бейнелерімізді көріңіз.",
-      "all": "Барлығы"
+      "all": "Барлығы",
+      "search": "Іздеу"
     },
     "video-information-page": {
       "more_videos": "Көбірек видеолар",
@@ -1158,7 +1376,8 @@
       "subheading_newest": "Біздің жаңа Аудиобақыттарымызды тыңдаңыз.",
       "heading_most_viewed": "Ең көп қаралған Аудиобақыттар",
       "subheading_most_viewed": "Біздің ең көп қаралған Аудиобақыттарымызды тыңдаңыз.",
-      "all": "Барлығы"
+      "all": "Барлығы",
+      "search": "Іздеу"
     },
     "organizations-page": {
       "heading": "Ұйымдар"
@@ -1175,6 +1394,7 @@
       "continue": "Жалғастыру",
       "submit": "Жіберу",
       "view_content": "Көбірек мазмұнды көру",
+      "read_more_button": "Толығырақ оқу",
       "no_articles_found": "Осы тақырып бойынша мақалалар табылмады.",
       "non_emergency_title": "Төтенше емес жағдайлар",
       "non_emergency_paragraph": "Қазіргі уақытта баланың немесе жасөспірімнің өміріне немесе қауіпсіздігіне қауіп төндірмейтін кез келген жағдай.",
@@ -1319,7 +1539,20 @@
       "september": "қыркүйек",
       "october": "қазан",
       "november": "қараша",
-      "december": "желтоқсан"
+      "december": "желтоқсан",
+      "subheading": "{{providerName}} маманымен сеансыңыз сәтті брондалды.",
+      "subheading_no_name": "Сеансыңыз сәтті брондалды.",
+      "providerLabel": "Маман",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт",
+      "appointmentDetailsHeading": "Кездесу мәліметтері",
+      "reminderText": "Сеанс алдында еске салу аласыз.",
+      "manageText": "Брондауларыңызды «Менің консультацияларым» бөлімінен басқара аласыз.",
+      "dateLabel": "Күні",
+      "timeLabel": "Уақыты",
+      "dateText": "{{startDate}} {{month}} {{year}}",
+      "timeText": "{{startTime}}-дан {{endTime}}-ге дейін"
     },
     "cancel-consultation": {
       "heading": "Консультациядан шынымен бас тартқыңыз келе ме?",
@@ -1455,6 +1688,35 @@
       "start_date": "Басталу күні",
       "end_date": "Аяқталу күні",
       "end_date_before_start_error": "Аяқталу күні басталу күнінен кейін болуы керек"
+    },
+    "welcome": {
+      "heading": "Қош келдіңіз",
+      "country": "Ел",
+      "language": "Тіл",
+      "placeholder": "Таңдау",
+      "register_email": "Электронды пошта арқылы тіркеліңіз",
+      "register_anonymously": "Электрондық поштасыз тіркелу",
+      "continue_as_guest": "Тіркеусіз жалғастыру",
+      "already_have_account": "Есептік жазбаңыз бар ма?",
+      "log_in": "Кіру",
+      "client": "Клиент",
+      "poland_description": "uSupport – жастарға (16–24) арналған психикалық денсаулық пен әл-ауқат платформасы."
+    },
+    "user-guide": {
+      "heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",
+      "emergency_services": "Жедел қызметтер",
+      "map": "Қолдау қызметтер картасы (Бухарест)",
+      "rights": "Балалар мен жасөспірімдердің құқықтары"
+    },
+    "emergency-situation": {
+      "heading": "Бухаресттегі балалар мен жасөспірімдерге арналған психикалық денсаулық және психоәлеуметтік қолдау қызметтерінің картасы",
+      "paragraph": "Бұл интерактивті карта Бухаресттегі балалар мен жасөспірімдерге қолжетімді психикалық денсаулық пен психоәлеуметтік әл-ауқат қызметтерін көрсетеді. Біз сіздің қажеттіліктеріңізге ең сәйкес келетін нұсқаларды ұсыну үшін сізге бағыт-бағдар беруге тырысамыз.",
+      "paragraph_two": "<0>Ескерту:</0> Бұл карта қызмет көрсетушілердің веб-сайттарындағы сипаттамалар негізінде жасалды. Картаны пайдаланған сәттегі ақпараттың дәлдігіне кепілдік бере алмаймыз. Қызметтер мен провайдерлер үнемі өзгеріп отырады, сондықтан провайдерді таңдаған кезде оларға телефон арқылы хабарласып, кәсіби көмек қажет жағдайды егжей-тегжейлі түсіндіруді ұсынамыз.",
+      "question": "Жедел жағдайға арналған қызметтерді іздеп жүрсіз бе?",
+      "subquestion": "Мысалы: өзіне зиян келтіру, суицид әрекеті, мектептегі немесе отбасындағы зорлық-зомбылық, жыныстық зорлық-зомбылық және т.б.",
+      "yes": "Иә",
+      "no": "Жоқ",
+      "dont_know": "Шұғыл екенін білмеймін"
     }
   },
   "modals": {
@@ -1570,6 +1832,32 @@
       "heading": "Сеанстан шынымен кеткіңіз келе ме?",
       "confirm": "Шығу",
       "cancel": "Болдырмау"
+    },
+    "how-it-works-ba": {
+      "heading": "How baseline assessment works",
+      "subheading_1": "Before accessing your baseline assessment, please review and accept the Privacy Policy. You must accept it to continue.",
+      "subheading_2": "You can also start the assessment anytime from your dashboard.",
+      "subheading_3": "The assessment is divided into multiple questions with a progress bar, and you can save your progress and continue later.",
+      "subheading_4": "Белгілі бір оқиғаны басу арқылы сол сәтке жазылған барлық түсініктемелер мен жазбаларды көре аласыз, бұл сіздің көңіл күйіңізге не әсер еткенін тереңірек түсінуге мүмкіндік береді.",
+      "subheading_5": "Сіз кез келген таңдалған күн аралығына есеп жасай аласыз және оны CSV файлы ретінде экспорттай аласыз — бұл сіздің көңіл күй деректеріңізді қарап шығуды немесе қажет болған жағдайда бөлісуді жеңілдетеді.",
+      "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
+      "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
+    },
+    "user-guide": {
+      "heading": "Төмендегілер туралы көбірек білгіңіз келе ме:",
+      "emergency_services": "Жедел қызметтер",
+      "map": "Бухарестте қолжетімді психикалық денсаулық және психо-эмоционалдық қолдау қызметтерінің картасы",
+      "rights": "Балалар мен жасөспірімдердің психикалық денсаулық және психо-эмоционалдық қолдау қызметтеріне қол жеткізу құқықтары"
+    },
+    "emergency-situation": {
+      "heading": "Бухаресттегі балалар мен жасөспірімдерге арналған психикалық денсаулық және психоәлеуметтік қолдау қызметтерінің картасы",
+      "paragraph": "Бұл интерактивті карта Бухаресттегі балалар мен жасөспірімдерге қолжетімді психикалық денсаулық пен психоәлеуметтік әл-ауқат қызметтерін көрсетеді. Біз сіздің қажеттіліктеріңізге ең сәйкес келетін нұсқаларды ұсыну үшін сізге бағыт-бағдар беруге тырысамыз.",
+      "paragraph_two": "<0>Ескерту:</0> Бұл карта қызмет көрсетушілердің веб-сайттарындағы сипаттамалар негізінде жасалды. Картаны пайдаланған сәттегі ақпараттың дәлдігіне кепілдік бере алмаймыз. Қызметтер мен провайдерлер үнемі өзгеріп отырады, сондықтан провайдерді таңдаған кезде оларға телефон арқылы хабарласып, кәсіби көмек қажет жағдайды егжей-тегжейлі түсіндіруді ұсынамыз.",
+      "question": "Жедел жағдайға арналған қызметтерді іздеп жүрсіз бе?",
+      "subquestion": "Мысалы: өзіне зиян келтіру, суицид әрекеті, мектептегі немесе отбасындағы зорлық-зомбылық, жыныстық зорлық-зомбылық және т.б.",
+      "yes": "Иә",
+      "no": "Жоқ",
+      "dont_know": "Шұғыл екенін білмеймін"
     }
   },
   "routes": {

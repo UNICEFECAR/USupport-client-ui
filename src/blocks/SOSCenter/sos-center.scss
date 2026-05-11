@@ -3,16 +3,8 @@
 .soscenter {
   @include full-height-page-navbar;
 
-  padding-top: $spacing_3_2;
-  padding-bottom: $spacing_6_4;
-
-  @media screen and (min-width: $screen-md) {
-    padding-bottom: $spacing_8_0;
-  }
-
-  @media screen and (min-width: $screen-lg) {
-    padding-top: $spacing_5_6;
-    padding-bottom: $spacing_16_0;
+  &__grid {
+    padding-bottom: $spacing_6_4;
   }
 
   &__heading-item {
@@ -28,11 +20,12 @@
   }
 
   &__box {
-    padding: $spacing_2_4;
     text-align: left;
+    margin-bottom: $spacing_2_4;
+    padding: $spacing_2_0;
 
     @media screen and (min-width: $screen-md) {
-      padding: $spacing_5_6 $spacing_9_6;
+      padding: $spacing_3_2;
     }
 
     .icon-with-text {
@@ -44,11 +37,24 @@
     }
 
     &-heading {
-      padding-bottom: $spacing_2_4;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_1_0;
+      padding-bottom: $spacing_1_6;
+      border-bottom: 1px solid $color_gray_ea;
+      margin-bottom: $spacing_1_6;
 
-      @media screen and (min-width: $screen-md) {
-        padding-bottom: $spacing_3_2;
-      }
+      @include themifyCustom(
+        $themes,
+        "border-bottom-color",
+        "color_gray_ea",
+        "color_gray_344054"
+      );
+    }
+
+    &-text {
+      margin: 0;
+      text-align: left;
     }
 
     &-paragraph {
@@ -56,20 +62,146 @@
     }
   }
 
+  .theme-light & {
+    // Match Consultations main box liquid-glass background
+    .soscenter__box.box--liquid-glass {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(224, 233, 255, 0.7);
+      box-shadow: 0 0.6rem 1rem rgba(9, 14, 26, 0.08);
+      border-radius: $border_radius_2_4;
+      backdrop-filter: blur(10px) saturate(1.12);
+      -webkit-backdrop-filter: blur(10px) saturate(1.12);
+    }
+  }
+
   &__secondary-grid {
     row-gap: 2rem;
+    place-items: stretch;
+
     &__item {
-      justify-self: center;
+      justify-self: stretch;
+      width: 100%;
+      display: flex;
+    }
+  }
 
-      &--romania-button {
-        display: flex;
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: $border_radius_2_4;
+    box-shadow: $shadow_1;
+    padding: $spacing_1_6;
+    cursor: default;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      z-index: -1;
+
+      @include themifyNormal($themes) {
+        background: themed(glass_panel_background);
+        border: 1px solid themed(glass_border_color);
+        box-shadow: themed(glass_shadow);
+      }
+
+      .theme-light & {
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid rgba(224, 233, 255, 0.7);
+        box-shadow: 0 0.6rem 1rem rgba(9, 14, 26, 0.08);
+      }
+
+      backdrop-filter: blur(10px) saturate(1.12);
+      -webkit-backdrop-filter: blur(10px) saturate(1.12);
+      pointer-events: none;
+
+      @supports (-webkit-backdrop-filter: blur(0)) {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_1_2;
+      flex: 1;
+    }
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    &__image {
+      width: 100%;
+      margin-bottom: $spacing_1_0;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: $border_radius_1_6;
+        object-fit: cover;
+      }
+    }
+
+    &__title {
+      &.paragraph {
+        color: $color_6a4ffb_8c90eb;
+        font-weight: $font_bold;
+        word-break: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    &__description {
+      margin-top: $spacing_0_8;
+      padding-top: $spacing_0_8;
+      border-top: 0.1rem solid #cdd8e1;
+      margin-bottom: $spacing_1_2;
+      word-break: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.4;
+    }
+
+    &__divider {
+      margin-top: $spacing_0_8;
+      padding-top: $spacing_0_8;
+      border-top: 0.1rem solid #cdd8e1;
+      margin-bottom: $spacing_1_2;
+    }
+
+    &__actions {
+      margin-top: auto;
+      padding-top: $spacing_1_2;
+      border-top: 0.1rem solid #cdd8e1;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_1_0;
+
+      @media screen and (min-width: $screen-lg) {
         flex-direction: row;
-        margin-bottom: 2rem;
-        text-align: left;
+      }
 
-        & .btn {
-          margin-left: 2rem;
-        }
+      .button {
+        flex: 1;
+        width: 100%;
       }
     }
   }

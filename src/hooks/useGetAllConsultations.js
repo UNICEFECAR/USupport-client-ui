@@ -1,13 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { clientSvc } from "@USupport-components-library/services";
+import { useTranslation } from "react-i18next";
 
 export default function useGetAllConsultations(enabled = true) {
+  const { i18n } = useTranslation("blocks", { keyPrefix: "consultations" });
+  const language = i18n.language;
+
   const getAllConsultations = async () => {
     const response = await clientSvc.getAllConsultations();
     const data = response.data;
     const formattedData = [];
     for (let i = 0; i < data?.length; i++) {
       const consultation = data[i];
+
       formattedData.push({
         chatId: consultation.chat_id,
         consultationId: consultation.consultation_id,
@@ -22,13 +27,14 @@ export default function useGetAllConsultations(enabled = true) {
         sponsorImage: consultation.sponsor_image,
         organizationId: consultation.organization_id,
         couponCode: consultation.coupon_code,
+        providerSpecializations: consultation.provider_specializations,
       });
     }
     return formattedData;
   };
 
   const getAllConsultationsQuery = useQuery(
-    ["all-consultations"],
+    ["all-consultations", language],
     getAllConsultations,
     { enabled: !!enabled }
   );

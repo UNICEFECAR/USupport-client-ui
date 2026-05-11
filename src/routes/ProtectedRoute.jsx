@@ -17,7 +17,7 @@ export const ProtectedRoute = ({ children }) => {
 
   if (!isLoggedIn || !isClient) {
     const language = localStorage.getItem("language") || "en";
-    const loginPath = `/client/${language}/login`;
+    const loginPath = `/client/${language}/dashboard`;
     const fullPath = location.pathname + location.search;
     const next = encodeURIComponent(fullPath);
     return <Navigate to={`${loginPath}?next=${next}`} replace />;

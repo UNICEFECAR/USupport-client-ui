@@ -4,15 +4,14 @@ import { toast } from "react-toastify";
 
 import {
   Block,
-  Grid,
-  GridItem,
   Rating,
   Textarea,
-  Button,
+  NewButton,
   Error,
 } from "@USupport-components-library/src";
 
 import { useAddPlatformRating } from "#hooks";
+import { mascotHappyBlue } from "@USupport-components-library/assets";
 
 import "./platform-rating.scss";
 
@@ -61,8 +60,8 @@ export const PlatformRating = () => {
 
   return (
     <Block classes="platform-rating">
-      <Grid md={8} lg={12} classes="platform-rating__grid">
-        <GridItem md={8} lg={12} classes="platform-rating__grid__item">
+      <div className="platform-rating__content-wrapper">
+        <div className="platform-rating__content-wrapper__left">
           <Rating
             label={t("rating_label")}
             changeOnHoverEnabled
@@ -73,19 +72,22 @@ export const PlatformRating = () => {
             label={t("textarea_label")}
             placeholder={t("textarea_placeholder")}
             onChange={(value) => handleChange("comment", value)}
-            classes="platform-rating__grid__item__textarea"
+            classes="platform-rating__textarea"
             value={data.comment}
           />
           {errors.submit && <Error error={errors.submit} />}
-          <Button
+          <NewButton
             label={t("button_label")}
             size="lg"
             onClick={() => handleSendRating()}
             disabled={canContinue}
             loading={addRatingMutation.isLoading}
           />
-        </GridItem>
-      </Grid>
+        </div>
+        <div className="platform-rating__content-wrapper__right">
+          <img src={mascotHappyBlue} alt="mascot" />
+        </div>
+      </div>
     </Block>
   );
 };

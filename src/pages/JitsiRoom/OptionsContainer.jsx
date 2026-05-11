@@ -1,4 +1,8 @@
-import { Button, InputSearch, Toggle } from "@USupport-components-library/src";
+import {
+  NewButton,
+  InputSearch,
+  Toggle,
+} from "@USupport-components-library/src";
 
 export const OptionsContainer = ({
   showAllMessages,
@@ -19,7 +23,7 @@ export const OptionsContainer = ({
       }}
       className="page__jitsi-room__options-container"
     >
-      <Button
+      <NewButton
         size="sm"
         label={t(showOptions ? "hide_options" : "show_options")}
         onClick={() => setShowOptions(!showOptions)}
