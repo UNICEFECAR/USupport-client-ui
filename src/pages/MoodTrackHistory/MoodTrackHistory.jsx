@@ -2,11 +2,10 @@ import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate } from "react-router-dom";
 
-import { ButtonWithIcon, NewButton } from "@USupport-components-library/src";
+import { NewButton } from "@USupport-components-library/src";
 import {
   Page,
   MoodTrackHistory as MoodTrackHistoryBlock,
-  // GiveSuggestion,
   DownloadApp,
 } from "#blocks";
 import { RootContext } from "#routes";
@@ -54,7 +53,6 @@ export const MoodTrackHistory = () => {
             />
             <NewButton
               label={t("export_report")}
-              iconName="document"
               size="sm"
               circleSize="sm"
               onClick={() => setIsReportOpen(true)}
@@ -74,7 +72,6 @@ export const MoodTrackHistory = () => {
         onClose={() => setIsReportOpen(false)}
       />
       <MoodTrackHistoryBlock />
-      {/* <GiveSuggestion type="mood-tracker" /> */}
       <DownloadApp />
     </Page>
   );
