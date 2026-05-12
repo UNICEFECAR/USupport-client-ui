@@ -149,7 +149,7 @@
       "copy_success": "Կոդը բարեհաջող պատճենված է",
       "confirm_password_label": "Հաստատել գաղտնաբառը",
       "password_match_error": "«Գաղտնաբառ» և «Հաստատել գաղտնաբառը» դաշտերը չեն համընկնում",
-      "age_terms_agreement_text_1": "Ես 13 տարեկանից բարձր եմ"
+      "age_terms_agreement_text_1": "Ես {{age}} տարեկանից բարձր եմ"
     },
     "register-support": {
       "button_continue_label": "Շարունակել",
@@ -334,7 +334,7 @@
       "login_button_label": "Ես արդեն ունեմ օգտահաշիվ",
       "confirm_password_label": "Հաստատել գաղտնաբառը",
       "password_match_error": "«Գաղտնաբառ» և «Հաստատել» դաշտերը չեն համընկնում",
-      "age_terms_agreement_text_1": "Ես 13 տարեկանից բարձր եմ"
+      "age_terms_agreement_text_1": "Ես {{age}} տարեկանից բարձր եմ"
     },
     "privacy-policy": {
       "no_results": "Ընտրված երկրի և լեզվի վերաբերյալ արդյունքներ չեն գտնվել"
