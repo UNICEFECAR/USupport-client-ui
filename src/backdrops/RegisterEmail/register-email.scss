@@ -1,0 +1,37 @@
+@import "@USupport-components-library/styles";
+
+.ReactModal__Overlay:has(.register-email-modal) {
+  background: rgba(18, 18, 24, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+body:has(.register-email-modal) {
+  overflow: hidden;
+}
+
+.register-email-modal {
+  &__content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: $spacing_4_0;
+    gap: $spacing_1_6;
+
+    &__actions {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: $spacing_1_6;
+      margin-top: $spacing_0_8;
+    }
+
+    &__submit-error {
+      width: 100%;
+    }
+
+    &__login-cta {
+      margin-top: $spacing_0_8;
+    }
+  }
+}

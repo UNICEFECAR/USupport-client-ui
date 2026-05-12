@@ -8,7 +8,7 @@ import { ONE_HOUR } from "@USupport-components-library/utils";
 import {
   Page,
   Consultations as ConsultationsBlock,
-  GiveSuggestion,
+  DownloadApp,
 } from "#blocks";
 import {
   CancelConsultation,
@@ -30,7 +30,7 @@ import {
 } from "#hooks";
 import { RootContext } from "#routes";
 
-import { Button, Loading } from "@USupport-components-library/src";
+import { NewButton, Loading } from "@USupport-components-library/src";
 
 import "./consultations.scss";
 
@@ -121,6 +121,7 @@ export const Consultations = () => {
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  const [rescheduledConsultation, setRescheduledConsultation] = useState();
 
   // Modal state variables
   const [
@@ -143,9 +144,12 @@ export const Consultations = () => {
     setIsSelectConsultationBackdropOpen(false);
 
   // Schedule consultation logic
-  const onRescheduleConsultationSuccess = () => {
+  const onRescheduleConsultationSuccess = (data) => {
     setIsBlockSlotSubmitting(false);
     setConsultationId(consultationId);
+    if (data?.consultation) {
+      setRescheduledConsultation(data.consultation);
+    }
     closeSelectConsultationBackdrop();
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);
@@ -204,6 +208,9 @@ export const Consultations = () => {
   };
 
   const handleScheduleConsultationClick = () => {
+    if (clientDataQuery.isLoading || clientDataQuery.isFetching) {
+      return;
+    }
     if (!clientDataQuery.data?.dataProcessing) {
       openRequireDataAgreement();
     } else {
@@ -227,24 +234,23 @@ export const Consultations = () => {
     <Page
       heading={t("header")}
       classes="page__consultations"
-      headingButton={
-        <Button
-          label={t("button_label")}
-          onClick={handleScheduleConsultationClick}
-          size="lg"
-        />
-      }
+      // headingButton={
+      //   <NewButton
+      //     label={t("button_label")}
+      //     onClick={handleScheduleConsultationClick}
+      //     iconName="calendar"
+      //     size="lg"
+      //     classes="page__consultations__button"
+      //   />
+      // }
     >
-      {clientDataQuery.isLoading || clientDataQuery.isFetching ? (
-        <Loading />
-      ) : (
-        <ConsultationsBlock
-          openJoinConsultation={openJoinConsultation}
-          openEditConsultation={openEditConsultation}
-          acceptConsultation={acceptConsultation}
-          openRequireDataAgreement={openRequireDataAgreement}
-        />
-      )}
+      <ConsultationsBlock
+        openJoinConsultation={openJoinConsultation}
+        openEditConsultation={openEditConsultation}
+        acceptConsultation={acceptConsultation}
+        openRequireDataAgreement={openRequireDataAgreement}
+        onScheduleConsultationClick={handleScheduleConsultationClick}
+      />
       {selectedConsultation && (
         <>
           <EditConsultation
@@ -291,6 +297,10 @@ export const Consultations = () => {
                 new Date(selectedSlot?.time || selectedSlot).getHours() + 1
               )
             ),
+            providerName: rescheduledConsultation?.provider_name,
+            providerImage: rescheduledConsultation?.provider_image,
+            providerSpecializations:
+              rescheduledConsultation?.provider_specializations,
           }}
         />
       )}
@@ -299,7 +309,7 @@ export const Consultations = () => {
         onClose={closeRequireDataAgreement}
         onSuccess={handleDataAgreementSuccess}
       />
-      <GiveSuggestion type="consultations" />
+      <DownloadApp />
     </Page>
   );
 };

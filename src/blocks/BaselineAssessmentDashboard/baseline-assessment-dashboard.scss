@@ -1,113 +1,431 @@
 @import "@USupport-components-library/styles";
 
 .baseline-assessment-dashboard {
-  margin-bottom: 2rem;
-  margin-top: 3.6rem;
+  padding-top: $spacing_4_8;
+  padding-bottom: $spacing_6_4;
 
-  &__heading {
-    margin-bottom: 1.5rem;
-    color: var(--text-primary);
-    text-align: left;
-  }
+  &__user-guide {
+    margin-top: $spacing_2_4;
+    width: 100%;
 
-  & .mood-tracker-button {
-    color: $color_secondary_9749fa;
-    cursor: pointer;
-    padding: $spacing_1_6 0;
-  }
-
-  &__assessment {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-  }
-
-  &__no-assessment {
-    text-align: center;
-    padding: 2rem;
-    border: 1px dashed var(--border-light);
-    border-radius: 8px;
-    background: var(--background-secondary);
-
-    &-text {
-      margin-bottom: 1.5rem;
-      color: var(--text-secondary);
-      font-size: 1rem;
-      line-height: 1.5;
+    &__wrapper {
+      padding: $spacing_3_2;
     }
-  }
-
-  &__results {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     &__heading {
-      text-align: center;
-      display: block;
-      padding-bottom: 1.2rem;
-      margin: unset;
+      text-align: left;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      margin: 0 0 $spacing_1_6;
     }
 
-    &__items {
+    &__options {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      gap: $spacing_1_0;
+    }
 
-      @media screen and (min-width: 1024px) {
+    @media screen and (min-width: $screen-lg) {
+      &__options {
         flex-direction: row;
-      }
-
-      & .box {
-        min-width: 20rem;
-        margin-inline: 1rem;
+        gap: $spacing_1_6;
       }
     }
 
-    &__button {
-      margin-top: 3rem;
+    &__option-card {
+      display: flex;
+      align-items: center;
+      gap: $spacing_1_6;
+      padding: $spacing_1_4 $spacing_1_6;
+      border-radius: 16px;
+      border: 1px solid rgba(224, 233, 255, 0.72);
+      box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.14);
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+
+      @include themifyNormal($themes) {
+        background: themed(glass_panel_background);
+        background-color: themed(glass_panel_background);
+        border: 1px solid themed(glass_border_color);
+        box-shadow: themed(glass_shadow);
+      }
+
+      .theme-light & {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.44),
+          rgba(235, 243, 255, 0.3)
+        );
+        border: 1px solid rgba(224, 233, 255, 0.72);
+        box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.14);
+      }
+
+      @media screen and (min-width: $screen-lg) {
+        flex: 1 1 0;
+      }
+
+      &:hover {
+        box-shadow: 0 0.8rem 1.2rem rgba(95, 108, 145, 0.18);
+        transform: translateY(-1px);
+      }
+
+      &:focus-visible {
+        outline: 2px solid $color_primary_20809e;
+        outline-offset: 2px;
+      }
+
+      &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        background: linear-gradient(
+          135.77deg,
+          #a597d9 9.72%,
+          #9f90dc 16.15%,
+          #775ff3 65.14%,
+          #684dfd 90.04%
+        );
+      }
+
+      &__text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      &__description {
+        line-height: $line_height_2_2;
+        font-weight: $font_regular;
+        color: #6b7280;
+        margin: 0;
+      }
+
+      &__chevron {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #9ca3af;
+      }
     }
   }
 
-  &__start-button {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background: var(--primary-color-dark);
-    }
-
-    &:focus {
-      outline: 2px solid var(--primary-color);
-      outline-offset: 2px;
+  .theme-light & {
+    .box--liquid-glass,
+    .card--liquid-glass {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.44),
+        rgba(235, 243, 255, 0.3)
+      );
+      border: 1px solid rgba(224, 233, 255, 0.72);
+      box-shadow: 0 0.6rem 1rem rgba(95, 108, 145, 0.14);
     }
   }
-}
 
-@media (max-width: 768px) {
-  .baseline-assessment-dashboard {
+  &__box {
     &__content {
-      padding: 1rem;
-    }
+      display: flex;
+      flex-direction: column;
 
-    &__heading {
-      font-size: 1.25rem;
-    }
+      @media screen and (min-width: $screen-lg) {
+        flex-direction: row;
+        align-items: stretch;
+      }
 
-    &__no-assessment {
-      padding: 1.5rem;
+      &__part {
+        padding: $spacing_3_2;
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (min-width: $screen-lg) {
+          width: 50%;
+        }
+
+        & > h3 {
+          text-align: left;
+          font-weight: 300;
+          letter-spacing: 0.01em;
+        }
+
+        &:first-child {
+          border-bottom: 2px solid $color_gray_ea;
+          @include themifyCustom(
+            $themes,
+            "border-bottom-color",
+            "color_gray_ea",
+            "color_gray_344054"
+          );
+
+          @media screen and (min-width: $screen-lg) {
+            border-bottom: none;
+            border-right: 2px solid $color_gray_ea;
+            @include themifyCustom(
+              $themes,
+              "border-right-color",
+              "color_gray_ea",
+              "color_gray_344054"
+            );
+          }
+        }
+
+        &--map {
+          position: relative;
+        }
+
+        &--assessment {
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
+
+          // Match left column: map area fills available height: full width of the part
+          // (BaselineAssesmentBox otherwise caps at 40rem and does not grow with the row).
+          .baseline-assesment-box {
+            align-self: stretch;
+            width: 100%;
+            max-width: none;
+
+            @media screen and (min-width: $screen-lg) {
+              flex: 1 1 auto;
+              min-height: 0;
+              justify-content: center;
+            }
+          }
+        }
+
+        &__header {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: $spacing_0_8;
+
+          & > h3 {
+            text-align: left;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            margin: 0;
+          }
+
+          &__link {
+            @include themify($themes, "color", "color_6a4ffb_8c90eb");
+            cursor: pointer;
+            font-weight: 500;
+            white-space: nowrap;
+            margin: 0;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        &__map-container {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: $spacing_3_2;
+          margin-top: $spacing_2_4;
+          border-radius: $border_radius_1_6;
+          overflow: hidden;
+          min-height: 200px;
+          flex: 1;
+
+          // Map as background
+          &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("../../assets/map.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              135deg,
+              rgba(106, 79, 251, 0.25) 0%,
+              rgba(102, 118, 141, 0.4) 100%
+            );
+            z-index: 1;
+          }
+        }
+
+        &__explore-card {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: $spacing_3_2;
+          width: 85%;
+          max-width: 280px;
+          border-radius: $border_radius_2_4;
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          min-width: 0;
+
+          @include themifyNormal($themes) {
+            background: themed(glass_panel_background);
+            background-color: themed(glass_panel_background);
+            border: 1px solid themed(glass_border_color);
+            box-shadow: themed(glass_shadow);
+          }
+
+          .theme-light & {
+            background: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow:
+              0 8px 32px rgba(0, 0, 0, 0.12),
+              0 2px 8px rgba(106, 79, 251, 0.08);
+          }
+
+          button,
+          a,
+          [role="button"] {
+            max-width: 100%;
+            width: 100%;
+            min-width: 0;
+          }
+
+          button,
+          a,
+          [role="button"],
+          button *,
+          a *,
+          [role="button"] * {
+            white-space: normal;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            min-width: 0;
+          }
+
+          @media screen and (min-width: $screen-lg) {
+            padding: $spacing_4_0;
+          }
+
+          &__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(
+              135deg,
+              rgba(106, 79, 251, 0.12) 0%,
+              rgba(140, 144, 235, 0.12) 100%
+            );
+            margin-bottom: $spacing_1_6;
+          }
+
+          &__description {
+            margin: 0 0 $spacing_2_4;
+            text-align: center;
+            @include themify($themes, "color", "color_667085_a0a4b1");
+          }
+        }
+
+        &__inner-box {
+          margin-top: $spacing_2_4;
+          padding: $spacing_2_4;
+          display: flex;
+          flex-direction: column;
+          gap: $spacing_2_0;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+
+          @media screen and (min-width: $screen-lg) {
+            padding: $spacing_3_2 $spacing_7_2;
+          }
+
+          &__icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(
+              135deg,
+              rgba(106, 79, 251, 0.12) 0%,
+              rgba(140, 144, 235, 0.12) 100%
+            );
+          }
+
+          &__icon--inline {
+            margin-bottom: $spacing_1_6;
+          }
+        }
+
+        &__description {
+          text-align: center;
+          margin-bottom: $spacing_1_2;
+          @include themify($themes, "color", "color_667085_a0a4b1");
+        }
+
+        &__results {
+          display: flex;
+          flex-direction: column;
+          gap: $spacing_1_2;
+          width: 100%;
+          margin-bottom: $spacing_1_6;
+
+          @media screen and (min-width: $screen-md) {
+            flex-direction: row;
+            justify-content: center;
+            gap: $spacing_2_0;
+          }
+
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: $spacing_1_6 $spacing_2_4;
+            border-radius: $border_radius_0_8;
+            background: rgba(106, 79, 251, 0.08);
+
+            @media screen and (min-width: $screen-md) {
+              min-width: 120px;
+            }
+          }
+
+          &__label {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0;
+            @include themify($themes, "color", "color_667085_a0a4b1");
+          }
+
+          &__value {
+            margin: 0;
+            @include themify($themes, "color", "color_6a4ffb_8c90eb");
+          }
+        }
+
+        &__buttons {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: $spacing_1_6;
+          width: 100%;
+          margin-top: $spacing_1_2;
+        }
+      }
     }
   }
 }

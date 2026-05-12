@@ -1,0 +1,10 @@
+@import "@USupport-components-library/styles";
+
+.most-read-articles {
+  padding-top: $spacing_2_4;
+  padding-bottom: $spacing_2_4;
+
+  &__main-grid {
+    row-gap: $spacing_4_0;
+  }
+}

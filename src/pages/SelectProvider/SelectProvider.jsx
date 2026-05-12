@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle, ButtonWithIcon } from "@USupport-components-library/src";
-import { countrySvc, clientSvc } from "@USupport-components-library/services";
+import { clientSvc, countrySvc } from "@USupport-components-library/services";
 
 import { useGetProvidersData, useError, useCheckActiveCampaign } from "#hooks";
 import { FilterProviders } from "#backdrops";
@@ -310,6 +310,9 @@ export const SelectProvider = () => {
         setSelectedBillingType={setSelectedBillingType}
         hasActiveCampaign={canUseCoupons}
         width={width}
+        subheading={t("subheading")}
+        onFilterClick={handleFilterClick}
+        filterButtonLabel={t("button_label")}
       />
 
       {width < 768 && <RadialCircle color="purple" />}

@@ -1,16 +1,16 @@
 import React, { useState, useMemo, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { useCustomNavigate as useNavigate } from "#hooks";
+import { useCustomNavigate as useNavigate, useIsLoggedIn } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import {
   Page,
-  MascotWelcomeHeader,
   MoodTracker,
   ConsultationsDashboard,
   ArticlesDashboard,
   BaselineAssessmentDashboard,
+  DownloadApp,
 } from "#blocks";
 
 import {
@@ -19,8 +19,6 @@ import {
   JoinConsultation,
   ConfirmConsultation,
   SelectConsultation,
-  UserGuide,
-  EmergencySituation,
 } from "#backdrops";
 
 import {
@@ -49,25 +47,33 @@ import "./dashboard.scss";
 export const Dashboard = () => {
   const { t } = useTranslation("pages", { keyPrefix: "dashboard-page" });
   const navigate = useNavigate();
+  const isLoggedIn = useIsLoggedIn();
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
-  const clientDataQuery = useGetClientData(!isTmpUser)[0];
+  // Determine if user is authenticated (logged in and not loading)
+  const isAuthenticated = isLoggedIn === true;
+  const isAuthLoading = isLoggedIn === "loading";
+
+  // Disable all queries if user is not authenticated
+  const shouldEnableQueries = isAuthenticated && !isTmpUser;
+
+  const clientDataQuery = useGetClientData(shouldEnableQueries)[0];
   const clientData = clientDataQuery?.data;
 
   const IS_RO = localStorage.getItem("country") === "RO";
 
-  const clientName = clientData
-    ? clientData.name
-      ? `${clientData.name} ${clientData.surname || ""}`
-      : clientData.nickname
-    : "";
+  // const clientName = clientData
+  //   ? clientData.name
+  //     ? `${clientData.name} ${clientData.surname || ""}`
+  //     : clientData.nickname
+  //   : "";
 
   const queryClient = useQueryClient();
 
   const consultationPrice = useRef();
 
-  // Get the consultations data only if the user is NOT temporary
-  const consultationsQuery = isTmpUser ? [] : useGetAllConsultations();
+  // Get the consultations data only if the user is authenticated and NOT temporary
+  const consultationsQuery = useGetAllConsultations(shouldEnableQueries);
 
   const upcomingConsultations = useMemo(() => {
     const currentDateTs = new Date().getTime();
@@ -92,8 +98,6 @@ export const Dashboard = () => {
     useState(true);
   const [isBaselineAssesmentModalOpen, setIsBaselineAssesmentModalOpen] =
     useState(false);
-  const [isUserGuideOpen, setIsUserGuideOpen] = useState(false);
-  const [isEmergencySituationOpen, setIsEmergencySituationOpen] = useState(false);
 
   const openRequireDataAgreement = (successAction) => {
     if (successAction) {
@@ -136,6 +140,7 @@ export const Dashboard = () => {
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  const [rescheduledConsultation, setRescheduledConsultation] = useState();
 
   // Modal state variables
   const [
@@ -178,9 +183,12 @@ export const Dashboard = () => {
   };
 
   // Schedule consultation logic
-  const onRescheduleConsultationSuccess = () => {
+  const onRescheduleConsultationSuccess = (data) => {
     setIsBlockSlotSubmitting(false);
     setConsultationId(consultationId);
+    if (data?.consultation) {
+      setRescheduledConsultation(data.consultation);
+    }
     closeSelectConsultationBackdrop();
     openConfirmConsultationBackdrop();
     setBlockSlotError(null);
@@ -259,20 +267,8 @@ export const Dashboard = () => {
       navigate("/select-provider");
     }
   };
-
-  const openUserGuide = () => {
-    setIsUserGuideOpen(true);
-  };
-  const closeUserGuide = () => {
-    setIsUserGuideOpen(false);
-  };
-
-  const openEmergencySituation = () => {
-    setIsEmergencySituationOpen(true);
-  };
-  const closeEmergencySituation = () => {
-    setIsEmergencySituationOpen(false);
-  };
+  // Show authentication backdrop when user is not authenticated (and not loading)
+  const showAuthBackdrop = !isAuthenticated && !isAuthLoading;
 
   return (
     <Page
@@ -281,16 +277,18 @@ export const Dashboard = () => {
       showFooter
       showEmergencyButton
       showGoBackArrow={false}
+      showAuthenticationBackdrop={showAuthBackdrop}
     >
       {IS_RO && (
         <BaselineAssesmentModal
-          isTmpUser={isTmpUser}
+          isTmpUser={isTmpUser || !isAuthenticated}
           open={isBaselineAssesmentModalOpen}
           setOpen={setIsBaselineAssesmentModalOpen}
         />
       )}
       <div className="page__dashboard__content">
-        <MascotWelcomeHeader
+        {/* <DashboardHero handleOpenUserGuide={openUserGuide} /> */}
+        {/* <MascotWelcomeHeader
           nextConsultation={
             upcomingConsultations ? upcomingConsultations[0] : null
           }
@@ -299,34 +297,36 @@ export const Dashboard = () => {
           handleSchedule={handleScheduleConsultation}
           handleAcceptSuggestion={handleAcceptSuggestion}
           name={clientName}
-          handleOpenUserGuide={openUserGuide}
           t={t}
-        />
+        /> */}
         <MoodTracker
-          isTmpUser={isTmpUser}
-          clientData={clientData}
+          isTmpUser={isTmpUser || !isAuthenticated}
+          clientData={clientData || {}}
           openRequireDataAgreement={openRequireDataAgreement}
         />
-        {IS_RO && (
-          <BaselineAssessmentDashboard
-            isTmpUser={isTmpUser}
-            openBaselineAssesmentModal={() =>
-              setIsBaselineAssesmentModalOpen(true)
-            }
-          />
-        )}
-        <ArticlesDashboard />
-        {!IS_RO && (
+        {IS_RO ? (
+          <>
+            <BaselineAssessmentDashboard
+              isTmpUser={isTmpUser || !isAuthenticated}
+              openBaselineAssesmentModal={() =>
+                setIsBaselineAssesmentModalOpen(true)
+              }
+            />
+          </>
+        ) : (
           <ConsultationsDashboard
             openJoinConsultation={openJoinConsultation}
             openEditConsultation={openEditConsultation}
             handleAcceptSuggestion={handleAcceptSuggestion}
             handleSchedule={handleScheduleConsultation}
             upcomingConsultations={upcomingConsultations}
-            isLoading={consultationsQuery.isLoading}
+            isLoading={shouldEnableQueries && consultationsQuery.isLoading}
+            isLoggedIn={isAuthenticated}
             t={t}
           />
         )}
+        {shouldEnableQueries && <ArticlesDashboard />}
+        <DownloadApp />
         {/* <ActivityLogDashboard /> */}
         {selectedConsultation && (
           <>
@@ -373,6 +373,10 @@ export const Dashboard = () => {
                   new Date(selectedSlot?.time || selectedSlot).getHours() + 1
                 )
               ),
+              providerName: rescheduledConsultation?.provider_name,
+              providerImage: rescheduledConsultation?.provider_image,
+              providerSpecializations:
+                rescheduledConsultation?.provider_specializations,
             }}
           />
         )}
@@ -381,15 +385,6 @@ export const Dashboard = () => {
         isOpen={isRequireDataAgreementOpen}
         onClose={closeRequireDataAgreement}
         onSuccess={handleDataAgreementSucess}
-      />
-      <UserGuide
-        isOpen={isUserGuideOpen}
-        handleOpenEmergencySituation={openEmergencySituation}
-        onClose={closeUserGuide}
-      />
-      <EmergencySituation
-        isOpen={isEmergencySituationOpen}
-        onClose={closeEmergencySituation}
       />
     </Page>
   );

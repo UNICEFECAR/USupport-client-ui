@@ -1,0 +1,59 @@
+@import "@USupport-components-library/styles";
+
+.authentication-modals-logo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__logo-container {
+    padding: $spacing_1_6 0;
+    width: 100%;
+    background-color: #f0f1f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .theme-dark & {
+      background-color: #3d414f;
+    }
+
+    &__logo {
+      max-height: 100px;
+      max-width: 25.3rem;
+    }
+  }
+
+  &__client-heading {
+    margin: 0;
+    text-align: center;
+  }
+
+  &__heading-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: $spacing_1_0;
+    margin-top: $spacing_3_2;
+    position: relative;
+    min-height: 2.4rem;
+
+    &__left {
+      width: 2.4rem;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: absolute;
+      left: $spacing_1_6;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &__right {
+      display: none;
+    }
+  }
+}

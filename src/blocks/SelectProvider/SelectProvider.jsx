@@ -5,18 +5,19 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import {
   Block,
+  Box,
   Grid,
   GridItem,
   ProviderOverview,
   Loading,
   Tabs,
   Input,
-  Button,
-  ButtonWithIcon,
+  NewButton,
 } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
 
 import { RootContext } from "../../routes/Root/Root";
+import { ProviderOverviewSkeleton } from "../ProviderOverviewSkeleton";
 
 import "./select-provider.scss";
 
@@ -40,6 +41,9 @@ export const SelectProvider = ({
   hasActiveCampaign,
   isActiveCampaignLoading,
   width,
+  subheading,
+  onFilterClick,
+  filterButtonLabel,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "select-provider" });
   const tPage = useTranslation("pages", {
@@ -162,7 +166,24 @@ export const SelectProvider = ({
 
   const isCouponTabSelected = selectedBillingType === "coupon";
 
+  const handleBookSessionClick = (provider) => {
+    navigate(
+      `/provider-overview?provider-id=${provider.providerDetailId}&openSchedule=true`
+    );
+  };
+
   const providers = providersQuery.data?.pages.flat() || [];
+  const renderProviderSkeletons = (count = 4) =>
+    Array.from({ length: count }, (_, index) => (
+      <GridItem
+        md={4}
+        lg={6}
+        key={`provider-skeleton-${index}`}
+        classes="select-provider__grid__providers-item__grid__provider"
+      >
+        <ProviderOverviewSkeleton t={t} />
+      </GridItem>
+    ));
 
   const renderCouponInput = () => {
     return (
@@ -197,7 +218,7 @@ export const SelectProvider = ({
             }
           />
           <div className="select-provider__coupon-section__buttons">
-            <Button
+            <NewButton
               label={tPage("modal_coupon_button_label")}
               onClick={handleSubmitCoupon}
               loading={isLoadingCoupon}
@@ -205,10 +226,10 @@ export const SelectProvider = ({
               size="md"
             />
             {(activeCoupon || (urlCoupon && !userRemovedCoupon)) && (
-              <Button
+              <NewButton
                 label={tPage("remove_coupon_label")}
                 onClick={handleRemoveCoupon}
-                color="red"
+                type="red"
                 size="md"
               />
             )}
@@ -229,14 +250,14 @@ export const SelectProvider = ({
       providersQuery.isLoading ||
       isActiveCampaignLoading
     )
-      return (
-        <GridItem classes="select-provider__grid__item-no-match" md={8} lg={12}>
-          <Loading />
-        </GridItem>
-      );
+      return renderProviderSkeletons();
     if (providers?.length === 0)
       return (
-        <GridItem classes="select-provider__grid__item-no-match" md={8} lg={12}>
+        <GridItem
+          classes="select-provider__grid__providers-item__grid__empty"
+          md={8}
+          lg={12}
+        >
           <p>{t("no_match")}</p>
         </GridItem>
       );
@@ -246,7 +267,7 @@ export const SelectProvider = ({
           md={4}
           lg={6}
           key={provider.providerDetailId}
-          classes="select-provider__grid__provider"
+          classes="select-provider__grid__providers-item__grid__provider"
         >
           <ProviderOverview
             provider={provider}
@@ -266,6 +287,10 @@ export const SelectProvider = ({
             freeLabel={selectedBillingType === "free" ? t("free") : t("coupon")}
             earliestAvailableSlot={provider.earliestAvailableSlot}
             t={t}
+            liquidGlass
+            handleViewProfile={() => handleProviderClick(provider)}
+            handleBookSession={() => handleBookSessionClick(provider)}
+            viewProfileLabel={t("view_profile")}
           />
         </GridItem>
       );
@@ -274,44 +299,70 @@ export const SelectProvider = ({
 
   return (
     <Block classes="select-provider">
-      <div className="select-provider__content-container">
-        {!isActiveCampaignLoading && billingTabs.length > 1 && (
-          <Tabs options={billingTabs} handleSelect={handleTabSelect} t={t} />
-        )}
+      <Grid md={8} lg={12} classes="select-provider__grid">
+        <GridItem
+          md={8}
+          lg={12}
+          classes="select-provider__grid__providers-item"
+        >
+          <Box classes="consultations__box" liquidGlass>
+            {(subheading || onFilterClick) && (
+              <div className="select-provider__heading">
+                {/* <div className="select-provider__heading-main">
+                  {subheading && (
+                    <p className="select-provider__heading-subheading text">
+                      {subheading}
+                    </p>
+                  )}
+                </div> */}
+                {!isActiveCampaignLoading && billingTabs.length > 1 && (
+                  <Tabs
+                    options={billingTabs}
+                    handleSelect={handleTabSelect}
+                    t={t}
+                  />
+                )}
 
-        {isCouponTabSelected && renderCouponInput()}
-        <p style={{ marginTop: "1.2rem", textAlign: "left" }}>
-          {t("choose-the-provider")}
-        </p>
-
-        {width < 768 && (
-          <ButtonWithIcon
-            label={"Filter"}
-            iconName="filter"
-            iconColor="#ffffff"
-            iconSize="sm"
-            color="purple"
-            size="sm"
-            classes="select-provider__filter-button"
-            // onClick={handleFilterClick}
-          />
-        )}
-        {(!isCouponTabSelected || activeCoupon) && (
-          <InfiniteScroll
-            dataLength={providersQuery.data?.pages.length || 0}
-            next={providersQuery.fetchNextPage}
-            hasMore={providersQuery.hasNextPage}
-            loader={<Loading />}
-            initialScrollY={20}
-            hasChildren={true}
-            scrollThreshold={0}
-          >
-            <Grid md={8} lg={12} classes="select-provider__grid">
-              {renderProviders()}
-            </Grid>
-          </InfiniteScroll>
-        )}
-      </div>
+                {isCouponTabSelected && renderCouponInput()}
+                <p style={{ marginTop: "1.2rem", textAlign: "left" }}>
+                  {t("choose-the-provider")}
+                </p>
+                {onFilterClick && width < 768 && (
+                  <NewButton
+                    label={filterButtonLabel}
+                    iconName="filter"
+                    iconColor="#ffffff"
+                    iconSize="sm"
+                    size="sm"
+                    onClick={onFilterClick}
+                    classes="select-provider__heading-button"
+                  />
+                )}
+              </div>
+            )}
+            {(!isCouponTabSelected || activeCoupon) && (
+              <InfiniteScroll
+                dataLength={providersQuery.data?.pages.length || 0}
+                next={providersQuery.fetchNextPage}
+                hasMore={providersQuery.hasNextPage}
+                loader={<Loading />}
+                initialScrollY={20}
+                hasChildren={true}
+                scrollThreshold={0}
+                style={{ overflow: "visible" }}
+              >
+                <Grid
+                  md={8}
+                  lg={12}
+                  classes="select-provider__grid__providers-item__grid"
+                >
+                  {renderProviders()}
+                </Grid>
+              </InfiniteScroll>
+            )}
+          </Box>
+        </GridItem>
+      </Grid>
     </Block>
   );
 };

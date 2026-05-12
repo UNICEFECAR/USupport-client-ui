@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Page, Articles as ArticlesBlock } from "#blocks";
 import { useTranslation } from "react-i18next";
+
+import {
+  InformationPortalHero,
+  Page,
+  Articles as ArticlesBlock,
+  DownloadApp,
+} from "#blocks";
+import { useDebounce } from "#hooks";
 
 /**
  * Articles
@@ -14,37 +21,33 @@ export const Articles = () => {
   const { t } = useTranslation("pages", { keyPrefix: "articles-page" });
   const location = useLocation();
 
+  // Search state
+  const [searchValue, setSearchValue] = useState("");
+  const debouncedSearchValue = useDebounce(searchValue, 500);
+
+  const handleSearchChange = (newValue) => {
+    setSearchValue(newValue);
+  };
+
   const sort =
     location.state && location.state.sort ? location.state.sort : null;
 
-  let heading = t("heading_default");
-  let subheading = t("subheading_default");
-  let showBackGoBackArrow = false;
-
-  switch (sort) {
-    case "createdAt":
-      heading = t("heading_newest");
-      subheading = t("subheading_newest");
-      showBackGoBackArrow = true;
-      break;
-    case "read_count":
-      heading = t("heading_most_read");
-      subheading = t("subheading_most_read");
-      showBackGoBackArrow = true;
-      break;
-
-    default:
-      break;
-  }
-
   return (
-    <Page
-      classes="page__articles"
-      heading={t("heading")}
-      // subheading={subheading}
-      showGoBackArrow={showBackGoBackArrow}
-    >
-      <ArticlesBlock showSearch={true} showCategories={true} sort={sort} />
+    <Page classes="page__articles" showGoBackArrow={false}>
+      <InformationPortalHero
+        showSearch={true}
+        searchValue={searchValue}
+        onSearchChange={handleSearchChange}
+        placeholder={t("search")}
+        showGoBackArrow={true}
+      />
+      <ArticlesBlock
+        showSearch={false}
+        showCategories={true}
+        sort={sort}
+        externalSearchValue={debouncedSearchValue}
+      />
+      <DownloadApp />
     </Page>
   );
 };

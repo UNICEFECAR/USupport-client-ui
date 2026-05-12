@@ -3,50 +3,80 @@
 .my-qa {
   padding-top: $spacing_3_2;
 
-  &__categories-item {
-    overflow-x: auto;
-    padding-top: $spacing_1_0;
-
-    @media screen and (min-width: $screen-md) {
-      width: auto;
-      padding-top: $spacing_2_0;
-    }
-
-    &__language-dropdown {
-      width: 34.4rem;
-      text-align: left;
-      margin-bottom: $spacing_1_2;
-      margin-top: $spacing_1_2;
-    }
+  &__controls-item {
+    position: relative;
+    z-index: $z_index_modal;
+    overflow: visible;
   }
 
-  &__button-item {
-    place-self: center;
+  &__answers-item {
+    position: relative;
+    z-index: $z_index_1;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: $spacing_2_4;
+
+    &__button {
+      @media screen and (min-width: $screen-md) {
+        min-width: 34.4rem;
+        max-width: 34.4rem;
+      }
+    }
   }
 
   &__tabs-grid {
     align-items: center;
     justify-items: stretch;
+    overflow: visible;
 
     &__search-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      position: relative;
+      z-index: $z_index_modal;
+      overflow: visible;
+    }
 
-      @media screen and (min-width: $screen-md) {
-        flex-direction: row;
-      }
-      @media screen and (min-width: $screen-lg) {
-        flex-direction: row;
-        // justify-content: flex-start;
+    &__search-container {
+      &__tabs {
+        display: flex;
       }
 
-      &__input {
-        margin-bottom: $spacing_1_6;
+      &__dropdown {
+        padding: $spacing_1_2 0;
+        text-align: left;
+        margin-bottom: $spacing_1_2;
+        margin-top: $spacing_1_2;
+        position: relative;
+        z-index: $z_index_modal;
+        overflow: visible;
+
         @media screen and (min-width: $screen-md) {
-          margin-right: $spacing_1_6;
-          margin-bottom: 0;
+          width: 34.4rem;
+        }
+
+        @media screen and (min-width: $screen-lg) {
+          max-width: 36rem;
+          padding: 0;
+          margin-left: auto;
+          margin-right: 0;
+        }
+
+        .dropdown-container,
+        .dropdown {
+          overflow: visible;
+        }
+
+        .dropdown .dropdown-content {
+          width: calc(100% - #{$spacing_1_6});
+          max-width: 100%;
+          margin-right: 0;
+          left: auto;
+          right: 0;
+          overflow: hidden;
         }
       }
     }
@@ -77,16 +107,10 @@
     }
   }
 
-  &__ask-question-button {
-    margin-top: $spacing_1_6;
-    max-width: 10rem;
-    margin-inline: auto;
-
-    @media screen and (min-width: $screen-md) {
-      max-width: 34rem;
-    }
-    @media screen and (min-width: $screen-lg) {
-      margin-top: 0;
+  &__button-item {
+    &__button {
+      margin-top: $spacing_1_2;
+      margin-inline: auto;
     }
   }
 
@@ -111,9 +135,6 @@
   }
 
   &__answers-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding-bottom: $spacing_4_6;
 
     &__no-questions {
@@ -121,7 +142,12 @@
     }
   }
 
-  &__answer {
-    margin-top: $spacing_2_4;
+  &__empty-card {
+    width: 100%;
+    padding-top: $spacing_2_0;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_3_2;
+    }
   }
 }

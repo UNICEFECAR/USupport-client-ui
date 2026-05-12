@@ -24,24 +24,19 @@ import {
   ActivityHistory,
   ArticleInformation,
   Articles,
-  Consultation,
   Consultations,
   ContactUs,
   CookiePolicy,
   ChildrenRights,
   Dashboard,
   FAQ,
-  ForgotPassword,
   InformationPortal,
-  Login,
   NotFound,
   NotificationPreferencesPage,
   PlatformRating,
   PrivacyPolicy,
   ProviderOverview,
   RegisterAboutYou,
-  RegisterAnonymous,
-  RegisterEmail,
   RegisterPreview,
   RegisterSupport,
   ResetPassword,
@@ -50,7 +45,6 @@ import {
   TermsOfUse,
   UserDetails,
   UserProfile,
-  Welcome,
   Notifications,
   PaymentHistory,
   Checkout,
@@ -85,22 +79,15 @@ const LanguageLayout = () => {
   }
   return (
     <Routes>
-      <Route
+      {/* <Route
         path="login"
         element={
           <CountryValidationRoute>
             <Login />
           </CountryValidationRoute>
         }
-      />
-      <Route
-        path="dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
+      /> */}
+      <Route path="dashboard" element={<Dashboard />} />
       <Route
         path="consultation"
         element={
@@ -126,30 +113,30 @@ const LanguageLayout = () => {
           </CountryValidationRoute>
         }
       />
-      <Route
+      {/* <Route
         path="register"
         element={
           <CountryValidationRoute>
             <RegisterEmail />
           </CountryValidationRoute>
         }
-      />
-      <Route
+      /> */}
+      {/* <Route
         path="register-anonymous"
         element={
           <CountryValidationRoute>
             <RegisterAnonymous />
           </CountryValidationRoute>
         }
-      />
-      <Route
+      /> */}
+      {/* <Route
         path="forgot-password"
         element={
           <CountryValidationRoute>
             <ForgotPassword />
           </CountryValidationRoute>
         }
-      />
+      /> */}
       <Route
         path="mood-tracker"
         element={
@@ -407,6 +394,7 @@ const LanguageLayout = () => {
           </ProtectedRoute>
         }
       />
+      <Route path="/" element={<Navigate to="dashboard" replace />} />
       <Route
         path="children-rights"
         element={
@@ -415,7 +403,7 @@ const LanguageLayout = () => {
           </ProtectedRoute>
         }
       />
-      <Route path="/" element={<Welcome />} />
+      {/* <Route path="/" element={<Welcome />} /> */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
@@ -439,7 +427,7 @@ export default function Root() {
   const isTmpUser = userSvc.getUserID() === "tmp-user";
 
   const [country, setCountry] = useState(
-    localStorage.getItem("country") || null
+    localStorage.getItem("country") || null,
   );
   const [loggedIn, setLoggedIn] = useState(!!token);
   const [activeCoupon, setActiveCoupon] = useState();
@@ -457,6 +445,7 @@ export default function Root() {
   useEventListener("countryChanged", handler);
 
   const enabled = token && !isTmpUser && loggedIn;
+
   useGetClientData(!!enabled);
 
   const handleRegistrationModalClose = () => setIsRegistrationModalOpen(false);

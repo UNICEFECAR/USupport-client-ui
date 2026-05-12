@@ -11,6 +11,7 @@ import {
   Button,
   Error,
   PinInput,
+  NewButton,
 } from "@USupport-components-library/src";
 
 import { userSvc } from "@USupport-components-library/services";
@@ -33,6 +34,7 @@ export const CodeVerification = ({
   showTimer,
   canRequestNewEmail,
   isMutating,
+  onRegistrationSuccess,
 }) => {
   const { t } = useTranslation("backdrops", { keyPrefix: "code-verification" });
   const navigate = useNavigate();
@@ -75,11 +77,18 @@ export const CodeVerification = ({
 
       queryClient.setQueryData(
         ["client-data"],
-        userSvc.transformUserData(userData)
+        userSvc.transformUserData(userData),
       );
 
       window.dispatchEvent(new Event("login"));
-      navigate("/register/about-you");
+      window.dispatchEvent(new Event("token-changed"));
+      if (onRegistrationSuccess) {
+        onRegistrationSuccess();
+      } else {
+        // Stay on the current page (e.g. dashboard) after successful registration
+        // instead of redirecting to /register/about-you.
+        navigate("/dashboard");
+      }
     },
     onError: (error) => {
       const { message: errorMessage } = useError(error);
@@ -101,7 +110,8 @@ export const CodeVerification = ({
       classes="code-verification"
       title="CodeVerification"
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={() => {}} // No-op to prevent closing via overlay click
+      hasCloseIcon={false}
       heading={t("heading")}
       text={t("subheading")}
     >
@@ -125,7 +135,7 @@ export const CodeVerification = ({
             }
             onClick={() => setIsCodeHidden(!isCodeHidden)}
           />
-          <Button
+          <NewButton
             label={t("send_button_label")}
             size="lg"
             classes="code-verification__send-button"

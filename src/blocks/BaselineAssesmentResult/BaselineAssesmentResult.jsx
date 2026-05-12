@@ -8,7 +8,7 @@ import {
   ProgressBar,
   Loading,
   Icon,
-  Button,
+  NewButton,
 } from "@USupport-components-library/src";
 import { createArticleSlug } from "@USupport-components-library/utils";
 import { CardMedia, Markdown } from "@USupport-components-library/src";
@@ -49,7 +49,9 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
   // Use the same Romania auth-screen logo variant.
   // Keep it bundled (local) to avoid CORS issues during PDF generation.
   const IS_RO = localStorage.getItem("country") === "RO";
-  const logoUrl = IS_RO ? logoVerticalRomaniaPng : `${AMAZON_S3_BUCKET}/logo-horizontal`;
+  const logoUrl = IS_RO
+    ? logoVerticalRomaniaPng
+    : `${AMAZON_S3_BUCKET}/logo-horizontal`;
 
   const loadImageAsDataUrl = async (url) => {
     const res = await fetch(url, { mode: "cors", cache: "force-cache" });
@@ -190,15 +192,15 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
         )}
 
         <GridItem md={8} lg={12} classes="baseline-assesment-result__download">
-          <Button
+          <NewButton
             onClick={handleDownloadPdf}
             size="lg"
-            color="purple"
+            variant="outline"
             loading={isDownloading}
             disabled={isDownloading || isFetching}
           >
             {t("download_pdf", { defaultValue: "Download results (PDF)" })}
-          </Button>
+          </NewButton>
         </GridItem>
 
         {isFetching && (
@@ -218,7 +220,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                 {t("summary_heading")}
               </h4>
               <Markdown markDownText={data.summaryCK} className={"text"} />
-              <Button
+              <NewButton
                 onClick={() =>
                   navigate("/organizations", {
                     state: { personalizeFromAssessment: true },
@@ -229,7 +231,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                 classes="baseline-assesment-result__summary__interactive-map-button"
               >
                 {t("organizations")}
-              </Button>
+              </NewButton>
             </GridItem>
           </>
         )}
@@ -269,7 +271,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                       navigate(
                         `/information-portal/article/${
                           articleData.id
-                        }/${createArticleSlug(articleData.title)}`
+                        }/${createArticleSlug(articleData.title)}`,
                       );
                     }}
                   />
@@ -306,7 +308,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                       navigate(
                         `/information-portal/video/${
                           videoData.id
-                        }/${createArticleSlug(videoData.title)}`
+                        }/${createArticleSlug(videoData.title)}`,
                       );
                     }}
                   />
@@ -346,7 +348,7 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                       navigate(
                         `/information-portal/podcast/${
                           podcastData.id
-                        }/${createArticleSlug(podcastData.title)}`
+                        }/${createArticleSlug(podcastData.title)}`,
                       );
                     }}
                   />
@@ -435,7 +437,10 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                 </div>
                 <ul className="baseline-assesment-result__pdf__list">
                   {data.articles.slice(0, 10).map((a) => (
-                    <li key={a.id} className="baseline-assesment-result__pdf__li">
+                    <li
+                      key={a.id}
+                      className="baseline-assesment-result__pdf__li"
+                    >
                       <span className="baseline-assesment-result__pdf__liTitle">
                         {a.title}
                       </span>
@@ -458,7 +463,10 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                 </div>
                 <ul className="baseline-assesment-result__pdf__list">
                   {data.videos.slice(0, 10).map((v) => (
-                    <li key={v.id} className="baseline-assesment-result__pdf__li">
+                    <li
+                      key={v.id}
+                      className="baseline-assesment-result__pdf__li"
+                    >
                       <span className="baseline-assesment-result__pdf__liTitle">
                         {v.title}
                       </span>
@@ -481,7 +489,10 @@ export const BaselineAssesmentResult = ({ result, assessmentDate }) => {
                 </div>
                 <ul className="baseline-assesment-result__pdf__list">
                   {data.podcasts.slice(0, 10).map((p) => (
-                    <li key={p.id} className="baseline-assesment-result__pdf__li">
+                    <li
+                      key={p.id}
+                      className="baseline-assesment-result__pdf__li"
+                    >
                       <span className="baseline-assesment-result__pdf__liTitle">
                         {p.title}
                       </span>

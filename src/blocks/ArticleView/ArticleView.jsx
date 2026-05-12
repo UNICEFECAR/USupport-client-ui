@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import propTypes from "prop-types";
+import classNames from "classnames";
 
 import {
+  AudioPlayer,
   Block,
-  Grid,
-  GridItem,
   Icon,
   Label,
   Markdown,
@@ -17,10 +17,12 @@ import {
   useAddContentRating,
   useAddContentEngagement,
   useRemoveContentEngagement,
+  useEventListener,
 } from "#hooks";
 import {
   createArticleSlug,
   constructShareUrl,
+  getBrandingLogoUrl,
 } from "@USupport-components-library/utils";
 
 import { cmsSvc, userSvc } from "@USupport-components-library/services";
@@ -50,7 +52,31 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
   });
   const [hasUpdatedUrl, setHasUpdatedUrl] = useState(false);
   const [isShared, setIsShare] = useState(false);
+  const [hasTrackedAudioPlay, setHasTrackedAudioPlay] = useState(false);
   const { theme } = useContext(ThemeContext);
+
+  const readCountryFromStorage = useCallback(
+    () =>
+      typeof localStorage !== "undefined"
+        ? localStorage.getItem("country") || "KZ"
+        : "KZ",
+    [],
+  );
+
+  const [syncedCountry, setSyncedCountry] = useState(readCountryFromStorage);
+
+  const onCountryChanged = useCallback(() => {
+    setSyncedCountry(readCountryFromStorage());
+  }, [readCountryFromStorage]);
+
+  useEventListener("countryChanged", onCountryChanged);
+
+  const hasHeroImage = Boolean(articleData.imageMedium);
+
+  const heroBrandingFallbackUrl = useMemo(
+    () => getBrandingLogoUrl({ theme, countryCode: syncedCountry }),
+    [theme, syncedCountry],
+  );
 
   const url = constructShareUrl({
     contentType: "article",
@@ -61,6 +87,10 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
   useEffect(() => {
     setHasUpdatedUrl(false);
   }, [language]);
+
+  useEffect(() => {
+    setHasTrackedAudioPlay(false);
+  }, [articleData?.id]);
 
   useEffect(() => {
     if (articleData?.title && !hasUpdatedUrl) {
@@ -295,116 +325,141 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
     }
   };
 
+  const handleAudioPlay = () => {
+    if (isTmpUser || hasTrackedAudioPlay) return;
+
+    addContentEngagementMutation({
+      contentId: articleData.id,
+      contentType: "article",
+      action: "listen",
+    });
+    setHasTrackedAudioPlay(true);
+  };
+
   return (
     <Block classes="article-view">
-      <Grid classes="article-view__main-grid">
-        <GridItem md={8} lg={12} classes="article-view__title-item">
-          <div className="article-view__title-row">
-            <h3>{articleData.title}</h3>
-          </div>
-        </GridItem>
+      <div className="article-view__content">
+        {/* Title */}
+        <h2 className="article-view__title">{articleData.title}</h2>
 
-        {articleData.categoryName && (
-          <GridItem md={8} lg={12} classes="article-view__category-item">
-            <div className="article-view__details-item__category">
-              <p className="small-text ">{articleData.categoryName}</p>
+        {/* Author & meta row */}
+        <div className="article-view__meta">
+          {articleData.categoryName && (
+            <div className="article-view__category-badge">
+              <p className="small-text">{articleData.categoryName}</p>
             </div>
-          </GridItem>
-        )}
-
-        <GridItem md={8} lg={12} classes="article-view__details-item">
-          {creator && <p className={"small-text"}>{t("by", { creator })}</p>}
-
+          )}
+          {creator && (
+            <p className="text article-view__creator">{t("by", { creator })}</p>
+          )}
+          <div className="article-view__meta-dot" />
           <Icon
-            color={theme === "light" ? "#66768d" : "#ffffff"}
-            name={"time"}
+            name="time"
             size="sm"
+            color={
+              theme === "highContrast"
+                ? "#ffff00" // highContrast color_text_main
+                : theme === "dark"
+                ? "#ededed" // dark color_text_main
+                : "#0e202f" // light color_text_main
+            }
           />
-          <p className={"small-text"}>
-            {" "}
+          <p className="text">
             {articleData.readingTime} {t("min_read")}
           </p>
+        </div>
 
-          <div
-            onClick={handleExportToPdf}
-            className="article-view__details-item__download"
-          >
-            {isExportingPdf ? (
-              <Loading padding="0px" size="sm" />
-            ) : (
-              <Icon
-                color={theme === "light" ? "#66768d" : "#ffffff"}
-                name="download"
-                size="sm"
-              />
-            )}
-          </div>
-          <div
-            onClick={handleCopyLink}
-            className="article-view__details-item__download"
-          >
-            <Icon
-              color={theme === "light" ? "#66768d" : "#ffffff"}
-              name="share"
-              size="sm"
-            />
-          </div>
-        </GridItem>
-
-        <GridItem xs={3} md={6} lg={8} classes="article-view__labels-item">
-          {articleData.labels.map((label, index) => {
-            return (
+        {/* Labels */}
+        {articleData.labels.length > 0 && (
+          <div className="article-view__labels">
+            {articleData.labels.map((label, index) => (
               <Label
-                classes={"article-view__label"}
+                classes="article-view__label"
                 text={label.name}
                 key={index}
               />
-            );
+            ))}
+          </div>
+        )}
+
+        {/* Separator */}
+        <div className="article-view__separator" />
+
+        {/* Action bar */}
+        <div className="article-view__actions">
+          <div className="article-view__actions-left">
+            <Like
+              renderInClient
+              handleClick={handleAddRating}
+              likes={ratings.likes || 0}
+              isLiked={ratings.isLikedByUser || false}
+              dislikes={ratings.dislikes || 0}
+              isDisliked={ratings.isDislikedByUser || false}
+              answerId={articleData.id}
+              isTmpUser={isTmpUser}
+            />
+          </div>
+          <div className="article-view__actions-right">
+            <div
+              onClick={handleExportToPdf}
+              className="article-view__action-btn"
+            >
+              {isExportingPdf ? (
+                <Loading padding="0px" size="sm" />
+              ) : (
+                <Icon
+                  color={theme === "light" ? "#66768d" : "#ffffff"}
+                  name="download"
+                />
+              )}
+            </div>
+            <div onClick={handleCopyLink} className="article-view__action-btn">
+              <Icon
+                color={theme === "light" ? "#66768d" : "#ffffff"}
+                name="share"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Separator */}
+        <div className="article-view__separator" />
+
+        {/* Hero image */}
+        <div
+          className={classNames("article-view__hero-slot", {
+            "article-view__hero-slot--branding-fallback": !hasHeroImage,
           })}
-        </GridItem>
-
-        <GridItem xs={1} md={2} lg={4} classes="article-view__like-item">
-          <Like
-            renderInClient
-            handleClick={handleAddRating}
-            likes={ratings.likes || 0}
-            isLiked={ratings.isLikedByUser || false}
-            dislikes={ratings.dislikes || 0}
-            isDisliked={ratings.isDislikedByUser || false}
-            answerId={articleData.id}
-            isTmpUser={isTmpUser}
-          />
-        </GridItem>
-
-        <GridItem md={8} lg={12}>
+        >
           <img
-            className="article-view__image-item"
+            className={classNames("article-view__image", {
+              "article-view__image--branding-fallback": !hasHeroImage,
+            })}
             src={
-              articleData.imageMedium
-                ? articleData.imageMedium
-                : "https://picsum.photos/300/400"
+              hasHeroImage ? articleData.imageMedium : heroBrandingFallbackUrl
             }
-            alt=""
+            alt={hasHeroImage ? articleData.title : "Logo"}
           />
-        </GridItem>
+        </div>
 
-        <GridItem md={8} lg={12} classes="article-view__body-item">
+        {articleData.ttsUrl && (
+          <div className="article-view__audio-item">
+            <AudioPlayer
+              src={articleData.ttsUrl}
+              onPlay={handleAudioPlay}
+              t={t}
+            />
+          </div>
+        )}
+
+        {/* Article body */}
+        <div className="article-view__body">
           <Markdown
             markDownText={articleData.bodyCK || articleData.body}
             className={"text"}
           />
-        </GridItem>
-      </Grid>
-
-      {/* <ShareModal
-        isOpen={isShareModalOpen}
-        onClose={handleCloseShareModal}
-        contentUrl={url}
-        title={articleData.title}
-        successText={t("share_success")}
-        copyText={t("copy_link")}
-        shareTitle={t("share_title")}
-      /> */}
+        </div>
+      </div>
     </Block>
   );
 };

@@ -30,7 +30,48 @@
       "reject_all_cookies": "Відхилити всі",
       "accept_necessary_cookies": "Прийняти лише необхідні",
       "save": "Зберегти",
-      "high_contrast": "Висока контрастність"
+      "high_contrast": "Висока контрастність",
+      "your_profile": "Твій профіль",
+      "guest": "Гість/гостя",
+      "application_settings": "Налаштування додатку",
+      "rate_share": "Оціни",
+      "other": "Інше",
+      "notifications_settings_button_label": "Налаштування сповіщень",
+      "rate_us_button_label": "Оціни нас",
+      "share_button_label": "Поділися додатком",
+      "contact_us_button_label": "Зв'яжися з нами",
+      "privacy_policy_button_label": "Політика конфіденційності",
+      "FAQ_button_label": "Поширені запитання",
+      "mood_tracker_button_label": "Монітор настрою",
+      "payments_history_button_label": "Історія платежів",
+      "terms_of_use": "Умови використання",
+      "cookie_policy": "Політика щодо файлів cookie",
+      "user_guide": "Інструкція використання платформи",
+      "edit_profile": "Редагувати профіль",
+      "go_back": "Назад",
+      "notifications_heading": "Сповіщення",
+      "notifications_mark_read": "Позначити всі як прочитані",
+      "notifications_empty": "Поки що немає сповіщень",
+      "notifications_load_more": "Завантажити ще",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> записав(ла) вас на консультацію {{date}} з {{startHour}} до {{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> переніс(ла) вашу консультацію з {{date}} {{startHour}}-{{endHour}} на {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Вашу консультацію з <0>{{providerName}}</0> на {{date}} з {{startHour}} до {{endHour}} скасовано",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> скасував(ла) вашу консультацію на {{date}} з {{startHour}} до {{endHour}}",
+      "notifications_consultation_remind_start": "Ваша консультація почнеться через <0>{{minutes}}</0> хв",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> запропонував(ла) консультацію на {{date}} з {{startHour}} до {{endHour}}",
+      "notifications_consultation_suggestion_booking": "Ви прийняли пропозицію консультації від <0>{{providerName}}</0> на {{date}} з {{startHour}} до {{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Пропозицію консультації від <0>{{providerName}}</0> на {{date}} з {{startHour}} до {{endHour}} скасовано",
+      "notifications_consultation_started": "Ваша консультація з <0>{{providerName}}</0> розпочалася",
+      "notifications_question_answered": "<0>{{providerName}}</0> відповів(ла) на ваше запитання",
+      "notifications_consultation_remind_start_24_hours_before": "Ваша консультація з <0>{{providerName}}</0> розпочнеться через 24 години",
+      "notifications_consultation_remind_start_48_hours_before": "Ваша консультація з <0>{{providerName}}</0> розпочнеться через 48 годин",
+      "all": "Усі",
+      "new": "Нові",
+      "read": "Прочитані",
+      "language_label": "Мова",
+      "logout": "Вийти",
+      "yesterday": "Вчора",
+      "footer_text": "Ваше ментальне здоровʼя важливе — uSupport надає персоналізовану, приватну та безпечну психологічну допомогу."
     },
     "provider-overview": {
       "earliest_slot_label": "Найближчий вільний часовий слот для консультації",
@@ -82,7 +123,15 @@
       "video_label": "Відеопрезентація",
       "button_label": "Заплануй консультацію",
       "hour_consultation": "за 1 годину консультації",
-      "free": "безкоштовно"
+      "free": "безкоштовно",
+      "monday": "Понеділок",
+      "tuesday": "Вівторок",
+      "wednesday": "Середа",
+      "thursday": "Четвер",
+      "friday": "Пʼятниця",
+      "saturday": "Субота",
+      "sunday": "Неділя",
+      "coupon": "Купон"
     },
     "user-profile": {
       "your_profile": "Твій профіль",
@@ -130,7 +179,9 @@
       "sex_placeholder": "Вкажіть свою стать",
       "year_of_birth_placeholder": "Вкажіть свій рік народження",
       "living_place_placeholder": "Вкажіть своє місце проживання",
-      "parent": "Мати/Батько/Опікун"
+      "parent": "Мати/Батько/Опікун",
+      "logout_button_label": "Вийти",
+      "heading": "Вітаємо в"
     },
     "register-anonymous": {
       "nickname_label": "Нікнейм *",
@@ -147,9 +198,10 @@
       "login_button_label": "Вже маю обліковий запис",
       "copy_text": "Скопіюй і збережи або запиши свій анонімний токен.\nЯкщо ти його загубиш, не зможеш увійти до свого облікового запису та приєднатися до консультації з психологом!\nДля проведення сесії з психологом тобі потрібні токен доступу та пароль до облікового запису.",
       "copy_success": "токен скопійовано",
-      "confirm_password_label": "Підтвердіть пароль",
+      "confirm_password_label": "Підтвердіть пароль *",
       "password_match_error": "Поля «Пароль» і «Підтвердити пароль» не збігаються",
-      "age_terms_agreement_text_1": "Мені більше 16 років"
+      "age_terms_agreement_text_1": "Мені більше {{age}} років",
+      "heading": "Вітаємо в"
     },
     "register-support": {
       "button_continue_label": "Продовжити",
@@ -203,7 +255,9 @@
       "tab_coupon": "Купон",
       "tab_free": "Безкоштовно",
       "choose-the-provider": "Оберіть фахівця, з яким хочете спілкуватися відео, аудіо чи текстом. Іноді може знадобитися кілька сесій, щоб знайти фахівця, який підходить вам за потребами та форматом роботи.",
-      "coupon_note": "Цього разу ми ввели для вас код на безкоштовну сесію! Запишіться на консультацію до одного з наших фахівців і зробіть перший крок до покращення самопочуття."
+      "coupon_note": "Цього разу ми ввели для вас код на безкоштовну сесію! Запишіться на консультацію до одного з наших фахівців і зробіть перший крок до покращення самопочуття.",
+      "book_session": "Забронювати сесію",
+      "view_profile": "Переглянути особистий профіль"
     },
     "notification-preferences": {
       "email": "Сповіщення електронною поштою",
@@ -229,11 +283,14 @@
       "modal_heading": "Перевірте електронну пошту",
       "modal_text": "Якщо ти зареєстрований/а на платформі, то отримаєш посилання для відновлення паролю.",
       "client": "Клієнт/ка",
-      "heading": "Вітаємо в"
+      "heading": "Вітаємо в",
+      "heading_modal": "Забули пароль?",
+      "go_back_to_login": "Повернутися до входу"
     },
     "consultations": {
       "upcoming_tab_label": "Майбутні",
       "past_tab_label": "Попередні",
+      "schedule_button_label": "Заплануй консультацію",
       "sunday": "Нд",
       "monday": "Пн",
       "tuesday": "Вт",
@@ -258,7 +315,11 @@
       "not_conducted": "Не відбулася",
       "free": "Безкоштовно",
       "coupon": "Купон",
-      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
+      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку",
+      "user_guide": "Інструкція користувача",
+      "psychologist": "Психолог/иня",
+      "psychiatrist": "Психіатр/иня",
+      "psychotherapist": "Психотерапевт/ка"
     },
     "login": {
       "email_label": "Електронна пошта / токен доступу",
@@ -284,13 +345,22 @@
     "articles": {
       "heading": "Знання",
       "no_results": "Результатів не знайдено",
+      "no_results_heading": "Нічого не знайдено за запитом «{{query}}»",
+      "no_results_line1": "Спробуйте змінити пошук або перегляньте теми нижче.",
+      "no_results_line2": "Також можна скинути фільтри, щоб побачити більше результатів.",
+      "reset_filters": "Скинути фільтри",
+      "browse_all_articles": "Усі статті",
+      "no_results_image_alt": "Ілюстрація: немає результатів пошуку",
       "could_not_load_content": "Для обраної країни й мови немає результатів.",
+      "could_not_load_hint": "Можна змінити країну або мову в меню або зайти пізніше — нові матеріали з’являються регулярно.",
       "all": "Усі",
       "read_more_button": "Читай далі",
       "min_read": "хв. читання",
       "by": "Від {{creator}}",
       "number_of_more_options": "ще {{count}}",
-      "read": "Читати"
+      "read": "Читати",
+      "grid_toggle_featured": "Рекомендований вигляд",
+      "grid_toggle_compact": "Компактний вигляд"
     },
     "give-suggestion": {
       "heading": "Надішли нам свої пропозиції",
@@ -317,6 +387,7 @@
       "pl_text": "uSupport — це платформа психічного здоров’я та добробуту, призначена для молодих людей (16–24)"
     },
     "register-email": {
+      "heading": "Вітаємо в",
       "email_error": "Введи дійсну адресу електронної пошти",
       "password_error": "Пароль має містити щонайменше 8 символів, 1 велику літеру, 1 малу літеру і 1 цифру",
       "email_label": "Електронна пошта *",
@@ -331,7 +402,7 @@
       "register_button": "Зареєструватися",
       "paragraph": "Або зареєструйся використовуючи:",
       "login_button_label": "Вже маю обліковий запис",
-      "confirm_password_label": "Підтвердити пароль",
+      "confirm_password_label": "Підтвердити пароль *",
       "password_match_error": "Поля «Пароль» і «Підтверити пароль» не збігаються",
       "age_terms_agreement_text_1": "Мені більше {{age}} років"
     },
@@ -384,7 +455,11 @@
       "year_of_birth_placeholder": "Введіть свій рік народження",
       "living_place_placeholder": "Введіть своє місце проживання",
       "parent": "Мати/Батько/Опікун",
-      "delete_mood_tracker": "Очистити історію монітора настрою"
+      "delete_mood_tracker": "Очистити історію монітора настрою",
+      "account_section": "Обліковий запис",
+      "data_management_section": "Управління даними",
+      "danger_zone_section": "Небезпечна зона",
+      "delete_account_description": "Ця дія є постійною і не може бути скасована."
     },
     "reset-password": {
       "label": "Новий пароль",
@@ -447,7 +522,41 @@
       "december": "Грудень",
       "require_cookies": "Щоб переглянути це відео, прийміть усі файли cookie.",
       "cookie_preferences": "Налаштування файлів cookie",
-      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
+      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку",
+      "dummy_provider_1": "Др. Шевченко",
+      "dummy_provider_2": "Др. Коваленко",
+      "dummy_provider_3": "Др. Мельник",
+      "upcoming_tab_label": "Майбутні",
+      "past_tab_label": "Попередні",
+      "sunday": "Нд",
+      "monday": "Пн",
+      "tuesday": "Вт",
+      "wednesday": "Ср",
+      "thursday": "Чт",
+      "friday": "Пт",
+      "saturday": "Сб",
+      "no_upcoming_consultations": "У тебе немає майбутніх консультацій",
+      "no_past_consultations": "Попередніх консультацій немає",
+      "reject_consultation_success": "Консультацію відхилено",
+      "accept_consultation_success": "Консультацію прийнято",
+      "join": "Приєднатися",
+      "edit": "Редагувати",
+      "details": "Дивитися деталі",
+      "active": "Зараз",
+      "reject": "Відхилити пропозицію",
+      "accept": "Прийняти консультацію",
+      "cancel_consultation": "Скасувати консультацію",
+      "suggested": "Запропоновані",
+      "view_profile": "Переглянути особистий профіль",
+      "conducted": "Консультацію завершено",
+      "not_conducted": "Не відбулася",
+      "free": "Безкоштовно",
+      "coupon": "Купон",
+      "explore_resources_label": "Переглянути ресурси",
+      "heading_need_support": "Потрібна підтримка?",
+      "psychologist": "Психолог/иня",
+      "psychiatrist": "Психіатр/иня",
+      "psychotherapist": "Психотерапевт/ка"
     },
     "mood-tracker": {
       "happy": "Щасливим/ою",
@@ -455,6 +564,7 @@
       "sad": "Засмученим/ою",
       "depressed": "Пригніченим/ою",
       "worried": "Схвильованим/ою",
+      "history": "Історія",
       "heading": "Як ти почуваєшся сьогодні?",
       "mood_tracker": "Монітор настрою",
       "additional_comment_placeholder": "Що є причиною того, що ти себе так почуваєш?",
@@ -464,7 +574,11 @@
       "how_it_works": "Як це працює",
       "recommendations": "Рекомендації",
       "recommendations_text": "Хочете переглянути графік настрою та побачити рекомендований контент?",
-      "check_out": "Переглянути"
+      "check_out": "Переглянути",
+      "mood_tracker_long": "Вивчіть свій трекер настрою",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide",
+      "additional_comment_label": "Що змусило вас так почуватися?"
     },
     "mascot-welcome-header": {
       "welcome": "З поверненням, {{name}}!",
@@ -497,7 +611,8 @@
       "december": "Грудень",
       "coupon": "Купон",
       "explore_button_label": "Дослідити",
-      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
+      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку",
+      "user_guide": "Посібник користувача"
     },
     "activity-log-dashboard": {
       "heading": "Журнал активності",
@@ -512,7 +627,8 @@
       "min_read": "хв. читання",
       "by": "Від {{creator}}",
       "number_of_more_options": "ще {{count}}",
-      "read": "Читати"
+      "read": "Читати",
+      "show_more": "Показати більше"
     },
     "mood-tracker-history": {
       "heading": "Загалом протягом останніх 30 днів ти почував/ла себе {{feeling}}",
@@ -609,6 +725,19 @@
       "try_again_button_label": "Спробуй ще раз."
     },
     "mood-track-history": {
+      "all": "Всі",
+      "month_1": "Січ",
+      "month_2": "Лют",
+      "month_3": "Бер",
+      "month_4": "Кві",
+      "month_5": "Тра",
+      "month_6": "Чер",
+      "month_7": "Лип",
+      "month_8": "Сер",
+      "month_9": "Вер",
+      "month_10": "Жов",
+      "month_11": "Лис",
+      "month_12": "Гру",
       "happy": "Щасливим/ою",
       "good": "Задоволеним/ою",
       "sad": "Засмученим/ою",
@@ -630,7 +759,8 @@
       "read_more_button": "Читати більше",
       "by": "від {{creator}}",
       "min_read": "хв читання",
-      "no_recommendations": "Рекомендацій не знайдено"
+      "no_recommendations": "Рекомендацій не знайдено",
+      "select_year": "Оберіть рік"
     },
     "mascot-header-MyQA": {
       "heading": "Запитай психолога",
@@ -656,9 +786,17 @@
       "search_placeholder": "Пошук",
       "filter": "Фільтруй теги",
       "no_answers_found": "Немає відповідей на запитання",
+      "no_results_heading": "Нічого не знайдено за запитом «{{query}}»",
+      "no_results_line1": "Спробуйте змінити пошук або оберіть інший тег.",
+      "no_results_line2": "Можна скинути фільтри, щоб знову побачити всі запитання.",
+      "reset_filters": "Скинути фільтри",
+      "browse_all_questions": "Усі запитання",
+      "no_results_image_alt": "Ілюстрація: немає відповідних запитань",
       "language": "Мова",
       "all_languages": "Усі мови",
-      "date_answered": "від {{date}}"
+      "date_answered": "від {{date}}",
+      "go_back": "Назад",
+      "how_it_works": "Як це працює"
     },
     "videos": {
       "view_more": "Переглянути більше",
@@ -743,7 +881,8 @@
       "personalize": "Персоналізувати",
       "personalization": "Персоналізація",
       "personalization_modal_text": "Щоб отримати персоналізовані рекомендації з організації, адаптовані до ваших потреб, будь ласка, спочатку пройдіть нашу швидку базову оцінку. Це допоможе нам зрозуміти ваші вподобання та цілі, щоб надати найбільш відповідні пропозиції.",
-      "personalization_modal_cta_label": "Пройти оцінку"
+      "personalization_modal_cta_label": "Пройти оцінку",
+      "services": "Послуги"
     },
     "organization-overview": {
       "error_loading_data": "Під час завантаження даних організації сталася помилка",
@@ -877,7 +1016,20 @@
       "social": "Соціальний",
       "latest_results": "Останні Результати",
       "how_it_works": "Як це працює",
-      "see_last_result": "Останні результати"
+      "see_last_result": "Останні результати",
+      "explore_button_label": "Дослідити карту",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you.",
+      "user_guide_heading": "Хочеш дізнатися більше про:",
+      "emergency_services": "Екстрені служби",
+      "emergency_services_description": "Екстрені служби",
+      "map": "Карта послуг з психічного здоров’я та психо-емоційної підтримки, доступних у Бухаресті",
+      "map_description": "Карта служб підтримки (Бухарест)",
+      "rights": "Права дітей та підлітків на доступ до послуг з психічного здоров’я та психо-емоційної підтримки",
+      "rights_description": "Права дітей і підлітків"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Оцінювання завершено",
@@ -921,6 +1073,52 @@
       "organizations": "Рекомендовані організації",
       "summary_heading": "Рекомендації, сформовані на основі отриманого балу",
       "view_more": "Переглянути більше"
+    },
+    "dashboard-hero": {
+      "heading": "З поверненням",
+      "user_guide": "Інструкція використання",
+      "next_consultation": "Наступна консультація:",
+      "change_button_label": "Зміна",
+      "accept_button_label": "Погодься на консультацію",
+      "join_button_label": "Приєднайся",
+      "schedule_button_label": "Розклад",
+      "live_label": "Зараз",
+      "no_consultations": "Наразі немає майбутніх консультацій",
+      "free": "Безкоштовно",
+      "ordinal_st": "-ий",
+      "ordinal_nd": "-ий",
+      "ordinal_rd": "-ій",
+      "ordinal_th": "-ий",
+      "january": "Січень",
+      "february": "Лютий",
+      "march": "Березень",
+      "april": "Квітень",
+      "may": "Травень",
+      "june": "Червень",
+      "july": "Липень",
+      "august": "Серпень",
+      "september": "Вересень",
+      "october": "Жовтень",
+      "november": "Листопад",
+      "december": "Грудень",
+      "coupon": "Купон",
+      "join_button_label_tooltip": "Ви можете приєднатися до консультації за 5 хвилин до початку"
+    },
+    "download-app": {
+      "heading": "Завантаж додаток",
+      "paragraph": "Додаток тепер доступний для iOS і Android",
+      "download_text": "Завантажити з",
+      "text": "Отримуй підтримку будь-коли й будь-де — швидко, безпечно та зручно у використанні."
+    },
+    "find-support-near-you": {
+      "heading": "Знайдіть підтримку поруч",
+      "explore_button_label": "Переглянути"
+    },
+    "most-read-articles": {
+      "heading": "Найбільш читана стаття",
+      "read_more_button": "Натисни, щоб прочитати більше",
+      "min_read": "хв читання",
+      "by": "від {{creator}}"
     }
   },
   "pages": {
@@ -1010,7 +1208,8 @@
       "subheading_default": "Всі статті можна знайти тут",
       "subheading_newest": "Тут можна знайти найновіші статті",
       "subheading_most_read": "Тут можна знайти найпопулярніші статті з усіх категорій",
-      "heading": "Статті"
+      "heading": "Статті",
+      "search": "Пошук"
     },
     "article-information": {
       "heading": "Більше статей",
@@ -1021,7 +1220,15 @@
       "share_title": "Поділися",
       "share_success": "Посилання скопійовано до буфера обміну!",
       "copy_link": "Скопіювати посилання",
-      "export_failed": "Експорт не вдався. Будь ласка, спробуйте ще раз."
+      "export_failed": "Експорт не вдався. Будь ласка, спробуйте ще раз.",
+      "audio_player_title_listen_to_article": "Послухай цю статтю",
+      "audio_player_subtitle_narrated_version": "Полюбляєте слухати? Увімкніть озвучену версію.",
+      "audio_player_badge_listen_time": "{{minutes}} хв прослуховування",
+      "audio_player_play_label": "Відтворити",
+      "audio_player_pause_label": "Пауза",
+      "audio_player_seek_back_label": "Перемотати назад на {{seconds}} с",
+      "audio_player_seek_forward_label": "Перемотати вперед на {{seconds}} с",
+      "audio_player_helper_read_along": "Можна читати разом із аудіо або просто слухати й відпочивати."
     },
     "information-portal": {
       "heading": "Знання",
@@ -1043,7 +1250,9 @@
       "podcasts": "Подкасти",
       "view_more": "Переглянути більше",
       "require_cookies": "Щоб переглянути це відео, прийміть усі файли cookie.",
-      "cookie_preferences": "Налаштування файлів cookie"
+      "cookie_preferences": "Налаштування файлів cookie",
+      "search": "Пошук",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "Зареєструйтеся в uSupport за допомогою електронної пошти"
@@ -1144,7 +1353,8 @@
       "subheading_newest": "Дивіться наші нові відео.",
       "heading_most_viewed": "Найпопулярніші відео",
       "subheading_most_viewed": "Дивіться наші найпопулярніші відео.",
-      "all": "Усі"
+      "all": "Усі",
+      "search": "Пошук"
     },
     "video-information-page": {
       "more_videos": "Більше відео",
@@ -1167,7 +1377,8 @@
       "subheading_newest": "Слухайте наші найновіші подкасти.",
       "heading_most_viewed": "Найпопулярніші подкасти",
       "subheading_most_viewed": "Слухайте наші найпопулярніші подкасти.",
-      "all": "Усі"
+      "all": "Усі",
+      "search": "Пошук"
     },
     "organizations-page": {
       "heading": "Організації"
@@ -1184,6 +1395,7 @@
       "continue": "Продовжити",
       "submit": "Відправити",
       "view_content": "Переглянути більше контенту",
+      "read_more_button": "Читати більше",
       "no_articles_found": "Статті з цієї теми не знайдено.",
       "non_emergency_title": "Неекстрені ситуації",
       "non_emergency_paragraph": "Будь-яка ситуація, яка наразі не загрожує життю або безпеці дитини або підлітка.",
@@ -1328,7 +1540,20 @@
       "september": "Вересень",
       "october": "Жовтень",
       "november": "Листопад",
-      "december": "Грудень"
+      "december": "Грудень",
+      "subheading": "Вашу сесію з {{providerName}} успішно заброньовано.",
+      "subheading_no_name": "Вашу сесію успішно заброньовано.",
+      "providerLabel": "Фахівець/чиня",
+      "psychologist": "Психолог/иня",
+      "psychiatrist": "Психіатр/иня",
+      "psychotherapist": "Психотерапевт/ка",
+      "appointmentDetailsHeading": "Деталі зустрічі",
+      "reminderText": "Перед сесією ви отримаєте нагадування.",
+      "manageText": "Ви можете керувати бронюваннями у розділі «Мої консультації».",
+      "dateLabel": "Дата",
+      "timeLabel": "Час",
+      "dateText": "{{startDate}} {{month}} {{year}}",
+      "timeText": "З {{startTime}} до {{endTime}}"
     },
     "cancel-consultation": {
       "heading": "Ви впевнені, що хочете скасувати консультацію?",
@@ -1465,11 +1690,24 @@
       "end_date": "Дата завершення",
       "end_date_before_start_error": "Дата завершення має бути пізніше дати початку"
     },
+    "welcome": {
+      "heading": "Ласкаво просимо до",
+      "country": "Країна",
+      "language": "Мова",
+      "placeholder": "Вибрати",
+      "register_email": "Зареєструватися за допомогою електронної пошти",
+      "register_anonymously": "Анонімна реєстрація",
+      "continue_as_guest": "Продовжити без реєстрації",
+      "already_have_account": "Вже маєте обліковий запис?",
+      "log_in": "Увійти",
+      "client": "Клієнт",
+      "poland_description": "uSupport — це платформа психічного здоров’я та добробуту, розроблена для молоді (16–24)."
+    },
     "user-guide": {
       "heading": "Хочеш дізнатися більше про:",
       "emergency_services": "Екстрені служби",
-      "map": "Карта послуг з психічного здоров’я та психо-емоційної підтримки, доступних у Бухаресті",
-      "rights": "Права дітей та підлітків на доступ до послуг з психічного здоров’я та психо-емоційної підтримки"
+      "map": "Карта служб підтримки (Бухарест)",
+      "rights": "Права дітей і підлітків"
     },
     "emergency-situation": {
       "heading": "Карта послуг з психічного здоров’я та психосоціальної підтримки для дітей і підлітків у Бухаресті",

@@ -3,12 +3,16 @@ import { useTranslation } from "react-i18next";
 
 import {
   Block,
-  Emoticon,
+  Dropdown,
   Icon,
+  Emoticon,
   MoodTrackDetails,
   Loading,
   LineChart,
   CardMedia,
+  Modal,
+  Grid,
+  GridItem,
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
@@ -47,6 +51,16 @@ export const MoodTrackHistory = () => {
   const [moodTrackerData, setMoodTrackerData] = useState({});
   const [selectedItemId, setSelectedItemId] = React.useState(null);
   const [lastMood, setLastMood] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
+
+  const yearOptions = useMemo(() => {
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let year = 2024; year <= currentYear; year++) {
+      years.push({ label: String(year), value: year });
+    }
+    return [{ label: t("all"), value: "all" }, ...years];
+  }, [t]);
 
   const onSuccess = (data) => {
     const { curEntries, prevEntries, hasMore } = data;
@@ -63,7 +77,7 @@ export const MoodTrackHistory = () => {
 
     if (prevEntries.length < limitToLoad) {
       prevEntries.push(
-        ...curEntries.slice(0, limitToLoad - prevEntries.length)
+        ...curEntries.slice(0, limitToLoad - prevEntries.length),
       );
     }
 
@@ -88,13 +102,23 @@ export const MoodTrackHistory = () => {
     return !loadedPages.includes(pageNum);
   }, [loadedPages, pageNum]);
 
-  useGetMoodTrackEntries(limitToLoad, pageNum, onSuccess, enabled);
+  useGetMoodTrackEntries(
+    limitToLoad,
+    pageNum,
+    selectedYear,
+    onSuccess,
+    enabled,
+  );
 
   const emoticons = [
     { name: "happy", label: "Happy", value: 4 },
     { name: "good", label: "Good", value: 3 },
     { name: "sad", label: "Sad", value: 2 },
-    { name: "depressed", label: "Depressed", value: 1 },
+    {
+      name: "depressed",
+      label: "Depressed",
+      value: 1,
+    },
     { name: "worried", label: "Worried", value: 0 },
   ];
 
@@ -104,8 +128,7 @@ export const MoodTrackHistory = () => {
         <div className="mood-track-history__emoticon-container" key={index}>
           <Emoticon
             name={`emoticon-${emoticon.name}`}
-            classes="mood-track-history__emoticon"
-            size="xs"
+            size={width < 768 ? "sm" : "lg"}
           />
           <p className="small-text">
             {width >= 768 ? t(emoticon.label.toLowerCase()) : ""}
@@ -121,11 +144,7 @@ export const MoodTrackHistory = () => {
         mood.time.getDate() > 9
           ? mood.time.getDate()
           : `0${mood.time.getDate()}`
-      }.${
-        mood.time.getMonth() + 1 > 9
-          ? mood.time.getMonth() + 1
-          : `0${mood.time.getMonth() + 1}`
-      }`;
+      } ${t(`month_${mood.time.getMonth() + 1}`)}`;
       const hourText = `${mood.time.getHours()}:${
         mood.time.getMinutes() > 9
           ? mood.time.getMinutes()
@@ -134,7 +153,7 @@ export const MoodTrackHistory = () => {
 
       return (
         <div className="mood-track-history__date-container" key={index}>
-          <p className="small-text">{dateText}</p>
+          <p className="text">{dateText}</p>
           <p className="small-text">{hourText}</p>
         </div>
       );
@@ -147,7 +166,6 @@ export const MoodTrackHistory = () => {
 
   const handleMoodClick = (index) => {
     setSelectedItemId(moodTrackerData[limit].entries[index].mood_tracker_id);
-    console.log(moodTrackerData[limit].entries[index].mood_tracker_id);
   };
 
   return (
@@ -156,17 +174,29 @@ export const MoodTrackHistory = () => {
         <Loading />
       ) : (
         <>
-          {moodTrackerData[limit].entries.length === 0 && (
+          {moodTrackerData[limit].entries.length === 0 ? (
             <div>
               <p>{t("no_result")}</p>
             </div>
+          ) : (
+            <></>
+            // <div className="mood-track-history__year-dropdown">
+            //   <Dropdown
+            //     options={yearOptions}
+            //     selected={selectedYear}
+            //     setSelected={setSelectedYear}
+            //     placeholder={t("select_year")}
+            //     isSmall
+            //   />
+            // </div>
           )}
           <div className="mood-track-history__content-container">
             <div className="mood-track-history__content-container__emoticons-container">
+              {renderAllEmoticons()}
               <div
                 className={[
                   "mood-track-history__icon-container",
-                  !moodTrackerData[limit].hasMore && //TODO: make it work
+                  !moodTrackerData[limit].hasMore &&
                     "mood-track-history__icon-container__disabled",
                 ].join(" ")}
               >
@@ -180,13 +210,9 @@ export const MoodTrackHistory = () => {
                   }
                 />
               </div>
-              {renderAllEmoticons()}
             </div>
             <div className="mood-track-history__content-container__chart-container">
               <div className="mood-track-history__content-container__chart-container__wrapper">
-                <div className="mood-track-history__content-container__chart-wrapper__dates">
-                  {renderDates()}
-                </div>
                 <div className="mood-track-history__content-container__chart-wrapper">
                   <LineChart
                     data={moodTrackerData[limit]?.entries || []}
@@ -194,11 +220,14 @@ export const MoodTrackHistory = () => {
                     selectedItemId={selectedItemId}
                   />
                 </div>
+                <div className="mood-track-history__content-container__chart-wrapper__dates">
+                  {renderDates()}
+                </div>
               </div>
               <div>
                 <div
                   className={[
-                    "mood-track-history__content-container__emoticons-container__icon",
+                    "mood-track-history__content-container__emoticons-container__icon--right",
                     pageNum === 0 &&
                       "mood-track-history__content-container__emoticons-container__icon__right__disabled",
                   ].join(" ")}
@@ -214,19 +243,39 @@ export const MoodTrackHistory = () => {
               </div>
             </div>
           </div>
-          {moodTrackerData[limit]?.entries.find(
-            (x) => x.mood_tracker_id === selectedItemId
-          ) && (
-            <div className="mood-track-history__information-container">
-              <MoodTrackDetails
-                mood={moodTrackerData[limit]?.entries.find(
-                  (x) => x.mood_tracker_id === selectedItemId
-                )}
-                handleClose={() => setSelectedItemId(null)}
-                t={t}
-              />
-            </div>
-          )}
+          {(() => {
+            const selectedMood = moodTrackerData[limit]?.entries.find(
+              (x) => x.mood_tracker_id === selectedItemId,
+            );
+
+            if (!selectedMood) return null;
+
+            const dateText = `${
+              selectedMood.time.getDate() > 9
+                ? selectedMood.time.getDate()
+                : `0${selectedMood.time.getDate()}`
+            }.${
+              selectedMood.time.getMonth() + 1 > 9
+                ? selectedMood.time.getMonth() + 1
+                : `0${selectedMood.time.getMonth() + 1}`
+            }`;
+            const hourText = `${selectedMood.time.getHours()}:${
+              selectedMood.time.getMinutes() > 9
+                ? selectedMood.time.getMinutes()
+                : `0${selectedMood.time.getMinutes()}`
+            }`;
+
+            return (
+              <Modal
+                isOpen={!!selectedMood}
+                closeModal={() => setSelectedItemId(null)}
+                heading={`${dateText} ${hourText}`}
+                hasCloseIcon={true}
+              >
+                <MoodTrackDetails mood={selectedMood} t={t} />
+              </Modal>
+            );
+          })()}
         </>
       )}
 
@@ -251,38 +300,39 @@ export const MoodTrackHistory = () => {
               <h4 className="mood-track-history__recommendations-container__articles-heading">
                 {t("articles")}
               </h4>
-              <div className="mood-track-history__recommendations-container__articles">
-                {moodTrackerRecommendations.articles.map((article) => (
-                  <CardMedia
-                    type="portrait"
-                    size="md"
-                    title={article.title}
-                    image={
-                      article.imageMedium ||
-                      article.imageThumbnail ||
-                      article.imageSmall
-                    }
-                    description={article.description}
-                    labels={article.labels}
-                    creator={article.creator}
-                    readingTime={article.readingTime}
-                    categoryName={article.categoryName}
-                    // isLikedByUser={isLikedByUser}
-                    // isDislikedByUser={isDislikedByUser}
-                    likes={article.likes}
-                    dislikes={article.dislikes}
-                    // isRead={readArticleIds.includes(article.id)}
-                    t={t}
-                    onClick={() => {
-                      navigate(
-                        `/information-portal/article/${
-                          article.id
-                        }/${createArticleSlug(article.title)}`
-                      );
-                    }}
-                  />
+              <Grid>
+                {moodTrackerRecommendations.articles.map((article, index) => (
+                  <GridItem key={index}>
+                    <CardMedia
+                      type="portrait"
+                      title={article.title}
+                      image={
+                        article.imageMedium ||
+                        article.imageThumbnail ||
+                        article.imageSmall
+                      }
+                      description={article.description}
+                      labels={article.labels}
+                      creator={article.creator}
+                      readingTime={article.readingTime}
+                      categoryName={article.categoryName}
+                      // isLikedByUser={isLikedByUser}
+                      // isDislikedByUser={isDislikedByUser}
+                      likes={article.likes}
+                      dislikes={article.dislikes}
+                      // isRead={readArticleIds.includes(article.id)}
+                      t={t}
+                      onClick={() => {
+                        navigate(
+                          `/information-portal/article/${
+                            article.id
+                          }/${createArticleSlug(article.title)}`,
+                        );
+                      }}
+                    />
+                  </GridItem>
                 ))}
-              </div>
+              </Grid>
             </div>
           )}
           {moodTrackerRecommendations?.videos?.length > 0 && (
@@ -312,7 +362,7 @@ export const MoodTrackHistory = () => {
                       navigate(
                         `/information-portal/video/${
                           videoData.id
-                        }/${createArticleSlug(videoData.title)}`
+                        }/${createArticleSlug(videoData.title)}`,
                       );
                     }}
                   />
@@ -347,7 +397,7 @@ export const MoodTrackHistory = () => {
                       navigate(
                         `/information-portal/podcast/${
                           podcastData.id
-                        }/${createArticleSlug(podcastData.title)}`
+                        }/${createArticleSlug(podcastData.title)}`,
                       );
                     }}
                   />

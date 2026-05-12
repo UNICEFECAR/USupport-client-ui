@@ -19,7 +19,7 @@ export const RequireRegistration = ({ isOpen, onClose }) => {
 
   const handleRegisterRedirection = () => {
     userSvc.logout();
-    navigateTo("/register-preview");
+    navigateTo("/dashboard");
     onClose();
   };
 

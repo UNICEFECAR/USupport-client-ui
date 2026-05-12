@@ -30,7 +30,48 @@
       "reject_all_cookies": "Отклонить все",
       "accept_necessary_cookies": "Принять только необходимые",
       "save": "Сохранить",
-      "high_contrast": "Высокая контрастность"
+      "high_contrast": "Высокая контрастность",
+      "your_profile": "Ваш профиль",
+      "guest": "Гость",
+      "application_settings": "Настройки",
+      "rate_share": "Оценить",
+      "other": "Другое",
+      "notifications_settings_button_label": "Настройки уведомлений",
+      "rate_us_button_label": "Дайте нам оценку",
+      "share_button_label": "Поделиться приложением",
+      "contact_us_button_label": "Свяжитесь с нами",
+      "privacy_policy_button_label": "Политика конфиденциальности",
+      "FAQ_button_label": "Часто задаваемые вопросы",
+      "mood_tracker_button_label": "Трекер настроения",
+      "payments_history_button_label": "История платежей",
+      "terms_of_use": "Условия использования",
+      "cookie_policy": "Политика Cookie",
+      "user_guide": "Руководство по платформе",
+      "edit_profile": "Редактировать профиль",
+      "go_back": "Назад",
+      "notifications_heading": "Уведомления",
+      "notifications_mark_read": "Отметить все как прочитанные",
+      "notifications_empty": "Пока нет уведомлений",
+      "notifications_load_more": "Загрузить еще",
+      "notifications_consultation_booking": "<0>{{providerName}}</0> записал(а) консультацию на {{date}} с {{startHour}} до {{endHour}}",
+      "notifications_consultation_reschedule": "<0>{{providerName}}</0> перенес(ла) вашу консультацию с {{date}} {{startHour}}-{{endHour}} на {{newDate}} {{newStartHour}}-{{newEndHour}}",
+      "notifications_consultation_cancellation": "Ваша консультация с <0>{{providerName}}</0> на {{date}} с {{startHour}} до {{endHour}} была отменена",
+      "notifications_consultation_cancellation_provider": "<0>{{providerName}}</0> отменил(а) вашу консультацию на {{date}} с {{startHour}} до {{endHour}}",
+      "notifications_consultation_remind_start": "Ваша консультация начнется через <0>{{minutes}}</0> минут",
+      "notifications_consultation_suggestion": "<0>{{providerName}}</0> предложил(а) консультацию на {{date}} с {{startHour}} до {{endHour}}",
+      "notifications_consultation_suggestion_booking": "Вы приняли предложение консультации от <0>{{providerName}}</0> на {{date}} с {{startHour}} до {{endHour}}",
+      "notifications_consultation_suggestion_cancellation": "Предложение консультации от <0>{{providerName}}</0> на {{date}} с {{startHour}} до {{endHour}} было отменено",
+      "notifications_consultation_started": "Ваша консультация с <0>{{providerName}}</0> началась",
+      "notifications_question_answered": "<0>{{providerName}}</0> ответил(а) на ваш вопрос",
+      "notifications_consultation_remind_start_24_hours_before": "Ваша консультация с <0>{{providerName}}</0> начнется через 24 часа",
+      "notifications_consultation_remind_start_48_hours_before": "Ваша консультация с <0>{{providerName}}</0> начнется через 48 часов",
+      "all": "Все",
+      "new": "Новые",
+      "read": "Прочитанные",
+      "language_label": "Язык",
+      "logout": "Выйти",
+      "yesterday": "Вчера",
+      "footer_text": "Ваше психическое здоровье важно — uSupport предоставляет персонализированную, конфиденциальную и безопасную психологическую помощь."
     },
     "provider-overview": {
       "earliest_slot_label": "Самый ранний доступный слот свободного времени для консультации",
@@ -82,7 +123,15 @@
       "video_label": "Видео-представление",
       "button_label": "Запланировать консультацию",
       "hour_consultation": "за 1 часовую консультацию",
-      "free": "бесплатно"
+      "free": "бесплатно",
+      "monday": "Понедельник",
+      "tuesday": "Вторник",
+      "wednesday": "Среда",
+      "thursday": "Четверг",
+      "friday": "Пятница",
+      "saturday": "Суббота",
+      "sunday": "Воскресенье",
+      "coupon": "Купон"
     },
     "user-profile": {
       "your_profile": "Ваш профиль",
@@ -106,8 +155,8 @@
       "button_link": "Посетить веб-сайт",
       "button_call": "Связаться сейчас",
       "no_results": "Для выбранной страны и языка ничего не нашлось.",
-      "other_emergency_services": "Other emergency service providers",
-      "browse": "Browse"
+      "other_emergency_services": "Другие службы экстренной помощи",
+      "browse": "Обзор"
     },
     "register-about-you": {
       "input_name_label": "Имя",
@@ -130,7 +179,9 @@
       "sex_placeholder": "Введите свой пол",
       "year_of_birth_placeholder": "Введите свой год рождения",
       "living_place_placeholder": "Введите место вашего жительства",
-      "parent": "Родитель"
+      "parent": "Родитель",
+      "logout_button_label": "Выйти",
+      "heading": "Добро пожаловать в"
     },
     "register-anonymous": {
       "nickname_label": "Псевдоним *",
@@ -147,9 +198,10 @@
       "login_button_label": "У меня уже есть аккаунт",
       "copy_text": "Скопируйте и сохраните или запишите свой анонимный код, если Вы его потеряете, то больше не сможете получить доступ к своему аккаунту.",
       "copy_success": "Успешно скопированный код",
-      "confirm_password_label": "Подтвердите пароль",
+      "confirm_password_label": "Подтвердите пароль *",
       "password_match_error": "Поля Пароль и Подтвердите пароль не совпадают",
-      "age_terms_agreement_text_1": "Мне больше {{age}} лет"
+      "age_terms_agreement_text_1": "Мне больше {{age}} лет",
+      "heading": "Добро пожаловать в"
     },
     "register-support": {
       "button_continue_label": "Продолжить",
@@ -203,7 +255,9 @@
       "tab_coupon": "Купон",
       "tab_free": "Бесплатно",
       "choose-the-provider": "Выберите специалиста, с которым хотите общаться по видео, аудио или в чате. Иногда может потребоваться несколько сессий, чтобы найти специалиста, который подходит вам по потребностям и предпочтительному формату работы.",
-      "coupon_note": "На этот раз мы ввели для вас код на бесплатную сессию! Запишитесь на консультацию к одному из наших специалистов и сделайте первый шаг к улучшению самочувствия."
+      "coupon_note": "На этот раз мы ввели для вас код на бесплатную сессию! Запишитесь на консультацию к одному из наших специалистов и сделайте первый шаг к улучшению самочувствия.",
+      "book_session": "Забронировать сессию",
+      "view_profile": "Просмотреть профиль"
     },
     "notification-preferences": {
       "email": "Уведомления по электронной почте",
@@ -229,11 +283,14 @@
       "modal_heading": "Проверьте свою электронную почту",
       "modal_text": "Если Вы зарегистрированы на платформе, Вы получите ссылку для сброса Вашего пароля.",
       "client": "Клиент",
-      "heading": "Добро пожаловать в"
+      "heading": "Добро пожаловать в",
+      "heading_modal": "Забыли пароль?",
+      "go_back_to_login": "Вернуться к входу"
     },
     "consultations": {
       "upcoming_tab_label": "Предстоящие",
       "past_tab_label": "Прошлые",
+      "schedule_button_label": "Запланировать консультацию",
       "sunday": "Вс",
       "monday": "Пн",
       "tuesday": "Вт",
@@ -258,7 +315,10 @@
       "not_conducted": "Не проводилась",
       "free": "Бесплатно",
       "coupon": "Купон",
-      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт"
     },
     "login": {
       "email_label": "Электронная почта / токен доступа",
@@ -284,13 +344,22 @@
     "articles": {
       "heading": "Информационный портал",
       "no_results": "Ничего не нашлось",
+      "no_results_heading": "Ничего не найдено по запросу «{{query}}»",
+      "no_results_line1": "Попробуйте изменить поиск или посмотрите темы ниже.",
+      "no_results_line2": "Также можно сбросить фильтры, чтобы увидеть больше результатов.",
+      "reset_filters": "Сбросить фильтры",
+      "browse_all_articles": "Все статьи",
+      "no_results_image_alt": "Иллюстрация: нет результатов поиска",
       "could_not_load_content": "Для выбранной страны и языка ничего не нашлось.",
+      "could_not_load_hint": "Можно сменить страну или язык в меню или зайти позже — новые материалы появляются регулярно.",
       "all": "Все",
       "read_more_button": "Узнать больше",
       "min_read": "минут на прочтение",
       "by": "От {{creator}}",
       "number_of_more_options": "еще {{count}}",
-      "read": "Прочитано"
+      "read": "Прочитано",
+      "grid_toggle_featured": "Выделенный вид",
+      "grid_toggle_compact": "Компактный вид"
     },
     "give-suggestion": {
       "heading": "Дайте нам свои предложения",
@@ -317,6 +386,7 @@
       "pl_text": "uSupport is a mental health and well-being platform designed for youth (16–24)."
     },
     "register-email": {
+      "heading": "Добро пожаловать в",
       "email_error": "Пожалуйста, введите действительный адрес электронной почты",
       "password_error": "Пароль должен содержать не менее 8 символов, 1 заглавную букву, 1 строчную букву и 1 цифру.",
       "email_label": "Электронная почта *",
@@ -331,7 +401,7 @@
       "register_button": "Зарегистрироваться",
       "paragraph": "Или зарегистрируйтесь через:",
       "login_button_label": "У меня уже есть аккаунт",
-      "confirm_password_label": "Подтвердите пароль",
+      "confirm_password_label": "Подтвердите пароль *",
       "password_match_error": "Поля Пароль и Подтвердите пароль не совпадают",
       "age_terms_agreement_text_1": "Мне больше {{age}} лет"
     },
@@ -384,7 +454,11 @@
       "year_of_birth_placeholder": "Введите свой год рождения",
       "living_place_placeholder": "Введите место вашего жительства",
       "parent": "Родитель",
-      "delete_mood_tracker": "Очистить историю трекера настроения"
+      "delete_mood_tracker": "Очистить историю трекера настроения",
+      "account_section": "Аккаунт",
+      "data_management_section": "Управление данными",
+      "danger_zone_section": "Опасная зона",
+      "delete_account_description": "Это действие необратимо и не может быть отменено."
     },
     "reset-password": {
       "label": "Новый пароль",
@@ -447,7 +521,41 @@
       "december": "декабря",
       "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
       "cookie_preferences": "Настройки cookie",
-      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала",
+      "dummy_provider_1": "Др. Иванова",
+      "dummy_provider_2": "Др. Петрова",
+      "dummy_provider_3": "Др. Смирнова",
+      "upcoming_tab_label": "Предстоящие",
+      "past_tab_label": "Прошлые",
+      "sunday": "Вс",
+      "monday": "Пн",
+      "tuesday": "Вт",
+      "wednesday": "Ср",
+      "thursday": "Чт",
+      "friday": "Пт",
+      "saturday": "Сб",
+      "no_upcoming_consultations": "У Вас нет предстоящих консультаций",
+      "no_past_consultations": "У Вас нет прошлых консультаций",
+      "reject_consultation_success": "Консультация успешно отклонена",
+      "accept_consultation_success": "Консультация успешно принята",
+      "join": "Присоединиться",
+      "edit": "Редактировать",
+      "details": "Смотреть подробности",
+      "active": "Сейчас",
+      "reject": "Отклонить предложение",
+      "accept": "Принять консультацию",
+      "cancel_consultation": "Отменить консультацию",
+      "suggested": "Предложено",
+      "view_profile": "Просмотреть личный профиль",
+      "conducted": "Консультация завершена",
+      "not_conducted": "Не проводилась",
+      "free": "Бесплатно",
+      "coupon": "Купон",
+      "explore_resources_label": "Изучить ресурсы",
+      "heading_need_support": "Нужна поддержка?",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт"
     },
     "mood-tracker": {
       "happy": "Отлично",
@@ -455,6 +563,7 @@
       "sad": "Грустно",
       "depressed": "Депрессивно",
       "worried": "Тревожно",
+      "history": "История",
       "heading": "Как Вы себя чувствуете сегодня?",
       "mood_tracker": "Трекер настроения",
       "additional_comment_placeholder": "Что заставило Вас так себя чувствовать?",
@@ -464,7 +573,11 @@
       "how_it_works": "Как это работает",
       "recommendations": "Рекомендации",
       "recommendations_text": "Хотите посмотреть график настроения и увидеть рекомендованный контент?",
-      "check_out": "Посмотреть"
+      "check_out": "Посмотреть",
+      "mood_tracker_long": "Изучите свой трекер настроения",
+      "welcome-heading": "Welcome",
+      "user_guide": "User Guide",
+      "additional_comment_label": "Что заставило вас почувствовать себя так?"
     },
     "mascot-welcome-header": {
       "welcome": "С возвращением, {{name}}!",
@@ -497,7 +610,8 @@
       "december": "декабря",
       "coupon": "Купон",
       "explore_button_label": "Исследовать",
-      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала",
+      "user_guide": "Руководство пользователя"
     },
     "activity-log-dashboard": {
       "heading": "Журнал активности",
@@ -512,7 +626,8 @@
       "min_read": "минут на прочтение",
       "by": "От {{creator}}",
       "number_of_more_options": "еще {{count}}",
-      "read": "Читать"
+      "read": "Читать",
+      "show_more": "Показать больше"
     },
     "mood-tracker-history": {
       "heading": "В целом вы чувствовали {{feeling}}  в течение последних 30 дней",
@@ -609,6 +724,19 @@
       "try_again_button_label": "Пробовать снова"
     },
     "mood-track-history": {
+      "all": "Все",
+      "month_1": "Янв",
+      "month_2": "Фев",
+      "month_3": "Мар",
+      "month_4": "Апр",
+      "month_5": "Май",
+      "month_6": "Июн",
+      "month_7": "Июл",
+      "month_8": "Авг",
+      "month_9": "Сен",
+      "month_10": "Окт",
+      "month_11": "Ноя",
+      "month_12": "Дек",
       "happy": "Отлично",
       "good": "Хорошо",
       "sad": "Грустно",
@@ -630,7 +758,8 @@
       "read_more_button": "Читать далее",
       "by": "от {{creator}}",
       "min_read": "мин чтения",
-      "no_recommendations": "Рекомендации не найдены"
+      "no_recommendations": "Рекомендации не найдены",
+      "select_year": "Выберите год"
     },
     "mascot-header-MyQA": {
       "heading": "Мой Q&A (Вопрос/Ответ)",
@@ -656,9 +785,17 @@
       "search_placeholder": "Поиск",
       "filter": "Фильтровать теги",
       "no_answers_found": "Нет ответов на вопросы",
+      "no_results_heading": "Ничего не найдено по запросу «{{query}}»",
+      "no_results_line1": "Попробуйте изменить поиск или выберите другой тег.",
+      "no_results_line2": "Можно сбросить фильтры, чтобы снова увидеть все вопросы.",
+      "reset_filters": "Сбросить фильтры",
+      "browse_all_questions": "Показать все вопросы",
+      "no_results_image_alt": "Иллюстрация: нет подходящих вопросов",
       "language": "Язык",
       "all_languages": "Все языки",
-      "date_answered": "от {{date}}"
+      "date_answered": "от {{date}}",
+      "go_back": "Назад",
+      "how_it_works": "Kак это работает"
     },
     "videos": {
       "view_more": "Посмотреть больше",
@@ -743,7 +880,8 @@
       "personalize": "Персонализировать",
       "personalization": "Персонализация",
       "personalization_modal_text": "Чтобы получить персонализированные рекомендации по организации, адаптированные к вашим потребностям, пожалуйста, сначала пройдите нашу быструю базовую оценку. Это поможет нам понять ваши предпочтения и цели, чтобы предоставить наиболее актуальные предложения.",
-      "personalization_modal_cta_label": "Пройти оценку"
+      "personalization_modal_cta_label": "Пройти оценку",
+      "services": "Услуги"
     },
     "organization-overview": {
       "error_loading_data": "При загрузке данных организации возникла ошибка",
@@ -855,7 +993,12 @@
       "assessment_completed": "Оценка завершена",
       "assessment_completed_description": "Спасибо за прохождение оценки. Ваши ответы сохранены и будут использованы, чтобы помочь вам.",
       "assessment_completed_button": "Вернуться на главную",
-      "save_button_label": "Сохранить для позже"
+      "save_button_label": "Сохранить для позже",
+      "sontrgly_disagree": "Полностью не согласен",
+      "disagree": "Не согласен",
+      "neutral": "Нейтрален(а)",
+      "agree": "Согласен",
+      "strongly_agree": "Полностью согласен"
     },
     "baseline-assessment-dashboard": {
       "heading": "Ваша базовая оценка",
@@ -872,7 +1015,20 @@
       "social": "Социальные",
       "latest_results": "Последние результаты",
       "how_it_works": "Как это работает",
-      "see_last_result": "Базовая оценка результатов"
+      "see_last_result": "Базовая оценка результатов",
+      "explore_button_label": "Исследовать карту",
+      "heading_completed": "Your Latest Assessment",
+      "no_assessment_description": "Take a quick assessment to understand your mental health better and get personalized recommendations.",
+      "explore_heading": "Find Support Near You",
+      "explore_card_title": "Discover Local Support",
+      "explore_card_description": "After completing the baseline assessment, we will help you find the most relevant support near you.",
+      "user_guide_heading": "Хотите узнать больше о:",
+      "emergency_services": "Экстренных службах",
+      "emergency_services_description": "Экстренных службах",
+      "map": "Карте услуг по охране психического здоровья и психоэмоциональной поддержке, доступных в Бухаресте",
+      "map_description": "Карта служб поддержки (Бухарест)",
+      "rights": "Правах детей и подростков на доступ к услугам по охране психического здоровья и психоэмоциональной поддержке",
+      "rights_description": "Права детей и подростков"
     },
     "baseline-assesment-result": {
       "assessment_completed": "Оценка завершена",
@@ -883,9 +1039,9 @@
       "read_more_button": "Читать далее",
       "by": "от {{creator}}",
       "min_read": "мин чтения",
-      "psychological": "Psychological",
-      "biological": "Biological",
-      "social": "Social",
+      "psychological": "Психологический",
+      "biological": "Биологический",
+      "social": "Социальный",
       "inc_inc_inc": "We noticed some challenges: psychological, biological, and social all increased.",
       "inc_inc_same": "We noticed some challenges: psychological and biological increased, while social stayed the same.",
       "inc_inc_dec": "Good job! Social decreased, though psychological and biological increased.",
@@ -913,7 +1069,55 @@
       "dec_dec_same": "Great progress! Psychological and biological decreased, while social stayed the same.",
       "dec_dec_dec": "Excellent progress! Psychological, biological, and social all decreased.",
       "same_same_same": "Ваши результаты такие же, как и в предыдущей оценке.",
-      "organizations": "Рекомендованные организации"
+      "organizations": "Рекомендованные организации",
+      "summary_heading": "Recommendations generated based on the score obtained",
+      "view_more": "Подробнее"
+    },
+    "dashboard-hero": {
+      "heading": "С возвращением",
+      "user_guide": "Руководство",
+      "next_consultation": "Следующая консультация:",
+      "change_button_label": "Изменить",
+      "accept_button_label": "Принять консультацию",
+      "join_button_label": "Присоединиться",
+      "schedule_button_label": "Запланировать",
+      "live_label": "Сейчас",
+      "no_consultations": "В настоящее время у Вас нет предстоящих консультаций",
+      "free": "Свободно",
+      "ordinal_st": "st",
+      "ordinal_nd": "nd",
+      "ordinal_rd": "rd",
+      "ordinal_th": "th",
+      "january": "января",
+      "february": "февраля",
+      "march": "марта",
+      "april": "апреля",
+      "may": "мая",
+      "june": "июня",
+      "july": "июля",
+      "august": "августа",
+      "september": "сентября",
+      "october": "октября",
+      "november": "ноября",
+      "december": "декабря",
+      "coupon": "Купон",
+      "join_button_label_tooltip": "Вы можете присоединиться к консультации за 5 минут до начала"
+    },
+    "download-app": {
+      "heading": "Скачать приложение",
+      "paragraph": "Теперь доступно для iOS и Android",
+      "download_text": "Скачать с",
+      "text": "Получайте поддержку в любое время и в любом месте - быстро, безопасно и удобно в использовании."
+    },
+    "find-support-near-you": {
+      "heading": "Найдите поддержку рядом",
+      "explore_button_label": "Посмотреть"
+    },
+    "most-read-articles": {
+      "heading": "Самая читаемая статья",
+      "read_more_button": "Нажмите, чтобы прочитать",
+      "min_read": "мин чтения",
+      "by": "от {{creator}}"
     }
   },
   "pages": {
@@ -1003,7 +1207,8 @@
       "subheading_default": "Вы можете найти все статьи здесь",
       "subheading_newest": "Здесь Вы можете найти новые статьи",
       "subheading_most_read": "Здесь Вы можете найти наиболее читаемые статьи из всех категорий",
-      "heading": "Статьи"
+      "heading": "Статьи",
+      "search": "Поиск"
     },
     "article-information": {
       "heading": "Больше статей",
@@ -1014,7 +1219,15 @@
       "share_title": "Поделиться этим контентом",
       "share_success": "Ссылка скопирована в буфер обмена!",
       "copy_link": "Скопировать ссылку",
-      "export_failed": "Экспорт не удался. Пожалуйста, попробуйте снова."
+      "export_failed": "Экспорт не удался. Пожалуйста, попробуйте снова.",
+      "audio_player_title_listen_to_article": "Послушайте эту статью",
+      "audio_player_subtitle_narrated_version": "Предпочитаете аудио? Включите озвученную версию.",
+      "audio_player_badge_listen_time": "{{minutes}} мин прослушивания",
+      "audio_player_play_label": "Воспроизвести",
+      "audio_player_pause_label": "Пауза",
+      "audio_player_seek_back_label": "Перемотать назад на {{seconds}} с",
+      "audio_player_seek_forward_label": "Перемотать вперёд на {{seconds}} с",
+      "audio_player_helper_read_along": "Можно читать вместе с аудио или просто слушать и расслабиться."
     },
     "information-portal": {
       "heading": "Информационный портал",
@@ -1036,7 +1249,9 @@
       "podcasts": "Подкасты",
       "view_more": "Показать ещё",
       "require_cookies": "Чтобы посмотреть это видео, примите все cookie-файлы.",
-      "cookie_preferences": "Настройки cookie"
+      "cookie_preferences": "Настройки cookie",
+      "search": "Поиск",
+      "go_back": "Go back"
     },
     "register-email-page": {
       "heading": "Зарегистрируйтесь с помощью электронной почты в uSupport"
@@ -1137,7 +1352,8 @@
       "subheading_newest": "Смотрите наши новейшие видео.",
       "heading_most_viewed": "Самые популярные видео",
       "subheading_most_viewed": "Смотрите наши самые популярные видео.",
-      "all": "Все"
+      "all": "Все",
+      "search": "Поиск"
     },
     "video-information-page": {
       "more_videos": "Больше видео",
@@ -1160,7 +1376,8 @@
       "subheading_newest": "Слушайте наши новейшие подкасты.",
       "heading_most_viewed": "Самые популярные подкасты",
       "subheading_most_viewed": "Слушайте наши самые популярные подкасты.",
-      "all": "Все"
+      "all": "Все",
+      "search": "Поиск"
     },
     "organizations-page": {
       "heading": "Организации"
@@ -1177,6 +1394,7 @@
       "continue": "Продолжить",
       "submit": "Отправить",
       "view_content": "Посмотреть больше контента",
+      "read_more_button": "Подробнее",
       "no_articles_found": "Статьи по этой теме не найдены.",
       "non_emergency_title": "Неэкстренные ситуации",
       "non_emergency_paragraph": "Любая ситуация, которая в настоящее время не угрожает жизни или безопасности ребенка или подростка.",
@@ -1321,7 +1539,20 @@
       "september": "сентябрь",
       "october": "октябрь",
       "november": "ноябрь",
-      "december": "декабрь"
+      "december": "декабрь",
+      "subheading": "Ваша сессия с {{providerName}} успешно забронирована.",
+      "subheading_no_name": "Ваша сессия успешно забронирована.",
+      "providerLabel": "Специалист",
+      "psychologist": "Психолог",
+      "psychiatrist": "Психиатр",
+      "psychotherapist": "Психотерапевт",
+      "appointmentDetailsHeading": "Детали встречи",
+      "reminderText": "Вы получите напоминание перед сессией.",
+      "manageText": "Вы можете управлять бронированиями в разделе «Мои консультации».",
+      "dateLabel": "Дата",
+      "timeLabel": "Время",
+      "dateText": "{{startDate}} {{month}} {{year}}",
+      "timeText": "С {{startTime}} до {{endTime}}"
     },
     "cancel-consultation": {
       "heading": "Уверены, что хотите отменить консультацию?",
@@ -1457,6 +1688,35 @@
       "start_date": "Дата начала",
       "end_date": "Дата окончания",
       "end_date_before_start_error": "Дата окончания должна быть позже даты начала"
+    },
+    "welcome": {
+      "heading": "Добро пожаловать в",
+      "country": "Страна",
+      "language": "Язык",
+      "placeholder": "Выбрать",
+      "register_email": "Зарегистрироваться с помощью электронной почты",
+      "register_anonymously": "Зарегистрироваться без электронной почты",
+      "continue_as_guest": "Продолжить без регистрации",
+      "already_have_account": "Уже есть аккаунт?",
+      "log_in": "Войти",
+      "client": "Клиент",
+      "poland_description": "uSupport — это платформа психического здоровья и благополучия, предназначенная для молодежи (16–24 года)."
+    },
+    "user-guide": {
+      "heading": "Хотите узнать больше о:",
+      "emergency_services": "Экстренных службах",
+      "map": "Карта служб поддержки (Бухарест)",
+      "rights": "Права детей и подростков"
+    },
+    "emergency-situation": {
+      "heading": "Карта услуг по охране психического здоровья и психосоциальной поддержке для детей и подростков в Бухаресте",
+      "paragraph": "Эта интерактивная карта представляет услуги по охране психического здоровья и психосоциальному благополучию, доступные детям и подросткам в Бухаресте. Мы постараемся направить вас, чтобы предложить варианты, которые лучше всего соответствуют вашим потребностям.",
+      "paragraph_two": "<0>Отказ от ответственности:</0> Эта карта создана на основе описаний, размещенных на сайтах поставщиков услуг. Мы не можем гарантировать точность информации на момент доступа к карте. Услуги и поставщики постоянно меняются, поэтому мы рекомендуем после выбора поставщика связаться с ним по телефону и подробно описать ситуацию, в которой вам нужна профессиональная помощь.",
+      "question": "Вы ищете услуги для экстренной ситуации?",
+      "subquestion": "Например: самоповреждение, попытка самоубийства, школьное или семейное насилие, сексуальное насилие и т. д.",
+      "yes": "Да",
+      "no": "Нет",
+      "dont_know": "Не знаю, насколько это срочно"
     }
   },
   "modals": {
@@ -1572,6 +1832,32 @@
       "heading": "Вы уверены, что хотите покинуть консультацию?",
       "confirm": "Покинуть",
       "cancel": "Отмена"
+    },
+    "how-it-works-ba": {
+      "heading": "How baseline assessment works",
+      "subheading_1": "Before accessing your baseline assessment, please review and accept the Privacy Policy. You must accept it to continue.",
+      "subheading_2": "You can also start the assessment anytime from your dashboard.",
+      "subheading_3": "The assessment is divided into multiple questions with a progress bar, and you can save your progress and continue later.",
+      "subheading_4": "Нажав на конкретное событие, вы можете просмотреть все комментарии и заметки, сделанные в этот момент, чтобы глубже понять, что повлияло на ваше настроение.",
+      "subheading_5": "Вы можете создать отчет за любой выбранный период и экспортировать его в формате CSV, чтобы легко просматривать или делиться своими данными о настроении при необходимости.",
+      "subheading_6": "Once completed, your results will appear in the dashboard, along with an option to retake the assessment anytime.",
+      "subheading_7": "Stat changes are shown with green or red arrows, comparing only your most recent results to the previous assessment."
+    },
+    "user-guide": {
+      "heading": "Хотите узнать больше о:",
+      "emergency_services": "Экстренных службах",
+      "map": "Карте услуг по охране психического здоровья и психоэмоциональной поддержке, доступных в Бухаресте",
+      "rights": "Правах детей и подростков на доступ к услугам по охране психического здоровья и психоэмоциональной поддержке"
+    },
+    "emergency-situation": {
+      "heading": "Карта услуг по охране психического здоровья и психосоциальной поддержке для детей и подростков в Бухаресте",
+      "paragraph": "Эта интерактивная карта представляет услуги по охране психического здоровья и психосоциальному благополучию, доступные детям и подросткам в Бухаресте. Мы постараемся направить вас, чтобы предложить варианты, которые лучше всего соответствуют вашим потребностям.",
+      "paragraph_two": "<0>Отказ от ответственности:</0> Эта карта создана на основе описаний, размещенных на сайтах поставщиков услуг. Мы не можем гарантировать точность информации на момент доступа к карте. Услуги и поставщики постоянно меняются, поэтому мы рекомендуем после выбора поставщика связаться с ним по телефону и подробно описать ситуацию, в которой вам нужна профессиональная помощь.",
+      "question": "Вы ищете услуги для экстренной ситуации?",
+      "subquestion": "Например: самоповреждение, попытка самоубийства, школьное или семейное насилие, сексуальное насилие и т. д.",
+      "yes": "Да",
+      "no": "Нет",
+      "dont_know": "Не знаю, насколько это срочно"
     }
   },
   "routes": {

@@ -1,0 +1,209 @@
+@import "@USupport-components-library/styles";
+
+.consultation-skeleton {
+  position: relative;
+  width: 100%;
+  border: 1px solid $color_gray_ea;
+  border-radius: $border_radius_1_2;
+  padding: $spacing_1_6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing_1_4;
+
+  @include themifyCustom(
+    $themes,
+    "border-color",
+    "color_gray_ea",
+    "color_gray_344054"
+  );
+
+  &__tag {
+    position: absolute !important;
+    right: $spacing_0_8;
+    top: 0;
+    transform: translateY(-50%);
+    z-index: $z_index_1;
+    width: 8.4rem;
+    height: 1.5rem;
+    border-radius: $border_radius_2_4;
+    background: rgba(235, 87, 87, 0.1);
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    gap: $spacing_1_2;
+  }
+
+  &__avatar {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: $color_gray_d2dcde;
+
+    @include themifyCustom(
+      $themes,
+      "background",
+      "color_gray_d2dcde",
+      "color_gray_66768d"
+    );
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_8;
+    width: 100%;
+  }
+
+  &__line {
+    height: 1.2rem;
+    border-radius: $border_radius_0_8;
+    background: $color_blue_c1d7e0;
+
+    @include themifyCustom(
+      $themes,
+      "background",
+      "color_blue_c1d7e0",
+      "color_gray_66768d"
+    );
+
+    &--title {
+      width: 56%;
+      height: 1.6rem;
+      background: $color_secondary_9749fa;
+
+      @include themifyCustom(
+        $themes,
+        "background",
+        "color_secondary_9749fa",
+        "color_secondary_9749fa"
+      );
+    }
+
+    &--subtitle {
+      width: 72%;
+    }
+
+    &--date {
+      width: 9.4rem;
+    }
+
+    &--time {
+      width: 8.8rem;
+    }
+  }
+
+  &__date-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing_1_2;
+  }
+
+  &__date-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing_0_7;
+  }
+
+  &__icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: $color_gray_92989b;
+
+    @include themifyCustom(
+      $themes,
+      "background",
+      "color_gray_92989b",
+      "color_gray_a6b4b8"
+    );
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $spacing_1_2;
+  }
+
+  &__separator {
+    width: calc(100% + (2 * $spacing_1_6));
+    height: 0.1rem;
+    margin-left: -$spacing_1_6;
+    margin-right: -$spacing_1_6;
+    background: $color_gray_ea;
+
+    @include themifyCustom(
+      $themes,
+      "background",
+      "color_gray_ea",
+      "color_gray_344054"
+    );
+  }
+
+  &__button {
+    height: 3.6rem;
+    border-radius: $border_radius_0_8;
+    background: $color_blue_c1d7e0;
+
+    @include themifyCustom(
+      $themes,
+      "background",
+      "color_blue_c1d7e0",
+      "color_gray_66768d"
+    );
+
+    &--primary {
+      width: 100%;
+      background: $color_secondary_9749fa;
+
+      @include themifyCustom(
+        $themes,
+        "background",
+        "color_secondary_9749fa",
+        "color_secondary_9749fa"
+      );
+    }
+  }
+}
+
+.consultation-skeleton .shimmer {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.36) 45%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: translateX(-100%);
+    animation: consultationSkeletonShimmer 1.4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .theme-dark &::after,
+  .theme-highContrast &::after {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 45%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+
+@keyframes consultationSkeletonShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

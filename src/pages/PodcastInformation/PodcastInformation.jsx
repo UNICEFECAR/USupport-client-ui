@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -19,8 +19,6 @@ import {
 } from "@USupport-components-library/utils";
 import {
   Block,
-  Grid,
-  GridItem,
   CardMedia,
   Loading,
 } from "@USupport-components-library/src";
@@ -46,6 +44,8 @@ export const PodcastInformation = () => {
   const { id } = useParams();
   const { isPodcastsActive } = useContext(ThemeContext);
   const { isTmpUser } = useContext(RootContext);
+  const mainScrollRef = useRef(null);
+  const sidebarScrollRef = useRef(null);
   const { i18n, t } = useTranslation("pages", {
     keyPrefix: "podcast-information-page",
   });
@@ -154,20 +154,60 @@ export const PodcastInformation = () => {
     return processedPodcasts;
   };
 
-  const { data: morePodcasts, isLoading: isMorePodcastsLoading } = useQuery(
-    ["more-podcasts", id, i18n.language],
-    getSimilarPodcasts,
-    {
-      enabled:
-        !isFetchingPodcastData &&
-        !podcastIdsQuery.isLoading &&
-        podcastIdsQuery.data?.length > 0 &&
-        podcastData &&
-        podcastData.categoryId
-          ? true
-          : false,
+  const {
+    data: morePodcasts,
+    isLoading: isMorePodcastsLoading,
+    isFetched: isMorePodcastsFetched,
+    isFetching: isMorePodcastsFetching,
+  } = useQuery(["more-podcasts", id, i18n.language], getSimilarPodcasts, {
+    enabled:
+      !isFetchingPodcastData &&
+      !podcastIdsQuery.isLoading &&
+      podcastIdsQuery.data?.length > 0 &&
+      !!podcastData &&
+      !!podcastData.categoryId,
+  });
+
+  useEffect(() => {
+    const sidebarEl = sidebarScrollRef.current;
+    const mainEl = mainScrollRef.current;
+
+    if (!sidebarEl || !mainEl) {
+      return;
     }
-  );
+
+    const handleScroll = () => {
+      const podcastHeight = mainEl.scrollHeight;
+      const podcastTop = mainEl.offsetTop;
+      const viewportHeight = window.innerHeight;
+
+      const maxPodcastScroll =
+        podcastHeight > viewportHeight ? podcastHeight - viewportHeight : 1;
+
+      const currentPodcastScroll = window.scrollY - podcastTop;
+
+      const ratio = Math.min(
+        1,
+        Math.max(0, currentPodcastScroll / (maxPodcastScroll || 1))
+      );
+
+      const sidebarScrollable = sidebarEl.scrollHeight - sidebarEl.clientHeight;
+
+      if (sidebarScrollable <= 0) return;
+
+      sidebarEl.scrollTop = ratio * sidebarScrollable;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [podcastData, morePodcasts?.length]);
 
   const onPodcastClick = () => {
     window.scrollTo(0, 0);
@@ -194,82 +234,109 @@ export const PodcastInformation = () => {
     isLoadingPodcastContentEngagements ||
     isFetchingPodcastData;
 
+  const renderSidebar = () => {
+    if (!isMorePodcastsLoading && morePodcasts?.length > 0) {
+      return (
+        <aside
+          className="page__podcast-information__sidebar"
+          ref={sidebarScrollRef}
+        >
+          <h4 className="page__podcast-information__sidebar__heading">
+            {t("more_podcasts")}
+          </h4>
+          {morePodcasts.map((podcast, index) => {
+            const { isLiked, isDisliked } = isLikedOrDislikedByUser({
+              contentType: "podcast",
+              contentData: podcast,
+              userEngagements: userContentEngagements,
+            });
+            const podcastData = podcast;
+
+            return (
+              <CardMedia
+                key={index}
+                type="portrait"
+                size="sm"
+                title={podcastData.title}
+                image={podcastData.imageMedium || podcastData.imageSmall}
+                description={podcastData.description}
+                labels={podcastData.labels}
+                creator={podcastData.creator}
+                categoryName={podcastData.categoryName}
+                contentType="podcasts"
+                likes={podcastData.likes}
+                dislikes={podcastData.dislikes}
+                isLikedByUser={isLiked}
+                isDislikedByUser={isDisliked}
+                t={t}
+                onClick={() => {
+                  navigate(
+                    `/information-portal/podcast/${
+                      podcastData.id
+                    }/${createArticleSlug(podcastData.title)}`
+                  );
+                  onPodcastClick();
+                }}
+              />
+            );
+          })}
+        </aside>
+      );
+    }
+
+    if (!morePodcasts && isMorePodcastsLoading && isMorePodcastsFetching) {
+      return (
+        <aside
+          className="page__podcast-information__sidebar"
+          ref={sidebarScrollRef}
+        >
+          <Loading size="lg" />
+        </aside>
+      );
+    }
+
+    return null;
+  };
+
   return (
-    <Page classes="page__podcast-information" showGoBackArrow={true}>
-      {!isLoading && podcastData ? (
-        <PodcastView
-          podcastData={{
-            ...podcastData,
-            likes: podcastContentEngagements?.likes || 0,
-            dislikes: podcastContentEngagements?.dislikes || 0,
-            contentRating: {
-              isLikedByUser: isLiked,
-              isDislikedByUser: isDisliked,
-            },
-          }}
-          t={t}
-          language={i18n.language}
-          isTmpUser={isTmpUser}
-        />
-      ) : isFetched && !isLoading ? (
-        <h3 className="page__podcast-information__no-results">
-          {t("not_found")}
-        </h3>
-      ) : (
-        <Loading size="lg" />
-      )}
+    <Page classes="page__podcast-information" darkBackground>
+      <Block classes="page__podcast-information__block">
+        <div className="page__podcast-information__layout">
+          <div className="page__podcast-information__main" ref={mainScrollRef}>
+            {!isLoading && podcastData ? (
+              <PodcastView
+                podcastData={{
+                  ...podcastData,
+                  likes: podcastContentEngagements?.likes || 0,
+                  dislikes: podcastContentEngagements?.dislikes || 0,
+                  contentRating: {
+                    isLikedByUser: isLiked,
+                    isDislikedByUser: isDisliked,
+                  },
+                }}
+                t={t}
+                language={i18n.language}
+                isTmpUser={isTmpUser}
+              />
+            ) : isFetched && !isLoading ? (
+              <h3 className="page__podcast-information__no-results">
+                {t("not_found")}
+              </h3>
+            ) : (
+              <Loading size="lg" />
+            )}
+          </div>
+          {renderSidebar()}
+        </div>
 
-      {!isMorePodcastsLoading && morePodcasts && morePodcasts.length > 0 && (
-        <Block classes="page__podcast-information__more-podcasts">
-          <Grid classes="page__podcast-information__more-podcasts__main-grid">
-            <GridItem md={8} lg={12} classes="more-podcasts__heading-item">
-              <h4>{t("more_podcasts")}</h4>
-            </GridItem>
-            {morePodcasts.map((podcast, index) => {
-              const { isLiked, isDisliked } = isLikedOrDislikedByUser({
-                contentType: "podcast",
-                contentData: podcast,
-                userEngagements: userContentEngagements,
-              });
-              // Podcast data is already processed in getSimilarPodcasts
-              const podcastData = podcast;
-
-              return (
-                <GridItem
-                  classes="page__podcast-information__more-podcasts-card"
-                  key={index}
-                >
-                  <CardMedia
-                    type="portrait"
-                    size="sm"
-                    style={{ gridColumn: "span 4" }}
-                    title={podcastData.title}
-                    image={podcastData.imageMedium || podcastData.imageSmall}
-                    description={podcastData.description}
-                    labels={podcastData.labels}
-                    creator={podcastData.creator}
-                    categoryName={podcastData.categoryName}
-                    contentType="podcasts"
-                    likes={podcastData.likes}
-                    dislikes={podcastData.dislikes}
-                    isLikedByUser={isLiked}
-                    isDislikedByUser={isDisliked}
-                    t={t}
-                    onClick={() => {
-                      navigate(
-                        `/information-portal/podcast/${
-                          podcastData.id
-                        }/${createArticleSlug(podcastData.title)}`
-                      );
-                      onPodcastClick();
-                    }}
-                  />
-                </GridItem>
-              );
-            })}
-          </Grid>
-        </Block>
-      )}
+        {!morePodcasts?.length &&
+          !isMorePodcastsLoading &&
+          isMorePodcastsFetched && (
+            <h3 className="page__podcast-information__no-results">
+              {t("no_results")}
+            </h3>
+          )}
+      </Block>
     </Page>
   );
 };
