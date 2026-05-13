@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
@@ -11,6 +11,7 @@ import {
 import { constructShareUrl, ThemeContext } from "@USupport-components-library/utils";
 
 import { useGetOrganizationById } from "#hooks";
+import { ReportOrganization } from "#backdrops";
 
 // const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
@@ -28,6 +29,7 @@ export const OrganizationOverview = ({ organizationId }) => {
     keyPrefix: "organization-overview",
   });
   const { theme } = useContext(ThemeContext);
+  const [isReportOpen, setIsReportOpen] = useState(false);
 
   const {
     data: organization,
@@ -56,9 +58,15 @@ export const OrganizationOverview = ({ organizationId }) => {
           organization={organization}
           t={t}
           handleCopyLink={handleCopyLink}
+          onReportClick={() => setIsReportOpen(true)}
           iconColor={theme === "dark" || theme === "highContrast" ? "#ededed" : "#66768D"}
         />
       )}
+      <ReportOrganization
+        isOpen={isReportOpen}
+        onClose={() => setIsReportOpen(false)}
+        organizationId={organizationId}
+      />
     </Block>
   );
 };

@@ -952,6 +952,7 @@
       "identity_issues": "Probleme de identitate",
       "illness_oncological_treatment_chronic_diseases": "Boală (tratament oncologic, boli cronice)",
       "other_situations": "Alte situații",
+      "report_inactive": "Raportează ca inactivă",
       "copy_link_success": "Link copiat în clipboard!",
       "description_label": "Despre mine"
     },
@@ -1688,6 +1689,15 @@
       "start_date": "Data de început",
       "end_date": "Data de sfârșit",
       "end_date_before_start_error": "Data de sfârșit trebuie să fie după data de început"
+    },
+    "organization-report": {
+      "heading": "Raportează această organizație",
+      "subheading": "Te rugăm să ne spui de ce raportezi această organizație.",
+      "message_label": "Detalii suplimentare (opțional)",
+      "message_placeholder": "Explică de ce raportezi această organizație—de exemplu ce ți se pare greșit, înșelător sau învechit.",
+      "confirm_button": "Trimite raportul",
+      "cancel_button": "Anulează",
+      "success_message": "Mulțumim. Raportul tău a fost primit."
     },
     "welcome": {
       "heading": "Bine ați venit la",

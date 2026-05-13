@@ -952,6 +952,7 @@
       "identity_issues": "Problemy tożsamościowe",
       "illness_oncological_treatment_chronic_diseases": "Choroba (leczenie onkologiczne, choroby przewlekłe)",
       "other_situations": "Inne sytuacje",
+      "report_inactive": "Zgłoś jako nieaktywną",
       "copy_link_success": "Link został skopiowany do schowka!",
       "description_label": "Opis"
     },
@@ -1688,6 +1689,15 @@
       "start_date": "Data rozpoczęcia",
       "end_date": "Data zakończenia",
       "end_date_before_start_error": "Data zakończenia musi być po dacie rozpoczęcia"
+    },
+    "organization-report": {
+      "heading": "Zgłoś tę organizację",
+      "subheading": "Prosimy, powiedz nam, dlaczego zgłaszasz tę organizację.",
+      "message_label": "Dodatkowe informacje (opcjonalnie)",
+      "message_placeholder": "Wyjaśnij, dlaczego zgłaszasz tę organizację—np. co wydaje się nieprawidłowe, mylące lub nieaktualne.",
+      "confirm_button": "Wyślij zgłoszenie",
+      "cancel_button": "Anuluj",
+      "success_message": "Dziękujemy. Twoje zgłoszenie zostało przyjęte."
     },
     "welcome": {
       "heading": "Witamy w",

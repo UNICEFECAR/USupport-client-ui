@@ -952,6 +952,7 @@
       "identity_issues": "Сәйкестік мәселелері",
       "illness_oncological_treatment_chronic_diseases": "Ауру (онкологиялық емдеу, созылмалы аурулар)",
       "other_situations": "Басқа жағдайлар",
+      "report_inactive": "Белсенді емес ретінде хабарлау",
       "copy_link_success": "Сілтеме алмасу буферіне көшірілді!",
       "description_label": ""
     },
@@ -1688,6 +1689,15 @@
       "start_date": "Басталу күні",
       "end_date": "Аяқталу күні",
       "end_date_before_start_error": "Аяқталу күні басталу күнінен кейін болуы керек"
+    },
+    "organization-report": {
+      "heading": "Бұл ұйымды шағымдау",
+      "subheading": "Осы ұйымды не үшін шағымдап жатқаныңызды айтыңыз.",
+      "message_label": "Қосымша мәліметтер (міндетті емес)",
+      "message_placeholder": "Осы ұйымды не үшін шағымдап жатқаныңызды түсіндіріңіз—мысалы, қандай ақпарат қате, адастыратын немесе ескірген сияқты.",
+      "confirm_button": "Шағым жіберу",
+      "cancel_button": "Бас тарту",
+      "success_message": "Рақмет. Шағымыңыз қабылданды."
     },
     "welcome": {
       "heading": "Қош келдіңіз",
