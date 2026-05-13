@@ -55,7 +55,6 @@ export * from "./useGetOrganizationMetadata.js";
 export * from "./useGetOrganizationById.js";
 export * from "./useGetIsPodcastsAndVideosActive.js";
 export * from "./useSendPlatformSuggestion.js";
-// Legacy exports (keeping for backward compatibility)
 export * from "./useGetBaselineAssessmentQuestions.js";
 export * from "./useCreateBaselineAssessment.js";
 export * from "./useAddBaselineAssessmentAnswer.js";
@@ -64,6 +63,7 @@ export * from "./useGetLatestBaselineAssessment.js";
 export * from "./useGetClientAnswersForBaselineAssessmentById.js";
 export * from "./useGetAssessmentResult.js";
 export * from "./useGenerateMoodTrackReport.js";
+export * from "./useCreateOrganizationReport.js";
 export * from "./useGetMoodTrackerRecommendations.js";
 export * from "./useAddCountryEvent.js";
 export * from "./useGetHasCompletedMoodTrackerEver.js";
