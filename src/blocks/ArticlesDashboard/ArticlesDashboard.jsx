@@ -17,9 +17,14 @@ import {
   getLikesAndDislikesForContent,
   isLikedOrDislikedByUser,
 } from "@USupport-components-library/utils";
-import { cmsSvc, adminSvc } from "@USupport-components-library/services";
+import { cmsSvc } from "@USupport-components-library/services";
 
-import { useGetUserContentEngagements, useRecommendedArticles } from "#hooks";
+import {
+  useGetUserContentEngagements,
+  useRecommendedArticles,
+  useArticlesDashboardCountryArticleIds,
+  useRomaniaPinnedArticlesDashboard,
+} from "#hooks";
 import { RootContext } from "#routes";
 
 import "./articles-dashboard.scss";
@@ -41,6 +46,7 @@ export const ArticlesDashboard = () => {
 
   const { isTmpUser } = useContext(RootContext);
   const country = localStorage.getItem("country");
+  const IS_RO = typeof country === "string" && country.toUpperCase() === "RO";
 
   // const showAgreGroups = true;
   const showAgreGroups = country !== "PL";
@@ -112,7 +118,7 @@ export const ArticlesDashboard = () => {
       onSuccess: (data) => {
         setSelectedAgeGroup((prev) => prev || data?.[0]);
       },
-    }
+    },
   );
 
   const getCategories = async () => {
@@ -127,7 +133,7 @@ export const ArticlesDashboard = () => {
           value: category.attributes.name,
           id: category.id,
           isSelected: false,
-        })
+        }),
       );
 
       setSelectedCategory(categoriesData[0]);
@@ -145,7 +151,7 @@ export const ArticlesDashboard = () => {
       onSuccess: (data) => {
         setCategories([...data]);
       },
-    }
+    },
   );
 
   //--------------------- Articles ----------------------//
@@ -155,7 +161,7 @@ export const ArticlesDashboard = () => {
     queryFn: async () => {
       const { likes, dislikes } = await getLikesAndDislikesForContent(
         articleIdsForRatings,
-        "article"
+        "article",
       );
 
       setArticlesLikes(likes);
@@ -166,20 +172,63 @@ export const ArticlesDashboard = () => {
     enabled: articleIdsForRatings.length > 0,
   });
 
-  const getArticlesIds = async () => {
-    // Request articles ids from the master DB based for website platform
-    const articlesIds = await adminSvc.getArticles();
-    if (usersLanguage === "en") {
-      setArticleIdsForRatings(articlesIds);
-    }
-    console.log(articlesIds, "articlesIds");
-    return articlesIds;
-  };
+  const articleIdsQuerry = useArticlesDashboardCountryArticleIds({
+    selectedAgeGroupId,
+    usersLanguage,
+    setArticleIdsForRatings,
+  });
 
-  const articleIdsQuerry = useQuery(
-    ["articleIds", selectedAgeGroupId],
-    getArticlesIds
-  );
+  const dashboardArticleSourcesReadyForPinnedCms = useMemo(() => {
+    if (
+      articleIdsQuerry.isLoading ||
+      !articleIdsQuerry.data?.length ||
+      categoriesQuery.isLoading ||
+      !categoriesQuery.data?.length
+    ) {
+      return false;
+    }
+    if (isTmpUser || shouldUseHardcodedAgeGroup) {
+      return true;
+    }
+    return Boolean(selectedAgeGroup?.id) && !ageGroupsQuery.isLoading;
+  }, [
+    articleIdsQuerry.isLoading,
+    articleIdsQuerry.data,
+    categoriesQuery.isLoading,
+    categoriesQuery.data,
+    isTmpUser,
+    shouldUseHardcodedAgeGroup,
+    selectedAgeGroup?.id,
+    ageGroupsQuery.isLoading,
+  ]);
+
+  const {
+    romaniaPinnedIdsLoading,
+    orderedPinnedStrapiIdsInPublishedPool,
+    showRomaniaPinnedArticlesOnly,
+    romanianDashboardUsesPinnedLayout,
+    pinnedArticlesCmsQuery,
+  } = useRomaniaPinnedArticlesDashboard({
+    country,
+    IS_RO,
+    usersLanguage,
+    articleIdsQuerry,
+    dashboardArticleSourcesReadyForPinnedCms,
+  });
+
+  useEffect(() => {
+    if (
+      !IS_RO ||
+      !pinnedArticlesCmsQuery.data?.length ||
+      usersLanguage !== "en"
+    ) {
+      return;
+    }
+    setArticleIdsForRatings((prev) => [
+      ...prev,
+      ...pinnedArticlesCmsQuery.data.map((a) => a.id),
+    ]);
+  }, [IS_RO, pinnedArticlesCmsQuery.data, usersLanguage]);
 
   const { data: articleCategoryIdsToShow } = useQuery(
     [
@@ -192,11 +241,11 @@ export const ArticlesDashboard = () => {
       cmsSvc.getArticleCategoryIds(
         usersLanguage,
         selectedAgeGroupId,
-        articleIdsQuerry.data
+        articleIdsQuerry.data,
       ),
     {
       enabled: !!articleIdsQuerry.data,
-    }
+    },
   );
 
   const categoriesToShow = useMemo(() => {
@@ -216,7 +265,7 @@ export const ArticlesDashboard = () => {
     const filtered = categories.filter(
       (category) =>
         articleCategoryIdsToShow.includes(category.id) ||
-        category.value === "all"
+        category.value === "all",
     );
 
     return filtered;
@@ -278,10 +327,11 @@ export const ArticlesDashboard = () => {
         articleIdsQuerry.data?.length > 0 &&
         !categoriesQuery.isLoading &&
         categoriesQuery.data?.length > 0 &&
-        (isTmpUser || shouldUseHardcodedAgeGroup),
+        (isTmpUser || shouldUseHardcodedAgeGroup) &&
+        !romanianDashboardUsesPinnedLayout,
 
       refetchOnWindowFocus: false,
-    }
+    },
   );
 
   const availableCategories = useMemo(() => {
@@ -296,9 +346,11 @@ export const ArticlesDashboard = () => {
   } = useRecommendedArticles({
     limit: 2, // Only show 2 articles
     ageGroupId: selectedAgeGroup?.id,
-    enabled: isTmpUser
-      ? false
-      : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
+    enabled:
+      !isTmpUser &&
+      selectedAgeGroup?.id &&
+      !ageGroupsQuery.isLoading &&
+      !romanianDashboardUsesPinnedLayout,
     categoryIdFilter: selectedCategory?.id || null,
     sortFilter: "read_count",
     availableCategories,
@@ -316,17 +368,65 @@ export const ArticlesDashboard = () => {
     }
   }, [usersLanguage, articles]);
 
-  const articlesToTransform = isTmpUser ? newestArticles : articles;
+  const articlesToTransform = useMemo(() => {
+    const base = isTmpUser ? newestArticles : articles;
+
+    if (!romanianDashboardUsesPinnedLayout) {
+      return base;
+    }
+
+    if (romaniaPinnedIdsLoading) {
+      return [];
+    }
+
+    if (!showRomaniaPinnedArticlesOnly) {
+      return [];
+    }
+
+    const cmsData = pinnedArticlesCmsQuery.data;
+    if (!Array.isArray(cmsData) || cmsData.length === 0) {
+      return [];
+    }
+
+    if (isTmpUser || shouldUseHardcodedAgeGroup) {
+      return cmsData.map((raw) => destructureArticleData(raw));
+    }
+    return cmsData.map((raw) => ({
+      data: { ...raw, id: raw.id },
+    }));
+  }, [
+    romanianDashboardUsesPinnedLayout,
+    romaniaPinnedIdsLoading,
+    showRomaniaPinnedArticlesOnly,
+    isTmpUser,
+    shouldUseHardcodedAgeGroup,
+    newestArticles,
+    articles,
+    pinnedArticlesCmsQuery.data,
+  ]);
+
+  const romaniaPinnedContentLoading =
+    romanianDashboardUsesPinnedLayout &&
+    (romaniaPinnedIdsLoading ||
+      !dashboardArticleSourcesReadyForPinnedCms ||
+      (orderedPinnedStrapiIdsInPublishedPool.length === 0 &&
+        (articleIdsQuerry.isLoading || articleIdsQuerry.isFetching)) ||
+      (orderedPinnedStrapiIdsInPublishedPool.length > 0 &&
+        pinnedArticlesCmsQuery.isFetching));
 
   // Transform articles data to match expected format
-  const transformedArticles = articlesToTransform
-    ?.slice(0, 2)
-    ?.map((article) => {
-      // If article already has direct properties, use them, otherwise use article.data
-      return article.data ? article.data : article;
-    });
+  const transformedArticles = useMemo(() => {
+    if (!articlesToTransform?.length) return [];
+    const source = showRomaniaPinnedArticlesOnly
+      ? articlesToTransform
+      : articlesToTransform.slice(0, 2);
+    return source.map((article) => (article.data ? article.data : article));
+  }, [articlesToTransform, showRomaniaPinnedArticlesOnly]);
 
-  const showLoading = isTmpUser ? newestArticlesLoading : isArticlesLoading;
+  const showLoading =
+    romaniaPinnedContentLoading ||
+    (!romanianDashboardUsesPinnedLayout &&
+      (isTmpUser ? newestArticlesLoading : isArticlesLoading));
 
   // Loading states
   const isContentLoading = showLoading;
@@ -337,8 +437,9 @@ export const ArticlesDashboard = () => {
 
   // UI conditions
   const shouldShowDashboard = hasCategoriesData;
-  const shouldShowNoResults =
-    (isReady || isNewestArticlesFetched) && !hasArticlesData;
+  const shouldShowNoResults = romanianDashboardUsesPinnedLayout
+    ? !romaniaPinnedContentLoading && !hasArticlesData
+    : (isReady || isNewestArticlesFetched) && !hasArticlesData;
 
   // Render helpers
   const renderHeading = () => (
@@ -407,8 +508,8 @@ export const ArticlesDashboard = () => {
             onClick={() => {
               navigate(
                 `/information-portal/article/${article.id}/${createArticleSlug(
-                  article.attributes.title
-                )}`
+                  article.attributes.title,
+                )}`,
               );
             }}
             classes="articles-dashboard__article-item__card-media"
