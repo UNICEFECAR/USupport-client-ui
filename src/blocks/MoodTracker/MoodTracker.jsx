@@ -242,6 +242,23 @@ export const MoodTracker = ({
     );
   };
 
+  const renderMascotContainer = (showGuideButton) => {
+    return (
+      <div className="mood-tracker__mascot-container">
+        <img
+          className="mood-tracker__mascot-container__image"
+          src={
+            theme === "dark" || theme === "highContrast"
+              ? mascotHappyPurpleFullLight
+              : mascotHappyPurpleFull
+          }
+          alt="Mascot"
+        />
+        {showGuideButton ? renderButton() : null}
+      </div>
+    );
+  };
+
   return (
     <React.Fragment>
       {IS_RO && (
@@ -286,23 +303,17 @@ export const MoodTracker = ({
                   </h3>
                 )}
               </div>
-              {width > 768 ? renderEmojiBox() : null}
             </div>
             {width <= 768 ? renderButton() : null}
           </div>
+          {width > 768 ? (
+            <div className="mood-tracker__rating-mascot-row">
+              {renderEmojiBox()}
+              {renderMascotContainer(true)}
+            </div>
+          ) : null}
           {width <= 768 ? renderEmojiBox() : null}
-          <div className="mood-tracker__mascot-container">
-            <img
-              className="mood-tracker__mascot-container__image"
-              src={
-                theme === "dark" || theme === "highContrast"
-                  ? mascotHappyPurpleFullLight
-                  : mascotHappyPurpleFull
-              }
-              alt="Mascot"
-            />
-            {width > 768 ? renderButton() : null}
-          </div>
+          {width <= 768 ? renderMascotContainer(false) : null}
         </div>
         <Modal
           heading={t("heading")}
