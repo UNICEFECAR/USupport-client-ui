@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import Joi from "joi";
 
 import { Backdrop, Textarea } from "@USupport-components-library/src";
+import { validate } from "@USupport-components-library/utils";
 
 import { useCreateOrganizationReport } from "#hooks";
 
@@ -20,11 +22,17 @@ export const ReportOrganization = ({ isOpen, onClose, organizationId }) => {
   });
 
   const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState({});
   const [submitError, setSubmitError] = useState(null);
+
+  const schema = Joi.object({
+    message: Joi.string().trim().min(1).label(t("message_error")),
+  });
 
   useEffect(() => {
     if (!isOpen) {
       setMessage("");
+      setErrors({});
       setSubmitError(null);
     }
   }, [isOpen]);
@@ -39,10 +47,15 @@ export const ReportOrganization = ({ isOpen, onClose, organizationId }) => {
   const handleConfirm = async () => {
     if (!organizationId) return;
     setSubmitError(null);
+
+    if ((await validate({ message }, schema, setErrors)) !== null) {
+      return;
+    }
+
     try {
       await reportMutation.mutateAsync({
         organizationId,
-        reason: message,
+        reason: message.trim(),
       });
     } catch {
       // Error surfaced via callback / submitError
@@ -58,7 +71,7 @@ export const ReportOrganization = ({ isOpen, onClose, organizationId }) => {
       text={t("subheading")}
       ctaLabel={t("confirm_button")}
       ctaHandleClick={handleConfirm}
-      isCtaDisabled={reportMutation.isLoading}
+      isCtaDisabled={reportMutation.isLoading || !message.trim()}
       isCtaLoading={reportMutation.isLoading}
       secondaryCtaLabel={t("cancel_button")}
       secondaryCtaHandleClick={onClose}
@@ -73,6 +86,7 @@ export const ReportOrganization = ({ isOpen, onClose, organizationId }) => {
           value={message}
           onChange={setMessage}
           size="md"
+          errorMessage={errors.message}
         />
       </div>
     </Backdrop>
