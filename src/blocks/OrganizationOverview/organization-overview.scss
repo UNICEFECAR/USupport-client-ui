@@ -1,12 +1,21 @@
 @import "@USupport-components-library/styles";
 
-.organization-overview {
-  margin: 0 auto;
-  margin-top: $spacing_3_2;
-  max-width: 120rem;
-  width: 100%;
+/* `.block` / `.container` use min-width ~34rem; allow shrinking on small phones */
+.block.organization-profile {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 
-  @media screen and (min-width: $screen_md) {
-    margin-top: $spacing_4_8;
+  > .container {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.organization-profile {
+  .organization-details__box {
+    margin-top: $spacing_2_4;
+    margin-bottom: $spacing_2_4;
   }
 }

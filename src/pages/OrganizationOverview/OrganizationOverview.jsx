@@ -6,7 +6,6 @@ import {
   Page,
   OrganizationOverview as OrganizationOverviewBlock,
 } from "#blocks";
-import { RadialCircle } from "@USupport-components-library/src";
 
 import "./organization-overview.scss";
 
@@ -37,10 +36,6 @@ export const OrganizationOverview = () => {
       heading={t("heading")}
       subheading={t("subheading")}
     >
-      <RadialCircle
-        color="purple"
-        classes="page__organization-overview__radial-circle"
-      />
       {organizationId && (
         <OrganizationOverviewBlock organizationId={organizationId} />
       )}
