@@ -22,8 +22,15 @@ body:has(.register-email-modal) {
       width: 100%;
       display: flex;
       flex-direction: column;
+      align-items: stretch;
       gap: $spacing_1_6;
       margin-top: $spacing_0_8;
+
+      & > .button {
+        flex: none;
+        width: 100%;
+        max-width: none;
+      }
     }
 
     &__submit-error {
@@ -31,7 +38,10 @@ body:has(.register-email-modal) {
     }
 
     &__login-cta {
+      align-self: stretch;
       margin-top: $spacing_0_8;
+      width: 100%;
+      max-width: none;
     }
   }
 }
