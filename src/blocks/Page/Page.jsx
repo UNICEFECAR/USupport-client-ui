@@ -466,7 +466,8 @@ export const Page = ({
   const hasPassedValidation = queryClient.getQueryData(["hasPassedValidation"]);
   const IS_RO_SUBDOMAIN =
     window.location.hostname === "romania.usupport.online" ||
-    window.location.hostname === "romania.staging.usupport.online";
+    window.location.hostname === "romania.staging.usupport.online" ||
+    window.location.hostname === "armenia.staging.usupport.online";
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(
     !hasPassedValidation && IS_RO_SUBDOMAIN,
