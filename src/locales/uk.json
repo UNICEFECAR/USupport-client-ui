@@ -223,6 +223,8 @@
       "message_error": "Ввести повідомлення",
       "email": "Електронна пошта",
       "button": "Надіслати повідомлення",
+      "close_button_label": "Close",
+      "report_issue_intro": "Before you submit this form, please check that your email address is spelled correctly.",
       "modal_title": "Твоє повідомлення відправлено",
       "modal_text": "Найближчим часом ми зв'яжемося з тобою",
       "modal_cta_label": "На головну сторінку",
@@ -282,6 +284,8 @@
       "register_redirect_button_label": "У мене немає облікового запису.",
       "modal_heading": "Перевірте електронну пошту",
       "modal_text": "Якщо ти зареєстрований/а на платформі, то отримаєш посилання для відновлення паролю.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Клієнт/ка",
       "heading": "Вітаємо в",
       "heading_modal": "Забули пароль?",
@@ -1680,7 +1684,9 @@
       "send_button_label": "Продовжити",
       "didnt_get_code": "Не отримав/ла коду?",
       "resend_code_button_label": "Повторно надіслати листа",
-      "seconds": "за {{seconds}} секунд"
+      "seconds": "за {{seconds}} секунд",
+      "report_issue_text": "Having trouble receiving the code?",
+      "report_issue_cta": "Report an issue"
     },
     "mood-track-report": {
       "heading": "Ваш звіт про відстеження настрою",
