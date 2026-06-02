@@ -223,6 +223,8 @@
       "message_error": "Παρακαλούμε εισαγάγετε το μήνυμά σας",
       "email": "Email",
       "button": "Αποστολή μηνύματος",
+      "close_button_label": "Close",
+      "report_issue_intro": "Before you submit this form, please check that your email address is spelled correctly.",
       "modal_title": "Το μήνυμά σας στάλθηκε με επιτυχία",
       "modal_text": "Θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν.",
       "modal_cta_label": "Επιστροφή στην Αρχική",
@@ -282,6 +284,8 @@
       "register_redirect_button_label": "Δεν έχω λογαριασμό",
       "modal_heading": "Ελέγξτε το email σας",
       "modal_text": "Εάν είστε εγγεγραμμένοι στην πλατφόρμα, θα λάβετε έναν σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασής σας.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Πελάτης",
       "heading": "Καλωσορίσατε στο",
       "heading_modal": "Ξεχάσατε τον κωδικό;",
@@ -1679,7 +1683,9 @@
       "send_button_label": "Αποστολή",
       "didnt_get_code": "Δεν λάβατε κωδικό;",
       "resend_code_button_label": "Επαναποστολή email",
-      "seconds": "σε {{seconds}} δευτερόλεπτα\n"
+      "seconds": "σε {{seconds}} δευτερόλεπτα\n",
+      "report_issue_text": "Having trouble receiving the code?",
+      "report_issue_cta": "Report an issue"
     },
     "mood-track-report": {
       "heading": "Η αναφορά καταγραφής της διάθεσής σας",

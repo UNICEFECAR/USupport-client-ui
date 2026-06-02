@@ -1,0 +1,26 @@
+@import "@USupport-components-library/styles";
+
+.report-issue-modal {
+  &__intro {
+    margin-top: $spacing_1_6;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_1_6;
+  }
+
+  .contact-form {
+    gap: $spacing_1_6;
+
+    &__email-input {
+      padding-top: $spacing_0_8;
+    }
+
+    &__subject,
+    &__message {
+      padding-top: $spacing_0_8;
+    }
+  }
+}
