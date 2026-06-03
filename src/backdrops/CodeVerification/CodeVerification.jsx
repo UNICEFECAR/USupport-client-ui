@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
@@ -44,6 +44,12 @@ export const CodeVerification = ({
   const [isCodeHidden, setIsCodeHidden] = useState(true);
   const [errors, setErrors] = useState({});
   const [isReportIssueOpen, setIsReportIssueOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setIsReportIssueOpen(false);
+    }
+  }, [isOpen]);
 
   const [code, setCode] = useState("");
 

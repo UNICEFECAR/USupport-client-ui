@@ -236,7 +236,8 @@
       "contact_reason_2_pl": "Problemă tehnică",
       "contact_reason_3_pl": "Plângere",
       "contact_reason_4_pl": "Altceva",
-      "contact_form": "Formular de contact"
+      "contact_form": "Formular de contact",
+      "technical_problem_label": "Problemă tehnică"
     },
     "select-provider": {
       "psychologist": "Psiholog",
