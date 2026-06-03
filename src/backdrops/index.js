@@ -13,6 +13,7 @@ export * from "./ScheduleConsultationGroup";
 export * from "./FilterQuestions";
 export * from "./CodeVerification";
 export * from "./MoodTrackReport";
+export * from "./ReportOrganization";
 export * from "./Welcome";
 export * from "./Authentication";
 export * from "./RegisterEmail";

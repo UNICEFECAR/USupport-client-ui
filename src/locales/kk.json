@@ -223,6 +223,8 @@
       "message_error": "Өтінеміз, хабарламаңызды енгізіңіз",
       "email": "Электронды пошта",
       "button": "Хабарламаны жіберу",
+      "close_button_label": "Close",
+      "report_issue_intro": "Before you submit this form, please check that your email address is spelled correctly.",
       "modal_title": "Хабарлама сәтті жіберілді",
       "modal_text": "Біз Сізге жақын арада хабарласамыз",
       "modal_cta_label": "Бас бетке оралу",
@@ -282,6 +284,8 @@
       "register_redirect_button_label": "Менде аккаунт жоқ",
       "modal_heading": "Электронды поштаңызды тексеріңіз",
       "modal_text": "Егер Сіз платформада тіркелген болсаңыз, құпия сөзді қалпына келтіруге сілтеме аласыз.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Клиент",
       "heading": "Қош келдіңіз, бұл - ",
       "heading_modal": "Құпия сөзді ұмыттыңыз ба?",
@@ -952,6 +956,7 @@
       "identity_issues": "Сәйкестік мәселелері",
       "illness_oncological_treatment_chronic_diseases": "Ауру (онкологиялық емдеу, созылмалы аурулар)",
       "other_situations": "Басқа жағдайлар",
+      "report_inactive": "Хабарлау",
       "copy_link_success": "Сілтеме алмасу буферіне көшірілді!",
       "description_label": ""
     },
@@ -1678,7 +1683,9 @@
       "send_button_label": "Жіберу",
       "didnt_get_code": "Кодты алған жоқсыз ба?",
       "resend_code_button_label": "Хатты қайта жіберу",
-      "seconds": " {{seconds}} секундтан кейін"
+      "seconds": " {{seconds}} секундтан кейін",
+      "report_issue_text": "Having trouble receiving the code?",
+      "report_issue_cta": "Report an issue"
     },
     "mood-track-report": {
       "heading": "Көңіл-күйді бақылау есебіңіз",
@@ -1688,6 +1695,16 @@
       "start_date": "Басталу күні",
       "end_date": "Аяқталу күні",
       "end_date_before_start_error": "Аяқталу күні басталу күнінен кейін болуы керек"
+    },
+    "organization-report": {
+      "heading": "Бұл ұйымды шағымдау",
+      "subheading": "Осы ұйымды не үшін шағымдап жатқаныңызды айтыңыз.",
+      "message_label": "Қосымша мәліметтер *",
+      "message_error": "Есептің мәліметтерін енгізіңіз.",
+      "message_placeholder": "Осы ұйымды не үшін шағымдап жатқаныңызды түсіндіріңіз—мысалы, қандай ақпарат қате, адастыратын немесе ескірген сияқты.",
+      "confirm_button": "Шағым жіберу",
+      "cancel_button": "Бас тарту",
+      "success_message": "Рақмет. Шағымыңыз қабылданды."
     },
     "welcome": {
       "heading": "Қош келдіңіз",

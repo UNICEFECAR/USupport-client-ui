@@ -223,6 +223,8 @@
       "message_error": "Παρακαλούμε εισαγάγετε το μήνυμά σας",
       "email": "Email",
       "button": "Αποστολή μηνύματος",
+      "close_button_label": "Close",
+      "report_issue_intro": "Before you submit this form, please check that your email address is spelled correctly.",
       "modal_title": "Το μήνυμά σας στάλθηκε με επιτυχία",
       "modal_text": "Θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν.",
       "modal_cta_label": "Επιστροφή στην Αρχική",
@@ -282,6 +284,8 @@
       "register_redirect_button_label": "Δεν έχω λογαριασμό",
       "modal_heading": "Ελέγξτε το email σας",
       "modal_text": "Εάν είστε εγγεγραμμένοι στην πλατφόρμα, θα λάβετε έναν σύνδεσμο για να επαναφέρετε τον κωδικό πρόσβασής σας.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Πελάτης",
       "heading": "Καλωσορίσατε στο",
       "heading_modal": "Ξεχάσατε τον κωδικό;",
@@ -952,6 +956,7 @@
       "identity_issues": "Ζητήματα ταυτότητας",
       "illness_oncological_treatment_chronic_diseases": "Ασθένεια (ογκολογική θεραπεία, χρόνιες παθήσεις)",
       "other_situations": "Άλλες καταστάσεις",
+      "report_inactive": "Αναφορά",
       "copy_link_success": "Ο σύνδεσμος αντιγράφηκε στο πρόχειρο!",
       "description_label": ""
     },
@@ -1678,7 +1683,9 @@
       "send_button_label": "Αποστολή",
       "didnt_get_code": "Δεν λάβατε κωδικό;",
       "resend_code_button_label": "Επαναποστολή email",
-      "seconds": "σε {{seconds}} δευτερόλεπτα\n"
+      "seconds": "σε {{seconds}} δευτερόλεπτα\n",
+      "report_issue_text": "Having trouble receiving the code?",
+      "report_issue_cta": "Report an issue"
     },
     "mood-track-report": {
       "heading": "Η αναφορά καταγραφής της διάθεσής σας",
@@ -1688,6 +1695,16 @@
       "start_date": "Ημερομηνία έναρξης",
       "end_date": "Ημερομηνία λήξης",
       "end_date_before_start_error": "Η ημερομηνία λήξης πρέπει να είναι μετά την ημερομηνία έναρξης"
+    },
+    "organization-report": {
+      "heading": "Αναφορά αυτού του οργανισμού",
+      "subheading": "Παρακαλούμε πείτε μας γιατί υποβάλλετε αναφορά για αυτόν τον οργανισμό.",
+      "message_label": "Περαιτέρω λεπτομέρειες *",
+      "message_error": "Παρακαλούμε εισαγάγετε λεπτομέρειες για την αναφορά σας.",
+      "message_placeholder": "Εξηγήστε γιατί υποβάλλετε αναφορά για αυτόν τον οργανισμό—π.χ. τι φαίνεται λανθασμένο, παραπλαντικό ή ξεπερασμένο.",
+      "confirm_button": "Υποβολή αναφοράς",
+      "cancel_button": "Ακύρωση",
+      "success_message": "Ευχαριστούμε. Η αναφορά σας ελήφθη."
     },
     "welcome": {
       "heading": "Καλώς ήρθατε στο",

@@ -28,6 +28,7 @@ export const useRecommendedArticles = ({
   categoryIdFilter = null,
   searchValue = "",
   availableCategories = [],
+  enabled = true,
 }) => {
   const { i18n } = useTranslation();
 
@@ -127,6 +128,12 @@ export const useRecommendedArticles = ({
   // MAIN PIPELINE
   // ----------------------------------
   useEffect(() => {
+    if (!enabled) {
+      resetAll();
+      setInitializing(false);
+      setPipelineLoading(false);
+      return;
+    }
     if (loadingCountry || loadingInteractions) return;
     if (!countryArticles) return;
 
@@ -263,6 +270,7 @@ export const useRecommendedArticles = ({
     availableCategories,
     countryArticles,
     interactions,
+    enabled,
   ]);
 
   // ----------------------------------
@@ -284,18 +292,24 @@ export const useRecommendedArticles = ({
     }
   };
 
-  const isReady = !pipelineLoading && !loadingCountry && !loadingInteractions;
+  const isReady =
+    !enabled ||
+    (!pipelineLoading && !loadingCountry && !loadingInteractions);
 
   return {
-    articles: paged,
+    articles: enabled ? paged : [],
     total: merged.length,
     hasMore: paged.length < merged.length,
     loading:
-      initializing || pipelineLoading || loadingCountry || loadingInteractions,
+      enabled &&
+      (initializing ||
+        pipelineLoading ||
+        loadingCountry ||
+        loadingInteractions),
     loadMore,
     refetch: resetAll,
     isReady,
-    readArticleIds: readIds,
+    readArticleIds: enabled ? readIds : [],
     stage1Count: stage1.length,
     stage2Count: stage2.length,
     stage3Count: stage3.length,

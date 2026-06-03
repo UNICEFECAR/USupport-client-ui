@@ -30,4 +30,15 @@
       margin: 0 $spacing_0_4;
     }
   }
+
+  &__report-issue-container {
+    margin-top: $spacing_2_0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &__button {
+      margin-left: $spacing_0_4;
+    }
+  }
 }

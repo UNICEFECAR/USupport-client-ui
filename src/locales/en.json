@@ -223,6 +223,8 @@
       "message_error": "Please enter your message",
       "email": "Email",
       "button": "Send Message",
+      "close_button_label": "Close",
+      "report_issue_intro": "Before you submit this form, please check that your email address is spelled correctly.",
       "modal_title": "Your message was successfully sent",
       "modal_text": "We will get back to you as soon as possible",
       "modal_cta_label": "Go back to Home",
@@ -282,6 +284,8 @@
       "register_redirect_button_label": "I don’t have an account",
       "modal_heading": "Check your email",
       "modal_text": "If you are registered in the platform you will receive a link to reset your password.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Client",
       "heading": "Welcome to",
       "heading_modal": "Forgot password",
@@ -958,6 +962,7 @@
       "identity_issues": "Identity issues",
       "illness_oncological_treatment_chronic_diseases": "Illness (oncological treatment, chronic diseases)",
       "other_situations": "Other situations",
+      "report_inactive": "Report",
       "copy_link_success": "Link copied to clipboard!",
       "description_label": ""
     },
@@ -1688,7 +1693,9 @@
       "send_button_label": "Send",
       "didnt_get_code": "Didn’t get code?",
       "resend_code_button_label": "Resend email",
-      "seconds": " in {{seconds}} seconds"
+      "seconds": " in {{seconds}} seconds",
+      "report_issue_text": "Having trouble receiving the code?",
+      "report_issue_cta": "Report an issue"
     },
     "mood-track-report": {
       "heading": "Your mood tracking report",
@@ -1698,6 +1705,16 @@
       "start_date": "Start date",
       "end_date": "End date",
       "end_date_before_start_error": "End date must be after start date"
+    },
+    "organization-report": {
+      "heading": "Report this organization",
+      "subheading": "Please tell us why you are reporting this organization.",
+      "message_label": "Further details *",
+      "message_error": "Please enter details about your report.",
+      "message_placeholder": "Explain why you are reporting this organization—for example what seems wrong, misleading, or out of date.",
+      "confirm_button": "Submit report",
+      "cancel_button": "Cancel",
+      "success_message": "Thank you. Your report has been received."
     },
     "user-guide": {
       "heading": "Do you want to know more about:",

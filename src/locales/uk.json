@@ -223,6 +223,8 @@
       "message_error": "Ввести повідомлення",
       "email": "Електронна пошта",
       "button": "Надіслати повідомлення",
+      "close_button_label": "Close",
+      "report_issue_intro": "Before you submit this form, please check that your email address is spelled correctly.",
       "modal_title": "Твоє повідомлення відправлено",
       "modal_text": "Найближчим часом ми зв'яжемося з тобою",
       "modal_cta_label": "На головну сторінку",
@@ -282,6 +284,8 @@
       "register_redirect_button_label": "У мене немає облікового запису.",
       "modal_heading": "Перевірте електронну пошту",
       "modal_text": "Якщо ти зареєстрований/а на платформі, то отримаєш посилання для відновлення паролю.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Клієнт/ка",
       "heading": "Вітаємо в",
       "heading_modal": "Забули пароль?",
@@ -954,6 +958,7 @@
       "identity_issues": "Проблеми ідентичності",
       "illness_oncological_treatment_chronic_diseases": "Хвороба (онкологічне лікування, хронічні захворювання)",
       "other_situations": "Інші ситуації",
+      "report_inactive": "Повідомити",
       "copy_link_success": "Посилання скопійовано до буфера обміну!",
       "description_label": "Опис"
     },
@@ -1680,7 +1685,9 @@
       "send_button_label": "Продовжити",
       "didnt_get_code": "Не отримав/ла коду?",
       "resend_code_button_label": "Повторно надіслати листа",
-      "seconds": "за {{seconds}} секунд"
+      "seconds": "за {{seconds}} секунд",
+      "report_issue_text": "Having trouble receiving the code?",
+      "report_issue_cta": "Report an issue"
     },
     "mood-track-report": {
       "heading": "Ваш звіт про відстеження настрою",
@@ -1706,6 +1713,16 @@
       "yes": "Так",
       "no": "Ні",
       "dont_know": "Я не знаю, чи це терміново"
+    },
+    "organization-report": {
+      "heading": "Поскаржитися на цю організацію",
+      "subheading": "Будь ласка, напишіть, чому ви скаржитеся на цю організацію.",
+      "message_label": "Додаткові деталі *",
+      "message_error": "Вкажіть деталі скарги.",
+      "message_placeholder": "Поясніть, чому ви скаржитеся на цю організацію—наприклад, що здається неправильним, оманливим або застарілим.",
+      "confirm_button": "Надіслати скаргу",
+      "cancel_button": "Скасувати",
+      "success_message": "Дякуємо. Ваше звернення прийнято."
     },
     "welcome": {
       "heading": "Ласкаво просимо до",

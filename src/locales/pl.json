@@ -223,6 +223,8 @@
       "message_error": "Wprowadź wiadomość",
       "email": "Email",
       "button": "Wyślij wiadomość",
+      "close_button_label": "Close",
+      "report_issue_intro": "Przed wysłaniem formularza upewnij się, że adres e-mail jest wpisany poprawnie.",
       "modal_title": "Twoja wiadomość została pomyślnie wysłana",
       "modal_text": "Skontaktujemy się z Tobą tak szybko, jak to możliwe",
       "modal_cta_label": "Wróć do strony głównej",
@@ -282,6 +284,8 @@
       "register_redirect_button_label": "Nie mam konta",
       "modal_heading": "Sprawdź swoją skrzynkę email",
       "modal_text": "Jeśli jesteś zarejestrowany na platformie, otrzymasz link do zresetowania hasła.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Klient/ka",
       "heading": "Witamy w",
       "heading_modal": "Zapomniałeś hasła?",
@@ -954,6 +958,7 @@
       "identity_issues": "Problemy tożsamościowe",
       "illness_oncological_treatment_chronic_diseases": "Choroba (leczenie onkologiczne, choroby przewlekłe)",
       "other_situations": "Inne sytuacje",
+      "report_inactive": "Zgłoś",
       "copy_link_success": "Link został skopiowany do schowka!",
       "description_label": "Opis"
     },
@@ -1680,7 +1685,9 @@
       "send_button_label": "Kontynuuj",
       "didnt_get_code": "Nie otrzymałeś kodu?",
       "resend_code_button_label": "Wyślij ponownie wiadomość email",
-      "seconds": "za {{seconds}} sekund"
+      "seconds": "za {{seconds}} sekund",
+      "report_issue_text": "Masz problemy z rejestracją? Nie wahaj się z nami skontaktować.",
+      "report_issue_cta": "Skontaktuj się z nami"
     },
     "mood-track-report": {
       "heading": "Twój raport śledzenia nastroju",
@@ -1690,6 +1697,16 @@
       "start_date": "Data rozpoczęcia",
       "end_date": "Data zakończenia",
       "end_date_before_start_error": "Data zakończenia musi być po dacie rozpoczęcia"
+    },
+    "organization-report": {
+      "heading": "Zgłoś tę organizację",
+      "subheading": "Prosimy, powiedz nam, dlaczego zgłaszasz tę organizację.",
+      "message_label": "Dodatkowe informacje *",
+      "message_error": "Podaj szczegóły zgłoszenia.",
+      "message_placeholder": "Wyjaśnij, dlaczego zgłaszasz tę organizację—np. co wydaje się nieprawidłowe, mylące lub nieaktualne.",
+      "confirm_button": "Wyślij zgłoszenie",
+      "cancel_button": "Anuluj",
+      "success_message": "Dziękujemy. Twoje zgłoszenie zostało przyjęte."
     },
     "user-guide": {
       "heading": "Chcesz dowiedzieć się więcej o:",

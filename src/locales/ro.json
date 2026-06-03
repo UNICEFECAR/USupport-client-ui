@@ -223,6 +223,8 @@
       "message_error": "Vă rugăm să introduceți mesajul",
       "email": "Email",
       "button": "Trimiteți mesajul",
+      "close_button_label": "Close",
+      "report_issue_intro": "Before you submit this form, please check that your email address is spelled correctly.",
       "modal_title": "Mesajul dvs. a fost trimis",
       "modal_text": "Vă vom răspunde cât mai curând posibil",
       "modal_cta_label": "Înapoi acasă",
@@ -282,6 +284,8 @@
       "register_redirect_button_label": "Nu am cont",
       "modal_heading": "Verificați e-mailul",
       "modal_text": "Dacă sunteți înregistrat în platformă, veți primi un link pentru a vă reseta parola.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Client",
       "heading": "Bine ați venit la",
       "heading_modal": "Ați uitat parola?",
@@ -952,6 +956,7 @@
       "identity_issues": "Probleme de identitate",
       "illness_oncological_treatment_chronic_diseases": "Boală (tratament oncologic, boli cronice)",
       "other_situations": "Alte situații",
+      "report_inactive": "Raportează",
       "copy_link_success": "Link copiat în clipboard!",
       "description_label": "Despre mine"
     },
@@ -1678,7 +1683,9 @@
       "send_button_label": "Trimiteți",
       "didnt_get_code": "Nu ați primit codul??",
       "resend_code_button_label": "Retrimiteți e-mail",
-      "seconds": " în {{seconds}} secunde"
+      "seconds": " în {{seconds}} secunde",
+      "report_issue_text": "Having trouble receiving the code?",
+      "report_issue_cta": "Report an issue"
     },
     "mood-track-report": {
       "heading": "Raportul tău de monitorizare a dispoziției",
@@ -1688,6 +1695,16 @@
       "start_date": "Data de început",
       "end_date": "Data de sfârșit",
       "end_date_before_start_error": "Data de sfârșit trebuie să fie după data de început"
+    },
+    "organization-report": {
+      "heading": "Raportează această organizație",
+      "subheading": "Te rugăm să ne spui de ce raportezi această organizație.",
+      "message_label": "Detalii suplimentare *",
+      "message_error": "Introduceți detaliile raportului.",
+      "message_placeholder": "Explică de ce raportezi această organizație—de exemplu ce ți se pare greșit, înșelător sau învechit.",
+      "confirm_button": "Trimite raportul",
+      "cancel_button": "Anulează",
+      "success_message": "Mulțumim. Raportul tău a fost primit."
     },
     "welcome": {
       "heading": "Bine ați venit la",

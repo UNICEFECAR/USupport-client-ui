@@ -223,6 +223,8 @@
       "message_error": "Пожалуйста, введите свое сообщение",
       "email": "Электронная почта",
       "button": "Отправить сообщение",
+      "close_button_label": "Close",
+      "report_issue_intro": "Before you submit this form, please check that your email address is spelled correctly.",
       "modal_title": "Ваше сообщение было успешно отправлено",
       "modal_text": "Мы свяжемся с Вами в самое ближайшее время",
       "modal_cta_label": "Вернуться на главную страницу",
@@ -282,6 +284,8 @@
       "register_redirect_button_label": "У меня нет аккаунта",
       "modal_heading": "Проверьте свою электронную почту",
       "modal_text": "Если Вы зарегистрированы на платформе, Вы получите ссылку для сброса Вашего пароля.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Клиент",
       "heading": "Добро пожаловать в",
       "heading_modal": "Забыли пароль?",
@@ -952,6 +956,7 @@
       "identity_issues": "Проблемы идентичности",
       "illness_oncological_treatment_chronic_diseases": "Заболевание (онкологическое лечение, хронические болезни)",
       "other_situations": "Другие ситуации",
+      "report_inactive": "Сообщить",
       "copy_link_success": "Ссылка скопирована в буфер!",
       "description_label": ""
     },
@@ -1678,7 +1683,9 @@
       "send_button_label": "Послать",
       "didnt_get_code": "Не получили код?",
       "resend_code_button_label": "Отправить письмо повторно",
-      "seconds": " через {{seconds}} секунд"
+      "seconds": " через {{seconds}} секунд",
+      "report_issue_text": "Having trouble receiving the code?",
+      "report_issue_cta": "Report an issue"
     },
     "mood-track-report": {
       "heading": "Ваш отчет об отслеживании настроения",
@@ -1688,6 +1695,16 @@
       "start_date": "Дата начала",
       "end_date": "Дата окончания",
       "end_date_before_start_error": "Дата окончания должна быть позже даты начала"
+    },
+    "organization-report": {
+      "heading": "Пожаловаться на эту организацию",
+      "subheading": "Пожалуйста, укажите, почему вы сообщаете об этой организации.",
+      "message_label": "Дополнительные сведения *",
+      "message_error": "Укажите подробности жалобы.",
+      "message_placeholder": "Объясните, почему вы сообщаете об этой организации—например, что кажется неверным, вводящим в заблуждение или устаревшим.",
+      "confirm_button": "Отправить жалобу",
+      "cancel_button": "Отмена",
+      "success_message": "Спасибо. Ваше обращение принято."
     },
     "welcome": {
       "heading": "Добро пожаловать в",
