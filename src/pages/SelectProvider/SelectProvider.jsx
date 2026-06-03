@@ -11,9 +11,17 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { RadialCircle, ButtonWithIcon } from "@USupport-components-library/src";
-import { clientSvc, countrySvc } from "@USupport-components-library/services";
+import {
+  clientSvc,
+  countrySvc,
+  languageSvc,
+} from "@USupport-components-library/services";
 
-import { useGetProvidersData, useError, useCheckActiveCampaign } from "#hooks";
+import {
+  useGetProvidersData,
+  useError,
+  useCheckActiveCampaign,
+} from "#hooks";
 import { FilterProviders } from "#backdrops";
 import { RootContext } from "#routes";
 import { Page, SelectProvider as SelectProviderBlock } from "#blocks";
@@ -44,6 +52,16 @@ export const SelectProvider = () => {
     useContext(RootContext);
 
   const { data: isKzCountry } = useQuery(["country-min-price"], fetchCountry);
+  const { data: languages } = useQuery(["languages"], async () => {
+    const res = await languageSvc.getActiveLanguages();
+    const data =
+      res.data?.map((x) => ({
+        language_id: x.language_id,
+        alpha2: x.alpha2,
+        name: x.name === "English" ? "English" : `${x.name} (${x.local_name})`,
+      })) || [];
+    return data.sort((a, b) => a.name.localeCompare(b.name));
+  });
   const { data: hasActiveCampaign, isLoading: isActiveCampaignLoading } =
     useCheckActiveCampaign(!!selectedCountry?.hasCoupons);
   const canUseCoupons =
@@ -236,14 +254,6 @@ export const SelectProvider = () => {
     onSuccess,
     selectedBillingType
   );
-  const [providersData, setProvidersData] = useState();
-
-  useEffect(() => {
-    if (providersQuery.data) {
-      setProvidersData(providersQuery.data.pages.flat());
-    }
-  }, [providersQuery.data]);
-
   const closeFilter = () => setIsFilterOpen(false);
   const handleFilterClick = () => {
     setIsFilterOpen(true);
@@ -256,17 +266,6 @@ export const SelectProvider = () => {
 
     closeFilter();
   };
-
-  const providerLanguages = providersQuery.data?.pages
-    .flat()
-    .map((x) => x.languages)
-    .flat()
-    ?.reduce((acc, curr) => {
-      if (!acc.some((y) => y.language_id === curr.language_id)) {
-        acc.push(curr);
-      }
-      return acc;
-    }, []);
 
   return (
     <Page
@@ -297,7 +296,6 @@ export const SelectProvider = () => {
       }
     >
       <SelectProviderBlock
-        providers={providersData}
         activeCoupon={effectiveActiveCoupon}
         setActiveCoupon={setActiveCoupon}
         urlCoupon={urlCoupon}
@@ -323,7 +321,7 @@ export const SelectProvider = () => {
         allFilters={allFilters}
         setAllFilters={setAllFilters}
         isToggleDisabled={isKzCountry}
-        languages={providerLanguages}
+        languages={languages || []}
         initialFilters={initialFilters}
       />
     </Page>

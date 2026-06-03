@@ -116,7 +116,11 @@ export default function useGetProvidersData(
       formattedData.push(formattedProvider);
     }
     // Return only the providers that have available slot
-    return formattedData.filter((x) => x.earliestAvailableSlot);
+    const providers = formattedData.filter((x) => x.earliestAvailableSlot);
+    return {
+      providers,
+      hasMore: data.length >= providersLimit,
+    };
   };
   // Determine if the query should be enabled
   // For coupon billing type, only fetch if there's an active coupon
@@ -134,7 +138,7 @@ export default function useGetProvidersData(
     fetchProvidersData,
     {
       getNextPageParam: (lastPage, pages) => {
-        if (lastPage.length === 0) {
+        if (!lastPage.hasMore) {
           return undefined;
         }
         return pages.length + 1;
