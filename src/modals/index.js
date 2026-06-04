@@ -14,3 +14,4 @@ export * from "./HowItWorksMoodTrack";
 export * from "./LeaveConsultation";
 export * from "./HowItWorksBA";
 export * from './UserGuideModal';
+export * from "./ReportIssue";

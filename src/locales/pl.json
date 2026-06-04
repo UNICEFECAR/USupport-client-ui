@@ -14,7 +14,7 @@
       "footer_7": "Ustawienia plików cookie",
       "footer_8": "Najczęściej zadawane pytania",
       "emergency_button": "Centrum SOS",
-      "button_text": "Przejdź do aplikacji",
+      "button_text": "Zaloguj/Zarejestruj się",
       "contact_us": "Skontaktuj się z nami",
       "your_profile_text": "Twój profil",
       "password_placeholder": "Hasło",
@@ -223,6 +223,8 @@
       "message_error": "Wprowadź wiadomość",
       "email": "Email",
       "button": "Wyślij wiadomość",
+      "close_button_label": "Close",
+      "report_issue_intro": "Przed wysłaniem formularza upewnij się, że adres e-mail jest wpisany poprawnie.",
       "modal_title": "Twoja wiadomość została pomyślnie wysłana",
       "modal_text": "Skontaktujemy się z Tobą tak szybko, jak to możliwe",
       "modal_cta_label": "Wróć do strony głównej",
@@ -231,6 +233,7 @@
       "contact_reason_3": "Jestem klientem i mam problem techniczny",
       "contact_reason_4": "Coś innego",
       "contact_form": "Formularz kontaktowy",
+      "technical_problem_label": "Problem techniczny",
       "contact_reason_1_pl": "Informacje o uSupport",
       "contact_reason_2_pl": "Problem techniczny",
       "contact_reason_3_pl": "Skarga",
@@ -282,6 +285,8 @@
       "register_redirect_button_label": "Nie mam konta",
       "modal_heading": "Sprawdź swoją skrzynkę email",
       "modal_text": "Jeśli jesteś zarejestrowany na platformie, otrzymasz link do zresetowania hasła.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Klient/ka",
       "heading": "Witamy w",
       "heading_modal": "Zapomniałeś hasła?",
@@ -290,7 +295,6 @@
     "consultations": {
       "upcoming_tab_label": "Nadchodzące",
       "past_tab_label": "Wcześniejsze",
-      "schedule_button_label": "Zaplanuj konsultację",
       "sunday": "Niedz.",
       "monday": "Pon.",
       "tuesday": "Wt.",
@@ -306,6 +310,7 @@
       "edit": "Edytuj",
       "details": "Zobacz szczegóły",
       "active": "Teraz",
+      "live": "Na żywo",
       "reject": "Odrzuć sugestię",
       "accept": "Akceptuj konsultację",
       "cancel_consultation": "Anuluj konsultację",
@@ -316,9 +321,12 @@
       "free": "Bezpłatne",
       "coupon": "Kupon",
       "join_button_label_tooltip": "Możesz dołączyć do konsultacji 5 minut przed rozpoczęciem",
+      "suggestion_expired": "This consultation suggestion can no longer be accepted as it is less than 24 hours before the booking time",
+      "schedule_button_label": "Zaplanuj konsultację",
       "psychologist": "Psycholog/żka",
       "psychiatrist": "Psychiatra",
-      "psychotherapist": "Psychoterapeuta/ka"
+      "psychotherapist": "Psychoterapeuta/ka",
+      "user_guide": ""
     },
     "login": {
       "email_label": "Email / token dostępu",
@@ -344,20 +352,20 @@
     "articles": {
       "heading": "Wiedza",
       "no_results": "Nie znaleziono wyników",
-      "no_results_heading": "Nie znaleziono nic dla „{{query}}”",
-      "no_results_line1": "Spróbuj zmienić wyszukiwanie lub przejrzyj poniższe tematy.",
-      "no_results_line2": "Możesz też zresetować filtry, aby zobaczyć więcej wyników.",
-      "reset_filters": "Resetuj filtry",
-      "browse_all_articles": "Przeglądaj wszystkie artykuły",
-      "no_results_image_alt": "Ilustracja: brak wyników wyszukiwania",
       "could_not_load_content": "Brak wyników dla aktualnie wybranego kraju i języka.",
-      "could_not_load_hint": "Możesz zmienić kraj lub język w menu albo sprawdzić ponownie później — nowe materiały pojawiają się regularnie.",
       "all": "Wszystkie",
       "read_more_button": "Czytaj więcej",
       "min_read": "min. czytania",
       "by": "Przez {{creator}}",
       "number_of_more_options": "jeszcze {{count}}",
       "read": "Przeczytane",
+      "no_results_heading": "Nie znaleziono nic dla „{{query}}”",
+      "no_results_line1": "Spróbuj zmienić wyszukiwanie lub przejrzyj poniższe tematy.",
+      "no_results_line2": "Możesz też zresetować filtry, aby zobaczyć więcej wyników.",
+      "reset_filters": "Resetuj filtry",
+      "browse_all_articles": "Przeglądaj wszystkie artykuły",
+      "no_results_image_alt": "Ilustracja: brak wyników wyszukiwania",
+      "could_not_load_hint": "Możesz zmienić kraj lub język w menu albo sprawdzić ponownie później — nowe materiały pojawiają się regularnie.",
       "grid_toggle_featured": "Układ wyróżniony",
       "grid_toggle_compact": "Układ kompaktowy"
     },
@@ -386,7 +394,6 @@
       "pl_text": "uSupport to platforma zdrowia psychicznego i dobrego samopoczucia przeznaczona dla młodych osób (16-24)"
     },
     "register-email": {
-      "heading": "Witamy w",
       "email_error": "Wprowadź poprawny adres email",
       "password_error": "Hasło powinno zawierać co najmniej 8 znaków, 1 wielką literę, 1 małą literę i 1 cyfrę.",
       "email_label": "Email *",
@@ -403,7 +410,8 @@
       "login_button_label": "Już posiadam konto",
       "confirm_password_label": "Potwierdź hasło *",
       "password_match_error": "Pola Hasło i Potwierdź hasło nie są zgodne",
-      "age_terms_agreement_text_1": "Mam ponad {{age}} lat"
+      "age_terms_agreement_text_1": "Mam ponad {{age}} lat",
+      "heading": "Witamy w"
     },
     "privacy-policy": {
       "no_results": "Brak wyników dla wybranego kraju i języka."
@@ -542,6 +550,7 @@
       "edit": "Edytuj",
       "details": "Zobacz szczegóły",
       "active": "Teraz",
+      "live": "Na żywo",
       "reject": "Odrzuć sugestię",
       "accept": "Zaakceptuj konsultację",
       "cancel_consultation": "Anuluj konsultację",
@@ -563,7 +572,6 @@
       "sad": "Smutny/a",
       "depressed": "Przygnębiony/a",
       "worried": "Zmartwiony/a",
-      "history": "Historia",
       "heading": "Jak się dziś czujesz?",
       "mood_tracker": "Monitor nastroju",
       "additional_comment_placeholder": "Co sprawiło, że tak się poczułeś/aś?",
@@ -574,6 +582,7 @@
       "recommendations": "Rekomendacje",
       "recommendations_text": "Chcesz zobaczyć wykres swojego nastroju i polecane treści?",
       "check_out": "Zobacz",
+      "history": "Historia",
       "mood_tracker_long": "Przeanalizuj swój dziennik nastroju",
       "welcome-heading": "Welcome",
       "user_guide": "User Guide",
@@ -724,19 +733,6 @@
       "try_again_button_label": "Spróbuj ponownie"
     },
     "mood-track-history": {
-      "all": "Wszystkie",
-      "month_1": "Sty",
-      "month_2": "Lut",
-      "month_3": "Mar",
-      "month_4": "Kwi",
-      "month_5": "Maj",
-      "month_6": "Cze",
-      "month_7": "Lip",
-      "month_8": "Sie",
-      "month_9": "Wrz",
-      "month_10": "Paź",
-      "month_11": "Lis",
-      "month_12": "Gru",
       "happy": "Szczęśliwy/a",
       "good": "Zadowolony/a",
       "sad": "Smutny/a",
@@ -759,6 +755,19 @@
       "by": "autor: {{creator}}",
       "min_read": "min czytania",
       "no_recommendations": "Nie znaleziono rekomendacji",
+      "all": "Wszystkie",
+      "month_1": "Sty",
+      "month_2": "Lut",
+      "month_3": "Mar",
+      "month_4": "Kwi",
+      "month_5": "Maj",
+      "month_6": "Cze",
+      "month_7": "Lip",
+      "month_8": "Sie",
+      "month_9": "Wrz",
+      "month_10": "Paź",
+      "month_11": "Lis",
+      "month_12": "Gru",
       "select_year": "Wybierz rok"
     },
     "mascot-header-MyQA": {
@@ -785,15 +794,15 @@
       "search_placeholder": "Wyszukiwanie",
       "filter": "Filtruj tagi",
       "no_answers_found": "Brak odpowiedzi",
+      "language": "Język",
+      "all_languages": "Wszystkie języki",
+      "date_answered": "dnia {{date}}",
       "no_results_heading": "Nie znaleziono nic dla „{{query}}”",
       "no_results_line1": "Spróbuj zmienić wyszukiwanie lub wybierz inny tag.",
       "no_results_line2": "Możesz zresetować filtry, aby zobaczyć wszystkie pytania.",
       "reset_filters": "Resetuj filtry",
       "browse_all_questions": "Pokaż wszystkie pytania",
       "no_results_image_alt": "Ilustracja: brak pasujących pytań",
-      "language": "Język",
-      "all_languages": "Wszystkie języki",
-      "date_answered": "dnia {{date}}",
       "go_back": "Wróć",
       "how_it_works": "Jak to działa"
     },
@@ -1156,12 +1165,12 @@
       "modal_coupon_input_placeholder": "KUPON1",
       "heading_with_coupon": "Wybierz konsultanta/kę, aby użyć kupon: {{coupon}}",
       "remove_coupon_label": "Usuń kupon",
-      "coupon_not_found_error": "Ten kupon nie został znaleziony lub nie jest już ważny.",
       "coupon_paragraph": "Kupony zapewniają bezpłatne sesje i są sponsorowane przez naszych partnerów.",
       "coupon_paragraph_two": "Jeśli otrzymałeś kod kuponu z kampanii w mediach społecznościowych lub od partnera, skopiuj go i wklej poniżej. Po przesłaniu kodu kuponu zobaczysz wszystkich konsultantów, którzy go obsługują i ich dostępność. Kupon może obsługiwać jedną lub więcej sesji. Platforma wskaże, czy kupon wygasł lub czy wszystkie sesje zostały wykorzystane.",
       "max_price": "Cena maksymalna",
       "providers_free_consultation_label": "Tylko bezpłatna konsultacja",
-      "coupon_note": "Tym razem wpisaliśmy za Ciebie kod na darmową sesję! Umów się z jednym z naszych konsultantów i zrób pierwszy krok, aby zadbać o swoje samopoczucie."
+      "coupon_note": "Tym razem wpisaliśmy za Ciebie kod na darmową sesję! Umów się z jednym z naszych konsultantów i zrób pierwszy krok, aby zadbać o swoje samopoczucie.",
+      "coupon_not_found_error": "Ten kupon nie został znaleziony lub nie jest już ważny."
     },
     "register-about-you-page": {
       "heading_1": "Opowiedz nam więcej o sobie",
@@ -1395,7 +1404,6 @@
       "continue": "Kontynuuj",
       "submit": "Prześlij",
       "view_content": "Zobacz więcej treści",
-      "read_more_button": "Czytaj więcej",
       "no_articles_found": "Nie znaleziono artykułów na ten temat.",
       "non_emergency_title": "Sytuacje niepilne",
       "non_emergency_paragraph": "Każda sytuacja, która obecnie nie zagraża życiu lub bezpieczeństwu dziecka lub nastolatka.",
@@ -1499,6 +1507,7 @@
       "by": "przez {{creator}}",
       "min_read": "min czytania",
       "read_more": "Czytaj więcej",
+      "read_more_button": "Czytaj więcej",
       "to_dashboard": "Przejdź do pulpitu"
     }
   },
@@ -1679,7 +1688,9 @@
       "send_button_label": "Kontynuuj",
       "didnt_get_code": "Nie otrzymałeś kodu?",
       "resend_code_button_label": "Wyślij ponownie wiadomość email",
-      "seconds": "za {{seconds}} sekund"
+      "seconds": "za {{seconds}} sekund",
+      "report_issue_text": "Masz problemy z rejestracją? Nie wahaj się z nami skontaktować.",
+      "report_issue_cta": "Skontaktuj się z nami"
     },
     "mood-track-report": {
       "heading": "Twój raport śledzenia nastroju",
@@ -1700,19 +1711,6 @@
       "cancel_button": "Anuluj",
       "success_message": "Dziękujemy. Twoje zgłoszenie zostało przyjęte."
     },
-    "welcome": {
-      "heading": "Witamy w",
-      "country": "Kraj",
-      "language": "Język",
-      "placeholder": "Wybierz",
-      "register_email": "Zarejestruj się za pomocą adresu e-mail",
-      "register_anonymously": "Rejestracja anonimowa",
-      "continue_as_guest": "Kontynuuj bez rejestracji",
-      "already_have_account": "Masz już konto?",
-      "log_in": "Zaloguj się",
-      "client": "Klient",
-      "poland_description": "uSupport to platforma zdrowia psychicznego i dobrostanu zaprojektowana dla młodzieży (16–24)."
-    },
     "user-guide": {
       "heading": "Chcesz dowiedzieć się więcej o:",
       "emergency_services": "Służbach ratunkowych",
@@ -1728,6 +1726,19 @@
       "yes": "Tak",
       "no": "Nie",
       "dont_know": "Nie wiem, czy to pilne"
+    },
+    "welcome": {
+      "heading": "Witamy w",
+      "country": "Kraj",
+      "language": "Język",
+      "placeholder": "Wybierz",
+      "register_email": "Zarejestruj się za pomocą adresu e-mail",
+      "register_anonymously": "Rejestracja anonimowa",
+      "continue_as_guest": "Kontynuuj bez rejestracji",
+      "already_have_account": "Masz już konto?",
+      "log_in": "Zaloguj się",
+      "client": "Klient",
+      "poland_description": "uSupport to platforma zdrowia psychicznego i dobrostanu zaprojektowana dla młodzieży (16–24)."
     }
   },
   "modals": {

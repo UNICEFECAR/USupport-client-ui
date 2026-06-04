@@ -223,6 +223,8 @@
       "message_error": "Vă rugăm să introduceți mesajul",
       "email": "Email",
       "button": "Trimiteți mesajul",
+      "close_button_label": "Close",
+      "report_issue_intro": "Before you submit this form, please check that your email address is spelled correctly.",
       "modal_title": "Mesajul dvs. a fost trimis",
       "modal_text": "Vă vom răspunde cât mai curând posibil",
       "modal_cta_label": "Înapoi acasă",
@@ -234,7 +236,8 @@
       "contact_reason_2_pl": "Problemă tehnică",
       "contact_reason_3_pl": "Plângere",
       "contact_reason_4_pl": "Altceva",
-      "contact_form": "Formular de contact"
+      "contact_form": "Formular de contact",
+      "technical_problem_label": "Problemă tehnică"
     },
     "select-provider": {
       "psychologist": "Psiholog",
@@ -282,6 +285,8 @@
       "register_redirect_button_label": "Nu am cont",
       "modal_heading": "Verificați e-mailul",
       "modal_text": "Dacă sunteți înregistrat în platformă, veți primi un link pentru a vă reseta parola.",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue",
       "client": "Client",
       "heading": "Bine ați venit la",
       "heading_modal": "Ați uitat parola?",
@@ -306,6 +311,7 @@
       "edit": "Editare",
       "details": "Vedeți detalii",
       "active": "Acum",
+      "live": "Live",
       "reject": "Respingeți sugestia",
       "accept": "Acceptați consultația",
       "cancel_consultation": "Anulați consultația",
@@ -542,6 +548,7 @@
       "edit": "Editare",
       "details": "Vedeți detalii",
       "active": "Acum",
+      "live": "Live",
       "reject": "Respinge sugestia",
       "accept": "Acceptă consultația",
       "cancel_consultation": "Anulați consultația",
@@ -1679,7 +1686,9 @@
       "send_button_label": "Trimiteți",
       "didnt_get_code": "Nu ați primit codul??",
       "resend_code_button_label": "Retrimiteți e-mail",
-      "seconds": " în {{seconds}} secunde"
+      "seconds": " în {{seconds}} secunde",
+      "report_issue_text": "Having trouble receiving the code?",
+      "report_issue_cta": "Report an issue"
     },
     "mood-track-report": {
       "heading": "Raportul tău de monitorizare a dispoziției",

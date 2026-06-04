@@ -57,7 +57,7 @@ export const ContactUs = () => {
     },
     {
       value: "technical-problem",
-      label: IS_PL ? "contact_reason_3_pl" : "contact_reason_3",
+      label: IS_PL ? "contact_reason_2_pl" : "contact_reason_3",
     },
     {
       value: "other",

@@ -147,7 +147,7 @@ export const JitsiRoom = () => {
       // If the chat is shown on mobile and user expands the window:
       // hide the backdrop and open the side chat
       if (interfaces.isChatShownOnMobile) {
-        consultationRef.current.style.width = "calc(100vw - 50rem)";
+        consultationRef.current.style.width = "calc(100vw - 38rem)";
         consultationRef.current.style.height = "100vh";
         setInterfaceData({
           ...interfaces,
@@ -220,7 +220,7 @@ export const JitsiRoom = () => {
     } else {
       consultationRef.current.style.width = interfaces.isChatShownOnTablet
         ? "100vw"
-        : "calc(100vw - 50rem)";
+        : "calc(100vw - 38rem)";
       setInterfaceData({
         ...interfaces,
         isChatShownOnTablet: !interfaces.isChatShownOnTablet,

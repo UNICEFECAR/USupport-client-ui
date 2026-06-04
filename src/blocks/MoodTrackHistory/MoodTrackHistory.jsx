@@ -64,33 +64,31 @@ export const MoodTrackHistory = () => {
 
   const onSuccess = (data) => {
     const { curEntries, prevEntries, hasMore } = data;
-
-    let dataCopy = { ...moodTrackerData };
-
-    if (!dataCopy[limit]) {
-      dataCopy[limit] = {
-        entries: curEntries,
-        hasMore: prevEntries.length > 0,
-      };
-    }
     const prevPageLimit = `pageNum_${pageNum + 1}_limitToLoad_${limitToLoad}`;
+    const prevEntriesCopy = [...prevEntries];
 
-    if (prevEntries.length < limitToLoad) {
-      prevEntries.push(
-        ...curEntries.slice(0, limitToLoad - prevEntries.length),
+    if (prevEntriesCopy.length < limitToLoad) {
+      prevEntriesCopy.push(
+        ...curEntries.slice(0, limitToLoad - prevEntriesCopy.length),
       );
     }
 
-    dataCopy[prevPageLimit] = { entries: prevEntries, hasMore };
-    let loadedPagesCopy = [...loadedPages];
-    loadedPagesCopy.push(pageNum);
-    setLoadedPages(loadedPagesCopy);
+    setMoodTrackerData((prev) => ({
+      ...prev,
+      [limit]: {
+        entries: curEntries,
+        hasMore: prevEntriesCopy.length > 0,
+      },
+      [prevPageLimit]: { entries: prevEntriesCopy, hasMore },
+    }));
 
-    if (curEntries.length > 0 && !lastMood && IS_RO) {
+    setLoadedPages((prev) =>
+      prev.includes(pageNum) ? prev : [...prev, pageNum],
+    );
+
+    if (curEntries.length > 0 && IS_RO) {
       setLastMood(curEntries[curEntries.length - 1].mood);
     }
-
-    setMoodTrackerData(dataCopy);
   };
 
   const {

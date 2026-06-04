@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
@@ -15,6 +15,7 @@ import {
 } from "@USupport-components-library/src";
 
 import { userSvc } from "@USupport-components-library/services";
+import { ReportIssue } from "#modals";
 
 import "./code-verification.scss";
 
@@ -42,6 +43,13 @@ export const CodeVerification = ({
 
   const [isCodeHidden, setIsCodeHidden] = useState(true);
   const [errors, setErrors] = useState({});
+  const [isReportIssueOpen, setIsReportIssueOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setIsReportIssueOpen(false);
+    }
+  }, [isOpen]);
 
   const [code, setCode] = useState("");
 
@@ -110,8 +118,8 @@ export const CodeVerification = ({
       classes="code-verification"
       title="CodeVerification"
       isOpen={isOpen}
-      onClose={() => {}} // No-op to prevent closing via overlay click
-      hasCloseIcon={false}
+      onClose={onClose}
+      hasCloseIcon={true}
       heading={t("heading")}
       text={t("subheading")}
     >
@@ -159,8 +167,25 @@ export const CodeVerification = ({
               {showTimer ? t("seconds", { seconds: resendTimer }) : ""}
             </p>
           </div>
+
+          <div className="code-verification__report-issue-container">
+            <p className="small-text">{t("report_issue_text")}</p>
+            <Button
+              label={t("report_issue_cta")}
+              type="link"
+              classes="code-verification__report-issue-container__button"
+              onClick={() => setIsReportIssueOpen(true)}
+            />
+          </div>
         </div>
       </form>
+
+      <ReportIssue
+        isOpen={isReportIssueOpen}
+        onClose={() => setIsReportIssueOpen(false)}
+        initialEmail={data?.email}
+        initialIssue="technical-problem"
+      />
     </Backdrop>
   );
 };
