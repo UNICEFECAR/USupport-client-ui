@@ -67,16 +67,30 @@
 
         .dropdown-container,
         .dropdown {
+          width: 100%;
           overflow: visible;
         }
 
         .dropdown .dropdown-content {
-          width: calc(100% - #{$spacing_1_6});
-          max-width: 100%;
-          margin-right: 0;
-          left: auto;
-          right: 0;
-          overflow: hidden;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          margin-right: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        .dropdown.dropdown--expanded .dropdown-content {
+          box-sizing: border-box !important;
+          overflow: hidden !important;
+          max-height: 16.4rem !important;
+
+          .dropdown-content__options-container {
+            max-height: calc(16.4rem - #{$spacing_6_0} - #{$spacing_2_0}) !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            -webkit-overflow-scrolling: touch;
+          }
         }
       }
     }
