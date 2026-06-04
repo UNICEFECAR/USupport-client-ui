@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
@@ -28,8 +28,6 @@ export const MostReadArticles = () => {
   const navigate = useNavigate();
   const { width } = useWindowDimensions();
   const isNotDescktop = width < 1366;
-
-  const [showBlock, setShowBlock] = useState(false);
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
@@ -106,11 +104,17 @@ export const MostReadArticles = () => {
         ? !articleIdsQuery.isLoading && articleIdsQuery.data?.length > 0
         : true,
       refetchOnWindowFocus: false,
-      onSuccess: (data) => {
-        setShowBlock(data.length > 0);
-      },
     }
   );
+
+  const cardType = isNotDescktop ? "portrait" : "landscape";
+  const isArticleIdsLoading = shouldFetchIds && articleIdsQuery.isLoading;
+  const isMostReadLoading =
+    mostReadArticlesQuery.isLoading ||
+    (mostReadArticlesQuery.isFetching && !mostReadArticlesQuery.data);
+  const isLoading = isArticleIdsLoading || isMostReadLoading;
+  const hasArticle = mostReadArticlesQuery.data?.length > 0;
+  const shouldShowBlock = isLoading || hasArticle;
 
   const handleRedirect = (id, title) => {
     navigate(`/information-portal/article/${id}/${createArticleSlug(title)}`);
@@ -118,14 +122,14 @@ export const MostReadArticles = () => {
 
   return (
     <>
-      {showBlock && (
+      {shouldShowBlock && (
         <Block classes="most-read-articles">
           <Grid classes="most-read-articles__main-grid">
             <GridItem md={8} lg={12}>
               <h2>{t("heading")}</h2>
             </GridItem>
 
-            {mostReadArticlesQuery.isLoading ? (
+            {isLoading ? (
               <GridItem
                 md={8}
                 lg={12}
@@ -133,22 +137,20 @@ export const MostReadArticles = () => {
               >
                 <CardMediaSkeleton
                   size="lg"
-                  type={!isNotDescktop ? "landscape" : "portrait"}
+                  type={cardType}
+                  classes="most-read-articles__card-media-skeleton"
                 />
               </GridItem>
-            ) : null}
-
-            {!mostReadArticlesQuery.isLoading &&
-              mostReadArticlesQuery.data?.length > 0 && (
+            ) : (
+              hasArticle && (
                 <GridItem
                   md={8}
                   lg={12}
                   classes="most-read-articles__main-article-item"
-                  type="portrait"
                 >
                   <CardMedia
                     size="lg"
-                    type={!isNotDescktop ? "landscape" : "portrait"}
+                    type={cardType}
                     title={mostReadArticlesQuery.data[0].title}
                     image={mostReadArticlesQuery.data[0].imageMedium}
                     description={mostReadArticlesQuery.data[0].description}
@@ -165,9 +167,11 @@ export const MostReadArticles = () => {
                         mostReadArticlesQuery.data[0].title
                       )
                     }
+                    classes="most-read-articles__card-media"
                   />
                 </GridItem>
-              )}
+              )
+            )}
           </Grid>
         </Block>
       )}

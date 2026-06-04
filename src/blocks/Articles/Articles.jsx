@@ -247,7 +247,11 @@ export const Articles = ({
     getArticlesIds
   );
 
-  const { data: articleCategoryIdsToShow } = useQuery(
+  const {
+    data: articleCategoryIdsToShow,
+    isLoading: isArticleCategoryIdsLoading,
+    isFetching: isArticleCategoryIdsFetching,
+  } = useQuery(
     [
       "articles-category-ids",
       usersLanguage,
@@ -487,25 +491,127 @@ export const Articles = ({
     }
   };
 
-  let areCategoriesAndAgeGroupsReady =
+  const areCategoriesAndAgeGroupsReady =
     categoriesToShow?.length > 1 && ageGroupsQuery?.data?.length > 0;
 
+  const isArticleIdsLoading = articleIdsQuery.isLoading;
+  const isAgeGroupsLoading =
+    (showAgeGroups || shouldUseHardcodedAgeGroup) && ageGroupsQuery.isLoading;
+  const isCategoriesLoading = categoriesQuery.isLoading;
+  const isCategoryIdsLoading =
+    !!selectedAgeGroup?.id &&
+    !articleIdsQuery.isLoading &&
+    !!articleIdsQuery.data?.length &&
+    (isArticleCategoryIdsLoading || isArticleCategoryIdsFetching) &&
+    !articleCategoryIdsToShow;
+
+  const isArticlesFetching = isTmpUser
+    ? isGuestArticlesLoading
+    : isArticlesLoading;
+
+  const hasAgeGroupsReady =
+    ageGroups?.length > 0 &&
+    !isAgeGroupsLoading &&
+    ageGroupsQuery?.data?.length > 0;
+
+  const hasCategoriesListReady =
+    categories?.length > 0 && !isCategoriesLoading;
+
+  // First load only: skeleton for age groups, categories, and articles
+  const isInitialBootstrap =
+    isArticleIdsLoading ||
+    isAgeGroupsLoading ||
+    isCategoriesLoading ||
+    !hasAgeGroupsReady ||
+    !hasCategoriesListReady;
+
+  const showFullSkeletonLayout = isInitialBootstrap;
+
+  // Age group change: keep real age groups, skeleton categories + articles
+  const showCategoriesAndArticlesSkeleton =
+    !showFullSkeletonLayout &&
+    hasAgeGroupsReady &&
+    (isCategoryIdsLoading || !areCategoriesAndAgeGroupsReady);
+
+  // Category change: keep real age groups + categories, skeleton articles only
+  const showArticlesSkeletonOnly =
+    areCategoriesAndAgeGroupsReady &&
+    !showFullSkeletonLayout &&
+    !showCategoriesAndArticlesSkeleton &&
+    isArticlesFetching &&
+    !transformedArticles?.length;
+
+  const showArticleSkeletons =
+    showCategoriesAndArticlesSkeleton || showArticlesSkeletonOnly;
+
+  const shouldShowArticlesBlock =
+    showFullSkeletonLayout ||
+    showCategoriesAndArticlesSkeleton ||
+    showArticlesSkeletonOnly ||
+    areCategoriesAndAgeGroupsReady ||
+    (ageGroups?.length > 0 && categories?.length > 0);
+
   const currentGridPattern = [2, 2, 2];
-  const renderInitialSkeletons = () =>
-    [0, 1, 2].map((index) => (
+  const ARTICLE_SKELETON_COUNT = 6;
+
+  const renderAgeGroupsSkeleton = () =>
+    showAgeGroups && (
+      <GridItem md={4} lg={6} classes="articles__age-groups-item">
+        <div className="articles__filters-skeleton articles__filters-skeleton--age-groups">
+          <div className="articles__filters-skeleton__tab shimmer" />
+          <div className="articles__filters-skeleton__tab shimmer" />
+        </div>
+      </GridItem>
+    );
+
+  const renderCategoriesSkeleton = () =>
+    showCategories &&
+    !hasSearch && (
+      <GridItem md={8} lg={12} classes="articles__categories-item">
+        <div className="articles__filters-skeleton articles__filters-skeleton--categories">
+          {[0, 1, 2, 3, 4, 5].map((index) => (
+            <div
+              key={`category-skeleton-${index}`}
+              className="articles__filters-skeleton__chip shimmer"
+            />
+          ))}
+        </div>
+      </GridItem>
+    );
+
+  const renderArticleSkeletons = () =>
+    Array.from({ length: ARTICLE_SKELETON_COUNT }).map((_, index) => (
       <GridItem
         md={4}
         lg={6}
         key={`articles-skeleton-${index}`}
         classes="articles__articles-item"
       >
-        <CardMediaSkeleton type="portrait" size="lg" />
+        <CardMediaSkeleton
+          type="portrait"
+          size="lg"
+          classes="articles__card-media-skeleton"
+        />
       </GridItem>
     ));
 
+  const renderFullSkeletonLayout = () => (
+    <Grid classes="articles__main-grid">
+      {renderAgeGroupsSkeleton()}
+      {!showAgeGroups && <GridItem xs={0} md={4} lg={6} />}
+      {renderCategoriesSkeleton()}
+      {renderArticleSkeletons()}
+    </Grid>
+  );
+
   return (
     <Block classes="articles">
-      {ageGroups?.length > 0 && categories?.length > 0 && (
+      {shouldShowArticlesBlock && showFullSkeletonLayout && renderFullSkeletonLayout()}
+
+      {shouldShowArticlesBlock &&
+        !showFullSkeletonLayout &&
+        ageGroups?.length > 0 &&
+        categories?.length > 0 && (
         <InfiniteScroll
           dataLength={transformedArticles?.length || 0}
           next={isTmpUser ? getMoreArticles : loadMore}
@@ -517,7 +623,7 @@ export const Articles = ({
           <Grid classes="articles__main-grid">
             {!debouncedSearchValue &&
             showAgeGroups &&
-            categoriesToShow?.length > 1 &&
+            // categoriesToShow?.length > 1 &&
             ageGroupsQuery?.data?.length > 0 ? (
               <GridItem md={4} lg={6} classes="articles__age-groups-item">
                 {ageGroups && (
@@ -539,20 +645,28 @@ export const Articles = ({
               </GridItem>
             )}
 
-            {showCategories && !hasSearch && areCategoriesAndAgeGroupsReady && (
-              <GridItem md={8} lg={12} classes="articles__categories-item">
-                {!debouncedSearchValue && categoriesToShow && (
-                  <Tabs
-                    options={categoriesToShow}
-                    handleSelect={handleCategoryOnPress}
-                    t={t}
-                  />
+            {showCategories && !hasSearch && (
+              <>
+                {areCategoriesAndAgeGroupsReady &&
+                !showCategoriesAndArticlesSkeleton ? (
+                  <GridItem md={8} lg={12} classes="articles__categories-item">
+                    {!debouncedSearchValue && categoriesToShow && (
+                      <Tabs
+                        options={categoriesToShow}
+                        handleSelect={handleCategoryOnPress}
+                        t={t}
+                      />
+                    )}
+                  </GridItem>
+                ) : (
+                  showCategoriesAndArticlesSkeleton && renderCategoriesSkeleton()
                 )}
-              </GridItem>
+              </>
             )}
 
             {transformedArticles?.length > 0 &&
-              areCategoriesAndAgeGroupsReady && (
+              areCategoriesAndAgeGroupsReady &&
+              !showArticleSkeletons && (
                 <ArticlesGrid
                   articles={transformedArticles}
                   onArticleClick={handleArticleClick}
@@ -560,6 +674,8 @@ export const Articles = ({
                   pattern={currentGridPattern}
                 />
               )}
+
+            {showArticleSkeletons && <>{renderArticleSkeletons()}</>}
 
             {!transformedArticles?.length &&
               (isTmpUser ? isArticlesFetched : isReady) &&
@@ -593,12 +709,6 @@ export const Articles = ({
           </Grid>
         </InfiniteScroll>
       )}
-
-      {/* Only show loading on initial load when no articles exist */}
-      {(isTmpUser ? isGuestArticlesLoading : isArticlesLoading) &&
-        !transformedArticles?.length && (
-          <Grid classes="articles__main-grid">{renderInitialSkeletons()}</Grid>
-        )}
 
       {error && (
         <div className="articles__no-results-container">
