@@ -1,0 +1,162 @@
+/* Shared consultation chat sidebar (Consultation + JitsiRoom) */
+@import "@USupport-components-library/styles";
+
+$consultation-chat-width: 38rem;
+
+.consultation-chat-panel {
+  display: flex;
+  flex-direction: column;
+  width: $consultation-chat-width;
+  min-width: $consultation-chat-width;
+  max-width: $consultation-chat-width;
+  height: 100vh;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+
+  .theme-light & {
+    background: linear-gradient(
+      180deg,
+      rgba(232, 244, 252, 0.95) 0%,
+      rgba(245, 243, 255, 0.92) 40%,
+      rgba(255, 255, 255, 0.98) 100%
+    );
+    border-left: 1px solid rgba(196, 181, 253, 0.25);
+  }
+
+  .theme-dark & {
+    background: linear-gradient(
+      180deg,
+      rgba(30, 27, 45, 0.98) 0%,
+      rgba(45, 38, 64, 0.95) 100%
+    );
+    border-left: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  &__header {
+    flex-shrink: 0;
+    padding: $spacing_2_0 $spacing_2_0 $spacing_1_0;
+  }
+
+  &__settings {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_8;
+    margin-top: $spacing_0_8;
+  }
+
+  &__messages {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: $spacing_0_8 $spacing_2_0 $spacing_1_2;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    margin-top: 0;
+    height: auto;
+
+    .message,
+    .system-message {
+      margin-bottom: $spacing_1_2;
+    }
+
+    .system-message {
+      align-self: stretch;
+      max-width: 100%;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .message-sent {
+      align-self: flex-end;
+      max-width: 88%;
+    }
+
+    .message-received {
+      align-self: flex-start;
+      max-width: 88%;
+    }
+
+    .message-date {
+      margin-top: $spacing_1_0;
+      margin-bottom: $spacing_0_8;
+    }
+  }
+
+  &__footer {
+    flex-shrink: 0;
+    padding: $spacing_1_0 $spacing_2_0 $spacing_2_4;
+
+    .send-message {
+      padding-inline: 0;
+      margin-bottom: 0;
+      width: 100%;
+    }
+  }
+}
+
+.page__consultation__options-container,
+.page__jitsi-room__options-container {
+  margin-left: 0;
+  width: 100%;
+  position: static;
+  z-index: auto;
+  top: auto;
+}
+
+.page__consultation__system-message-toggle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: $spacing_1_6;
+  padding-bottom: 0;
+
+  & p {
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    padding-right: $spacing_1_0;
+  }
+
+  .toggle-wrapper {
+    flex: 0 0 auto;
+    width: auto !important;
+    max-width: none;
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+
+  .toggle {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+.page__consultation__chat-backdrop {
+  .backdrop__header {
+    .page__consultation__options-container,
+    .page__jitsi-room__options-container {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      width: 100%;
+      margin-top: $spacing_1_0;
+    }
+  }
+}
+
+.page__jitsi-room,
+.page__consultation {
+  .consultation-chat-panel__header .new-button,
+  .consultation-chat-panel__header .btn {
+    margin-bottom: 0;
+  }
+}

@@ -659,41 +659,40 @@ const MessageList = ({
   ]);
 
   return width >= 1150 ? (
-    <div style={{ position: "relative" }}>
-      <OptionsContainer
-        showOptions={showOptions}
-        setShowOptions={setShowOptions}
-        search={search}
-        setSearch={setSearch}
-        showAllMessages={showAllMessages}
-        setShowAllMessages={setShowAllMessages}
-        areSystemMessagesShown={areSystemMessagesShown}
-        setAreSystemMessagesShown={setAreSystemMessagesShown}
-        isAbsolute
-        t={t}
-      />
+    <aside className="consultation-chat-panel">
+      <header className="consultation-chat-panel__header">
+        <OptionsContainer
+          showOptions={showOptions}
+          setShowOptions={setShowOptions}
+          search={search}
+          setSearch={setSearch}
+          showAllMessages={showAllMessages}
+          setShowAllMessages={setShowAllMessages}
+          areSystemMessagesShown={areSystemMessagesShown}
+          setAreSystemMessagesShown={setAreSystemMessagesShown}
+          t={t}
+        />
+      </header>
       {isHidden && <Loading />}
 
       <div
         ref={messagesContainerRef}
-        className={`page__consultation__container__messages__messages-container ${
-          showOptions
-            ? "page__consultation__container__messages__messages-container--show-options"
-            : ""
-        }`}
+        className="consultation-chat-panel__messages page__consultation__container__messages__messages-container"
         style={{
           visibility: isHidden ? "hidden" : "visible",
         }}
       >
         {showMessages && renderAllMessages()}
       </div>
-      <SendMessage
-        t={t}
-        handleSubmit={handleSendMessage}
-        onTextareaFocus={onTextareaFocus}
-        emitTyping={emitTyping}
-      />
-    </div>
+      <footer className="consultation-chat-panel__footer">
+        <SendMessage
+          t={t}
+          handleSubmit={handleSendMessage}
+          onTextareaFocus={onTextareaFocus}
+          emitTyping={emitTyping}
+        />
+      </footer>
+    </aside>
   ) : null;
 };
 
@@ -706,37 +705,30 @@ const OptionsContainer = ({
   setAreSystemMessagesShown,
   search,
   setSearch,
-  isAbsolute,
   t,
 }) => {
   return (
-    <div
-      style={{
-        position: isAbsolute ? "absolute" : "static",
-      }}
-      className="page__consultation__options-container"
-    >
+    <div className="page__consultation__options-container">
       <Button
         size="sm"
         label={t(showOptions ? "hide_options" : "show_options")}
         onClick={() => setShowOptions(!showOptions)}
-        style={{ marginBottom: "16px" }}
       />
       {showOptions && (
-        <div>
+        <div className="consultation-chat-panel__settings">
           <div className="page__consultation__system-message-toggle">
+            <p>{t("show_system_messages")}</p>
             <Toggle
               isToggled={areSystemMessagesShown}
               setParentState={setAreSystemMessagesShown}
             />
-            <p>{t("show_system_messages")}</p>
           </div>
           <div className="page__consultation__system-message-toggle">
+            <p>{t("show_previous_consultations")}</p>
             <Toggle
               isToggled={showAllMessages}
               setParentState={setShowAllMessages}
             />
-            <p>{t("show_previous_consultations")}</p>
           </div>
           <InputSearch
             value={search}
