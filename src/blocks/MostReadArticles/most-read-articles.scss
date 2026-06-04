@@ -7,4 +7,15 @@
   &__main-grid {
     row-gap: $spacing_4_0;
   }
+
+  &__loading-item,
+  &__main-article-item {
+    width: 100%;
+  }
+
+  &__card-media,
+  &__card-media-skeleton {
+    width: 100%;
+    max-width: 100%;
+  }
 }
