@@ -565,7 +565,9 @@
       "heading_need_support": "Need support?",
       "psychologist": "Psychologist",
       "psychiatrist": "Psychiatrist",
-      "psychotherapist": "Psychotherapist"
+      "psychotherapist": "Psychotherapist",
+      "test_audio_camera": "Test audio & camera",
+      "test_audio_camera_description": "Check your devices before the consultation"
     },
     "mood-tracker": {
       "happy": "Happy",

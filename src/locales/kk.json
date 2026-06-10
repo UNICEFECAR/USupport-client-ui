@@ -564,7 +564,9 @@
       "heading_need_support": "Қолдау керек пе?",
       "psychologist": "Психолог",
       "psychiatrist": "Психиатр",
-      "psychotherapist": "Психотерапевт"
+      "psychotherapist": "Психотерапевт",
+      "test_audio_camera": "Аудио мен камераны тексеру",
+      "test_audio_camera_description": "Консультациядан бұрын құрылғыларды тексеріңіз"
     },
     "mood-tracker": {
       "happy": "Керемет",

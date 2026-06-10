@@ -564,7 +564,9 @@
       "heading_need_support": "Нужна поддержка?",
       "psychologist": "Психолог",
       "psychiatrist": "Психиатр",
-      "psychotherapist": "Психотерапевт"
+      "psychotherapist": "Психотерапевт",
+      "test_audio_camera": "Проверить аудио и камеру",
+      "test_audio_camera_description": "Проверьте устройства перед консультацией"
     },
     "mood-tracker": {
       "happy": "Отлично",
