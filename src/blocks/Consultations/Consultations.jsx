@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { toast } from "react-toastify";
@@ -14,6 +14,7 @@ import {
 import { ONE_HOUR } from "@USupport-components-library/utils";
 
 import { useGetAllConsultations, useRejectConsultation } from "#hooks";
+import { DeviceTest } from "../../backdrops/DeviceTest";
 import { ConsultationSkeletonCard } from "../ConsultationSkeleton";
 
 import "./consultations.scss";
@@ -64,6 +65,15 @@ export const Consultations = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "consultations" });
+  const [isDeviceTestOpen, setIsDeviceTestOpen] = useState(false);
+
+  const handleOpenDeviceTest = () => {
+    setIsDeviceTestOpen(true);
+  };
+
+  const handleCloseDeviceTest = () => {
+    setIsDeviceTestOpen(false);
+  };
 
   const daysOfWeekTranslations = {
     monday: t("monday"),
@@ -222,6 +232,7 @@ export const Consultations = ({
               handleOpenEdit={handleOpenEdit}
               handleJoinClick={openJoinConsultation}
               handleOpenDetails={handleOpenDetails}
+              handleTestDevices={handleOpenDeviceTest}
               daysOfWeekTranslations={daysOfWeekTranslations}
               consultation={consultation}
               overview={false}
@@ -341,20 +352,23 @@ export const Consultations = ({
   ]);
 
   return (
-    <Block classes="consultations">
-      <Grid md={8} lg={12} classes="consultations__grid">
-        <GridItem
-          md={8}
-          lg={12}
-          classes="consultations__grid__consultations-item"
-        >
-          <Box classes="consultations__box" liquidGlass>
-            {consultationsQuery.isLoading
-              ? renderLoadingSkeletonState()
-              : renderAllConsultations()}
-          </Box>
-        </GridItem>
-      </Grid>
-    </Block>
+    <>
+      <Block classes="consultations">
+        <Grid md={8} lg={12} classes="consultations__grid">
+          <GridItem
+            md={8}
+            lg={12}
+            classes="consultations__grid__consultations-item"
+          >
+            <Box classes="consultations__box" liquidGlass>
+              {consultationsQuery.isLoading
+                ? renderLoadingSkeletonState()
+                : renderAllConsultations()}
+            </Box>
+          </GridItem>
+        </Grid>
+      </Block>
+      <DeviceTest isOpen={isDeviceTestOpen} onClose={handleCloseDeviceTest} />
+    </>
   );
 };
