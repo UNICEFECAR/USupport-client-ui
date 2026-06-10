@@ -37,7 +37,7 @@ const defaultConfig = {
   enableEmailInStats: false,
   requireDisplayName: false,
   prejoinPageEnabled: false,
-  disableInitialGUM: false,
+  disableInitialGUM: true,
   deeplinking: {
     desktop: { enabled: false },
     disabled: true,
