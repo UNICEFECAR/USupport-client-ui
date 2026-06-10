@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import { providerSvc } from "@USupport-components-library/services";
@@ -70,6 +71,7 @@ export default function useGetProvidersData(
 ) {
   const { i18n } = useTranslation();
   const language = i18n.language;
+  const randomSeed = useMemo(() => Date.now().toString(), []);
 
   const fetchProvidersData = async ({ pageParam = 1 }) => {
     const today = new Date();
@@ -90,6 +92,7 @@ export default function useGetProvidersData(
       limit: providersLimit,
       offset: pageParam,
       filtersQueryString,
+      randomSeed,
     });
     const formattedData = [];
     for (let i = 0; i < data.length; i++) {
