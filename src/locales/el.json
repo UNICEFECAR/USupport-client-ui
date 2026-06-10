@@ -564,7 +564,9 @@
       "heading_need_support": "Χρειάζεστε υποστήριξη;",
       "psychologist": "Ψυχολόγος",
       "psychiatrist": "Ψυχίατρος",
-      "psychotherapist": "Ψυχοθεραπευτής"
+      "psychotherapist": "Ψυχοθεραπευτής",
+      "test_audio_camera": "Δοκιμή ήχου και κάμερας",
+      "test_audio_camera_description": "Ελέγξτε τις συσκευές σας πριν από τη συνεδρία"
     },
     "mood-tracker": {
       "happy": "Χαρούμενος/η",

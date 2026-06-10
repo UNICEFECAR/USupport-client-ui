@@ -566,7 +566,9 @@
       "heading_need_support": "Potrzebujesz wsparcia?",
       "psychologist": "Psycholog/żka",
       "psychiatrist": "Psychiatra",
-      "psychotherapist": "Psychoterapeuta/ka"
+      "psychotherapist": "Psychoterapeuta/ka",
+      "test_audio_camera": "Przetestuj audio i kamerę",
+      "test_audio_camera_description": "Sprawdź urządzenia przed konsultacją"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",

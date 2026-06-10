@@ -564,7 +564,9 @@
       "heading_need_support": "Օգնության կարիք ունե՞ք",
       "psychologist": "Հոգեբան",
       "psychiatrist": "Հոգեբույժ",
-      "psychotherapist": "Հոգեթերապևտ"
+      "psychotherapist": "Հոգեթերապևտ",
+      "test_audio_camera": "Ստուգել աուդիոն և տեսախցիկը",
+      "test_audio_camera_description": "Ստուգիր սարքերը խորհրդատվությունից առաջ"
     },
     "mood-tracker": {
       "happy": "Ուրախ եմ",
