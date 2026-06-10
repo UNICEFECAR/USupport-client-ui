@@ -1670,10 +1670,19 @@
       "subheading": "Select the communication type that fits you best.",
       "button_label_1": "Video/audio consultation",
       "button_label_2": "Text consultation",
+      "preview_heading": "Check your camera and microphone",
+      "preview_subheading": "Make sure others can see and hear you before joining.",
+      "join_video": "Join consultation",
+      "configuring_devices": "Configuring devices...",
+      "camera_off_label": "Camera is off",
+      "mic_level_label": "Microphone",
+      "toggle_camera": "Toggle camera",
+      "toggle_microphone": "Toggle microphone",
+      "retry_permissions": "Try again",
       "client_joined": "Client joined the consultation",
       "error": "An error occured. Please try again",
       "permissions_error": "Allow camera and microphone permissions",
-      "allow_permissions": "If you want to talk to the client, please allow the permissions in your browser settings or from the information icon in the address bar."
+      "allow_permissions": "If you want to join with video, please allow camera and microphone permissions in your browser settings or from the icon in the address bar."
     },
     "select-avatar": {
       "heading": "Change profile picture",
