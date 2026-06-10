@@ -325,7 +325,9 @@
       "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time",
       "psychologist": "Psychologist",
       "psychiatrist": "Psychiatrist",
-      "psychotherapist": "Psychotherapist"
+      "psychotherapist": "Psychotherapist",
+      "test_audio_camera": "Test audio & camera",
+      "test_audio_camera_description": "Check your devices before the consultation"
     },
     "login": {
       "email_label": "Email / Access Token",
@@ -1683,6 +1685,18 @@
       "error": "An error occured. Please try again",
       "permissions_error": "Allow camera and microphone permissions",
       "allow_permissions": "If you want to join with video, please allow camera and microphone permissions in your browser settings or from the icon in the address bar."
+    },
+    "device-test": {
+      "heading": "Test audio & camera",
+      "subheading": "Check your devices before the consultation to make sure everything works.",
+      "done": "Done",
+      "configuring_devices": "Configuring devices...",
+      "camera_off_label": "Camera is off",
+      "mic_level_label": "Microphone",
+      "toggle_camera": "Toggle camera",
+      "toggle_microphone": "Toggle microphone",
+      "retry_permissions": "Try again",
+      "permissions_error": "Allow camera and microphone permissions"
     },
     "select-avatar": {
       "heading": "Change profile picture",
