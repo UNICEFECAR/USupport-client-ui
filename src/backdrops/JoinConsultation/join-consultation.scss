@@ -3,11 +3,20 @@
 .join-consultation {
   align-items: center;
 
+  &--preview {
+    .backdrop__children,
+    .base-modal__body {
+      width: 100%;
+    }
+  }
+
   &__button-selector {
     margin: 0 auto;
+
     &:first-of-type {
       margin-top: $spacing_3_2;
     }
+
     &:not(:first-of-type) {
       margin-top: $spacing_1_6;
     }
@@ -15,5 +24,127 @@
     &:last-of-type {
       margin-bottom: $spacing_1_6;
     }
+  }
+
+  &__preview {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing_1_6;
+    padding: $spacing_1_6 0;
+
+    &--loading,
+    &--error {
+      min-height: 18rem;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  &__preview-status {
+    margin-top: $spacing_1_2;
+    opacity: 0.8;
+  }
+
+  &__video-container {
+    width: 100%;
+    max-width: 32rem;
+    aspect-ratio: 4 / 3;
+    border-radius: $spacing_1_2;
+    overflow: hidden;
+    background-color: #1a1a2e;
+    position: relative;
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+  }
+
+  &__video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing_1_2;
+    background: linear-gradient(180deg, #2d2d44 0%, #1a1a2e 100%);
+  }
+
+  &__video-placeholder-text {
+    opacity: 0.7;
+    color: #ffffff;
+  }
+
+  &__mic-meter {
+    width: 100%;
+    max-width: 32rem;
+    display: flex;
+    align-items: center;
+    gap: $spacing_1_2;
+  }
+
+  &__mic-meter-track {
+    flex: 1;
+    height: 0.6rem;
+    border-radius: 999px;
+    background-color: rgba(106, 79, 251, 0.15);
+    overflow: hidden;
+  }
+
+  &__mic-meter-fill {
+    height: 100%;
+    border-radius: 999px;
+    background-color: #6a4ffb;
+    transition: width 80ms linear;
+  }
+
+  &__mic-meter-label {
+    min-width: 7rem;
+    text-align: right;
+    opacity: 0.75;
+  }
+
+  &__controls {
+    display: flex;
+    gap: $spacing_2_4;
+    margin-top: $spacing_0_8;
+  }
+
+  &__control-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.6rem;
+    height: 4.6rem;
+    border-radius: 50%;
+    border: 0.2rem solid #6a4ffb;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(106, 79, 251, 0.08);
+    }
+
+    &--off {
+      border-color: #eb5757;
+      background-color: rgba(235, 87, 87, 0.08);
+    }
+  }
+
+  &__retry-button {
+    margin-top: $spacing_1_6;
+    padding: $spacing_1_0 $spacing_2_4;
+    border: 0.1rem solid #6a4ffb;
+    border-radius: 999px;
+    background: transparent;
+    color: #6a4ffb;
+    cursor: pointer;
+    font-size: 1.4rem;
   }
 }
