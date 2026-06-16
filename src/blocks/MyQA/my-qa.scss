@@ -83,10 +83,10 @@
         .dropdown.dropdown--expanded .dropdown-content {
           box-sizing: border-box !important;
           overflow: hidden !important;
-          max-height: 16.4rem !important;
+          max-height: 26rem !important;
 
           .dropdown-content__options-container {
-            max-height: calc(16.4rem - #{$spacing_6_0} - #{$spacing_2_0}) !important;
+            max-height: calc(26rem - #{$spacing_6_0} - #{$spacing_2_0}) !important;
             overflow-y: auto !important;
             overflow-x: hidden !important;
             -webkit-overflow-scrolling: touch;

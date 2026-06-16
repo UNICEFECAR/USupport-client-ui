@@ -57,7 +57,7 @@ export const MyQA = ({
     setTags(data);
   }, []);
 
-  useGetQuestionsTags(onTagsSuccess);
+  useGetQuestionsTags(selectedLanguage, onTagsSuccess);
 
   const handler = useCallback(() => {
     const lang = localStorage.getItem("language");
@@ -295,6 +295,7 @@ export const MyQA = ({
                       selected={selectedLanguage}
                       setSelected={(lang) => {
                         setSelectedLanguage(lang);
+                        setFilterTag("");
                       }}
                       placeholder={t("language")}
                     />
