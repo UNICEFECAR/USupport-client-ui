@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
@@ -13,6 +13,7 @@ import {
   VideoPlayer,
   NewButton,
 } from "@USupport-components-library/src";
+import { DeviceTest } from "../../backdrops/DeviceTest";
 import { ConsultationSkeletonCard } from "../ConsultationSkeleton";
 
 import "./consultations-dashboard.scss";
@@ -37,6 +38,15 @@ export const ConsultationsDashboard = ({
   // const { width } = useWindowDimensions();
   const { isTmpUser, handleRegistrationModalOpen } = useContext(RootContext);
   const { cookieState, setCookieState } = useContext(ThemeContext);
+  const [isDeviceTestOpen, setIsDeviceTestOpen] = useState(false);
+
+  const handleOpenDeviceTest = () => {
+    setIsDeviceTestOpen(true);
+  };
+
+  const handleCloseDeviceTest = () => {
+    setIsDeviceTestOpen(false);
+  };
 
   const { t, i18n } = useTranslation("blocks", {
     keyPrefix: "consultations-dashboard",
@@ -116,6 +126,7 @@ export const ConsultationsDashboard = ({
             handleJoinClick={openJoinConsultation}
             handleOpenEdit={openEditConsultation}
             handleAcceptConsultation={handleAcceptSuggestion}
+            handleTestDevices={isLoggedIn ? handleOpenDeviceTest : undefined}
             suggested={consultation.status === "suggested"}
             overview={!isLoggedIn ? true : false}
             t={t}
@@ -145,62 +156,63 @@ export const ConsultationsDashboard = ({
   };
 
   return (
-    <Block classes="consultations-dashboard">
-      <Box
-        classes={[
-          "consultations-dashboard__box",
-          !upcomingConsultations ||
-            (upcomingConsultations.length === 0 &&
-              "consultations-dashboard__box--no-consultations"),
-        ]}
-        liquidGlass
-      >
-        <div className="consultations-dashboard__box__content">
-          {(isLoading ||
-            !isLoggedIn ||
-            (upcomingConsultations && upcomingConsultations.length > 0)) && (
-            <div className={["consultations-dashboard__box__content__part"]}>
-              <h3 className="">{t("heading")}</h3>
-              {isLoading ? (
-                <div className="consultations-dashboard__box__content__part__consultation">
-                  <ConsultationSkeletonCard withActions />
-                </div>
-              ) : (
-                renderConsultations()
-              )}
-            </div>
-          )}
-          <div
-            className={[
-              "consultations-dashboard__box__content__part",
-              !upcomingConsultations ||
-                (upcomingConsultations.length === 0 &&
-                  "consultations-dashboard__box__content__part--no-consultations"),
-            ].join(" ")}
-          >
-            <h3 className="">{t("heading_need_support")}</h3>
-            <Box
-              classes="consultations-dashboard__box__content__part__need-support-box"
-              liquidGlass
+    <>
+      <Block classes="consultations-dashboard">
+        <Box
+          classes={[
+            "consultations-dashboard__box",
+            !upcomingConsultations ||
+              (upcomingConsultations.length === 0 &&
+                "consultations-dashboard__box--no-consultations"),
+          ]}
+          liquidGlass
+        >
+          <div className="consultations-dashboard__box__content">
+            {(isLoading ||
+              !isLoggedIn ||
+              (upcomingConsultations && upcomingConsultations.length > 0)) && (
+              <div className={["consultations-dashboard__box__content__part"]}>
+                <h3 className="">{t("heading")}</h3>
+                {isLoading ? (
+                  <div className="consultations-dashboard__box__content__part__consultation">
+                    <ConsultationSkeletonCard withActions />
+                  </div>
+                ) : (
+                  renderConsultations()
+                )}
+              </div>
+            )}
+            <div
+              className={[
+                "consultations-dashboard__box__content__part",
+                !upcomingConsultations ||
+                  (upcomingConsultations.length === 0 &&
+                    "consultations-dashboard__box__content__part--no-consultations"),
+              ].join(" ")}
             >
-              <NewButton
-                label={t("schedule_consultation_label")}
-                onClick={handleScheduleConsultation}
-                iconName="calendar"
-                size="lg"
-                isFullWidth
-              />
-              <NewButton
-                label={t("explore_resources_label")}
-                onClick={() => navigate("/information-portal")}
-                size="lg"
-                type="outline"
-                isFullWidth
-              />
-            </Box>
+              <h3 className="">{t("heading_need_support")}</h3>
+              <Box
+                classes="consultations-dashboard__box__content__part__need-support-box"
+                liquidGlass
+              >
+                <NewButton
+                  label={t("schedule_consultation_label")}
+                  onClick={handleScheduleConsultation}
+                  iconName="calendar"
+                  size="lg"
+                  isFullWidth
+                />
+                <NewButton
+                  label={t("explore_resources_label")}
+                  onClick={() => navigate("/information-portal")}
+                  size="lg"
+                  type="outline"
+                  isFullWidth
+                />
+              </Box>
+            </div>
           </div>
-        </div>
-      </Box>
+        </Box>
       {/* <div className="consultations-dashboard__heading">
         <h4>{t("heading")}</h4>
         {width < 768 ? (
@@ -246,6 +258,8 @@ export const ConsultationsDashboard = ({
         iconName="calendar"
         classes="consultations-dashboard__schedule-consultation-button"
       /> */}
-    </Block>
+      </Block>
+      <DeviceTest isOpen={isDeviceTestOpen} onClose={handleCloseDeviceTest} />
+    </>
   );
 };

@@ -326,6 +326,8 @@
       "psychologist": "Psycholog/żka",
       "psychiatrist": "Psychiatra",
       "psychotherapist": "Psychoterapeuta/ka",
+      "test_audio_camera": "Przetestuj audio i kamerę",
+      "test_audio_camera_description": "Sprawdź urządzenia przed konsultacją",
       "user_guide": ""
     },
     "login": {
@@ -564,7 +566,9 @@
       "heading_need_support": "Potrzebujesz wsparcia?",
       "psychologist": "Psycholog/żka",
       "psychiatrist": "Psychiatra",
-      "psychotherapist": "Psychoterapeuta/ka"
+      "psychotherapist": "Psychoterapeuta/ka",
+      "test_audio_camera": "Przetestuj audio i kamerę",
+      "test_audio_camera_description": "Sprawdź urządzenia przed konsultacją"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",
@@ -1675,6 +1679,18 @@
       "error": "Wystąpił błąd. Spróbuj ponownie",
       "permissions_error": "Zezwól na dostęp do kamery i mikrofonu",
       "allow_permissions": "Jeśli chcesz porozmawiać z klientem, włącz te uprawnienia w ustawieniach przeglądarki lub z ikony informacji na pasku adresu."
+    },
+    "device-test": {
+      "heading": "Przetestuj audio i kamerę",
+      "subheading": "Sprawdź urządzenia przed konsultacją, aby upewnić się, że wszystko działa.",
+      "done": "Gotowe",
+      "configuring_devices": "Konfigurowanie urządzeń...",
+      "camera_off_label": "Kamera wyłączona",
+      "mic_level_label": "Mikrofon",
+      "toggle_camera": "Przełącz kamerę",
+      "toggle_microphone": "Przełącz mikrofon",
+      "retry_permissions": "Spróbuj ponownie",
+      "permissions_error": "Zezwól na dostęp do kamery i mikrofonu"
     },
     "select-avatar": {
       "heading": "Zmień zdjęcie profilowe",

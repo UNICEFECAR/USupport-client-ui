@@ -324,7 +324,9 @@
       "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere",
       "psychologist": "Psiholog",
       "psychiatrist": "Psihiatru",
-      "psychotherapist": "Psihoterapeut"
+      "psychotherapist": "Psihoterapeut",
+      "test_audio_camera": "Testează audio și camera",
+      "test_audio_camera_description": "Verifică dispozitivele înainte de consultație"
     },
     "login": {
       "email_label": "Email / Token de acces",
@@ -562,7 +564,9 @@
       "heading_need_support": "Ai nevoie de sprijin?",
       "psychologist": "Psiholog",
       "psychiatrist": "Psihiatru",
-      "psychotherapist": "Psihoterapeut"
+      "psychotherapist": "Psihoterapeut",
+      "test_audio_camera": "Testează audio și camera",
+      "test_audio_camera_description": "Verifică dispozitivele înainte de consultație"
     },
     "mood-tracker": {
       "happy": "Fericit",
@@ -1673,6 +1677,18 @@
       "error": "A apărut o eroare. Vă rugăm să încercați din nou",
       "permissions_error": "Permiteți accesul la cameră și microfon",
       "allow_permissions": "Dacă doriți să vorbiți cu clientul, permiteți aceste permisiuni din setările browserului sau din pictograma de informații din bara de adrese."
+    },
+    "device-test": {
+      "heading": "Testează audio și camera",
+      "subheading": "Verifică dispozitivele înainte de consultație pentru a te asigura că totul funcționează.",
+      "done": "Gata",
+      "configuring_devices": "Configurarea dispozitivelor...",
+      "camera_off_label": "Camera este oprită",
+      "mic_level_label": "Microfon",
+      "toggle_camera": "Comută camera",
+      "toggle_microphone": "Comută microfonul",
+      "retry_permissions": "Încearcă din nou",
+      "permissions_error": "Permiteți accesul la cameră și microfon"
     },
     "select-avatar": {
       "heading": "Schimbare imagine profil",
