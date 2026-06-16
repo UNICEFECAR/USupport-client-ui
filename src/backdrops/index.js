@@ -1,4 +1,5 @@
 export * from "./JoinConsultation";
+export * from "./DeviceTest";
 export * from "./FilterProviders";
 export * from "./CancelConsultation";
 export * from "./EditConsultation";

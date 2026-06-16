@@ -324,7 +324,9 @@
       "join_button_label_tooltip": "Сіз консультацияға басталғанға дейін 5 минут бұрын қосыла аласыз",
       "psychologist": "Психолог",
       "psychiatrist": "Психиатр",
-      "psychotherapist": "Психотерапевт"
+      "psychotherapist": "Психотерапевт",
+      "test_audio_camera": "Аудио мен камераны тексеру",
+      "test_audio_camera_description": "Консультациядан бұрын құрылғыларды тексеріңіз"
     },
     "login": {
       "email_label": "Электронды пошта / кіру токені",
@@ -562,7 +564,9 @@
       "heading_need_support": "Қолдау керек пе?",
       "psychologist": "Психолог",
       "psychiatrist": "Психиатр",
-      "psychotherapist": "Психотерапевт"
+      "psychotherapist": "Психотерапевт",
+      "test_audio_camera": "Аудио мен камераны тексеру",
+      "test_audio_camera_description": "Консультациядан бұрын құрылғыларды тексеріңіз"
     },
     "mood-tracker": {
       "happy": "Керемет",
@@ -1673,6 +1677,18 @@
       "error": "Қате шықты. Өтінеміз, тағы бір көріңіз",
       "permissions_error": "Камера мен микрофонға рұқсат беріңіз",
       "allow_permissions": "Клиентпен сөйлесу үшін браузер баптауларынан немесе мекенжай жолағындағы ақпарат белгішесі арқылы осы рұқсаттарды беріңіз."
+    },
+    "device-test": {
+      "heading": "Аудио мен камераны тексеру",
+      "subheading": "Консультациядан бұрын құрылғыларды тексеріп, бәрі дұрыс жұмыс істейтініне көз жеткізіңіз.",
+      "done": "Дайын",
+      "configuring_devices": "Қurылғыларды баптау...",
+      "camera_off_label": "Камера өшірілген",
+      "mic_level_label": "Микрофон",
+      "toggle_camera": "Кamerаны ауыстыру",
+      "toggle_microphone": "Микрофонды ауыстыру",
+      "retry_permissions": "Қайтадан көру",
+      "permissions_error": "Камера мен микрофонға рұқсат беріңіз"
     },
     "select-avatar": {
       "heading": "Парақша фотосуретін өзгерту",
