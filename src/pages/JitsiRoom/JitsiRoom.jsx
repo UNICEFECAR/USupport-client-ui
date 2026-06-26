@@ -3,7 +3,6 @@ import React, { useContext, useRef, useState, useEffect } from "react";
 import { JitsiMeeting } from "@jitsi/react-sdk";
 import { useTranslation } from "react-i18next";
 import { Navigate, useLocation } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 import { Controls, Loading } from "@USupport-components-library/src";
@@ -37,7 +36,7 @@ const defaultConfig = {
   enableEmailInStats: false,
   requireDisplayName: false,
   prejoinPageEnabled: false,
-  disableInitialGUM: true,
+  disableInitialGUM: false,
   deeplinking: {
     desktop: { enabled: false },
     disabled: true,
@@ -65,7 +64,6 @@ export const JitsiRoom = () => {
   const api = useRef();
   const backdropMessagesContainerRef = useRef();
 
-  const queryClient = useQueryClient();
   const location = useLocation();
   const { width } = useWindowDimensions();
   const { isTmpUser, leaveConsultationFn } = useContext(RootContext);
@@ -89,7 +87,6 @@ export const JitsiRoom = () => {
     isProviderTyping: false,
     isProviderInSession: false,
     hasUnreadMessages: false,
-    isProviderInSession: false,
   });
   const interfacesRef = useRef(interfaces);
 
@@ -420,7 +417,7 @@ export const JitsiRoom = () => {
 
               const roomInfo = rooms[0] || rooms?.rooms[0];
               const participants = roomInfo?.participants?.filter(
-                (x) => !!x && x.id !== userInfo.id && x.id !== "local",
+                (x) => !!x && x.id !== userInfo.id && x.id !== "local"
               );
               if (roomInfo) {
                 setInterfaceData({
@@ -433,7 +430,7 @@ export const JitsiRoom = () => {
               externalApi.executeCommand("joinConference");
               externalApi.executeCommand(
                 "avatarUrl",
-                `${AMAZON_S3_BUCKET}/${clientData.image || "default"}`,
+                `${AMAZON_S3_BUCKET}/${clientData.image || "default"}`
               );
 
               externalApi.addListener("cameraError", (error) => {
@@ -468,7 +465,7 @@ export const JitsiRoom = () => {
                       isProviderInSession: true,
                     }));
                   }
-                },
+                }
               );
               externalApi.addListener("toolbarButtonClicked", (event) => {
                 if (event.key === "settings") {
