@@ -82,6 +82,7 @@ export const CodeVerification = ({
       localStorage.setItem("token", token);
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
+      localStorage.setItem("isRegistered", "true");
 
       queryClient.setQueryData(
         ["client-data"],

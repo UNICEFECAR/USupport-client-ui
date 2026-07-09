@@ -4,7 +4,10 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
 import { Root } from "#routes";
-import { FIVE_MINUTES } from "@USupport-components-library/utils";
+import {
+  FIVE_MINUTES,
+  isKeepMeSignedIn,
+} from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -60,13 +63,13 @@ function App() {
   useEffect(() => {
     const language = localStorage.getItem("language");
     const hasAcceptedAllCookies = !!Number(
-      localStorage.getItem("acceptAllCookies")
+      localStorage.getItem("acceptAllCookies"),
     );
     const hasAcceptedNecessaryCookies = !!Number(
-      localStorage.getItem("hasAcceptedNecessaryCookies")
+      localStorage.getItem("hasAcceptedNecessaryCookies"),
     );
     const hasHandledCookies = !!Number(
-      localStorage.getItem("hasHandledCookies")
+      localStorage.getItem("hasHandledCookies"),
     );
 
     setCookieState({
@@ -86,7 +89,7 @@ function App() {
       const token = localStorage.getItem("token");
       // If the page is being refreshed, do nothing
       if (!(performance.getEntriesByType("navigation")[0].type === "reload")) {
-        if (!IS_DEV && token && !isInWelcome) {
+        if (!IS_DEV && token && !isInWelcome && !isKeepMeSignedIn()) {
           e.preventDefault();
           e.returnValue = "";
           userSvc.logout();
