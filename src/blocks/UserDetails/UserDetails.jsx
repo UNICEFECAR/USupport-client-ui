@@ -18,14 +18,18 @@ import {
   CheckBox,
   NewButton,
   ActionRow,
+  LoginOptionCard,
 } from "@USupport-components-library/src";
 import {
   validateProperty,
   validate,
   ThemeContext,
+  isKeepMeSignedIn,
+  setKeepMeSignedIn,
 } from "@USupport-components-library/utils";
 import { userSvc, clientSvc } from "@USupport-components-library/services";
 import { useGetClientData, useUpdateClientData } from "#hooks";
+import { KeepMeSignedInSheet } from "#backdrops";
 
 import Joi from "joi";
 
@@ -53,6 +57,7 @@ export const UserDetails = ({
 }) => {
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation("blocks", { keyPrefix: "user-details" });
+  const { t: tLogin } = useTranslation("blocks", { keyPrefix: "login" });
   const IS_RO = localStorage.getItem("country") === "RO";
 
   const navigate = useNavigate();
@@ -67,6 +72,33 @@ export const UserDetails = ({
 
   const [dataProcessing, setDataProcessing] = useState(null);
   const [dataProcessingModalOpen, setDataProcessingModalOpen] = useState(false);
+
+  const [keepMeSignedIn, setKeepMeSignedInState] = useState(isKeepMeSignedIn());
+  const [isKeepMeSignedInSheetOpen, setIsKeepMeSignedInSheetOpen] =
+    useState(false);
+  const [isKeepMeSignedInPending, setIsKeepMeSignedInPending] = useState(false);
+
+  const handleKeepMeSignedInToggle = (nextValue) => {
+    if (nextValue) {
+      setIsKeepMeSignedInPending(true);
+      setIsKeepMeSignedInSheetOpen(true);
+      return;
+    }
+    setKeepMeSignedInState(false);
+    setKeepMeSignedIn(false);
+  };
+
+  const handleKeepMeSignedInSheetCancel = () => {
+    setIsKeepMeSignedInSheetOpen(false);
+    setIsKeepMeSignedInPending(false);
+  };
+
+  const handleKeepMeSignedInSheetContinue = () => {
+    setIsKeepMeSignedInSheetOpen(false);
+    setIsKeepMeSignedInPending(false);
+    setKeepMeSignedInState(true);
+    setKeepMeSignedIn(true);
+  };
 
   const defaultSchema = {
     nickname: Joi.string().required().label(t("nickname_error")),
@@ -433,6 +465,15 @@ export const UserDetails = ({
                       {t("account_section")}
                     </p>
                     <div className="user-details__action-card">
+                      <LoginOptionCard
+                        iconName="circle-actions-success"
+                        title={tLogin("keep_me_signed_in")}
+                        description={tLogin("keep_me_signed_in_description")}
+                        isToggled={keepMeSignedIn || isKeepMeSignedInPending}
+                        onToggle={handleKeepMeSignedInToggle}
+                        showInfoIcon
+                        onInfoPress={() => setIsKeepMeSignedInSheetOpen(true)}
+                      />
                       <ActionRow
                         iconName="fingerprint"
                         label={t("change_password")}
@@ -518,6 +559,11 @@ export const UserDetails = ({
         secondaryCtaLabel={t("data_processing_modal_cancel_button")}
         secondaryCtaType="secondary"
         secondaryCtaHandleClick={closeDataProcessingModal}
+      />
+      <KeepMeSignedInSheet
+        isOpen={isKeepMeSignedInSheetOpen}
+        onCancel={handleKeepMeSignedInSheetCancel}
+        onContinue={handleKeepMeSignedInSheetContinue}
       />
     </Block>
   );

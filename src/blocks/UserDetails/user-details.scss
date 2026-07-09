@@ -173,6 +173,24 @@
   }
 
   &__action-card {
+    .login-option-card {
+      position: relative;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      padding: 16px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        bottom: 0;
+        height: 1px;
+        background: rgba(232, 236, 240, 1);
+      }
+    }
+
     .action-row:not(:last-child)::after {
       content: "";
       position: absolute;
