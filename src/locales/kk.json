@@ -1743,6 +1743,10 @@
       "register_anonymously": "Электрондық поштасыз тіркелу",
       "continue_as_guest": "Тіркеусіз жалғастыру",
       "already_have_account": "Есептік жазбаңыз бар ма?",
+      "dont_have_account": "Есептік жазбаңыз жоқ па?",
+      "sign_up": "Тіркелу",
+      "welcome_back": "Қайта оралуыңызбен",
+      "continue_with_account": "Бар есептік жазбаңызбен жалғастырыңыз",
       "log_in": "Кіру",
       "client": "Клиент",
       "poland_description": "uSupport – жастарға (16–24) арналған психикалық денсаулық пен әл-ауқат платформасы."

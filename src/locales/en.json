@@ -1521,6 +1521,10 @@
       "register_anonymously": "Register anonymously",
       "continue_as_guest": "Continue without registration",
       "already_have_account": "Already have an account?",
+      "dont_have_account": "Don't have an account?",
+      "sign_up": "Sign up",
+      "welcome_back": "Welcome back",
+      "continue_with_account": "Continue with your existing account",
       "log_in": "Log in",
       "client": "Client",
       "poland_description": "uSupport is a mental health and well-being platform designed for youth (16–24)."

@@ -1743,6 +1743,10 @@
       "register_anonymously": "Գրանցվել առանց էլեկտրոնային փոստի",
       "continue_as_guest": "Շարունակել առանց գրանցման",
       "already_have_account": "Արդեն ունե՞ք հաշիվ",
+      "dont_have_account": "Հաշիվ չունե՞ք",
+      "sign_up": "Գրանցվել",
+      "welcome_back": "Բարի վերադարձ",
+      "continue_with_account": "Շարունակեք ձեր առկա հաշվով",
       "log_in": "Մուտք գործել",
       "client": "Հաճախորդ",
       "poland_description": "uSupport-ը հոգեկան առողջության և բարեկեցության հարթակ է, որը նախատեսված է երիտասարդների համար (16–24):"

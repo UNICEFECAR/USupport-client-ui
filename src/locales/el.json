@@ -1743,6 +1743,10 @@
       "register_anonymously": "Ανώνυμη εγγραφή",
       "continue_as_guest": "Συνέχεια χωρίς εγγραφή",
       "already_have_account": "Έχετε ήδη λογαριασμό;",
+      "dont_have_account": "Δεν έχετε λογαριασμό;",
+      "sign_up": "Εγγραφή",
+      "welcome_back": "Καλώς ήρθατε ξανά",
+      "continue_with_account": "Συνεχίστε με τον υπάρχοντα λογαριασμό σας",
       "log_in": "Σύνδεση",
       "client": "Client",
       "poland_description": "uSupport είναι μια πλατφόρμα ψυχικής υγείας και ευεξίας που έχει σχεδιαστεί για νέους (16-24 ετών)."

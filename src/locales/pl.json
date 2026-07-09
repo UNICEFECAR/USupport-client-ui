@@ -1761,6 +1761,10 @@
       "register_anonymously": "Rejestracja anonimowa",
       "continue_as_guest": "Kontynuuj bez rejestracji",
       "already_have_account": "Masz już konto?",
+      "dont_have_account": "Nie masz konta?",
+      "sign_up": "Zarejestruj się",
+      "welcome_back": "Witamy ponownie",
+      "continue_with_account": "Kontynuuj ze swoim istniejącym kontem",
       "log_in": "Zaloguj się",
       "client": "Klient",
       "poland_description": "uSupport to platforma zdrowia psychicznego i dobrostanu zaprojektowana dla młodzieży (16–24)."
