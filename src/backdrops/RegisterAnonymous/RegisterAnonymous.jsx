@@ -111,6 +111,7 @@ export const RegisterAnonymous = ({
       localStorage.setItem("token", token);
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
+      localStorage.setItem("isRegistered", "true");
 
       window.dispatchEvent(new Event("login"));
       window.dispatchEvent(new Event("token-changed"));
