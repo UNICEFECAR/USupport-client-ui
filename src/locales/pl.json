@@ -340,7 +340,13 @@
       "paragraph": "Lub zaloguj się za pomocą:",
       "register_button_label": "Nie mam konta",
       "client": "Klient",
-      "heading": "Witamy w"
+      "heading": "Witamy w",
+      "keep_me_signed_in": "Pozostań zalogowany",
+      "keep_me_signed_in_description": "Pozostań zalogowany na tym urządzeniu, dopóki ręcznie się nie wylogujesz.",
+      "keep_me_signed_in_sheet_title": "Pozostać zalogowanym na tym urządzeniu?",
+      "keep_me_signed_in_sheet_body": "Pozostaniesz zalogowany, dopóki ręcznie się nie wylogujesz. Korzystaj z tej opcji tylko na swoim osobistym urządzeniu. Na współdzielonym lub publicznym urządzeniu wyloguj się po zakończeniu, aby chronić swoje konto i dane osobowe.",
+      "keep_me_signed_in_sheet_cancel": "Anuluj",
+      "keep_me_signed_in_sheet_continue": "Kontynuuj"
     },
     "welcome": {
       "heading": "Witamy w",

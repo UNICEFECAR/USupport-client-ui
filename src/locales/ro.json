@@ -338,7 +338,13 @@
       "paragraph": "Sau conectați-vă cu::",
       "register_button_label": "Nu am cont",
       "client": "Client",
-      "heading": "Bine ați venit la"
+      "heading": "Bine ați venit la",
+      "keep_me_signed_in": "Păstrați-mă conectat",
+      "keep_me_signed_in_description": "Rămâneți conectat pe acest dispozitiv până când vă deconectați manual.",
+      "keep_me_signed_in_sheet_title": "Rămâneți conectat pe acest dispozitiv?",
+      "keep_me_signed_in_sheet_body": "Veți rămâne conectat până când vă deconectați manual. Folosiți această opțiune doar pe dispozitivul personal. Pe un dispozitiv partajat sau public, deconectați-vă când ați terminat pentru a vă proteja contul și informațiile personale.",
+      "keep_me_signed_in_sheet_cancel": "Anulare",
+      "keep_me_signed_in_sheet_continue": "Continuare"
     },
     "welcome": {
       "heading": "Bine ați venit la",
