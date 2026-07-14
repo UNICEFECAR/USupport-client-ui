@@ -6,7 +6,11 @@ import {
   useNavigate as useRawNavigate,
 } from "react-router-dom";
 
-import { useCustomNavigate as useNavigate, useError } from "#hooks";
+import {
+  useCustomNavigate as useNavigate,
+  useError,
+  useKeepMeSignedIn,
+} from "#hooks";
 
 import {
   Backdrop,
@@ -16,10 +20,7 @@ import {
   LoginOptionCard,
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
-import {
-  applyKeepMeSignedInOnLogin,
-  getCountryFromTimezone,
-} from "@USupport-components-library/utils";
+import { getCountryFromTimezone } from "@USupport-components-library/utils";
 import { AuthenticationModalsLogo } from "../";
 import { KeepMeSignedInSheet } from "./KeepMeSignedInSheet";
 
@@ -50,30 +51,15 @@ export const Login = ({
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const [keepMeSignedIn, setKeepMeSignedIn] = useState(false);
-  const [isKeepMeSignedInSheetOpen, setIsKeepMeSignedInSheetOpen] =
-    useState(false);
-  const [isKeepMeSignedInPending, setIsKeepMeSignedInPending] = useState(false);
-
-  const handleKeepMeSignedInToggle = (nextValue) => {
-    if (nextValue) {
-      setIsKeepMeSignedInPending(true);
-      setIsKeepMeSignedInSheetOpen(true);
-      return;
-    }
-    setKeepMeSignedIn(false);
-  };
-
-  const handleKeepMeSignedInSheetCancel = () => {
-    setIsKeepMeSignedInSheetOpen(false);
-    setIsKeepMeSignedInPending(false);
-  };
-
-  const handleKeepMeSignedInSheetContinue = () => {
-    setIsKeepMeSignedInSheetOpen(false);
-    setIsKeepMeSignedInPending(false);
-    setKeepMeSignedIn(true);
-  };
+  const {
+    keepMeSignedInToggleValue,
+    isKeepMeSignedInSheetOpen,
+    handleKeepMeSignedInToggle,
+    handleKeepMeSignedInSheetCancel,
+    handleKeepMeSignedInSheetContinue,
+    openKeepMeSignedInSheet,
+    applyKeepMeSignedIn,
+  } = useKeepMeSignedIn();
 
   const login = async () => {
     const usersCountry = getCountryFromTimezone();
@@ -98,7 +84,7 @@ export const Login = ({
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
-      applyKeepMeSignedInOnLogin(keepMeSignedIn);
+      applyKeepMeSignedIn();
 
       queryClient.setQueryData(
         ["client-data"],
@@ -181,10 +167,10 @@ export const Login = ({
             iconName="circle-actions-success"
             title={t("keep_me_signed_in")}
             description={t("keep_me_signed_in_description")}
-            isToggled={keepMeSignedIn || isKeepMeSignedInPending}
+            isToggled={keepMeSignedInToggleValue}
             onToggle={handleKeepMeSignedInToggle}
             showInfoIcon
-            onInfoPress={() => setIsKeepMeSignedInSheetOpen(true)}
+            onInfoPress={openKeepMeSignedInSheet}
           />
 
           <Button

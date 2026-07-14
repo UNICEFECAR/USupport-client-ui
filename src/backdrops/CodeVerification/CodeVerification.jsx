@@ -15,6 +15,7 @@ import {
 } from "@USupport-components-library/src";
 
 import { userSvc } from "@USupport-components-library/services";
+import { applyKeepMeSignedInOnLogin } from "@USupport-components-library/utils";
 import { ReportIssue } from "#modals";
 
 import "./code-verification.scss";
@@ -36,6 +37,7 @@ export const CodeVerification = ({
   canRequestNewEmail,
   isMutating,
   onRegistrationSuccess,
+  keepMeSignedIn = false,
 }) => {
   const { t } = useTranslation("backdrops", { keyPrefix: "code-verification" });
   const navigate = useNavigate();
@@ -83,6 +85,8 @@ export const CodeVerification = ({
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
       localStorage.setItem("isRegistered", "true");
+
+      applyKeepMeSignedInOnLogin(keepMeSignedIn);
 
       queryClient.setQueryData(
         ["client-data"],
