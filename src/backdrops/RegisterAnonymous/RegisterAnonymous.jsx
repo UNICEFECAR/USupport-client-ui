@@ -13,13 +13,15 @@ import {
   TermsAgreement,
   Backdrop,
   NewButton,
+  LoginOptionCard,
 } from "@USupport-components-library/src";
 import { validate, validateProperty } from "@USupport-components-library/utils";
 import { userSvc } from "@USupport-components-library/services";
 
-import { useError, useCustomNavigate as useNavigate } from "#hooks";
+import { useError, useCustomNavigate as useNavigate, useKeepMeSignedIn } from "#hooks";
 import { SaveAccessCodeConfirmation } from "#modals";
 import { AuthenticationModalsLogo } from "../";
+import { KeepMeSignedInSheet } from "../Login/KeepMeSignedInSheet";
 
 import "./register-anonymous.scss";
 
@@ -38,8 +40,18 @@ export const RegisterAnonymous = ({
   onRegistrationSuccess,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "register-anonymous" });
+  const { t: tLogin } = useTranslation("blocks", { keyPrefix: "login" });
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const {
+    keepMeSignedInToggleValue,
+    isKeepMeSignedInSheetOpen,
+    handleKeepMeSignedInToggle,
+    handleKeepMeSignedInSheetCancel,
+    handleKeepMeSignedInSheetContinue,
+    openKeepMeSignedInSheet,
+    applyKeepMeSignedIn,
+  } = useKeepMeSignedIn();
 
   const countriesData = queryClient.getQueryData(["countries"]);
 
@@ -112,6 +124,8 @@ export const RegisterAnonymous = ({
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
       localStorage.setItem("isRegistered", "true");
+
+      applyKeepMeSignedIn();
 
       window.dispatchEvent(new Event("login"));
       window.dispatchEvent(new Event("token-changed"));
@@ -274,6 +288,16 @@ export const RegisterAnonymous = ({
             textOne={t("age_terms_agreement_text_1", { age: minAge })}
           />
 
+          <LoginOptionCard
+            iconName="circle-actions-success"
+            title={tLogin("keep_me_signed_in")}
+            description={tLogin("keep_me_signed_in_description")}
+            isToggled={keepMeSignedInToggleValue}
+            onToggle={handleKeepMeSignedInToggle}
+            showInfoIcon
+            onInfoPress={openKeepMeSignedInSheet}
+          />
+
           <div className="register-anonymous-modal__content-container__actions">
             {errors.submit ? <Error message={errors.submit} /> : null}
             <NewButton
@@ -293,6 +317,11 @@ export const RegisterAnonymous = ({
           />
         </form>
       </Backdrop>
+      <KeepMeSignedInSheet
+        isOpen={isKeepMeSignedInSheetOpen}
+        onCancel={handleKeepMeSignedInSheetCancel}
+        onContinue={handleKeepMeSignedInSheetContinue}
+      />
       <SaveAccessCodeConfirmation
         isOpen={isConfirmationModalOpen}
         onClose={() => setIsConfirmationModalOpen(false)}
