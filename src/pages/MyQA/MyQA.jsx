@@ -59,7 +59,7 @@ export const MyQA = () => {
   const [filterTag, setFilterTag] = useState("");
   const [hasOpenedQuestionFromLocation, setHasOpenedQuestionFromLocation] =
     useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedLanguage, setSelectedLanguage] = useState("all");
   const [shouldFetchQuestions, setShouldFetchQuestions] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
