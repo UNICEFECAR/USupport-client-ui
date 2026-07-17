@@ -339,7 +339,13 @@
       "paragraph": "Or login with:",
       "register_button_label": "I don’t have an account",
       "client": "Client",
-      "heading": "Welcome to"
+      "heading": "Welcome to",
+      "keep_me_signed_in": "Keep me signed in",
+      "keep_me_signed_in_description": "Stay signed in on this device until you manually sign out.",
+      "keep_me_signed_in_sheet_title": "Stay signed in on this device?",
+      "keep_me_signed_in_sheet_body": "You'll stay signed in until you manually sign out. Only use this option on your personal device. If this is a shared or public device, sign out when you're done to protect your account and personal information.",
+      "keep_me_signed_in_sheet_cancel": "Cancel",
+      "keep_me_signed_in_sheet_continue": "Continue"
     },
     "welcome": {
       "heading": "Welcome to",
@@ -1521,6 +1527,10 @@
       "register_anonymously": "Register anonymously",
       "continue_as_guest": "Continue without registration",
       "already_have_account": "Already have an account?",
+      "dont_have_account": "Don't have an account?",
+      "sign_up": "Sign up",
+      "welcome_back": "Welcome back",
+      "continue_with_account": "Continue with your existing account",
       "log_in": "Log in",
       "client": "Client",
       "poland_description": "uSupport is a mental health and well-being platform designed for youth (16–24)."
