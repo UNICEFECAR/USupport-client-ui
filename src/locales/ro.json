@@ -338,7 +338,13 @@
       "paragraph": "Sau conectați-vă cu::",
       "register_button_label": "Nu am cont",
       "client": "Client",
-      "heading": "Bine ați venit la"
+      "heading": "Bine ați venit la",
+      "keep_me_signed_in": "Păstrați-mă conectat",
+      "keep_me_signed_in_description": "Rămâneți conectat pe acest dispozitiv până când vă deconectați manual.",
+      "keep_me_signed_in_sheet_title": "Rămâneți conectat pe acest dispozitiv?",
+      "keep_me_signed_in_sheet_body": "Veți rămâne conectat până când vă deconectați manual. Folosiți această opțiune doar pe dispozitivul personal. Pe un dispozitiv partajat sau public, deconectați-vă când ați terminat pentru a vă proteja contul și informațiile personale.",
+      "keep_me_signed_in_sheet_cancel": "Anulare",
+      "keep_me_signed_in_sheet_continue": "Continuare"
     },
     "welcome": {
       "heading": "Bine ați venit la",
@@ -1743,6 +1749,10 @@
       "register_anonymously": "Înregistrare anonimă",
       "continue_as_guest": "Continuați fără înregistrare",
       "already_have_account": "Aveți deja un cont?",
+      "dont_have_account": "Nu aveți un cont?",
+      "sign_up": "Înregistrare",
+      "welcome_back": "Bine ai revenit",
+      "continue_with_account": "Continuați cu contul dvs. existent",
       "log_in": "Autentificare",
       "client": "Client",
       "poland_description": "uSupport este o platformă de sănătate mintală și bunăstare destinată tinerilor (16–24)."

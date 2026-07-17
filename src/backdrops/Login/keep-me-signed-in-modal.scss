@@ -1,0 +1,47 @@
+@import "@USupport-components-library/styles";
+
+// Stack above the login backdrop modal.
+.ReactModal__Overlay.keep-me-signed-in-modal__overlay {
+  z-index: $z_index_modal + 1;
+  background: rgba(18, 18, 24, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.ReactModal__Content.keep-me-signed-in-modal {
+  z-index: $z_index_modal + 2;
+}
+
+.keep-me-signed-in-modal {
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: $spacing_1_6;
+  }
+
+  &__icon-circle {
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 50%;
+    background-color: rgba(151, 73, 250, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__title {
+    text-align: center;
+    margin: 0;
+  }
+
+  .base-modal__text {
+    text-align: center;
+    opacity: 0.85;
+  }
+
+  .base-modal__footer {
+    flex-direction: row-reverse;
+  }
+}
