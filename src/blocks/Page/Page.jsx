@@ -42,6 +42,7 @@ import {
   useCheckHasUnreadNotifications,
   useError,
   useAddSosCenterClick,
+  useAddCountryEvent,
 } from "#hooks";
 import { NotificationMenu } from "./NotificationMenu";
 
@@ -111,6 +112,7 @@ export const Page = ({
   const unreadNotificationsQuery = useCheckHasUnreadNotifications(
     !!token && !isTmpUser,
   );
+  const addCountryEventMutation = useAddCountryEvent();
 
   let localStorageCountry = localStorage.getItem("country");
   const localStorageLanguage = localStorage.getItem("language") || "en";
@@ -415,7 +417,13 @@ export const Page = ({
   ];
 
   if (!IS_RO) {
-    pages.push({ name: t("page_4"), url: "/my-qa", icon: "document" });
+    pages.push({
+      name: t("page_4"),
+      url: "/my-qa",
+      icon: "document",
+      onClick: () =>
+        addCountryEventMutation.mutate({ eventType: "web_my_qa_nav_click" }),
+    });
   }
 
   const footerLists = {
