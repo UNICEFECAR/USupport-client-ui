@@ -1,29 +1,11 @@
 @import "@USupport-components-library/styles";
 
-.join-consultation {
+.device-test {
   align-items: center;
 
-  &--preview {
-    .backdrop__children,
-    .base-modal__body {
-      width: 100%;
-    }
-  }
-
-  &__button-selector {
-    margin: 0 auto;
-
-    &:first-of-type {
-      margin-top: $spacing_3_2;
-    }
-
-    &:not(:first-of-type) {
-      margin-top: $spacing_1_6;
-    }
-
-    &:last-of-type {
-      margin-bottom: $spacing_1_6;
-    }
+  .backdrop__children,
+  .base-modal__body {
+    width: 100%;
   }
 
   &__preview {

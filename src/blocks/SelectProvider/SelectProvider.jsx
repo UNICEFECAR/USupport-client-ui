@@ -172,7 +172,8 @@ export const SelectProvider = ({
     );
   };
 
-  const providers = providersQuery.data?.pages.flat() || [];
+  const providers =
+    providersQuery.data?.pages.flatMap((page) => page.providers) || [];
   const renderProviderSkeletons = (count = 4) =>
     Array.from({ length: count }, (_, index) => (
       <GridItem
@@ -342,13 +343,13 @@ export const SelectProvider = ({
             )}
             {(!isCouponTabSelected || activeCoupon) && (
               <InfiniteScroll
-                dataLength={providersQuery.data?.pages.length || 0}
-                next={providersQuery.fetchNextPage}
-                hasMore={providersQuery.hasNextPage}
+                dataLength={providers.length}
+                next={() => providersQuery.fetchNextPage()}
+                hasMore={!!providersQuery.hasNextPage}
                 loader={<Loading />}
                 initialScrollY={20}
                 hasChildren={true}
-                scrollThreshold={0}
+                scrollThreshold={0.9}
                 style={{ overflow: "visible" }}
               >
                 <Grid

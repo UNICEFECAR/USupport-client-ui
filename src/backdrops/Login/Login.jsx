@@ -6,17 +6,23 @@ import {
   useNavigate as useRawNavigate,
 } from "react-router-dom";
 
-import { useCustomNavigate as useNavigate, useError } from "#hooks";
+import {
+  useCustomNavigate as useNavigate,
+  useError,
+  useKeepMeSignedIn,
+} from "#hooks";
 
 import {
   Backdrop,
   Input,
   InputPassword,
   Button,
+  LoginOptionCard,
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 import { getCountryFromTimezone } from "@USupport-components-library/utils";
 import { AuthenticationModalsLogo } from "../";
+import { KeepMeSignedInSheet } from "./KeepMeSignedInSheet";
 
 import "./login.scss";
 
@@ -45,6 +51,15 @@ export const Login = ({
     password: "",
   });
   const [errors, setErrors] = useState({});
+  const {
+    keepMeSignedInToggleValue,
+    isKeepMeSignedInSheetOpen,
+    handleKeepMeSignedInToggle,
+    handleKeepMeSignedInSheetCancel,
+    handleKeepMeSignedInSheetContinue,
+    openKeepMeSignedInSheet,
+    applyKeepMeSignedIn,
+  } = useKeepMeSignedIn();
 
   const login = async () => {
     const usersCountry = getCountryFromTimezone();
@@ -69,9 +84,11 @@ export const Login = ({
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
 
+      applyKeepMeSignedIn();
+
       queryClient.setQueryData(
         ["client-data"],
-        userSvc.transformUserData(userData)
+        userSvc.transformUserData(userData),
       );
 
       window.dispatchEvent(new Event("login"));
@@ -107,55 +124,76 @@ export const Login = ({
   };
 
   return (
-    <Backdrop
-      classes="backdrop--auth backdrop--from-bottom login-modal"
-      isOpen={isOpen}
-      onClose={() => {}}
-      thirdCtaLabel={t("register_button_label")}
-      thirdCtaHandleClick={handleRegister}
-      ctaLabel={t("login_label")}
-      ctaHandleClick={handleLogin}
-      isCtaDisabled={!data.email || !data.password}
-      isCtaLoading={loginMutation.isLoading}
-      errorMessage={errors.submit}
-      hasCloseIcon={false}
-      topHeaderComponent={
-        <AuthenticationModalsLogo showGoBackArrow onGoBack={handleGoBack} />
-      }
-    >
-      <form onSubmit={handleLogin} className="login-modal__content-form">
-        <Input
-          label={t("email_label")}
-          name="username"
-          autoComplete="username"
-          onChange={(value) => handleChange("email", value.currentTarget.value)}
-          placeholder={t("email_placeholder")}
-          value={data.email}
-        />
-        <InputPassword
-          label={t("password_label")}
-          name="current-password"
-          autoComplete="current-password"
-          onChange={(value) =>
-            handleChange("password", value.currentTarget.value)
-          }
-          placeholder={t("password_placeholder")}
-          value={data.password}
-        />
-        <Button
-          type="ghost"
-          color="purple"
-          classes="login-modal__content-form__forgot-password"
-          label={t("forgot_password_label")}
-          onClick={() => handleForgotPassword()}
-        />
-        <button
-          type="submit"
-          className="login-modal__content-form__submit-button"
-          aria-hidden="true"
-          disabled={!data.email || !data.password}
-        />
-      </form>
-    </Backdrop>
+    <>
+      <Backdrop
+        classes="backdrop--auth backdrop--from-bottom login-modal"
+        isOpen={isOpen}
+        onClose={() => {}}
+        thirdCtaLabel={t("register_button_label")}
+        thirdCtaHandleClick={handleRegister}
+        ctaLabel={t("login_label")}
+        ctaHandleClick={handleLogin}
+        isCtaDisabled={!data.email || !data.password}
+        isCtaLoading={loginMutation.isLoading}
+        errorMessage={errors.submit}
+        hasCloseIcon={false}
+        topHeaderComponent={
+          <AuthenticationModalsLogo showGoBackArrow onGoBack={handleGoBack} />
+        }
+      >
+        <form onSubmit={handleLogin} className="login-modal__content-form">
+          <Input
+            label={t("email_label")}
+            name="username"
+            autoComplete="username"
+            onChange={(value) =>
+              handleChange("email", value.currentTarget.value)
+            }
+            placeholder={t("email_placeholder")}
+            value={data.email}
+          />
+          <InputPassword
+            label={t("password_label")}
+            name="current-password"
+            autoComplete="current-password"
+            onChange={(value) =>
+              handleChange("password", value.currentTarget.value)
+            }
+            placeholder={t("password_placeholder")}
+            value={data.password}
+          />
+
+          <LoginOptionCard
+            iconName="circle-actions-success"
+            title={t("keep_me_signed_in")}
+            description={t("keep_me_signed_in_description")}
+            isToggled={keepMeSignedInToggleValue}
+            onToggle={handleKeepMeSignedInToggle}
+            showInfoIcon
+            onInfoPress={openKeepMeSignedInSheet}
+          />
+
+          <Button
+            type="ghost"
+            color="purple"
+            classes="login-modal__content-form__forgot-password"
+            label={t("forgot_password_label")}
+            onClick={() => handleForgotPassword()}
+          />
+          <button
+            type="submit"
+            className="login-modal__content-form__submit-button"
+            aria-hidden="true"
+            disabled={!data.email || !data.password}
+          />
+        </form>
+      </Backdrop>
+
+      <KeepMeSignedInSheet
+        isOpen={isKeepMeSignedInSheetOpen}
+        onCancel={handleKeepMeSignedInSheetCancel}
+        onContinue={handleKeepMeSignedInSheetContinue}
+      />
+    </>
   );
 };

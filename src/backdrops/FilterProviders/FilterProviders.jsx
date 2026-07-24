@@ -188,13 +188,11 @@ export const FilterProviders = ({
           <DropdownWithLabel
             options={
               languages?.map((x) => {
-                return { ...x, label: x.name, value: x.language_id };
+                return { ...x, label: x.name, value: x.alpha2 };
               }) || []
             }
             selected={data.language}
-            setSelected={(selectedOption) =>
-              handleSelect("language", selectedOption)
-            }
+            setSelected={(selected) => handleSelect("language", selected)}
             label={t("language")}
             placeholder={t("language_placeholder")}
           />

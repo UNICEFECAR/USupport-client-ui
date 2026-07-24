@@ -6,7 +6,7 @@ import Joi from "joi";
 import { Link } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { useError } from "#hooks";
+import { useError, useKeepMeSignedIn } from "#hooks";
 
 import {
   Backdrop,
@@ -15,11 +15,13 @@ import {
   TermsAgreement,
   Error,
   NewButton,
+  LoginOptionCard,
 } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
 import { validateProperty } from "@USupport-components-library/utils";
 
 import { CodeVerification, AuthenticationModalsLogo } from "../";
+import { KeepMeSignedInSheet } from "../Login/KeepMeSignedInSheet";
 
 import "./register-email.scss";
 
@@ -40,7 +42,17 @@ export const RegisterEmail = ({
   onRegistrationSuccess,
 }) => {
   const { t } = useTranslation("blocks", { keyPrefix: "register-email" });
+  const { t: tLogin } = useTranslation("blocks", { keyPrefix: "login" });
   const queryClient = useQueryClient();
+  const {
+    keepMeSignedIn,
+    keepMeSignedInToggleValue,
+    isKeepMeSignedInSheetOpen,
+    handleKeepMeSignedInToggle,
+    handleKeepMeSignedInSheetCancel,
+    handleKeepMeSignedInSheetContinue,
+    openKeepMeSignedInSheet,
+  } = useKeepMeSignedIn();
 
   const [data, setData] = useState({
     email: "",
@@ -268,6 +280,16 @@ export const RegisterEmail = ({
             />
           )}
 
+          <LoginOptionCard
+            iconName="circle-actions-success"
+            title={tLogin("keep_me_signed_in")}
+            description={tLogin("keep_me_signed_in_description")}
+            isToggled={keepMeSignedInToggleValue}
+            onToggle={handleKeepMeSignedInToggle}
+            showInfoIcon
+            onInfoPress={openKeepMeSignedInSheet}
+          />
+
           <div className="register-email-modal__content-container__actions">
             {errors.submit || submitError ? (
               <Error
@@ -292,6 +314,11 @@ export const RegisterEmail = ({
           />
         </div>
       </Backdrop>
+      <KeepMeSignedInSheet
+        isOpen={isKeepMeSignedInSheetOpen}
+        onCancel={handleKeepMeSignedInSheetCancel}
+        onContinue={handleKeepMeSignedInSheetContinue}
+      />
       <CodeVerification
         data={data}
         isOpen={isCodeVerificationOpen}
@@ -301,6 +328,7 @@ export const RegisterEmail = ({
         resendTimer={seconds}
         showTimer={showTimer}
         onRegistrationSuccess={onRegistrationSuccess}
+        keepMeSignedIn={keepMeSignedIn}
       />
     </>
   );

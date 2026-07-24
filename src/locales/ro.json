@@ -236,7 +236,8 @@
       "contact_reason_2_pl": "Problemă tehnică",
       "contact_reason_3_pl": "Plângere",
       "contact_reason_4_pl": "Altceva",
-      "contact_form": "Formular de contact"
+      "contact_form": "Formular de contact",
+      "technical_problem_label": "Problemă tehnică"
     },
     "select-provider": {
       "psychologist": "Psiholog",
@@ -310,6 +311,7 @@
       "edit": "Editare",
       "details": "Vedeți detalii",
       "active": "Acum",
+      "live": "Live",
       "reject": "Respingeți sugestia",
       "accept": "Acceptați consultația",
       "cancel_consultation": "Anulați consultația",
@@ -322,7 +324,9 @@
       "join_button_label_tooltip": "Puteți intra la consultație cu 5 minute înainte de începere",
       "psychologist": "Psiholog",
       "psychiatrist": "Psihiatru",
-      "psychotherapist": "Psihoterapeut"
+      "psychotherapist": "Psihoterapeut",
+      "test_audio_camera": "Testează audio și camera",
+      "test_audio_camera_description": "Verifică dispozitivele înainte de consultație"
     },
     "login": {
       "email_label": "Email / Token de acces",
@@ -334,7 +338,13 @@
       "paragraph": "Sau conectați-vă cu::",
       "register_button_label": "Nu am cont",
       "client": "Client",
-      "heading": "Bine ați venit la"
+      "heading": "Bine ați venit la",
+      "keep_me_signed_in": "Păstrați-mă conectat",
+      "keep_me_signed_in_description": "Rămâneți conectat pe acest dispozitiv până când vă deconectați manual.",
+      "keep_me_signed_in_sheet_title": "Rămâneți conectat pe acest dispozitiv?",
+      "keep_me_signed_in_sheet_body": "Veți rămâne conectat până când vă deconectați manual. Folosiți această opțiune doar pe dispozitivul personal. Pe un dispozitiv partajat sau public, deconectați-vă când ați terminat pentru a vă proteja contul și informațiile personale.",
+      "keep_me_signed_in_sheet_cancel": "Anulare",
+      "keep_me_signed_in_sheet_continue": "Continuare"
     },
     "welcome": {
       "heading": "Bine ați venit la",
@@ -546,6 +556,7 @@
       "edit": "Editare",
       "details": "Vedeți detalii",
       "active": "Acum",
+      "live": "Live",
       "reject": "Respinge sugestia",
       "accept": "Acceptă consultația",
       "cancel_consultation": "Anulați consultația",
@@ -559,7 +570,9 @@
       "heading_need_support": "Ai nevoie de sprijin?",
       "psychologist": "Psiholog",
       "psychiatrist": "Psihiatru",
-      "psychotherapist": "Psihoterapeut"
+      "psychotherapist": "Psihoterapeut",
+      "test_audio_camera": "Testează audio și camera",
+      "test_audio_camera_description": "Verifică dispozitivele înainte de consultație"
     },
     "mood-tracker": {
       "happy": "Fericit",
@@ -1657,10 +1670,31 @@
       "subheading": "Selectați tipul de comunicare care vi se potrivește cel mai bine.",
       "button_label_1": "Consultație video/audio",
       "button_label_2": "Consultare text",
+      "preview_heading": "Verificați camera și microfonul",
+      "preview_subheading": "Asigurați-vă că sunteți văzut și auzit înainte de a vă alătura.",
+      "join_video": "Alătură-te consultației",
+      "configuring_devices": "Configurarea dispozitivelor...",
+      "camera_off_label": "Camera este oprită",
+      "mic_level_label": "Microfon",
+      "toggle_camera": "Comută camera",
+      "toggle_microphone": "Comută microfonul",
+      "retry_permissions": "Încearcă din nou",
       "client_joined": "Clientul a intrat la consultație",
       "error": "A apărut o eroare. Vă rugăm să încercați din nou",
       "permissions_error": "Permiteți accesul la cameră și microfon",
       "allow_permissions": "Dacă doriți să vorbiți cu clientul, permiteți aceste permisiuni din setările browserului sau din pictograma de informații din bara de adrese."
+    },
+    "device-test": {
+      "heading": "Testează audio și camera",
+      "subheading": "Verifică dispozitivele înainte de consultație pentru a te asigura că totul funcționează.",
+      "done": "Gata",
+      "configuring_devices": "Configurarea dispozitivelor...",
+      "camera_off_label": "Camera este oprită",
+      "mic_level_label": "Microfon",
+      "toggle_camera": "Comută camera",
+      "toggle_microphone": "Comută microfonul",
+      "retry_permissions": "Încearcă din nou",
+      "permissions_error": "Permiteți accesul la cameră și microfon"
     },
     "select-avatar": {
       "heading": "Schimbare imagine profil",
@@ -1715,6 +1749,10 @@
       "register_anonymously": "Înregistrare anonimă",
       "continue_as_guest": "Continuați fără înregistrare",
       "already_have_account": "Aveți deja un cont?",
+      "dont_have_account": "Nu aveți un cont?",
+      "sign_up": "Înregistrare",
+      "welcome_back": "Bine ai revenit",
+      "continue_with_account": "Continuați cu contul dvs. existent",
       "log_in": "Autentificare",
       "client": "Client",
       "poland_description": "uSupport este o platformă de sănătate mintală și bunăstare destinată tinerilor (16–24)."

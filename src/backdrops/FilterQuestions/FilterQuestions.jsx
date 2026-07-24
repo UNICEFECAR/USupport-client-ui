@@ -24,7 +24,7 @@ export const FilterQuestions = ({ isOpen, onClose, setTag }) => {
   const onSuccess = (data) => {
     setTags(data);
   };
-  const tagsQuery = useGetQuestionsTags(onSuccess);
+  const tagsQuery = useGetQuestionsTags("all", onSuccess);
 
   const [selectedTagId, setSelectedTagId] = useState();
 

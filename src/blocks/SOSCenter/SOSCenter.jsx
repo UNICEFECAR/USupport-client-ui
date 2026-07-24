@@ -43,7 +43,7 @@ export const SOSCenter = ({ description }) => {
 
   //--------------------- Country Change Event Listener ----------------------//
   const [currentCountry, setCurrentCountry] = useState(
-    localStorage.getItem("country"),
+    localStorage.getItem("country")
   );
 
   const handler = useCallback(() => {
@@ -64,7 +64,7 @@ export const SOSCenter = ({ description }) => {
 
   const sosCenterIdsQuerry = useQuery(
     ["sosCenterIds", currentCountry],
-    getSOSCenterIds,
+    getSOSCenterIds
   );
 
   const getOrganizationSpecializations = async () => {
@@ -77,11 +77,11 @@ export const SOSCenter = ({ description }) => {
     getOrganizationSpecializations,
     {
       staleTime: 10 * 60 * 1000, // 10 minutes
-    },
+    }
   );
 
   const emergencyServiceSpecialization = specializationsData?.find(
-    (specialization) => specialization.name === "emergency_situations",
+    (specialization) => specialization.name === "emergency_situations"
   );
 
   const getSOSCenters = async () => {
@@ -106,7 +106,7 @@ export const SOSCenter = ({ description }) => {
     {
       enabled:
         !sosCenterIdsQuerry.isLoading && sosCenterIdsQuerry.data?.length > 0,
-    },
+    }
   );
 
   const addSosCenterClickMutation = useAddSosCenterClick();
@@ -116,7 +116,7 @@ export const SOSCenter = ({ description }) => {
     let id = sosCenter.id;
     if (attributes.locale !== "en") {
       const englishLocalization = attributes.localizations.data.find(
-        (x) => x.attributes.locale === "en",
+        (x) => x.attributes.locale === "en"
       );
       if (englishLocalization) {
         id = englishLocalization.id;
@@ -163,7 +163,7 @@ export const SOSCenter = ({ description }) => {
                               onClick={(e) => {
                                 e.stopPropagation();
                                 navigate(
-                                  `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`,
+                                  `/organizations?specialisations=[${emergencyServiceSpecialization.id}]`
                                 );
                               }}
                               label={t("browse")}
@@ -223,7 +223,11 @@ export const SOSCenter = ({ description }) => {
                                     label={t("button_call")}
                                     onClick={(e) => {
                                       e.stopPropagation();
-                                      window.open(`tel:${phone}`, "_self");
+                                      window.open(
+                                        `tel:${phone}`,
+                                        "_blank",
+                                        "noopener"
+                                      );
                                     }}
                                   />
                                 )}

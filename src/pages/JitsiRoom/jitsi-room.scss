@@ -1,17 +1,9 @@
 /* JitsiRoom styles */
 @import "@USupport-components-library/styles";
+@import "../Consultation/consultation-chat.scss";
 
 .page__jitsi-room {
   padding-top: 0;
-
-  &__options-container {
-    padding-top: 1.2rem;
-    padding-left: 1.2rem;
-  }
-
-  & .send-message {
-    padding-left: 1.2rem;
-  }
 
   .loading-spinner {
     position: absolute;

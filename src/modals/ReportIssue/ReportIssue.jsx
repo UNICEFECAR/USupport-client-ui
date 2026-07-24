@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ContactForm, Modal } from "@USupport-components-library/src";
@@ -17,6 +17,16 @@ export const ReportIssue = ({
 
   const country = localStorage.getItem("country");
   const formRef = useRef(null);
+
+  const technicalProblemOptions = useMemo(
+    () => [
+      {
+        value: "technical-problem",
+        label: t("technical_problem_label"),
+      },
+    ],
+    [t],
+  );
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [submitError, setSubmitError] = useState();
 
@@ -39,6 +49,7 @@ export const ReportIssue = ({
       message_error: "message_error",
       contact_reason_placeholder: "issue_placeholder",
       contact_form: "contact_form",
+      technical_problem_label: "technical_problem_label",
 
       contact_reason_1: "contact_reason_1",
       contact_reason_2: "contact_reason_2",
@@ -94,7 +105,9 @@ export const ReportIssue = ({
             t={tForContactForm}
             country={country}
             initialEmail={initialEmail}
-            initialReason={initialIssue}
+            initialReason={initialIssue ?? "technical-problem"}
+            reasonOptions={technicalProblemOptions}
+            subjectLabel={t("technical_problem_label")}
             hideHeading
             hideSubmitButton
             formRef={formRef}

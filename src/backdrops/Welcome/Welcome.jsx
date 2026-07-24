@@ -37,6 +37,8 @@ export const Welcome = ({
 }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [error, setError] = useState(null);
+  const isRegistered = localStorage.getItem("isRegistered") === "true";
+  const [showRegisterOptions, setShowRegisterOptions] = useState(false);
 
   useEffect(() => {
     if (onOpenRequest) {
@@ -45,6 +47,7 @@ export const Welcome = ({
       onOpenRequest(() => () => {
         setIsOpen(true);
         setError(null); // Clear errors when reopening
+        setShowRegisterOptions(false);
       });
     }
   }, [onOpenRequest]);
@@ -228,6 +231,10 @@ export const Welcome = ({
     onLogin?.();
   };
 
+  const handleSignUpClick = () => {
+    setShowRegisterOptions(true);
+  };
+
   return (
     <Backdrop
       classes="backdrop--auth backdrop--from-bottom welcome-modal"
@@ -276,40 +283,99 @@ export const Welcome = ({
         )}
 
         <div className="welcome-modal__content-container__buttons-container">
-          <div className="welcome-modal__content-container__buttons-row">
-            <NewButton
-              label={t("register_email")}
-              disabled={buttonsDisabled}
-              onClick={() => handleRedirect("email")}
-              size="lg"
-            />
-            <NewButton
-              label={t("register_anonymously")}
-              disabled={buttonsDisabled}
-              onClick={() => handleRedirect("anonymously")}
-              type="outline"
-              size="lg"
-              classes="welcome-modal__content-container__register-anonymously"
-            />
-          </div>
+          {isRegistered ? (
+            <>
+              <div className="welcome-modal__content-container__buttons-row">
+                <NewButton
+                  label={t("log_in")}
+                  disabled={buttonsDisabled}
+                  onClick={handleLoginClick}
+                  size="lg"
+                />
+              </div>
 
-          <p
-            className={[
-              "welcome-modal__content-container__login-text",
-              buttonsDisabled &&
-                "welcome-modal__content-container__login-text--disabled",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            {t("already_have_account")}{" "}
-            <span
-              className="welcome-modal__content-container__login-link"
-              onClick={buttonsDisabled ? undefined : handleLoginClick}
-            >
-              {t("log_in")}
-            </span>
-          </p>
+              <p
+                className={[
+                  "welcome-modal__content-container__login-text",
+                  !showRegisterOptions &&
+                    "welcome-modal__content-container__login-text--with-separator",
+                  buttonsDisabled &&
+                    "welcome-modal__content-container__login-text--disabled",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                {t("dont_have_account")}{" "}
+                <span
+                  className="welcome-modal__content-container__login-link"
+                  onClick={buttonsDisabled ? undefined : handleSignUpClick}
+                >
+                  {t("sign_up")}
+                </span>
+              </p>
+
+              {showRegisterOptions && (
+                <div className="welcome-modal__content-container__buttons-row">
+                  <NewButton
+                    label={t("register_email")}
+                    disabled={buttonsDisabled}
+                    onClick={() => handleRedirect("email")}
+                    size="lg"
+                  />
+                  <NewButton
+                    label={t("register_anonymously")}
+                    disabled={buttonsDisabled}
+                    onClick={() => handleRedirect("anonymously")}
+                    type="outline"
+                    size="lg"
+                    classes="welcome-modal__content-container__register-anonymously"
+                  />
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="welcome-modal__content-container__buttons-row">
+                <NewButton
+                  label={t("register_email")}
+                  disabled={buttonsDisabled}
+                  onClick={() => handleRedirect("email")}
+                  size="lg"
+                />
+                <NewButton
+                  label={t("register_anonymously")}
+                  disabled={buttonsDisabled}
+                  onClick={() => handleRedirect("anonymously")}
+                  type="outline"
+                  size="lg"
+                  classes="welcome-modal__content-container__register-anonymously"
+                />
+              </div>
+
+              <p
+                className={[
+                  "welcome-modal__content-container__login-text",
+                  "welcome-modal__content-container__login-text--with-separator",
+                  buttonsDisabled &&
+                    "welcome-modal__content-container__login-text--disabled",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                {t("already_have_account")}{" "}
+                <span
+                  className="welcome-modal__content-container__login-link"
+                  onClick={buttonsDisabled ? undefined : handleLoginClick}
+                >
+                  {t("log_in")}
+                </span>
+              </p>
+            </>
+          )}
+
+          {isRegistered && showRegisterOptions && (
+            <div className="welcome-modal__content-container__separator" />
+          )}
 
           <NewButton
             label={t("continue_as_guest")}

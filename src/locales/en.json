@@ -233,6 +233,7 @@
       "contact_reason_3": "I am a client and I am experiencing a technical problem",
       "contact_reason_4": "Something else",
       "contact_form": "Contact form",
+      "technical_problem_label": "Technical problem",
       "contact_reason_1_pl": "Information about uSupport",
       "contact_reason_2_pl": "Technical problem",
       "contact_reason_3_pl": "Complaint",
@@ -311,6 +312,7 @@
       "edit": "Edit",
       "details": "See details",
       "active": "Now",
+      "live": "Live",
       "reject": "Reject suggestion",
       "accept": "Accept consultation",
       "cancel_consultation": "Cancel consultation",
@@ -323,7 +325,9 @@
       "join_button_label_tooltip": "You can join the consultation 5 minutes before the start time",
       "psychologist": "Psychologist",
       "psychiatrist": "Psychiatrist",
-      "psychotherapist": "Psychotherapist"
+      "psychotherapist": "Psychotherapist",
+      "test_audio_camera": "Test audio & camera",
+      "test_audio_camera_description": "Check your devices before the consultation"
     },
     "login": {
       "email_label": "Email / Access Token",
@@ -335,7 +339,13 @@
       "paragraph": "Or login with:",
       "register_button_label": "I don’t have an account",
       "client": "Client",
-      "heading": "Welcome to"
+      "heading": "Welcome to",
+      "keep_me_signed_in": "Keep me signed in",
+      "keep_me_signed_in_description": "Stay signed in on this device until you manually sign out.",
+      "keep_me_signed_in_sheet_title": "Stay signed in on this device?",
+      "keep_me_signed_in_sheet_body": "You'll stay signed in until you manually sign out. Only use this option on your personal device. If this is a shared or public device, sign out when you're done to protect your account and personal information.",
+      "keep_me_signed_in_sheet_cancel": "Cancel",
+      "keep_me_signed_in_sheet_continue": "Continue"
     },
     "welcome": {
       "heading": "Welcome to",
@@ -543,6 +553,7 @@
       "edit": "Edit",
       "details": "See details",
       "active": "Now",
+      "live": "Live",
       "reject": "Reject suggestion",
       "accept": "Accept consultation",
       "cancel_consultation": "Cancel consultation",
@@ -560,7 +571,9 @@
       "heading_need_support": "Need support?",
       "psychologist": "Psychologist",
       "psychiatrist": "Psychiatrist",
-      "psychotherapist": "Psychotherapist"
+      "psychotherapist": "Psychotherapist",
+      "test_audio_camera": "Test audio & camera",
+      "test_audio_camera_description": "Check your devices before the consultation"
     },
     "mood-tracker": {
       "happy": "Happy",
@@ -1514,6 +1527,10 @@
       "register_anonymously": "Register anonymously",
       "continue_as_guest": "Continue without registration",
       "already_have_account": "Already have an account?",
+      "dont_have_account": "Don't have an account?",
+      "sign_up": "Sign up",
+      "welcome_back": "Welcome back",
+      "continue_with_account": "Continue with your existing account",
       "log_in": "Log in",
       "client": "Client",
       "poland_description": "uSupport is a mental health and well-being platform designed for youth (16–24)."
@@ -1667,10 +1684,31 @@
       "subheading": "Select the communication type that fits you best.",
       "button_label_1": "Video/audio consultation",
       "button_label_2": "Text consultation",
+      "preview_heading": "Check your camera and microphone",
+      "preview_subheading": "Make sure others can see and hear you before joining.",
+      "join_video": "Join consultation",
+      "configuring_devices": "Configuring devices...",
+      "camera_off_label": "Camera is off",
+      "mic_level_label": "Microphone",
+      "toggle_camera": "Toggle camera",
+      "toggle_microphone": "Toggle microphone",
+      "retry_permissions": "Try again",
       "client_joined": "Client joined the consultation",
       "error": "An error occured. Please try again",
       "permissions_error": "Allow camera and microphone permissions",
-      "allow_permissions": "If you want to talk to the client, please allow the permissions in your browser settings or from the information icon in the address bar."
+      "allow_permissions": "If you want to join with video, please allow camera and microphone permissions in your browser settings or from the icon in the address bar."
+    },
+    "device-test": {
+      "heading": "Test audio & camera",
+      "subheading": "Check your devices before the consultation to make sure everything works.",
+      "done": "Done",
+      "configuring_devices": "Configuring devices...",
+      "camera_off_label": "Camera is off",
+      "mic_level_label": "Microphone",
+      "toggle_camera": "Toggle camera",
+      "toggle_microphone": "Toggle microphone",
+      "retry_permissions": "Try again",
+      "permissions_error": "Allow camera and microphone permissions"
     },
     "select-avatar": {
       "heading": "Change profile picture",

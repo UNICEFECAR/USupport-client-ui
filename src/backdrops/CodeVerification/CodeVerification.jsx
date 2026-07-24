@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
@@ -15,6 +15,7 @@ import {
 } from "@USupport-components-library/src";
 
 import { userSvc } from "@USupport-components-library/services";
+import { applyKeepMeSignedInOnLogin } from "@USupport-components-library/utils";
 import { ReportIssue } from "#modals";
 
 import "./code-verification.scss";
@@ -36,6 +37,7 @@ export const CodeVerification = ({
   canRequestNewEmail,
   isMutating,
   onRegistrationSuccess,
+  keepMeSignedIn = false,
 }) => {
   const { t } = useTranslation("backdrops", { keyPrefix: "code-verification" });
   const navigate = useNavigate();
@@ -44,6 +46,12 @@ export const CodeVerification = ({
   const [isCodeHidden, setIsCodeHidden] = useState(true);
   const [errors, setErrors] = useState({});
   const [isReportIssueOpen, setIsReportIssueOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setIsReportIssueOpen(false);
+    }
+  }, [isOpen]);
 
   const [code, setCode] = useState("");
 
@@ -76,6 +84,9 @@ export const CodeVerification = ({
       localStorage.setItem("token", token);
       localStorage.setItem("token-expires-in", expiresIn);
       localStorage.setItem("refresh-token", refreshToken);
+      localStorage.setItem("isRegistered", "true");
+
+      applyKeepMeSignedInOnLogin(keepMeSignedIn);
 
       queryClient.setQueryData(
         ["client-data"],

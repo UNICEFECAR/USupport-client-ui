@@ -16,7 +16,7 @@ import {
   NotFoundCard,
 } from "@USupport-components-library/src";
 
-import { useEventListener, useGetLanguages, useGetQuestionsTags } from "#hooks";
+import { useGetLanguages, useGetQuestionsTags } from "#hooks";
 
 import "./my-qa.scss";
 
@@ -57,24 +57,14 @@ export const MyQA = ({
     setTags(data);
   }, []);
 
-  useGetQuestionsTags(onTagsSuccess);
-
-  const handler = useCallback(() => {
-    const lang = localStorage.getItem("language");
-    const languageId = languages?.find((x) => x.alpha2 === lang)?.language_id;
-    setSelectedLanguage(languageId || "all");
-  }, [languages]);
-
-  useEventListener("languageChanged", handler);
+  useGetQuestionsTags(selectedLanguage, onTagsSuccess);
 
   useEffect(() => {
     if (languages?.length) {
-      const currentLang = localStorage.getItem("language");
-      const langObject = languages.find((x) => x.alpha2 === currentLang);
-      setSelectedLanguage(langObject?.language_id || "all");
+      setSelectedLanguage("all");
       setShouldFetchQuestions(true);
     }
-  }, [languages]);
+  }, [languages, setSelectedLanguage, setShouldFetchQuestions]);
 
   const languageOptions = useMemo(() => {
     const showAllOption = {
@@ -295,6 +285,7 @@ export const MyQA = ({
                       selected={selectedLanguage}
                       setSelected={(lang) => {
                         setSelectedLanguage(lang);
+                        setFilterTag("");
                       }}
                       placeholder={t("language")}
                     />

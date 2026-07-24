@@ -25,6 +25,7 @@ import {
   useAcceptConsultation,
   useRejectConsultation,
   useGetAllConsultations,
+  useAddCountryEvent,
 } from "#hooks";
 
 import "./notifications.scss";
@@ -48,6 +49,7 @@ export const Notifications = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("blocks", { keyPrefix: "notifications" });
+  const addCountryEventMutation = useAddCountryEvent();
 
   const queryClient = useQueryClient();
 
@@ -431,13 +433,16 @@ export const Notifications = ({
             date={notification.createdAt}
             isRead={notification.isRead}
             title="uSupport"
-            handleClick={() =>
+            handleClick={() => {
+              addCountryEventMutation.mutate({
+                eventType: "web_my_qa_nav_click",
+              });
               handleNotificationClick(
                 notification.notificationId,
                 "/my-qa",
                 notification.content,
-              )
-            }
+              );
+            }}
             text={
               <Trans components={[<b></b>]}>
                 {t(notification.type, {

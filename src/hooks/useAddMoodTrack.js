@@ -2,6 +2,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { clientSvc } from "@USupport-components-library/services";
 import useError from "./useError";
 
+const MOOD_TRACK_QUERY_KEYS = [
+  ["getHasCompletedMoodTrackerEver"],
+  ["getMoodTrackEntries"],
+  ["getMoodTrackForToday"],
+  ["getMoodTrackerRecommendations"],
+];
+
 export default function useAddMoodTrack(onSuccess, onError, onMutate) {
   const queryClient = useQueryClient();
   /**
@@ -21,8 +28,8 @@ export default function useAddMoodTrack(onSuccess, onError, onMutate) {
   const addMoodTrackMutation = useMutation(addMoodTrack, {
     onMutate: onMutate,
     onSuccess: (data, variables, context) => {
-      queryClient.invalidateQueries({
-        queryKey: ["getHasCompletedMoodTrackerEver"],
+      MOOD_TRACK_QUERY_KEYS.forEach((queryKey) => {
+        queryClient.invalidateQueries({ queryKey });
       });
       if (onSuccess) {
         onSuccess(data, variables, context);

@@ -1,5 +1,6 @@
 /* Consultation styles */
 @import "@USupport-components-library/styles";
+@import "./consultation-chat.scss";
 
 .page__consultation {
   padding-top: 0;
@@ -39,35 +40,17 @@
         padding-bottom: 15rem;
 
         @media screen and (min-width: 1150px) {
-          padding-bottom: 25rem;
-          // height: 82vh;
-          overflow-y: auto;
-        }
-
-        @media screen and (min-width: 1150px) {
-          padding-bottom: 0;
-          height: calc(100vh - 12rem);
-          overflow-y: auto;
-        }
-
-        @media screen and (min-width: 1150px) {
-          margin-top: 5rem;
-        }
-
-        &--show-options {
-          @media screen and (min-width: 1150px) {
-            height: calc(100vh - 28rem) !important;
-            margin-top: 21rem;
+          &:not(.consultation-chat-panel__messages) {
+            padding-bottom: 0;
+            height: calc(100vh - 12rem);
+            overflow-y: auto;
+            margin-top: 5rem;
           }
         }
 
         & .message,
         & .system-message {
           margin-bottom: $spacing_1_8;
-
-          @media screen and (min-width: 1150px) {
-            max-width: 25rem;
-          }
         }
 
         & .system-message {
@@ -130,24 +113,6 @@
       padding: 0 $spacing_0_4;
       position: relative;
     }
-  }
-
-  &__system-message-toggle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-bottom: $spacing_1_2;
-
-    & p {
-      margin-left: $spacing_1_8;
-    }
-  }
-
-  &__options-container {
-    margin-left: $spacing_1_8;
-    z-index: 2;
-    width: 100%;
-    top: 0;
   }
 
   & .send-message {

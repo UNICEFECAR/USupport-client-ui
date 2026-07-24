@@ -62,7 +62,6 @@ export const MessageList = ({
     };
   }, []);
 
-  const belowMessagesRef = useRef(null);
   const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {
@@ -243,28 +242,25 @@ export const MessageList = ({
       {
         // width >= 1024 ?
         width >= 1150 && isChatShownOnTablet ? (
-          <div style={{ position: "relative", width: "48rem" }}>
-            <OptionsContainer
-              showOptions={showOptions}
-              setShowOptions={setShowOptions}
-              search={search}
-              setSearch={setSearch}
-              showAllMessages={showAllMessages}
-              setShowAllMessages={setShowAllMessages}
-              areSystemMessagesShown={areSystemMessagesShown}
-              setAreSystemMessagesShown={setAreSystemMessagesShown}
-              isAbsolute
-              t={t}
-            />
+          <aside className="consultation-chat-panel">
+            <header className="consultation-chat-panel__header">
+              <OptionsContainer
+                showOptions={showOptions}
+                setShowOptions={setShowOptions}
+                search={search}
+                setSearch={setSearch}
+                showAllMessages={showAllMessages}
+                setShowAllMessages={setShowAllMessages}
+                areSystemMessagesShown={areSystemMessagesShown}
+                setAreSystemMessagesShown={setAreSystemMessagesShown}
+                t={t}
+              />
+            </header>
             {isHidden && <Loading />}
 
             <div
               ref={messagesContainerRef}
-              className={`page__consultation__container__messages__messages-container ${
-                showOptions
-                  ? "page__consultation__container__messages__messages-container--show-options"
-                  : ""
-              }`}
+              className="consultation-chat-panel__messages page__consultation__container__messages__messages-container"
               style={{
                 visibility: isHidden ? "hidden" : "visible",
               }}
@@ -272,18 +268,15 @@ export const MessageList = ({
               {showMessages && renderAllMessages()}
             </div>
 
-            <div
-              ref={belowMessagesRef}
-              style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}
-            >
+            <footer className="consultation-chat-panel__footer">
               <SendMessage
                 t={t}
                 handleSubmit={handleSendMessage}
                 onTextareaFocus={onTextareaFocus}
                 emitTyping={emitTyping}
               />
-            </div>
-          </div>
+            </footer>
+          </aside>
         ) : null
       }
       <Backdrop

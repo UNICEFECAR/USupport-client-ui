@@ -47,7 +47,7 @@ export const ResetPassword = () => {
       try {
         const res = await userSvc.resetPassword(password, token);
         if (res.status === 200) {
-          navigate("/login");
+          navigate("/dashboard");
         }
       } catch (error) {
         const { message: errorMessage } = useError(error);

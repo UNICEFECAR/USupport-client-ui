@@ -149,7 +149,9 @@ export const UserProfile = ({ openModal, isTmpUser }) => {
             label={t("user_guide")}
             iconName="document"
             classes="user-profile__grid__item__button"
-            onClick={() => window.open(GIT_BOOK_URL, "_blank")}
+            onClick={() =>
+              window.open(`${GIT_BOOK_URL}/ui-usage-manuals/client`, "_blank")
+            }
           />
           <ButtonSelector
             label={t("FAQ_button_label")}
