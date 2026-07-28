@@ -40,11 +40,11 @@
       "rate_us_button_label": "Wystaw nam ocenę",
       "share_button_label": "Udostępnianie aplikacji",
       "contact_us_button_label": "Skontaktuj się z nami",
-      "privacy_policy_button_label": "Polityką prywatności",
+      "privacy_policy_button_label": "Polityka prywatności",
       "FAQ_button_label": "Najczęściej zadawane pytania",
       "mood_tracker_button_label": "Monitor nastroju",
       "payments_history_button_label": "Historia płatności",
-      "terms_of_use": "Regulaminem",
+      "terms_of_use": "Regulamin",
       "cookie_policy": "Polityka plików cookies",
       "user_guide": "Wykorzystanie platformy",
       "edit_profile": "Edytuj profil",
@@ -143,11 +143,11 @@
       "rate_us_button_label": "Wystaw nam ocenę",
       "share_button_label": "Udostępnianie aplikacji",
       "contact_us_button_label": "Skontaktuj się z nami",
-      "privacy_policy_button_label": "Polityką prywatności",
+      "privacy_policy_button_label": "Polityka prywatności",
       "FAQ_button_label": "Najczęściej zadawane pytania",
       "mood_tracker_button_label": "Monitor nastroju",
       "payments_history_button_label": "Historia płatności",
-      "terms_of_use": "Regulaminem",
+      "terms_of_use": "Regulamin",
       "cookie_policy": "Polityka plików cookies",
       "user_guide": "Wykorzystanie platformy"
     },
@@ -190,7 +190,7 @@
       "paragraph_1": "Twój anonimowy token dostępu to",
       "password_label": "Hasło *",
       "terms_agreement_text_1": "Zgadzam się z",
-      "terms_agreement_text_2": "Polityką prywatności",
+      "terms_agreement_text_2": "Polityka prywatności",
       "terms_agreement_text_3": "oraz",
       "terms_agreement_text_4": "Regulaminem",
       "password_error": "Hasło powinno zawierać co najmniej 8 znaków, 1 wielką literę, 1 małą literę i 1 cyfrę.",
@@ -223,8 +223,6 @@
       "message_error": "Wprowadź wiadomość",
       "email": "Email",
       "button": "Wyślij wiadomość",
-      "close_button_label": "Close",
-      "report_issue_intro": "Przed wysłaniem formularza upewnij się, że adres e-mail jest wpisany poprawnie.",
       "modal_title": "Twoja wiadomość została pomyślnie wysłana",
       "modal_text": "Skontaktujemy się z Tobą tak szybko, jak to możliwe",
       "modal_cta_label": "Wróć do strony głównej",
@@ -237,7 +235,9 @@
       "contact_reason_1_pl": "Informacje o uSupport",
       "contact_reason_2_pl": "Problem techniczny",
       "contact_reason_3_pl": "Skarga",
-      "contact_reason_4_pl": "Coś innego"
+      "contact_reason_4_pl": "Coś innego",
+      "close_button_label": "Close",
+      "report_issue_intro": "Przed wysłaniem formularza upewnij się, że adres e-mail jest wpisany poprawnie."
     },
     "select-provider": {
       "psychologist": "Psycholog/żka",
@@ -285,12 +285,12 @@
       "register_redirect_button_label": "Nie mam konta",
       "modal_heading": "Sprawdź swoją skrzynkę email",
       "modal_text": "Jeśli jesteś zarejestrowany na platformie, otrzymasz link do zresetowania hasła.",
-      "report_issue_text": "Having trouble with password reset?",
-      "report_issue_cta": "Report an issue",
       "client": "Klient/ka",
       "heading": "Witamy w",
       "heading_modal": "Zapomniałeś hasła?",
-      "go_back_to_login": "Wróć do logowania"
+      "go_back_to_login": "Wróć do logowania",
+      "report_issue_text": "Having trouble with password reset?",
+      "report_issue_cta": "Report an issue"
     },
     "consultations": {
       "upcoming_tab_label": "Nadchodzące",
@@ -971,9 +971,9 @@
       "identity_issues": "Problemy tożsamościowe",
       "illness_oncological_treatment_chronic_diseases": "Choroba (leczenie onkologiczne, choroby przewlekłe)",
       "other_situations": "Inne sytuacje",
-      "report_inactive": "Zgłoś",
       "copy_link_success": "Link został skopiowany do schowka!",
-      "description_label": "Opis"
+      "description_label": "Opis",
+      "report_inactive": "Zgłoś"
     },
     "baseline-assesment": {
       "instructions": "Instrukcje: Myśląc o ostatnich dwóch tygodniach, wybierz opcję, która według Ciebie najlepiej Cię opisuje w odniesieniu do poniższych stwierdzeń.",
@@ -1234,7 +1234,7 @@
       "heading": "Więcej artykułów",
       "no_results": "Brak podobnych artykułów dla aktualnie wybranego języka. ",
       "read_more_button": "Czytaj więcej",
-      "min_read": "min czytać",
+      "min_read": "min. czytania",
       "by": "Przez {{creator}}",
       "share_title": "Udostępnij ten artykuł",
       "share_success": "Link skopiowany do schowka!",
@@ -1277,7 +1277,7 @@
       "heading": "Zarejestruj się w uSupport za pomocą adresu email"
     },
     "privacy-policy-page": {
-      "heading": "Polityką prywatności"
+      "heading": "Polityka prywatności"
     },
     "faq-page": {
       "heading": "Najczęściej zadawane pytania",
@@ -1732,16 +1732,6 @@
       "end_date": "Data zakończenia",
       "end_date_before_start_error": "Data zakończenia musi być po dacie rozpoczęcia"
     },
-    "organization-report": {
-      "heading": "Zgłoś tę organizację",
-      "subheading": "Prosimy, powiedz nam, dlaczego zgłaszasz tę organizację.",
-      "message_label": "Dodatkowe informacje *",
-      "message_error": "Podaj szczegóły zgłoszenia.",
-      "message_placeholder": "Wyjaśnij, dlaczego zgłaszasz tę organizację—np. co wydaje się nieprawidłowe, mylące lub nieaktualne.",
-      "confirm_button": "Wyślij zgłoszenie",
-      "cancel_button": "Anuluj",
-      "success_message": "Dziękujemy. Twoje zgłoszenie zostało przyjęte."
-    },
     "user-guide": {
       "heading": "Chcesz dowiedzieć się więcej o:",
       "emergency_services": "Służbach ratunkowych",
@@ -1774,6 +1764,16 @@
       "log_in": "Zaloguj się",
       "client": "Klient",
       "poland_description": "uSupport to platforma zdrowia psychicznego i dobrostanu zaprojektowana dla młodzieży (16–24)."
+    },
+    "organization-report": {
+      "heading": "Zgłoś tę organizację",
+      "subheading": "Prosimy, powiedz nam, dlaczego zgłaszasz tę organizację.",
+      "message_label": "Dodatkowe informacje *",
+      "message_error": "Podaj szczegóły zgłoszenia.",
+      "message_placeholder": "Wyjaśnij, dlaczego zgłaszasz tę organizację—np. co wydaje się nieprawidłowe, mylące lub nieaktualne.",
+      "confirm_button": "Wyślij zgłoszenie",
+      "cancel_button": "Anuluj",
+      "success_message": "Dziękujemy. Twoje zgłoszenie zostało przyjęte."
     }
   },
   "modals": {
@@ -1787,7 +1787,7 @@
       "text": "Twoje dane osobowe nie będą ujawniane. To uprawnienie służy wyłącznie do przetwarzania i przechowywania informacji oraz historii czatu w ramach platformy.",
       "text2": "Jeśli chcesz dowiedzieć się więcej o tym, jak przetwarzamy dane osobowe, odwiedź",
       "terms": "Regulamin",
-      "privacy_policy": "Polityką prywatności",
+      "privacy_policy": "Polityka prywatności",
       "give_permission": "Wyraź zgodę",
       "cancel": "Anuluj"
     },
