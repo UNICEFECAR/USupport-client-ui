@@ -34,8 +34,9 @@ export const Welcome = ({
   onRegisterAnonymous,
   onOpenRequest,
   onLogin,
+  defaultOpen = true,
 }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
   const [error, setError] = useState(null);
   const isRegistered = localStorage.getItem("isRegistered") === "true";
   const [showRegisterOptions, setShowRegisterOptions] = useState(false);
