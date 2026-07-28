@@ -1,46 +1,49 @@
 import React from "react";
-import { Navigate, useSearchParams } from "react-router-dom";
-import { Page, Login as LoginBlock } from "#blocks";
-import { useWindowDimensions } from "@USupport-components-library/utils";
-import { RadialCircle, Loading } from "@USupport-components-library/src";
-import { useTranslation } from "react-i18next";
+import { Navigate, useParams, useSearchParams } from "react-router-dom";
+import { Loading } from "@USupport-components-library/src";
 import { useIsLoggedIn } from "#hooks";
-
-import "./login.scss";
 
 /**
  * Login
  *
- * Login page
+ * Redirects to the dashboard. When country and language are both selected,
+ * opens the login modal via the `auth=login` query param.
  *
  * @returns {JSX.Element}
  */
 export const Login = () => {
-  const { t } = useTranslation("pages", { keyPrefix: "login-page" });
-  const { width } = useWindowDimensions();
   const [searchParams] = useSearchParams();
+  const { language: urlLanguage } = useParams();
   const nextPath = searchParams.get("next");
-
   const isLoggedIn = useIsLoggedIn();
 
+  const storedLanguage = localStorage.getItem("language");
+  const language = storedLanguage || urlLanguage || "en";
+  const country = localStorage.getItem("country");
+  const hasCountryAndLanguage =
+    !!country &&
+    country !== "global" &&
+    !!(storedLanguage || urlLanguage);
+
   if (isLoggedIn === "loading") return <Loading />;
+
   if (isLoggedIn === true) {
     const redirectTo =
       nextPath && nextPath.startsWith("/client/")
         ? nextPath
-        : `/client/${localStorage.getItem("language")}/dashboard`;
+        : `/client/${language}/dashboard`;
     return <Navigate to={redirectTo} replace />;
   }
 
+  const params = new URLSearchParams();
+  if (nextPath) params.set("next", nextPath);
+  if (hasCountryAndLanguage) params.set("auth", "login");
+
+  const query = params.toString();
   return (
-    <Page
-      classes="page__login"
-      additionalPadding={false}
-      heading={width >= 768 ? t("heading_1") : t("heading_2")}
-      renderLanguageSelector={true}
-    >
-      <LoginBlock />
-      {width < 768 && <RadialCircle color="purple" />}
-    </Page>
+    <Navigate
+      to={`/client/${language}/dashboard${query ? `?${query}` : ""}`}
+      replace
+    />
   );
 };

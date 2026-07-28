@@ -103,9 +103,23 @@ export const Page = ({
   const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
   const [isRegisterAboutYouModalOpen, setIsRegisterAboutYouModalOpen] =
     useState(false);
+  const [initialAuthView] = useState(() =>
+    searchParams.get("auth") === "login" ? "login" : null,
+  );
 
   const isTmpUser = userSvc.getUserID() === "tmp-user";
   const nextPath = searchParams.get("next");
+
+  useEffect(() => {
+    if (searchParams.get("auth") !== "login") return;
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete("auth");
+    const search = newParams.toString();
+    navigateTo(
+      { pathname: location.pathname, search: search ? `?${search}` : "" },
+      { replace: true },
+    );
+  }, []);
 
   const token = localStorage.getItem("token");
 
@@ -544,6 +558,7 @@ export const Page = ({
       />
       <Authentication
         isOpen={showAuthenticationBackdrop}
+        initialView={initialAuthView}
         onRequireRegisterAboutYou={() => setIsRegisterAboutYouModalOpen(true)}
       />
       <RegisterAboutYou

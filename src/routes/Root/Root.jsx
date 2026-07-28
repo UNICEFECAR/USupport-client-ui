@@ -31,6 +31,7 @@ import {
   Dashboard,
   FAQ,
   InformationPortal,
+  Login,
   NotFound,
   NotificationPreferencesPage,
   PlatformRating,
@@ -79,14 +80,7 @@ const LanguageLayout = () => {
   }
   return (
     <Routes>
-      {/* <Route
-        path="login"
-        element={
-          <CountryValidationRoute>
-            <Login />
-          </CountryValidationRoute>
-        }
-      /> */}
+      <Route path="login" element={<Login />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route
         path="consultation"

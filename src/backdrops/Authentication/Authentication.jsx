@@ -12,32 +12,39 @@ import {
  * Authentication backdrop grouping all the authentication related backdrops
  *
  * @param {boolean} isOpen - Controls whether authentication modals should be shown
+ * @param {"login"|null} initialView - Optional view to open first (e.g. login from /login redirect)
  *
  * @returns {jsx}
  */
 export const Authentication = ({
   isOpen = false,
   onRequireRegisterAboutYou,
+  initialView = null,
 }) => {
+  const startWithLogin = initialView === "login";
   const [isRegisterWithEmailModalOpen, setIsRegisterWithEmailModalOpen] =
     useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(startWithLogin);
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
     useState(false);
   const [isRegisterAnonymousModalOpen, setIsRegisterAnonymousModalOpen] =
     useState(false);
   const [openWelcome, setOpenWelcome] = useState(null);
 
-  // When isOpen becomes true, reset all states and show Welcome
+  // When isOpen becomes true, reset all states and show Welcome (or Login)
   useEffect(() => {
     if (isOpen) {
       setIsRegisterWithEmailModalOpen(false);
-      setIsLoginModalOpen(false);
       setIsForgotPasswordModalOpen(false);
       setIsRegisterAnonymousModalOpen(false);
-      // Trigger the welcome modal to open
-      if (openWelcome) {
-        openWelcome();
+      if (initialView === "login") {
+        setIsLoginModalOpen(true);
+      } else {
+        setIsLoginModalOpen(false);
+        // Trigger the welcome modal to open
+        if (openWelcome) {
+          openWelcome();
+        }
       }
     }
   }, [isOpen]);
@@ -50,6 +57,7 @@ export const Authentication = ({
   return (
     <>
       <Welcome
+        defaultOpen={!startWithLogin}
         onRegisterEmail={() => setIsRegisterWithEmailModalOpen(true)}
         onRegisterAnonymous={() => setIsRegisterAnonymousModalOpen(true)}
         onLogin={() => setIsLoginModalOpen(true)}
