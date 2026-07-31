@@ -88,6 +88,8 @@ export const Articles = ({
 
   const country = localStorage.getItem("country");
   const isPLCountry = country === "PL";
+  // PL shows newest-first chronological list (no personalization pipeline)
+  const useChronologicalArticles = isTmpUser || isPLCountry;
   const hardcodedAgeGroupId = isPLCountry
     ? PL_LANGUAGE_AGE_GROUP_IDS[usersLanguage]
     : null;
@@ -299,13 +301,19 @@ export const Articles = ({
       contains: debouncedSearchValue,
       ageGroupId,
       ...(!hasSearch && { categoryId }),
-      // sortBy: sort ? sort : "createdAt",
-      // sortOrder: sort ? "desc" : "desc",
       locale: usersLanguage,
       populate: true,
       ids: articleIdsQuery.data,
       ...(debouncedSearchValue ? {} : { ageGroupId, categoryId }),
     };
+
+    if (isPLCountry) {
+      queryParams.sortBy = "createdAt";
+      queryParams.sortOrder = "desc";
+    } else if (sort) {
+      queryParams.sortBy = sort;
+      queryParams.sortOrder = "desc";
+    }
 
     let { data } = await cmsSvc.getArticles(queryParams);
 
@@ -326,6 +334,7 @@ export const Articles = ({
         selectedCategory,
         articleIdsQuery.data,
         usersLanguage,
+        isPLCountry,
       ],
       getArticlesData,
       {
@@ -338,7 +347,7 @@ export const Articles = ({
           articleIdsQuery.data?.length > 0 &&
           selectedCategory !== null &&
           selectedAgeGroup !== null &&
-          isTmpUser,
+          useChronologicalArticles,
         refetchOnWindowFocus: false,
         onSuccess: (data) => {
           setArticles([...data.articles]);
@@ -373,12 +382,18 @@ export const Articles = ({
       ageGroupId: ageGroupId,
       ...(!hasSearch && { categoryId }),
       locale: usersLanguage,
-      sortBy: sort,
-      sortOrder: sort ? "desc" : null,
       populate: true,
       ids: articleIdsQuery.data,
       ...(debouncedSearchValue ? {} : { ageGroupId, categoryId }),
     };
+
+    if (isPLCountry) {
+      queryParams.sortBy = "createdAt";
+      queryParams.sortOrder = "desc";
+    } else if (sort) {
+      queryParams.sortBy = sort;
+      queryParams.sortOrder = "desc";
+    }
 
     const { data } = await cmsSvc.getArticles(queryParams);
 
@@ -403,7 +418,7 @@ export const Articles = ({
   } = useRecommendedArticles({
     limit: 16,
     ageGroupId: hasSearch ? null : selectedAgeGroup?.id,
-    enabled: isTmpUser
+    enabled: useChronologicalArticles
       ? false
       : selectedAgeGroup?.id && !ageGroupsQuery.isLoading,
     categoryIdFilter: hasSearch ? null : selectedCategory?.id || null,
@@ -439,7 +454,9 @@ export const Articles = ({
     getArticlesRatings();
   }, [articles]);
 
-  const articlesToTransform = isTmpUser ? guestArticles : articles;
+  const articlesToTransform = useChronologicalArticles
+    ? guestArticles
+    : articles;
 
   // Transform articles data to match expected format and add user interaction data
   const transformedArticles = articlesToTransform?.map((article) => {
@@ -505,7 +522,7 @@ export const Articles = ({
     (isArticleCategoryIdsLoading || isArticleCategoryIdsFetching) &&
     !articleCategoryIdsToShow;
 
-  const isArticlesFetching = isTmpUser
+  const isArticlesFetching = useChronologicalArticles
     ? isGuestArticlesLoading
     : isArticlesLoading;
 
@@ -614,8 +631,8 @@ export const Articles = ({
         categories?.length > 0 && (
         <InfiniteScroll
           dataLength={transformedArticles?.length || 0}
-          next={isTmpUser ? getMoreArticles : loadMore}
-          hasMore={isTmpUser ? hasMoreGuest : hasMore}
+          next={useChronologicalArticles ? getMoreArticles : loadMore}
+          hasMore={useChronologicalArticles ? hasMoreGuest : hasMore}
           loader={<Loading />}
           style={{ overflow: "visible" }}
           // endMessage={} // Add end message here if required
@@ -678,8 +695,10 @@ export const Articles = ({
             {showArticleSkeletons && <>{renderArticleSkeletons()}</>}
 
             {!transformedArticles?.length &&
-              (isTmpUser ? isArticlesFetched : isReady) &&
-              (isTmpUser ? !isGuestArticlesLoading : !isArticlesLoading) &&
+              (useChronologicalArticles ? isArticlesFetched : isReady) &&
+              (useChronologicalArticles
+                ? !isGuestArticlesLoading
+                : !isArticlesLoading) &&
               categoriesQuery?.data?.length > 0 &&
               ageGroupsQuery?.data?.length > 0 && (
                 <GridItem md={8} lg={12} classes="articles__articles-item">
