@@ -19,7 +19,11 @@ export default function useGetChatData(chatId, onSuccess = () => {}) {
     onSuccess,
   });
 
-  return query;
+  return {
+    ...query,
+    // Disabled queries never fetch; avoid infinite "loading" when chatId is missing
+    isLoading: Boolean(chatId) && query.isLoading,
+  };
 }
 
 export { useGetChatData };
