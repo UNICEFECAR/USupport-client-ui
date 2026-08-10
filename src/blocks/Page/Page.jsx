@@ -405,7 +405,7 @@ export const Page = ({
           ? [
               {
                 name: t("user_guide"),
-                url: "/user-guide-manual",
+                url: "/user-guide",
                 icon: "document",
                 externalHref: clientUserGuideHref,
               },
