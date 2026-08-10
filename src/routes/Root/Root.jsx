@@ -60,6 +60,7 @@ import {
   Organizations,
   OrganizationOverview,
   BaselineAssesment,
+  UserGuideManual,
 } from "#pages";
 import { CountryValidationRoute, ProtectedRoute } from "#routes";
 import { useGetClientData } from "#hooks";
@@ -156,6 +157,7 @@ const LanguageLayout = () => {
         }
       />
       <Route path="cookie-policy" element={<CookiePolicy />} />
+      <Route path="user-guide-manual" element={<UserGuideManual />} />
       <Route
         path="terms-of-use"
         element={
