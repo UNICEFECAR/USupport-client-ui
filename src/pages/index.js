@@ -44,4 +44,3 @@ export * from "./Organizations";
 export * from "./OrganizationOverview";
 export * from "./BaselineAssesment";
 export * from "./ChildrenRights";
-export * from "./UserGuideManual";
