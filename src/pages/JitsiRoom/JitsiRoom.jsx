@@ -468,11 +468,6 @@ export const JitsiRoom = () => {
                       isProviderInSession: true,
                     }));
                   }
-
-                  if (id === "local") {
-                    console.log("Local joined");
-                    setIsLoading(false);
-                  }
                 }
               );
               externalApi.addListener("toolbarButtonClicked", (event) => {
@@ -483,8 +478,7 @@ export const JitsiRoom = () => {
               });
 
               externalApi.addListener("videoConferenceJoined", () => {
-                console.log("Video conference joined");
-                // setIsLoading(false);
+                setIsLoading(false);
               });
             }}
             getIFrameRef={(iframeRef) => {
