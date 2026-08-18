@@ -345,6 +345,7 @@ export const JitsiRoom = () => {
                 consultation={consultation}
                 handleSendMessage={handleSendMessage}
                 hasUnreadMessages={interfaces.hasUnreadMessages}
+                isRoomConnecting={isLoading}
                 toggleCamera={() => {
                   if (isLoading) return;
                   api.current.executeCommand("toggleVideo");
