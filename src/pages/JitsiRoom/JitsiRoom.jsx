@@ -345,7 +345,9 @@ export const JitsiRoom = () => {
                 consultation={consultation}
                 handleSendMessage={handleSendMessage}
                 hasUnreadMessages={interfaces.hasUnreadMessages}
+                isRoomConnecting={isLoading}
                 toggleCamera={() => {
+                  if (isLoading) return;
                   api.current.executeCommand("toggleVideo");
                   setInterfaceData({
                     ...interfaces,
@@ -353,6 +355,7 @@ export const JitsiRoom = () => {
                   });
                 }}
                 toggleMicrophone={() => {
+                  if (isLoading) return;
                   api.current.executeCommand("toggleAudio");
                   setInterfaceData({
                     ...interfaces,
@@ -465,6 +468,11 @@ export const JitsiRoom = () => {
                       isProviderInSession: true,
                     }));
                   }
+
+                  if (id === "local") {
+                    console.log("Local joined");
+                    setIsLoading(false);
+                  }
                 }
               );
               externalApi.addListener("toolbarButtonClicked", (event) => {
@@ -475,7 +483,8 @@ export const JitsiRoom = () => {
               });
 
               externalApi.addListener("videoConferenceJoined", () => {
-                setIsLoading(false);
+                console.log("Video conference joined");
+                // setIsLoading(false);
               });
             }}
             getIFrameRef={(iframeRef) => {
