@@ -346,6 +346,7 @@ export const JitsiRoom = () => {
                 handleSendMessage={handleSendMessage}
                 hasUnreadMessages={interfaces.hasUnreadMessages}
                 toggleCamera={() => {
+                  if (isLoading) return;
                   api.current.executeCommand("toggleVideo");
                   setInterfaceData({
                     ...interfaces,
@@ -353,6 +354,7 @@ export const JitsiRoom = () => {
                   });
                 }}
                 toggleMicrophone={() => {
+                  if (isLoading) return;
                   api.current.executeCommand("toggleAudio");
                   setInterfaceData({
                     ...interfaces,
