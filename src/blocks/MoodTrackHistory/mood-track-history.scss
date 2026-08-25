@@ -9,6 +9,15 @@
     justify-content: flex-end;
   }
 
+  &__no-results {
+    width: 100%;
+    padding-top: $spacing_2_0;
+
+    @media screen and (min-width: $screen-lg) {
+      padding-top: $spacing_3_2;
+    }
+  }
+
   &__content-container {
     display: flex;
     flex-direction: row;
@@ -43,6 +52,8 @@
 
           &__disabled {
             opacity: 0.5;
+            pointer-events: none;
+            cursor: default;
           }
         }
       }
@@ -97,6 +108,8 @@
 
     &__disabled {
       opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
     }
   }
 
