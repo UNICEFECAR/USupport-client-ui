@@ -778,6 +778,11 @@
       "month_10": "Paź",
       "month_11": "Lis",
       "month_12": "Gru",
+      "no_results_line1": "Zacznij śledzić swój nastrój na pulpicie, aby zobaczyć tu swoje postępy.",
+      "no_results_line2": "Możesz też przeglądać artykuły i inne materiały w portalu informacyjnym.",
+      "track_mood": "Śledź nastrój",
+      "browse_articles": "Przeglądaj artykuły",
+      "no_results_image_alt": "Ilustracja: brak historii nastroju",
       "select_year": "Wybierz rok"
     },
     "mascot-header-MyQA": {
