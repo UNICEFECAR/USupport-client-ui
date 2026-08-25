@@ -782,6 +782,11 @@
       "by": "by {{creator}}",
       "min_read": "min read",
       "no_recommendations": "No recommendations found",
+      "no_results_line1": "Start tracking your mood from the dashboard to see your progress here.",
+      "no_results_line2": "You can also explore articles and other resources in the information portal.",
+      "track_mood": "Track your mood",
+      "browse_articles": "Browse articles",
+      "no_results_image_alt": "Illustration: no mood history results",
       "select_year": "Select year"
     },
     "mascot-header-MyQA": {

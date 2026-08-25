@@ -776,6 +776,11 @@
       "by": "de {{creator}}",
       "min_read": "min de citit",
       "no_recommendations": "Nu s-au găsit recomandări",
+      "no_results_line1": "Începe să îți urmărești starea de pe pagina principală ca să vezi progresul aici.",
+      "no_results_line2": "Poți explora și articole și alte resurse din portalul de informații.",
+      "track_mood": "Urmărește-ți starea",
+      "browse_articles": "Explorează articolele",
+      "no_results_image_alt": "Ilustrație: nu există istoric al stării",
       "select_year": "Selectează anul"
     },
     "mascot-header-MyQA": {

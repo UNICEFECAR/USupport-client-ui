@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 
 import {
   Block,
-  Dropdown,
   Icon,
   Emoticon,
   MoodTrackDetails,
@@ -13,6 +12,7 @@ import {
   Modal,
   Grid,
   GridItem,
+  NotFoundCard,
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
@@ -43,6 +43,7 @@ export const MoodTrackHistory = () => {
   const language = i18n.language;
   const country = localStorage.getItem("country");
   const IS_RO = country === "RO";
+  const IS_RTL = localStorage.getItem("language") === "ar";
 
   const [pageNum, setPageNum] = useState(0);
   const [loadedPages, setLoadedPages] = useState([]);
@@ -77,7 +78,7 @@ export const MoodTrackHistory = () => {
       ...prev,
       [limit]: {
         entries: curEntries,
-        hasMore: prevEntriesCopy.length > 0,
+        hasMore: prevEntries.length > 0,
       },
       [prevPageLimit]: { entries: prevEntriesCopy, hasMore },
     }));
@@ -166,28 +167,32 @@ export const MoodTrackHistory = () => {
     setSelectedItemId(moodTrackerData[limit].entries[index].mood_tracker_id);
   };
 
+  const hasEntries = moodTrackerData[limit]?.entries.length > 0;
+
   return (
     <Block classes="mood-track-history">
       {!moodTrackerData[limit] ? (
         <Loading />
+      ) : !hasEntries ? (
+        <div className="mood-track-history__no-results">
+          <NotFoundCard
+            mode="illustrated"
+            headingText={t("no_result")}
+            descriptionLine1={t("no_results_line1")}
+            descriptionLine2={t("no_results_line2")}
+            primaryLabel={t("track_mood")}
+            secondaryLabel={t("browse_articles")}
+            onPrimaryClick={() => navigate("/dashboard")}
+            onSecondaryClick={() =>
+              navigate("/information-portal?tab=articles")
+            }
+            imageAlt={t("no_results_image_alt")}
+            isRtl={IS_RTL}
+            radialColor="blue"
+          />
+        </div>
       ) : (
         <>
-          {moodTrackerData[limit].entries.length === 0 ? (
-            <div>
-              <p>{t("no_result")}</p>
-            </div>
-          ) : (
-            <></>
-            // <div className="mood-track-history__year-dropdown">
-            //   <Dropdown
-            //     options={yearOptions}
-            //     selected={selectedYear}
-            //     setSelected={setSelectedYear}
-            //     placeholder={t("select_year")}
-            //     isSmall
-            //   />
-            // </div>
-          )}
           <div className="mood-track-history__content-container">
             <div className="mood-track-history__content-container__emoticons-container">
               {renderAllEmoticons()}
