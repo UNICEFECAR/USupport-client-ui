@@ -1,6 +1,13 @@
-import React, { useContext, useEffect, useState, useCallback, useMemo } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+} from "react";
 import { toast } from "react-toastify";
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import propTypes from "prop-types";
 import classNames from "classnames";
 
@@ -23,6 +30,7 @@ import {
   createArticleSlug,
   constructShareUrl,
   getBrandingLogoUrl,
+  shouldTrackContentView,
 } from "@USupport-components-library/utils";
 
 import { cmsSvc, userSvc } from "@USupport-components-library/services";
@@ -201,21 +209,28 @@ export const ArticleView = ({ articleData, t, language, isTmpUser }) => {
   const addContentEngagementMutation = useAddContentEngagement();
   const removeContentEngagementMutation = useRemoveContentEngagement();
 
-  // Track view when article is loaded using useQuery
-  useQuery(
-    ["article-view-tracking", articleData.id],
-    async () => {
-      addContentEngagementMutation({
-        contentId: articleData.id,
-        contentType: "article",
-        action: "view",
-      });
-      return true;
-    },
-    {
-      enabled: !!articleData?.id && !isTmpUser,
+  // Track view once per article per session window. The block is remounted on
+  // every background refetch of the article data, so the ref alone is not
+  // enough - the sessionStorage stamp is what survives the remount.
+  const trackedArticleIdRef = useRef(null);
+
+  useEffect(() => {
+    const articleId = articleData?.id;
+    if (!articleId || isTmpUser) return;
+    if (trackedArticleIdRef.current === articleId) return;
+
+    if (!shouldTrackContentView("article", articleId)) {
+      trackedArticleIdRef.current = articleId;
+      return;
     }
-  );
+
+    trackedArticleIdRef.current = articleId;
+    addContentEngagementMutation({
+      contentId: articleId,
+      contentType: "article",
+      action: "view",
+    });
+  }, [articleData?.id, isTmpUser]);
 
   const handleAddRating = (action) => {
     if (isTmpUser) return;
