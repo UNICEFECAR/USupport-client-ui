@@ -275,7 +275,7 @@ export const SelectProvider = ({
             name={provider.name}
             patronym={provider.patronym}
             surname={provider.surname}
-            specializations={provider.specializations.map((x) => t(x))}
+            specializationKeys={provider.specializations}
             price={
               selectedBillingType === "free"
                 ? 0

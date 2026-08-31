@@ -131,7 +131,8 @@
       "friday": "Vineri",
       "saturday": "Sâmbătă",
       "sunday": "Duminică",
-      "coupon": "Cupon"
+      "coupon": "Cupon",
+      "peer_support": "U-FRIEND"
     },
     "user-profile": {
       "your_profile": "Profilul dvs.",
@@ -260,7 +261,8 @@
       "choose-the-provider": "Alegeți specialistul cu care doriți să vorbiți prin video, audio sau text. Uneori poate dura câteva ședințe până găsiți un specialist potrivit nevoilor și abordării preferate.",
       "coupon_note": "De data aceasta v-am introdus un cod pentru o ședință gratuită! Programați o întâlnire cu unul dintre consultanții noștri și faceți primul pas către îmbunătățirea bunăstării.",
       "book_session": "Rezervă sesiunea",
-      "view_profile": "Vedeți profilul personal"
+      "view_profile": "Vedeți profilul personal",
+      "peer_support": "U-FRIEND"
     },
     "notification-preferences": {
       "email": "Notificări prin e-mail",
@@ -326,7 +328,8 @@
       "psychiatrist": "Psihiatru",
       "psychotherapist": "Psihoterapeut",
       "test_audio_camera": "Testează audio și camera",
-      "test_audio_camera_description": "Verifică dispozitivele înainte de consultație"
+      "test_audio_camera_description": "Verifică dispozitivele înainte de consultație",
+      "peer_support": "U-FRIEND"
     },
     "login": {
       "email_label": "Email / Token de acces",
@@ -572,7 +575,8 @@
       "psychiatrist": "Psihiatru",
       "psychotherapist": "Psihoterapeut",
       "test_audio_camera": "Testează audio și camera",
-      "test_audio_camera_description": "Verifică dispozitivele înainte de consultație"
+      "test_audio_camera_description": "Verifică dispozitivele înainte de consultație",
+      "peer_support": "U-FRIEND"
     },
     "mood-tracker": {
       "happy": "Fericit",
@@ -1545,7 +1549,8 @@
       "button_label": "Aplicați filtre",
       "reset_filter": "Resetare filtre",
       "available_before": "Disponibil înainte de",
-      "available_after": "Disponibil după"
+      "available_after": "Disponibil după",
+      "provider_peer_support": "U-FRIEND"
     },
     "confirm-consultation": {
       "heading": "Programarea dvs. a fost realizată",
@@ -1575,7 +1580,8 @@
       "dateLabel": "Data",
       "timeLabel": "Ora",
       "dateText": "{{startDate}} {{month}} {{year}}",
-      "timeText": "De la {{startTime}} la {{endTime}}"
+      "timeText": "De la {{startTime}} la {{endTime}}",
+      "peer_support": "U-FRIEND"
     },
     "cancel-consultation": {
       "heading": "Sunteți sigur că doriți să anulați consultația",
