@@ -48,28 +48,28 @@ export const ArticleInformation = () => {
 
   const { data: userContentEngagements } =
     useGetUserContentEngagements(!isTmpUser);
-  const {
-    data: articleContentEngagements,
-    isLoading: isArticleContentEngagementsLoading,
-  } = useQuery(["articleContentEngagements", id], async () => {
-    const { data } = await userSvc.getContentEngagementsById({
-      contentType: "article",
-      ids: [id],
-    });
+  const { data: articleContentEngagements } = useQuery(
+    ["articleContentEngagements", id],
+    async () => {
+      const { data } = await userSvc.getContentEngagementsById({
+        contentType: "article",
+        ids: [id],
+      });
 
-    const { likes, dislikes } = data.reduce(
-      (acc, engagement) => {
-        if (engagement.action === "like") {
-          acc.likes += 1;
-        } else if (engagement.action === "dislike") {
-          acc.dislikes += 1;
-        }
-        return acc;
-      },
-      { likes: 0, dislikes: 0 },
-    );
-    return { likes, dislikes };
-  });
+      const { likes, dislikes } = data.reduce(
+        (acc, engagement) => {
+          if (engagement.action === "like") {
+            acc.likes += 1;
+          } else if (engagement.action === "dislike") {
+            acc.dislikes += 1;
+          }
+          return acc;
+        },
+        { likes: 0, dislikes: 0 },
+      );
+      return { likes, dislikes };
+    },
+  );
 
   const getArticleData = async () => {
     let articleIdToFetch = id;
@@ -84,6 +84,7 @@ export const ArticleInformation = () => {
 
   const {
     data: articleData,
+    isLoading: isArticleLoading,
     isFetching: isFetchingArticleData,
     isFetched,
   } = useQuery(["article", i18n.language, id], getArticleData, {
@@ -313,7 +314,9 @@ export const ArticleInformation = () => {
     userEngagements: userContentEngagements,
   });
 
-  const isLoading = isFetchingArticleData || isArticleContentEngagementsLoading;
+  // Only gate on the initial load. Using isFetching here unmounted ArticleView
+  // on every background refetch, which re-fired the view tracking event.
+  const isLoading = isArticleLoading;
 
   const renderSidebar = () => {
     if (!isMoreArticlesLoading && moreArticles?.length > 0) {
