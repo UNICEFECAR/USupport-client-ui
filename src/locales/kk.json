@@ -131,7 +131,8 @@
       "friday": "Жұма",
       "saturday": "Сенбі",
       "sunday": "Жексенбі",
-      "coupon": "Купон"
+      "coupon": "Купон",
+      "peer_support": "U-FRIEND"
     },
     "user-profile": {
       "your_profile": "Сіздің парақшаңыз",
@@ -260,7 +261,8 @@
       "choose-the-provider": "Бейне, аудио немесе мәтіндік чат арқылы сөйлескіңіз келетін маманды таңдаңыз. Қажеттіліктеріңізге және қалаған тәсіліңізге сәйкес маман табу үшін кейде бірнеше сеанс қажет болуы мүмкін.",
       "coupon_note": "Осы жолы сізге тегін сеанс үшін код енгіздік! Біздің консультанттардың бірімен кездесуге жазылыңыз және жақсы өмір сүруге қарай алғашқы қадымыңызды жасаңыз.",
       "book_session": "Сеансты брондау",
-      "view_profile": "Жеке парақшаны қарап шығу"
+      "view_profile": "Жеке парақшаны қарап шығу",
+      "peer_support": "U-FRIEND"
     },
     "notification-preferences": {
       "email": "Электрондық пошта арқылы хабарландырулар",
@@ -326,7 +328,8 @@
       "psychiatrist": "Психиатр",
       "psychotherapist": "Психотерапевт",
       "test_audio_camera": "Аудио мен камераны тексеру",
-      "test_audio_camera_description": "Консультациядан бұрын құрылғыларды тексеріңіз"
+      "test_audio_camera_description": "Консультациядан бұрын құрылғыларды тексеріңіз",
+      "peer_support": "U-FRIEND"
     },
     "login": {
       "email_label": "Электронды пошта / кіру токені",
@@ -572,7 +575,8 @@
       "psychiatrist": "Психиатр",
       "psychotherapist": "Психотерапевт",
       "test_audio_camera": "Аудио мен камераны тексеру",
-      "test_audio_camera_description": "Консультациядан бұрын құрылғыларды тексеріңіз"
+      "test_audio_camera_description": "Консультациядан бұрын құрылғыларды тексеріңіз",
+      "peer_support": "U-FRIEND"
     },
     "mood-tracker": {
       "happy": "Керемет",
@@ -1545,7 +1549,8 @@
       "button_label": "Сүзгілерді қолданыңыз",
       "reset_filter": "Сүзгілерді қалпына келтіру",
       "available_before": "Дейін қол жетімді",
-      "available_after": "Кейін қол жетімді"
+      "available_after": "Кейін қол жетімді",
+      "provider_peer_support": "U-FRIEND"
     },
     "confirm-consultation": {
       "heading": "Кездесуіңіз брондалды",
@@ -1575,7 +1580,8 @@
       "dateLabel": "Күні",
       "timeLabel": "Уақыты",
       "dateText": "{{startDate}} {{month}} {{year}}",
-      "timeText": "{{startTime}}-дан {{endTime}}-ге дейін"
+      "timeText": "{{startTime}}-дан {{endTime}}-ге дейін",
+      "peer_support": "U-FRIEND"
     },
     "cancel-consultation": {
       "heading": "Консультациядан шынымен бас тартқыңыз келе ме?",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -7,6 +7,8 @@ import {
   DropdownWithLabel,
   DateInput,
 } from "@USupport-components-library/src";
+
+import { getProviderTypeFilterOptions } from "../../utils/specializations";
 
 import "./filter-providers.scss";
 
@@ -27,26 +29,21 @@ export const FilterProviders = ({
   initialFilters,
 }) => {
   const { t } = useTranslation("backdrops", { keyPrefix: "filter-providers" });
+  const selectedCountry = localStorage.getItem("country");
 
   const [data, setData] = useState({ ...allFilters });
 
-  const [providerTypes, setProviderTypes] = useState([
-    {
-      label: "provider_psychologist",
-      value: "psychologist",
-      isSelected: false,
-    },
-    {
-      label: "provider_psychotherapist",
-      value: "psychotherapist",
-      isSelected: false,
-    },
-    {
-      label: "provider_psychiatrist",
-      value: "psychiatrist",
-      isSelected: false,
-    },
-  ]);
+  const providerTypeOptions = useMemo(
+    () =>
+      getProviderTypeFilterOptions(selectedCountry).map((value) => ({
+        label: `provider_${value}`,
+        value,
+        isSelected: false,
+      })),
+    [selectedCountry]
+  );
+
+  const [providerTypes, setProviderTypes] = useState(providerTypeOptions);
 
   const [providerSex, setProviderSex] = useState([
     {
@@ -66,14 +63,12 @@ export const FilterProviders = ({
       setData(allFilters);
     }
 
-    setProviderTypes((prev) => {
-      return prev.map((x) => {
-        return {
-          ...x,
-          isSelected: allFilters.providerTypes.includes(x.value),
-        };
-      });
-    });
+    setProviderTypes(
+      providerTypeOptions.map((option) => ({
+        ...option,
+        isSelected: allFilters.providerTypes.includes(option.value),
+      }))
+    );
 
     setProviderSex((prev) => {
       return prev.map((x) => {
@@ -83,7 +78,7 @@ export const FilterProviders = ({
         };
       });
     });
-  }, [allFilters]);
+  }, [allFilters, providerTypeOptions]);
 
   const handleSelect = (field, value) => {
     const dataCopy = { ...data };

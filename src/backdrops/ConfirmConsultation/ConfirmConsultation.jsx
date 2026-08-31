@@ -13,6 +13,12 @@ import "./confirm-consultation.scss";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { Icon } from "@USupport-components-library/src/components/icons";
 import { Avatar } from "@USupport-components-library/src";
+import { PeerSupportBadge } from "@USupport-components-library/src/components/labels/PeerSupportBadge";
+import {
+  getDisplaySpecializations,
+  isPeerSupportProvider,
+  parseSpecializationKeys,
+} from "@USupport-components-library/src/utils/peerSupport";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
 
@@ -113,11 +119,20 @@ export const ConfirmConsultation = ({ isOpen, onClose, consultation }) => {
                     {providerName}
                   </p>
                 )}
-                {providerSpecializations?.length > 0 && (
+                {isPeerSupportProvider(
+                  parseSpecializationKeys(providerSpecializations),
+                ) && (
+                  <PeerSupportBadge label={t("peer_support")} />
+                )}
+                {getDisplaySpecializations(
+                  parseSpecializationKeys(providerSpecializations),
+                  t,
+                ).length > 0 && (
                   <p className="text confirm-consultation__card__provider__specializations">
-                    {providerSpecializations
-                      .map((specialization) => t(specialization))
-                      .join(", ")}
+                    {getDisplaySpecializations(
+                      parseSpecializationKeys(providerSpecializations),
+                      t,
+                    ).join(", ")}
                   </p>
                 )}
               </div>

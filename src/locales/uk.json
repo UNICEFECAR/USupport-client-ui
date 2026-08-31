@@ -131,7 +131,8 @@
       "friday": "Пʼятниця",
       "saturday": "Субота",
       "sunday": "Неділя",
-      "coupon": "Купон"
+      "coupon": "Купон",
+      "peer_support": "U-FRIEND"
     },
     "user-profile": {
       "your_profile": "Твій профіль",
@@ -260,7 +261,8 @@
       "choose-the-provider": "Оберіть фахівця, з яким хочете спілкуватися відео, аудіо чи текстом. Іноді може знадобитися кілька сесій, щоб знайти фахівця, який підходить вам за потребами та форматом роботи.",
       "coupon_note": "Цього разу ми ввели для вас код на безкоштовну сесію! Запишіться на консультацію до одного з наших фахівців і зробіть перший крок до покращення самопочуття.",
       "book_session": "Забронювати сесію",
-      "view_profile": "Переглянути особистий профіль"
+      "view_profile": "Переглянути особистий профіль",
+      "peer_support": "U-FRIEND"
     },
     "notification-preferences": {
       "email": "Сповіщення електронною поштою",
@@ -328,7 +330,8 @@
       "psychotherapist": "Психотерапевт/ка",
       "test_audio_camera": "Перевірити аудіо та камеру",
       "test_audio_camera_description": "Перевір свої пристрої перед консультацією",
-      "user_guide": "Інструкція користувача"
+      "user_guide": "Інструкція користувача",
+      "peer_support": "U-FRIEND"
     },
     "login": {
       "email_label": "Електронна пошта / токен доступу",
@@ -574,7 +577,8 @@
       "psychiatrist": "Психіатр/иня",
       "psychotherapist": "Психотерапевт/ка",
       "test_audio_camera": "Перевірити аудіо та камеру",
-      "test_audio_camera_description": "Перевір свої пристрої перед консультацією"
+      "test_audio_camera_description": "Перевір свої пристрої перед консультацією",
+      "peer_support": "U-FRIEND"
     },
     "mood-tracker": {
       "happy": "Щасливим/ою",
@@ -1547,7 +1551,8 @@
       "button_label": "Застосувати фільтри",
       "reset_filter": "Скинути фільтри",
       "available_before": "Доступно до",
-      "available_after": "Доступно після"
+      "available_after": "Доступно після",
+      "provider_peer_support": "U-FRIEND"
     },
     "confirm-consultation": {
       "heading": "Твою консультацію заброньовано",
@@ -1577,7 +1582,8 @@
       "dateLabel": "Дата",
       "timeLabel": "Час",
       "dateText": "{{startDate}} {{month}} {{year}}",
-      "timeText": "З {{startTime}} до {{endTime}}"
+      "timeText": "З {{startTime}} до {{endTime}}",
+      "peer_support": "U-FRIEND"
     },
     "cancel-consultation": {
       "heading": "Ви впевнені, що хочете скасувати консультацію?",
