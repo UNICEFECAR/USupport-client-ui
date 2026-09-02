@@ -131,7 +131,8 @@
       "friday": "Friday",
       "saturday": "Saturday",
       "sunday": "Sunday",
-      "coupon": "Coupon"
+      "coupon": "Coupon",
+      "peer_support": "U-FRIEND"
     },
     "user-profile": {
       "your_profile": "Your profile",
@@ -260,7 +261,8 @@
       "tab_free": "Free",
       "choose-the-provider": "Choose the provider you want to talk to using video, audio or text. It may sometimes take a few sesions to find a provider that is a good fit for your needs and your preferred approach.",
       "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being.",
-      "view_profile": "View personal profile"
+      "view_profile": "View personal profile",
+      "peer_support": "U-FRIEND"
     },
     "notification-preferences": {
       "email": "Email notifications",
@@ -327,7 +329,8 @@
       "psychiatrist": "Psychiatrist",
       "psychotherapist": "Psychotherapist",
       "test_audio_camera": "Test audio & camera",
-      "test_audio_camera_description": "Check your devices before the consultation"
+      "test_audio_camera_description": "Check your devices before the consultation",
+      "peer_support": "U-FRIEND"
     },
     "login": {
       "email_label": "Email / Access Token",
@@ -573,7 +576,8 @@
       "psychiatrist": "Psychiatrist",
       "psychotherapist": "Psychotherapist",
       "test_audio_camera": "Test audio & camera",
-      "test_audio_camera_description": "Check your devices before the consultation"
+      "test_audio_camera_description": "Check your devices before the consultation",
+      "peer_support": "U-FRIEND"
     },
     "mood-tracker": {
       "happy": "Happy",
@@ -1560,7 +1564,8 @@
       "button_label": "Apply filters",
       "reset_filter": "Reset filters",
       "available_before": "Available before",
-      "available_after": "Available after"
+      "available_after": "Available after",
+      "provider_peer_support": "U-FRIEND"
     },
     "confirm-consultation": {
       "heading": "Your appointment was booked",
@@ -1589,7 +1594,8 @@
       "september": "September",
       "october": "October",
       "november": "November",
-      "december": "December"
+      "december": "December",
+      "peer_support": "U-FRIEND"
     },
     "cancel-consultation": {
       "heading": "Are you sure you want to cancel your consultation",

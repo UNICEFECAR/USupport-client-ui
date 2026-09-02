@@ -131,7 +131,8 @@
       "friday": "Παρασκευή",
       "saturday": "Σάββατο",
       "sunday": "Κυριακή",
-      "coupon": "Κουπόνι"
+      "coupon": "Κουπόνι",
+      "peer_support": "U-FRIEND"
     },
     "user-profile": {
       "your_profile": "Το προφίλ σας",
@@ -260,7 +261,8 @@
       "choose-the-provider": "Επιλέξτε τον ειδικό με τον οποίο θέλετε να συνομιλήσετε μέσω βίντεο, ήχου ή κειμένου. Μερικές φορές μπορεί να χρειαστούν μερικές συνεδρίες για να βρείτε ειδικό που ταιριάζει στις ανάγκες και την προτιμώμενη προσέγγισή σας.",
       "coupon_note": "Αυτή τη φορά σας εισάγαμε κωδικό για δωρεάν συνεδρία! Κλείστε ραντεβού με έναν από τους συμβούλους μας και κάντε το πρώτο βήμα προς τη βελτίωση της ευεξίας σας.",
       "book_session": "Κλείστε συνεδρία",
-      "view_profile": "Προβολή προσωπικού προφίλ"
+      "view_profile": "Προβολή προσωπικού προφίλ",
+      "peer_support": "U-FRIEND"
     },
     "notification-preferences": {
       "email": "Ειδοποιήσεις μέσω email",
@@ -326,7 +328,8 @@
       "psychiatrist": "Ψυχίατρος",
       "psychotherapist": "Ψυχοθεραπευτής",
       "test_audio_camera": "Δοκιμή ήχου και κάμερας",
-      "test_audio_camera_description": "Ελέγξτε τις συσκευές σας πριν από τη συνεδρία"
+      "test_audio_camera_description": "Ελέγξτε τις συσκευές σας πριν από τη συνεδρία",
+      "peer_support": "U-FRIEND"
     },
     "login": {
       "email_label": "Email / Διακριτικό πρόσβασης",
@@ -572,7 +575,8 @@
       "psychiatrist": "Ψυχίατρος",
       "psychotherapist": "Ψυχοθεραπευτής",
       "test_audio_camera": "Δοκιμή ήχου και κάμερας",
-      "test_audio_camera_description": "Ελέγξτε τις συσκευές σας πριν από τη συνεδρία"
+      "test_audio_camera_description": "Ελέγξτε τις συσκευές σας πριν από τη συνεδρία",
+      "peer_support": "U-FRIEND"
     },
     "mood-tracker": {
       "happy": "Χαρούμενος/η",
@@ -1545,7 +1549,8 @@
       "button_label": "Εφαρμογή φίλτρων",
       "reset_filter": "Επαναφορά φίλτρων",
       "available_before": "Διαθέσιμος/η πριν",
-      "available_after": "Διαθέσιμος/η μετά"
+      "available_after": "Διαθέσιμος/η μετά",
+      "provider_peer_support": "U-FRIEND"
     },
     "confirm-consultation": {
       "heading": "Η κράτησή σας έχει ολοκληρωθεί",
@@ -1575,7 +1580,8 @@
       "dateLabel": "Ημερομηνία",
       "timeLabel": "Ώρα",
       "dateText": "{{startDate}}η του {{month}} {{year}}",
-      "timeText": "Από {{startTime}} έως {{endTime}}"
+      "timeText": "Από {{startTime}} έως {{endTime}}",
+      "peer_support": "U-FRIEND"
     },
     "cancel-consultation": {
       "heading": "Είστε σίγουροι ότι θέλετε να ακυρώσετε τη συνεδρία σας;",

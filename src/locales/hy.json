@@ -131,7 +131,8 @@
       "friday": "Ուրբաթ",
       "saturday": "Շաբաթ",
       "sunday": "Կիրակի",
-      "coupon": "Կտրոն"
+      "coupon": "Կտրոն",
+      "peer_support": "U-FRIEND"
     },
     "user-profile": {
       "your_profile": "Ձեր պրոֆիլը",
@@ -260,7 +261,8 @@
       "choose-the-provider": "Ընտրիր այն մասնագետին, ում հետ ցանկանում ես զրուցել տեսանյութով, աուդիո կամ տեքստով: Երբեմն կարող է պահանջվել մի քանի հանդիպում կամ զրույց, մինչև գտնես քո կարիքներին և նախընտրած մոտեցմանը համապատասխան մասնագետ:",
       "coupon_note": "Այս անգամ քեզ համար մուտքագրել ենք անվճար նստաշրջանի կոդ: Գրանցվիր մեր խորհրդատուներից մեկի հետ և կատարիր առաջին քայլը քո բարեկեցությունը բարելավելու ուղղությամբ:",
       "book_session": "Ամրագրել հանդիպում",
-      "view_profile": "View personal profile"
+      "view_profile": "View personal profile",
+      "peer_support": "U-FRIEND"
     },
     "notification-preferences": {
       "email": "Ծանուցումներ՝ էլեկտրոնային փոստով",
@@ -328,7 +330,8 @@
       "psychotherapist": "Հոգեթերապևտ",
       "user_guide": "",
       "test_audio_camera": "Ստուգել աուդիոն և տեսախցիկը",
-      "test_audio_camera_description": "Ստուգիր սարքերը խորհրդատվությունից առաջ"
+      "test_audio_camera_description": "Ստուգիր սարքերը խորհրդատվությունից առաջ",
+      "peer_support": "U-FRIEND"
     },
     "login": {
       "email_label": "Էլեկտրոնային փոստի հասցե / մուտքի սարք",
@@ -574,7 +577,8 @@
       "psychiatrist": "Հոգեբույժ",
       "psychotherapist": "Հոգեթերապևտ",
       "test_audio_camera": "Ստուգել աուդիոն և տեսախցիկը",
-      "test_audio_camera_description": "Ստուգիր սարքերը խորհրդատվությունից առաջ"
+      "test_audio_camera_description": "Ստուգիր սարքերը խորհրդատվությունից առաջ",
+      "peer_support": "U-FRIEND"
     },
     "mood-tracker": {
       "happy": "Ուրախ եմ",
@@ -1547,7 +1551,8 @@
       "button_label": "Կիրառել ֆիլտրեր",
       "reset_filter": "Վերագործարկել ֆիլտրերը",
       "available_before": "Հասանելի է մինչև",
-      "available_after": "Հասանելի -ից հետո"
+      "available_after": "Հասանելի -ից հետո",
+      "provider_peer_support": "U-FRIEND"
     },
     "confirm-consultation": {
       "heading": "Ձեր հանդիպումն ամրագրված է։",
@@ -1577,7 +1582,8 @@
       "dateLabel": "Ամսաթիվ",
       "timeLabel": "Ժամ",
       "dateText": "{{startDate}}-ը {{month}} {{year}}",
-      "timeText": "{{startTime}}-ից մինչև {{endTime}}"
+      "timeText": "{{startTime}}-ից մինչև {{endTime}}",
+      "peer_support": "U-FRIEND"
     },
     "cancel-consultation": {
       "heading": "Համոզվա՞ծ ես, որ ուզում ես չեղարկել քո խորհրդատվությունը",

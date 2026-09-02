@@ -131,7 +131,8 @@
       "friday": "Piątek",
       "saturday": "Sobota",
       "sunday": "Niedziela",
-      "coupon": "Kupon"
+      "coupon": "Kupon",
+      "peer_support": "U-FRIEND"
     },
     "user-profile": {
       "your_profile": "Twój profil",
@@ -260,7 +261,8 @@
       "choose-the-provider": "Wybierz specjalistę, z którym chcesz rozmawiać przez wideo, audio lub czat. Czasami może minąć kilka sesji, zanim znajdziesz specjalistę odpowiedniego do Twoich potrzeb i preferowanego podejścia.",
       "coupon_note": "Tym razem wpisaliśmy dla Ciebie kod na darmową sesję! Umów się na wizytę u jednego z naszych konsultantów i zrób pierwszy krok ku lepszemu samopoczuciu.",
       "book_session": "Umów sesję",
-      "view_profile": "Wyświetl profil osobisty"
+      "view_profile": "Wyświetl profil osobisty",
+      "peer_support": "U-FRIEND"
     },
     "notification-preferences": {
       "email": "Powiadomienia email",
@@ -328,7 +330,8 @@
       "psychotherapist": "Psychoterapeuta/ka",
       "test_audio_camera": "Przetestuj audio i kamerę",
       "test_audio_camera_description": "Sprawdź urządzenia przed konsultacją",
-      "user_guide": ""
+      "user_guide": "",
+      "peer_support": "U-FRIEND"
     },
     "login": {
       "email_label": "Email / token dostępu",
@@ -574,7 +577,8 @@
       "psychiatrist": "Psychiatra",
       "psychotherapist": "Psychoterapeuta/ka",
       "test_audio_camera": "Przetestuj audio i kamerę",
-      "test_audio_camera_description": "Sprawdź urządzenia przed konsultacją"
+      "test_audio_camera_description": "Sprawdź urządzenia przed konsultacją",
+      "peer_support": "U-FRIEND"
     },
     "mood-tracker": {
       "happy": "Szczęśliwy/a",
@@ -1547,7 +1551,8 @@
       "button_label": "Zapisz",
       "reset_filter": "Zresetuj filtry",
       "available_before": "Dostępne przed",
-      "available_after": "Dostępne po"
+      "available_after": "Dostępne po",
+      "provider_peer_support": "U-FRIEND"
     },
     "confirm-consultation": {
       "heading": "Twoja konsultacja została zarezerwowana",
@@ -1577,7 +1582,8 @@
       "dateLabel": "Data",
       "timeLabel": "Godzina",
       "dateText": "{{startDate}} {{month}} {{year}}",
-      "timeText": "Od {{startTime}} do {{endTime}}"
+      "timeText": "Od {{startTime}} do {{endTime}}",
+      "peer_support": "U-FRIEND"
     },
     "cancel-consultation": {
       "heading": "Czy na pewno chcesz odwołać konsultację?",
