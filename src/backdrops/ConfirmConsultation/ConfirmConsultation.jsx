@@ -122,7 +122,7 @@ export const ConfirmConsultation = ({ isOpen, onClose, consultation }) => {
                 {isPeerSupportProvider(
                   parseSpecializationKeys(providerSpecializations),
                 ) && (
-                  <PeerSupportBadge label={t("peer_support")} />
+                  <PeerSupportBadge />
                 )}
                 {getDisplaySpecializations(
                   parseSpecializationKeys(providerSpecializations),
