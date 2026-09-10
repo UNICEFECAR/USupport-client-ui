@@ -15,6 +15,7 @@ import {
   NewButton,
 } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
+import { isPeerSupportProvider } from "@USupport-components-library/src/utils/peerSupport";
 
 import { RootContext } from "../../routes/Root/Root";
 import { ProviderOverviewSkeleton } from "../ProviderOverviewSkeleton";
@@ -276,6 +277,7 @@ export const SelectProvider = ({
             patronym={provider.patronym}
             surname={provider.surname}
             specializationKeys={provider.specializations}
+            isPeerSupport={isPeerSupportProvider(provider.specializations)}
             price={
               selectedBillingType === "free"
                 ? 0
