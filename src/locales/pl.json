@@ -1175,6 +1175,7 @@
       "subheading": "Pilnie potrzebujesz pomocy? Skontaktuj się z jednym z poniższych ośrodków już teraz."
     },
     "select-provider-page": {
+      "consultations_unavailable_note": "Consultations are not currently available. We will let you know on this page when consultations resume.",
       "heading": "Wybierz konsultanta/kę",
       "subheading": "Wpisz kod kuponu z mediów społecznościowych. Wybierz konsultanta/kę, z którym chcesz rozmawiać za pomocą wideo, audio lub tekstu. Znalezienie konsultanta/ki, który dobrze odpowiada Twoim potrzebom i preferowanemu podejściu, może czasami zająć kilka sesji.",
       "button_label": "Filtr",

@@ -1175,6 +1175,7 @@
       "subheading": "Терміново потрібна допомога? Звернись до одного з центрів наведених нижче уже зараз."
     },
     "select-provider-page": {
+      "consultations_unavailable_note": "Consultations are not currently available. We will let you know on this page when consultations resume.",
       "heading": "Вибери консультанта/ку",
       "subheading": "Введіть код купону з соціальних мереж. Вибери консультанта/ку, з яким ти хочеш поспілкуватися за допомогою відео, аудіо або тексту. Пошук консультанта/ки, який добре відповідає твоїм потребам і бажаному підходу, іноді може зайняти кілька сеансів.",
       "button_label": "Фільтр",
