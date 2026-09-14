@@ -295,6 +295,12 @@ export const SelectProvider = () => {
         )
       }
     >
+      {isKzCountry && (
+        <div className="page__select-provider__unavailable-note">
+          <p className="text">{t("consultations_unavailable_note")}</p>
+        </div>
+      )}
+
       <SelectProviderBlock
         activeCoupon={effectiveActiveCoupon}
         setActiveCoupon={setActiveCoupon}
