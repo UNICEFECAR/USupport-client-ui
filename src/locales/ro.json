@@ -1173,6 +1173,7 @@
       "subheading": "Aveți nevoie urgentă de ajutor? Vă rugăm să contactați chiar acum unul dintre centrele enumerate."
     },
     "select-provider-page": {
+      "consultations_unavailable_note": "Consultations are not currently available. We will let you know on this page when consultations resume.",
       "heading": "Selectați un furnizor ",
       "subheading": "Alegeți furnizorul cu care doriți să discutați în cadrul unei consultații video, audio sau text. Uneori poate fi nevoie de timp pentru a găsi un furnizor care se potrivește nevoilor dvs. și abordării preferate.",
       "button_label": "Filtrare",
