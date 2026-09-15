@@ -482,8 +482,11 @@
     "reset-password": {
       "label": "New password",
       "placeholder": "Enter your new password",
+      "confirm_label": "Confirm password",
+      "confirm_placeholder": "Confirm your new password",
       "submit": "Submit",
-      "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number"
+      "password_error": "Password should contain at least 8 characters, 1 uppercase letter, 1 lowercase letter and 1 number",
+      "password_match_error": "The New password and Confirm Password fields do not match"
     },
     "cookie-policy": {
       "no_results": "There are no results for the selected country and language."
