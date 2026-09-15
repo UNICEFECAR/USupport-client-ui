@@ -1,7 +1,7 @@
 import React from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
-import { useTranslation } from "react-i18next";
 import { Page, ResetPassword as ResetPasswordBlock } from "#blocks";
+import { RadialCircle } from "@USupport-components-library/src";
 
 import "./reset-password.scss";
 
@@ -13,17 +13,20 @@ import "./reset-password.scss";
  * @returns {JSX.Element}
  */
 export const ResetPassword = () => {
-  const { t } = useTranslation("pages", { keyPrefix: "reset-password-page" });
   const navigate = useNavigate();
   const handleGoBack = () => {
     navigate("/forgot-password");
   };
+
   return (
     <Page
       handleGoBack={handleGoBack}
-      heading={t("heading")}
       classes="page__reset-password"
+      additionalPadding={false}
+      showEmergencyButton={false}
     >
+      <RadialCircle color="purple" />
+      <RadialCircle color="blue" />
       <ResetPasswordBlock />
     </Page>
   );
