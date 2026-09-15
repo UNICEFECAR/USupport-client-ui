@@ -481,8 +481,11 @@
     "reset-password": {
       "label": "Parolă nouă",
       "placeholder": "Introduceți noua parolă",
+      "confirm_label": "Confirmați parola",
+      "confirm_placeholder": "Confirmați noua parolă",
       "submit": "Trimiteți",
-      "password_error": "Parola trebuie să conțină cel puțin 8 caractere, 1 literă majusculă, 1 literă minusculă și 1 număr"
+      "password_error": "Parola trebuie să conțină cel puțin 8 caractere, 1 literă majusculă, 1 literă minusculă și 1 număr",
+      "password_match_error": "Câmpurile Parolă nouă și Confirmare parolă nu corespund"
     },
     "cookie-policy": {
       "no_results": "Nu există rezultate pentru țara și limba selectate."
