@@ -1,5 +1,11 @@
 {
   "blocks": {
+    "app-update-modal": {
+      "heading": "Este disponibilă o versiune nouă",
+      "text": "Reîmprospătați pagina pentru a folosi cea mai recentă versiune a platformei.",
+      "refresh": "Reîmprospătează",
+      "later": "Mai târziu"
+    },
     "page": {
       "page_1": "Acasă",
       "page_2": "Consultații",
@@ -1352,6 +1358,7 @@
       "connection_poor": "Conexiune slabă. Sunetul și imaginea pot întârzia",
       "peer_connection_lost": "Conexiunea furnizorului s-a întrerupt. Așteptăm să se reconecteze…",
       "peer_connection_restored": "Furnizorul este din nou online",
+      "peer_connection_poor": "Conexiunea furnizorului este slabă. Sunetul și imaginea pot întârzia",
       "textarea_placeholder": "Introduceți mesajul dvs. aici...",
       "allow_permissions": "Accesul la cameră și/sau microfon a fost refuzat. Dacă doriți să vorbiți cu furnizorul, activați permisiunile din setările browserului sau din pictograma de informații din bara de adrese.",
       "permissions_error": "Ați refuzat permisiunile",

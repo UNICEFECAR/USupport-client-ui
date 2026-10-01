@@ -17,6 +17,8 @@ import {
   generateVisitorId,
 } from "@USupport-components-library/utils";
 
+import { AppUpdateModal } from "#blocks";
+import { reloadApp } from "../../utils/reloadApp.js";
 import { RequireRegistration } from "#modals";
 import { useAppVersionCheck, useEventListener } from "#hooks";
 
@@ -475,8 +477,8 @@ export default function Root() {
   });
 
   const location = useLocation();
-  // Reload long-open tabs on the next navigation once a newer version is deployed
-  useAppVersionCheck();
+  // Ask long-open tabs to refresh once a newer version is deployed
+  const { isUpdateModalOpen, remindLater } = useAppVersionCheck();
   const [hideIdleTimer, setHideIdleTimer] = useState(false);
 
   const previousLocation = useRef();
@@ -536,6 +538,11 @@ export default function Root() {
         <Route path="/client/:language/*" element={<LanguageLayout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <AppUpdateModal
+        isOpen={isUpdateModalOpen}
+        onRefresh={reloadApp}
+        onLater={remindLater}
+      />
       <RequireRegistration
         isOpen={isRegistrationModalOpan}
         onClose={handleRegistrationModalClose}

@@ -1,5 +1,11 @@
 {
   "blocks": {
+    "app-update-modal": {
+      "heading": "A new version is available",
+      "text": "Refresh the page to use the latest version of the platform.",
+      "refresh": "Refresh",
+      "later": "Later"
+    },
     "page": {
       "page_1": "Home",
       "page_2": "Consultations",
@@ -1352,6 +1358,7 @@
       "connection_poor": "Poor connection. Audio and video may lag",
       "peer_connection_lost": "The provider's connection dropped. Waiting for them to reconnect…",
       "peer_connection_restored": "The provider is back online",
+      "peer_connection_poor": "The provider's connection is poor. Audio and video may lag",
       "textarea_placeholder": "Type your message here...",
       "allow_permissions": "The camera and/or microphone permissions have been denied. If you want to talk to the provider, please allow the permissions in your browser settings or from the information icon in the address bar.",
       "permissions_error": "You have denied the permissions",
