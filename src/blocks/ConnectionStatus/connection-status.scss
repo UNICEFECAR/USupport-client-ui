@@ -1,0 +1,66 @@
+@import "@USupport-components-library/styles";
+
+.connection-status {
+  position: fixed;
+  top: $spacing_2_0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  z-index: $z_index_navbar;
+
+  display: flex;
+  align-items: center;
+  gap: $spacing_0_8;
+  padding: $spacing_0_8 $spacing_1_6;
+  border-radius: $border_radius_2_4;
+  box-shadow: $shadow_2;
+  max-width: calc(100vw - 2 * #{$spacing_1_6});
+  box-sizing: border-box;
+  pointer-events: none;
+  animation: connection-status-fade-in 0.3s ease-out;
+
+  @include themify($themes, "background", "color_card");
+
+  &__dot {
+    flex-shrink: 0;
+    width: $spacing_0_8;
+    height: $spacing_0_8;
+    border-radius: 50%;
+    background: $color_orange_fb6514;
+    animation: connection-status-pulse 1.2s ease-in-out infinite;
+  }
+
+  &__text {
+    margin: 0;
+    text-align: center;
+
+    @include themify($themes, "color", "color_3d527b_white");
+  }
+
+  &--restored &__dot {
+    background: $color_green_7ec680;
+    animation: none;
+  }
+}
+
+@keyframes connection-status-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-$spacing_0_8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes connection-status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
