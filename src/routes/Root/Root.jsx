@@ -18,7 +18,7 @@ import {
 } from "@USupport-components-library/utils";
 
 import { RequireRegistration } from "#modals";
-import { useEventListener } from "#hooks";
+import { useAppVersionCheck, useEventListener } from "#hooks";
 
 import {
   ActivityHistory,
@@ -475,6 +475,8 @@ export default function Root() {
   });
 
   const location = useLocation();
+  // Reload long-open tabs on the next navigation once a newer version is deployed
+  useAppVersionCheck();
   const [hideIdleTimer, setHideIdleTimer] = useState(false);
 
   const previousLocation = useRef();

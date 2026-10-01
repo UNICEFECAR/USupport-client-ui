@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import {
   useCustomNavigate as useNavigate,
   useAddCountryEvent,
+  useError,
   useMediaPreview,
 } from "#hooks";
 
@@ -175,46 +176,58 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
   };
 
   const joinConsultation = async ({ redirectTo, videoOn, microphoneOn }) => {
-    const sytemMessage = {
-      type: "system",
-      content: "client_joined",
-      time: JSON.stringify(new Date().getTime()),
-    };
-
     addCountryEventMutation.mutate({
       eventType: "web_join_consultation_click",
     });
 
-    const systemMessagePromise = messageSvc.sendMessage({
-      message: sytemMessage,
-      chatId: consultation.chatId,
-    });
+    setIsJoining(true);
 
-    const joinConsultationPromise = providerSvc.joinConsultation({
-      consultationId: consultation.consultationId,
-      userType: "client",
-    });
-
+    // Join first, so the provider is told the client joined only once it actually succeeded
     try {
-      setIsJoining(true);
-      await Promise.all([systemMessagePromise, joinConsultationPromise]);
-
-      preview.stopStream();
-
-      navigate("/consultation", {
-        state: {
-          consultation,
-          videoOn: redirectTo === "video" && videoOn,
-          microphoneOn: redirectTo === "video" && microphoneOn,
-        },
+      await providerSvc.joinConsultation({
+        consultationId: consultation.consultationId,
+        userType: "client",
       });
-
-      handleClose();
     } catch (err) {
-      console.log(err);
-      toast(t("error"), { type: "error" });
+      console.error("Failed to join consultation", {
+        consultationId: consultation.consultationId,
+        status: err?.response?.status,
+        error: err?.response?.data?.error || err?.message,
+      });
+      // The backend sends a translated reason, e.g. that the consultation is no longer scheduled
+      const errorMessage = err?.response ? useError(err)?.message : null;
+      toast(errorMessage || t("error"), { type: "error" });
       setIsJoining(false);
+      return;
     }
+
+    const systemMessage = {
+      type: "system",
+      content: "client_joined",
+      time: JSON.stringify(new Date().getTime()),
+    };
+    // Joining already succeeded, so a failed system message must not keep the client out
+    await messageSvc
+      .sendMessage({ message: systemMessage, chatId: consultation.chatId })
+      .catch((err) =>
+        console.error("Failed to send the join message", {
+          chatId: consultation.chatId,
+          status: err?.response?.status,
+          error: err?.response?.data?.error || err?.message,
+        })
+      );
+
+    preview.stopStream();
+
+    navigate("/consultation", {
+      state: {
+        consultation,
+        videoOn: redirectTo === "video" && videoOn,
+        microphoneOn: redirectTo === "video" && microphoneOn,
+      },
+    });
+
+    handleClose();
   };
 
   const handleJoinWithVideo = () => {
