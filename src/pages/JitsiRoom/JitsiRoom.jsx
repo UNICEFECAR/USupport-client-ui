@@ -11,6 +11,7 @@ import {
   ThemeContext,
   ONE_HOUR,
 } from "@USupport-components-library/utils";
+import { messageSvc } from "@USupport-components-library/services";
 
 import { ConnectionStatus, Page, SafetyFeedback } from "#blocks";
 import { LeaveConsultation } from "#modals";
@@ -28,6 +29,8 @@ import { MessageList } from "./MessageList";
 import "./jitsi-room.scss";
 
 const AMAZON_S3_BUCKET = `${import.meta.env.VITE_AMAZON_S3_BUCKET}`;
+// A message still not saved after this time can be retried
+const SEND_MESSAGE_TIMEOUT = 15000;
 const JITSI_API_URL = `${import.meta.env.VITE_JITSI_API_URL}`;
 
 const defaultConfig = {
@@ -108,6 +111,12 @@ export const JitsiRoom = () => {
     interfacesCopy.hasUnreadMessages = true;
 
     setMessages((messages) => {
+      // The same message arrives twice when its sender retried it while the first attempt was still in flight
+      const isDuplicate = messages.currentSession.some(
+        (x) => x.time === message.time && x.content === message.content
+      );
+      if (isDuplicate) return messages;
+
       return {
         ...messages,
         currentSession: [...messages.currentSession, message],
@@ -241,6 +250,57 @@ export const JitsiRoom = () => {
     toast(err, { type: "error" });
   };
   const sendMessageMutation = useSendMessage(onSendSuccess, onSendError);
+  // Each message is shown right away and marked while it is being sent. It is delivered to the other
+  // participant only once it is saved, so both sides always see the same messages
+  const updateMessageStatus = (time, status) => {
+    setMessages((prev) => ({
+      ...prev,
+      currentSession: prev.currentSession.map((message) => {
+        // Only messages sent from this tab have a status, saved ones are left untouched
+        if (message.time !== time || !message.status) return message;
+        if (status) return { ...message, status };
+
+        const { status: _sentStatus, ...sentMessage } = message;
+        return sentMessage;
+      }),
+    }));
+  };
+
+  const sendMessage = (message) => {
+    const { status, ...messageToSend } = message;
+    updateMessageStatus(message.time, "sending");
+
+    // On a bad connection a request can hang for a long time, so the message can be retried meanwhile
+    const timeout = setTimeout(
+      () => updateMessageStatus(message.time, "failed"),
+      SEND_MESSAGE_TIMEOUT
+    );
+
+    messageSvc
+      .sendMessage({ message: messageToSend, chatId: consultation.chatId })
+      .then(() => {
+        clearTimeout(timeout);
+        updateMessageStatus(message.time, null);
+
+        socketRef.current.emit("send message", {
+          language,
+          country,
+          chatId: consultation.chatId,
+          to: "provider",
+          message: messageToSend,
+        });
+      })
+      .catch((err) => {
+        clearTimeout(timeout);
+        console.error("Failed to send the message", {
+          chatId: consultation.chatId,
+          status: err?.response?.status,
+          error: err?.response?.data?.error || err?.message,
+        });
+        updateMessageStatus(message.time, "failed");
+      });
+  };
+
   const handleSendMessage = (content, type = "text") => {
     if (interfaces.hasUnreadMessages) {
       setInterfaceData({ ...interfaces, hasUnreadMessages: false });
@@ -249,20 +309,15 @@ export const JitsiRoom = () => {
       content,
       type,
       time: JSON.stringify(new Date().getTime()),
+      senderId: clientData.clientID,
+      status: "sending",
     };
 
-    sendMessageMutation.mutate({
-      message,
-      chatId: consultation.chatId,
-    });
-
-    socketRef.current.emit("send message", {
-      language,
-      country,
-      chatId: consultation.chatId,
-      to: "provider",
-      message,
-    });
+    setMessages((prev) => ({
+      ...prev,
+      currentSession: [...prev.currentSession, message],
+    }));
+    sendMessage(message);
   };
 
   const leaveConsultationMutation = useLeaveConsultation();
@@ -509,6 +564,7 @@ export const JitsiRoom = () => {
             consultation={consultation}
             clientId={clientData.clientID}
             handleSendMessage={handleSendMessage}
+            retryMessage={sendMessage}
             isChatShownOnMobile={interfaces.isChatShownOnMobile}
             isChatShownOnTablet={interfaces.isChatShownOnTablet}
             setIsChatShownOnMobile={(value) => {
@@ -545,6 +601,7 @@ export const Chat = ({
   clientId,
   consultation,
   handleSendMessage,
+  retryMessage,
   theme,
   t,
   isChatShownOnMobile,
@@ -643,6 +700,7 @@ export const Chat = ({
       consultation={consultation}
       clientId={clientId}
       handleSendMessage={handleSendMessage}
+      retryMessage={retryMessage}
       width={width}
       areSystemMessagesShown={areSystemMessagesShown}
       setAreSystemMessagesShown={setAreSystemMessagesShown}
