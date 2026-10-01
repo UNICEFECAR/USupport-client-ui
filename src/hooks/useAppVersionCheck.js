@@ -6,7 +6,8 @@ import { useLocation } from "react-router-dom";
 const VERSION_URL = `${import.meta.env.BASE_URL}version.json`;
 
 const CHECK_INTERVAL = 10 * 60 * 1000;
-const MIN_TIME_BETWEEN_CHECKS = 60 * 1000;
+// Switching back to a tab fires both "visibilitychange" and "focus", which should be one check
+const MIN_TIME_BETWEEN_CHECKS = 5 * 1000;
 // After "Later", the user is asked again after this time
 const REMIND_AGAIN_AFTER = 30 * 60 * 1000;
 
@@ -28,7 +29,6 @@ export default function useAppVersionCheck() {
   const remindTimeout = useRef();
 
   const checkVersion = async () => {
-    if (import.meta.env.DEV) return;
     if (Date.now() - lastCheckTime.current < MIN_TIME_BETWEEN_CHECKS) return;
     lastCheckTime.current = Date.now();
 
