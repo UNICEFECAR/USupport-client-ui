@@ -12,3 +12,38 @@
     transform: translate(-50%, -50%);
   }
 }
+
+// Shown under a message sent from this tab until it is saved (see MessageStatus in MessageList)
+.message-status {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: $spacing_0_8;
+  margin-bottom: $spacing_0_8;
+
+  p {
+    margin: 0;
+    @include themify($themes, "color", "color_66768d_c1d7e0");
+  }
+
+  &--failed p {
+    @include themify($themes, "color", "color_red_eb5757");
+  }
+
+  &__retry {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: $font_family;
+    font-size: $font_size_1_2;
+    font-weight: $font_semi_bold;
+    text-decoration: underline;
+    @include themify($themes, "color", "color_primary_20809e");
+  }
+}
+
+// The bubble of a message that is not saved yet is dimmed
+.message-sent:has(+ .message-status) {
+  opacity: 0.6;
+}

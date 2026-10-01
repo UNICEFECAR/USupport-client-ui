@@ -17,6 +17,23 @@ import {
   systemMessageTypes,
 } from "@USupport-components-library/src/utils";
 
+/**
+ * Shown under a message sent from this tab until it is saved
+ */
+const MessageStatus = ({ status, onRetry, t }) =>
+  status === "failed" ? (
+    <div className="message-status message-status--failed" role="alert">
+      <p className="small-text">{t("message_not_sent")}</p>
+      <button type="button" className="message-status__retry" onClick={onRetry}>
+        {t("message_retry")}
+      </button>
+    </div>
+  ) : (
+    <div className="message-status" role="status">
+      <p className="small-text">{t("message_sending")}</p>
+    </div>
+  );
+
 export const MessageList = ({
   messages,
   setMessages,
@@ -24,6 +41,7 @@ export const MessageList = ({
   clientId,
   width,
   handleSendMessage,
+  retryMessage,
   areSystemMessagesShown,
   setAreSystemMessagesShown,
   showOptions,
@@ -125,10 +143,17 @@ export const MessageList = ({
 
   const onGetChatDataSuccess = (data) => {
     // setIsProviderInSession(checkHasProviderJoined(data.messages));
-    setMessages((prev) => ({
-      ...prev,
-      currentSession: data.messages,
-    }));
+    setMessages((prev) => {
+      // Keep messages sent from this tab that are not saved yet (still sending or failed)
+      const savedTimes = new Set(data.messages.map((message) => message.time));
+      const unsavedMessages = prev.currentSession.filter(
+        (message) => message.status && !savedTimes.has(message.time)
+      );
+      return {
+        ...prev,
+        currentSession: [...data.messages, ...unsavedMessages],
+      };
+    });
   };
 
   const chatDataQuery = useGetChatData(
@@ -202,13 +227,21 @@ export const MessageList = ({
       } else {
         if (message.senderId === clientId) {
           return (
-            <Message
-              key={`${message.time}-${index}`}
-              message={message.content}
-              sent
-              date={new Date(Number(message.time))}
-              showDate={shouldShowDate}
-            />
+            <React.Fragment key={`${message.time}-${index}`}>
+              <Message
+                message={message.content}
+                sent
+                date={new Date(Number(message.time))}
+                showDate={shouldShowDate}
+              />
+              {message.status && (
+                <MessageStatus
+                  status={message.status}
+                  onRetry={() => retryMessage(message)}
+                  t={t}
+                />
+              )}
+            </React.Fragment>
           );
         } else {
           return (
