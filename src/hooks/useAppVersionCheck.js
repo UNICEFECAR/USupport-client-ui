@@ -1,36 +1,34 @@
 /* global __APP_VERSION__ */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
-
-import { reloadApp } from "../utils/reloadApp.js";
 
 // Written next to the build by the "app-version" plugin in vite.config.js
 const VERSION_URL = `${import.meta.env.BASE_URL}version.json`;
 
 const CHECK_INTERVAL = 10 * 60 * 1000;
 const MIN_TIME_BETWEEN_CHECKS = 60 * 1000;
-// Requests started by the navigation itself (e.g. leaving a consultation) begin right after it
-const RELOAD_DELAY = 500;
-const PENDING_REQUESTS_CHECK_INTERVAL = 250;
-const MAX_PENDING_REQUESTS_WAIT = 10000;
+// After "Later", the user is asked again after this time
+const REMIND_AGAIN_AFTER = 30 * 60 * 1000;
 
-// The consultation room depends on the navigation state and must never be interrupted
+// A consultation must never be interrupted, the user is asked once they leave the room
 const isConsultationRoom = (pathname) => /\/consultation\/?$/.test(pathname);
 
 /**
- * Detects that a newer version of the app was deployed while this tab stayed open
- * and reloads the app on the next navigation, where a full page load is barely noticeable
+ * Detects that a newer version of the app was deployed while this tab stayed open,
+ * so the user can be asked to refresh
+ *
+ * @returns {{ isUpdateModalOpen: boolean, remindLater: function }}
  */
 export default function useAppVersionCheck() {
   const location = useLocation();
-  const queryClient = useQueryClient();
 
-  const isUpdateAvailable = useRef(false);
+  const [isUpdateAvailable, setIsUpdateAvailable] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
   const lastCheckTime = useRef(0);
+  const remindTimeout = useRef();
 
   const checkVersion = async () => {
-    if (import.meta.env.DEV || isUpdateAvailable.current) return;
+    if (import.meta.env.DEV) return;
     if (Date.now() - lastCheckTime.current < MIN_TIME_BETWEEN_CHECKS) return;
     lastCheckTime.current = Date.now();
 
@@ -42,7 +40,7 @@ export default function useAppVersionCheck() {
 
       const { version } = await response.json();
       if (version && version !== __APP_VERSION__) {
-        isUpdateAvailable.current = true;
+        setIsUpdateAvailable(true);
       }
     } catch {
       // Offline, or a deployment without a version file
@@ -50,43 +48,46 @@ export default function useAppVersionCheck() {
   };
 
   useEffect(() => {
+    // Nothing more to check once an update is known
+    if (isUpdateAvailable) return;
+
     const interval = setInterval(checkVersion, CHECK_INTERVAL);
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") checkVersion();
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    // Also covers returning from another app, where the tab was visible the whole time
+    window.addEventListener("focus", checkVersion);
 
     return () => {
       clearInterval(interval);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", checkVersion);
     };
-  }, []);
+  }, [isUpdateAvailable]);
 
   useEffect(() => {
-    if (!isUpdateAvailable.current) {
-      checkVersion();
-      return;
-    }
-
-    // A reload drops the navigation state, which some pages need (e.g. joining a consultation)
-    if (location.state || isConsultationRoom(location.pathname)) return;
-
-    const startTime = Date.now();
-    let timeout;
-    const reloadWhenIdle = () => {
-      // A reload would cancel requests that are still running, so wait for them to finish
-      if (queryClient.isMutating() > 0) {
-        // Still busy, try again on the next navigation instead
-        if (Date.now() - startTime > MAX_PENDING_REQUESTS_WAIT) return;
-        timeout = setTimeout(reloadWhenIdle, PENDING_REQUESTS_CHECK_INTERVAL);
-        return;
-      }
-      reloadApp();
-    };
-    timeout = setTimeout(reloadWhenIdle, RELOAD_DELAY);
-
-    return () => clearTimeout(timeout);
+    if (!isUpdateAvailable) checkVersion();
   }, [location.key]);
+
+  useEffect(() => () => clearTimeout(remindTimeout.current), []);
+
+  const remindLater = () => {
+    setIsDismissed(true);
+    clearTimeout(remindTimeout.current);
+    remindTimeout.current = setTimeout(
+      () => setIsDismissed(false),
+      REMIND_AGAIN_AFTER
+    );
+  };
+
+  return {
+    isUpdateModalOpen:
+      isUpdateAvailable &&
+      !isDismissed &&
+      !isConsultationRoom(location.pathname),
+    remindLater,
+  };
 }
 
 export { useAppVersionCheck };

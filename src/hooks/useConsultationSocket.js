@@ -18,15 +18,30 @@ const QUALITY_CHANGE_CHECKS = 2;
 
 /**
  * The status shown to the user, from most to least important:
- * "reconnecting" | "peer_lost" | "poor" | "restored" | "peer_restored" | "online"
+ * "reconnecting" | "peer_lost" | "poor" | "peer_poor" | "restored" | "peer_restored" | "online"
  */
-const getDisplayedStatus = (ownStatus, isPoorConnection, peerStatus) => {
+const getDisplayedStatus = (
+  ownStatus,
+  isPoorConnection,
+  peerStatus,
+  peerQuality
+) => {
   if (ownStatus === "reconnecting") return "reconnecting";
   if (peerStatus === "lost") return "peer_lost";
   if (isPoorConnection) return "poor";
+  if (peerQuality === "poor") return "peer_poor";
   if (ownStatus === "restored") return "restored";
   if (peerStatus === "restored") return "peer_restored";
   return "online";
+};
+
+/**
+ * "lost" if either side is disconnected, "poor" if either side has a poor connection, "good" otherwise
+ */
+const getCallQuality = (ownStatus, isPoorConnection, peerStatus, peerQuality) => {
+  if (ownStatus === "reconnecting" || peerStatus === "lost") return "lost";
+  if (isPoorConnection || peerQuality === "poor") return "poor";
+  return "good";
 };
 
 export const useConsultationSocket = ({
@@ -44,6 +59,8 @@ export const useConsultationSocket = ({
   const [isPoorConnection, setIsPoorConnection] = useState(false);
   // Connection of the other participant: "online" | "lost" | "restored"
   const [peerStatus, setPeerStatus] = useState("online");
+  // Connection quality reported by the other participant: "good" | "poor"
+  const [peerQuality, setPeerQuality] = useState("good");
 
   const socketRef = useRef();
   useEffect(() => {
@@ -120,6 +137,7 @@ export const useConsultationSocket = ({
       // The other participant may have reconnected meanwhile, the gateway reports it again if not
       clearTimeout(peerRestoredTimeout);
       setPeerStatus("online");
+      setPeerQuality("good");
 
       socketRef.current.emit("join chat", {
         country,
@@ -166,6 +184,10 @@ export const useConsultationSocket = ({
           RESTORED_NOTICE_DURATION
         );
       }
+    });
+
+    socketRef.current.on("peer quality", (quality) => {
+      setPeerQuality(quality === "poor" ? "poor" : "good");
     });
 
     // The browser knows immediately when the network is gone
@@ -230,12 +252,29 @@ export const useConsultationSocket = ({
     };
   }, []);
 
+  // Let the other participant know about the quality of this connection
+  const hasReportedQuality = useRef(false);
+  useEffect(() => {
+    // Nothing to report until the quality changes for the first time
+    if (!hasReportedQuality.current && !isPoorConnection) return;
+    hasReportedQuality.current = true;
+
+    socketRef.current?.emit("connection quality", {
+      chatId,
+      userType: "client",
+      quality: isPoorConnection ? "poor" : "good",
+    });
+  }, [isPoorConnection]);
+
   return {
     socketRef,
     connectionStatus: getDisplayedStatus(
       ownStatus,
       isPoorConnection,
-      peerStatus
+      peerStatus,
+      peerQuality
     ),
+    // Health of the call, from both sides, shown by the connection icon in the controls
+    callQuality: getCallQuality(ownStatus, isPoorConnection, peerStatus, peerQuality),
   };
 };
