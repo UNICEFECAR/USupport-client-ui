@@ -27,8 +27,6 @@
     width: $spacing_0_8;
     height: $spacing_0_8;
     border-radius: 50%;
-    background: $color_orange_fb6514;
-    animation: connection-status-pulse 1.2s ease-in-out infinite;
   }
 
   &__text {
@@ -38,9 +36,17 @@
     @include themify($themes, "color", "color_3d527b_white");
   }
 
+  &--lost &__dot {
+    background: $color_orange_fb6514;
+    animation: connection-status-pulse 1.2s ease-in-out infinite;
+  }
+
+  &--poor &__dot {
+    background: $color_yellow_f9c74f;
+  }
+
   &--restored &__dot {
     background: $color_green_7ec680;
-    animation: none;
   }
 }
 
