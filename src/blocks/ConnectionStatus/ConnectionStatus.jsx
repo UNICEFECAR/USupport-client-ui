@@ -2,33 +2,38 @@ import React from "react";
 
 import "./connection-status.scss";
 
+// Translation key and dot style for every status that shows a notice
+const NOTICES = {
+  reconnecting: { key: "connection_lost", modifier: "lost" },
+  peer_lost: { key: "peer_connection_lost", modifier: "lost" },
+  poor: { key: "connection_poor", modifier: "poor" },
+  restored: { key: "connection_restored", modifier: "restored" },
+  peer_restored: { key: "peer_connection_restored", modifier: "restored" },
+};
+
 /**
  * ConnectionStatus
  *
- * Shows a subtle notice when the connection drops during a consultation
+ * Shows a subtle notice when the connection drops or is poor during a consultation,
+ * or when the other participant loses connection
  *
- * @param {"online" | "reconnecting" | "restored"} status
+ * @param {"online" | "reconnecting" | "peer_lost" | "poor" | "restored" | "peer_restored"} status
  * @param {function} t - translation function of the consultation page
  *
  * @return {jsx}
  */
 export const ConnectionStatus = ({ status, t }) => {
-  if (status === "online") return null;
-
-  const isReconnecting = status === "reconnecting";
+  const notice = NOTICES[status];
+  if (!notice) return null;
 
   return (
     <div
-      className={`connection-status ${
-        isReconnecting ? "" : "connection-status--restored"
-      }`}
+      className={`connection-status connection-status--${notice.modifier}`}
       role="status"
       aria-live="polite"
     >
       <span className="connection-status__dot" />
-      <p className="small-text connection-status__text">
-        {isReconnecting ? t("connection_lost") : t("connection_restored")}
-      </p>
+      <p className="small-text connection-status__text">{t(notice.key)}</p>
     </div>
   );
 };
