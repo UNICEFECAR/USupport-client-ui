@@ -61,6 +61,9 @@ export const useConsultationSocket = ({
   const [peerStatus, setPeerStatus] = useState("online");
   // Connection quality reported by the other participant: "good" | "poor"
   const [peerQuality, setPeerQuality] = useState("good");
+  // Whether the other participant has the consultation open, as reported by the gateway.
+  // null until it is known (e.g. a gateway without presence support)
+  const [isPeerPresent, setIsPeerPresent] = useState(null);
 
   const socketRef = useRef();
   useEffect(() => {
@@ -138,6 +141,7 @@ export const useConsultationSocket = ({
       clearTimeout(peerRestoredTimeout);
       setPeerStatus("online");
       setPeerQuality("good");
+      setIsPeerPresent(null);
 
       socketRef.current.emit("join chat", {
         country,
@@ -188,6 +192,10 @@ export const useConsultationSocket = ({
 
     socketRef.current.on("peer quality", (quality) => {
       setPeerQuality(quality === "poor" ? "poor" : "good");
+    });
+
+    socketRef.current.on("peer presence", (presence) => {
+      setIsPeerPresent(presence === "present");
     });
 
     // The browser knows immediately when the network is gone
@@ -268,6 +276,7 @@ export const useConsultationSocket = ({
 
   return {
     socketRef,
+    isPeerPresent,
     connectionStatus: getDisplayedStatus(
       ownStatus,
       isPoorConnection,
