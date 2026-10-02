@@ -1365,7 +1365,19 @@
       "textarea_placeholder": "Введите Ваше сообщение здесь...",
       "allow_permissions": "Разрешения на доступ к камере и/или микрофону были отклонены. Если вы хотите поговорить с провайдером, включите разрешения в настройках вашего браузера или через значок информации в адресной строке.",
       "permissions_error": "Вы отклонили разрешения",
-      "typing": "Печатает..."
+      "typing": "Печатает...",
+      "minutes_left": "осталось {{minutes}} мин",
+      "call_status_waiting": "Ожидание",
+      "call_status_disconnected": "Нет связи",
+      "call_status_weak": "Слабая связь",
+      "controls_leave": "Выйти",
+      "controls_settings": "Настройки",
+      "controls_camera": "Камера",
+      "controls_microphone": "Микрофон",
+      "controls_speaker": "Динамик",
+      "controls_background": "Фон",
+      "controls_chat": "Чат",
+      "send_message_button": "Отправить"
     },
     "payment-history-page": {
       "heading": "История платежей",

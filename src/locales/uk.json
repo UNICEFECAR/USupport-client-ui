@@ -1367,7 +1367,19 @@
       "textarea_placeholder": "Введи своє повідомлення тут...",
       "allow_permissions": "Дозволи на доступ до камери та/або мікрофона були відхилені. Якщо ти хочеш поговорити з фахівцем/фахівчинею, увімкни дозволи в налаштуваннях браузера або через значок інформації в адресному рядку",
       "permissions_error": "Ти відхилив/ла дозволи",
-      "typing": "Друкує..."
+      "typing": "Друкує...",
+      "minutes_left": "залишилось {{minutes}} хв",
+      "call_status_waiting": "Очікування",
+      "call_status_disconnected": "Немає зв’язку",
+      "call_status_weak": "Слабкий зв’язок",
+      "controls_leave": "Вийти",
+      "controls_settings": "Налаштування",
+      "controls_camera": "Камера",
+      "controls_microphone": "Мікрофон",
+      "controls_speaker": "Динамік",
+      "controls_background": "Фон",
+      "controls_chat": "Чат",
+      "send_message_button": "Надіслати"
     },
     "payment-history-page": {
       "heading": "Історія платежів",
