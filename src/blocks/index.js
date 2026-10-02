@@ -57,3 +57,5 @@ export * from "./DownloadApp";
 export * from "./InformationPortalHero";
 export * from "./FindSupportNearYou";
 export * from "./MostReadArticles";
+export * from './ConnectionStatus';
+export * from './AppUpdateModal';

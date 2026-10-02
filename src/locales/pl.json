@@ -1,5 +1,11 @@
 {
   "blocks": {
+    "app-update-modal": {
+      "heading": "Dostępna jest nowa wersja",
+      "text": "Odśwież stronę, aby korzystać z najnowszej wersji platformy.",
+      "refresh": "Odśwież",
+      "later": "Później"
+    },
     "page": {
       "page_1": "Strona główna",
       "page_2": "Konsultacje",
@@ -1349,6 +1355,15 @@
       "search": "Wyszukiwanie",
       "sponsored_by": "Ta sesja jest sponsorowana przez: ",
       "consultation_end_reminder": "Konsultacja zakończy się w ciągu {{minutes}} minut",
+      "connection_lost": "Utracono połączenie. Próbujemy połączyć ponownie…",
+      "connection_restored": "Połączenie przywrócone",
+      "connection_poor": "Słabe połączenie. Dźwięk i obraz mogą się opóźniać",
+      "peer_connection_lost": "Połączenie specjalisty/ki zostało przerwane. Czekamy na ponowne połączenie…",
+      "peer_connection_restored": "Specjalista/ka jest ponownie online",
+      "peer_connection_poor": "Połączenie specjalisty/ki jest słabe. Dźwięk i obraz mogą się opóźniać",
+      "message_sending": "Wysyłanie…",
+      "message_not_sent": "Nie wysłano.",
+      "message_retry": "Ponów",
       "textarea_placeholder": "Wpisz swoją wiadomość tutaj",
       "allow_permissions": "Odmówiono dostępu do kamery i/lub mikrofonu. Jeśli chcesz porozmawiać ze specjalistą/ką, zezwól na dostęp w ustawieniach przeglądarki lub klikając ikonę informacji w pasku adresu",
       "permissions_error": "Nie wyraziłeś/aś zgody",

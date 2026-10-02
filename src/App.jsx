@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
 import { Root } from "#routes";
+import { isAppReloading } from "./utils/reloadApp.js";
 import {
   FIVE_MINUTES,
   isKeepMeSignedIn,
@@ -86,6 +87,9 @@ function App() {
 
   useEffect(() => {
     const handleBeforeUnload = (e) => {
+      // The app reloads itself to load a new version, the user is not leaving
+      if (isAppReloading()) return;
+
       const token = localStorage.getItem("token");
       // If the page is being refreshed, do nothing
       if (!(performance.getEntriesByType("navigation")[0].type === "reload")) {
