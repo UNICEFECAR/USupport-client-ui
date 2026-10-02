@@ -11,42 +11,63 @@
 
   display: flex;
   align-items: center;
-  gap: $spacing_0_8;
-  padding: $spacing_0_8 $spacing_1_6;
+  gap: $spacing_1_0;
+  padding: $spacing_1_0 $spacing_2_0;
   border-radius: $border_radius_2_4;
-  box-shadow: $shadow_2;
+  box-shadow: $shadow_3;
   max-width: calc(100vw - 2 * #{$spacing_1_6});
   box-sizing: border-box;
   pointer-events: none;
   animation: connection-status-fade-in 0.3s ease-out;
 
-  @include themify($themes, "background", "color_card");
-
   &__dot {
     flex-shrink: 0;
-    width: $spacing_0_8;
-    height: $spacing_0_8;
+    width: $spacing_1_0;
+    height: $spacing_1_0;
     border-radius: 50%;
   }
 
-  &__text {
+  // Doubled class so the global text colors of the themes don't override it
+  & &__text {
     margin: 0;
     text-align: center;
+    font-weight: $font_semi_bold;
+  }
 
-    @include themify($themes, "color", "color_3d527b_white");
+  // Same colors as the connection icon in the controls
+  &--lost {
+    background: $color_red_eb5757;
+  }
+
+  &--poor {
+    background: $color_orange_fb6514;
+  }
+
+  &--lost &__text,
+  &--poor &__text {
+    color: $color_white_ff;
+  }
+
+  &--lost &__dot,
+  &--poor &__dot {
+    background: $color_white_ff;
   }
 
   &--lost &__dot {
-    background: $color_orange_fb6514;
     animation: connection-status-pulse 1.2s ease-in-out infinite;
   }
 
-  &--poor &__dot {
-    background: $color_yellow_f9c74f;
+  // White text is hard to read on the green, so it uses dark text
+  &--restored {
+    background: $color_green_7ec680;
+  }
+
+  &--restored &__text {
+    color: $color_black_37;
   }
 
   &--restored &__dot {
-    background: $color_green_7ec680;
+    background: $color_black_37;
   }
 }
 

@@ -34,7 +34,7 @@ export const ConnectionStatus = ({ status, t }) => {
       aria-live="polite"
     >
       <span className="connection-status__dot" />
-      <p className="small-text connection-status__text">{t(notice.key)}</p>
+      <p className="text connection-status__text">{t(notice.key)}</p>
     </div>
   );
 };
