@@ -1365,7 +1365,19 @@
       "textarea_placeholder": "Πληκτρολογήστε το μήνυμά σας εδώ...",
       "allow_permissions": "Τα δικαιώματα πρόσβασης στην κάμερα και/ή στο μικρόφωνο έχουν απορριφθεί. Για να μπορέσετε να επικοινωνήσετε με τον πάροχο, παρακαλούμε επιτρέψτε την πρόσβαση από τις ρυθμίσεις του προγράμματος περιήγησης ή μέσω του εικονιδίου πληροφοριών στη γραμμή διευθύνσεων.",
       "permissions_error": "Έχετε απορρίψει τα δικαιώματα πρόσβασης",
-      "typing": "Πληκτρολόγηση..."
+      "typing": "Πληκτρολόγηση...",
+      "minutes_left": "απομένουν {{minutes}} λεπτά",
+      "call_status_waiting": "Αναμονή",
+      "call_status_disconnected": "Αποσυνδέθηκε",
+      "call_status_weak": "Αδύναμη σύνδεση",
+      "controls_leave": "Αποχώρηση",
+      "controls_settings": "Ρυθμίσεις",
+      "controls_camera": "Κάμερα",
+      "controls_microphone": "Μικρόφωνο",
+      "controls_speaker": "Ηχείο",
+      "controls_background": "Φόντο",
+      "controls_chat": "Συνομιλία",
+      "send_message_button": "Αποστολή"
     },
     "payment-history-page": {
       "heading": "Ιστορικό πληρωμών",

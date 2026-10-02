@@ -1367,7 +1367,19 @@
       "textarea_placeholder": "Այստեղ կարող ես մուտքագրել քո հաղորդագրությունը․․․",
       "allow_permissions": "Տեսախցիկի և/կամ միկրոֆոնի օգտագործման թույլտվությունները մերժված են։ Եթե ցանկանում ես կապ հաստատել ծառայություն մատուցողի հետ, խնդրում ենք թույլատրել դրանց օգտագործումը՝ ակտիվացնելով համապատասխան կարգավորումները քո բրաուզերում կամ սեղմելով հասցեի տողի մոտ գտնվող տեղեկատվական նշանին։",
       "permissions_error": "Դու մերժել ես թույլտվությունները",
-      "typing": "Տպում է..."
+      "typing": "Տպում է...",
+      "minutes_left": "մնաց {{minutes}} րոպե",
+      "call_status_waiting": "Սպասում",
+      "call_status_disconnected": "Կապը կորել է",
+      "call_status_weak": "Թույլ կապ",
+      "controls_leave": "Դուրս գալ",
+      "controls_settings": "Կարգավորումներ",
+      "controls_camera": "Տեսախցիկ",
+      "controls_microphone": "Խոսափող",
+      "controls_speaker": "Բարձրախոս",
+      "controls_background": "Ֆոն",
+      "controls_chat": "Չաթ",
+      "send_message_button": "Ուղարկել"
     },
     "payment-history-page": {
       "heading": "Վճարման պատմությունը",

@@ -1365,7 +1365,19 @@
       "textarea_placeholder": "Хабарламаңызды осы жерге енгізіңіз...",
       "allow_permissions": "Камера және/немесе микрофонға рұқсаттар қабылданбады. Егер сіз провайдермен сөйлескіңіз келсе, шолғыштың параметрлерінде немесе мекенжай жолындағы ақпарат белгішесінде рұқсаттарды қосыңыз.",
       "permissions_error": "Сіз рұқсаттарды қабылдамадыңыз",
-      "typing": "Жазып жатыр..."
+      "typing": "Жазып жатыр...",
+      "minutes_left": "{{minutes}} мин қалды",
+      "call_status_waiting": "Күту",
+      "call_status_disconnected": "Байланыс жоқ",
+      "call_status_weak": "Әлсіз байланыс",
+      "controls_leave": "Шығу",
+      "controls_settings": "Баптаулар",
+      "controls_camera": "Камера",
+      "controls_microphone": "Микрофон",
+      "controls_speaker": "Динамик",
+      "controls_background": "Фон",
+      "controls_chat": "Чат",
+      "send_message_button": "Жіберу"
     },
     "payment-history-page": {
       "heading": "Төлем тарихы",

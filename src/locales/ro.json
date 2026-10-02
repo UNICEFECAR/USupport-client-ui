@@ -1365,7 +1365,19 @@
       "textarea_placeholder": "Introduceți mesajul dvs. aici...",
       "allow_permissions": "Accesul la cameră și/sau microfon a fost refuzat. Dacă doriți să vorbiți cu furnizorul, activați permisiunile din setările browserului sau din pictograma de informații din bara de adrese.",
       "permissions_error": "Ați refuzat permisiunile",
-      "typing": "Tastează..."
+      "typing": "Tastează...",
+      "minutes_left": "au mai rămas {{minutes}} min",
+      "call_status_waiting": "În așteptare",
+      "call_status_disconnected": "Deconectat",
+      "call_status_weak": "Conexiune slabă",
+      "controls_leave": "Ieșire",
+      "controls_settings": "Setări",
+      "controls_camera": "Cameră",
+      "controls_microphone": "Microfon",
+      "controls_speaker": "Difuzor",
+      "controls_background": "Fundal",
+      "controls_chat": "Chat",
+      "send_message_button": "Trimite"
     },
     "payment-history-page": {
       "heading": "Istoricul plăților",

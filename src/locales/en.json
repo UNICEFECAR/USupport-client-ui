@@ -1365,7 +1365,19 @@
       "textarea_placeholder": "Type your message here...",
       "allow_permissions": "The camera and/or microphone permissions have been denied. If you want to talk to the provider, please allow the permissions in your browser settings or from the information icon in the address bar.",
       "permissions_error": "You have denied the permissions",
-      "typing": "Typing..."
+      "typing": "Typing...",
+      "minutes_left": "{{minutes}} min left",
+      "call_status_waiting": "Waiting",
+      "call_status_disconnected": "Disconnected",
+      "call_status_weak": "Weak connection",
+      "controls_leave": "Leave",
+      "controls_settings": "Settings",
+      "controls_camera": "Camera",
+      "controls_microphone": "Microphone",
+      "controls_speaker": "Speaker",
+      "controls_background": "Background",
+      "controls_chat": "Chat",
+      "send_message_button": "Send"
     },
     "payment-history-page": {
       "heading": "Payment history",
