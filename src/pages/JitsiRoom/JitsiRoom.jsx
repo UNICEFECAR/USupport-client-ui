@@ -423,7 +423,8 @@ export const JitsiRoom = () => {
                 isInSession={isPeerPresent ?? interfaces.isProviderInSession}
                 connectionQuality={callQuality}
                 isHidden={hideControls}
-                toggleControlsVisibility={() => setHideControls(false)}
+                getJitsiApi={() => api.current}
+                isSideChatOpen={interfaces.isChatShownOnTablet}
               />
             </div>
           </div>
@@ -443,6 +444,9 @@ export const JitsiRoom = () => {
               startWithAudioMuted: !microphoneOn,
               startWithVideoMuted: !videoOn,
               hideConferenceSubject: true,
+              toolbarButtons: [],
+              // The controls show the time left, and the timer would overlap them on phones
+              hideConferenceTimer: true,
               showJitsiBranding: false,
               showJitsiWatermark: false,
               SETTINGS_SECTIONS: [
@@ -451,15 +455,13 @@ export const JitsiRoom = () => {
                 "background",
                 "profile",
               ],
-              buttonsWithNotifyClick: [
-                { key: "settings", preventExecution: false },
-              ],
             }}
             interfaceConfigOverwrite={{
               HIDE_CONFERENCE_SUBJECT: true,
               SHOW_JITSI_WATERMARK: false,
               DISABLE_JOIN_LEAVE_NOTIFICATIONS: true,
-              TOOLBAR_BUTTONS: ["raisehand", "settings", "fullscreen"],
+              // Our controls replace the Jitsi toolbar, including the device settings
+              TOOLBAR_BUTTONS: [],
               SETTINGS_SECTIONS: [
                 "language",
                 "devices",
@@ -519,12 +521,6 @@ export const JitsiRoom = () => {
                   }
                 }
               );
-              externalApi.addListener("toolbarButtonClicked", (event) => {
-                if (event.key === "settings") {
-                  console.log("settings open");
-                  setHideControls(true);
-                }
-              });
 
               // Jitsi leaves the conference on its own when it reconnects (e.g. after a connection drop
               // or the native "Rejoin" button); keep the controls disabled until it has joined again
