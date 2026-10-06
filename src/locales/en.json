@@ -1698,7 +1698,11 @@
       "coupon_code": "Coupon code",
       "apply_coupon": "Apply coupon",
       "remove_coupon": "Remove coupon",
-      "provider_not_available": "The provider has no available slots"
+      "provider_not_available": "The provider has no available slots",
+      "consultation_duration": "Consultation duration",
+      "duration_minutes_option": "{{minutes}} minutes",
+      "duration_hint": "Longer consultations use two of the provider's consecutive time slots.",
+      "available_times": "Available times"
     },
     "change-password-backdrop": {
       "heading": "Change your password",

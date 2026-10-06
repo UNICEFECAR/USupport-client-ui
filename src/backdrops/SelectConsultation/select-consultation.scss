@@ -136,3 +136,52 @@
     }
   }
 }
+
+// --- consultation length ---------------------------------------------------
+// Only shown when the day genuinely offers more than one length, which happens
+// when a provider's adjacent half-hour slots can also be booked as one hour.
+.select-consultation {
+  &__duration {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing_0_6;
+    padding: 0 $spacing_2_4 $spacing_1_6;
+
+    &__label {
+      font-weight: 600;
+    }
+
+    &__options {
+      display: flex;
+      gap: $spacing_0_8;
+    }
+
+    &__option {
+      flex: 1;
+      padding: $spacing_1_2 $spacing_1_6;
+      border-radius: $border_radius_2_4;
+      border-width: 1px;
+      border-style: solid;
+      background: transparent;
+      cursor: pointer;
+      @include themify($themes, "border-color", "color_purple_c39af9");
+      @include themify($themes, "color", "color_black_37");
+
+      &--selected {
+        font-weight: 600;
+        @include themify($themes, "background-color", "color_purple_blue");
+        @include themify($themes, "border-color", "color_purple_blue");
+        @include themify($themes, "color", "color_white_ff");
+      }
+    }
+
+    &__hint {
+      @include themify($themes, "color", "color_gray_92989b");
+    }
+  }
+
+  &__slots-label {
+    padding: 0 $spacing_2_4 $spacing_0_6;
+    font-weight: 600;
+  }
+}

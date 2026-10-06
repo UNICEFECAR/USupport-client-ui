@@ -24,10 +24,10 @@ import {
 } from "@USupport-components-library/src";
 import {
   useWindowDimensions,
-  ONE_HOUR,
   getDateView,
   ThemeContext,
   systemMessageTypes,
+  getConsultationEndDate,
 } from "@USupport-components-library/utils";
 
 import {
@@ -154,7 +154,11 @@ export const Consultation = () => {
   }, [messages]);
 
   // End of seession alerts
-  useSessionEndReminder(consultation.timestamp, t);
+  useSessionEndReminder(
+    consultation.timestamp,
+    consultation.durationMinutes,
+    t,
+  );
 
   useEffect(() => {
     if (
@@ -741,9 +745,9 @@ const OptionsContainer = ({
   );
 };
 
-const useSessionEndReminder = (timestamp, t) => {
+const useSessionEndReminder = (timestamp, durationMinutes, t) => {
   useEffect(() => {
-    const endTime = new Date(timestamp + ONE_HOUR);
+    const endTime = getConsultationEndDate(timestamp, durationMinutes);
     let isTenMinAlertShown,
       isFiveMinAlertShown = false;
 

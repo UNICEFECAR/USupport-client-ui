@@ -1686,7 +1686,11 @@
       "coupon_code": "Կտրոնի կոդը",
       "apply_coupon": "Օգտագործել կտրոնը",
       "remove_coupon": "Հանել կտրոնը",
-      "provider_not_available": "Ծառայություն մատուցողը հասանելի ժամեր չունի։"
+      "provider_not_available": "Ծառայություն մատուցողը հասանելի ժամեր չունի։",
+      "consultation_duration": "Consultation duration",
+      "duration_minutes_option": "{{minutes}} minutes",
+      "duration_hint": "Longer consultations use two of the provider's consecutive time slots.",
+      "available_times": "Available times"
     },
     "change-password-backdrop": {
       "heading": "Փոխիր քո գաղտնաբառը",
