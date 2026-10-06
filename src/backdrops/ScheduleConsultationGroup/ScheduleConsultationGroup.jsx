@@ -6,6 +6,7 @@ import { SelectConsultation, ConfirmConsultation } from "#backdrops";
 import { RequireDataAgreement } from "#modals";
 
 import { useBlockSlot, useScheduleConsultation } from "#hooks";
+import { getConsultationEndDate } from "@USupport-components-library/utils";
 
 /**
  * ScheduleConsultationGroup
@@ -27,6 +28,9 @@ export const ScheduleConsultationGroup = ({
   const [isBlockSlotSubmitting, setIsBlockSlotSubmitting] = useState(false);
   const [blockSlotError, setBlockSlotError] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  // Length of the slot the client picked, for the confirmation screen only -
+  // the backend reads the authoritative value from the provider's availability.
+  const [selectedSlotDuration, setSelectedSlotDuration] = useState();
   const [scheduledConsultation, setScheduledConsultation] = useState();
   const consultationPrice = useRef();
 
@@ -66,16 +70,18 @@ export const ScheduleConsultationGroup = ({
   };
   const scheduleConsultationMutation = useScheduleConsultation(
     onScheduleConsultationSuccess,
-    onScheduleConsultationError
+    onScheduleConsultationError,
   );
 
-  const handleBlockSlot = (slot, price) => {
+  const handleBlockSlot = (slot, price, durationMinutes) => {
     setIsBlockSlotSubmitting(true);
     setSelectedSlot(slot);
+    setSelectedSlotDuration(durationMinutes);
     consultationPrice.current = price;
     blockSlotMutation.mutate({
       slot,
       providerId: providerId,
+      durationMinutes,
     });
   };
 
@@ -95,10 +101,9 @@ export const ScheduleConsultationGroup = ({
           onClose={closeConfirmConsultationBackdrop}
           consultation={{
             startDate: new Date(selectedSlot),
-            endDate: new Date(
-              new Date(selectedSlot).setHours(
-                new Date(selectedSlot).getHours() + 1
-              )
+            endDate: getConsultationEndDate(
+              new Date(selectedSlot),
+              selectedSlotDuration,
             ),
             providerName: scheduledConsultation?.provider_name,
             providerImage: scheduledConsultation?.provider_image,

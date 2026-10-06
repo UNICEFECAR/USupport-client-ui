@@ -34,7 +34,10 @@ import {
 import { BaselineAssesmentModal, RequireDataAgreement } from "#modals";
 
 import { userSvc } from "@USupport-components-library/services";
-import { ONE_HOUR } from "@USupport-components-library/utils";
+import {
+  ONE_HOUR,
+  getConsultationEndDate,
+} from "@USupport-components-library/utils";
 import "./dashboard.scss";
 
 /**
@@ -80,7 +83,10 @@ export const Dashboard = () => {
     if (consultationsQuery.data) {
       return consultationsQuery.data
         ?.filter((consultation) => {
-          const endTime = consultation.timestamp + ONE_HOUR;
+          const endTime = getConsultationEndDate(
+            consultation.timestamp,
+            consultation.durationMinutes,
+          ).getTime();
           return (
             consultation.timestamp >= currentDateTs ||
             (currentDateTs >= consultation.timestamp &&
@@ -140,6 +146,9 @@ export const Dashboard = () => {
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  // Length of the slot the client picked, for the confirmation screen only -
+  // the backend reads the authoritative value from the provider's availability.
+  const [selectedSlotDuration, setSelectedSlotDuration] = useState();
   const [rescheduledConsultation, setRescheduledConsultation] = useState();
 
   // Modal state variables
@@ -171,7 +180,7 @@ export const Dashboard = () => {
   };
   const acceptConsultationMutation = useAcceptConsultation(
     onAcceptConsultationSuccess,
-    onAcceptConsultationError
+    onAcceptConsultationError,
   );
 
   const handleAcceptSuggestion = (consultationId, price) => {
@@ -202,7 +211,7 @@ export const Dashboard = () => {
   };
   const rescheduleConsultationMutation = useRescheduleConsultation(
     onRescheduleConsultationSuccess,
-    onRescheduleConsultationError
+    onRescheduleConsultationError,
   );
 
   const onScheduleConsultationError = (error) => {
@@ -210,7 +219,7 @@ export const Dashboard = () => {
   };
   const scheduleConsultationMutation = useScheduleConsultation(
     onRescheduleConsultationSuccess,
-    onScheduleConsultationError
+    onScheduleConsultationError,
   );
 
   // Block slot logic
@@ -238,14 +247,16 @@ export const Dashboard = () => {
 
   const addCountryEventMutation = useAddCountryEvent();
 
-  const handleBlockSlot = (slot, price) => {
+  const handleBlockSlot = (slot, price, durationMinutes) => {
     setIsBlockSlotSubmitting(true);
     setSelectedSlot(slot);
+    setSelectedSlotDuration(durationMinutes);
     consultationPrice.current = price;
     blockSlotMutation.mutate({
       slot,
       providerId: selectedConsultationProviderId,
       rescheduleCampaignSlot: slot?.campaign_id ? true : false,
+      durationMinutes,
     });
   };
   const handleScheduleConsultation = () => {
@@ -368,10 +379,9 @@ export const Dashboard = () => {
             onClose={closeConfirmConsultationBackdrop}
             consultation={{
               startDate: new Date(selectedSlot?.time || selectedSlot),
-              endDate: new Date(
-                new Date(selectedSlot?.time || selectedSlot).setHours(
-                  new Date(selectedSlot?.time || selectedSlot).getHours() + 1
-                )
+              endDate: getConsultationEndDate(
+                new Date(selectedSlot?.time || selectedSlot),
+                selectedSlotDuration,
               ),
               providerName: rescheduledConsultation?.provider_name,
               providerImage: rescheduledConsultation?.provider_image,

@@ -17,7 +17,7 @@ import {
 import {
   getDateView,
   getTimeAsString,
-  ONE_HOUR,
+  getConsultationEndDate,
 } from "@USupport-components-library/utils";
 import {
   useCustomNavigate as useNavigate,
@@ -163,14 +163,23 @@ export const NotificationMenu = ({ closePanel }) => {
       time = notification.content.time;
       date = getDateView(time);
       startHour = getTimeAsString(new Date(time));
-      endHour = getTimeAsString(new Date(time + ONE_HOUR));
+      endHour = getTimeAsString(
+        getConsultationEndDate(time, notification.content?.duration_minutes),
+      );
     }
     let newDate, newStartHour, newEndHour;
     if (notification.content.newConsultationTime) {
       const newTime = notification.content.newConsultationTime;
       newDate = getDateView(newTime);
       newStartHour = getTimeAsString(new Date(newTime));
-      newEndHour = getTimeAsString(new Date(newTime + ONE_HOUR));
+      newEndHour = getTimeAsString(
+        getConsultationEndDate(
+          newTime,
+          // A reschedule can change the length, so the new range has its own.
+          notification.content?.new_consultation_duration_minutes ??
+            notification.content?.duration_minutes,
+        ),
+      );
     }
     const handleClick = (notificationId, redirectTo = "/consultations") => {
       markNotificationAsReadByIdMutation.mutate([notificationId]);

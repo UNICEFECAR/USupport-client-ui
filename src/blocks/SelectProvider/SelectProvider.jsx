@@ -289,6 +289,9 @@ export const SelectProvider = ({
             image={provider.image}
             freeLabel={selectedBillingType === "free" ? t("free") : t("coupon")}
             earliestAvailableSlot={provider.earliestAvailableSlot}
+            earliestSlotDurationMinutes={
+              provider.earliestAvailableSlotDurationMinutes
+            }
             t={t}
             liquidGlass
             handleViewProfile={() => handleProviderClick(provider)}

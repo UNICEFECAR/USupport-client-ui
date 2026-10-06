@@ -1686,7 +1686,11 @@
       "coupon_code": "Kod kuponu",
       "apply_coupon": "Zastosuj kupon",
       "remove_coupon": "Usuń kupon",
-      "provider_not_available": "Konsultant/ka nie ma dostępnych terminów."
+      "provider_not_available": "Konsultant/ka nie ma dostępnych terminów.",
+      "consultation_duration": "Consultation duration",
+      "duration_minutes_option": "{{minutes}} minutes",
+      "duration_hint": "Longer consultations use two of the provider's consecutive time slots.",
+      "available_times": "Available times"
     },
     "change-password-backdrop": {
       "heading": "Zresetuj hasło",

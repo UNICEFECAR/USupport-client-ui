@@ -1684,7 +1684,11 @@
       "coupon_code": "Купон коды",
       "apply_coupon": "Купонды қолдану",
       "remove_coupon": "Купонды жою",
-      "provider_not_available": "Консультант бос орындары жоқ."
+      "provider_not_available": "Консультант бос орындары жоқ.",
+      "consultation_duration": "Consultation duration",
+      "duration_minutes_option": "{{minutes}} minutes",
+      "duration_hint": "Longer consultations use two of the provider's consecutive time slots.",
+      "available_times": "Available times"
     },
     "change-password-backdrop": {
       "heading": "Құпия сөзді өзгрету",

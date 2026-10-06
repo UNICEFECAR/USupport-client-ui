@@ -1686,7 +1686,11 @@
       "coupon_code": "Код купона",
       "apply_coupon": "Застосувати купон",
       "remove_coupon": "Видалити купон",
-      "provider_not_available": "У консультанта/ки немає вільних слотів."
+      "provider_not_available": "У консультанта/ки немає вільних слотів.",
+      "consultation_duration": "Consultation duration",
+      "duration_minutes_option": "{{minutes}} minutes",
+      "duration_hint": "Longer consultations use two of the provider's consecutive time slots.",
+      "available_times": "Available times"
     },
     "change-password-backdrop": {
       "heading": "Скинути пароль",
