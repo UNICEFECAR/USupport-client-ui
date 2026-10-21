@@ -37,6 +37,14 @@ export const QuestionDetails = ({
   // Deactivated providers can't take bookings, so don't offer the option
   const isProviderActive = providerInfo?.status !== "inactive";
 
+  // Deactivated providers' profiles aren't viewable, so don't link to them
+  const handleProviderInfoClick = () => {
+    if (!isProviderActive) return;
+    handleProviderClick(
+      providerInfo.providerId || providerInfo.provider_detail_id,
+    );
+  };
+
   const getDateText = () => {
     const date = new Date(question.answerCreatedAt || question.questionCreatedAt);
 
@@ -104,20 +112,20 @@ export const QuestionDetails = ({
               image={AMAZON_S3_BUCKET + "/" + providerInfo.image}
               alt="Specialist avatar"
               size="xs"
-              classes="question-details__answered-by-container__avatar"
-              onClick={() =>
-                handleProviderClick(
-                  providerInfo.providerId || providerInfo.provider_detail_id,
-                )
-              }
+              classes={`question-details__answered-by-container__avatar ${
+                !isProviderActive
+                  ? "question-details__answered-by-container--disabled"
+                  : ""
+              }`}
+              onClick={handleProviderInfoClick}
             />
             <p
-              className="text question-details__answered-by-container__provider-name"
-              onClick={() =>
-                handleProviderClick(
-                  providerInfo.providerId || providerInfo.provider_detail_id,
-                )
-              }
+              className={`text question-details__answered-by-container__provider-name ${
+                !isProviderActive
+                  ? "question-details__answered-by-container--disabled"
+                  : ""
+              }`}
+              onClick={handleProviderInfoClick}
             >
               {providerInfo.name} {providerInfo.surname}
             </p>
