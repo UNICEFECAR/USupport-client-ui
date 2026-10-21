@@ -81,6 +81,10 @@
     &__provider-name {
       cursor: pointer;
     }
+
+    &--disabled {
+      cursor: default;
+    }
   }
 
   &__schedule-button {

@@ -58,10 +58,6 @@ export const SelectConsultation = ({
   }, [providerData]);
 
   const [selectedSlot, setSelectedSlot] = useState("");
-  // Which consultation length the client wants. A provider who opened 01:00 and
-  // 01:30 as separate half hours is offering both a 30- and a 60-minute booking
-  // starting at 01:00, so this cannot be derived from a single slot.
-  const [selectedDuration, setSelectedDuration] = useState(null);
 
   const getAvailableSlots = async (startDate, currentDay, providerId) => {
     const { data } = await providerSvc.getAvailableSlotsForSingleDay(
@@ -82,7 +78,6 @@ export const SelectConsultation = ({
       return data.map((x) => ({
         time: new Date(x.time),
         duration_minutes: x.duration_minutes,
-        available_durations: x.available_durations || [x.duration_minutes],
         campaign_id: x.campaign_id,
       }));
     }
@@ -90,7 +85,6 @@ export const SelectConsultation = ({
     return data.map((x) => ({
       time: new Date(x.time),
       duration_minutes: x.duration_minutes,
-      available_durations: x.available_durations || [x.duration_minutes],
       organization_id: x.organization_id,
     }));
   };
@@ -110,7 +104,7 @@ export const SelectConsultation = ({
     setSelectedSlot(slot);
   };
 
-  /** Slots on the day being viewed, before any duration filtering. */
+  /** Slots on the day being viewed. Each is bookable at its own length only. */
   const todaySlots = useMemo(
     () =>
       availableSlots?.filter((slot) => {
@@ -123,47 +117,7 @@ export const SelectConsultation = ({
     [availableSlots, currentDay, campaignId],
   );
 
-  /** Lengths that at least one slot today can support, ascending. */
-  const durationOptions = useMemo(() => {
-    const set = new Set();
-    todaySlots.forEach((slot) =>
-      (slot.available_durations || [slot.duration_minutes]).forEach((d) =>
-        set.add(Number(d)),
-      ),
-    );
-    return Array.from(set).sort((a, b) => a - b);
-  }, [todaySlots]);
-
-  // Only worth asking when there is a genuine choice to make.
-  const showDurationPicker = durationOptions.length > 1;
-
-  const effectiveDuration =
-    selectedDuration && durationOptions.includes(selectedDuration)
-      ? selectedDuration
-      : durationOptions[0];
-
-  /** Slots that can actually be booked at the chosen length. */
-  const slotsForDuration = useMemo(
-    () =>
-      todaySlots.filter((slot) =>
-        (slot.available_durations || [slot.duration_minutes]).includes(
-          effectiveDuration,
-        ),
-      ),
-    [todaySlots, effectiveDuration],
-  );
-
-  // Changing the length can invalidate the chosen start time.
-  useEffect(() => {
-    if (!selectedSlot) return;
-    const stillBookable = slotsForDuration.some(
-      (slot) => new Date(slot.time).getTime() === selectedSlot,
-    );
-    if (!stillBookable) setSelectedSlot("");
-  }, [slotsForDuration, selectedSlot]);
-
   const renderFreeSlots = () => {
-    const todaySlots = slotsForDuration;
     if (!todaySlots || todaySlots?.length === 0)
       return (
         <div className="select-consultation__content-container__slots-empty">
@@ -179,9 +133,9 @@ export const SelectConsultation = ({
 
         const value = new Date(slot.time || slot).getTime();
 
-        // The range reflects the length being booked, which for a 60-minute
-        // booking spans two of the provider's half-hour slots.
-        const label = getTimeRangeAsString(slotLocal, effectiveDuration);
+        // The provider decided this slot's length; the client books it as it
+        // stands rather than choosing a duration.
+        const label = getTimeRangeAsString(slotLocal, slot.duration_minutes);
 
         return { label: label, value };
       },
@@ -246,7 +200,15 @@ export const SelectConsultation = ({
     }
     const time = slotObject || selectedSlot;
 
-    handleBlockSlot(time, providerData.consultationPrice, effectiveDuration);
+    const selectedSlotDuration = todaySlots.find(
+      (slot) => new Date(slot.time).getTime() === selectedSlot,
+    )?.duration_minutes;
+
+    handleBlockSlot(
+      time,
+      providerData.consultationPrice,
+      selectedSlotDuration,
+    );
   };
 
   return (
@@ -288,42 +250,7 @@ export const SelectConsultation = ({
             startDate={providerData?.earliestAvailableSlot}
             t={t}
           />
-          {!availableSlotsQuery.isLoading && showDurationPicker && (
-            <div className="select-consultation__duration">
-              <p className="text select-consultation__duration__label">
-                {t("consultation_duration")}
-              </p>
-              <div className="select-consultation__duration__options">
-                {durationOptions.map((minutes) => (
-                  <button
-                    key={minutes}
-                    type="button"
-                    aria-pressed={effectiveDuration === minutes}
-                    className={[
-                      "select-consultation__duration__option",
-                      effectiveDuration === minutes
-                        ? "select-consultation__duration__option--selected"
-                        : "",
-                    ]
-                      .filter(Boolean)
-                      .join(" ")}
-                    onClick={() => setSelectedDuration(minutes)}
-                  >
-                    {t("duration_minutes_option", { minutes })}
-                  </button>
-                ))}
-              </div>
-              <p className="small-text select-consultation__duration__hint">
-                {t("duration_hint")}
-              </p>
-            </div>
-          )}
           <div className="select-consultation__content-container__slots">
-            {showDurationPicker && (
-              <p className="text select-consultation__slots-label">
-                {t("available_times")}
-              </p>
-            )}
             {availableSlotsQuery.isLoading ? (
               <Loading size="md" />
             ) : (

@@ -1684,11 +1684,7 @@
       "coupon_code": "Κωδικός κουπονιού",
       "apply_coupon": "Εφαρμογή κουπονιού",
       "remove_coupon": "Αφαίρεση κουπονιού",
-      "provider_not_available": "Ο πάροχος δεν έχει διαθέσιμα ραντεβού",
-      "consultation_duration": "Consultation duration",
-      "duration_minutes_option": "{{minutes}} minutes",
-      "duration_hint": "Longer consultations use two of the provider's consecutive time slots.",
-      "available_times": "Available times"
+      "provider_not_available": "Ο πάροχος δεν έχει διαθέσιμα ραντεβού"
     },
     "change-password-backdrop": {
       "heading": "Αλλαγή κωδικού πρόσβασης",
