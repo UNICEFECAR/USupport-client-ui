@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
 import { useWindowDimensions } from "@USupport-components-library/utils";
-import { RadialCircle, ButtonWithIcon } from "@USupport-components-library/src";
+import { RadialCircle } from "@USupport-components-library/src";
 import {
   clientSvc,
   countrySvc,
@@ -25,6 +25,7 @@ import {
 import { FilterProviders } from "#backdrops";
 import { RootContext } from "#routes";
 import { Page, SelectProvider as SelectProviderBlock } from "#blocks";
+import { BASE_PROVIDER_TYPES, PEER_SUPPORT } from "../../utils/specializations";
 
 import "./select-provider.scss";
 
@@ -241,6 +242,22 @@ export const SelectProvider = () => {
     }
   }, [isKzCountry]);
 
+  // Armenia splits the list into regular providers and U-Friend (peer support).
+  const hasProviderGroups = localStorage.getItem("country") === "AM";
+  const [providerGroup, setProviderGroup] = useState("providers");
+
+  const queryFilters = useMemo(() => {
+    if (!hasProviderGroups) return allFilters;
+    if (providerGroup === "u-friend") {
+      return { ...allFilters, providerTypes: [PEER_SUPPORT] };
+    }
+    const selected = allFilters.providerTypes.filter((x) => x !== PEER_SUPPORT);
+    return {
+      ...allFilters,
+      providerTypes: selected.length ? selected : BASE_PROVIDER_TYPES,
+    };
+  }, [allFilters, hasProviderGroups, providerGroup]);
+
   // Set this to true when the filters have been changed and set
   // it back to false when the providers data has been fetched
   const [isFiltering, setIsFiltering] = useState(false);
@@ -250,7 +267,7 @@ export const SelectProvider = () => {
   };
   const providersQuery = useGetProvidersData(
     effectiveActiveCoupon,
-    allFilters,
+    queryFilters,
     onSuccess,
     selectedBillingType
   );
@@ -277,23 +294,7 @@ export const SelectProvider = () => {
             })
           : t("heading")
       }
-      // subheading={t("subheading")}
-      showHeadingButtonBelow={width < 768 ? true : false}
-      headingButton={
-        width < 768 ? null : (
-          <div className="page__select-provider__buttons">
-            <ButtonWithIcon
-              label={t("button_label")}
-              iconName="filter"
-              iconColor="#ffffff"
-              iconSize="sm"
-              color="purple"
-              size="sm"
-              onClick={handleFilterClick}
-            />
-          </div>
-        )
-      }
+      subheading={t("tagline")}
     >
       {isKzCountry && (
         <div className="page__select-provider__unavailable-note">
@@ -313,6 +314,8 @@ export const SelectProvider = () => {
         selectedBillingType={selectedBillingType}
         setSelectedBillingType={setSelectedBillingType}
         hasActiveCampaign={canUseCoupons}
+        providerGroup={hasProviderGroups ? providerGroup : null}
+        setProviderGroup={setProviderGroup}
         width={width}
         subheading={t("subheading")}
         onFilterClick={handleFilterClick}

@@ -268,8 +268,23 @@
       "choose-the-provider": "Бейне, аудио немесе мәтіндік чат арқылы сөйлескіңіз келетін маманды таңдаңыз. Қажеттіліктеріңізге және қалаған тәсіліңізге сәйкес маман табу үшін кейде бірнеше сеанс қажет болуы мүмкін.",
       "coupon_note": "Осы жолы сізге тегін сеанс үшін код енгіздік! Біздің консультанттардың бірімен кездесуге жазылыңыз және жақсы өмір сүруге қарай алғашқы қадымыңызды жасаңыз.",
       "book_session": "Сеансты брондау",
-      "view_profile": "Жеке парақшаны қарап шығу",
-      "peer_support": "U-FRIEND"
+      "view_profile": "Профильді қарау",
+      "peer_support": "U-FRIEND",
+      "tab_providers": "Психологтар",
+      "tab_u_friend": "U-Friend",
+      "session_type": "Сессия түрі:",
+      "available_providers": "Қолжетімді консультанттар",
+      "providers_count_one": "{{count}} консультант",
+      "providers_count_other": "{{count}} консультант",
+      "providers_count_more": "{{count}}+ консультант",
+      "available_psychologists": "Қолжетімді психологтар",
+      "psychologists_count_one": "{{count}} психолог",
+      "psychologists_count_other": "{{count}} психолог",
+      "psychologists_count_more": "{{count}}+ психолог",
+      "available_u_friends": "Қолжетімді U-Friend",
+      "u_friends_count_one": "{{count}} U-Friend",
+      "u_friends_count_other": "{{count}} U-Friend",
+      "u_friends_count_more": "{{count}}+ U-Friend"
     },
     "notification-preferences": {
       "email": "Электрондық пошта арқылы хабарландырулар",
@@ -1198,7 +1213,8 @@
       "coupon_paragraph_two": "Егер Сіз әлеуметтік желілер арқылы немесе серіктесімізден купон кодын алсаңыз, кодты көшіріп, төменде қойыңыз. Купон кодын жібергеннен кейін Сіз оны қолдайтын барлық консультанттарды және олардың қолжетімділігін көресіз. Купон бір немесе бірнеше сеансты қамтамасыз ете алады. Платформа купонның мерзімі өткенін немесе барлық сеанстардың қолданылғанын көрсетеді.",
       "max_price": "Ең жоғары баға",
       "providers_free_consultation_label": "Тек тегін консультация",
-      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being."
+      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being.",
+      "tagline": "Сізге сөйлесу ыңғайлы болатын адамды табыңыз."
     },
     "register-about-you-page": {
       "heading_1": "Өзіңіз туралы бізге көбірек айтып беріңізші",

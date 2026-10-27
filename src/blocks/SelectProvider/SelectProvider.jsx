@@ -10,9 +10,10 @@ import {
   GridItem,
   ProviderOverview,
   Loading,
-  Tabs,
   Input,
   NewButton,
+  ButtonWithIcon,
+  Icon,
 } from "@USupport-components-library/src";
 import { clientSvc } from "@USupport-components-library/services";
 import { isPeerSupportProvider } from "@USupport-components-library/src/utils/peerSupport";
@@ -41,6 +42,8 @@ export const SelectProvider = ({
   setSelectedBillingType,
   hasActiveCampaign,
   isActiveCampaignLoading,
+  providerGroup,
+  setProviderGroup,
   width,
   subheading,
   onFilterClick,
@@ -130,6 +133,19 @@ export const SelectProvider = ({
       setSelectedBillingType(selectedTab.value);
     }
   };
+
+  const groupTabs = [
+    { label: t("tab_providers"), value: "providers", icon: "three-people" },
+    { label: t("tab_u_friend"), value: "u-friend", icon: "person" },
+  ].map((tab) => ({ ...tab, isSelected: tab.value === providerGroup }));
+
+  // The heading names what the selected tab lists.
+  const listNoun =
+    providerGroup === "u-friend"
+      ? "u_friends"
+      : providerGroup === "providers"
+        ? "psychologists"
+        : "providers";
 
   const handleProviderClick = (provider) => {
     navigate(`/provider-overview?provider-id=${provider.providerDetailId}`);
@@ -314,35 +330,114 @@ export const SelectProvider = ({
           <Box classes="consultations__box" liquidGlass>
             {(subheading || onFilterClick) && (
               <div className="select-provider__heading">
-                {/* <div className="select-provider__heading-main">
-                  {subheading && (
-                    <p className="select-provider__heading-subheading text">
-                      {subheading}
-                    </p>
-                  )}
-                </div> */}
-                {!isActiveCampaignLoading && billingTabs.length > 1 && (
-                  <Tabs
-                    options={billingTabs}
-                    handleSelect={handleTabSelect}
-                    t={t}
-                  />
+                {providerGroup && (
+                  <div className="select-provider__group-switch" role="tablist">
+                    <span
+                      aria-hidden="true"
+                      className={`select-provider__group-switch__slider${
+                        providerGroup === "u-friend"
+                          ? " select-provider__group-switch__slider--end"
+                          : ""
+                      }`}
+                    />
+                    {groupTabs.map((tab) => (
+                      <button
+                        key={tab.value}
+                        type="button"
+                        role="tab"
+                        aria-selected={tab.isSelected}
+                        className={`select-provider__group-switch__option${
+                          tab.isSelected
+                            ? " select-provider__group-switch__option--selected"
+                            : ""
+                        }`}
+                        onClick={() => setProviderGroup(tab.value)}
+                      >
+                        <Icon
+                          name={tab.icon}
+                          size="md"
+                          color={tab.isSelected ? "#9749fa" : "#66768d"}
+                        />
+                        <span className="select-provider__group-switch__label">
+                          {tab.label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 )}
 
+                <div className="select-provider__session-row">
+                  {!isActiveCampaignLoading && billingTabs.length > 1 ? (
+                    <div
+                      className="select-provider__session-types"
+                      role="radiogroup"
+                      aria-label={t("session_type")}
+                    >
+                      <span className="select-provider__session-types__label text">
+                        {t("session_type")}
+                      </span>
+                      {billingTabs.map((tab, index) => (
+                        <button
+                          key={tab.value}
+                          type="button"
+                          role="radio"
+                          aria-checked={tab.isSelected}
+                          className={`select-provider__session-types__chip${
+                            tab.isSelected
+                              ? " select-provider__session-types__chip--selected"
+                              : ""
+                          }`}
+                          onClick={() => handleTabSelect(index)}
+                        >
+                          {tab.label}
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <span />
+                  )}
+                  {onFilterClick &&
+                    (width < 768 ? (
+                      <NewButton
+                        label={filterButtonLabel}
+                        type="outline"
+                        iconName="filter"
+                        iconColor="#9749fa"
+                        iconSize="sm"
+                        size="sm"
+                        classes="select-provider__filter-outline"
+                        onClick={onFilterClick}
+                      />
+                    ) : (
+                      <ButtonWithIcon
+                        label={filterButtonLabel}
+                        iconName="filter"
+                        iconColor="#ffffff"
+                        iconSize="sm"
+                        color="purple"
+                        size="sm"
+                        onClick={onFilterClick}
+                      />
+                    ))}
+                </div>
+
                 {isCouponTabSelected && renderCouponInput()}
-                <p style={{ marginTop: "1.2rem", textAlign: "left" }}>
+                <p className="text select-provider__description">
                   {t("choose-the-provider")}
                 </p>
-                {onFilterClick && width < 768 && (
-                  <NewButton
-                    label={filterButtonLabel}
-                    iconName="filter"
-                    iconColor="#ffffff"
-                    iconSize="sm"
-                    size="sm"
-                    onClick={onFilterClick}
-                    classes="select-provider__heading-button"
-                  />
+              </div>
+            )}
+            {(!isCouponTabSelected || activeCoupon) && (
+              <div className="select-provider__list-heading">
+                <h4 className="select-provider__list-heading__title">
+                  {t(`available_${listNoun}`)}
+                </h4>
+                {!providersQuery.isLoading && (
+                  <span className="text select-provider__list-heading__count">
+                    {providersQuery.hasNextPage
+                      ? t(`${listNoun}_count_more`, { count: providers.length })
+                      : t(`${listNoun}_count`, { count: providers.length })}
+                  </span>
                 )}
               </div>
             )}

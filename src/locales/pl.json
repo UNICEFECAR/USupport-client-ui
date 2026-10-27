@@ -268,8 +268,29 @@
       "choose-the-provider": "Wybierz specjalistę, z którym chcesz rozmawiać przez wideo, audio lub czat. Czasami może minąć kilka sesji, zanim znajdziesz specjalistę odpowiedniego do Twoich potrzeb i preferowanego podejścia.",
       "coupon_note": "Tym razem wpisaliśmy dla Ciebie kod na darmową sesję! Umów się na wizytę u jednego z naszych konsultantów i zrób pierwszy krok ku lepszemu samopoczuciu.",
       "book_session": "Umów sesję",
-      "view_profile": "Wyświetl profil osobisty",
-      "peer_support": "U-FRIEND"
+      "view_profile": "Wyświetl profil",
+      "peer_support": "U-FRIEND",
+      "tab_providers": "Psycholodzy",
+      "tab_u_friend": "U-Friend",
+      "session_type": "Rodzaj sesji:",
+      "available_providers": "Dostępni konsultanci",
+      "providers_count_one": "{{count}} konsultant",
+      "providers_count_few": "{{count}} konsultantów",
+      "providers_count_many": "{{count}} konsultantów",
+      "providers_count_other": "{{count}} konsultanta",
+      "providers_count_more": "{{count}}+ konsultantów",
+      "available_psychologists": "Dostępni psycholodzy",
+      "psychologists_count_one": "{{count}} psycholog",
+      "psychologists_count_few": "{{count}} psychologów",
+      "psychologists_count_many": "{{count}} psychologów",
+      "psychologists_count_other": "{{count}} psychologa",
+      "psychologists_count_more": "{{count}}+ psychologów",
+      "available_u_friends": "Dostępni U-Friend",
+      "u_friends_count_one": "{{count}} U-Friend",
+      "u_friends_count_few": "{{count}} U-Friend",
+      "u_friends_count_many": "{{count}} U-Friend",
+      "u_friends_count_other": "{{count}} U-Friend",
+      "u_friends_count_more": "{{count}}+ U-Friend"
     },
     "notification-preferences": {
       "email": "Powiadomienia email",
@@ -1200,7 +1221,8 @@
       "max_price": "Cena maksymalna",
       "providers_free_consultation_label": "Tylko bezpłatna konsultacja",
       "coupon_note": "Tym razem wpisaliśmy za Ciebie kod na darmową sesję! Umów się z jednym z naszych konsultantów i zrób pierwszy krok, aby zadbać o swoje samopoczucie.",
-      "coupon_not_found_error": "Ten kupon nie został znaleziony lub nie jest już ważny."
+      "coupon_not_found_error": "Ten kupon nie został znaleziony lub nie jest już ważny.",
+      "tagline": "Znajdź osobę, z którą będzie Ci komfortowo porozmawiać."
     },
     "register-about-you-page": {
       "heading_1": "Opowiedz nam więcej o sobie",
