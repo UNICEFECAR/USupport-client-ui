@@ -6,7 +6,9 @@ import {
   NewButton,
 } from "@USupport-components-library/src";
 
-import { ONE_HOUR } from "@USupport-components-library/utils";
+import {
+  getConsultationEndDate,
+} from "@USupport-components-library/utils";
 
 import "./edit-consultation.scss";
 
@@ -25,11 +27,11 @@ export const EditConsultation = ({
   openSelectConsultation,
 }) => {
   // const consultation = { startDate: new Date(), endDate: new Date() };
-  const { providerName, timestamp, image } = consultation;
+  const { providerName, timestamp, image, durationMinutes } = consultation;
 
   const imageUrl = image || "default";
   const startDate = new Date(timestamp);
-  const endDate = new Date(timestamp + ONE_HOUR);
+  const endDate = getConsultationEndDate(timestamp, durationMinutes);
   const today = new Date().getTime();
 
   const { t } = useTranslation("backdrops", { keyPrefix: "edit-consultation" });

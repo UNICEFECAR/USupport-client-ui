@@ -17,8 +17,8 @@ import {
 import {
   getDateView,
   getTimeAsString,
-  ONE_HOUR,
   checkIsFiveMinutesBefore,
+  getConsultationEndDate,
 } from "@USupport-components-library/utils";
 
 import {
@@ -121,7 +121,9 @@ export const Notifications = ({
       time = notification.content.time;
       date = getDateView(time);
       startHour = getTimeAsString(new Date(time));
-      endHour = getTimeAsString(new Date(time + ONE_HOUR));
+      endHour = getTimeAsString(
+        getConsultationEndDate(time, notification.content?.duration_minutes),
+      );
     }
 
     let newDate, newStartHour, newEndHour;
@@ -129,7 +131,14 @@ export const Notifications = ({
       const newTime = notification.content.newConsultationTime;
       newDate = getDateView(newTime);
       newStartHour = getTimeAsString(new Date(newTime));
-      newEndHour = getTimeAsString(new Date(newTime + ONE_HOUR));
+      newEndHour = getTimeAsString(
+        getConsultationEndDate(
+          newTime,
+          // A reschedule can change the length, so the new range has its own.
+          notification.content?.new_consultation_duration_minutes ??
+            notification.content?.duration_minutes,
+        ),
+      );
     }
 
     const handleNotificationClick = (

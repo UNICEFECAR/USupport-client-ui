@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import PropTypes from "prop-types";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -9,7 +9,7 @@ import { Backdrop, Header, Loading } from "@USupport-components-library/src";
 import { providerSvc } from "@USupport-components-library/services";
 import {
   getTimestampFromUTC,
-  parseUTCDate,
+  getTimeRangeAsString,
 } from "@USupport-components-library/utils";
 
 import { useGetProviderDataById } from "#hooks";
@@ -66,41 +66,27 @@ export const SelectConsultation = ({
       providerId,
       campaignId,
     );
+    // The API returns { time, duration_minutes, campaign_id, organization_id }
+    // for every slot, and has already removed slots that overlap one another -
+    // that de-duplication used to live here, which meant the browser owned a
+    // booking rule the server had no idea about.
+    //
+    // `time` is epoch milliseconds, so it goes straight into Date(). It used to
+    // be a rendered "YYYY-MM-DD HH:MM:SS UTC" string, which is what parseUTCDate
+    // was for; a number needs no parsing and cannot be read in the wrong zone.
     if (campaignId) {
       return data.map((x) => ({
-        time: parseUTCDate(x.time),
+        time: new Date(x.time),
+        duration_minutes: x.duration_minutes,
         campaign_id: x.campaign_id,
       }));
     }
 
-    const slots = data.map((x) => {
-      if (x.time) {
-        return {
-          time: parseUTCDate(x.time),
-          organization_id: x.organization_id,
-        };
-      }
-      return x;
-    });
-
-    const organizationSlotTimes = slots.reduce((acc, slot) => {
-      if (slot.organization_id) {
-        acc.push(slot.time.getTime());
-      }
-      return acc;
-    }, []);
-
-    // Ensure that there is no overlap between organization slots and regular slots
-    // If there are duplicates, remove the regular slot
-    if (organizationSlotTimes.length > 0) {
-      return slots.filter((slot) => {
-        if (slot.time) return slot;
-        const slotTime = new Date(slot).getTime();
-        return !organizationSlotTimes.includes(slotTime);
-      });
-    }
-
-    return slots;
+    return data.map((x) => ({
+      time: new Date(x.time),
+      duration_minutes: x.duration_minutes,
+      organization_id: x.organization_id,
+    }));
   };
   const availableSlotsQuery = useQuery(
     ["available-slots", startDate, currentDay, providerId],
@@ -118,16 +104,20 @@ export const SelectConsultation = ({
     setSelectedSlot(slot);
   };
 
-  const renderFreeSlots = () => {
-    const todaySlots = availableSlots?.filter((slot) => {
-      const slotDate = new Date(slot.time || slot).getDate();
-      const currentDayDate = new Date(currentDay).getDate();
+  /** Slots on the day being viewed. Each is bookable at its own length only. */
+  const todaySlots = useMemo(
+    () =>
+      availableSlots?.filter((slot) => {
+        const slotDate = new Date(slot.time || slot).getDate();
+        const currentDayDate = new Date(currentDay).getDate();
 
-      if (campaignId && campaignId !== slot.campaign_id) {
-        return false;
-      }
-      return slotDate === currentDayDate;
-    });
+        if (campaignId && campaignId !== slot.campaign_id) return false;
+        return slotDate === currentDayDate;
+      }) || [],
+    [availableSlots, currentDay, campaignId],
+  );
+
+  const renderFreeSlots = () => {
     if (!todaySlots || todaySlots?.length === 0)
       return (
         <div className="select-consultation__content-container__slots-empty">
@@ -143,14 +133,9 @@ export const SelectConsultation = ({
 
         const value = new Date(slot.time || slot).getTime();
 
-        const getDoubleDigitHour = (hour) =>
-          hour === 24 ? "00" : hour < 10 ? `0${hour}` : hour;
-
-        const displayStartHours = getDoubleDigitHour(slotLocal.getHours());
-        const displayStartMinutes = getDoubleDigitHour(slotLocal.getMinutes());
-        const displayEndHours = getDoubleDigitHour(slotLocal.getHours() + 1);
-        const displayEndMinutes = getDoubleDigitHour(slotLocal.getMinutes());
-        const label = `${displayStartHours}:${displayStartMinutes} - ${displayEndHours}:${displayEndMinutes}`;
+        // The provider decided this slot's length; the client books it as it
+        // stands rather than choosing a duration.
+        const label = getTimeRangeAsString(slotLocal, slot.duration_minutes);
 
         return { label: label, value };
       },
@@ -215,7 +200,15 @@ export const SelectConsultation = ({
     }
     const time = slotObject || selectedSlot;
 
-    handleBlockSlot(time, providerData.consultationPrice);
+    const selectedSlotDuration = todaySlots.find(
+      (slot) => new Date(slot.time).getTime() === selectedSlot,
+    )?.duration_minutes;
+
+    handleBlockSlot(
+      time,
+      providerData.consultationPrice,
+      selectedSlotDuration,
+    );
   };
 
   return (

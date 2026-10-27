@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { clientSvc } from "@USupport-components-library/services";
+import { DEFAULT_DURATION_MINUTES } from "@USupport-components-library/utils";
 import { useTranslation } from "react-i18next";
 
 export default function useGetAllConsultations(enabled = true) {
@@ -20,6 +21,8 @@ export default function useGetAllConsultations(enabled = true) {
         providerName: consultation.provider_name,
         image: consultation.provider_image,
         timestamp: new Date(consultation.time).getTime(),
+        durationMinutes:
+          Number(consultation.duration_minutes) || DEFAULT_DURATION_MINUTES,
         status: consultation.status,
         price: consultation.price,
         campaignId: consultation.campaign_id,

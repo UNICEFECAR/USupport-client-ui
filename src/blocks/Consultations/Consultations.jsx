@@ -11,7 +11,9 @@ import {
   Consultation,
   NewButton,
 } from "@USupport-components-library/src";
-import { ONE_HOUR } from "@USupport-components-library/utils";
+import {
+  getConsultationEndDate,
+} from "@USupport-components-library/utils";
 
 import { useGetAllConsultations, useRejectConsultation } from "#hooks";
 import { DeviceTest } from "../../backdrops/DeviceTest";
@@ -25,7 +27,10 @@ import "./consultations.scss";
 const getUpcomingConsultations = (consultations, currentDateTs) => {
   return consultations
     ?.filter((consultation) => {
-      const endTime = consultation.timestamp + ONE_HOUR;
+      const endTime = getConsultationEndDate(
+        consultation.timestamp,
+        consultation.durationMinutes,
+      ).getTime();
       return (
         consultation.timestamp >= currentDateTs ||
         (currentDateTs >= consultation.timestamp && currentDateTs <= endTime)
@@ -40,7 +45,10 @@ const getUpcomingConsultations = (consultations, currentDateTs) => {
 const getPastConsultations = (consultations, currentDateTs) => {
   return consultations
     ?.filter((consultation) => {
-      const endTime = consultation.timestamp + ONE_HOUR;
+      const endTime = getConsultationEndDate(
+        consultation.timestamp,
+        consultation.durationMinutes,
+      ).getTime();
       return (
         endTime < currentDateTs &&
         (consultation.status === "finished" ||

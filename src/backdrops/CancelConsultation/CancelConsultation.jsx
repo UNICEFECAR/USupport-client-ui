@@ -8,7 +8,10 @@ import {
 } from "@USupport-components-library/src";
 import { useCancelConsultation } from "#hooks";
 
-import { ONE_HOUR } from "@USupport-components-library/utils";
+import {
+  ONE_HOUR,
+  getConsultationEndDate,
+} from "@USupport-components-library/utils";
 
 import "./cancel-consultation.scss";
 
@@ -28,10 +31,10 @@ export const CancelConsultation = ({ isOpen, onClose, consultation }) => {
   });
   const [error, setError] = useState();
 
-  const { providerName, timestamp, image } = consultation;
+  const { providerName, timestamp, image, durationMinutes } = consultation;
 
   const startDate = new Date(timestamp);
-  const endDate = new Date(timestamp + ONE_HOUR);
+  const endDate = getConsultationEndDate(timestamp, durationMinutes);
 
   const isConsultationLessThan24HoursBefore =
     new Date().getTime() + 24 * ONE_HOUR >= startDate.getTime();

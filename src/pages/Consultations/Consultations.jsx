@@ -3,7 +3,10 @@ import { useTranslation } from "react-i18next";
 import { Navigate, useSearchParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { ONE_HOUR } from "@USupport-components-library/utils";
+import {
+  ONE_HOUR,
+  getConsultationEndDate,
+} from "@USupport-components-library/utils";
 
 import {
   Page,
@@ -121,6 +124,9 @@ export const Consultations = () => {
   const [blockSlotError, setBlockSlotError] = useState();
   const [consultationId, setConsultationId] = useState();
   const [selectedSlot, setSelectedSlot] = useState();
+  // Length of the slot the client picked, for the confirmation screen only -
+  // the backend reads the authoritative value from the provider's availability.
+  const [selectedSlotDuration, setSelectedSlotDuration] = useState();
   const [rescheduledConsultation, setRescheduledConsultation] = useState();
 
   // Modal state variables
@@ -162,7 +168,7 @@ export const Consultations = () => {
   };
   const rescheduleConsultationMutation = useRescheduleConsultation(
     onRescheduleConsultationSuccess,
-    onRescheduleConsultationError
+    onRescheduleConsultationError,
   );
 
   // Block slot logic
@@ -178,13 +184,15 @@ export const Consultations = () => {
   };
   const blockSlotMutation = useBlockSlot(onBlockSlotSuccess, onBlockSlotError);
 
-  const handleBlockSlot = (slot) => {
+  const handleBlockSlot = (slot, price, durationMinutes) => {
     setIsBlockSlotSubmitting(true);
     setSelectedSlot(slot);
+    setSelectedSlotDuration(durationMinutes);
     blockSlotMutation.mutate({
       slot,
       providerId: selectedConsultationProviderId,
       rescheduleCampaignSlot: !!slot.campaign_id,
+      durationMinutes,
     });
   };
 
@@ -197,7 +205,7 @@ export const Consultations = () => {
   };
   const acceptConsultationMutation = useAcceptConsultation(
     onAcceptConsultationSuccess,
-    onAcceptConsultationError
+    onAcceptConsultationError,
   );
   const acceptConsultation = (consultationId, price) => {
     if (!clientDataQuery.data?.dataProcessing) {
@@ -292,10 +300,9 @@ export const Consultations = () => {
           onClose={closeConfirmConsultationBackdrop}
           consultation={{
             startDate: new Date(selectedSlot?.time || selectedSlot),
-            endDate: new Date(
-              new Date(selectedSlot?.time || selectedSlot).setHours(
-                new Date(selectedSlot?.time || selectedSlot).getHours() + 1
-              )
+            endDate: getConsultationEndDate(
+              new Date(selectedSlot?.time || selectedSlot),
+              selectedSlotDuration,
             ),
             providerName: rescheduledConsultation?.provider_name,
             providerImage: rescheduledConsultation?.provider_image,

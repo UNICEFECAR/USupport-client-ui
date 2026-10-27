@@ -268,8 +268,29 @@
       "choose-the-provider": "Оберіть фахівця, з яким хочете спілкуватися відео, аудіо чи текстом. Іноді може знадобитися кілька сесій, щоб знайти фахівця, який підходить вам за потребами та форматом роботи.",
       "coupon_note": "Цього разу ми ввели для вас код на безкоштовну сесію! Запишіться на консультацію до одного з наших фахівців і зробіть перший крок до покращення самопочуття.",
       "book_session": "Забронювати сесію",
-      "view_profile": "Переглянути особистий профіль",
-      "peer_support": "U-FRIEND"
+      "view_profile": "Переглянути профіль",
+      "peer_support": "U-FRIEND",
+      "tab_providers": "Психологи",
+      "tab_u_friend": "U-Friend",
+      "session_type": "Тип сесії:",
+      "available_providers": "Доступні консультанти",
+      "providers_count_one": "{{count}} консультант",
+      "providers_count_few": "{{count}} консультанти",
+      "providers_count_many": "{{count}} консультантів",
+      "providers_count_other": "{{count}} консультанта",
+      "providers_count_more": "{{count}}+ консультантів",
+      "available_psychologists": "Доступні психологи",
+      "psychologists_count_one": "{{count}} психолог",
+      "psychologists_count_few": "{{count}} психологи",
+      "psychologists_count_many": "{{count}} психологів",
+      "psychologists_count_other": "{{count}} психолога",
+      "psychologists_count_more": "{{count}}+ психологів",
+      "available_u_friends": "Доступні U-Friend",
+      "u_friends_count_one": "{{count}} U-Friend",
+      "u_friends_count_few": "{{count}} U-Friend",
+      "u_friends_count_many": "{{count}} U-Friend",
+      "u_friends_count_other": "{{count}} U-Friend",
+      "u_friends_count_more": "{{count}}+ U-Friend"
     },
     "notification-preferences": {
       "email": "Сповіщення електронною поштою",
@@ -1200,7 +1221,8 @@
       "max_price": "Максимальна ціна",
       "providers_free_consultation_label": "Тільки безкоштовна консультація",
       "coupon_note": "Цього разу ми ввели за тебе код на безкоштовну сесію! Запишись на зустріч з одним із наших консультантів і зроби перший крок, щоб подбати про своє самопочуття.",
-      "coupon_not_found_error": "Цей купон не знайдено або він більше не дійсний."
+      "coupon_not_found_error": "Цей купон не знайдено або він більше не дійсний.",
+      "tagline": "Знайдіть того, з ким вам буде комфортно поговорити."
     },
     "register-about-you-page": {
       "heading_1": "Розкажи нам більше про себе",

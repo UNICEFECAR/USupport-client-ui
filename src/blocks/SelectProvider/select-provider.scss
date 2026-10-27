@@ -98,24 +98,351 @@
 
   &__heading {
     display: flex;
-    flex-direction: column-reverse;
-    gap: $spacing_1_6;
-    padding-bottom: $spacing_1_6;
-    border-bottom: 1px solid $color_gray_ea;
-    margin-bottom: $spacing_1_6;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing_2_0;
+    margin-bottom: $spacing_2_4;
+  }
 
+  // Providers / U-Friend: a soft track with a white pill that slides between
+  // the two choices.
+  &__group-switch {
+    position: relative;
+    display: grid;
+    // minmax(0, ...) keeps the halves equal however long a label is, so the
+    // 50%-wide slider always sits exactly under one of them.
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: $spacing_40_3;
+    padding: $spacing_0_4;
+    border-radius: $border_radius_4_0;
+    box-sizing: border-box;
     @include themifyCustom(
       $themes,
-      "border-bottom-color",
-      "color_gray_ea",
-      "color_gray_344054"
+      "background-color",
+      "color_purple_dac3f6",
+      "color_blue_263238"
     );
+    .theme-light & {
+      background-color: rgba($color_purple_dac3f6, 0.35);
+    }
 
-    @media screen and (min-width: $screen-md) {
-      flex-direction: column;
+    &__slider {
+      position: absolute;
+      top: $spacing_0_4;
+      bottom: $spacing_0_4;
+      left: $spacing_0_4;
+      width: calc(50% - #{$spacing_0_4});
+      border-radius: $border_radius_4_0;
+      transition: transform 0.25s ease;
+      @include themify($themes, "background-color", "color_card");
+      @include themify($themes, "box-shadow", "shadow_1");
+
+      &--end {
+        transform: translateX(100%);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
+    &__option {
+      position: relative;
+      z-index: $z_index_1;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      gap: $spacing_1_0;
+      min-width: 0;
+      padding: $spacing_1_0 $spacing_0_8;
+      border: none;
+      border-radius: $border_radius_4_0;
+      background: transparent;
+      font-family: $font_family;
+      font-size: $font_size_1_6;
+      white-space: nowrap;
+
+      // Phones: the labels need the room more than the icons do.
+      .icon {
+        display: none;
+      }
+
+      @media screen and (min-width: $screen-md) {
+        padding: $spacing_1_2 $spacing_1_6;
+        font-size: $font_size_1_8;
+
+        .icon {
+          display: block;
+          flex-shrink: 0;
+        }
+      }
+      font-weight: $font_semi_bold;
+      cursor: pointer;
+      transition: color 0.25s ease;
+      @include themify($themes, "color", "color_gray_66768d");
+
+      // Scoped per theme so it outranks the theme colour above.
+      &--selected {
+        @each $theme, $map in $themes {
+          .theme-#{$theme} & {
+            color: $color_secondary_9749fa;
+          }
+        }
+      }
+
+      &:focus-visible {
+        outline: 2px solid $color_secondary_9749fa;
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  .select-provider__group-switch__label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // "Session type:" chips on the left, the filter button on the right.
+  &__session-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing_1_2;
+  }
+
+  &__session-types {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing_1_0;
+
+    &__label {
+      flex-basis: 100%;
+      margin-right: $spacing_0_4;
+      @include themify($themes, "color", "color_gray_66768d");
+
+      @media screen and (min-width: $screen-md) {
+        flex-basis: auto;
+      }
+    }
+
+    &__chip {
+      padding: $spacing_0_8 $spacing_2_4;
+      border-width: 0.1rem;
+      border-style: solid;
+      border-radius: $border_radius_4_0;
+      font-family: $font_family;
+      font-size: $font_size_1_6;
+      font-weight: $font_medium;
+      cursor: pointer;
+      @include themify($themes, "background-color", "color_card");
+      @include themify($themes, "border-color", "color_gray_d2dcde");
+      @include themify($themes, "color", "color_black_37");
+
+      &--selected {
+        @each $theme, $map in $themes {
+          .theme-#{$theme} & {
+            color: $color_secondary_9749fa;
+            border-color: $color_purple_dac3f6;
+            background-color: rgba($color_purple_dac3f6, 0.45);
+          }
+        }
+      }
+
+      &:focus-visible {
+        outline: 2px solid $color_secondary_9749fa;
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  &__description {
+    margin: 0;
+    text-align: left;
+    @include themify($themes, "color", "color_gray_66768d");
+  }
+
+  // "Available providers | 12 providers"
+  &__list-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: $spacing_1_2;
+    margin-bottom: $spacing_1_6;
+
+    &__title {
+      margin: 0;
+      font-size: $font_size_2_0;
+      @include themify($themes, "color", "color_3d527b_white");
+
+      @media screen and (min-width: $screen-md) {
+        font-size: $font_size_2_4;
+      }
+    }
+
+    &__count {
+      white-space: nowrap;
+      padding-left: $spacing_1_2;
+      border-left-width: 0.1rem;
+      border-left-style: solid;
+      @include themify($themes, "border-left-color", "color_gray_d2dcde");
+      @include themify($themes, "color", "color_gray_92989b");
+    }
+  }
+
+  // The provider card is shared with other apps; its look on this page only.
+  .provider-overview {
+    &__content__text-container {
+      &__name-container {
+        flex-direction: column;
+        align-items: flex-start;
+
+        @media screen and (min-width: $screen-md) {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      &__name.paragraph {
+        flex: 1;
+        width: auto;
+        @include themify($themes, "color", "color_3d527b_white");
+      }
+
+      &__free-badge {
+        position: static;
+        flex-shrink: 0;
+        padding: $spacing_0_4 $spacing_1_2;
+        box-shadow: none;
+        background: rgba($color_green_7ec680, 0.2);
+
+        & .small-text {
+          text-transform: none;
+          font-weight: $font_semi_bold;
+          color: darken($color_green_7ec680, 30%);
+        }
+      }
+    }
+
+    &__earliest {
+      box-sizing: border-box;
+      margin-top: $spacing_1_6;
+      padding: $spacing_1_2 $spacing_1_6;
+      border-radius: $border_radius_1_2;
+      background: rgba($color_purple_dac3f6, 0.22);
+    }
+
+    &__earliest-text {
+      @include themify($themes, "color", "color_gray_66768d");
+    }
+
+    &__earliest-container__wrapper {
+      gap: $spacing_1_2;
+
+      & > .provider-overview__earliest-container + .provider-overview__earliest-container {
+        @media screen and (min-width: $screen-md) {
+          padding-left: $spacing_1_2;
+          border-left-width: 0.1rem;
+          border-left-style: solid;
+          @include themify($themes, "border-left-color", "color_gray_d2dcde");
+        }
+      }
+    }
+
+    &__actions {
+      padding-top: 0;
+      border-top: none;
+    }
+  }
+
+  // Mobile: no outer white panel, the provider cards sit on the page itself.
+  @media screen and (max-width: #{$screen-md - 1px}) {
+    padding-right: $spacing_2_4;
+
+    & .select-provider__grid .consultations__box.box--liquid-glass,
+    .theme-light & .select-provider__grid .consultations__box.box--liquid-glass {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      padding: 0;
+    }
+
+    &__session-row {
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    &__session-types {
+      flex-wrap: nowrap;
+      gap: $spacing_0_8;
+
+      &__label {
+        display: none;
+      }
+
+      &__chip {
+        padding: $spacing_0_8 $spacing_1_6;
+      }
+    }
+
+    &__filter-outline.button {
+      flex-shrink: 0;
+      min-width: 0;
+      border-color: $color_secondary_9749fa;
+      color: $color_secondary_9749fa;
+    }
+
+    &__list-heading {
+      flex-wrap: nowrap;
       justify-content: space-between;
+
+      &__count {
+        padding-left: 0;
+        border-left: none;
+      }
+    }
+
+    .provider-overview {
+      &__content__text-container__name-container {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+
+      &__bottom {
+        margin-top: $spacing_1_6;
+        border-top: none;
+      }
+
+      &__earliest {
+        margin-top: 0;
+        padding: $spacing_1_6;
+      }
+
+      &__earliest-container__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing_0_8;
+      }
+
+      &__actions {
+        flex-direction: column-reverse;
+
+        & .button {
+          width: 100%;
+        }
+
+        & .button--outline {
+          border-color: $color_secondary_9749fa;
+          color: $color_secondary_9749fa;
+        }
+      }
     }
   }
 

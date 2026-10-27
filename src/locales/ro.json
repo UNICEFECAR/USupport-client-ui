@@ -268,8 +268,26 @@
       "choose-the-provider": "Alegeți specialistul cu care doriți să vorbiți prin video, audio sau text. Uneori poate dura câteva ședințe până găsiți un specialist potrivit nevoilor și abordării preferate.",
       "coupon_note": "De data aceasta v-am introdus un cod pentru o ședință gratuită! Programați o întâlnire cu unul dintre consultanții noștri și faceți primul pas către îmbunătățirea bunăstării.",
       "book_session": "Rezervă sesiunea",
-      "view_profile": "Vedeți profilul personal",
-      "peer_support": "U-FRIEND"
+      "view_profile": "Vezi profilul",
+      "peer_support": "U-FRIEND",
+      "tab_providers": "Psihologi",
+      "tab_u_friend": "U-Friend",
+      "session_type": "Tip de sesiune:",
+      "available_providers": "Furnizori disponibili",
+      "providers_count_one": "{{count}} furnizor",
+      "providers_count_few": "{{count}} furnizori",
+      "providers_count_other": "{{count}} de furnizori",
+      "providers_count_more": "{{count}}+ de furnizori",
+      "available_psychologists": "Psihologi disponibili",
+      "psychologists_count_one": "{{count}} psiholog",
+      "psychologists_count_few": "{{count}} psihologi",
+      "psychologists_count_other": "{{count}} de psihologi",
+      "psychologists_count_more": "{{count}}+ de psihologi",
+      "available_u_friends": "U-Friend disponibili",
+      "u_friends_count_one": "{{count}} U-Friend",
+      "u_friends_count_few": "{{count}} U-Friend",
+      "u_friends_count_other": "{{count}} U-Friend",
+      "u_friends_count_more": "{{count}}+ U-Friend"
     },
     "notification-preferences": {
       "email": "Notificări prin e-mail",
@@ -1198,7 +1216,8 @@
       "coupon_paragraph_two": "Dacă ați primit un cod de cupon de la o campanie de social media sau de la un partener, vă rugăm să îl copiați și să îl lipiți mai jos. După ce trimiteți codul cuponului, veți vedea toți furnizorii care îl acceptă și disponibilitatea acestora. Un cupon poate acoperi una sau mai multe sesiuni. Platforma va indica dacă cuponul a expirat sau s-a folosit numărul maxim de sesiuni.",
       "max_price": "Preț maxim",
       "providers_free_consultation_label": "Doar consultație gratuită",
-      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being."
+      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being.",
+      "tagline": "Găsește pe cineva cu care te simți confortabil să vorbești."
     },
     "register-about-you-page": {
       "heading_1": "Spuneți-ne mai multe despre dvs.",

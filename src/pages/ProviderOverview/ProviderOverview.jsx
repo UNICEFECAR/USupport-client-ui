@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { RadialCircle } from "@USupport-components-library/src";
+import { getConsultationEndDate } from "@USupport-components-library/utils";
 
 import {
   useCustomNavigate as useNavigate,
@@ -37,7 +38,7 @@ export const ProviderOverview = () => {
   const navigate = useNavigate();
 
   const providerId = new URLSearchParams(window.location.search).get(
-    "provider-id"
+    "provider-id",
   );
   if (!providerId)
     return (
@@ -53,6 +54,9 @@ export const ProviderOverview = () => {
   const [consultationId, setConsultationId] = useState();
   const consultationPrice = useRef();
   const selectedSlot = useRef();
+  // Length of the slot the client picked, for the confirmation screen only -
+  // the backend reads the authoritative value from the provider's availability.
+  const [selectedSlotDuration, setSelectedSlotDuration] = useState();
   const [scheduledConsultation, setScheduledConsultation] = useState();
 
   // Modal state variables
@@ -130,16 +134,18 @@ export const ProviderOverview = () => {
   };
   const scheduleConsultationMutation = useScheduleConsultation(
     onScheduleConsultationSuccess,
-    onScheduleConsultationError
+    onScheduleConsultationError,
   );
 
-  const handleBlockSlot = (slot, price) => {
+  const handleBlockSlot = (slot, price, durationMinutes) => {
     setIsBlockSlotSubmitting(true);
     selectedSlot.current = slot;
+    setSelectedSlotDuration(durationMinutes);
     consultationPrice.current = price;
     blockSlotMutation.mutate({
       slot,
       providerId,
+      durationMinutes,
     });
   };
 
@@ -176,16 +182,11 @@ export const ProviderOverview = () => {
           onClose={closeConfirmConsultationBackdrop}
           consultation={{
             startDate: new Date(
-              selectedSlot.current?.time || selectedSlot.current
+              selectedSlot.current?.time || selectedSlot.current,
             ),
-            endDate: new Date(
-              new Date(
-                selectedSlot.current?.time || selectedSlot.current
-              ).setHours(
-                new Date(
-                  selectedSlot.current?.time || selectedSlot.current
-                ).getHours() + 1
-              )
+            endDate: getConsultationEndDate(
+              new Date(selectedSlot.current?.time || selectedSlot.current),
+              selectedSlotDuration,
             ),
             providerName: scheduledConsultation?.provider_name,
             providerImage: scheduledConsultation?.provider_image,

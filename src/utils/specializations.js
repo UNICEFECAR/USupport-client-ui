@@ -6,12 +6,6 @@ export const BASE_PROVIDER_TYPES = [
   "psychiatrist",
 ];
 
-export const getProviderTypeFilterOptions = (country) => {
-  const options = [...BASE_PROVIDER_TYPES];
-
-  if (country?.toUpperCase() === "AM") {
-    options.push(PEER_SUPPORT);
-  }
-
-  return options;
-};
+// Peer support is not a filter option: in Armenia it has its own tab on the
+// provider list.
+export const getProviderTypeFilterOptions = () => [...BASE_PROVIDER_TYPES];
