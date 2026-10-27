@@ -266,10 +266,25 @@
       "tab_paid": "Paid",
       "tab_coupon": "Coupon",
       "tab_free": "Free",
-      "choose-the-provider": "Choose the provider you want to talk to using video, audio or text. It may sometimes take a few sesions to find a provider that is a good fit for your needs and your preferred approach.",
+      "choose-the-provider": "Choose the provider you want to talk to using video, audio or text. It may sometimes take a few sessions to find a provider that is a good fit for your needs and your preferred approach.",
       "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being.",
-      "view_profile": "View personal profile",
-      "peer_support": "U-FRIEND"
+      "view_profile": "View profile",
+      "peer_support": "U-FRIEND",
+      "tab_providers": "Psychologists",
+      "tab_u_friend": "U-Friend",
+      "session_type": "Session type:",
+      "available_providers": "Available providers",
+      "providers_count_one": "{{count}} provider",
+      "providers_count_other": "{{count}} providers",
+      "providers_count_more": "{{count}}+ providers",
+      "available_psychologists": "Available psychologists",
+      "psychologists_count_one": "{{count}} psychologist",
+      "psychologists_count_other": "{{count}} psychologists",
+      "psychologists_count_more": "{{count}}+ psychologists",
+      "available_u_friends": "Available U-Friends",
+      "u_friends_count_one": "{{count}} U-Friend",
+      "u_friends_count_other": "{{count}} U-Friends",
+      "u_friends_count_more": "{{count}}+ U-Friends"
     },
     "notification-preferences": {
       "email": "Email notifications",
@@ -1184,7 +1199,7 @@
     "select-provider-page": {
       "consultations_unavailable_note": "Consultations are not currently available. We will let you know on this page when consultations resume.",
       "heading": "Select a Provider ",
-      "subheading": "Choose the provider you want to talk to using video, audio or text. It may sometimes take a few sesions to find a provider that is a good fit for your needs and your preferred approach.",
+      "subheading": "Choose the provider you want to talk to using video, audio or text. It may sometimes take a few sessions to find a provider that is a good fit for your needs and your preferred approach.",
       "button_label": "Filter",
       "button_coupon_label": "Use coupon",
       "modal_coupon_heading": "Enter your coupon to use it",
@@ -1198,7 +1213,8 @@
       "coupon_paragraph_two": "If you received a coupon code from a social media campaign or a partner, please copy and paste that below. After you submit the coupon code, you will see any providers that support it and their availability. A coupon may support one or more sessions. The platform will indicate if the coupon has expired or reached the maximum session usage.",
       "max_price": "Maximum price",
       "providers_free_consultation_label": "Only free consultation",
-      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being."
+      "coupon_note": "This time, we've entered a code for you for a free session! Schedule an appointment with one of our consultants and take the first step towards improving your well-being.",
+      "tagline": "Find someone you feel comfortable talking to."
     },
     "register-about-you-page": {
       "heading_1": "Tell us more about yourself",
