@@ -1401,7 +1401,8 @@
       "controls_speaker": "Głośnik",
       "controls_background": "Tło",
       "controls_chat": "Czat",
-      "send_message_button": "Wyślij"
+      "send_message_button": "Wyślij",
+      "controls_report_problem": "Zgłoś problem"
     },
     "payment-history-page": {
       "heading": "Historia płatności",
@@ -1980,6 +1981,17 @@
       "yes": "Tak",
       "no": "Nie",
       "dont_know": "Nie wiem, czy to pilne"
+    },
+    "report-consultation-problem": {
+      "title": "Zgłoś problem",
+      "message_label": "Opisz problem",
+      "send": "Wyślij zgłoszenie",
+      "close": "Zamknij",
+      "success_title": "Zgłoszenie wysłane",
+      "success": "Twoje zgłoszenie zostało wysłane do administratora krajowego.",
+      "error": "Nie udało się wysłać zgłoszenia. Spróbuj ponownie.",
+      "settings": "Ustawienia",
+      "cancel": "Anuluj"
     }
   },
   "routes": {

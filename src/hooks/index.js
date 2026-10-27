@@ -77,3 +77,4 @@ export * from "./useMediaPreview.js";
 export * from "./useArticlesDashboardCountryArticleIds.js";
 export * from "./useRomaniaPinnedArticlesDashboard.js";
 export * from "./useAppVersionCheck.js";
+export * from "./useReportConsultationProblem.js";

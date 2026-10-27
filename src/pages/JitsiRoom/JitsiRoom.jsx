@@ -25,6 +25,8 @@ import {
   useGetClientData,
 } from "#hooks";
 
+import { ReportConsultationProblem } from "#backdrops";
+
 import { MessageList } from "./MessageList";
 
 import "./jitsi-room.scss";
@@ -59,6 +61,11 @@ const defaultConfig = {
  * @returns {JSX.Element}
  */
 export const JitsiRoom = () => {
+  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [reportMediaErrors, setReportMediaErrors] = useState({
+    camera: null,
+    microphone: null,
+  });
   const language = localStorage.getItem("language");
   const country = localStorage.getItem("country");
   const { theme } = useContext(ThemeContext);
@@ -102,7 +109,7 @@ export const JitsiRoom = () => {
   useSessionEndReminder(
     consultation.timestamp,
     consultation.durationMinutes,
-    t,
+    t
   );
 
   const receiveMessage = (message) => {
@@ -132,11 +139,11 @@ export const JitsiRoom = () => {
 
   const { socketRef, connectionStatus, callQuality, isPeerPresent } =
     useConsultationSocket({
-    isProviderTyping: interfaces.isProviderTyping,
-    chatId: consultation.chatId,
-    setInterfaceData,
-    receiveMessage,
-  });
+      isProviderTyping: interfaces.isProviderTyping,
+      chatId: consultation.chatId,
+      setInterfaceData,
+      receiveMessage,
+    });
 
   useEffect(() => {
     interfacesRef.current = interfaces;
@@ -381,6 +388,26 @@ export const JitsiRoom = () => {
     id: clientData.clientID,
   };
 
+  const getReportCallContext = async () => {
+    const context = {
+      clientPresent: null,
+      providerPresent: isPeerPresent ?? interfaces.isProviderInSession ?? null,
+      connectionState: connectionStatus,
+      connectionQuality: callQuality,
+      cameraOn: !!interfaces.videoOn,
+      microphoneOn: !!interfaces.microphoneOn,
+      cameraError: reportMediaErrors.camera,
+      microphoneError: reportMediaErrors.microphone,
+    };
+    const devices = await api.current?.getCurrentDevices().catch(() => null);
+    return {
+      ...context,
+      cameraDevice: devices?.videoInput?.label?.slice(0, 100) || null,
+      microphoneDevice: devices?.audioInput?.label?.slice(0, 100) || null,
+      speakerDevice: devices?.audioOutput?.label?.slice(0, 100) || null,
+    };
+  };
+
   return (
     <Page
       showNavbar={false}
@@ -389,6 +416,16 @@ export const JitsiRoom = () => {
       showGoBackArrow={false}
       classes="page__jitsi-room"
     >
+      {isReportOpen && (
+        <ReportConsultationProblem
+          isOpen
+          onClose={() => setIsReportOpen(false)}
+          consultationId={
+            consultation.consultationId || consultation.consultation_id
+          }
+          getCallContext={getReportCallContext}
+        />
+      )}
       <ConnectionStatus status={connectionStatus} t={t} />
       {clientDataQuery.isLoading ? (
         <Loading />
@@ -429,6 +466,7 @@ export const JitsiRoom = () => {
                 connectionQuality={callQuality}
                 isHidden={hideControls}
                 getJitsiApi={() => api.current}
+                onReportProblem={() => setIsReportOpen(true)}
                 isSideChatOpen={interfaces.isChatShownOnTablet}
               />
             </div>
@@ -498,19 +536,38 @@ export const JitsiRoom = () => {
               );
 
               // Any device error (permission denied, device in use, not found...) means the track is off
-              externalApi.addListener("cameraError", () => {
+              externalApi.addListener("cameraError", (error) => {
+                setReportMediaErrors((prev) => ({
+                  ...prev,
+                  camera: String(
+                    error?.name || error?.type || "camera_error"
+                  ).slice(0, 100),
+                }));
                 setInterfaceData((prev) => ({ ...prev, videoOn: false }));
               });
 
-              externalApi.addListener("micError", () => {
+              externalApi.addListener("micError", (error) => {
+                setReportMediaErrors((prev) => ({
+                  ...prev,
+                  microphone: String(
+                    error?.name || error?.type || "microphone_error"
+                  ).slice(0, 100),
+                }));
                 setInterfaceData((prev) => ({ ...prev, microphoneOn: false }));
               });
 
               externalApi.addListener("videoMuteStatusChanged", ({ muted }) => {
+                if (!muted)
+                  setReportMediaErrors((prev) => ({ ...prev, camera: null }));
                 setInterfaceData((prev) => ({ ...prev, videoOn: !muted }));
               });
 
               externalApi.addListener("audioMuteStatusChanged", ({ muted }) => {
+                if (!muted)
+                  setReportMediaErrors((prev) => ({
+                    ...prev,
+                    microphone: null,
+                  }));
                 setInterfaceData((prev) => ({ ...prev, microphoneOn: !muted }));
               });
 
