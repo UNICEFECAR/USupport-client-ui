@@ -1961,7 +1961,7 @@
       "send": "Send report",
       "close": "Close",
       "success_title": "Report submitted",
-      "success": "Your report has been sent to the country admin.",
+      "success": "Report submitted",
       "error": "Your report could not be sent. Please try again.",
       "settings": "Settings",
       "cancel": "Cancel"
