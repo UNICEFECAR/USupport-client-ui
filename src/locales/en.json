@@ -1393,7 +1393,8 @@
       "controls_speaker": "Speaker",
       "controls_background": "Background",
       "controls_chat": "Chat",
-      "send_message_button": "Send"
+      "send_message_button": "Send",
+      "controls_report_problem": "Report a problem"
     },
     "payment-history-page": {
       "heading": "Payment history",
@@ -1953,6 +1954,17 @@
       "heading": "Are you sure you want to leave the consultation?",
       "confirm": "Leave",
       "cancel": "Stay"
+    },
+    "report-consultation-problem": {
+      "title": "Report a problem",
+      "message_label": "Describe the problem",
+      "send": "Send report",
+      "close": "Close",
+      "success_title": "Report submitted",
+      "success": "Your report has been sent to the country admin.",
+      "error": "Your report could not be sent. Please try again.",
+      "settings": "Settings",
+      "cancel": "Cancel"
     }
   },
   "routes": {
@@ -1965,16 +1977,5 @@
   "meta": {
     "title": "uSupport Client",
     "description": "The first platform created to make your mental health a priority. uSupport provides personalized, discreet and fast psychological care for your overall well-being."
-  },
-  "consultationReport": {
-    "title": "Report a problem",
-    "message_label": "Describe the problem",
-    "send": "Send report",
-    "close": "Close",
-    "success_title": "Report submitted",
-    "success": "Your report has been sent to the country admin.",
-    "error": "Your report could not be sent. Please try again.",
-    "settings": "Settings",
-    "cancel": "Cancel"
   }
 }

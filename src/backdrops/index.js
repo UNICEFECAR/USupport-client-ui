@@ -25,3 +25,4 @@ export * from "./RegisterAboutYou";
 export * from "./UserGuide";
 export * from "./EmergencySituation";
 export * from "./AuthenticationModalsLogo";
+export * from "./ReportConsultationProblem";
