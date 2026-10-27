@@ -1401,7 +1401,8 @@
       "controls_speaker": "Динамік",
       "controls_background": "Фон",
       "controls_chat": "Чат",
-      "send_message_button": "Надіслати"
+      "send_message_button": "Надіслати",
+      "controls_report_problem": "Повідомити про проблему"
     },
     "payment-history-page": {
       "heading": "Історія платежів",
@@ -1980,6 +1981,17 @@
       "yes": "",
       "no": "",
       "dont_know": ""
+    },
+    "report-consultation-problem": {
+      "title": "Повідомити про проблему",
+      "message_label": "Опишіть проблему",
+      "send": "Надіслати повідомлення",
+      "close": "Закрити",
+      "success_title": "Повідомлення надіслано",
+      "success": "Повідомлення надіслано",
+      "error": "Не вдалося надіслати повідомлення. Спробуйте ще раз.",
+      "settings": "Налаштування",
+      "cancel": "Скасувати"
     }
   },
   "routes": {
