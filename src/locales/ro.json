@@ -1971,5 +1971,16 @@
   "meta": {
     "title": "uSupport Client",
     "description": "Prima platformă creată pentru a face din sănătatea ta mintală o prioritate. uSupport oferă îngrijire psihologică personalizată, discretă și rapidă pentru bunăstarea ta generală."
+  },
+  "consultationReport": {
+    "title": "Raportează o problemă",
+    "message_label": "Descrie problema",
+    "send": "Trimite raportul",
+    "close": "Închide",
+    "success_title": "Raport trimis",
+    "success": "Raportul tău a fost trimis administratorului de țară.",
+    "error": "Raportul nu a putut fi trimis. Încearcă din nou.",
+    "settings": "Setări",
+    "cancel": "Anulează"
   }
 }

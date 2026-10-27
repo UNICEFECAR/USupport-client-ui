@@ -59,6 +59,10 @@ const defaultConfig = {
  * @returns {JSX.Element}
  */
 export const JitsiRoom = () => {
+  const [reportMediaErrors, setReportMediaErrors] = useState({
+    camera: null,
+    microphone: null,
+  });
   const language = localStorage.getItem("language");
   const country = localStorage.getItem("country");
   const { theme } = useContext(ThemeContext);
@@ -102,7 +106,7 @@ export const JitsiRoom = () => {
   useSessionEndReminder(
     consultation.timestamp,
     consultation.durationMinutes,
-    t,
+    t
   );
 
   const receiveMessage = (message) => {
@@ -132,11 +136,11 @@ export const JitsiRoom = () => {
 
   const { socketRef, connectionStatus, callQuality, isPeerPresent } =
     useConsultationSocket({
-    isProviderTyping: interfaces.isProviderTyping,
-    chatId: consultation.chatId,
-    setInterfaceData,
-    receiveMessage,
-  });
+      isProviderTyping: interfaces.isProviderTyping,
+      chatId: consultation.chatId,
+      setInterfaceData,
+      receiveMessage,
+    });
 
   useEffect(() => {
     interfacesRef.current = interfaces;
@@ -429,6 +433,9 @@ export const JitsiRoom = () => {
                 connectionQuality={callQuality}
                 isHidden={hideControls}
                 getJitsiApi={() => api.current}
+                connectionState={connectionStatus}
+                cameraError={reportMediaErrors.camera}
+                microphoneError={reportMediaErrors.microphone}
                 isSideChatOpen={interfaces.isChatShownOnTablet}
               />
             </div>
@@ -498,19 +505,38 @@ export const JitsiRoom = () => {
               );
 
               // Any device error (permission denied, device in use, not found...) means the track is off
-              externalApi.addListener("cameraError", () => {
+              externalApi.addListener("cameraError", (error) => {
+                setReportMediaErrors((prev) => ({
+                  ...prev,
+                  camera: String(
+                    error?.name || error?.type || "camera_error"
+                  ).slice(0, 100),
+                }));
                 setInterfaceData((prev) => ({ ...prev, videoOn: false }));
               });
 
-              externalApi.addListener("micError", () => {
+              externalApi.addListener("micError", (error) => {
+                setReportMediaErrors((prev) => ({
+                  ...prev,
+                  microphone: String(
+                    error?.name || error?.type || "microphone_error"
+                  ).slice(0, 100),
+                }));
                 setInterfaceData((prev) => ({ ...prev, microphoneOn: false }));
               });
 
               externalApi.addListener("videoMuteStatusChanged", ({ muted }) => {
+                if (!muted)
+                  setReportMediaErrors((prev) => ({ ...prev, camera: null }));
                 setInterfaceData((prev) => ({ ...prev, videoOn: !muted }));
               });
 
               externalApi.addListener("audioMuteStatusChanged", ({ muted }) => {
+                if (!muted)
+                  setReportMediaErrors((prev) => ({
+                    ...prev,
+                    microphone: null,
+                  }));
                 setInterfaceData((prev) => ({ ...prev, microphoneOn: !muted }));
               });
 
