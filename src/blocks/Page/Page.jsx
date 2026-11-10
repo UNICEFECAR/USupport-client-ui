@@ -1,4 +1,3 @@
-import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -14,6 +13,7 @@ import { useTranslation, Trans } from "react-i18next";
 import OutsideClickHandler from "react-outside-click-handler";
 
 import {
+  TutorialVideo,
   Navbar,
   CircleIconButton,
   Footer,
@@ -632,7 +632,7 @@ export const Page = ({
                   {!goBackContent && IS_AM && pageTutorialKeys.length > 0 && (
                     <div className="page__tutorial-links">
                       {pageTutorialKeys.map((key) => (
-                        <TutorialVideo key={key} tutorialKey={key} language={i18n.language} />
+                        <TutorialVideo queryClient={queryClient} i18n={i18n} key={key} tutorialKey={key} language={i18n.language} />
                       ))}
                     </div>
                   )}

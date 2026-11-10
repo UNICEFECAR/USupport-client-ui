@@ -1,5 +1,5 @@
-import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useContext, useRef, useState, useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { JitsiMeeting } from "@jitsi/react-sdk";
 import { useTranslation } from "react-i18next";
@@ -7,6 +7,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import {
+  TutorialVideo,
   Controls,
   Loading,
 } from "@USupport-components-library/src";
@@ -74,6 +75,7 @@ export const JitsiRoom = () => {
   const country = localStorage.getItem("country");
   const { theme } = useContext(ThemeContext);
 
+  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("pages", { keyPrefix: "consultation-page" });
   const consultationRef = useRef();
   const api = useRef();
@@ -449,7 +451,7 @@ export const JitsiRoom = () => {
               }}
             >
               <Controls
-                tutorialHelp={localStorage.getItem("country") === "AM" && <TutorialVideo tutorialKey="during-the-call" language={i18n.language} />}
+                tutorialHelp={localStorage.getItem("country") === "AM" && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="during-the-call" language={i18n.language} />}
                 t={t}
                 consultation={consultation}
                 handleSendMessage={handleSendMessage}

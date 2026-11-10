@@ -1,9 +1,10 @@
-import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useCallback, useMemo, useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import {
+  TutorialVideo,
   Block,
   Grid,
   GridItem,
@@ -47,6 +48,7 @@ export const MyQA = ({
   onResetSearch,
   searchValue,
 }) => {
+  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "my-qa" });
   const navigate = useNavigate();
   const IS_RTL = localStorage.getItem("language") === "ar";
@@ -249,7 +251,7 @@ export const MyQA = ({
             <p>{t("go_back")}</p>
           </div>
           {IS_AM ? (
-            <TutorialVideo tutorialKey="ask-anonymously" language={i18n.language} />
+            <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="ask-anonymously" language={i18n.language} />
           ) : (
             <NewButton
               size="lg"

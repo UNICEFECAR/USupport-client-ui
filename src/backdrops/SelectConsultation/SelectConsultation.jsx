@@ -1,12 +1,12 @@
-import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import PropTypes from "prop-types";
-import { useQuery } from "@tanstack/react-query";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 import { RootContext } from "#routes";
 
 import {
+  TutorialVideo,
   Backdrop,
   Header,
   Loading,
@@ -40,6 +40,7 @@ export const SelectConsultation = ({
   campaignId: campaingIdFromProps,
   couponCode,
 }) => {
+  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("backdrops", {
     keyPrefix: "select-consultation",
   });
@@ -232,7 +233,7 @@ export const SelectConsultation = ({
       isCtaLoading={isMutating}
       errorMessage={errorMessage}
     >
-      {isOpen && <TutorialVideo tutorialKey="book-a-time" language={i18n.language} />}
+      {isOpen && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="book-a-time" language={i18n.language} />}
       {SHOW_COUPON && (activeCoupon || couponCode) && (
         <div className="select-consultation__coupon-container">
           <p>

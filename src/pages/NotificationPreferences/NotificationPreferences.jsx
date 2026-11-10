@@ -1,6 +1,6 @@
-import { TutorialVideo } from "../../components/TutorialVideo";
+import { TutorialVideo } from "@USupport-components-library/src";
 import React, { useState } from "react";
-import { useQueries } from "@tanstack/react-query";
+import { useQueryClient, useQueries } from "@tanstack/react-query";
 import { Page, NotificationPreferences, DownloadApp } from "#blocks";
 import { useTranslation } from "react-i18next";
 
@@ -18,6 +18,7 @@ const TUTORIAL_KEYS = ["notifications", "display-and-language"];
  * @returns {JSX.Element}
  */
 export const NotificationPreferencesPage = () => {
+  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("pages", {
     keyPrefix: "notification-preferences-page",
   });
@@ -49,6 +50,8 @@ export const NotificationPreferencesPage = () => {
     <Page
       goBackContent={selectedKey && (
         <TutorialVideo
+          queryClient={queryClient}
+          i18n={i18n}
           tutorialKey={selectedKey}
           language={language}
           onClose={() => setNextTutorial({
