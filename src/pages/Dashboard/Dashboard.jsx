@@ -257,6 +257,9 @@ export const Dashboard = () => {
       providerId: selectedConsultationProviderId,
       rescheduleCampaignSlot: slot?.campaign_id ? true : false,
       durationMinutes,
+      rescheduledConsultationId: isEditingConsultation
+        ? selectedConsultationId
+        : undefined,
     });
   };
   const handleScheduleConsultation = () => {
