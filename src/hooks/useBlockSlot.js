@@ -20,6 +20,7 @@ export default function useBlockSlot(onSuccess, onError) {
       data.slot,
       data.rescheduleCampaignSlot,
       data.durationMinutes,
+      data.rescheduledConsultationId,
     );
     return response.data.consultation_id;
   };

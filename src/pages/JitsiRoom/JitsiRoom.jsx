@@ -333,8 +333,13 @@ export const JitsiRoom = () => {
   };
 
   const leaveConsultationMutation = useLeaveConsultation();
+  const hasLeftRef = useRef(false);
 
   const leaveConsultation = () => {
+    // Root calls this again when the client navigates away from the safety feedback
+    if (hasLeftRef.current) return;
+    hasLeftRef.current = true;
+
     setShowSafetyFeedback(true);
     const leaveMessage = {
       time: JSON.stringify(new Date().getTime()),
