@@ -1,5 +1,5 @@
-import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useState, useEffect, useContext } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -15,6 +15,7 @@ import {
 import { useDebounce, useCustomNavigate as useNavigate } from "#hooks";
 
 import {
+  TutorialVideo,
   Grid,
   GridItem,
   Block,
@@ -37,6 +38,7 @@ import "./information-portal.scss";
  * @returns {JSX.Element}
  */
 export const InformationPortal = () => {
+  const queryClient = useQueryClient();
   const { t, i18n } = useTranslation("pages", {
     keyPrefix: "information-portal",
   });
@@ -124,7 +126,7 @@ export const InformationPortal = () => {
               <Icon name="arrow-chevron-back" size="md" color="#20809E" />
               <p>{t("go_back")}</p>
             </div>
-            <TutorialVideo tutorialKey="information-portal" language={i18n.language} />
+            <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="information-portal" language={i18n.language} />
           </div>
           {contentTabs.length > 1 && (
             <Grid classes="page__information-portal__tabs-container">

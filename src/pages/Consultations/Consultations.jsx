@@ -1,4 +1,4 @@
-import { TutorialVideo } from "../../components/TutorialVideo";
+import { TutorialVideo } from "@USupport-components-library/src";
 import React, { useState, useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, useSearchParams } from "react-router-dom";
@@ -249,7 +249,7 @@ export const Consultations = () => {
     <Page
       goBackContent={IS_AM && tutorialKey && !consultationsQuery.isLoading && !consultationsQuery.isError && (
         <div className="page__consultations__tutorials">
-          <TutorialVideo tutorialKey={tutorialKey} language={i18n.language} />
+          <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey={tutorialKey} language={i18n.language} />
         </div>
       )}
       heading={t("header")}
