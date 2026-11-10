@@ -198,6 +198,7 @@ export const Consultations = () => {
       providerId: selectedConsultationProviderId,
       rescheduleCampaignSlot: !!slot.campaign_id,
       durationMinutes,
+      rescheduledConsultationId: selectedConsultationId,
     });
   };
 
