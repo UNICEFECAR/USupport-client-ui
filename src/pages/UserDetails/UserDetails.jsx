@@ -48,7 +48,7 @@ export const UserDetails = () => {
     setIsDeleteMoodTrackerHistoryOpen(false);
 
   return (
-    <Page heading={t("heading")} classes="page__user-details">
+    <Page tutorialKey="edit-your-profile" heading={t("heading")} classes="page__user-details">
       <UserDetailsBlock
         {...{
           openDeleteAccountBackdrop,

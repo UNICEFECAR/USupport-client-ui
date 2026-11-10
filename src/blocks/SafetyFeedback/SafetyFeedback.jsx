@@ -12,6 +12,7 @@ import {
   Textarea,
   Emoticon,
   Slider,
+  TutorialVideo,
 } from "@USupport-components-library/src";
 import { ThemeContext } from "@USupport-components-library/utils";
 
@@ -31,7 +32,7 @@ import "./safety-feedback.scss";
  */
 export const SafetyFeedback = ({ consultationId, answers = {} }) => {
   const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation("blocks", {
+  const { t, i18n } = useTranslation("blocks", {
     keyPrefix: "safety-feedback-block",
   });
   const navigate = useNavigate();
@@ -196,6 +197,7 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
       <Grid classes="safety-feedback__grid">
         <GridItem md={8} lg={12} classes="safety-feedback__grid__headings-item">
           <h4>{t("heading")}</h4>
+          <TutorialVideo tutorialKey="leave-and-rate" language={i18n.language} />
           <p className="text">{t("subheading")}</p>
         </GridItem>
         {questions.map((question) => {

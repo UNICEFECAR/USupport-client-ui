@@ -14,6 +14,7 @@ import {
   Dropdown,
   Icon,
   NotFoundCard,
+  TutorialVideo,
 } from "@USupport-components-library/src";
 
 import { useGetLanguages, useGetQuestionsTags } from "#hooks";
@@ -46,9 +47,10 @@ export const MyQA = ({
   onResetSearch,
   searchValue,
 }) => {
-  const { t } = useTranslation("blocks", { keyPrefix: "my-qa" });
+  const { t, i18n } = useTranslation("blocks", { keyPrefix: "my-qa" });
   const navigate = useNavigate();
   const IS_RTL = localStorage.getItem("language") === "ar";
+  const IS_AM = localStorage.getItem("country") === "AM";
 
   const { data: languages } = useGetLanguages();
   const [tags, setTags] = useState([]);
@@ -246,12 +248,16 @@ export const MyQA = ({
             <Icon name="arrow-chevron-back" size="md" color="#20809E" />
             <p>{t("go_back")}</p>
           </div>
-          <NewButton
-            size="lg"
-            label={t("how_it_works")}
-            onClick={setIsHowItWorksOpen}
-            classes="my-qa__header__button"
-          />
+          {IS_AM ? (
+            <TutorialVideo tutorialKey="ask-anonymously" language={i18n.language} />
+          ) : (
+            <NewButton
+              size="lg"
+              label={t("how_it_works")}
+              onClick={setIsHowItWorksOpen}
+              classes="my-qa__header__button"
+            />
+          )}
         </div>
       </div>
       <Grid>

@@ -1,5 +1,25 @@
 {
   "blocks": {
+    "tutorial-video": {
+      "information-portal": "Jak korzystać z portalu informacyjnego",
+      "ask-anonymously": "Jak zadać pytanie anonimowo",
+      "label": "Jak to działa",
+      "close": "Zamknij",
+      "mood-tracker": "Jak śledzić swój nastrój",
+      "mood-history": "Jak przeglądać historię nastroju",
+      "find-a-specialist": "Jak znaleźć specjalistę",
+      "book-a-time": "Jak zarezerwować termin",
+      "change-or-cancel": "Jak zmienić lub odwołać konsultację",
+      "past-sessions": "Jak zobaczyć wcześniejsze konsultacje",
+      "join-a-session": "Jak dołączyć do konsultacji",
+      "during-the-call": "Jak korzystać z przycisków sterowania rozmową",
+      "leave-and-rate": "Jak ocenić konsultację",
+      "edit-your-profile": "Jak edytować swój profil",
+      "notifications": "Jak skonfigurować powiadomienia",
+      "display-and-language": "Jak zmienić wyświetlanie i język",
+      "sos-center": "Jak uzyskać pilną pomoc",
+      "contact-us": "Jak zgłosić problem"
+    },
     "app-update-modal": {
       "heading": "Dostępna jest nowa wersja",
       "text": "Odśwież stronę, aby korzystać z najnowszej wersji platformy.",
