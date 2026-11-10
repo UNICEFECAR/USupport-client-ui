@@ -1,3 +1,4 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useContext, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useCustomNavigate as useNavigate } from "#hooks";
@@ -12,7 +13,6 @@ import {
   Textarea,
   Emoticon,
   Slider,
-  TutorialVideo,
 } from "@USupport-components-library/src";
 import { ThemeContext } from "@USupport-components-library/utils";
 

@@ -1,3 +1,4 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import PropTypes from "prop-types";
 import { useQuery } from "@tanstack/react-query";
@@ -5,7 +6,11 @@ import { useTranslation } from "react-i18next";
 
 import { RootContext } from "#routes";
 
-import { Backdrop, Header, Loading, TutorialVideo } from "@USupport-components-library/src";
+import {
+  Backdrop,
+  Header,
+  Loading,
+} from "@USupport-components-library/src";
 import { providerSvc } from "@USupport-components-library/services";
 import {
   getTimestampFromUTC,

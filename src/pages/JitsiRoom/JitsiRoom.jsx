@@ -1,3 +1,4 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import { JitsiMeeting } from "@jitsi/react-sdk";
@@ -5,7 +6,10 @@ import { useTranslation } from "react-i18next";
 import { Navigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { Controls, Loading, TutorialVideo } from "@USupport-components-library/src";
+import {
+  Controls,
+  Loading,
+} from "@USupport-components-library/src";
 import {
   useWindowDimensions,
   ThemeContext,

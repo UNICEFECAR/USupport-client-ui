@@ -1,8 +1,13 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useEffect, useMemo, useState } from "react";
 import Participant from "./Participant";
 import useRoom from "./utils/useRoom";
 
-import { Controls, Icon, Modal, TutorialVideo } from "@USupport-components-library/src";
+import {
+  Controls,
+  Icon,
+  Modal,
+} from "@USupport-components-library/src";
 import { useTranslation } from "react-i18next";
 
 import "./video-room.scss";

@@ -1,3 +1,4 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
@@ -14,7 +15,6 @@ import {
   ButtonSelector,
   Icon,
   Loading,
-  TutorialVideo,
 } from "@USupport-components-library/src";
 import { messageSvc, providerSvc } from "@USupport-components-library/services";
 

@@ -1,8 +1,9 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useState } from "react";
 import { useQueries } from "@tanstack/react-query";
 import { Page, NotificationPreferences, DownloadApp } from "#blocks";
 import { useTranslation } from "react-i18next";
-import { TutorialVideo } from "@USupport-components-library/src";
+
 import { cmsSvc } from "@USupport-components-library/services";
 
 import "./notification-preferences.scss";
