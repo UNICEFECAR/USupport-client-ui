@@ -1,3 +1,4 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useState, useCallback, useContext } from "react";
 import classNames from "classnames";
 import { toast } from "react-toastify";
@@ -12,7 +13,6 @@ import {
   Modal,
   Emoticon,
   CircleIconButton,
-  TutorialVideo,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useAddMoodTrack, useGetHasCompletedMoodTrackerEver } from "#hooks";

@@ -1,3 +1,4 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useCallback, useMemo, useEffect, useState } from "react";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
@@ -14,7 +15,6 @@ import {
   Dropdown,
   Icon,
   NotFoundCard,
-  TutorialVideo,
 } from "@USupport-components-library/src";
 
 import { useGetLanguages, useGetQuestionsTags } from "#hooks";

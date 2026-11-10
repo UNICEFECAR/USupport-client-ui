@@ -1,3 +1,4 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -21,7 +22,6 @@ import {
   Box,
   Block,
   CookieBanner,
-  TutorialVideo,
 } from "@USupport-components-library/src";
 import {
   userSvc,

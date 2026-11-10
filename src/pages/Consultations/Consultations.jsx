@@ -1,3 +1,4 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useState, useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, useSearchParams } from "react-router-dom";
@@ -35,7 +36,7 @@ import {
 import { getConsultationTutorialKey } from "../../utils/consultationTutorial";
 import { RootContext } from "#routes";
 
-import { TutorialVideo } from "@USupport-components-library/src";
+
 
 import "./consultations.scss";
 

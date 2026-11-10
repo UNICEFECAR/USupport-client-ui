@@ -1,3 +1,4 @@
+import { TutorialVideo } from "../../components/TutorialVideo";
 import React, { useState, useEffect, useContext } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -19,7 +20,6 @@ import {
   Block,
   Icon,
   TabsUnderlined,
-  TutorialVideo,
 } from "@USupport-components-library/src";
 
 import {
