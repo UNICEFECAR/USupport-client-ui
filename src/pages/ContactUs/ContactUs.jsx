@@ -19,7 +19,7 @@ export const ContactUs = () => {
   const { width } = useWindowDimensions();
   const { t } = useTranslation("pages", { keyPrefix: "contact-us-page" });
   return (
-    <Page
+    <Page tutorialKey="contact-us"
       classes="page__contact-us"
       heading={t("heading")}
       subheading={t("subheading")}

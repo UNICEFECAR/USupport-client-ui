@@ -12,6 +12,7 @@ import {
   Modal,
   Emoticon,
   CircleIconButton,
+  TutorialVideo,
 } from "@USupport-components-library/src";
 import { useWindowDimensions } from "@USupport-components-library/utils";
 import { useAddMoodTrack, useGetHasCompletedMoodTrackerEver } from "#hooks";
@@ -47,7 +48,7 @@ export const MoodTracker = ({
   const IS_RO = country === "RO";
 
   const navigate = useNavigate();
-  const { t } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
+  const { t, i18n } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
 
   const emoticonsArray = [
     { value: "happy", label: t("happy"), isSelected: false },
@@ -303,6 +304,10 @@ export const MoodTracker = ({
                   </h3>
                 )}
               </div>
+              <TutorialVideo
+                tutorialKey="mood-tracker"
+                language={i18n.language}
+              />
             </div>
             {width <= 768 ? renderButton() : null}
           </div>

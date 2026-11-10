@@ -1,5 +1,25 @@
 {
   "blocks": {
+    "tutorial-video": {
+      "information-portal": "How to use the information portal",
+      "ask-anonymously": "How to ask anonymously",
+      "label": "How it works",
+      "close": "Close",
+      "mood-tracker": "How to track your mood",
+      "mood-history": "How to read your mood history",
+      "find-a-specialist": "How to find a specialist",
+      "book-a-time": "How to book a time",
+      "change-or-cancel": "How to change or cancel",
+      "past-sessions": "How to see past sessions",
+      "join-a-session": "How to join a session",
+      "during-the-call": "How to use the call controls",
+      "leave-and-rate": "How to rate your session",
+      "edit-your-profile": "How to edit your profile",
+      "notifications": "How to set up notifications",
+      "display-and-language": "How to change display and language",
+      "sos-center": "How to get urgent help",
+      "contact-us": "How to report a problem"
+    },
     "app-update-modal": {
       "heading": "A new version is available",
       "text": "Refresh the page to use the latest version of the platform.",

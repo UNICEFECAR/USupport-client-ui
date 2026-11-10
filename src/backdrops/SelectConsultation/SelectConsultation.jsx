@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { RootContext } from "#routes";
 
-import { Backdrop, Header, Loading } from "@USupport-components-library/src";
+import { Backdrop, Header, Loading, TutorialVideo } from "@USupport-components-library/src";
 import { providerSvc } from "@USupport-components-library/services";
 import {
   getTimestampFromUTC,
@@ -35,7 +35,7 @@ export const SelectConsultation = ({
   campaignId: campaingIdFromProps,
   couponCode,
 }) => {
-  const { t } = useTranslation("backdrops", {
+  const { t, i18n } = useTranslation("backdrops", {
     keyPrefix: "select-consultation",
   });
   const { activeCoupon } = useContext(RootContext);
@@ -227,6 +227,7 @@ export const SelectConsultation = ({
       isCtaLoading={isMutating}
       errorMessage={errorMessage}
     >
+      {isOpen && <TutorialVideo tutorialKey="book-a-time" language={i18n.language} />}
       {SHOW_COUPON && (activeCoupon || couponCode) && (
         <div className="select-consultation__coupon-container">
           <p>

@@ -14,6 +14,7 @@ import {
   ButtonSelector,
   Icon,
   Loading,
+  TutorialVideo,
 } from "@USupport-components-library/src";
 import { messageSvc, providerSvc } from "@USupport-components-library/services";
 
@@ -144,7 +145,7 @@ const MediaPreviewPanel = ({ t, preview, onRetry }) => {
  */
 export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation("backdrops", { keyPrefix: "join-consultation" });
+  const { t, i18n } = useTranslation("backdrops", { keyPrefix: "join-consultation" });
 
   const addCountryEventMutation = useAddCountryEvent();
   const [step, setStep] = useState("choose");
@@ -266,6 +267,7 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
       isCtaDisabled={isPreviewStep ? !preview.hasStream || isJoining : undefined}
       isCtaLoading={isPreviewStep ? isJoining : undefined}
     >
+      {isOpen && <TutorialVideo tutorialKey="join-a-session" language={i18n.language} />}
       {isPreviewStep ? (
         <MediaPreviewPanel
           t={t}

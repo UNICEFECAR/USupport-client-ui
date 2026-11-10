@@ -21,6 +21,7 @@ import {
   Box,
   Block,
   CookieBanner,
+  TutorialVideo,
 } from "@USupport-components-library/src";
 import {
   userSvc,
@@ -63,7 +64,10 @@ export const Page = ({
   showNavbar = null,
   showFooter = null,
   handleGoBack,
+  goBackContent,
   heading,
+  tutorialKey,
+  tutorialKeys,
   subheading,
   headingButton,
   showHeadingButtonInline = false,
@@ -84,6 +88,8 @@ export const Page = ({
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_RO = localStorage.getItem("country") === "RO";
+  const IS_AM = localStorage.getItem("country") === "AM";
+  const pageTutorialKeys = tutorialKeys || (tutorialKey ? [tutorialKey] : []);
 
   const {
     theme,
@@ -614,12 +620,22 @@ export const Page = ({
             <Block classes="page__header">
               <div className="page__header__text-container">
                 {showGoBackArrow && (
+                  <div className={goBackContent || (IS_AM && pageTutorialKeys.length) ? "page__go-back-row" : undefined}>
                   <div
                     className="page__header__text-container__go-back"
                     onClick={handleGoBackArrowClick}
                   >
                     <Icon name="arrow-chevron-back" size="md" color="#20809E" />
                     <p>{t("go_back")}</p>
+                  </div>
+                  {goBackContent}
+                  {!goBackContent && IS_AM && pageTutorialKeys.length > 0 && (
+                    <div className="page__tutorial-links">
+                      {pageTutorialKeys.map((key) => (
+                        <TutorialVideo key={key} tutorialKey={key} language={i18n.language} />
+                      ))}
+                    </div>
+                  )}
                   </div>
                 )}
                 {heading && <h1 className="page__header-heading">{heading}</h1>}
@@ -805,6 +821,9 @@ Page.propTypes = {
    * Heading text
    */
   heading: PropTypes.string,
+  tutorialKey: PropTypes.string,
+  tutorialKeys: PropTypes.arrayOf(PropTypes.string),
+  goBackContent: PropTypes.node,
 
   /**
    * Subheading text

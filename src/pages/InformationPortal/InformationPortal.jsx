@@ -19,6 +19,7 @@ import {
   Block,
   Icon,
   TabsUnderlined,
+  TutorialVideo,
 } from "@USupport-components-library/src";
 
 import {
@@ -36,13 +37,14 @@ import "./information-portal.scss";
  * @returns {JSX.Element}
  */
 export const InformationPortal = () => {
-  const { t } = useTranslation("pages", {
+  const { t, i18n } = useTranslation("pages", {
     keyPrefix: "information-portal",
   });
   const { width } = useWindowDimensions();
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
   const navigate = useNavigate();
+  const IS_AM = localStorage.getItem("country") === "AM";
 
   const { isPodcastsActive, isVideosActive } = useContext(ThemeContext);
 
@@ -112,16 +114,20 @@ export const InformationPortal = () => {
         placeholder={t("search")}
       />
 
-      {contentTabs.length > 1 && (
+      {(contentTabs.length > 1 || IS_AM) && (
         <Block classes="page__information-portal__tabs-block">
-          <div
-            className="page__header__text-container__go-back"
-            onClick={() => navigate(-1)}
-          >
-            <Icon name="arrow-chevron-back" size="md" color="#20809E" />
-            <p>{t("go_back")}</p>
+          <div className="page__information-portal__help-row">
+            <div
+              className="page__header__text-container__go-back"
+              onClick={() => navigate(-1)}
+            >
+              <Icon name="arrow-chevron-back" size="md" color="#20809E" />
+              <p>{t("go_back")}</p>
+            </div>
+            <TutorialVideo tutorialKey="information-portal" language={i18n.language} />
           </div>
-          <Grid classes="page__information-portal__tabs-container">
+          {contentTabs.length > 1 && (
+            <Grid classes="page__information-portal__tabs-container">
             <GridItem md={8} lg={12}>
               <div className="page__information-portal__tabs-container__inner">
                 <TabsUnderlined
@@ -135,7 +141,8 @@ export const InformationPortal = () => {
                 />
               </div>
             </GridItem>
-          </Grid>
+            </Grid>
+          )}
         </Block>
       )}
 

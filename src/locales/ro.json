@@ -1,5 +1,25 @@
 {
   "blocks": {
+    "tutorial-video": {
+      "information-portal": "Cum să folosești portalul de informații",
+      "ask-anonymously": "Cum să pui o întrebare anonim",
+      "label": "Cum funcționează",
+      "close": "Închide",
+      "mood-tracker": "Cum să îți urmărești starea de spirit",
+      "mood-history": "Cum să consulți istoricul stării de spirit",
+      "find-a-specialist": "Cum să găsești un specialist",
+      "book-a-time": "Cum să rezervi o oră",
+      "change-or-cancel": "Cum să modifici sau să anulezi o consultație",
+      "past-sessions": "Cum să vezi consultațiile anterioare",
+      "join-a-session": "Cum să te alături unei consultații",
+      "during-the-call": "Cum să folosești comenzile apelului",
+      "leave-and-rate": "Cum să evaluezi consultația",
+      "edit-your-profile": "Cum să îți editezi profilul",
+      "notifications": "Cum să configurezi notificările",
+      "display-and-language": "Cum să schimbi afișarea și limba",
+      "sos-center": "Cum să primești ajutor urgent",
+      "contact-us": "Cum să raportezi o problemă"
+    },
     "app-update-modal": {
       "heading": "Este disponibilă o versiune nouă",
       "text": "Reîmprospătați pagina pentru a folosi cea mai recentă versiune a platformei.",

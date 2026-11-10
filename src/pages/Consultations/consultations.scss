@@ -2,6 +2,19 @@
 @import "@USupport-components-library/styles";
 
 .page__consultations {
+  &__tutorials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.4rem $spacing_1_6;
+    min-width: 0;
+
+    .tutorial-video__trigger {
+      min-width: 0;
+      max-width: 100%;
+    }
+  }
   @include full-height-page-navbar;
 
   &__button {
