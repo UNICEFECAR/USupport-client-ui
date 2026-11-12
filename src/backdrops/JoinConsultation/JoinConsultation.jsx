@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
@@ -10,6 +11,7 @@ import {
 } from "#hooks";
 
 import {
+  TutorialVideo,
   Backdrop,
   ButtonSelector,
   Icon,
@@ -144,7 +146,8 @@ const MediaPreviewPanel = ({ t, preview, onRetry }) => {
  */
 export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation("backdrops", { keyPrefix: "join-consultation" });
+  const queryClient = useQueryClient();
+  const { t, i18n } = useTranslation("backdrops", { keyPrefix: "join-consultation" });
 
   const addCountryEventMutation = useAddCountryEvent();
   const [step, setStep] = useState("choose");
@@ -266,6 +269,7 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
       isCtaDisabled={isPreviewStep ? !preview.hasStream || isJoining : undefined}
       isCtaLoading={isPreviewStep ? isJoining : undefined}
     >
+      {isOpen && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="join-a-session" language={i18n.language} />}
       {isPreviewStep ? (
         <MediaPreviewPanel
           t={t}

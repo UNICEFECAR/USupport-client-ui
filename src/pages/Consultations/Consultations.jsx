@@ -1,3 +1,4 @@
+import { TutorialVideo } from "@USupport-components-library/src";
 import React, { useState, useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, useSearchParams } from "react-router-dom";
@@ -30,10 +31,12 @@ import {
   useGetClientData,
   useAcceptConsultation,
   useAddCountryEvent,
+  useGetAllConsultations,
 } from "#hooks";
+import { getConsultationTutorialKey } from "../../utils/consultationTutorial";
 import { RootContext } from "#routes";
 
-import { NewButton, Loading } from "@USupport-components-library/src";
+
 
 import "./consultations.scss";
 
@@ -47,10 +50,13 @@ import "./consultations.scss";
 export const Consultations = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { t } = useTranslation("pages", { keyPrefix: "consultations-page" });
+  const { t, i18n } = useTranslation("pages", { keyPrefix: "consultations-page" });
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { isTmpUser } = useContext(RootContext);
+  const IS_AM = localStorage.getItem("country") === "AM";
+  const consultationsQuery = useGetAllConsultations(IS_AM && !isTmpUser);
+  const tutorialKey = getConsultationTutorialKey(consultationsQuery.data);
 
   useEffect(() => {
     const suggestionDate = searchParams.get("suggestion_date");
@@ -193,6 +199,7 @@ export const Consultations = () => {
       providerId: selectedConsultationProviderId,
       rescheduleCampaignSlot: !!slot.campaign_id,
       durationMinutes,
+      rescheduledConsultationId: selectedConsultationId,
     });
   };
 
@@ -240,6 +247,11 @@ export const Consultations = () => {
 
   return (
     <Page
+      goBackContent={IS_AM && tutorialKey && !consultationsQuery.isLoading && !consultationsQuery.isError && (
+        <div className="page__consultations__tutorials">
+          <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey={tutorialKey} language={i18n.language} />
+        </div>
+      )}
       heading={t("header")}
       classes="page__consultations"
       // headingButton={

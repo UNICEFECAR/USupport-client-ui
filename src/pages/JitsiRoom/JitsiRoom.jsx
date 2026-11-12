@@ -1,11 +1,16 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { JitsiMeeting } from "@jitsi/react-sdk";
 import { useTranslation } from "react-i18next";
 import { Navigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { Controls, Loading } from "@USupport-components-library/src";
+import {
+  TutorialVideo,
+  Controls,
+  Loading,
+} from "@USupport-components-library/src";
 import {
   useWindowDimensions,
   ThemeContext,
@@ -70,7 +75,8 @@ export const JitsiRoom = () => {
   const country = localStorage.getItem("country");
   const { theme } = useContext(ThemeContext);
 
-  const { t } = useTranslation("pages", { keyPrefix: "consultation-page" });
+  const queryClient = useQueryClient();
+  const { t, i18n } = useTranslation("pages", { keyPrefix: "consultation-page" });
   const consultationRef = useRef();
   const api = useRef();
   const backdropMessagesContainerRef = useRef();
@@ -333,8 +339,13 @@ export const JitsiRoom = () => {
   };
 
   const leaveConsultationMutation = useLeaveConsultation();
+  const hasLeftRef = useRef(false);
 
   const leaveConsultation = () => {
+    // Root calls this again when the client navigates away from the safety feedback
+    if (hasLeftRef.current) return;
+    hasLeftRef.current = true;
+
     setShowSafetyFeedback(true);
     const leaveMessage = {
       time: JSON.stringify(new Date().getTime()),
@@ -440,6 +451,7 @@ export const JitsiRoom = () => {
               }}
             >
               <Controls
+                tutorialHelp={localStorage.getItem("country") === "AM" && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="during-the-call" language={i18n.language} />}
                 t={t}
                 consultation={consultation}
                 handleSendMessage={handleSendMessage}

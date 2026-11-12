@@ -4,6 +4,42 @@ import { useQuery } from "@tanstack/react-query";
 import { cmsSvc, adminSvc } from "@USupport-components-library/services";
 
 /**
+ * CMS `find` rewrites requested ids to the locale-specific Strapi id
+ * (`meta.availableLocales` is `{ [anyFamilyId]: { en, ro, ... } }`).
+ * Pin order stays on the canonical id; the row we render is the localized one.
+ *
+ * @param {object[]} rows
+ * @param {string[]} canonicalIds
+ * @param {Record<string, Record<string, number|string>>} availableLocales
+ * @param {string} locale
+ */
+export function orderPinnedArticlesByCanonicalId(
+  rows,
+  canonicalIds,
+  availableLocales,
+  locale,
+) {
+  const byId = new Map((rows || []).map((entry) => [String(entry.id), entry]));
+  if (!byId.size) return [];
+
+  const ordered = canonicalIds
+    .map((canonicalId) => {
+      const localeMap = availableLocales?.[String(canonicalId)];
+      if (localeMap && typeof localeMap === "object") {
+        const localizedId = localeMap[locale] ?? localeMap.en;
+        if (localizedId != null) {
+          const localized = byId.get(String(localizedId));
+          if (localized) return localized;
+        }
+      }
+      return byId.get(String(canonicalId));
+    })
+    .filter(Boolean);
+
+  return ordered.length ? ordered : [...byId.values()];
+}
+
+/**
  * Romanian dashboard: `pinned_articles` and `article_ids` share the same canonical Strapi IDs
  * (see country admin assigns/pins). We intersect in order of the pin list, then hydrate from CMS.
  *
@@ -79,19 +115,26 @@ export function useRomaniaPinnedArticlesDashboard({
         limit: ids.length,
       };
 
-      const fetchForLocale = (locale) =>
-        cmsSvc.getArticles({ ...baseRequest, locale });
+      const fetchForLocale = async (locale) => {
+        const { data } = await cmsSvc.getArticles({ ...baseRequest, locale });
+        return {
+          rows: data?.data ?? [],
+          availableLocales: data?.meta?.availableLocales ?? {},
+        };
+      };
 
-      let { data } = await fetchForLocale(usersLanguage);
-      let rows = data?.data ?? [];
+      let { rows, availableLocales } = await fetchForLocale(usersLanguage);
 
       if (!rows.length && usersLanguage !== "en") {
-        ({ data } = await fetchForLocale("en"));
-        rows = data?.data ?? [];
+        ({ rows, availableLocales } = await fetchForLocale("en"));
       }
 
-      const byId = new Map(rows.map((entry) => [String(entry.id), entry]));
-      return ids.map((id) => byId.get(String(id))).filter(Boolean);
+      return orderPinnedArticlesByCanonicalId(
+        rows,
+        ids,
+        availableLocales,
+        usersLanguage,
+      );
     },
     {
       enabled:

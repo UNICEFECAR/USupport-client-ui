@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import PropTypes from "prop-types";
-import { useQuery } from "@tanstack/react-query";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 import { RootContext } from "#routes";
 
-import { Backdrop, Header, Loading } from "@USupport-components-library/src";
+import {
+  TutorialVideo,
+  Backdrop,
+  Header,
+  Loading,
+} from "@USupport-components-library/src";
 import { providerSvc } from "@USupport-components-library/services";
 import {
   getTimestampFromUTC,
@@ -35,7 +40,8 @@ export const SelectConsultation = ({
   campaignId: campaingIdFromProps,
   couponCode,
 }) => {
-  const { t } = useTranslation("backdrops", {
+  const queryClient = useQueryClient();
+  const { t, i18n } = useTranslation("backdrops", {
     keyPrefix: "select-consultation",
   });
   const { activeCoupon } = useContext(RootContext);
@@ -227,6 +233,7 @@ export const SelectConsultation = ({
       isCtaLoading={isMutating}
       errorMessage={errorMessage}
     >
+      {isOpen && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="book-a-time" language={i18n.language} />}
       {SHOW_COUPON && (activeCoupon || couponCode) && (
         <div className="select-consultation__coupon-container">
           <p>

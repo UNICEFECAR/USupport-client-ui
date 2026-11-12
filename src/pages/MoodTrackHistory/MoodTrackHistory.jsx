@@ -39,7 +39,7 @@ export const MoodTrackHistory = () => {
     );
 
   return (
-    <Page
+    <Page tutorialKey="mood-history"
       classes="page__mood-track-history"
       heading={t("heading")}
       subheading={t("subheading")}

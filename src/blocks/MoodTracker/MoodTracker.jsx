@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useContext } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
 import { toast } from "react-toastify";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import {
+  TutorialVideo,
   Block,
   NewButton,
   Textarea,
@@ -47,7 +49,8 @@ export const MoodTracker = ({
   const IS_RO = country === "RO";
 
   const navigate = useNavigate();
-  const { t } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
+  const queryClient = useQueryClient();
+  const { t, i18n } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
 
   const emoticonsArray = [
     { value: "happy", label: t("happy"), isSelected: false },
@@ -303,6 +306,12 @@ export const MoodTracker = ({
                   </h3>
                 )}
               </div>
+              <TutorialVideo
+                queryClient={queryClient}
+                i18n={i18n}
+                tutorialKey="mood-tracker"
+                language={i18n.language}
+              />
             </div>
             {width <= 768 ? renderButton() : null}
           </div>

@@ -285,7 +285,7 @@ export const SelectProvider = () => {
   };
 
   return (
-    <Page
+    <Page tutorialKey="find-a-specialist"
       classes="page__select-provider"
       heading={
         effectiveActiveCoupon

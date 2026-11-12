@@ -1,8 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import Participant from "./Participant";
 import useRoom from "./utils/useRoom";
 
-import { Controls, Icon, Modal } from "@USupport-components-library/src";
+import {
+  TutorialVideo,
+  Controls,
+  Icon,
+  Modal,
+} from "@USupport-components-library/src";
+import { useTranslation } from "react-i18next";
 
 import "./video-room.scss";
 
@@ -20,6 +27,8 @@ export function VideoRoom({
   hideControls,
   t,
 }) {
+  const queryClient = useQueryClient();
+  const { i18n } = useTranslation();
   const [showPermissionsPopUp, setShowPermissionsPopUp] = useState(false);
   const roomName = consultation.consultationId;
   const {
@@ -86,6 +95,7 @@ export function VideoRoom({
       </Modal>
       {!hideControls && (
         <Controls
+          tutorialHelp={localStorage.getItem("country") === "AM" && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="during-the-call" language={i18n.language} />}
           consultation={consultation}
           toggleCamera={toggleCamera}
           toggleMicrophone={toggleMicrophone}

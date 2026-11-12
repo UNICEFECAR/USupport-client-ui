@@ -1,8 +1,10 @@
 import React, { useCallback, useMemo, useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useCustomNavigate as useNavigate } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import {
+  TutorialVideo,
   Block,
   Grid,
   GridItem,
@@ -46,9 +48,11 @@ export const MyQA = ({
   onResetSearch,
   searchValue,
 }) => {
-  const { t } = useTranslation("blocks", { keyPrefix: "my-qa" });
+  const queryClient = useQueryClient();
+  const { t, i18n } = useTranslation("blocks", { keyPrefix: "my-qa" });
   const navigate = useNavigate();
   const IS_RTL = localStorage.getItem("language") === "ar";
+  const IS_AM = localStorage.getItem("country") === "AM";
 
   const { data: languages } = useGetLanguages();
   const [tags, setTags] = useState([]);
@@ -246,12 +250,16 @@ export const MyQA = ({
             <Icon name="arrow-chevron-back" size="md" color="#20809E" />
             <p>{t("go_back")}</p>
           </div>
-          <NewButton
-            size="lg"
-            label={t("how_it_works")}
-            onClick={setIsHowItWorksOpen}
-            classes="my-qa__header__button"
-          />
+          {IS_AM ? (
+            <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="ask-anonymously" language={i18n.language} />
+          ) : (
+            <NewButton
+              size="lg"
+              label={t("how_it_works")}
+              onClick={setIsHowItWorksOpen}
+              classes="my-qa__header__button"
+            />
+          )}
         </div>
       </div>
       <Grid>

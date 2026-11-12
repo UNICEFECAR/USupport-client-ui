@@ -19,6 +19,31 @@
 
     &__inner {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: $spacing_1_6;
+    }
+  }
+
+  &__help-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing_1_6;
+
+    .page__header__text-container__go-back {
+      flex-shrink: 0;
+      margin-bottom: 0;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .tutorial-video__trigger {
+      min-width: 0;
+      margin-inline-start: auto;
     }
   }
 
