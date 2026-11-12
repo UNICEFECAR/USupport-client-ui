@@ -644,7 +644,7 @@
       "recommendations_text": "Vrei să vezi graficul stării tale și conținutul recomandat?",
       "check_out": "Vezi detalii",
       "mood_tracker_long": "Studiați jurnalul stării de spirit",
-      "welcome-heading": "Welcome",
+      "welcome-heading": "Bine ați venit",
       "user_guide": "Utilizarea platformei",
       "additional_comment_label": "Ce te-a făcut să te simți astfel?"
     },
@@ -1098,8 +1098,8 @@
       "explore_card_title": "Descoperiți sprijin local",
       "explore_card_description": "Găsiți organizații și resurse de sănătate mintală în zona dvs.",
       "user_guide_heading": "Vrei sa afli mai multe despre:",
-      "emergency_services": "Sevicii de urgenta",
-      "emergency_services_description": "Sevicii de urgenta",
+      "emergency_services": "Servicii de urgență",
+      "emergency_services_description": "Servicii de urgență",
       "map": "Harta serviciilor de sanatate mintala si suport psiho-emotional disponibile in Bucuresti",
       "map_description": "Harta serviciilor de suport (București)",
       "rights": "Drepturile copiilor si adolescentilor de a accesa servicii pentru sanatate mintala si suport psiho-emotional",
@@ -1328,7 +1328,7 @@
       "require_cookies": "Pentru a viziona acest videoclip, vă rugăm să acceptați toate cookie-urile.",
       "cookie_preferences": "Preferințe pentru cookie-uri",
       "search": "Căutare",
-      "go_back": "Go back"
+      "go_back": "Înapoi"
     },
     "register-email-page": {
       "heading": "Înregistrați-vă cu e-mail în uSupport"
@@ -1842,7 +1842,7 @@
     },
     "user-guide": {
       "heading": "Vrei sa afli mai multe despre:",
-      "emergency_services": "Sevicii de urgenta",
+      "emergency_services": "Servicii de urgență",
       "map": "Harta serviciilor de suport (București)",
       "rights": "Drepturile copiilor și adolescenților"
     },
