@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { useGetIsUserGuidesActive } from "#hooks";
 import Participant from "./Participant";
 import useRoom from "./utils/useRoom";
 
@@ -28,6 +29,7 @@ export function VideoRoom({
   t,
 }) {
   const queryClient = useQueryClient();
+  const isUserGuidesActive = useGetIsUserGuidesActive();
   const { i18n } = useTranslation();
   const [showPermissionsPopUp, setShowPermissionsPopUp] = useState(false);
   const roomName = consultation.consultationId;
@@ -95,7 +97,15 @@ export function VideoRoom({
       </Modal>
       {!hideControls && (
         <Controls
-          tutorialHelp={localStorage.getItem("country") === "AM" && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="during-the-call" language={i18n.language} />}
+          tutorialHelp={isUserGuidesActive && (
+            <TutorialVideo
+              isEnabled={isUserGuidesActive}
+              queryClient={queryClient}
+              i18n={i18n}
+              tutorialKey="during-the-call"
+              language={i18n.language}
+            />
+          )}
           consultation={consultation}
           toggleCamera={toggleCamera}
           toggleMicrophone={toggleMicrophone}

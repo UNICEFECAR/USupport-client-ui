@@ -1,6 +1,7 @@
 {
   "blocks": {
     "tutorial-video": {
+      "getting-started-tour": "Первые шаги в uSupport",
       "information-portal": "Как пользоваться информационным порталом",
       "ask-anonymously": "Как задать вопрос анонимно",
       "label": "Как это работает",

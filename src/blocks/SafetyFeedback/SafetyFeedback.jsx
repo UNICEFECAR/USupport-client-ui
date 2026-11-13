@@ -1,7 +1,7 @@
 import React, { useContext, useState, useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { useCustomNavigate as useNavigate } from "#hooks";
+import { useCustomNavigate as useNavigate, useGetIsUserGuidesActive } from "#hooks";
 
 import {
   TutorialVideo,
@@ -34,6 +34,7 @@ import "./safety-feedback.scss";
 export const SafetyFeedback = ({ consultationId, answers = {} }) => {
   const { theme } = useContext(ThemeContext);
   const queryClient = useQueryClient();
+  const isUserGuidesActive = useGetIsUserGuidesActive();
   const { t, i18n } = useTranslation("blocks", {
     keyPrefix: "safety-feedback-block",
   });
@@ -199,7 +200,13 @@ export const SafetyFeedback = ({ consultationId, answers = {} }) => {
       <Grid classes="safety-feedback__grid">
         <GridItem md={8} lg={12} classes="safety-feedback__grid__headings-item">
           <h4>{t("heading")}</h4>
-          <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="leave-and-rate" language={i18n.language} />
+          <TutorialVideo
+            isEnabled={isUserGuidesActive}
+            queryClient={queryClient}
+            i18n={i18n}
+            tutorialKey="leave-and-rate"
+            language={i18n.language}
+          />
           <p className="text">{t("subheading")}</p>
         </GridItem>
         {questions.map((question) => {

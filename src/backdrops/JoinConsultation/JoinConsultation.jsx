@@ -8,6 +8,7 @@ import {
   useAddCountryEvent,
   useError,
   useMediaPreview,
+  useGetIsUserGuidesActive,
 } from "#hooks";
 
 import {
@@ -147,7 +148,10 @@ const MediaPreviewPanel = ({ t, preview, onRetry }) => {
 export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { t, i18n } = useTranslation("backdrops", { keyPrefix: "join-consultation" });
+  const isUserGuidesActive = useGetIsUserGuidesActive();
+  const { t, i18n } = useTranslation("backdrops", {
+    keyPrefix: "join-consultation",
+  });
 
   const addCountryEventMutation = useAddCountryEvent();
   const [step, setStep] = useState("choose");
@@ -217,7 +221,7 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
           chatId: consultation.chatId,
           status: err?.response?.status,
           error: err?.response?.data?.error || err?.message,
-        })
+        }),
       );
 
     preview.stopStream();
@@ -266,10 +270,20 @@ export const JoinConsultation = ({ isOpen, onClose, consultation }) => {
       handleGoBack={handleGoBack}
       ctaLabel={isPreviewStep ? t("join_video") : undefined}
       ctaHandleClick={isPreviewStep ? handleJoinWithVideo : undefined}
-      isCtaDisabled={isPreviewStep ? !preview.hasStream || isJoining : undefined}
+      isCtaDisabled={
+        isPreviewStep ? !preview.hasStream || isJoining : undefined
+      }
       isCtaLoading={isPreviewStep ? isJoining : undefined}
     >
-      {isOpen && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="join-a-session" language={i18n.language} />}
+      {isOpen && (
+        <TutorialVideo
+          isEnabled={isUserGuidesActive}
+          queryClient={queryClient}
+          i18n={i18n}
+          tutorialKey="join-a-session"
+          language={i18n.language}
+        />
+      )}
       {isPreviewStep ? (
         <MediaPreviewPanel
           t={t}

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { useCustomNavigate as useNavigate } from "#hooks";
+import { useCustomNavigate as useNavigate, useGetIsUserGuidesActive } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -49,10 +49,10 @@ export const MyQA = ({
   searchValue,
 }) => {
   const queryClient = useQueryClient();
+  const isUserGuidesActive = useGetIsUserGuidesActive();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "my-qa" });
   const navigate = useNavigate();
   const IS_RTL = localStorage.getItem("language") === "ar";
-  const IS_AM = localStorage.getItem("country") === "AM";
 
   const { data: languages } = useGetLanguages();
   const [tags, setTags] = useState([]);
@@ -250,8 +250,14 @@ export const MyQA = ({
             <Icon name="arrow-chevron-back" size="md" color="#20809E" />
             <p>{t("go_back")}</p>
           </div>
-          {IS_AM ? (
-            <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="ask-anonymously" language={i18n.language} />
+          {isUserGuidesActive ? (
+            <TutorialVideo
+              isEnabled={isUserGuidesActive}
+              queryClient={queryClient}
+              i18n={i18n}
+              tutorialKey="ask-anonymously"
+              language={i18n.language}
+            />
           ) : (
             <NewButton
               size="lg"

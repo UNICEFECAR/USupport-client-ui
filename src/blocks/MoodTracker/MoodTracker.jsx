@@ -2,7 +2,7 @@ import React, { useState, useCallback, useContext } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
 import { toast } from "react-toastify";
-import { useCustomNavigate as useNavigate } from "#hooks";
+import { useCustomNavigate as useNavigate, useGetIsUserGuidesActive } from "#hooks";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -50,6 +50,7 @@ export const MoodTracker = ({
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const isUserGuidesActive = useGetIsUserGuidesActive();
   const { t, i18n } = useTranslation("blocks", { keyPrefix: "mood-tracker" });
 
   const emoticonsArray = [
@@ -307,6 +308,7 @@ export const MoodTracker = ({
                 )}
               </div>
               <TutorialVideo
+                isEnabled={isUserGuidesActive}
                 queryClient={queryClient}
                 i18n={i18n}
                 tutorialKey="mood-tracker"

@@ -28,6 +28,7 @@ import {
   useGetSecurityCheckAnswersByConsultationId,
   useLeaveConsultation,
   useGetClientData,
+  useGetIsUserGuidesActive,
 } from "#hooks";
 
 import { ReportConsultationProblem } from "#backdrops";
@@ -76,6 +77,7 @@ export const JitsiRoom = () => {
   const { theme } = useContext(ThemeContext);
 
   const queryClient = useQueryClient();
+  const isUserGuidesActive = useGetIsUserGuidesActive();
   const { t, i18n } = useTranslation("pages", { keyPrefix: "consultation-page" });
   const consultationRef = useRef();
   const api = useRef();
@@ -451,7 +453,15 @@ export const JitsiRoom = () => {
               }}
             >
               <Controls
-                tutorialHelp={localStorage.getItem("country") === "AM" && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="during-the-call" language={i18n.language} />}
+                tutorialHelp={isUserGuidesActive && (
+                  <TutorialVideo
+                    isEnabled={isUserGuidesActive}
+                    queryClient={queryClient}
+                    i18n={i18n}
+                    tutorialKey="during-the-call"
+                    language={i18n.language}
+                  />
+                )}
                 t={t}
                 consultation={consultation}
                 handleSendMessage={handleSendMessage}

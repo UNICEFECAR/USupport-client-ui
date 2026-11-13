@@ -35,6 +35,7 @@ export default function useGetClientData(
       urbanRural: res.data.urban_rural || "",
       dataProcessing: res.data.data_processing,
       hasCheckedBaselineAssessment: res.data.has_checked_baseline_assessment,
+      hasSeenInitialGuide: res.data.has_seen_initial_guide,
     };
 
     return data;

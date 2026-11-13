@@ -1,6 +1,7 @@
 {
   "blocks": {
     "tutorial-video": {
+      "getting-started-tour": "Getting started with uSupport",
       "information-portal": "How to use the information portal",
       "ask-anonymously": "How to ask anonymously",
       "label": "How it works",
