@@ -1,6 +1,7 @@
 import { TutorialVideo } from "@USupport-components-library/src";
 import React, { useState } from "react";
 import { useQueryClient, useQueries } from "@tanstack/react-query";
+import { useGetIsUserGuidesActive } from "#hooks";
 import { Page, NotificationPreferences, DownloadApp } from "#blocks";
 import { useTranslation } from "react-i18next";
 
@@ -19,21 +20,21 @@ const TUTORIAL_KEYS = ["notifications", "display-and-language"];
  */
 export const NotificationPreferencesPage = () => {
   const queryClient = useQueryClient();
+  const isUserGuidesActive = useGetIsUserGuidesActive();
   const { t, i18n } = useTranslation("pages", {
     keyPrefix: "notification-preferences-page",
   });
   const language = i18n.language;
-  const isArmenia = localStorage.getItem("country") === "AM";
   const [nextTutorial, setNextTutorial] = useState(null);
   const tutorialQueries = useQueries({
     queries: TUTORIAL_KEYS.map((key) => ({
       queryKey: ["tutorial", "client", key, language],
       queryFn: () => cmsSvc.getTutorial(key, language, "client"),
-      enabled: isArmenia && Boolean(language),
+      enabled: isUserGuidesActive && Boolean(language),
       retry: 1,
     })),
   });
-  const availableKeys = isArmenia && tutorialQueries.every((query) => !query.isLoading)
+  const availableKeys = isUserGuidesActive && tutorialQueries.every((query) => !query.isLoading)
     ? TUTORIAL_KEYS.filter((key, index) => {
       const { data, isError } = tutorialQueries[index];
       const video = data?.video;
@@ -50,6 +51,7 @@ export const NotificationPreferencesPage = () => {
     <Page
       goBackContent={selectedKey && (
         <TutorialVideo
+          isEnabled={isUserGuidesActive}
           queryClient={queryClient}
           i18n={i18n}
           tutorialKey={selectedKey}

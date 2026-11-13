@@ -88,7 +88,6 @@ export const Page = ({
   const isNavbarShown = showNavbar !== null ? showNavbar : isLoggedIn;
   const isFooterShown = showFooter !== null ? showFooter : isLoggedIn;
   const IS_RO = localStorage.getItem("country") === "RO";
-  const IS_AM = localStorage.getItem("country") === "AM";
   const pageTutorialKeys = tutorialKeys || (tutorialKey ? [tutorialKey] : []);
 
   const {
@@ -99,8 +98,8 @@ export const Page = ({
     cookieState,
     setCookieState,
   } = useContext(ThemeContext);
-  const { setSelectedCountry: setSelectedCountryContext } =
-    useContext(RootContext);
+  const { selectedCountry, setSelectedCountry } = useContext(RootContext);
+  const isUserGuidesActive = selectedCountry?.userGuidesActive === true;
   const { width } = useWindowDimensions();
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -141,18 +140,15 @@ export const Page = ({
       ? { value: localStorageLanguage.toUpperCase() }
       : { value: "EN" },
   );
-  const [selectedCountry, setSelectedCountry] = useState();
-
   useEventListener("countryChanged", () => {
-    const country = localStorage.getItem("country");
-    if (country) {
-      setSelectedCountry(country);
-    }
+    const countryCode = localStorage.getItem("country");
+    const countries = queryClient.getQueryData(["countries"]);
+    setSelectedCountry(
+      countries?.find((country) => country.value === countryCode) ?? null,
+    );
   });
 
   const handleCountrySelection = (countries) => {
-    let hasSetDefaultCountry = false;
-
     const usersCountry = getCountryFromTimezone();
     const validCountry = countries.find((x) => x.value === usersCountry);
 
@@ -169,8 +165,6 @@ export const Page = ({
         setSelectedCountry(country);
       } else if (!localStorageCountry || localStorageCountry === "undefined") {
         if (validCountry?.value === country.value) {
-          hasSetDefaultCountry = true;
-
           localStorage.setItem("country", country.value);
           localStorage.setItem("country_id", country.countryID);
           localStorage.setItem("currency_symbol", country.currencySymbol);
@@ -203,6 +197,7 @@ export const Page = ({
     }
 
     if (subdomain === "staging" || subdomain === "usupport") {
+      localStorageCountry = "global";
       localStorage.setItem("country", "global");
       window.dispatchEvent(new Event("countryChanged"));
     }
@@ -219,6 +214,7 @@ export const Page = ({
         localName: x.local_name,
         videosActive: x.videos_active,
         podcastsActive: x.podcasts_active,
+        userGuidesActive: x.user_guides_active,
         hasPayments: x.has_payments,
         hasCoupons: x.has_coupons,
         hasFreeConsultations: x.has_free_consultations,
@@ -279,17 +275,6 @@ export const Page = ({
       enabled: !!selectedCountry,
     },
   );
-
-  useEffect(() => {
-    if (countries && selectedCountry) {
-      const countryObject = countries.find(
-        (x) => x.value === selectedCountry.value,
-      );
-      if (countryObject) {
-        setSelectedCountryContext(countryObject);
-      }
-    }
-  }, [countries, selectedCountry]);
 
   useEffect(() => {
     const countries = queryClient.getQueryData(["countries"]);
@@ -620,7 +605,7 @@ export const Page = ({
             <Block classes="page__header">
               <div className="page__header__text-container">
                 {showGoBackArrow && (
-                  <div className={goBackContent || (IS_AM && pageTutorialKeys.length) ? "page__go-back-row" : undefined}>
+                  <div className={goBackContent || (isUserGuidesActive && pageTutorialKeys.length) ? "page__go-back-row" : undefined}>
                   <div
                     className="page__header__text-container__go-back"
                     onClick={handleGoBackArrowClick}
@@ -629,10 +614,17 @@ export const Page = ({
                     <p>{t("go_back")}</p>
                   </div>
                   {goBackContent}
-                  {!goBackContent && IS_AM && pageTutorialKeys.length > 0 && (
+                  {!goBackContent && isUserGuidesActive && pageTutorialKeys.length > 0 && (
                     <div className="page__tutorial-links">
                       {pageTutorialKeys.map((key) => (
-                        <TutorialVideo queryClient={queryClient} i18n={i18n} key={key} tutorialKey={key} language={i18n.language} />
+                        <TutorialVideo
+                          isEnabled={isUserGuidesActive}
+                          queryClient={queryClient}
+                          i18n={i18n}
+                          key={key}
+                          tutorialKey={key}
+                          language={i18n.language}
+                        />
                       ))}
                     </div>
                   )}

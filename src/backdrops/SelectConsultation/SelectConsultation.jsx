@@ -17,7 +17,7 @@ import {
   getTimeRangeAsString,
 } from "@USupport-components-library/utils";
 
-import { useGetProviderDataById } from "#hooks";
+import { useGetProviderDataById, useGetIsUserGuidesActive } from "#hooks";
 
 import "./select-consultation.scss";
 
@@ -41,6 +41,7 @@ export const SelectConsultation = ({
   couponCode,
 }) => {
   const queryClient = useQueryClient();
+  const isUserGuidesActive = useGetIsUserGuidesActive();
   const { t, i18n } = useTranslation("backdrops", {
     keyPrefix: "select-consultation",
   });
@@ -233,7 +234,15 @@ export const SelectConsultation = ({
       isCtaLoading={isMutating}
       errorMessage={errorMessage}
     >
-      {isOpen && <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="book-a-time" language={i18n.language} />}
+      {isOpen && (
+        <TutorialVideo
+          isEnabled={isUserGuidesActive}
+          queryClient={queryClient}
+          i18n={i18n}
+          tutorialKey="book-a-time"
+          language={i18n.language}
+        />
+      )}
       {SHOW_COUPON && (activeCoupon || couponCode) && (
         <div className="select-consultation__coupon-container">
           <p>

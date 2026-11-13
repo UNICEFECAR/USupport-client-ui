@@ -29,15 +29,14 @@ import {
   useScheduleConsultation,
   useGetClientData,
   useAddCountryEvent,
+  useInitialGuide,
 } from "#hooks";
 
 import { BaselineAssesmentModal, RequireDataAgreement } from "#modals";
 
+import { Modal, VideoPlayer } from "@USupport-components-library/src";
 import { userSvc } from "@USupport-components-library/services";
-import {
-  ONE_HOUR,
-  getConsultationEndDate,
-} from "@USupport-components-library/utils";
+import { getConsultationEndDate } from "@USupport-components-library/utils";
 import "./dashboard.scss";
 
 /**
@@ -48,10 +47,11 @@ import "./dashboard.scss";
  * @returns {JSX.Element}
  */
 export const Dashboard = () => {
-  const { t } = useTranslation("pages", { keyPrefix: "dashboard-page" });
+  const { t, i18n } = useTranslation("pages", { keyPrefix: "dashboard-page" });
   const navigate = useNavigate();
   const isLoggedIn = useIsLoggedIn();
-  const isTmpUser = userSvc.getUserID() === "tmp-user";
+  const userId = userSvc.getUserID();
+  const isTmpUser = userId === "tmp-user";
 
   // Determine if user is authenticated (logged in and not loading)
   const isAuthenticated = isLoggedIn === true;
@@ -72,6 +72,13 @@ export const Dashboard = () => {
   //   : "";
 
   const queryClient = useQueryClient();
+  const { initialGuideVideo, closeInitialGuide } = useInitialGuide({
+    isAuthenticated,
+    isTmpUser,
+    userId,
+    language: i18n.language,
+    clientData,
+  });
 
   const consultationPrice = useRef();
 
@@ -283,6 +290,11 @@ export const Dashboard = () => {
   };
   // Show authentication backdrop when user is not authenticated (and not loading)
   const showAuthBackdrop = !isAuthenticated && !isAuthLoading;
+  const initialGuideTitle =
+    initialGuideVideo &&
+    i18n.t("blocks:tutorial-video.getting-started-tour", {
+      lng: initialGuideVideo.language,
+    });
 
   return (
     <Page
@@ -293,6 +305,23 @@ export const Dashboard = () => {
       showGoBackArrow={false}
       showAuthenticationBackdrop={showAuthBackdrop}
     >
+      {initialGuideVideo && (
+        <Modal
+          isOpen
+          closeModal={closeInitialGuide}
+          heading={initialGuideTitle}
+          ctaLabel={i18n.t("blocks:tutorial-video.close")}
+          ctaHandleClick={closeInitialGuide}
+        >
+          <VideoPlayer
+            key={initialGuideVideo.url}
+            url={initialGuideVideo.url}
+            title={initialGuideTitle}
+            hasCookies={false}
+            autoplay
+          />
+        </Modal>
+      )}
       {IS_RO && (
         <BaselineAssesmentModal
           isTmpUser={isTmpUser || !isAuthenticated}

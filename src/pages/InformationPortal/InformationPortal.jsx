@@ -12,7 +12,7 @@ import {
   Videos as VideosBlock,
   Podcasts as PodcastsBlock,
 } from "#blocks";
-import { useDebounce, useCustomNavigate as useNavigate } from "#hooks";
+import { useDebounce, useCustomNavigate as useNavigate, useGetIsUserGuidesActive } from "#hooks";
 
 import {
   TutorialVideo,
@@ -39,6 +39,7 @@ import "./information-portal.scss";
  */
 export const InformationPortal = () => {
   const queryClient = useQueryClient();
+  const isUserGuidesActive = useGetIsUserGuidesActive();
   const { t, i18n } = useTranslation("pages", {
     keyPrefix: "information-portal",
   });
@@ -46,7 +47,6 @@ export const InformationPortal = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get("tab");
   const navigate = useNavigate();
-  const IS_AM = localStorage.getItem("country") === "AM";
 
   const { isPodcastsActive, isVideosActive } = useContext(ThemeContext);
 
@@ -116,7 +116,7 @@ export const InformationPortal = () => {
         placeholder={t("search")}
       />
 
-      {(contentTabs.length > 1 || IS_AM) && (
+      {(contentTabs.length > 1 || isUserGuidesActive) && (
         <Block classes="page__information-portal__tabs-block">
           <div className="page__information-portal__help-row">
             <div
@@ -126,7 +126,13 @@ export const InformationPortal = () => {
               <Icon name="arrow-chevron-back" size="md" color="#20809E" />
               <p>{t("go_back")}</p>
             </div>
-            <TutorialVideo queryClient={queryClient} i18n={i18n} tutorialKey="information-portal" language={i18n.language} />
+            <TutorialVideo
+              isEnabled={isUserGuidesActive}
+              queryClient={queryClient}
+              i18n={i18n}
+              tutorialKey="information-portal"
+              language={i18n.language}
+            />
           </div>
           {contentTabs.length > 1 && (
             <Grid classes="page__information-portal__tabs-container">
