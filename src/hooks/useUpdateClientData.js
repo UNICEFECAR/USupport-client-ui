@@ -23,6 +23,7 @@ export default function useUpdateClientData(data, onSuccess, onError) {
     delete dataCopy.clientID;
     delete dataCopy.hasCheckedBaselineAssessment;
     delete dataCopy.hasSeenInitialGuide;
+    delete dataCopy.hasCompletedRegistration;
 
     dataCopy.email = dataCopy.email?.toLowerCase().trim() || undefined;
     dataCopy.sex = dataCopy.sex || undefined;

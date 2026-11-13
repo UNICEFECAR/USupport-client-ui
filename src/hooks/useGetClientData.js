@@ -36,6 +36,10 @@ export default function useGetClientData(
       dataProcessing: res.data.data_processing,
       hasCheckedBaselineAssessment: res.data.has_checked_baseline_assessment,
       hasSeenInitialGuide: res.data.has_seen_initial_guide,
+      // Derive this from the saved profile so optimistic form edits do not count.
+      hasCompletedRegistration: Boolean(
+        res.data.sex && res.data.year_of_birth && res.data.urban_rural,
+      ),
     };
 
     return data;
