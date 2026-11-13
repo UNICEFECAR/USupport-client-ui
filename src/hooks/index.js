@@ -1,5 +1,7 @@
 export * from "./useGetClientData.js";
 export * from "./useUpdateClientData.js";
+export * from "./useInitialGuide.js";
+export * from "./useGetIsUserGuidesActive.js";
 export * from "./useGetProvidersData.js";
 export * from "./useExample.js";
 export * from "./useDebounce.js";
