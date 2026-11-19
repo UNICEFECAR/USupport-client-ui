@@ -22,7 +22,11 @@ export const useInitialGuide = ({
   const { selectedCountry } = useContext(RootContext);
   const country = selectedCountry?.value;
   const isUserGuidesActive = selectedCountry?.userGuidesActive === true;
-  const canShowInitialGuide = isUserGuidesActive && isAuthenticated && !!userId;
+  const canShowInitialGuide =
+    isUserGuidesActive &&
+    isAuthenticated &&
+    !!userId &&
+    (isTmpUser || clientData?.hasCompletedRegistration === true);
   // Both guest login flows store a new expiration value on successful login.
   const guestSession = isTmpUser ? localStorage.getItem("expires-in") : null;
   const shouldLoadInitialGuide =
