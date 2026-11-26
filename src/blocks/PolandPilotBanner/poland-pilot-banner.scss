@@ -4,19 +4,28 @@
   position: sticky;
   top: $spacing_6_6;
   z-index: 100;
-  padding: $spacing_0_6 $spacing_1_6;
+  height: auto;
+  overflow: visible;
+  padding: $spacing_1_2 $spacing_2_4;
   background-color: rgba(253, 220, 171, 0.92);
   border-bottom: 1px solid $color_orange_fb6514;
 
+  // The desktop navbar grows with the logo. Keep the text below it.
   @media screen and (min-width: 1050px) {
-    top: $spacing_7_0;
+    top: $spacing_8_0;
+    margin-top: $spacing_1_0;
+  }
+
+  @media screen and (min-width: $screen-xl) {
+    top: $spacing_10_0;
+    margin-top: $spacing_3_0;
   }
 
   &__text {
     margin: 0 auto;
     max-width: 110rem;
     font-size: $font_size_1_2;
-    line-height: $line_height_1_8;
+    line-height: 1.5;
     text-align: center;
   }
 }
@@ -26,7 +35,11 @@
   margin-top: $spacing_6_6;
 
   @media screen and (min-width: 1050px) {
-    margin-top: $spacing_7_0;
+    margin-top: $spacing_8_0;
+  }
+
+  @media screen and (min-width: $screen-xl) {
+    margin-top: $spacing_10_0;
   }
 }
 
@@ -34,7 +47,11 @@
   padding-top: calc(#{$spacing_14_6} - #{$spacing_6_6});
 
   @media screen and (min-width: 1050px) {
-    padding-top: calc(#{$spacing_14_6} - #{$spacing_7_0});
+    padding-top: calc(#{$spacing_14_6} - #{$spacing_8_0});
+  }
+
+  @media screen and (min-width: $screen-xl) {
+    padding-top: calc(#{$spacing_14_6} - #{$spacing_10_0});
   }
 }
 
