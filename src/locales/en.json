@@ -1191,6 +1191,10 @@
     "find-support-near-you": {
       "heading": "Find support near you",
       "explore_button_label": "Explore"
+    },
+    "poland-pilot-banner": {
+      "title": "The uSupport pilot in Poland has ended.",
+      "body": "The pilot phase of uSupport in Poland ended on 31 October 2026, so psychological consultations are not available at the moment. Any news about the service continuing will be posted on this website."
     }
   },
   "pages": {

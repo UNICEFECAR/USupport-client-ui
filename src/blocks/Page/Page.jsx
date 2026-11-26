@@ -46,6 +46,7 @@ import {
   useAddCountryEvent,
 } from "#hooks";
 import { NotificationMenu } from "./NotificationMenu";
+import { PolandPilotBanner } from "../PolandPilotBanner";
 
 import "./page.scss";
 import { RootContext } from "../../routes/Root/Root";
@@ -600,6 +601,9 @@ export const Page = ({
           `${classNames(classes)}`,
         ].join(" ")}
       >
+        {!String(classes || "").includes("page__jitsi-room") && (
+          <PolandPilotBanner />
+        )}
         {(heading || showGoBackArrow || headingButton) && (
           <>
             <Block classes="page__header">

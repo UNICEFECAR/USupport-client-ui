@@ -1,0 +1,44 @@
+@import "@USupport-components-library/styles";
+
+.poland-pilot-banner {
+  position: sticky;
+  top: $spacing_6_6;
+  z-index: 100;
+  padding: $spacing_0_6 $spacing_1_6;
+  background-color: rgba(253, 220, 171, 0.92);
+  border-bottom: 1px solid $color_orange_fb6514;
+
+  @media screen and (min-width: 1050px) {
+    top: $spacing_7_0;
+  }
+
+  &__text {
+    margin: 0 auto;
+    max-width: 110rem;
+    font-size: $font_size_1_2;
+    line-height: $line_height_1_8;
+    text-align: center;
+  }
+}
+
+.page--no-additional-top-padding .poland-pilot-banner,
+.page__dashboard .poland-pilot-banner {
+  margin-top: $spacing_6_6;
+
+  @media screen and (min-width: 1050px) {
+    margin-top: $spacing_7_0;
+  }
+}
+
+.page__dashboard:has(.poland-pilot-banner) .mood-tracker {
+  padding-top: calc(#{$spacing_14_6} - #{$spacing_6_6});
+
+  @media screen and (min-width: 1050px) {
+    padding-top: calc(#{$spacing_14_6} - #{$spacing_7_0});
+  }
+}
+
+.theme-dark .poland-pilot-banner {
+  background-color: rgba(251, 101, 20, 0.18);
+  border-bottom-color: rgba(251, 146, 60, 0.75);
+}

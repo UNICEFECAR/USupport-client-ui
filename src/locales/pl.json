@@ -1198,6 +1198,10 @@
       "read_more_button": "Kliknij, aby przeczytać więcej",
       "min_read": "min czytania",
       "by": "autor: {{creator}}"
+    },
+    "poland-pilot-banner": {
+      "title": "Pilotaż uSupport w Polsce został zakończony.",
+      "body": "Faza pilotażowa uSupport w Polsce zakończyła się 31 października 2026 r., dlatego konsultacje psychologiczne są obecnie niedostępne. Wszelkie informacje o ewentualnej kontynuacji usługi będą publikowane na tej stronie."
     }
   },
   "pages": {
